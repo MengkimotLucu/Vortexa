@@ -1,0 +1,78 @@
+---
+interface Props {
+  texts: string[];
+  speed?: 'slow' | 'medium' | 'fast';
+  direction?: 'left' | 'right';
+  reverse?: boolean;
+}
+
+const { 
+  texts = [], 
+  speed = 'medium', 
+  direction = 'left',
+  reverse = false 
+} = Astro.props;
+
+// Translate settings into animation class
+const speedClass = speed === 'slow' ? 'duration-[40s]' : speed === 'fast' ? 'duration-[15s]' : 'duration-[25s]';
+const animationDirection = reverse ? 'animate-[marquee-reverse_linear_infinite]' : 'animate-[marquee-forward_linear_infinite]';
+---
+
+<div class="w-full overflow-hidden border-y border-white/[0.04] bg-cyber-dark/40 py-4 flex select-none pointer-events-none relative">
+  <!-- Glowing gradient overlay on edges for premium visual fade -->
+  <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-cyber-black to-transparent z-10"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-cyber-black to-transparent z-10"></div>
+
+  <!-- Continuous Scrolling Container -->
+  <div class={`flex gap-16 whitespace-nowrap ${animationDirection} ${speedClass}`}>
+    <!-- Main loop -->
+    <div class="flex items-center gap-16">
+      {texts.map((t) => (
+        <span class="font-display font-black text-2xl sm:text-4xl text-stroke-neon tracking-wide flex items-center gap-6 uppercase">
+          {t}
+          <span class="w-3 h-3 rounded-full bg-neon-cyan shadow-[0_0_8px_var(--color-neon-cyan)]"></span>
+        </span>
+      ))}
+    </div>
+    
+    <!-- Duplicate loop for seamless scroll -->
+    <div class="flex items-center gap-16">
+      {texts.map((t) => (
+        <span class="font-display font-black text-2xl sm:text-4xl text-stroke-neon tracking-wide flex items-center gap-6 uppercase">
+          {t}
+          <span class="w-3 h-3 rounded-full bg-neon-cyan shadow-[0_0_8px_var(--color-neon-cyan)]"></span>
+        </span>
+      ))}
+    </div>
+
+    <!-- Triple loop to prevent visual gap on ultra wide monitors -->
+    <div class="flex items-center gap-16">
+      {texts.map((t) => (
+        <span class="font-display font-black text-2xl sm:text-4xl text-stroke-neon tracking-wide flex items-center gap-6 uppercase">
+          {t}
+          <span class="w-3 h-3 rounded-full bg-neon-cyan shadow-[0_0_8px_var(--color-neon-cyan)]"></span>
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes marquee-forward {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-33.33%, 0, 0);
+    }
+  }
+
+  @keyframes marquee-reverse {
+    0% {
+      transform: translate3d(-33.33%, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+</style>

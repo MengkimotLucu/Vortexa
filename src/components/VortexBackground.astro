@@ -1,0 +1,185 @@
+<div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+  <!-- Dynamic grid background overlay for a cyberpunk tech vibe -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(37,99,235,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+  <canvas id="vortex-canvas" class="absolute inset-0 w-full h-full"></canvas>
+</div>
+
+<script>
+  class WarpTunnelAnimation {
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    particles: Array<any>;
+    particleCount: number;
+    speed: number;
+    targetSpeed: number;
+    mouse: { x: number; y: number; targetX: number; targetY: number };
+
+    constructor(canvas: HTMLCanvasElement) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d')!;
+      this.particles = [];
+      this.particleCount = window.innerWidth < 768 ? 80 : 160;
+      this.speed = 1;
+      this.targetSpeed = 1;
+      this.mouse = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        targetX: canvas.width / 2,
+        targetY: canvas.height / 2
+      };
+
+      this.init();
+    }
+
+    init() {
+      this.resizeCanvas();
+      this.createParticles();
+
+      window.addEventListener('resize', () => {
+        this.resizeCanvas();
+        this.createParticles();
+      });
+
+      // Listen to interactive ignition event
+      window.addEventListener('warp-speed-event', (e: any) => {
+        if (e.detail.active) {
+          this.targetSpeed = 22; // Overclock particle speed
+        } else {
+          this.targetSpeed = 1;
+        }
+      });
+
+      const parent = this.canvas.parentElement?.parentElement; // Hero container
+      if (parent) {
+        parent.addEventListener('mousemove', (e: any) => {
+          const rect = parent.getBoundingClientRect();
+          this.mouse.targetX = e.clientX - rect.left;
+          this.mouse.targetY = e.clientY - rect.top;
+        });
+
+        // Click to Warp trigger directly from Hero click
+        parent.addEventListener('mousedown', () => {
+          this.targetSpeed = 15; // Warp jump speed!
+        });
+
+        parent.addEventListener('mouseup', () => {
+          this.targetSpeed = 1; // Back to normal
+        });
+      }
+
+      this.animate();
+    }
+
+    resizeCanvas() {
+      const parent = this.canvas.parentElement;
+      if (parent) {
+        this.canvas.width = parent.clientWidth;
+        this.canvas.height = parent.clientHeight;
+        this.mouse.x = this.canvas.width / 2;
+        this.mouse.y = this.canvas.height / 2;
+        this.mouse.targetX = this.canvas.width / 2;
+        this.mouse.targetY = this.canvas.height / 2;
+      }
+    }
+
+    createParticles() {
+      this.particles = [];
+      const centerX = this.canvas.width / 2;
+      const centerY = this.canvas.height / 2;
+
+      for (let i = 0; i < this.particleCount; i++) {
+        this.particles.push({
+          x: Math.random() * this.canvas.width - centerX,
+          y: Math.random() * this.canvas.height - centerY,
+          z: Math.random() * this.canvas.width, // Depth
+          color: this.getRandomColor(),
+          size: Math.random() * 1.5 + 0.5
+        });
+      }
+    }
+
+    getRandomColor() {
+      const colors = [
+        'rgba(37, 99, 235, ',  // Royal Blue
+        'rgba(59, 130, 246, ', // Light Blue
+        'rgba(29, 78, 216, '   // Deep Blue
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    animate() {
+      // Clear with slight alpha to create motion trails (white for light mode)
+      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+      const centerX = this.canvas.width / 2;
+      const centerY = this.canvas.height / 2;
+
+      // Lerp speed
+      this.speed += (this.targetSpeed - this.speed) * 0.05;
+
+      // Lerp mouse coordinates to shift vanishing point slightly
+      this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
+      this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
+
+      // Calculate shift offsets based on mouse deviation from center
+      const offsetX = (this.mouse.x - centerX) * 0.4;
+      const offsetY = (this.mouse.y - centerY) * 0.4;
+
+      for (let i = 0; i < this.particles.length; i++) {
+        const p = this.particles[i];
+
+        // Move particle closer in depth (decrease z)
+        p.z -= this.speed;
+
+        // Reset if it goes past the screen view (z <= 0)
+        if (p.z <= 0) {
+          p.z = this.canvas.width;
+          p.x = Math.random() * this.canvas.width - centerX;
+          p.y = Math.random() * this.canvas.height - centerY;
+          p.color = this.getRandomColor();
+        }
+
+        // Project 3D coordinates onto 2D screen
+        const k = 600 / p.z; // Perspective coefficient
+        const px = p.x * k + centerX + offsetX;
+        const py = p.y * k + centerY + offsetY;
+
+        // Only draw if within bounds
+        if (px >= 0 && px <= this.canvas.width && py >= 0 && py <= this.canvas.height) {
+          const size = p.size * k * 0.4;
+          const alpha = Math.min(1, (this.canvas.width - p.z) / (this.canvas.width * 0.3)); // Fade in
+
+          this.ctx.beginPath();
+          
+          // Draw streak lines if warping, otherwise draw simple dots
+          if (this.speed > 3) {
+            // Draw speed line stretching back to previous position
+            const prevK = 600 / (p.z + this.speed * 1.5);
+            const ppx = p.x * prevK + centerX + offsetX;
+            const ppy = p.y * prevK + centerY + offsetY;
+            
+            this.ctx.moveTo(px, py);
+            this.ctx.lineTo(ppx, ppy);
+            this.ctx.strokeStyle = `${p.color}${alpha * 0.85})`;
+            this.ctx.lineWidth = size;
+            this.ctx.stroke();
+          } else {
+            this.ctx.arc(px, py, size, 0, Math.PI * 2);
+            this.ctx.fillStyle = `${p.color}${alpha * 0.75})`;
+            this.ctx.fill();
+          }
+        }
+      }
+
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('vortex-canvas') as HTMLCanvasElement;
+    if (canvas) {
+      new WarpTunnelAnimation(canvas);
+    }
+  });
+</script>

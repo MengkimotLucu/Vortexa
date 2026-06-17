@@ -1,0 +1,228 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const posts = [
+    {
+      params: { slug: 'mengenal-vortexa-growth-agency' },
+      props: {
+        title: 'Mengenal VORTEXA: Alasan Kami Hadir & Solusi Web Praktis untuk Bisnis Anda',
+        date: '17 JUNI 2026',
+        category: 'PROFIL',
+        bgCategory: 'bg-rose-100 text-rose-700 border-rose-200',
+        description: 'Kenapa VORTEXA ada? Pelajari misi kami menghadirkan website yang cepat dan mudah dikelola dengan harga yang sangat bersahabat bagi bisnis Anda.',
+        content: `
+          <p class="mb-6">
+            Menjalankan bisnis di era digital membutuhkan kehadiran online yang solid. Namun, banyak pelaku usaha merasa kesulitan ketika ingin membuat website karena sering dihadapkan pada biaya pembuatan yang mahal, biaya perawatan bulanan yang membingungkan, serta kendala teknis yang rumit.
+          </p>
+          
+          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Alasan VORTEXA Hadir</h3>
+          <p class="mb-6">
+            VORTEXA didirikan untuk memberikan solusi pembuatan website yang ringkas, berkinerja tinggi, dan ramah bagi pelaku usaha. Kami ingin membantu Anda memiliki website profesional tanpa harus pusing memikirkan hal-hal teknis yang membingungkan.
+          </p>
+          <p class="mb-6">
+            Kami merancang website dengan struktur kode yang bersih dan efisien. Hasilnya, website Anda dapat diakses dengan sangat cepat oleh calon pelanggan, memiliki tampilan yang modern, dan tidak memerlukan biaya pemeliharaan sistem yang rumit di kemudian hari.
+          </p>
+
+          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kebijakan Harga: Fleksibel & Sangat Bersahabat</h3>
+          <p class="mb-6">
+            Kami sangat memahami bahwa setiap skala bisnis memiliki alokasi anggaran yang berbeda. Oleh karena itu, di VORTEXA kami tidak menerapkan tarif kaku. Kami menawarkan skema biaya yang <strong>sangat fleksibel, murah, dan nyaman</strong>, disesuaikan sepenuhnya dengan tingkat kerumitan tampilan dan fitur yang benar-benar Anda butuhkan.
+          </p>
+          <p class="mb-6">
+            Dengan merancang website secara efisien, kami juga meminimalisir biaya langganan sewa ruang penyimpanan di internet (hosting). Anda hanya membayar untuk desain berkualitas tinggi dan hasil pengerjaan profesional yang siap membantu bisnis Anda tumbuh lebih lancar di internet.
+          </p>
+        `
+      }
+    },
+    {
+      params: { slug: 'pentingnya-kecepatan-website' },
+      props: {
+        title: 'Pentingnya Kecepatan Web di Bawah 3 Detik untuk Google Rank dan Pengunjung',
+        date: '15 JUNI 2026',
+        category: 'OPTIMASI SEO',
+        bgCategory: 'bg-blue-100 text-blue-600 border-blue-200',
+        description: 'Kecepatan halaman membantu website Anda lebih mudah ditemukan di Google dan membuat pengunjung merasa nyaman saat mencari informasi.',
+        content: `
+          <p class="mb-6">
+            Kecepatan akses halaman adalah hal pertama yang dirasakan oleh pengunjung saat membuka website bisnis Anda. Ketika calon pelanggan mencari informasi di internet, mereka mengharapkan halaman terbuka dengan cepat—idealnya <strong>di bawah 3 detik</strong>.
+          </p>
+          <p class="mb-6">
+            Jika website membutuhkan waktu loading yang lama, pengunjung cenderung akan menutup tab browser dan beralih mencari alternatif lain. Hal ini tentu mengurangi potensi interaksi bisnis yang berharga.
+          </p>
+          
+          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kenyamanan Pengunjung dan Penilaian Google</h3>
+          <p class="mb-6">
+            Selain memberikan kenyamanan bagi calon pembeli, mesin pencari seperti Google juga memberikan penilaian positif pada website yang responsif dan cepat dibuka. Optimasi kecepatan halaman membantu website Anda memiliki peluang lebih baik untuk tampil di halaman pencarian.
+          </p>
+          <p class="mb-6">
+            Kami fokus merapikan struktur file dan mengompresi gambar di website Anda agar kinerjanya tetap ringan dan stabil saat diakses dari perangkat handphone maupun komputer. Dengan demikian, calon pelanggan dapat membaca produk dan layanan Anda tanpa hambatan waktu tunggu.
+          </p>
+        `
+      }
+    },
+    {
+      params: { slug: 'website-tanpa-database-lebih-murah' },
+      props: {
+        title: 'Mengenal Desain Web Hemat Biaya untuk Efisiensi Operasional Anda',
+        date: '10 JUNI 2026',
+        category: 'EFISIENSI BIAYA',
+        bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
+        description: 'Bagaimana struktur website tertentu dapat membantu menghemat biaya pemeliharaan bulanan Anda secara maksimal.',
+        content: `
+          <p class="mb-6">
+            Ada berbagai metode dalam merancang website bisnis. Sebagian website menggunakan sistem penyimpanan data yang kompleks untuk mengelola informasi dinamis dalam jumlah besar. Namun, untuk kebutuhan seperti profil perusahaan, portofolio karya, atau halaman penawaran produk, struktur website yang lebih sederhana sering kali menjadi pilihan terbaik.
+          </p>
+          
+          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kelebihan Struktur Web Sederhana</h3>
+          <p class="mb-6">
+            Website yang dirancang langsung menggunakan susunan file siap saji dapat menghemat banyak sumber daya server. Karena tidak memerlukan proses pencarian data yang rumit setiap kali halaman dibuka, loading website menjadi sangat instan.
+          </p>
+          <p class="mb-6">
+            Selain cepat, struktur ini juga sangat ramah anggaran. Biaya untuk menyewa ruang penyimpanan di internet menjadi sangat terjangkau karena sistem operasinya yang ringan. Ini adalah pilihan tepat jika Anda menginginkan website profesional dengan biaya operasional bulanan seminimal mungkin.
+          </p>
+        `
+      }
+    },
+    {
+      params: { slug: 'otomatisasi-leads-ai-whatsapp' },
+      props: {
+        title: 'Cara Otomatisasi Formulir Kontak Langsung Terhubung ke WhatsApp Anda',
+        date: '05 JUNI 2026',
+        category: 'OTOMATISASI',
+        bgCategory: 'bg-indigo-100 text-indigo-700 border-indigo-200',
+        description: 'Membuat alur komunikasi lebih lancar dengan mengirimkan data dari formulir website langsung ke chat WhatsApp Anda.',
+        content: `
+          <p class="mb-6">
+            Ketika pelanggan tertarik dengan layanan Anda setelah membaca isi website, mereka biasanya ingin segera menghubungi Anda untuk bertanya lebih lanjut. Mempermudah alur komunikasi ini sangat penting agar minat calon pembeli tidak hilang.
+          </p>
+          <p class="mb-6">
+            Salah satu solusi termudah adalah menghubungkan formulir kontak di website Anda secara otomatis dengan nomor WhatsApp bisnis Anda.
+          </p>
+          
+          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Alur Pesan Otomatis yang Praktis</h3>
+          <p class="mb-6">
+            Saat calon pembeli mengisi data di website—seperti nama dan layanan yang diminati—sistem akan secara otomatis menyusun pesan tersebut dengan format yang rapi dan sopan. Ketika tombol kirim ditekan, pengunjung akan langsung diarahkan ke chat WhatsApp Anda dengan pesan yang sudah terisi otomatis.
+          </p>
+          <p class="mb-6">
+            Dengan cara ini, Anda tidak perlu repot menyalin data secara manual. Anda dapat membalas dan melayani pertanyaan calon pelanggan dengan lebih cepat, ramah, dan profesional.
+          </p>
+        `
+      }
+    },
+    {
+      params: { slug: 'desain-visual-modern-ui-ux' },
+      props: {
+        title: 'Bagaimana Tampilan Web yang Rapi Membantu Menumbuhkan Kepercayaan Klien',
+        date: '01 JUNI 2026',
+        category: 'TAMPILAN WEB',
+        bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
+        description: 'Desain website yang profesional dan nyaman dilihat membuat pengunjung betah membaca informasi bisnis Anda.',
+        content: `
+          <p class="mb-6">
+            Saat calon pembeli mengunjungi website Anda untuk pertama kali, mereka akan menilai bisnis Anda dari kerapian tampilannya. Desain visual yang profesional dan tertata dengan baik memberikan kesan pertama yang tepercaya.
+          </p>
+          <p class="mb-6">
+            Tata letak gambar yang berantakan atau teks yang sulit dibaca bisa membuat pengunjung kurang yakin dan cepat meninggalkan halaman website Anda.
+          </p>
+          
+          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kenyamanan Membaca dan Kredibilitas</h3>
+          <p class="mb-6">
+            Desain visual yang modern tidak harus rumit. Pemilihan kombinasi warna yang teduh, ukuran tulisan yang pas untuk dibaca dari handphone, serta penempatan tombol yang jelas akan membuat pengunjung betah berlama-lama mencari informasi tentang produk Anda.
+          </p>
+          <p class="mb-6">
+            Di VORTEXA, kami merancang setiap bagian website agar terasa personal dan mencerminkan kualitas dari usaha Anda. Website yang didesain secara profesional membantu membangun kredibilitas bisnis Anda di mata pelanggan baru.
+          </p>
+        `
+      }
+    },
+    {
+      params: { slug: 'migrasi-ke-headless-architecture' },
+      props: {
+        title: 'Tips Mudah Mengelola dan Memperbarui Konten Website Bisnis Baru Anda',
+        date: '28 MEI 2026',
+        category: 'TIPS MANAJEMEN',
+        bgCategory: 'bg-amber-100 text-amber-700 border-amber-200',
+        description: 'Cara praktis untuk memperbarui teks, foto, dan informasi di website Anda secara mandiri tanpa harus pusing belajar pemrograman.',
+        content: `
+          <p class="mb-6">
+            Banyak pemilik usaha merasa cemas bahwa memiliki website baru berarti mereka harus selalu bergantung pada programmer untuk mengganti detail kecil, seperti mengubah info nomor kontak, mengganti harga produk, atau memperbarui foto layanan.
+          </p>
+          <p class="mb-6">
+            Kabar baiknya, sistem website modern dirancang agar sangat mudah dikelola oleh siapa saja secara mandiri, tanpa membutuhkan latar belakang keahlian pemrograman komputer.
+          </p>
+          
+          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kemudahan Pembaruan Konten</h3>
+          <p class="mb-6">
+            Kami menyediakan halaman dasbor pengelolaan yang sederhana dan berbahasa Indonesia. Anda dapat memperbarui informasi penting atau mengunggah foto produk baru semudah memperbarui status di media sosial.
+          </p>
+          <p class="mb-6">
+            Untuk pemeliharaan teknis rutin di balik layar, tim VORTEXA selalu siap sedia membantu Anda. Dengan demikian, Anda dapat memfokuskan waktu dan energi sepenuhnya untuk mengelola dan mengembangkan penjualan bisnis Anda.
+          </p>
+        `
+      }
+    }
+  ];
+
+  return posts;
+}
+
+const { title, date, category, bgCategory, content } = Astro.props;
+---
+
+<Layout title={`${title} | VORTEXA Wawasan`} description={title}>
+  <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center font-display font-black text-white text-xl tracking-wider shadow-lg shadow-blue-600/10 group-hover:rotate-6 transition-transform">
+          V
+        </div>
+        <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">VORTEXA</span>
+      </a>
+
+      <a href="/#blog" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all">
+        ➔ Kembali Ke Blog
+      </a>
+    </div>
+  </header>
+
+  <main class="py-16 md:py-24 bg-slate-50 min-h-screen">
+    <article class="max-w-3xl mx-auto px-6">
+      
+      <!-- Article Meta Header -->
+      <div class="space-y-4 mb-8">
+        <div class="flex items-center gap-3 text-xs font-mono font-bold text-slate-500">
+          <span>{date}</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+          <span class={`px-2 py-0.5 rounded border uppercase ${bgCategory}`}>{category}</span>
+        </div>
+        
+        <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-slate-900 uppercase tracking-tight leading-[1.1] mb-6">
+          {title}
+        </h1>
+
+        <div class="w-full h-1 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full opacity-30"></div>
+      </div>
+
+      <!-- Article Content Body -->
+      <div class="prose prose-slate max-w-none text-slate-700 text-sm sm:text-base leading-relaxed font-semibold font-sans" set:html={content}>
+      </div>
+
+      <!-- Call to Action Area inside Article -->
+      <div class="mt-16 p-8 border-2 border-blue-600 bg-white rounded-3xl shadow-[6px_6px_0px_#2563eb] space-y-4">
+        <h3 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Ingin Mengimplementasikan Solusi Ini pada Bisnis Anda?</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+          Hubungi tim profesional VORTEXA sekarang juga untuk berkonsultasi mengenai pembuatan website performa tinggi yang handal, otomatisasi pesan WhatsApp pelanggan, atau optimasi tampilan halaman dengan biaya yang terjangkau dan bersahabat.
+        </p>
+        <div class="pt-2">
+          <a href="/#konsultasi" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer">
+            Mulai Konsultasi Gratis ➔
+          </a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

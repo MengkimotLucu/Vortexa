@@ -1,0 +1,541 @@
+<section id="portofolio" class="py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
+  <!-- Grid backdrop -->
+  <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.02)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-20">
+      <div class="max-w-2xl">
+        <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">/ Live Demo Showcase</h2>
+        <h3 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tight leading-[1.0] uppercase">
+          Bukti Nyata.<br/>
+          <span class="text-stroke-neon">Bukan Sekadar Kata.</span>
+        </h3>
+        <p class="text-slate-600 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
+          Kami tidak menyembunyikan kode. Kami menampilkan prototype dan repositori publik kami secara transparan. Klik untuk mengeksplorasi secara langsung.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="mt-8 md:mt-0 flex flex-wrap gap-2.5 select-none font-mono">
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-blue-600 bg-blue-600 text-[10px] font-bold text-white uppercase tracking-wider rounded-lg transition-all hover:bg-blue-700 shadow-[2px_2px_0px_#0f172a] cursor-pointer" data-filter="all">
+          [ ALL ]
+        </button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="ai">
+          [ AI & AGENTS ]
+        </button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="web">
+          [ HIGH-SPEED WEB ]
+        </button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="seo">
+          [ SEO & CONVERSION ]
+        </button>
+      </div>
+    </div>
+
+    <!-- OS Window Grid layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      
+      <!-- Project 1: Aetheria AI -->
+      <div class="portfolio-card os-window flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden hover:shadow-[8px_8px_0px_#2563eb] transition-all duration-300 transform" data-category="ai">
+        <!-- OS Window Header -->
+        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500 tracking-wider font-bold">~/vortexa/projects/aetheria-ai.sh</span>
+          <div class="w-14"></div>
+        </div>
+
+        <!-- OS Window Body -->
+        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+          <div>
+            <!-- Inner Terminal View (Remain dark for dev console realism) -->
+            <div class="bg-slate-950 border-2 border-blue-600 rounded-xl p-5 font-mono text-[10px] text-slate-300 mb-6 relative overflow-hidden h-36 flex flex-col justify-end">
+              <div id="aetheria-log-box" class="space-y-1 overflow-y-auto scrollbar-thin">
+                <div class="text-slate-600">&gt; Standby. Tekan tombol di bawah untuk inisialisasi AI agent...</div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="font-display font-black text-2xl text-slate-900 uppercase font-bold">Aetheria AI</h4>
+              <button 
+                type="button" 
+                id="run-aetheria-btn"
+                class="px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]"
+              >
+                RUN AGENT ⚡
+              </button>
+            </div>
+            
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
+              Platform agen kecerdasan buatan otonom untuk otomatisasi penulisan konten berindeks tinggi dan optimasi performa backend secara transparan.
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-slate-100 pt-6">
+            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase font-bold">
+              <span>NextJS</span> • <span>LLM</span> • <span>Serverless</span>
+            </div>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:underline uppercase tracking-wider">
+              / SOURCE CODE 
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Veloce Commerce -->
+      <div class="portfolio-card os-window flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden hover:shadow-[8px_8px_0px_#2563eb] transition-all duration-300 transform" data-category="web">
+        <!-- OS Window Header -->
+        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500 tracking-wider font-bold">~/vortexa/projects/veloce.xml</span>
+          <div class="w-14"></div>
+        </div>
+
+        <!-- OS Window Body -->
+        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+          <div>
+            <!-- Performance HUD / Race Simulation -->
+            <div class="bg-slate-50 border-2 border-blue-600 rounded-xl p-5 mb-6 space-y-3 font-mono text-[9px] shadow-[2px_2px_0px_#2563eb]">
+              <!-- Race Standard -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-slate-500 font-bold">
+                  <span>STANDARD MONOLITH APP:</span>
+                  <span id="veloce-slow-val" class="font-bold">STANDBY</span>
+                </div>
+                <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                  <div id="veloce-slow-bar" class="h-full bg-rose-500 w-0 transition-all duration-200"></div>
+                </div>
+              </div>
+              <!-- Race Vortexa -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-slate-500 font-bold">
+                  <span>VORTEXA EDGE (ASTRO):</span>
+                  <span id="veloce-fast-val" class="font-bold text-teal-600">STANDBY</span>
+                </div>
+                <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                  <div id="veloce-fast-bar" class="h-full bg-teal-500 w-0 transition-all duration-200"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="font-display font-black text-2xl text-slate-900 uppercase font-bold">Veloce Commerce</h4>
+              <button 
+                type="button" 
+                id="run-veloce-btn"
+                class="px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]"
+              >
+                BENCHMARK SPEED ⚡
+              </button>
+            </div>
+            
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
+              Sistem e-commerce headless super ngebut terintegrasi API Shopify, menjamin kecepatan transaksi maksimal dan performa visual responsif premium.
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-slate-100 pt-6">
+            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase font-bold">
+              <span>Astro</span> • <span>Shopify</span> • <span>FastEdge</span>
+            </div>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:underline uppercase tracking-wider">
+              / EXPLORE LIVE
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Apex SEO Engine -->
+      <div class="portfolio-card os-window flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden hover:shadow-[8px_8px_0px_#2563eb] transition-all duration-300 transform" data-category="seo">
+        <!-- OS Window Header -->
+        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500 tracking-wider font-bold">~/vortexa/projects/apex-seo.py</span>
+          <div class="w-14"></div>
+        </div>
+
+        <!-- OS Window Body -->
+        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+          <div>
+            <!-- Custom graph visual -->
+            <div class="bg-slate-50 border-2 border-blue-600 rounded-xl p-5 h-28 flex items-end justify-between gap-2.5 mb-6 relative overflow-hidden group/graph shadow-[2px_2px_0px_#2563eb]">
+              <div class="absolute top-2 left-4 text-[8px] font-mono text-slate-400 font-bold">CLIENT ORGANIC IMPRESSIONS // SCALE: YTD</div>
+              
+              <!-- Simulated graph bars with dynamic height -->
+              <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-1" style="height: 30%">
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-1">+40k</div>
+              </div>
+              <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-2" style="height: 45%">
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-2">+80k</div>
+              </div>
+              <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-3" style="height: 60%">
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-3">+120k</div>
+              </div>
+              <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-4" style="height: 75%">
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-4">+210k</div>
+              </div>
+              <div class="w-full bg-blue-600 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-5" style="height: 95%">
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-blue-600 border border-blue-400 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-5">+480k 🔥</div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="font-display font-black text-2xl text-slate-900 uppercase font-bold">Apex SEO Core</h4>
+              
+              <!-- Period select buttons -->
+              <div class="flex gap-1 bg-slate-100 border-2 border-slate-200 p-0.5 rounded-lg font-mono text-[8px] font-bold">
+                <button type="button" class="apex-tab-btn px-2 py-1 rounded bg-white border border-slate-200 text-slate-800 cursor-pointer" data-period="weekly">WK</button>
+                <button type="button" class="apex-tab-btn px-2 py-1 rounded text-slate-400 hover:text-slate-900 cursor-pointer" data-period="monthly">MO</button>
+                <button type="button" class="apex-tab-btn px-2 py-1 rounded text-slate-400 hover:text-slate-900 cursor-pointer" data-period="yearly">YR</button>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
+              Algoritma indexing otomatis berbasis model machine learning yang merangsang visibilitas Google secara masif dan konstan di pasar lokal maupun global.
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-slate-100 pt-6">
+            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase font-bold">
+              <span>Python</span> • <span>MLModel</span> • <span>DataAPI</span>
+            </div>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:underline uppercase tracking-wider">
+              / INSPECT CORE
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: Lumina Analytics -->
+      <div class="portfolio-card os-window flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden hover:shadow-[8px_8px_0px_#2563eb] transition-all duration-300 transform" data-category="web">
+        <!-- OS Window Header -->
+        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500 tracking-wider font-bold">~/vortexa/projects/lumina.ui</span>
+          <div class="w-14"></div>
+        </div>
+
+        <!-- OS Window Body -->
+        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+          <div>
+            <!-- Grid visual with customizable themes -->
+            <div class="bg-slate-50 border-2 border-slate-200 p-5 flex gap-4 mb-6 transition-all duration-300 rounded-xl" id="lumina-mock-widget">
+              <div 
+                id="lumina-mock-circle" 
+                class="w-10 h-10 rounded-full border-4 border-teal-200 border-t-teal-600 flex items-center justify-center text-[9px] font-mono font-bold text-teal-600 transition-all duration-300 bg-white"
+              >
+                94%
+              </div>
+              <div class="flex-1 space-y-2">
+                <div class="h-2.5 bg-slate-200 rounded-full w-4/5 relative overflow-hidden">
+                  <div id="lumina-mock-bar" class="h-full bg-teal-600 w-4/5 transition-all duration-300"></div>
+                </div>
+                <div class="h-1.5 bg-slate-100 rounded-full w-1/2"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-4">
+              <h4 class="font-display font-black text-2xl text-slate-900 uppercase font-bold">Lumina Dashboard</h4>
+              
+              <!-- Color theme selector chips -->
+              <div class="flex gap-2.5 items-center select-none">
+                <button type="button" class="lumina-theme-chip w-3.5 h-3.5 rounded-full bg-teal-600 border-2 border-white scale-125 cursor-pointer shadow-md" data-color="neon-green" aria-label="Emerald Green"></button>
+                <button type="button" class="lumina-theme-chip w-3.5 h-3.5 rounded-full bg-blue-500 border-2 border-transparent cursor-pointer shadow-sm" data-color="neon-cyan" aria-label="Neon Cyan"></button>
+                <button type="button" class="lumina-theme-chip w-3.5 h-3.5 rounded-full bg-rose-600 border-2 border-transparent cursor-pointer shadow-sm" data-color="neon-pink" aria-label="Neon Pink"></button>
+              </div>
+            </div>
+            
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
+              Visualisasi UI dasbor analitik modular dengan interaksi visual termutakhir, mode gelap premium, dan diagram status yang adaptif secara real-time.
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between border-t border-slate-100 pt-6">
+            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase font-bold">
+              <span>NextJS</span> • <span>Tailwind</span> • <span>Framer</span>
+            </div>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-teal-600 hover:underline uppercase tracking-wider transition-colors duration-300 font-bold" id="lumina-cta-link">
+              / RUN PROTOTYPE
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function initInteractivePortfolio() {
+    // 1. FILTERING SYSTEM
+    const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card') as NodeListOf<HTMLDivElement>;
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const clickedBtn = e.currentTarget as HTMLButtonElement;
+        const filter = clickedBtn.getAttribute('data-filter');
+
+        // Update active class on buttons to Neo-brutalist white/blue states
+        filterButtons.forEach(b => {
+          b.className = "portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer";
+        });
+        clickedBtn.className = "portfolio-filter-btn px-4 py-2 border-2 border-blue-600 bg-blue-600 text-[10px] font-bold text-white uppercase tracking-wider rounded-lg transition-all hover:bg-blue-700 shadow-[2px_2px_0px_#0f172a] cursor-pointer";
+
+        // Filter cards with animations
+        portfolioCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'scale(1)';
+            }, 50);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              card.classList.add('hidden');
+            }, 300);
+          }
+        });
+      });
+    });
+
+    // 2. CARD 1: AETHERIA TERMINAL SIMULATION
+    const runAetheriaBtn = document.getElementById('run-aetheria-btn');
+    const aetheriaLogBox = document.getElementById('aetheria-log-box');
+    let aetheriaRunning = false;
+
+    if (runAetheriaBtn && aetheriaLogBox) {
+      const logs = [
+        { text: "> Inisialisasi Aetheria AI pipeline...", color: "text-blue-400" },
+        { text: "> Menghubungkan ke node otonom...", color: "text-slate-500" },
+        { text: "> Sinkronisasi LLM model: Llama-3-Groq [READY]", color: "text-teal-400" },
+        { text: "> Mendeteksi peluang kata kunci bernilai tinggi...", color: "text-slate-500" },
+        { text: "> Menulis konten teroptimasi SEO (+450% reach)", color: "text-emerald-400" },
+        { text: "> Deploy artikel ke CDN Edge... [SUCCESS]", color: "text-teal-400 font-bold" },
+        { text: "> AI Agent otonom berjalan di background. Latensi: 6ms.", color: "text-white" }
+      ];
+
+      runAetheriaBtn.addEventListener('click', () => {
+        if (aetheriaRunning) return;
+        aetheriaRunning = true;
+        runAetheriaBtn.innerText = "RUNNING...";
+        runAetheriaBtn.className = "px-3 py-1.5 rounded-lg border-2 border-rose-600 bg-rose-50 text-rose-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all cursor-not-allowed animate-pulse shadow-[2px_2px_0px_#e11d48]";
+        
+        aetheriaLogBox.innerHTML = '';
+        
+        logs.forEach((log, index) => {
+          setTimeout(() => {
+            const div = document.createElement('div');
+            div.className = `${log.color} transition-all duration-300 opacity-0 translate-y-1`;
+            div.innerText = log.text;
+            aetheriaLogBox.appendChild(div);
+            
+            setTimeout(() => {
+              div.classList.remove('opacity-0', 'translate-y-1');
+            }, 50);
+
+            aetheriaLogBox.scrollTop = aetheriaLogBox.scrollHeight;
+
+            if (index === logs.length - 1) {
+              aetheriaRunning = false;
+              runAetheriaBtn.innerText = "RUN AGENT ⚡";
+              runAetheriaBtn.className = "px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]";
+            }
+          }, index * 600);
+        });
+      });
+    }
+
+    // 3. CARD 2: VELOCE SPEED RACE SIMULATION
+    const runVeloceBtn = document.getElementById('run-veloce-btn');
+    const slowVal = document.getElementById('veloce-slow-val');
+    const fastVal = document.getElementById('veloce-fast-val');
+    const slowBar = document.getElementById('veloce-slow-bar');
+    const fastBar = document.getElementById('veloce-fast-bar');
+    let veloceRunning = false;
+
+    if (runVeloceBtn && slowVal && fastVal && slowBar && fastBar) {
+      runVeloceBtn.addEventListener('click', () => {
+        if (veloceRunning) return;
+        veloceRunning = true;
+        runVeloceBtn.innerText = "RACING...";
+        runVeloceBtn.className = "px-3 py-1.5 rounded-lg border-2 border-rose-600 bg-rose-50 text-rose-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all cursor-not-allowed animate-pulse shadow-[2px_2px_0px_#e11d48]";
+
+        // Reset
+        slowBar.style.width = '0%';
+        fastBar.style.width = '0%';
+        slowVal.innerText = "LOADING...";
+        slowVal.className = "font-bold text-slate-400";
+        fastVal.innerText = "LOADING...";
+        fastVal.className = "font-bold text-slate-400";
+
+        // Fast Load (Vortexa Astro Stack)
+        setTimeout(() => {
+          fastBar.style.width = '100%';
+          fastVal.innerText = "0.24s (100/100) 🏆";
+          fastVal.className = "font-bold text-teal-600 animate-bounce";
+        }, 300);
+
+        // Slow Load (Standard Monolithic)
+        setTimeout(() => {
+          slowBar.style.width = '100%';
+          slowVal.innerText = "2.68s (39/100)";
+          slowVal.className = "font-bold text-rose-600";
+          
+          runVeloceBtn.innerText = "RUN SPEED TEST 🔄";
+          runVeloceBtn.className = "px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]";
+          veloceRunning = false;
+        }, 2200);
+      });
+    }
+
+    // 4. CARD 3: APEX SEO GRAPH SELECTOR
+    const apexTabs = document.querySelectorAll('.apex-tab-btn');
+    const apexBars = [
+      document.getElementById('apex-bar-1'),
+      document.getElementById('apex-bar-2'),
+      document.getElementById('apex-bar-3'),
+      document.getElementById('apex-bar-4'),
+      document.getElementById('apex-bar-5')
+    ];
+    const apexTooltips = [
+      document.getElementById('apex-tooltip-1'),
+      document.getElementById('apex-tooltip-2'),
+      document.getElementById('apex-tooltip-3'),
+      document.getElementById('apex-tooltip-4'),
+      document.getElementById('apex-tooltip-5')
+    ];
+
+    const dataSet: Record<string, { heights: string[], tooltips: string[] }> = {
+      weekly: {
+        heights: ['30%', '45%', '60%', '75%', '95%'],
+        tooltips: ['+40k', '+80k', '+120k', '+210k', '+480k 🔥']
+      },
+      monthly: {
+        heights: ['20%', '35%', '50%', '65%', '88%'],
+        tooltips: ['+180k', '+320k', '+480k', '+750k', '+1.8M 🔥']
+      },
+      yearly: {
+        heights: ['15%', '28%', '40%', '62%', '80%'],
+        tooltips: ['+2.1M', '+3.8M', '+5.2M', '+8.9M', '+22M 🔥']
+      }
+    };
+
+    apexTabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        const clickedTab = e.currentTarget as HTMLButtonElement;
+        const period = clickedTab.getAttribute('data-period');
+        if (!period) return;
+
+        // Button styling active
+        apexTabs.forEach(t => {
+          t.className = "apex-tab-btn px-2 py-1 rounded text-slate-400 hover:text-slate-900 cursor-pointer";
+        });
+        clickedTab.className = "apex-tab-btn px-2 py-1 rounded bg-white border border-slate-200 text-slate-800 cursor-pointer";
+
+        // Animate bars & change tooltip content
+        const config = dataSet[period];
+        apexBars.forEach((bar, idx) => {
+          if (bar) bar.style.height = config.heights[idx];
+        });
+        apexTooltips.forEach((tip, idx) => {
+          if (tip) tip.innerText = config.tooltips[idx];
+        });
+      });
+    });
+
+    // 5. CARD 4: LUMINA THEME SWITCHER
+    const themeChips = document.querySelectorAll('.lumina-theme-chip');
+    const mockWidget = document.getElementById('lumina-mock-widget');
+    const mockCircle = document.getElementById('lumina-mock-circle');
+    const mockBar = document.getElementById('lumina-mock-bar');
+    const ctaLink = document.getElementById('lumina-cta-link');
+
+    const themeColors: Record<string, { circleBorder: string, circleText: string, barBg: string, ctaText: string, borderTint: string }> = {
+      'neon-green': {
+        circleBorder: 'border-t-teal-600',
+        circleText: 'text-teal-600',
+        barBg: 'bg-teal-600',
+        ctaText: 'text-teal-600',
+        borderTint: 'border-teal-600/20'
+      },
+      'neon-cyan': {
+        circleBorder: 'border-t-blue-500',
+        circleText: 'text-blue-500',
+        barBg: 'bg-blue-500',
+        ctaText: 'text-blue-500',
+        borderTint: 'border-blue-500/20'
+      },
+      'neon-pink': {
+        circleBorder: 'border-t-rose-600',
+        circleText: 'text-rose-600',
+        barBg: 'bg-rose-600',
+        ctaText: 'text-rose-600',
+        borderTint: 'border-rose-600/20'
+      }
+    };
+
+    themeChips.forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        const clickedChip = e.currentTarget as HTMLButtonElement;
+        const color = clickedChip.getAttribute('data-color');
+        if (!color || !themeColors[color]) return;
+
+        // Chip scaling highlight
+        themeChips.forEach(c => {
+          c.className = "lumina-theme-chip w-3.5 h-3.5 rounded-full border-2 border-transparent cursor-pointer shadow-sm";
+        });
+        clickedChip.className = "lumina-theme-chip w-3.5 h-3.5 rounded-full border-2 border-white scale-125 cursor-pointer shadow-md";
+
+        // Apply theme mapping dynamically using explicit strings
+        const mapping = themeColors[color];
+        
+        if (mockWidget && mockCircle && mockBar && ctaLink) {
+          // Remove all possible Tailwind theme classes to prevent conflicts
+          Object.values(themeColors).forEach(c => {
+            mockCircle.classList.remove(c.circleBorder, c.circleText);
+            mockBar.classList.remove(c.barBg);
+            ctaLink.classList.remove(c.ctaText);
+            mockWidget.classList.remove(c.borderTint);
+          });
+
+          // Add new selected classes
+          mockCircle.classList.add(mapping.circleBorder, mapping.circleText);
+          mockBar.classList.add(mapping.barBg);
+          ctaLink.classList.add(mapping.ctaText);
+          mockWidget.classList.add(mapping.borderTint);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initInteractivePortfolio);
+  } else {
+    initInteractivePortfolio();
+  }
+</script>

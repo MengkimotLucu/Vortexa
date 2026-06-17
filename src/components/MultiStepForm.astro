@@ -1,0 +1,290 @@
+<section id="konsultasi" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-100">
+  <!-- Decorative background colors -->
+  <div class="absolute left-[-10%] bottom-[-10%] w-[350px] h-[350px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute right-[-10%] top-[10%] w-[350px] h-[350px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-4xl mx-auto px-6 relative z-10 reveal-on-scroll">
+    
+    <!-- Scarcity / Urgency Banner (Neo-Brutalist Banner) -->
+    <div class="border-2 border-teal-600 bg-slate-50 p-6 rounded-2xl shadow-[4px_4px_0px_#0d9488] mb-16 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="relative flex h-3.5 w-3.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-600 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-teal-600"></span>
+        </span>
+        <div class="text-sm font-semibold text-slate-800">
+          <span class="text-slate-900 font-extrabold uppercase tracking-wide">Slot Konsultasi Terbatas:</span> 
+          Hanya untuk 3 klien baru bulan ini. <span class="text-teal-600 font-extrabold">Sisa 1 slot tersedia.</span>
+        </div>
+      </div>
+      <div class="text-xs font-mono text-slate-500 bg-white border border-slate-200 px-3.5 py-2 rounded-xl">
+        REFRESH_CYCLE: 16_DAYS
+      </div>
+    </div>
+
+    <!-- Conversational Multi-Step Form Container -->
+    <div class="border-2 border-blue-600 bg-white rounded-3xl p-8 md:p-14 relative shadow-[8px_8px_0px_#2563eb] overflow-hidden">
+      <!-- Glow strip -->
+      <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-600 via-blue-500 to-teal-600"></div>
+
+      <!-- Header Info -->
+      <div class="mb-12">
+        <div class="flex justify-between items-center text-xs font-mono text-slate-500 mb-3 uppercase tracking-wider">
+          <span>/ STAGE_TRACKER: <span id="form-step-num">1</span>_OF_4</span>
+          <span id="form-step-percent">25%</span>
+        </div>
+        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+          <div id="form-progress-bar" class="h-full bg-gradient-to-r from-blue-600 to-blue-400 w-[25%] transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <!-- Form Pane Viewport -->
+      <form id="multistep-project-form" class="relative min-h-[200px]" onsubmit="return false;">
+        
+        <!-- STEP 1: Name -->
+        <div id="step-1" class="form-step-pane transition-all duration-300 space-y-5">
+          <label for="client-name" class="block font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
+            / Siapa nama Anda? <span class="text-blue-600">👋</span>
+          </label>
+          <input 
+            type="text" 
+            id="client-name" 
+            name="name" 
+            placeholder="Ketik nama lengkap Anda di sini..." 
+            required
+            class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white focus:shadow-[4px_4px_0px_#2563eb] rounded-2xl px-6 py-5 text-slate-900 text-lg outline-none transition-all placeholder:text-slate-400 font-semibold"
+          />
+        </div>
+
+        <!-- STEP 2: Company -->
+        <div id="step-2" class="form-step-pane hidden transition-all duration-300 space-y-5">
+          <label for="client-company" class="block font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
+            / Nama bisnis / perusahaan Anda? <span class="text-blue-500">🏢</span>
+          </label>
+          <input 
+            type="text" 
+            id="client-company" 
+            name="company" 
+            placeholder="Masukkan nama brand atau startup..." 
+            required
+            class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-500 focus:bg-white focus:shadow-[4px_4px_0px_#3b82f6] rounded-2xl px-6 py-5 text-slate-900 text-lg outline-none transition-all placeholder:text-slate-400 font-semibold"
+          />
+        </div>
+
+        <!-- STEP 3: Needs -->
+        <div id="step-3" class="form-step-pane hidden transition-all duration-300 space-y-5">
+          <label for="client-service" class="block font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
+            / Layanan apa yang Anda cari? <span class="text-blue-700">🛠️</span>
+          </label>
+          <div class="relative">
+            <select 
+              id="client-service" 
+              name="service"
+              required
+              class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-700 focus:bg-white focus:shadow-[4px_4px_0px_#1d4ed8] rounded-2xl px-6 py-5 text-slate-900 text-base outline-none transition-all appearance-none cursor-pointer font-semibold animate-none"
+            >
+              <option value="" disabled selected class="text-slate-400">Pilih kebutuhan utama Anda</option>
+              <option value="AI & Automation Integration" class="text-slate-900">AI & Automation Integration</option>
+              <option value="High-Performance Web & Mobile Apps" class="text-slate-900">High-Performance Web & Mobile Apps</option>
+              <option value="Advanced SEO & Marketing Funnel" class="text-slate-900">Advanced SEO & Marketing Funnel</option>
+              <option value="Futuristic UI/UX Design" class="text-slate-900">Futuristic UI/UX Design</option>
+              <option value="Semua Layanan (Full-Scale Growth)" class="text-slate-900">Semua Layanan (Full-Scale Growth)</option>
+            </select>
+            <div class="absolute inset-y-0 right-6 flex items-center pointer-events-none text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: Budget -->
+        <div id="step-4" class="form-step-pane hidden transition-all duration-300 space-y-5">
+          <label for="client-budget" class="block font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
+            / Berapa estimasi budget proyek? <span class="text-teal-600">💸</span>
+          </label>
+          <div class="relative">
+            <select 
+              id="client-budget" 
+              name="budget"
+              required
+              class="w-full bg-slate-50 border-2 border-slate-200 focus:border-teal-600 focus:bg-white focus:shadow-[4px_4px_0px_#0d9488] rounded-2xl px-6 py-5 text-slate-900 text-base outline-none transition-all appearance-none cursor-pointer font-semibold animate-none"
+            >
+              <option value="" disabled selected class="text-slate-400">Pilih kisaran budget proyek Anda</option>
+              <option value="Di bawah Rp 10 Juta (Proyek Sederhana / Landing Page)" class="text-slate-900">Di bawah Rp 10 Juta (Proyek Sederhana / Landing Page)</option>
+              <option value="Rp 10 Juta - Rp 30 Juta (Proyek Menengah / Web Custom)" class="text-slate-900">Rp 10 Juta - Rp 30 Juta (Proyek Menengah / Web Custom)</option>
+              <option value="Rp 30 Juta - Rp 100 Juta (Proyek Kompleks / AI & Integrasi)" class="text-slate-900">Rp 30 Juta - Rp 100 Juta (Proyek Kompleks / AI & Integrasi)</option>
+              <option value="Di atas Rp 100 Juta (Skala Enterprise)" class="text-slate-900">Di atas Rp 100 Juta (Skala Enterprise)</option>
+            </select>
+            <div class="absolute inset-y-0 right-6 flex items-center pointer-events-none text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex items-center justify-between border-t border-slate-100 pt-8 mt-10">
+          <button 
+            type="button" 
+            id="form-prev-btn" 
+            class="px-6 py-3.5 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 text-slate-500 hover:text-slate-800 font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[2px_2px_0px_rgba(0,0,0,0.05)] active:translate-y-0.5 active:shadow-[1px_1px_0px_rgba(0,0,0,0.05)] invisible cursor-pointer"
+          >
+            Kembali
+          </button>
+          
+          <button 
+            type="button" 
+            id="form-next-btn" 
+            class="px-8 py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] active:translate-y-0.5 active:shadow-[2px_2px_0px_#0f172a] cursor-pointer"
+          >
+            Lanjutkan
+          </button>
+
+          <button 
+            type="submit" 
+            id="form-submit-btn" 
+            class="px-8 py-4 rounded-xl border-2 border-teal-600 bg-teal-600 hover:bg-teal-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] active:translate-y-0.5 active:shadow-[2px_2px_0px_#0f172a] hidden cursor-pointer"
+          >
+            Submit & Mulai Konsultasi 🚀
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+
+  </div>
+</section>
+
+<script>
+  function initForm() {
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    const form = document.getElementById('multistep-project-form') as HTMLFormElement;
+    const prevBtn = document.getElementById('form-prev-btn') as HTMLButtonElement;
+    const nextBtn = document.getElementById('form-next-btn') as HTMLButtonElement;
+    const submitBtn = document.getElementById('form-submit-btn') as HTMLButtonElement;
+    const progressBar = document.getElementById('form-progress-bar') as HTMLDivElement;
+    const stepNumEl = document.getElementById('form-step-num') as HTMLSpanElement;
+    const stepPercentEl = document.getElementById('form-step-percent') as HTMLSpanElement;
+
+    function updateFormUI() {
+      for (let i = 1; i <= totalSteps; i++) {
+        const pane = document.getElementById(`step-${i}`);
+        if (pane) {
+          if (i === currentStep) {
+            pane.classList.remove('hidden');
+            pane.classList.add('animate-[slideIn_0.3s_ease-out]');
+          } else {
+            pane.classList.add('hidden');
+            pane.classList.remove('animate-[slideIn_0.3s_ease-out]');
+          }
+        }
+      }
+
+      const percent = (currentStep / totalSteps) * 100;
+      if (progressBar) progressBar.style.width = `${percent}%`;
+      if (stepNumEl) stepNumEl.innerText = currentStep.toString();
+      if (stepPercentEl) stepPercentEl.innerText = `${percent}%`;
+
+      if (currentStep === 1) {
+        if (prevBtn) prevBtn.classList.add('invisible');
+      } else {
+        if (prevBtn) prevBtn.classList.remove('invisible');
+      }
+
+      if (currentStep === totalSteps) {
+        if (nextBtn) nextBtn.classList.add('hidden');
+        if (submitBtn) submitBtn.classList.remove('hidden');
+      } else {
+        if (nextBtn) nextBtn.classList.remove('hidden');
+        if (submitBtn) submitBtn.classList.add('hidden');
+      }
+    }
+
+    function validateStep(step: number): boolean {
+      const pane = document.getElementById(`step-${step}`);
+      if (!pane) return false;
+      
+      const inputs = pane.querySelectorAll('input, select');
+      let isValid = true;
+
+      inputs.forEach((input: any) => {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          isValid = false;
+        }
+      });
+
+      return isValid;
+    }
+
+    if (nextBtn) {
+      // Remove any existing listeners by replacing the element or cloning, but in client-side navigation it's fine
+      nextBtn.onclick = () => {
+        if (validateStep(currentStep)) {
+          if (currentStep < totalSteps) {
+            currentStep++;
+            updateFormUI();
+          }
+        }
+      };
+    }
+
+    if (prevBtn) {
+      prevBtn.onclick = () => {
+        if (currentStep > 1) {
+          currentStep--;
+          updateFormUI();
+        }
+      };
+    }
+
+    if (form) {
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        if (!validateStep(currentStep)) return;
+
+        const nameVal = (document.getElementById('client-name') as HTMLInputElement).value;
+        const companyVal = (document.getElementById('client-company') as HTMLInputElement).value;
+        const serviceVal = (document.getElementById('client-service') as HTMLSelectElement).value;
+        const budgetVal = (document.getElementById('client-budget') as HTMLSelectElement).value;
+
+        const targetPhone = "6285624353611";
+        const messageText = `Halo Vortexa Tim, saya ingin mengajukan konsultasi proyek. Berikut detailnya:
+
+- Nama: ${nameVal}
+- Perusahaan: ${companyVal}
+- Kebutuhan: ${serviceVal}
+- Estimasi Budget: ${budgetVal}
+
+Tolong jadwalkan waktu untuk diskusi ya. Terima kasih!`;
+
+        const encodedMessage = encodeURIComponent(messageText);
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodedMessage}`;
+
+        window.open(whatsappUrl, '_blank');
+      };
+    }
+
+    updateFormUI();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initForm);
+  } else {
+    initForm();
+  }
+</script>
+
+<style>
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>

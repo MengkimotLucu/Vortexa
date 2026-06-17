@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import AboutUs from '../components/AboutUs.astro';
+import RealtimeSimulator from '../components/RealtimeSimulator.astro';
+import Services from '../components/Services.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Blog from '../components/Blog.astro';
+import MultiStepForm from '../components/MultiStepForm.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <!-- Main layout container -->
+  <main class="relative z-10">
+    <!-- Hero Section with Canvas particles -->
+    <Hero />
+
+    <!-- Kinetic Marquee 1 -->
+    <Marquee 
+      texts={["AI Integration", "High Performance Web", "Advanced SEO", "Futuristic UI/UX", "Growth Agency", "Serverless Setup"]} 
+      speed="medium" 
+    />
+
+    <!-- Tentang Kami Section -->
+    <AboutUs />
+
+    <!-- Real-time performance simulation stats -->
+    <RealtimeSimulator />
+
+    <!-- Core Agency Capabilities -->
+    <Services />
+
+    <!-- Kinetic Marquee 2 (Moving in reverse) -->
+    <Marquee 
+      texts={["100% Clean Code", "Zero Database Server", "Ultra Fast Speed", "Qualified Leads Only", "No Bullshit Growth"]} 
+      speed="slow" 
+      reverse={true}
+    />
+
+    <!-- Portfolio showcasing premium HTML/CSS mockups -->
+    <Portfolio />
+
+    <!-- Blog Section -->
+    <Blog />
+
+    <!-- Closing Funnel: Multi-Step Questionnaire and WhatsApp hook -->
+    <MultiStepForm />
+
+    <!-- New premium multi-column footer -->
+    <Footer />
+  </main>
+</Layout>
