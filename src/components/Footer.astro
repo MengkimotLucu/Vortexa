@@ -1,38 +1,41 @@
 ---
 ---
-<footer class="bg-slate-950 text-slate-400 py-20 border-t-2 border-blue-600/30 relative overflow-hidden">
-  <!-- Glowing gradient accent overlay -->
-  <div class="absolute left-[-10%] top-0 w-[450px] h-[450px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute right-[-10%] bottom-0 w-[450px] h-[450px] bg-teal-600/5 rounded-full blur-3xl pointer-events-none"></div>
+<footer class="bg-slate-50 text-slate-600 py-20 border-t-2 border-slate-200 relative overflow-hidden">
+  <!-- Soft accent light overlay -->
+  <div class="absolute left-[-10%] top-0 w-[450px] h-[450px] bg-blue-600/[0.015] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute right-[-10%] bottom-0 w-[450px] h-[450px] bg-teal-600/[0.015] rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <!-- Main Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-slate-800">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-slate-200">
       
       <!-- Column 1: Brand Info (4 cols width) -->
       <div class="lg:col-span-4 space-y-6">
-        <a href="#" class="flex items-center gap-2 group w-fit">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center font-display font-black text-white text-lg tracking-wider shadow-lg shadow-blue-600/10 group-hover:rotate-6 transition-transform">
-            V
+        <a href="#" class="flex items-center gap-2.5 group w-fit">
+          <div class="w-9 h-9 rounded-xl border-2 border-slate-900 bg-blue-600 flex items-center justify-center shadow-[2px_2px_0px_#0f172a] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[0px_0px_0px_#0f172a] transition-all duration-200">
+            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="13 17 18 12 13 7"></polyline>
+              <polyline points="6 17 11 12 6 7"></polyline>
+            </svg>
           </div>
-          <span class="font-display font-black text-lg tracking-widest text-white group-hover:text-blue-500 transition-colors">VORTEXA</span>
+          <span class="font-display font-black text-lg tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
         </a>
-        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
-          Kami merancang antarmuka web interaktif berkinerja tinggi (Frontend-only), visualisasi data waktu nyata, dan sistem agen AI otomatis untuk membantu bisnis Anda tumbuh tanpa kerumitan server database.
+        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
+          Mitra strategis dalam transformasi digital. Kami merancang website berkinerja tinggi dengan sistem otomatisasi AI dan WhatsApp untuk mengamankan pertumbuhan bisnis Anda secara nyata.
         </p>
         
         <!-- Social Icons -->
         <div class="flex items-center gap-4">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-slate-800 bg-slate-900/50 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 hover:bg-blue-600/10 transition-all duration-200" aria-label="GitHub">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-600 hover:bg-blue-50 transition-all duration-200" aria-label="GitHub">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-slate-800 bg-slate-900/50 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 hover:bg-blue-600/10 transition-all duration-200" aria-label="Twitter">
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-600 hover:bg-blue-50 transition-all duration-200" aria-label="Twitter">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-slate-800 bg-slate-900/50 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 hover:bg-blue-600/10 transition-all duration-200" aria-label="LinkedIn">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-600 hover:bg-blue-50 transition-all duration-200" aria-label="LinkedIn">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-slate-800 bg-slate-900/50 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500 hover:bg-blue-600/10 transition-all duration-200" aria-label="Instagram">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-600 hover:bg-blue-50 transition-all duration-200" aria-label="Instagram">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
           </a>
         </div>
@@ -40,49 +43,49 @@
 
       <!-- Column 2: Web Dev Services (2 cols width) -->
       <div class="lg:col-span-2 space-y-4">
-        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-500 uppercase">PEMBUATAN WEBSITE</h4>
-        <ul class="space-y-2.5 text-xs font-semibold">
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Situs Web Profil Perusahaan</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Landing Page Konversi Tinggi</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Kustomisasi Web Headless</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Website Bisnis UMKM</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Web E-Commerce Cepat</a></li>
+        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">PEMBUATAN WEBSITE</h4>
+        <ul class="space-y-2.5 text-xs font-semibold text-slate-500">
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Situs Web Profil Perusahaan</a></li>
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Landing Page Konversi Tinggi</a></li>
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Kustomisasi Web Headless</a></li>
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Website Bisnis UMKM</a></li>
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Web E-Commerce Cepat</a></li>
         </ul>
       </div>
 
       <!-- Column 3: AI & Growth (2 cols width) -->
       <div class="lg:col-span-2 space-y-4">
-        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-500 uppercase">LAYANAN PROFESIONAL</h4>
-        <ul class="space-y-2.5 text-xs font-semibold">
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Integrasi Agen AI</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Mendesain Ulang Situs Web</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Otomatisasi Admin WhatsApp</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Iklan Google Ads (SEM)</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Jasa Technical SEO</a></li>
+        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">LAYANAN PROFESIONAL</h4>
+        <ul class="space-y-2.5 text-xs font-semibold text-slate-500">
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Integrasi Agen AI</a></li>
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Mendesain Ulang Situs Web</a></li>
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Otomatisasi Admin WhatsApp</a></li>
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Iklan Google Ads (SEM)</a></li>
+          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Jasa Technical SEO</a></li>
         </ul>
       </div>
 
-      <!-- Column 4: Core Tech (2 cols width) -->
+      <!-- Column 4: Fitur & Alat (2 cols width) -->
       <div class="lg:col-span-2 space-y-4">
-        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-500 uppercase">TEKNOLOGI UTAMA</h4>
-        <ul class="space-y-2.5 text-xs font-semibold">
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Astro Framework</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Next.js Platform</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Tailwind CSS</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Headless Shopify</a></li>
-          <li><a href="#layanan" class="hover:text-white hover:underline transition-colors">Serverless APIs</a></li>
+        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">FITUR & ALAT</h4>
+        <ul class="space-y-2.5 text-xs font-semibold text-slate-500">
+          <li><a href="/audit/" class="hover:text-blue-600 hover:underline transition-colors">Uji Performa Audit</a></li>
+          <li><a href="/blog/" class="hover:text-blue-600 hover:underline transition-colors">Blog & Edukasi</a></li>
+          <li><a href="/portofolio/" class="hover:text-blue-600 hover:underline transition-colors">Katalog Portofolio</a></li>
+          <li><a href="/#konsultasi" class="hover:text-blue-600 hover:underline transition-colors">Kalkulator Harga</a></li>
         </ul>
       </div>
 
       <!-- Column 5: Info (2 cols width) -->
       <div class="lg:col-span-2 space-y-4">
-        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-500 uppercase">INFORMASI UMUM</h4>
-        <ul class="space-y-2.5 text-xs font-semibold">
-          <li><a href="#tentang-kami" class="hover:text-white hover:underline transition-colors">Tentang Kami</a></li>
-          <li><a href="#portofolio" class="hover:text-white hover:underline transition-colors">Portofolio</a></li>
-          <li><a href="#blog" class="hover:text-white hover:underline transition-colors">Blog Wawasan</a></li>
-          <li><a href="#konsultasi" class="hover:text-white hover:underline transition-colors">Cara Pemesanan</a></li>
-          <li><a href="#konsultasi" class="hover:text-white hover:underline transition-colors">Hubungi Kami</a></li>
+        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">INFORMASI UMUM</h4>
+        <ul class="space-y-2.5 text-xs font-semibold text-slate-500">
+          <li><a href="/#tentang-kami" class="hover:text-blue-600 hover:underline transition-colors">Tentang Kami</a></li>
+          <li><a href="/#testimoni" class="hover:text-blue-600 hover:underline transition-colors">Testimoni</a></li>
+          <li><a href="/#faq" class="hover:text-blue-600 hover:underline transition-colors">FAQ</a></li>
+          <li><a href="/karir/" class="hover:text-blue-600 hover:underline transition-colors">Karir</a></li>
+          <li><a href="/#cara-pemesanan" class="hover:text-blue-600 hover:underline transition-colors">Cara Pemesanan</a></li>
+          <li><a href="/#konsultasi" class="hover:text-blue-600 hover:underline transition-colors">Hubungi Kami</a></li>
         </ul>
       </div>
 
@@ -91,10 +94,10 @@
     <!-- Bottom copyright / Legal -->
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold">
       <div class="flex flex-wrap items-center gap-6 font-mono text-[10px] font-bold tracking-widest uppercase">
-        <a href="#konsultasi" class="hover:text-blue-500 transition-colors">Privacy Policy</a>
-        <a href="#konsultasi" class="hover:text-blue-500 transition-colors">Terms of Service</a>
+        <a href="/privacy-policy/" class="text-slate-500 hover:text-blue-600 transition-colors">Privacy Policy</a>
+        <a href="/terms-of-service/" class="text-slate-500 hover:text-blue-600 transition-colors">Terms of Service</a>
       </div>
-      <p class="text-slate-500 font-mono text-[10px]">© {new Date().getFullYear()} VORTEXA. Developed for ultimate growth.</p>
+      <p class="text-slate-400 font-mono text-[10px]">© {new Date().getFullYear()} LUMOVELO. Developed for ultimate growth.</p>
     </div>
 
   </div>

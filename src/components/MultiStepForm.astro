@@ -3,154 +3,197 @@
   <div class="absolute left-[-10%] bottom-[-10%] w-[350px] h-[350px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute right-[-10%] top-[10%] w-[350px] h-[350px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-  <div class="max-w-4xl mx-auto px-6 relative z-10 reveal-on-scroll">
-    
-    <!-- Scarcity / Urgency Banner (Neo-Brutalist Banner) -->
-    <div class="border-2 border-teal-600 bg-slate-50 p-6 rounded-2xl shadow-[4px_4px_0px_#0d9488] mb-16 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <span class="relative flex h-3.5 w-3.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-600 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-teal-600"></span>
-        </span>
-        <div class="text-sm font-semibold text-slate-800">
-          <span class="text-slate-900 font-extrabold uppercase tracking-wide">Slot Konsultasi Terbatas:</span> 
-          Hanya untuk 3 klien baru bulan ini. <span class="text-teal-600 font-extrabold">Sisa 1 slot tersedia.</span>
+  <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Copy & Value Proposition (5 columns) -->
+      <div class="lg:col-span-5 space-y-8">
+        <div class="space-y-3">
+          <span class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ HUBUNGI KAMI</span>
+          <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.1]">
+            Siap Naik Kelas?<br/>
+            <span class="text-blue-600">Mulai Hari Ini.</span>
+          </h3>
         </div>
-      </div>
-      <div class="text-xs font-mono text-slate-500 bg-white border border-slate-200 px-3.5 py-2 rounded-xl">
-        REFRESH_CYCLE: 16_DAYS
-      </div>
-    </div>
-
-    <!-- Conversational Multi-Step Form Container -->
-    <div class="border-2 border-blue-600 bg-white rounded-3xl p-8 md:p-14 relative shadow-[8px_8px_0px_#2563eb] overflow-hidden">
-      <!-- Glow strip -->
-      <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-600 via-blue-500 to-teal-600"></div>
-
-      <!-- Header Info -->
-      <div class="mb-12">
-        <div class="flex justify-between items-center text-xs font-mono text-slate-500 mb-3 uppercase tracking-wider">
-          <span>/ STAGE_TRACKER: <span id="form-step-num">1</span>_OF_4</span>
-          <span id="form-step-percent">25%</span>
-        </div>
-        <div class="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-          <div id="form-progress-bar" class="h-full bg-gradient-to-r from-blue-600 to-blue-400 w-[25%] transition-all duration-300"></div>
-        </div>
-      </div>
-
-      <!-- Form Pane Viewport -->
-      <form id="multistep-project-form" class="relative min-h-[200px]" onsubmit="return false;">
         
-        <!-- STEP 1: Name -->
-        <div id="step-1" class="form-step-pane transition-all duration-300 space-y-5">
-          <label for="client-name" class="block font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
-            / Siapa nama Anda? <span class="text-blue-600">👋</span>
-          </label>
-          <input 
-            type="text" 
-            id="client-name" 
-            name="name" 
-            placeholder="Ketik nama lengkap Anda di sini..." 
-            required
-            class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white focus:shadow-[4px_4px_0px_#2563eb] rounded-2xl px-6 py-5 text-slate-900 text-lg outline-none transition-all placeholder:text-slate-400 font-semibold"
-          />
-        </div>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed font-semibold">
+          Jangan biarkan website lambat dan pengelolaan operasional secara manual membatasi potensi keuntungan bisnis Anda. Konsultasikan ide digital Anda bersama tim Lumovelo secara gratis dan temukan solusi performa tinggi yang disesuaikan khusus untuk Anda.
+        </p>
 
-        <!-- STEP 2: Company -->
-        <div id="step-2" class="form-step-pane hidden transition-all duration-300 space-y-5">
-          <label for="client-company" class="block font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
-            / Nama bisnis / perusahaan Anda? <span class="text-blue-500">🏢</span>
-          </label>
-          <input 
-            type="text" 
-            id="client-company" 
-            name="company" 
-            placeholder="Masukkan nama brand atau startup..." 
-            required
-            class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-500 focus:bg-white focus:shadow-[4px_4px_0px_#3b82f6] rounded-2xl px-6 py-5 text-slate-900 text-lg outline-none transition-all placeholder:text-slate-400 font-semibold"
-          />
-        </div>
-
-        <!-- STEP 3: Needs -->
-        <div id="step-3" class="form-step-pane hidden transition-all duration-300 space-y-5">
-          <label for="client-service" class="block font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
-            / Layanan apa yang Anda cari? <span class="text-blue-700">🛠️</span>
-          </label>
-          <div class="relative">
-            <select 
-              id="client-service" 
-              name="service"
-              required
-              class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-700 focus:bg-white focus:shadow-[4px_4px_0px_#1d4ed8] rounded-2xl px-6 py-5 text-slate-900 text-base outline-none transition-all appearance-none cursor-pointer font-semibold animate-none"
-            >
-              <option value="" disabled selected class="text-slate-400">Pilih kebutuhan utama Anda</option>
-              <option value="AI & Automation Integration" class="text-slate-900">AI & Automation Integration</option>
-              <option value="High-Performance Web & Mobile Apps" class="text-slate-900">High-Performance Web & Mobile Apps</option>
-              <option value="Advanced SEO & Marketing Funnel" class="text-slate-900">Advanced SEO & Marketing Funnel</option>
-              <option value="Futuristic UI/UX Design" class="text-slate-900">Futuristic UI/UX Design</option>
-              <option value="Semua Layanan (Full-Scale Growth)" class="text-slate-900">Semua Layanan (Full-Scale Growth)</option>
-            </select>
-            <div class="absolute inset-y-0 right-6 flex items-center pointer-events-none text-slate-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        <!-- Dynamic value bullet points without numbers/percentages -->
+        <div class="space-y-4 pt-2">
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 font-mono text-xs font-bold">✓</div>
+            <div>
+              <h5 class="text-xs font-mono font-bold text-slate-900 uppercase">Konsultasi Tanpa Syarat</h5>
+              <p class="text-[11px] text-slate-500 font-semibold leading-relaxed">Diskusikan kebutuhan teknologi Anda secara gratis tanpa ada ikatan kontrak awal.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 font-mono text-xs font-bold">✓</div>
+            <div>
+              <h5 class="text-xs font-mono font-bold text-slate-900 uppercase">Estimasi Transparan</h5>
+              <p class="text-[11px] text-slate-500 font-semibold leading-relaxed">Dapatkan rincian lingkup kerja dan investasi proyek tanpa ada biaya tersembunyi.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 font-mono text-xs font-bold">✓</div>
+            <div>
+              <h5 class="text-xs font-mono font-bold text-slate-900 uppercase">Garansi Performa</h5>
+              <p class="text-[11px] text-slate-500 font-semibold leading-relaxed">Uji coba performa dan optimasi kecepatan langsung di depan Anda sebelum website diluncurkan.</p>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- STEP 4: Budget -->
-        <div id="step-4" class="form-step-pane hidden transition-all duration-300 space-y-5">
-          <label for="client-budget" class="block font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
-            / Berapa estimasi budget proyek? <span class="text-teal-600">💸</span>
-          </label>
-          <div class="relative">
-            <select 
-              id="client-budget" 
-              name="budget"
-              required
-              class="w-full bg-slate-50 border-2 border-slate-200 focus:border-teal-600 focus:bg-white focus:shadow-[4px_4px_0px_#0d9488] rounded-2xl px-6 py-5 text-slate-900 text-base outline-none transition-all appearance-none cursor-pointer font-semibold animate-none"
-            >
-              <option value="" disabled selected class="text-slate-400">Pilih kisaran budget proyek Anda</option>
-              <option value="Di bawah Rp 10 Juta (Proyek Sederhana / Landing Page)" class="text-slate-900">Di bawah Rp 10 Juta (Proyek Sederhana / Landing Page)</option>
-              <option value="Rp 10 Juta - Rp 30 Juta (Proyek Menengah / Web Custom)" class="text-slate-900">Rp 10 Juta - Rp 30 Juta (Proyek Menengah / Web Custom)</option>
-              <option value="Rp 30 Juta - Rp 100 Juta (Proyek Kompleks / AI & Integrasi)" class="text-slate-900">Rp 30 Juta - Rp 100 Juta (Proyek Kompleks / AI & Integrasi)</option>
-              <option value="Di atas Rp 100 Juta (Skala Enterprise)" class="text-slate-900">Di atas Rp 100 Juta (Skala Enterprise)</option>
-            </select>
-            <div class="absolute inset-y-0 right-6 flex items-center pointer-events-none text-slate-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      <!-- Right Column: Interactive Multi-Step Form (7 columns) -->
+      <div class="lg:col-span-7 space-y-8">
+        <!-- Scarcity / Urgency Banner (Softer Modern Banner) -->
+        <div class="border border-teal-200 bg-teal-50/20 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-600 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-600"></span>
+            </span>
+            <div class="text-xs font-semibold text-slate-800">
+              <span class="text-slate-900 font-extrabold uppercase tracking-wide">Slot Terbatas:</span> 
+              Sisa <span class="text-teal-600 font-extrabold">1 slot konsultasi gratis</span> tersedia untuk bulan ini.
             </div>
+          </div>
+          <div class="text-[9px] font-mono text-slate-400 bg-white border border-slate-100 px-2.5 py-1.5 rounded-lg shrink-0 select-none">
+            REFRESH_CYCLE: 16_DAYS
           </div>
         </div>
 
-        <!-- Navigation Buttons -->
-        <div class="flex items-center justify-between border-t border-slate-100 pt-8 mt-10">
-          <button 
-            type="button" 
-            id="form-prev-btn" 
-            class="px-6 py-3.5 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 text-slate-500 hover:text-slate-800 font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[2px_2px_0px_rgba(0,0,0,0.05)] active:translate-y-0.5 active:shadow-[1px_1px_0px_rgba(0,0,0,0.05)] invisible cursor-pointer"
-          >
-            Kembali
-          </button>
-          
-          <button 
-            type="button" 
-            id="form-next-btn" 
-            class="px-8 py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] active:translate-y-0.5 active:shadow-[2px_2px_0px_#0f172a] cursor-pointer"
-          >
-            Lanjutkan
-          </button>
+        <!-- Conversational Multi-Step Form Container -->
+        <div class="border border-slate-200 bg-white rounded-3xl p-6 sm:p-8 md:p-10 relative shadow-xl shadow-slate-100/70 overflow-hidden">
+          <!-- Glow strip -->
+          <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-600 via-blue-500 to-teal-600"></div>
 
-          <button 
-            type="submit" 
-            id="form-submit-btn" 
-            class="px-8 py-4 rounded-xl border-2 border-teal-600 bg-teal-600 hover:bg-teal-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] active:translate-y-0.5 active:shadow-[2px_2px_0px_#0f172a] hidden cursor-pointer"
-          >
-            Submit & Mulai Konsultasi 🚀
-          </button>
+          <!-- Header Info -->
+          <div class="mb-8">
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-500 mb-2 uppercase tracking-wider">
+              <span>/ STAGE_TRACKER: <span id="form-step-num">1</span>_OF_4</span>
+              <span id="form-step-percent">25%</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+              <div id="form-progress-bar" class="h-full bg-gradient-to-r from-blue-600 to-blue-400 w-[25%] transition-all duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Form Pane Viewport -->
+          <form id="multistep-project-form" class="relative min-h-[220px]" onsubmit="return false;">
+            
+            <!-- STEP 1: Name -->
+            <div id="step-1" class="form-step-pane transition-all duration-300 space-y-4">
+              <label for="client-name" class="block font-display font-black text-xl sm:text-2xl text-slate-900 uppercase tracking-tight">
+                / Siapa nama Anda?
+              </label>
+              <input 
+                type="text" 
+                id="client-name" 
+                name="name" 
+                placeholder="Ketik nama lengkap Anda di sini..." 
+                required
+                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-600 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-xl px-5 py-4 text-slate-900 text-sm outline-none transition-all placeholder:text-slate-400 font-semibold shadow-sm"
+              />
+            </div>
+
+            <!-- STEP 2: Company -->
+            <div id="step-2" class="form-step-pane hidden transition-all duration-300 space-y-4">
+              <label for="client-company" class="block font-display font-black text-xl sm:text-2xl text-slate-900 uppercase tracking-tight">
+                / Nama bisnis / perusahaan Anda?
+              </label>
+              <input 
+                type="text" 
+                id="client-company" 
+                name="company" 
+                placeholder="Masukkan nama brand atau startup..." 
+                required
+                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-xl px-5 py-4 text-slate-900 text-sm outline-none transition-all placeholder:text-slate-400 font-semibold shadow-sm"
+              />
+            </div>
+
+            <!-- STEP 3: Needs -->
+            <div id="step-3" class="form-step-pane hidden transition-all duration-300 space-y-4">
+              <label for="client-service" class="block font-display font-black text-xl sm:text-2xl text-slate-900 uppercase tracking-tight">
+                / Layanan apa yang Anda cari?
+              </label>
+              <div class="relative">
+                <select 
+                  id="client-service" 
+                  name="service"
+                  required
+                  class="w-full bg-slate-50 border border-slate-200 focus:border-blue-700 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-xl px-5 py-4 text-slate-900 text-sm outline-none transition-all appearance-none cursor-pointer font-semibold shadow-sm"
+                >
+                  <option value="" disabled selected class="text-slate-400">Pilih kebutuhan utama Anda</option>
+                  <option value="Pembuatan Website" class="text-slate-900">Pembuatan Website (Landing Page, Toko Online, Web Kustom)</option>
+                  <option value="Jasa SEO" class="text-slate-900">Jasa SEO (Optimisasi Pencarian Google)</option>
+                  <option value="AI & Otomatisasi Bisnis" class="text-slate-900">AI & Otomatisasi Bisnis (WhatsApp Auto-responder, Chatbot)</option>
+                  <option value="Layanan Lengkap (Semua Layanan)" class="text-slate-900">Layanan Lengkap (Website + SEO + AI)</option>
+                </select>
+                <div class="absolute inset-y-0 right-5 flex items-center pointer-events-none text-slate-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 4: Budget -->
+            <div id="step-4" class="form-step-pane hidden transition-all duration-300 space-y-4">
+              <label for="client-budget" class="block font-display font-black text-xl sm:text-2xl text-slate-900 uppercase tracking-tight">
+                / Berapa estimasi budget proyek?
+              </label>
+              <div class="relative">
+                <select 
+                  id="client-budget" 
+                  name="budget"
+                  required
+                  class="w-full bg-slate-50 border border-slate-200 focus:border-teal-600 focus:bg-white focus:ring-4 focus:ring-teal-500/10 rounded-xl px-5 py-4 text-slate-900 text-sm outline-none transition-all appearance-none cursor-pointer font-semibold shadow-sm"
+                >
+                  <option value="" disabled selected class="text-slate-400">Pilih kisaran budget proyek Anda</option>
+                  <option value="Di bawah Rp 2 Juta (Landing Page / Profil Bisnis)" class="text-slate-900">Di bawah Rp 2 Juta (Landing Page / Profil Bisnis)</option>
+                  <option value="Rp 2 Juta - Rp 5 Juta (Toko Online / E-Commerce)" class="text-slate-900">Rp 2 Juta - Rp 5 Juta (Toko Online / E-Commerce)</option>
+                  <option value="Rp 5 Juta - Rp 10 Juta (Web Kustom / SEO / AI)" class="text-slate-900">Rp 5 Juta - Rp 10 Juta (Web Kustom / SEO / AI)</option>
+                  <option value="Di atas Rp 10 Juta (Sistem Kustom / Enterprise)" class="text-slate-900">Di atas Rp 10 Juta (Sistem Kustom / Enterprise)</option>
+                </select>
+                <div class="absolute inset-y-0 right-5 flex items-center pointer-events-none text-slate-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex items-center justify-between border-t border-slate-100 pt-6 mt-8">
+              <button 
+                type="button" 
+                id="form-prev-btn" 
+                class="px-5 py-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-500 hover:text-slate-800 font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-sm active:scale-[0.98] invisible cursor-pointer"
+              >
+                Kembali
+              </button>
+              
+              <button 
+                type="button" 
+                id="form-next-btn" 
+                class="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-600/10 hover:shadow-xl hover:shadow-blue-600/20 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+              >
+                Lanjutkan
+              </button>
+
+              <button 
+                type="submit" 
+                id="form-submit-btn" 
+                class="px-6 py-3.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-teal-600/10 hover:shadow-xl hover:shadow-teal-600/20 hover:-translate-y-0.5 active:scale-[0.98] transition-all duration-200 hidden cursor-pointer"
+              >
+                Submit & Konsultasi
+              </button>
+            </div>
+
+          </form>
         </div>
-
-      </form>
+      </div>
+      
     </div>
-
-
   </div>
 </section>
 
@@ -219,7 +262,6 @@
     }
 
     if (nextBtn) {
-      // Remove any existing listeners by replacing the element or cloning, but in client-side navigation it's fine
       nextBtn.onclick = () => {
         if (validateStep(currentStep)) {
           if (currentStep < totalSteps) {
@@ -250,7 +292,7 @@
         const budgetVal = (document.getElementById('client-budget') as HTMLSelectElement).value;
 
         const targetPhone = "6285624353611";
-        const messageText = `Halo Vortexa Tim, saya ingin mengajukan konsultasi proyek. Berikut detailnya:
+        const messageText = `Halo Tim Lumovelo, saya ingin mengajukan konsultasi proyek. Berikut detailnya:
 
 - Nama: ${nameVal}
 - Perusahaan: ${companyVal}

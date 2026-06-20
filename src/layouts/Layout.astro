@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { 
-  title = "VORTEXA | Jasa AI, Web Performa Tinggi & SEO Bandung", 
+  title = "LUMOVELO | Jasa AI, Web Performa Tinggi & SEO Bandung", 
   description = "Agensi growth & software development terdepan di Bandung. Kami merekayasa solusi kecerdasan buatan (AI), aplikasi web headless super ngebut, dan advanced SEO untuk mendominasi pasar nasional hingga global."
 } = Astro.props;
 ---
@@ -18,8 +18,22 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link class="astro-icon-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-TKCVBB6F');
+        }, 1000);
+      });
+    </script>
+    <!-- End Google Tag Manager -->
     
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -29,11 +43,15 @@ const {
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vortexa.agency/" />
+    <meta property="og:url" content="https://lumovelo.agency/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/og-image.png" />
@@ -53,6 +71,10 @@ const {
     </script>
   </head>
   <body class="bg-white text-slate-900 min-h-screen selection:bg-blue-600/20 selection:text-blue-900">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCVBB6F"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <slot />
     
     <!-- Aura cursor trail following mouse -->

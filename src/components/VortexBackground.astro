@@ -13,14 +13,16 @@
     speed: number;
     targetSpeed: number;
     mouse: { x: number; y: number; targetX: number; targetY: number };
+    isPaused: boolean;
 
     constructor(canvas: HTMLCanvasElement) {
       this.canvas = canvas;
       this.ctx = canvas.getContext('2d')!;
       this.particles = [];
-      this.particleCount = window.innerWidth < 768 ? 80 : 160;
+      this.particleCount = window.innerWidth < 768 ? 0 : 160;
       this.speed = 1;
       this.targetSpeed = 1;
+      this.isPaused = window.innerWidth < 768;
       this.mouse = {
         x: canvas.width / 2,
         y: canvas.height / 2,
@@ -32,13 +34,34 @@
     }
 
     init() {
+      if (window.innerWidth < 768) {
+        this.canvas.style.display = 'none';
+        return;
+      }
+
       this.resizeCanvas();
       this.createParticles();
 
       window.addEventListener('resize', () => {
+        if (window.innerWidth < 768) {
+          this.canvas.style.display = 'none';
+          this.isPaused = true;
+          return;
+        } else {
+          this.canvas.style.display = 'block';
+          this.isPaused = false;
+        }
         this.resizeCanvas();
         this.createParticles();
       });
+
+      // Pause when canvas is not visible in viewport to save CPU
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          this.isPaused = !entry.isIntersecting;
+        });
+      }, { threshold: 0.01 });
+      observer.observe(this.canvas);
 
       // Listen to interactive ignition event
       window.addEventListener('warp-speed-event', (e: any) => {
@@ -52,6 +75,7 @@
       const parent = this.canvas.parentElement?.parentElement; // Hero container
       if (parent) {
         parent.addEventListener('mousemove', (e: any) => {
+          if (this.isPaused) return;
           const rect = parent.getBoundingClientRect();
           this.mouse.targetX = e.clientX - rect.left;
           this.mouse.targetY = e.clientY - rect.top;
@@ -59,10 +83,12 @@
 
         // Click to Warp trigger directly from Hero click
         parent.addEventListener('mousedown', () => {
+          if (this.isPaused) return;
           this.targetSpeed = 15; // Warp jump speed!
         });
 
         parent.addEventListener('mouseup', () => {
+          if (this.isPaused) return;
           this.targetSpeed = 1; // Back to normal
         });
       }
@@ -108,6 +134,11 @@
     }
 
     animate() {
+      if (this.isPaused) {
+        requestAnimationFrame(() => this.animate());
+        return;
+      }
+
       // Clear with slight alpha to create motion trails (white for light mode)
       this.ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);

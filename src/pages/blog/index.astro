@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Blog from '../../components/Blog.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout title="Wawasan, Edukasi & Artikel Teknologi | LUMOVELO" description="Baca artikel teknologi, panduan technical SEO, optimasi performa web headless, dan pemanfaatan otomatisasi AI otonom dari LUMOVELO.">
+  <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center font-display font-black text-white text-xl tracking-wider shadow-lg shadow-blue-600/10 group-hover:rotate-6 transition-transform">
+          L
+        </div>
+        <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
+      </a>
+
+      <a href="/" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all">
+        ➔ Kembali Ke Beranda
+      </a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <Blog />
+  </main>
+
+  <Footer />
+</Layout>

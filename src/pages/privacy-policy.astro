@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Kebijakan Privasi | LUMOVELO" description="Kebijakan Privasi resmi LUMOVELO. Kami menghargai privasi data Anda.">
+  <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center font-display font-black text-white text-xl tracking-wider shadow-lg shadow-blue-600/10 group-hover:rotate-6 transition-transform">
+          L
+        </div>
+        <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
+      </a>
+
+      <a href="/" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all">
+        ➔ Kembali Ke Beranda
+      </a>
+    </div>
+  </header>
+
+  <main class="py-16 md:py-24 bg-slate-50 min-h-screen">
+    <article class="max-w-3xl mx-auto px-6">
+      <div class="space-y-4 mb-8">
+        <div class="text-xs font-mono font-bold text-slate-500">
+          <span>TERAKHIR DIPERBARUI: 18 JUNI 2026</span>
+        </div>
+        <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-slate-900 uppercase tracking-tight leading-[1.1] mb-6">
+          Kebijakan Privasi
+        </h1>
+        <div class="w-full h-1 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full opacity-30"></div>
+      </div>
+
+      <div class="prose prose-slate max-w-none text-slate-700 text-sm sm:text-base leading-relaxed font-semibold font-sans space-y-6">
+        <p>
+          LUMOVELO berkomitmen penuh untuk melindungi privasi data pribadi pengunjung website dan klien kami. Halaman Kebijakan Privasi ini menjelaskan bagaimana kami memperlakukan data yang Anda berikan melalui situs ini.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">1. Informasi yang Kami Kumpulkan</h3>
+        <p>
+          Kami mengumpulkan informasi secara sukarela ketika Anda mengisi formulir interaktif di website kami (seperti nama, nama bisnis, pilihan layanan, dan estimasi budget). Informasi ini dikirimkan langsung secara otonom melalui aplikasi WhatsApp ke nomor kontak kami.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">2. Ketiadaan Database Internal</h3>
+        <p>
+          Sesuai dengan komitmen arsitektur website kami yang ringan, aman, dan tanpa server database tradisional (headless/serverless), **kami tidak menyimpan data pribadi Anda dalam database server website kami**. Semua data yang Anda submit ditransmisikan secara instan ke WhatsApp atau email resmi kami untuk diproses sebagai komunikasi langsung.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">3. Penggunaan Informasi</h3>
+        <p>
+          Informasi yang dikirimkan oleh klien hanya akan digunakan untuk keperluan:
+        </p>
+        <ul class="list-disc list-inside space-y-2 pl-4">
+          <li>Memproses permohonan konsultasi proyek digital dan AI Anda.</li>
+          <li>Menyusun rencana strategis dan estimasi budget kerja sama.</li>
+          <li>Menghubungi Anda kembali terkait layanan pendukung atau tindak lanjut pengerjaan.</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">4. Keamanan Informasi</h3>
+        <p>
+          Kami berupaya menjaga integritas data Anda dengan menghindari penyimpanan database statis yang rentan terhadap kebocoran data pihak ketiga di internet. Kami merekomendasikan interaksi terenkripsi langsung melalui WhatsApp Business API demi kenyamanan Anda.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">5. Perubahan Kebijakan</h3>
+        <p>
+          LUMOVELO berhak memperbarui Kebijakan Privasi ini sewaktu-waktu. Perubahan akan langsung dipublikasikan di halaman ini dengan memperbarui tanggal revisi di bagian atas halaman.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

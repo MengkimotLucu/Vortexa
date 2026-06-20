@@ -3,6 +3,7 @@
 
 <script>
   function initCursorAura() {
+    if (window.innerWidth < 768) return;
     const aura = document.getElementById('cursor-aura');
     if (!aura) return;
 

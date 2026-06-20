@@ -3,10 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
 import AboutUs from '../components/AboutUs.astro';
-import RealtimeSimulator from '../components/RealtimeSimulator.astro';
+import SimulatorBanner from '../components/SimulatorBanner.astro';
 import Services from '../components/Services.astro';
-import Portfolio from '../components/Portfolio.astro';
-import Blog from '../components/Blog.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import HowToOrder from '../components/HowToOrder.astro';
 import MultiStepForm from '../components/MultiStepForm.astro';
 import Footer from '../components/Footer.astro';
 ---
@@ -26,24 +28,30 @@ import Footer from '../components/Footer.astro';
     <!-- Tentang Kami Section -->
     <AboutUs />
 
-    <!-- Real-time performance simulation stats -->
-    <RealtimeSimulator />
+    <!-- Real-time performance simulation stats (now a lightweight banner linking to /audit/) -->
+    <SimulatorBanner />
 
     <!-- Core Agency Capabilities -->
     <Services />
 
     <!-- Kinetic Marquee 2 (Moving in reverse) -->
     <Marquee 
-      texts={["100% Clean Code", "Zero Database Server", "Ultra Fast Speed", "Qualified Leads Only", "No Bullshit Growth"]} 
+      texts={["100% Clean Code", "SEO-Optimized Structure", "Ultra Fast Speed", "Qualified Leads Only", "No Bullshit Growth"]} 
       speed="slow" 
       reverse={true}
     />
 
-    <!-- Portfolio showcasing premium HTML/CSS mockups -->
-    <Portfolio />
+    <!-- Portfolio preview (top projects, linking to /portofolio/) -->
+    <PortfolioPreview />
 
-    <!-- Blog Section -->
-    <Blog />
+    <!-- Testimonials Section -->
+    <Testimonials />
+
+    <!-- FAQ Section -->
+    <FAQ />
+
+    <!-- Cara Pemesanan Section -->
+    <HowToOrder />
 
     <!-- Closing Funnel: Multi-Step Questionnaire and WhatsApp hook -->
     <MultiStepForm />

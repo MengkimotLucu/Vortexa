@@ -4,11 +4,14 @@ import VortexBackground from './VortexBackground.astro';
 
 <header class="absolute top-0 left-0 w-full z-50 border-b border-slate-200/50 bg-white/70 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-2 group">
-      <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center font-display font-black text-white text-xl tracking-wider shadow-lg shadow-blue-600/10 group-hover:rotate-6 transition-transform">
-        V
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl border-2 border-slate-900 bg-blue-600 flex items-center justify-center shadow-[3px_3px_0px_#0f172a] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[1px_1px_0px_#0f172a] transition-all duration-200">
+        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="13 17 18 12 13 7"></polyline>
+          <polyline points="6 17 11 12 6 7"></polyline>
+        </svg>
       </div>
-      <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">VORTEXA</span>
+      <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
     </a>
 
     <!-- Full Navigation Menu matching sitemap -->
@@ -16,50 +19,126 @@ import VortexBackground from './VortexBackground.astro';
       <a href="#" class="text-xs font-extrabold tracking-wider uppercase text-slate-500 hover:text-blue-600 transition-colors">Home</a>
       <a href="#tentang-kami" class="text-xs font-extrabold tracking-wider uppercase text-slate-500 hover:text-blue-600 transition-colors">Tentang Kami</a>
       <a href="#layanan" class="text-xs font-extrabold tracking-wider uppercase text-slate-500 hover:text-blue-600 transition-colors">Layanan</a>
-      <a href="#portofolio" class="text-xs font-extrabold tracking-wider uppercase text-slate-500 hover:text-blue-600 transition-colors">Portofolio</a>
-      <a href="#blog" class="text-xs font-extrabold tracking-wider uppercase text-slate-500 hover:text-blue-600 transition-colors">Blog</a>
+      <a href="/portofolio/" class="text-xs font-extrabold tracking-wider uppercase text-slate-500 hover:text-blue-600 transition-colors">Portofolio</a>
+      <a href="/karir/" class="text-xs font-extrabold tracking-wider uppercase text-slate-500 hover:text-blue-600 transition-colors">Karir</a>
       <a href="#konsultasi" class="text-xs font-extrabold tracking-wider uppercase text-slate-500 hover:text-blue-600 transition-colors">Hubungi Kami</a>
     </nav>
 
-    <div>
-      <a href="#konsultasi" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-blue-600 bg-blue-600/5 text-blue-600 hover:bg-blue-600/15 text-xs font-black uppercase tracking-wider transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_rgba(37,99,235,1)]">
+    <div class="flex items-center gap-4">
+      <a href="#konsultasi" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-blue-600 bg-blue-600/5 text-blue-600 hover:bg-blue-600/15 text-xs font-black uppercase tracking-wider transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_rgba(37,99,235,1)]">
         Mulai Diskusi
       </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button 
+        type="button" 
+        id="hamburger-btn" 
+        class="lg:hidden p-2 rounded-lg border-2 border-slate-200 hover:border-blue-600 hover:text-blue-600 transition-colors focus:outline-none cursor-pointer"
+        aria-label="Open Menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- Mobile Navigation Drawer Overlay -->
+<div 
+  id="mobile-drawer" 
+  class="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
+>
+  <!-- Drawer Panel -->
+  <div 
+    id="mobile-drawer-panel" 
+    class="absolute right-0 top-0 bottom-0 w-4/5 max-w-sm bg-white border-l-2 border-blue-600 p-6 flex flex-col justify-between translate-x-full transition-transform duration-300 shadow-2xl"
+  >
+    <div class="space-y-8">
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2.5 group">
+          <div class="w-8 h-8 rounded-lg border-2 border-slate-900 bg-blue-600 flex items-center justify-center shadow-[2px_2px_0px_#0f172a] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[0px_0px_0px_#0f172a] transition-all duration-200">
+            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="13 17 18 12 13 7"></polyline>
+              <polyline points="6 17 11 12 6 7"></polyline>
+            </svg>
+          </div>
+          <span class="font-display font-black text-base tracking-widest text-slate-900">LUMOVELO</span>
+        </a>
+        <button 
+          type="button" 
+          id="close-drawer-btn" 
+          class="p-2 rounded-lg border-2 border-slate-200 hover:border-rose-600 hover:text-rose-600 transition-colors focus:outline-none cursor-pointer"
+          aria-label="Close Menu"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Drawer Nav Links -->
+      <nav class="flex flex-col gap-6 font-mono">
+        <a href="#" class="mobile-drawer-link text-sm font-black tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">Home</a>
+        <a href="#tentang-kami" class="mobile-drawer-link text-sm font-black tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">Tentang Kami</a>
+        <a href="#layanan" class="mobile-drawer-link text-sm font-black tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">Layanan</a>
+        <a href="/portofolio/" class="mobile-drawer-link text-sm font-black tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">Portofolio</a>
+        <a href="/karir/" class="mobile-drawer-link text-sm font-black tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">Karir</a>
+        <a href="#konsultasi" class="mobile-drawer-link text-sm font-black tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">Hubungi Kami</a>
+      </nav>
+    </div>
+
+    <!-- Drawer Footer / CTA -->
+    <div class="space-y-4">
+      <a 
+        href="#konsultasi" 
+        id="drawer-cta-btn"
+        class="mobile-drawer-link w-full inline-flex items-center justify-center py-4 rounded-xl border-2 border-blue-600 bg-blue-600 text-white hover:bg-blue-700 text-xs font-black uppercase tracking-widest transition-all shadow-[4px_4px_0px_#0f172a] hover:shadow-[2px_2px_0px_#0f172a]"
+      >
+        Mulai Diskusi ⚡
+      </a>
+      <p class="text-[9px] font-mono text-slate-400 text-center font-bold uppercase tracking-wider">
+        OTOMATISASI & WEB BERPERFORMA TINGGI
+      </p>
+    </div>
+  </div>
+</div>
 
 <section class="relative min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-white">
   <!-- Dynamic particle warp tunnel background (Blue particles on white) -->
   <VortexBackground />
 
-  <!-- Interactive Floating Stickers (Gen Z Branding in Neo-Brutalist White & Blue) -->
+  <!-- Interactive Floating Stickers (Gen Z Branding in Neo-Brutalist White & Blue/Teal) -->
   <div class="absolute inset-0 z-10 pointer-events-none hidden md:block">
     <!-- Sticker 1 -->
     <div class="absolute top-[30%] left-[8%] floating-sticker select-none">
       <div class="px-4 py-2 bg-white border-2 border-blue-600 text-blue-600 font-display font-black text-xs uppercase tracking-widest rounded-xl shadow-[4px_4px_0px_#2563eb] -rotate-6">
-        FAST AF 🚀
+        Website Anti-Lemot
       </div>
     </div>
 
     <!-- Sticker 2 -->
     <div class="absolute top-[25%] right-[10%] floating-sticker-delayed select-none">
       <div class="px-4 py-2 bg-white border-2 border-blue-400 text-blue-500 font-display font-black text-xs uppercase tracking-widest rounded-xl shadow-[4px_4px_0px_#3b82f6] rotate-12">
-        AI INTEGRATED 🧠
+        Sistem AI Otomatis
       </div>
     </div>
 
     <!-- Sticker 3 -->
     <div class="absolute bottom-[28%] left-[12%] floating-sticker-fast select-none">
       <div class="px-4 py-2 bg-white border-2 border-blue-700 text-blue-700 font-display font-black text-xs uppercase tracking-widest rounded-xl shadow-[4px_4px_0px_#1d4ed8] -rotate-3">
-        100% STATIC HEADLESS 💻
+        Infrastruktur Modern
       </div>
     </div>
 
     <!-- Sticker 4 -->
     <div class="absolute bottom-[22%] right-[12%] floating-sticker select-none">
       <div class="px-4 py-2 bg-white border-2 border-teal-600 text-teal-600 font-display font-black text-xs uppercase tracking-widest rounded-xl shadow-[4px_4px_0px_#0d9488] rotate-6">
-        ZERO DB SERVER ⚡
+        Bebas Biaya Ribet
       </div>
     </div>
   </div>
@@ -72,19 +151,19 @@ import VortexBackground from './VortexBackground.astro';
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-600 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
       </span>
-      Konektivitas Digital • Indonesia • Global
+      MITRA DIGITAL STRATEGIS | MODERN | TERPERCAYA
     </div>
 
     <!-- Main Headline with Outlines and Gradients -->
     <h1 class="font-display font-black text-5xl sm:text-7xl md:text-8xl text-slate-900 tracking-tight leading-[0.95] mb-10 select-none uppercase">
-      <span class="block">REKAYASA</span>
-      <span class="block text-stroke-neon tracking-tighter">PERFORMA &</span>
-      <span class="block bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 bg-[length:200%_auto] bg-clip-text text-transparent animate-[gradient-shift_6s_linear_infinite] glitch-hover cursor-pointer py-2">PERTUMBUHAN.</span>
+      <span class="block text-stroke-neon tracking-tighter py-1.5">SISTEM DIGITAL</span>
+      <span class="block">NYATA.</span>
+      <span class="block bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 bg-[length:200%_auto] bg-clip-text text-transparent animate-[gradient-shift_6s_linear_infinite] glitch-hover cursor-pointer py-2 text-2xl sm:text-4xl md:text-5xl lg:text-6xl">BIARKAN WEBSITE & AI BEKERJA UNTUK BISNIS ANDA.</span>
     </h1>
 
     <!-- Sub-headline (Jargon-free explaining the main business) -->
     <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-600 font-semibold leading-relaxed mb-14">
-      Kami merancang sistem kecerdasan buatan, website headless super cepat, dan optimasi SEO terarah langsung dari Bandung untuk membantu startup maupun UMKM lokal menguasai pasar nasional dan bersaing di kancah global.
+      Kami membangun website super cepat dan sistem otomatisasi WhatsApp yang siap mengelola prospek, membalas pelanggan, dan mengamankan penjualan Anda 24/7. Lebih efisien, tanpa biaya maintenance yang mencekik.
     </p>
 
     <!-- CTAs -->
@@ -93,13 +172,13 @@ import VortexBackground from './VortexBackground.astro';
         href="#konsultasi" 
         class="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#0f172a] hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
       >
-        Konsultasi Proyek Gratis 🚀
+        Amankan Slot Konsultasi
       </a>
       <a 
         href="#layanan" 
         class="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 rounded-2xl border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-900 font-black text-sm uppercase tracking-wider transition-all duration-300 cursor-pointer"
       >
-        Eksplorasi Layanan
+        Eksplorasi Solusi Kami
       </a>
     </div>
   </div>
@@ -124,3 +203,51 @@ import VortexBackground from './VortexBackground.astro';
     }
   }
 </style>
+
+<script>
+  function initMobileMenu() {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const closeDrawerBtn = document.getElementById('close-drawer-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const mobileDrawerPanel = document.getElementById('mobile-drawer-panel');
+    const drawerLinks = document.querySelectorAll('.mobile-drawer-link');
+
+    if (!hamburgerBtn || !closeDrawerBtn || !mobileDrawer || !mobileDrawerPanel) return;
+
+    function openMenu() {
+      mobileDrawer.classList.remove('opacity-0', 'pointer-events-none');
+      mobileDrawer.classList.add('opacity-100');
+      mobileDrawerPanel.classList.remove('translate-x-full');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeMenu() {
+      mobileDrawer.classList.add('opacity-0', 'pointer-events-none');
+      mobileDrawer.classList.remove('opacity-100');
+      mobileDrawerPanel.classList.add('translate-x-full');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeDrawerBtn.addEventListener('click', closeMenu);
+    
+    // Close on click outside panel
+    mobileDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileDrawer) {
+        closeMenu();
+      }
+    });
+
+    // Close menu when a link is clicked
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  // Support view transitions and normal load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+</script>

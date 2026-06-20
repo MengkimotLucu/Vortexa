@@ -1,10 +1,10 @@
 # Product Requirement Document (PRD)
-## Project: VORTEXA Landing Page (V1.0)
+## Project: LUMOVELO Landing Page (V1.0)
 
 ---
 
 ## 1. Project Overview & Objective
-* **Brand Name:** VORTEXA
+* **Brand Name:** LUMOVELO
 * **Tagline Concept:** *We don’t just build software. We engineer digital growth.*
 * **Objective:** Membangun website profil *full-stack growth agency* (AI, Software Dev, SEO, Design) yang berorientasi pada konversi tinggi (*high-converting sales funnel*), menyasar klien UMKM hingga Enterprise Global. Target utama: Menghasilkan leads WhatsApp secara konsisten setiap bulan.
 * **Target Audience:** Startup founders, UMKM pemilik bisnis yang ingin digitalisasi, dan IT Decision Makers di korporat skala global.
@@ -76,7 +76,7 @@ Saat user menekan tombol **"Submit & Mulai Konsultasi"**, sistem tidak menyimpan
 * **Nomor WhatsApp Tujuan:** `6285624353611`
 * **Format Pesan Otomatis (URL Encoded):**
 ```text
-Halo Vortexa Tim, saya ingin mengajukan konsultasi proyek. Berikut detailnya:
+Halo Tim Lumovelo, saya ingin mengajukan konsultasi proyek. Berikut detailnya:
 
 - Nama: [Input Nama]
 - Perusahaan: [Input Perusahaan]

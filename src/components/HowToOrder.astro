@@ -1,0 +1,94 @@
+---
+const steps = [
+  {
+    step: '01',
+    title: 'Konsultasi & Pengisian Formulir',
+    description: 'Mulailah dengan mengisi formulir konsultasi singkat di website kami. Beritahu kami kebutuhan utama, skala proyek, dan estimasi budget yang Anda rencanakan.',
+    tag: 'LANGKAH_AWAL',
+    bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
+  },
+  {
+    step: '02',
+    title: 'Diskusi Pemetaan Solusi',
+    description: 'Tim ahli LUMOVELO akan menghubungi Anda langsung via WhatsApp untuk menyelaraskan konsep, merinci detail fitur, dan memetakan solusi teknologi terbaik.',
+    tag: 'KOLABORASI',
+    bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
+  },
+  {
+    step: '03',
+    title: 'Penawaran & Persetujuan Kerja',
+    description: 'Kami memberikan penawaran nilai investasi yang kompetitif dan transparan. Setelah rincian disepakati, proyek langsung dimulai tanpa proses administrasi berbelit.',
+    tag: 'DEAL_KESEPAKATAN',
+    bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
+  },
+  {
+    step: '04',
+    title: 'Pengerjaan Transparan & Launch',
+    description: 'Proses pengerjaan dilakukan secara bertahap dan transparan untuk Anda review secara langsung. Website diluncurkan setelah lolos uji performa kecepatan di bawah 3 detik.',
+    tag: 'SERAH_TERIMA',
+    bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
+  }
+];
+---
+
+<section id="cara-pemesanan" class="py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
+  <!-- Dynamic grid background decoration -->
+  <div class="absolute inset-0 bg-[radial-gradient(#2563eb_0.5px,transparent_0.5px)] bg-[size:1.5rem_1.5rem] opacity-[0.02] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-20">
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ Alur Kerja & Pemesanan</h2>
+      <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
+        Prosedur Pemesanan.<br/>
+        <span class="text-stroke-neon">Sederhana & Tanpa Hambatan.</span>
+      </h3>
+      <p class="text-slate-600 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
+        Kami merancang proses pemesanan yang efisien and terbuka, memastikan setiap langkah pengerjaan terpantau jelas oleh Anda dari awal hingga peluncuran.
+      </p>
+    </div>
+
+    <!-- Steps Horizontal/Vertical Responsive Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {steps.map((item) => (
+        <div class="p-8 bg-white border-2 border-blue-600 rounded-3xl shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[320px]">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="font-mono font-black text-4xl text-blue-600/25">{item.step}</span>
+              <span class={`px-2.5 py-1 rounded-md text-[8px] font-mono font-bold border uppercase tracking-wider ${item.bgTag}`}>
+                {item.tag}
+              </span>
+            </div>
+            <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">
+              {item.title}
+            </h4>
+            <p class="text-xs text-slate-600 leading-relaxed font-medium">
+              {item.description}
+            </p>
+          </div>
+          <div class="border-t border-slate-100 pt-4 mt-6 flex justify-end">
+            <span class="text-[9px] font-mono text-slate-500 font-bold">LUMOVELO_SYS // STEP_{item.step}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Call to Action Banner -->
+    <div class="mt-16 p-8 border-2 border-blue-600 bg-white rounded-3xl shadow-[6px_6px_0px_#2563eb] flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-2">
+        <h4 class="font-display font-black text-lg text-slate-900 uppercase">Siap Memulai Proyek Anda Sekarang?</h4>
+        <p class="text-xs text-slate-500 font-semibold max-w-xl">
+          Konsultasikan kebutuhan digital Anda dengan tim ahli kami secara gratis dan dapatkan penawaran investasi yang terjangkau.
+        </p>
+      </div>
+      <a 
+        href="#konsultasi" 
+        class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
+      >
+        Mulai Konsultasi Gratis ➔
+      </a>
+    </div>
+
+  </div>
+</section>
