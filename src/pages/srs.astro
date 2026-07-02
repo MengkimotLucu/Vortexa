@@ -1,0 +1,627 @@
+﻿---
+import Logo from '../components/Logo.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Premium SRS Builder | LUMOVELO" description="Workspace spesifikasi fitur teknis (Software Requirements Specification) & Lampiran Scope Proyek.">
+  <div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between no-print">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center shadow-[2px_2px_0px_rgba(37,99,235,0.4)]">
+            <Logo class="w-4 h-4 text-white" />
+          </div>
+          <span class="font-display font-black text-lg tracking-wider text-white">LUMOVELO</span>
+        </a>
+        <span class="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-slate-400 uppercase tracking-widest">Workspace v1.0</span>
+      </div>
+      
+      <!-- Document Selector Dropdown -->
+      <div class="relative inline-block text-left" id="doc-selector-dropdown-container">
+        <button type="button" id="doc-selector-btn" class="inline-flex justify-between items-center gap-2 px-4 py-2 border border-slate-700 rounded-xl bg-slate-955 text-xs font-bold text-slate-300 hover:text-white hover:border-slate-650 transition-all cursor-pointer select-none">
+          <span>📂 WORKSPACE: SRS / LAMPIRAN SCOPE</span>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div id="doc-selector-menu" class="absolute right-0 mt-2 w-56 rounded-xl border border-slate-800 bg-slate-900 shadow-2xl py-1.5 z-50 hidden transition-all">
+          <a href="/mou/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📝 MoU Perjanjian</a>
+          <a href="/spk/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">🤝 SPK / Kontrak Kerja</a>
+          <a href="/rab/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📊 RAB Anggaran Biaya</a>
+          <a href="/srs/" class="block px-4 py-2 text-xs text-blue-400 bg-slate-800/40 font-bold border-b border-slate-800/30">📋 SRS / Lampiran Scope</a>
+          <a href="/invoice/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">💳 Invoice Penagihan</a>
+          <a href="/kuitansi/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">🧾 Kuitansi Pembayaran</a>
+          <a href="/bast/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60">📦 BAST Serah Terima</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <!-- Tabs for Mobile View -->
+      <div class="lg:hidden flex border-b border-slate-800 bg-slate-900 no-print">
+        <button id="tab-editor" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-blue-500 text-white bg-slate-900">
+          Form Editor
+        </button>
+        <button id="tab-preview" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 bg-slate-900">
+          Pratinjau A4
+        </button>
+      </div>
+
+      <!-- Left Panel: Editor Form -->
+      <aside id="editor-panel" class="w-full lg:w-[45%] border-r border-slate-800 bg-slate-900/30 overflow-y-auto p-6 space-y-6 block no-print">
+        <!-- Preset Selector -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3">
+          <label class="block text-xs font-mono font-bold tracking-widest text-blue-400 uppercase">PILIH TEMPLATE SRS</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="preset-srs-web" class="px-2 py-2 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-xs font-bold text-blue-400 transition-all hover:scale-[1.01] cursor-pointer">
+              Website Landing Page
+            </button>
+            <button type="button" id="preset-srs-portal" class="px-2 py-2 rounded-lg bg-slate-800 hover:bg-slate-700/60 border border-slate-700 text-xs font-bold text-slate-300 transition-all hover:scale-[1.01] cursor-pointer">
+              Portal Client & AI
+            </button>
+          </div>
+        </div>
+
+        <!-- Document Metadata -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">Metadata Dokumen</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="srs-number" class="text-xs font-semibold text-slate-400">Nomor Dokumen</label>
+              <input type="text" id="srs-number" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 014/SRS-LV/VI/2026" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="srs-date" class="text-xs font-semibold text-slate-400">Tanggal Pembuatan</label>
+              <input type="text" id="srs-date" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 01 Juli 2026" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="srs-client" class="text-xs font-semibold text-slate-400">Nama Perusahaan Klien</label>
+              <input type="text" id="srs-client" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Nama perusahaan klien" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="srs-tech" class="text-xs font-semibold text-slate-400">Teknologi / Platform</label>
+              <input type="text" id="srs-tech" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: Astro Framework, Tailwind CSS" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Profil Perusahaan Penerbit -->
+        <div class="space-y-4 bg-slate-900/50 border border-slate-800 rounded-2xl p-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 pb-2 uppercase tracking-wider border-b border-slate-800">Profil Perusahaan Penerbit</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="comp-name" class="text-xs font-semibold text-slate-400">Nama Perusahaan</label>
+              <input type="text" id="comp-name" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="LUMOVELO" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="comp-company" class="text-xs font-semibold text-slate-400">Nama Instansi Resmi</label>
+              <input type="text" id="comp-company" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="LUMOVELO Agency" />
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <label for="comp-services" class="text-xs font-semibold text-slate-400">Tagline / Layanan</label>
+            <input type="text" id="comp-services" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="Jasa Pembuatan Web Performa Tinggi, SEO & Integrasi AI" />
+          </div>
+          <div class="space-y-1.5">
+            <label for="comp-address" class="text-xs font-semibold text-slate-400">Alamat Lengkap</label>
+            <input type="text" id="comp-address" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="Jl. Dipati Ukur No. 102, Coblong, Kota Bandung" />
+          </div>
+        </div>
+
+        <!-- In-Scope Features -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-wider">Fitur Dalam Scope (In-Scope)</h3>
+            <button type="button" id="btn-add-feature" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold text-[10px] uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer select-none">
+              Tambah Fitur
+            </button>
+          </div>
+          <div id="features-editor-container" class="space-y-3">
+            <!-- Dynamic feature editor cards -->
+          </div>
+        </div>
+
+        <!-- Excluded / Out of Scope -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-wider">Batasan Diluar Scope (Out-of-Scope)</h3>
+            <button type="button" id="btn-add-exclusion" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-white font-bold text-[10px] uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer select-none">
+              Tambah Batasan
+            </button>
+          </div>
+          <div id="exclusions-editor-container" class="space-y-2">
+            <!-- Dynamic exclusion lines -->
+          </div>
+        </div>
+
+        <!-- Non-Functional NFRs -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">Spesifikasi Kualitas (NFR)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="nfr-speed" class="text-xs font-semibold text-slate-400">Target Lighthouse Score</label>
+              <input type="text" id="nfr-speed" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="> 95/100 Mobile & Desktop" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="nfr-responsive" class="text-xs font-semibold text-slate-400">Responsivitas</label>
+              <input type="text" id="nfr-responsive" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="Mobile First, Tablet, & Desktop Grid" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button type="button" id="btn-download-pdf" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer select-none">
+            Cetak / Simpan PDF
+          </button>
+          <button type="button" id="btn-download-word" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-slate-700 bg-slate-800 hover:bg-slate-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer select-none">
+            Unduh Word (.doc)
+          </button>
+        </div>
+      </aside>
+
+      <!-- Right Panel: Live Document Preview (A4 representation) -->
+      <section id="preview-panel" class="flex-1 bg-slate-900/20 overflow-y-auto p-4 md:p-8 flex justify-center items-start hidden lg:flex">
+        <!-- Paper Container representing A4 -->
+        <div id="paper-preview" class="w-full max-w-[210mm] min-h-[297mm] bg-white text-black p-[25mm] shadow-2xl rounded border border-slate-200/50 flex flex-col font-serif relative">
+          <!-- Document Header -->
+          <div class="flex justify-between items-start border-b-2 border-slate-900 pb-5 mb-8 font-sans" id="p-header-block">
+            <div class="space-y-1">
+              <h1 class="text-xl font-bold uppercase tracking-wide text-blue-600 font-sans" id="p-comp-name">LUMOVELO</h1>
+              <p class="text-[9px] text-slate-500 font-semibold leading-relaxed">
+                <span id="p-comp-services">Jasa Pembuatan Web Performa Tinggi, SEO & Integrasi AI</span><br>
+                <span id="p-comp-address">Jl. Dipati Ukur No. 102, Coblong, Kota Bandung</span>
+              </p>
+            </div>
+            <div class="text-right">
+              <h2 class="text-xs font-bold uppercase tracking-widest text-slate-800">LAMPIRAN SPESIFIKASI FITUR (SRS)</h2>
+              <p class="text-[10px] font-mono text-slate-600 mt-1">DOC_ID: <span id="p-srs-number" class="underline">--</span></p>
+              <p class="text-[9px] font-mono text-slate-500 mt-0.5">Tanggal: <span id="p-srs-date">--</span></p>
+            </div>
+          </div>
+
+          <!-- Document Body -->
+          <div class="text-xs space-y-6 leading-relaxed text-justify flex-1">
+            <p>
+              Dokumen ini merupakan Lampiran Ruang Lingkup Kerja (Scope of Work) resmi yang tidak terpisahkan dari Surat Perintah Kerja (SPK) yang disepakati antara <strong id="p-comp-company-ref">LUMOVELO Agency</strong> dan pihak klien: <strong id="p-srs-client">--</strong>.
+            </p>
+
+            <!-- Table of Features -->
+            <div>
+              <h3 class="font-bold text-xs uppercase font-sans border-b border-black pb-1 mb-2">1. Fitur Spesifikasi Fungsional (In-Scope)</h3>
+              <table class="w-full border-collapse border border-slate-300 text-[11px] font-sans">
+                <thead>
+                  <tr class="bg-slate-50 border-b border-slate-300">
+                    <th class="p-2 border-r border-slate-300 w-8 text-center font-bold">NO</th>
+                    <th class="p-2 border-r border-slate-300 w-32 font-bold">MODUL / KATEGORI</th>
+                    <th class="p-2 border-r border-slate-300 w-44 font-bold">FITUR & SPESIFIKASI</th>
+                    <th class="p-2 font-bold">DESKRIPSI DETAIL</th>
+                  </tr>
+                </thead>
+                <tbody id="preview-features-body">
+                  <!-- Injected via Javascript -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Out-of-Scope Exclusions -->
+            <div>
+              <h3 class="font-bold text-xs uppercase font-sans border-b border-black pb-1 mb-2">2. Batasan Pekerjaan (Out-of-Scope Exclusions)</h3>
+              <p class="mb-2">Untuk mencegah ambiguitas pengerjaan, hal-hal berikut disepakati berada <strong>di luar lingkup pengerjaan proyek</strong>:</p>
+              <ul id="preview-exclusions-list" class="list-disc pl-5 space-y-1 font-sans text-[11px]">
+                <!-- Injected via JS -->
+              </ul>
+            </div>
+
+            <!-- Non-Functional NFRs -->
+            <div class="pt-2">
+              <h3 class="font-bold text-xs uppercase font-sans border-b border-black pb-1 mb-2">3. Kriteria Penerimaan Non-Fungsional</h3>
+              <table class="w-full border-collapse border border-slate-300 text-[11px] font-sans">
+                <tr class="border-b border-slate-200">
+                  <td class="p-2 w-44 font-bold bg-slate-50">Teknologi Dasar</td>
+                  <td class="p-2"><span id="p-srs-tech">--</span></td>
+                </tr>
+                <tr class="border-b border-slate-200">
+                  <td class="p-2 font-bold bg-slate-50">Kecepatan Lighthouse</td>
+                  <td class="p-2"><span id="p-nfr-speed">--</span></td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-bold bg-slate-50">Adaptasi Tampilan</td>
+                  <td class="p-2"><span id="p-nfr-responsive">--</span></td>
+                </tr>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <style is:global>
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #preview-panel, #preview-panel * {
+        visibility: visible;
+      }
+      #preview-panel {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: white !important;
+      }
+      #paper-preview {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+  </style>
+
+  <script>
+    const presets = {
+      web: {
+        number: '014/SRS-LV/VI/2026',
+        client: 'PT. HijabStyle Mode',
+        tech: 'Astro Framework, Tailwind CSS, Vercel Edge Serverless',
+        nfrSpeed: '> 95/100 Mobile & Desktop (Google Speed Index)',
+        nfrResponsive: 'Mobile First, Tablet, & Desktop Grid Responsive UI',
+        exclusions: [
+          'Pengadaan materi foto produk dan aset grafis ilustrasi (disediakan klien)',
+          'Penyediaan akun payment gateway pihak ketiga berbayar (misal Midtrans)',
+          'Fitur sistem multi-vendor / reseller multi-tier luar skema awal'
+        ],
+        features: [
+          { category: 'FRONTEND UI', title: 'Halaman Beranda Heroic', desc: 'Desain neo-brutalist dengan loading sub-detik, animasi scroll reveal, dan carousel produk.' },
+          { category: 'KONTAK / LEADS', title: 'Formulir Multi-Langkah WhatsApp', desc: 'Sistem kuesioner interaktif yang mengirimkan data ringkasan ke nomor WhatsApp admin.' },
+          { category: 'SEO / OPTIMASI', title: 'Optimasi Meta Tags & Sitemap', desc: 'Setup parameter SEO dinamis, canonical URL, robots.txt, serta auto-generated sitemap.' }
+        ]
+      },
+      portal: {
+        number: '015/SRS-LV/VI/2026',
+        client: 'PT. AutoParts Indo Corp',
+        tech: 'NextJS, Node.js Backend API, PostgreSQL Database, Cloudflare CDN',
+        nfrSpeed: '> 90/100 Mobile & Desktop (Core Web Vitals Pass)',
+        nfrResponsive: 'Dashboard Layout optimized for Desktop Panel & Mobile View',
+        exclusions: [
+          'Biaya API token berbayar OpenAI / Anthropic untuk model kecerdasan buatan',
+          'Sistem verifikasi identitas KTP / KYC pihak ketiga berlisensi',
+          'Pengembangan aplikasi mobile native (Android / iOS) - Hanya PWA'
+        ],
+        features: [
+          { category: 'PORTAL / AUTH', title: 'Autentikasi Aman JWT Klien', desc: 'Fitur registrasi, verifikasi email, login aman, reset password, dan kelola profil pengguna.' },
+          { category: 'AI INTEGRATION', title: 'Agen AI Leads Auto-Responder', desc: 'Program background service yang otomatis merespon leads masuk menggunakan ChatGPT API.' },
+          { category: 'DASHBOARD LOGS', title: 'Panel Telemetri Real-time', desc: 'Visualisasi grafik status leads, skor konversi, data audit, dan statistik performa.' }
+        ]
+      }
+    };
+
+    let currentFeatures: { category: string; title: string; desc: string }[] = [];
+    let currentExclusions: string[] = [];
+
+    // Inputs
+    const srsNumInput = document.getElementById('srs-number') as HTMLInputElement;
+    const srsDateInput = document.getElementById('srs-date') as HTMLInputElement;
+    const srsClientInput = document.getElementById('srs-client') as HTMLInputElement;
+    const srsTechInput = document.getElementById('srs-tech') as HTMLInputElement;
+    const nfrSpeedInput = document.getElementById('nfr-speed') as HTMLInputElement;
+    const nfrResponsiveInput = document.getElementById('nfr-responsive') as HTMLInputElement;
+
+    const featuresContainer = document.getElementById('features-editor-container') as HTMLDivElement;
+    const exclusionsContainer = document.getElementById('exclusions-editor-container') as HTMLDivElement;
+
+    // Preview
+    const pSrsNum = document.getElementById('p-srs-number') as HTMLSpanElement;
+    const pSrsDate = document.getElementById('p-srs-date') as HTMLSpanElement;
+    const pSrsClient = document.getElementById('p-srs-client') as HTMLSpanElement;
+    const pSrsTech = document.getElementById('p-srs-tech') as HTMLSpanElement;
+    const pNfrSpeed = document.getElementById('p-nfr-speed') as HTMLSpanElement;
+    const pNfrResponsive = document.getElementById('p-nfr-responsive') as HTMLSpanElement;
+
+    // Company Profile Inputs
+    const compNameInput = document.getElementById('comp-name') as HTMLInputElement;
+    const compCompanyInput = document.getElementById('comp-company') as HTMLInputElement;
+    const compServicesInput = document.getElementById('comp-services') as HTMLInputElement;
+    const compAddressInput = document.getElementById('comp-address') as HTMLInputElement;
+
+    // Company Profile Preview
+    const pCompName = document.getElementById('p-comp-name') as HTMLHeadingElement;
+    const pCompServices = document.getElementById('p-comp-services') as HTMLSpanElement;
+    const pCompAddress = document.getElementById('p-comp-address') as HTMLSpanElement;
+    const pCompCompanyRef = document.getElementById('p-comp-company-ref') as HTMLSpanElement;
+
+    function updateMetadataPreview() {
+      pSrsNum.innerText = srsNumInput.value || '--';
+      pSrsDate.innerText = srsDateInput.value || '--';
+      pSrsClient.innerText = srsClientInput.value || '--';
+      pSrsTech.innerText = srsTechInput.value || '--';
+      pNfrSpeed.innerText = nfrSpeedInput.value || '--';
+      pNfrResponsive.innerText = nfrResponsiveInput.value || '--';
+
+      // Update Company Profile
+      if (pCompName) pCompName.innerText = compNameInput.value || '--';
+      if (pCompServices) pCompServices.innerText = compServicesInput.value || '--';
+      if (pCompAddress) pCompAddress.innerText = compAddressInput.value || '--';
+      if (pCompCompanyRef) pCompCompanyRef.innerText = compCompanyInput.value || '--';
+    }
+
+    function renderFeaturesEditor() {
+      featuresContainer.innerHTML = '';
+      currentFeatures.forEach((f, index) => {
+        const div = document.createElement('div');
+        div.className = "space-y-2 bg-slate-900/60 p-3 rounded-lg border border-slate-800 relative group";
+        div.innerHTML = `
+          <div class="grid grid-cols-2 gap-2">
+            <input type="text" class="f-category bg-slate-950 border border-slate-800 rounded px-2 py-1 text-xs text-white focus:outline-none font-bold" value="${f.category}" placeholder="Modul / Kategori" data-index="${index}" />
+            <div class="flex items-center gap-1.5 justify-end">
+              <input type="text" class="f-title bg-slate-950 border border-slate-800 rounded px-2 py-1 text-xs text-white focus:outline-none w-[70%]" value="${f.title}" placeholder="Fitur" data-index="${index}" />
+              <button type="button" class="btn-delete-f text-rose-500 hover:text-rose-400 p-1 cursor-pointer select-none" data-index="${index}">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+              </button>
+            </div>
+          </div>
+          <textarea class="f-desc w-full bg-slate-950 border border-slate-800 rounded px-2 py-1 text-xs text-slate-350 focus:outline-none h-14" placeholder="Detail penjelasan fitur" data-index="${index}">${f.desc}</textarea>
+        `;
+        featuresContainer.appendChild(div);
+      });
+
+      // Bind
+      document.querySelectorAll('.f-category').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLInputElement).getAttribute('data-index')!);
+          currentFeatures[idx].category = (e.target as HTMLInputElement).value;
+          renderPreviewFeatures();
+        });
+      });
+      document.querySelectorAll('.f-title').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLInputElement).getAttribute('data-index')!);
+          currentFeatures[idx].title = (e.target as HTMLInputElement).value;
+          renderPreviewFeatures();
+        });
+      });
+      document.querySelectorAll('.f-desc').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLTextAreaElement).getAttribute('data-index')!);
+          currentFeatures[idx].desc = (e.target as HTMLTextAreaElement).value;
+          renderPreviewFeatures();
+        });
+      });
+      document.querySelectorAll('.btn-delete-f').forEach(el => {
+        el.addEventListener('click', (e) => {
+          const idx = parseInt((e.currentTarget as HTMLButtonElement).getAttribute('data-index')!);
+          currentFeatures.splice(idx, 1);
+          renderFeaturesEditor();
+          renderPreviewFeatures();
+        });
+      });
+    }
+
+    function renderPreviewFeatures() {
+      const tbody = document.getElementById('preview-features-body') as HTMLTableSectionElement;
+      tbody.innerHTML = '';
+      currentFeatures.forEach((f, idx) => {
+        const row = document.createElement('tr');
+        row.className = "border-b border-slate-200";
+        row.innerHTML = `
+          <td class="p-2 border-r border-slate-300 text-center font-mono font-bold">${idx + 1}</td>
+          <td class="p-2 border-r border-slate-300 uppercase font-semibold text-slate-500 font-mono text-[9px]">${f.category || '--'}</td>
+          <td class="p-2 border-r border-slate-300 font-bold text-slate-800">${f.title || '--'}</td>
+          <td class="p-2 text-slate-650">${f.desc || '--'}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function renderExclusionsEditor() {
+      exclusionsContainer.innerHTML = '';
+      currentExclusions.forEach((ex, index) => {
+        const div = document.createElement('div');
+        div.className = "flex gap-2 items-center bg-slate-900/60 p-2.5 rounded-lg border border-slate-800";
+        div.innerHTML = `
+          <input type="text" class="ex-text bg-slate-950 border border-slate-800 rounded px-2 py-1 text-xs text-white focus:outline-none flex-1" value="${ex}" placeholder="Batasan diluar scope" data-index="${index}" />
+          <button type="button" class="btn-delete-ex text-rose-500 hover:text-rose-400 p-1 cursor-pointer select-none" data-index="${index}">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+          </button>
+        `;
+        exclusionsContainer.appendChild(div);
+      });
+
+      // Bind
+      document.querySelectorAll('.ex-text').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLInputElement).getAttribute('data-index')!);
+          currentExclusions[idx] = (e.target as HTMLInputElement).value;
+          renderPreviewExclusions();
+        });
+      });
+      document.querySelectorAll('.btn-delete-ex').forEach(el => {
+        el.addEventListener('click', (e) => {
+          const idx = parseInt((e.currentTarget as HTMLButtonElement).getAttribute('data-index')!);
+          currentExclusions.splice(idx, 1);
+          renderExclusionsEditor();
+          renderPreviewExclusions();
+        });
+      });
+    }
+
+    function renderPreviewExclusions() {
+      const list = document.getElementById('preview-exclusions-list') as HTMLUListElement;
+      list.innerHTML = '';
+      currentExclusions.forEach(ex => {
+        const li = document.createElement('li');
+        li.className = "text-slate-650";
+        li.innerText = ex || '--';
+        list.appendChild(li);
+      });
+    }
+
+    function loadPreset(key: 'web' | 'portal') {
+      const config = presets[key];
+      srsNumInput.value = config.number;
+      srsClientInput.value = config.client;
+      srsTechInput.value = config.tech;
+      nfrSpeedInput.value = config.nfrSpeed;
+      nfrResponsiveInput.value = config.nfrResponsive;
+
+      const today = new Date();
+      const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+      srsDateInput.value = `${today.getDate()} ${monthNames[today.getMonth()]} ${today.getFullYear()}`;
+
+      currentFeatures = JSON.parse(JSON.stringify(config.features));
+      currentExclusions = JSON.parse(JSON.stringify(config.exclusions));
+
+      renderFeaturesEditor();
+      renderExclusionsEditor();
+      updateMetadataPreview();
+      renderPreviewFeatures();
+      renderPreviewExclusions();
+
+      // Styles
+      const btnWeb = document.getElementById('preset-srs-web') as HTMLButtonElement;
+      const btnPortal = document.getElementById('preset-srs-portal') as HTMLButtonElement;
+      [btnWeb, btnPortal].forEach(btn => {
+        btn.className = "px-2 py-2 rounded-lg bg-slate-800 hover:bg-slate-700/60 border border-slate-700 text-xs font-bold text-slate-300 transition-all hover:scale-[1.01] cursor-pointer";
+      });
+      document.getElementById(`preset-srs-${key}`)!.className = "px-2 py-2 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-xs font-bold text-blue-400 transition-all hover:scale-[1.01] cursor-pointer";
+    }
+
+    // Bind listeners
+    [srsNumInput, srsDateInput, srsClientInput, srsTechInput, nfrSpeedInput, nfrResponsiveInput, compNameInput, compCompanyInput, compServicesInput, compAddressInput].forEach(el => {
+      el.addEventListener('input', updateMetadataPreview);
+    });
+
+    document.getElementById('btn-add-feature')!.addEventListener('click', () => {
+      currentFeatures.push({ category: 'MODUL', title: 'Fitur Baru', desc: '' });
+      renderFeaturesEditor();
+      renderPreviewFeatures();
+    });
+
+    document.getElementById('btn-add-exclusion')!.addEventListener('click', () => {
+      currentExclusions.push('');
+      renderExclusionsEditor();
+      renderPreviewExclusions();
+    });
+
+    document.getElementById('preset-srs-web')!.addEventListener('click', () => loadPreset('web'));
+    document.getElementById('preset-srs-portal')!.addEventListener('click', () => loadPreset('portal'));
+
+    document.getElementById('btn-download-pdf')!.addEventListener('click', () => window.print());
+
+    document.getElementById('btn-download-word')!.addEventListener('click', () => {
+      const filename = `SRS-${srsClientInput.value.replace(/\s+/g, '_') || 'LUMOVELO'}.doc`;
+      const content = document.getElementById('paper-preview')!.innerHTML;
+
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = content;
+
+      // Convert Header flex layout to table
+      const headerBlock = tempDiv.querySelector('#p-header-block');
+      if (headerBlock) {
+        const leftCol = headerBlock.children[0]?.innerHTML || '';
+        const rightCol = headerBlock.children[1]?.innerHTML || '';
+        headerBlock.outerHTML = `
+          <table style="width: 100%; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 25px; border-collapse: collapse;">
+            <tr style="border: none !important;">
+              <td style="width: 50%; vertical-align: top; text-align: left; border: none !important;">${leftCol}</td>
+              <td style="width: 50%; vertical-align: top; text-align: right; border: none !important;">${rightCol}</td>
+            </tr>
+          </table>
+        `;
+      }
+
+      const finalHtmlContent = tempDiv.innerHTML;
+
+      const wordHtmlHeader = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+      <head>
+      <title>Software Requirements Specification (SRS)</title>
+      <style>
+        @page Section1 { size: 595.3pt 841.9pt; margin: 72pt; }
+        div.Section1 { page: Section1; }
+        body { font-family: 'Arial', sans-serif; font-size: 10pt; line-height: 1.35; }
+        h1 { font-size: 13pt; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; }
+        h2 { font-size: 11pt; font-weight: bold; text-transform: uppercase; margin-top: 15px; margin-bottom: 5px; }
+        h3 { font-size: 10.5pt; font-weight: bold; text-transform: uppercase; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px solid #000; padding-bottom: 2px;}
+        p { margin-bottom: 8px; text-align: justify; }
+        ol, ul { margin-top: 5px; margin-bottom: 5px; padding-left: 20px; }
+        li { margin-bottom: 4px; text-align: justify; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #cbd5e1; padding: 6px; font-size: 9.5pt; vertical-align: top; }
+        th { background-color: #f8fafc; font-weight: bold; }
+        .font-bold { font-weight: bold; }
+        .underline { text-decoration: underline; }
+      </style>
+      </head>
+      <body>
+      <div class="Section1">
+        ${finalHtmlContent}
+      </div>
+      </body>
+      </html>`;
+
+      const blob = new Blob(['\ufeff' + wordHtmlHeader], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Mobile Tabs
+    const tabEditor = document.getElementById('tab-editor')!;
+    const tabPreview = document.getElementById('tab-preview')!;
+    const editorPanel = document.getElementById('editor-panel')!;
+    const previewPanel = document.getElementById('preview-panel')!;
+
+    tabEditor.addEventListener('click', () => {
+      tabEditor.classList.add('border-blue-500', 'text-white');
+      tabEditor.classList.remove('border-transparent', 'text-slate-400');
+      tabPreview.classList.add('border-transparent', 'text-slate-400');
+      tabPreview.classList.remove('border-blue-500', 'text-white');
+      
+      editorPanel.classList.remove('hidden');
+      editorPanel.classList.add('block');
+      previewPanel.classList.add('hidden');
+      previewPanel.classList.remove('flex');
+    });
+
+    tabPreview.addEventListener('click', () => {
+      tabPreview.classList.add('border-blue-500', 'text-white');
+      tabPreview.classList.remove('border-transparent', 'text-slate-400');
+      tabEditor.classList.add('border-transparent', 'text-slate-400');
+      tabEditor.classList.remove('border-blue-500', 'text-white');
+      
+      previewPanel.classList.remove('hidden');
+      previewPanel.classList.add('flex');
+      editorPanel.classList.add('hidden');
+      editorPanel.classList.remove('block');
+    });
+
+    // Dropdown Toggle
+    const docBtn = document.getElementById('doc-selector-btn');
+    const docMenu = document.getElementById('doc-selector-menu');
+    if (docBtn && docMenu) {
+      docBtn.onclick = (e) => {
+        e.stopPropagation();
+        docMenu.classList.toggle('hidden');
+      };
+      document.addEventListener('click', () => docMenu.classList.add('hidden'));
+    }
+
+    // Init
+    loadPreset('web');
+  </script>
+</Layout>

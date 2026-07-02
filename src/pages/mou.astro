@@ -1,0 +1,811 @@
+﻿---
+import Logo from '../components/Logo.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Premium MoU Generator | LUMOVELO" description="Workspace pembuatan dokumen Memorandum of Understanding interaktif dengan ekspor PDF & Word.">
+  <div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between no-print">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center shadow-[2px_2px_0px_rgba(37,99,235,0.4)]">
+            <Logo class="w-4 h-4 text-white" />
+          </div>
+          <span class="font-display font-black text-lg tracking-wider text-white">LUMOVELO</span>
+        </a>
+        <span class="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-slate-400 uppercase tracking-widest">Workspace v1.0</span>
+      </div>
+      
+      <!-- Document Selector Dropdown -->
+      <div class="relative inline-block text-left" id="doc-selector-dropdown-container">
+        <button type="button" id="doc-selector-btn" class="inline-flex justify-between items-center gap-2 px-4 py-2 border border-slate-700 rounded-xl bg-slate-950 text-xs font-bold text-slate-300 hover:text-white hover:border-slate-650 transition-all cursor-pointer select-none">
+          <span>📂 WORKSPACE: MOU PERJANJIAN</span>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div id="doc-selector-menu" class="absolute right-0 mt-2 w-56 rounded-xl border border-slate-800 bg-slate-900 shadow-2xl py-1.5 z-50 hidden transition-all">
+          <a href="/mou/" class="block px-4 py-2 text-xs text-blue-400 bg-slate-800/40 font-bold border-b border-slate-800/30">📝 MoU Perjanjian</a>
+          <a href="/spk/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">🤝 SPK / Kontrak Kerja</a>
+          <a href="/rab/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📊 RAB Anggaran Biaya</a>
+          <a href="/srs/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📋 SRS / Lampiran Scope</a>
+          <a href="/invoice/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">💳 Invoice Penagihan</a>
+          <a href="/kuitansi/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">🧾 Kuitansi Pembayaran</a>
+          <a href="/bast/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60">📦 BAST Serah Terima</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <!-- Tabs for Mobile View -->
+      <div class="lg:hidden flex border-b border-slate-800 bg-slate-900 no-print">
+        <button id="tab-editor" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-blue-500 text-white bg-slate-900">
+          Form Editor
+        </button>
+        <button id="tab-preview" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 bg-slate-900">
+          Pratinjau A4
+        </button>
+      </div>
+
+      <!-- Left Panel: Editor Form -->
+      <aside id="editor-panel" class="w-full lg:w-[45%] border-r border-slate-800 bg-slate-900/30 overflow-y-auto p-6 space-y-6 block no-print">
+        <!-- Preset Selector -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3">
+          <label class="block text-xs font-mono font-bold tracking-widest text-blue-400 uppercase">PILIH TEMPLATE PRESET</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" id="preset-tech" class="px-3 py-2 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-xs font-bold text-blue-400 transition-all hover:scale-[1.02] cursor-pointer">
+              Kerjasama Tech
+            </button>
+            <button type="button" id="preset-business" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700/60 border border-slate-700 text-xs font-bold text-slate-300 transition-all hover:scale-[1.02] cursor-pointer">
+              Bisnis Umum
+            </button>
+            <button type="button" id="preset-marketing" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700/60 border border-slate-700 text-xs font-bold text-slate-300 transition-all hover:scale-[1.02] cursor-pointer">
+              SEO & Konten
+            </button>
+          </div>
+        </div>
+
+        <!-- Document Metadata -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">Info Dokumen</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="mou-title" class="text-xs font-semibold text-slate-400">Judul Perjanjian</label>
+              <input type="text" id="mou-title" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Masukkan judul MoU" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="mou-number" class="text-xs font-semibold text-slate-400">Nomor Perjanjian</label>
+              <input type="text" id="mou-number" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Masukkan nomor MoU" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="mou-city" class="text-xs font-semibold text-slate-400">Kota Penandatanganan</label>
+              <input type="text" id="mou-city" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: Bandung" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="mou-date" class="text-xs font-semibold text-slate-400">Tanggal Penandatanganan</label>
+              <input type="text" id="mou-date" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 27 Juni 2026" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Party 1 Details -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">PIHAK PERTAMA (PIHAK I)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="p1-name" class="text-xs font-semibold text-slate-400">Nama Lengkap</label>
+              <input type="text" id="p1-name" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Nama perwakilan Pihak I" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="p1-position" class="text-xs font-semibold text-slate-400">Jabatan</label>
+              <input type="text" id="p1-position" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: Direktur Utama" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="p1-company" class="text-xs font-semibold text-slate-400">Perusahaan / Instansi</label>
+              <input type="text" id="p1-company" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Nama instansi Pihak I" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="p1-address" class="text-xs font-semibold text-slate-400">Alamat</label>
+              <input type="text" id="p1-address" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Alamat lengkap Pihak I" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Party 2 Details -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">PIHAK KEDUA (PIHAK II)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="p2-name" class="text-xs font-semibold text-slate-400">Nama Lengkap</label>
+              <input type="text" id="p2-name" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Nama perwakilan Pihak II" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="p2-position" class="text-xs font-semibold text-slate-400">Jabatan</label>
+              <input type="text" id="p2-position" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: Direktur Bisnis" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="p2-company" class="text-xs font-semibold text-slate-400">Perusahaan / Instansi</label>
+              <input type="text" id="p2-company" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Nama instansi Pihak II" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="p2-address" class="text-xs font-semibold text-slate-400">Alamat</label>
+              <input type="text" id="p2-address" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Alamat lengkap Pihak II" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Clauses / Pasal-Pasal -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-wider">PASAL-PASAL PERJANJIAN</h3>
+            <button type="button" id="btn-add-clause" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold text-[10px] uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Tambah Pasal
+            </button>
+          </div>
+
+          <!-- Clauses Container -->
+          <div id="clauses-editor-container" class="space-y-3">
+            <!-- Dynamic rows will be inserted here by JS -->
+          </div>
+        </div>
+
+        <!-- Masa Berlaku Perjanjian -->
+        <div class="space-y-1.5">
+          <label for="mou-duration" class="text-xs font-semibold text-slate-400">Masa Berlaku Perjanjian</label>
+          <input type="text" id="mou-duration" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 1 (satu) tahun sejak penandatanganan dokumen" />
+        </div>
+
+        <!-- Action Download Buttons -->
+        <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button type="button" id="btn-download-pdf" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Cetak / Simpan PDF
+          </button>
+          <button type="button" id="btn-download-word" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-slate-700 bg-slate-800 hover:bg-slate-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Unduh Word (.doc)
+          </button>
+        </div>
+      </aside>
+
+      <!-- Right Panel: Live Document Preview (A4 representation) -->
+      <section id="preview-panel" class="flex-1 bg-slate-900/20 overflow-y-auto p-4 md:p-8 flex justify-center items-start hidden lg:flex">
+        <!-- Paper Container representing A4 -->
+        <div id="paper-preview" class="w-full max-w-[210mm] min-h-[297mm] bg-white text-black p-[25mm] shadow-2xl rounded border border-slate-200/50 flex flex-col font-serif relative">
+          <!-- Document Header -->
+          <div class="text-center space-y-2 mb-8">
+            <h1 id="preview-title-header" class="text-base md:text-lg font-bold uppercase tracking-wide leading-relaxed border-b-2 border-black pb-3">
+              MEMORANDUM OF UNDERSTANDING (MoU)<br>
+              <span id="p-title-main" class="text-base">KERJASAMA KEMITRAAN TEKNOLOGI</span>
+            </h1>
+            <p class="text-xs font-bold font-sans">
+              Nomor: <span id="p-mou-number" class="underline">014/MOU-LUMOVELO/TECH/VI/2026</span>
+            </p>
+          </div>
+
+          <!-- Document Body -->
+          <div class="text-xs space-y-6 leading-relaxed text-justify flex-1">
+            <p>
+              Pada hari ini, <strong id="p-mou-day">Sabtu</strong> tanggal <strong id="p-mou-date-raw">27 Juni 2026</strong>, bertempat di <strong id="p-mou-city-raw">Bandung</strong>, telah disepakati suatu Nota Kesepahaman (Memorandum of Understanding) oleh dan di antara pihak-pihak di bawah ini:
+            </p>
+
+            <!-- Party 1 Details Block -->
+            <div class="pl-4 space-y-1">
+              <table class="w-full no-border font-serif text-xs">
+                <tr>
+                  <td class="w-[30%] font-bold">Nama</td>
+                  <td class="w-[3%]">:</td>
+                  <td><span id="p-p1-name" class="font-bold">Ahmad Rivaldi</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Jabatan</td>
+                  <td>:</td>
+                  <td><span id="p-p1-position">CEO / Co-founder</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Perusahaan</td>
+                  <td>:</td>
+                  <td><span id="p-p1-company" class="font-bold">LUMOVELO Agency</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Alamat</td>
+                  <td>:</td>
+                  <td><span id="p-p1-address">Jl. Dipati Ukur No. 102, Bandung</span></td>
+                </tr>
+              </table>
+              <p class="pt-2">
+                Bertindak untuk dan atas nama <span id="p-p1-company-ref" class="font-semibold">LUMOVELO Agency</span> yang selanjutnya dalam Perjanjian ini disebut sebagai <strong>PIHAK PERTAMA (PIHAK I)</strong>.
+              </p>
+            </div>
+
+            <!-- Party 2 Details Block -->
+            <div class="pl-4 space-y-1">
+              <table class="w-full no-border font-serif text-xs">
+                <tr>
+                  <td class="w-[30%] font-bold">Nama</td>
+                  <td class="w-[3%]">:</td>
+                  <td><span id="p-p2-name" class="font-bold">Budi Santoso</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Jabatan</td>
+                  <td>:</td>
+                  <td><span id="p-p2-position">Direktur Utama</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Perusahaan</td>
+                  <td>:</td>
+                  <td><span id="p-p2-company" class="font-bold">PT. Solusi Digital Abadi</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Alamat</td>
+                  <td>:</td>
+                  <td><span id="p-p2-address">Gedung Cyber Lantai 4, Jakarta Selatan</span></td>
+                </tr>
+              </table>
+              <p class="pt-2">
+                Bertindak untuk dan atas nama <span id="p-p2-company-ref" class="font-semibold">PT. Solusi Digital Abadi</span> yang selanjutnya dalam Perjanjian ini disebut sebagai <strong>PIHAK KEDUA (PIHAK II)</strong>.
+              </p>
+            </div>
+
+            <p>
+              Secara bersama-sama <strong>PIHAK PERTAMA</strong> dan <strong>PIHAK KEDUA</strong> disebut sebagai <strong>PARA PIHAK</strong>. PARA PIHAK sepakat untuk mengadakan kerjasama kemitraan berdasarkan ketentuan dan syarat-syarat yang tertuang dalam pasal-pasal berikut:
+            </p>
+
+            <!-- Clauses List -->
+            <div id="preview-clauses-container" class="space-y-4">
+              <!-- Dynamic preview clauses will go here -->
+            </div>
+
+            <!-- Masa Berlaku Clause -->
+            <div class="space-y-1">
+              <h4 class="font-bold text-center uppercase font-sans text-xs">MASA BERLAKU PERJANJIAN</h4>
+              <p>
+                Perjanjian Nota Kesepahaman ini berlaku dan mengikat PARA PIHAK untuk jangka waktu selama <span id="p-mou-duration" class="font-semibold">1 (satu) tahun sejak penandatanganan dokumen</span>. Apabila PARA PIHAK ingin memperpanjang kerjasama, maka salah satu pihak wajib menyampaikan pemberitahuan tertulis sekurang-kurangnya 30 (tiga puluh) hari sebelum masa berlaku berakhir.
+              </p>
+            </div>
+
+            <p>
+              Demikian Nota Kesepahaman ini dibuat dan ditandatangani oleh PARA PIHAK pada hari dan tanggal tersebut di atas dalam rangkap 2 (dua) berhimpun materai cukup, yang masing-masing mempunyai kekuatan hukum yang sama.
+            </p>
+          </div>
+
+          <!-- Signatures Section -->
+          <div class="mt-14 text-xs font-serif">
+            <div class="flex justify-between" id="p-signature-block">
+              <!-- Pihak Pertama Signature Block -->
+              <div class="w-[45%] text-center flex flex-col justify-between min-h-[140px]">
+                <div>
+                  <p class="uppercase font-bold">PIHAK PERTAMA</p>
+                  <p id="p-sig-company1" class="font-semibold">LUMOVELO Agency</p>
+                </div>
+                <div>
+                  <p class="font-bold text-blue-800 font-sans tracking-wide text-xs opacity-75 select-none" style="font-family: 'Times New Roman', serif; font-style: italic;">( Tanda Tangan Digital )</p>
+                </div>
+                <div>
+                  <p class="font-bold underline uppercase" id="p-sig-name1">Ahmad Rivaldi</p>
+                  <p id="p-sig-pos1">CEO / Co-founder</p>
+                </div>
+              </div>
+
+              <!-- Pihak Kedua Signature Block -->
+              <div class="w-[45%] text-center flex flex-col justify-between min-h-[140px]">
+                <div>
+                  <p class="uppercase font-bold">PIHAK KEDUA</p>
+                  <p id="p-sig-company2" class="font-semibold">PT. Solusi Digital Abadi</p>
+                </div>
+                <div>
+                  <p class="font-bold text-blue-800 font-sans tracking-wide text-xs opacity-75 select-none" style="font-family: 'Times New Roman', serif; font-style: italic;">( Tanda Tangan Digital )</p>
+                </div>
+                <div>
+                  <p class="font-bold underline uppercase" id="p-sig-name2">Budi Santoso</p>
+                  <p id="p-sig-pos2">Direktur Utama</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Print Isolation CSS Styling -->
+  <style is:global>
+    @media print {
+      /* Hide workspace elements */
+      .no-print, header, aside, .lg\:hidden {
+        display: none !important;
+      }
+      
+      body, html {
+        background-color: white !important;
+        color: black !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+      }
+
+      #preview-panel {
+        display: block !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      #paper-preview {
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        background: white !important;
+        font-size: 11pt !important;
+        position: relative !important;
+        color: black !important;
+      }
+
+      /* Page margins for A4 printing */
+      @page {
+        size: A4;
+        margin: 25mm 20mm 25mm 20mm;
+      }
+    }
+  </style>
+
+  <!-- Client-side Interactive Script -->
+  <script is:inline>
+    // Templates Presets Data
+    const PRESETS = {
+      tech: {
+        title: "PERJANJIAN KERJASAMA PENGEMBANGAN SOFTWARE DAN PLATFORM AI",
+        number: "014/MOU-LUMOVELO/TECH/VI/2026",
+        city: "Bandung",
+        date: "27 Juni 2026",
+        p1Name: "Ahmad Rivaldi",
+        p1Pos: "CEO / Co-founder",
+        p1Comp: "LUMOVELO Agency",
+        p1Addr: "Jl. Dipati Ukur No. 102, Coblong, Kota Bandung",
+        p2Name: "Budi Santoso",
+        p2Pos: "Direktur Utama",
+        p2Comp: "PT. Solusi Digital Abadi",
+        p2Addr: "Gedung Cyber Lantai 4, Mampang Prapatan, Jakarta Selatan",
+        duration: "1 (satu) tahun sejak penandatanganan dokumen",
+        clauses: [
+          {
+            title: "Maksud dan Tujuan Kerjasama",
+            content: "PARA PIHAK sepakat untuk melaksanakan kerjasama strategis dalam pengembangan sistem digital terintegrasi yang meliputi pembuatan website headless berkinerja tinggi, perancangan antarmuka UI/UX modern, dan integrasi agen kecerdasan buatan (AI) guna mengoptimalkan operasional bisnis PIHAK KEDUA."
+          },
+          {
+            title: "Ruang Lingkup Pekerjaan",
+            content: "PIHAK PERTAMA bertanggung jawab penuh atas rekayasa kode, desain, instalasi model AI, pengujian performa, dan migrasi server. PIHAK KEDUA berkewajiban menyediakan materi dasar, data pelatihan AI, akses kredensial API pihak ketiga yang relevan, serta memberikan persetujuan berkala atas modul kerja."
+          },
+          {
+            title: "Nilai Proyek dan Hak Cipta",
+            content: "Rincian biaya proyek dan mekanisme termin pembayaran diatur secara terpisah melalui Dokumen Penawaran Kerja (Quotation) dan Invoice yang disetujui PARA PIHAK. Segala hak kekayaan intelektual (IP) atas custom code yang dibuat sepenuhnya diserahkan kepada PIHAK KEDUA setelah pelunasan diselesaikan."
+          },
+          {
+            title: "Kerahasiaan Data (NDA)",
+            content: "Kedua belah pihak setuju untuk tidak membocorkan, mendistribusikan, atau menyebarluaskan informasi rahasia apapun milik pihak lain yang diperoleh selama pelaksanaan kerjasama ini, baik berupa source code, data klien, data transaksi, maupun algoritma internal."
+          }
+        ]
+      },
+      business: {
+        title: "MEMORANDUM OF UNDERSTANDING KERJASAMA KEMITRAAN STRATEGIS KEAGENAN",
+        number: "088/MOU-LUMOVELO/BUS/VI/2026",
+        city: "Bandung",
+        date: "27 Juni 2026",
+        p1Name: "Ahmad Rivaldi",
+        p1Pos: "CEO / Co-founder",
+        p1Comp: "LUMOVELO Agency",
+        p1Addr: "Jl. Dipati Ukur No. 102, Coblong, Kota Bandung",
+        p2Name: "Hendry Wijaya",
+        p2Pos: "Direktur Pengembangan Bisnis",
+        p2Comp: "PT. Global Retail Nusantara",
+        p2Addr: "Jl. HR Rasuna Said Blok X-5 No. 13, Jakarta Selatan",
+        duration: "2 (dua) tahun terhitung sejak ditandatanganinya Perjanjian ini",
+        clauses: [
+          {
+            title: "Bentuk Kerjasama Kemitraan",
+            content: "Kemitraan strategis ini berfokus pada penyaluran layanan digital marketing, konsultasi digitalisasi, dan perancangan platform e-commerce terintegrasi untuk jaringan ritel fisik milik PIHAK KEDUA secara nasional."
+          },
+          {
+            title: "Pembagian Tugas dan Tanggung Jawab",
+            content: "PIHAK PERTAMA bertindak selaku konsultan digital dan pelaksana implementasi otomasi sistem WhatsApp & SEO. PIHAK KEDUA bertanggung jawab membiayai operasional kampanye iklan, mengelola keluhan pelanggan fisik di gerai ritel, dan menyiapkan tim Customer Service internal."
+          },
+          {
+            title: "Skema Profit Sharing & Referral Fee",
+            content: "Setiap transaksi digital yang terbukti bersumber dari sistem otomasi rujukan yang dirancang oleh PIHAK PERTAMA akan mendapatkan bagi hasil (revenue sharing) sebesar 5% (lima persen) dari nilai penjualan kotor yang dicairkan setiap awal bulan berikutnya."
+          }
+        ]
+      },
+      marketing: {
+        title: "PERJANJIAN KERJASAMA LAYANAN PEMASARAN DIGITAL DAN OPTIMASI SEO",
+        number: "032/MOU-LUMOVELO/SEO/VI/2026",
+        city: "Bandung",
+        date: "27 Juni 2026",
+        p1Name: "Ahmad Rivaldi",
+        p1Pos: "CEO / Co-founder",
+        p1Comp: "LUMOVELO Agency",
+        p1Addr: "Jl. Dipati Ukur No. 102, Coblong, Kota Bandung",
+        p2Name: "Siti Rahmawati",
+        p2Pos: "Head of Marketing",
+        p2Comp: "CV. Herbal Prima Utama",
+        p2Addr: "Kawasan Industri Sentul Blok B No. 4, Bogor",
+        duration: "6 (enam) bulan berjalan",
+        clauses: [
+          {
+            title: "Target Kinerja Pemasaran (KPI)",
+            content: "PIHAK PERTAMA berkomitmen melakukan optimasi On-Page dan Off-Page SEO guna menaikkan visibilitas kata kunci organik PIHAK KEDUA di halaman pertama Google, dengan target kenaikan trafik organik minimal 30% pada akhir bulan ke-6."
+          },
+          {
+            title: "Anggaran Iklan dan Manajemen Konten",
+            content: "PIHAK KEDUA menyediakan alokasi budget iklan digital bulanan (Google Ads/Meta Ads). PIHAK PERTAMA bertugas mengelola copy, struktur iklan, optimasi bidding, dan memproduksi minimal 8 (delapan) artikel SEO berkualitas tinggi setiap bulannya."
+          },
+          {
+            title: "Laporan Evaluasi Bulanan",
+            content: "PIHAK PERTAMA wajib mengirimkan laporan analitik komprehensif mengenai trafik situs, peringkat kata kunci, dan performa konversi kampanye selambat-lambatnya tanggal 5 setiap bulannya kepada PIC PIHAK KEDUA."
+          }
+        ]
+      }
+    };
+
+    // State Variables
+    let activeClauses = [];
+
+    // DOM Elements
+    const elTitle = document.getElementById('mou-title');
+    const elNumber = document.getElementById('mou-number');
+    const elCity = document.getElementById('mou-city');
+    const elDate = document.getElementById('mou-date');
+    const elP1Name = document.getElementById('p1-name');
+    const elP1Pos = document.getElementById('p1-position');
+    const elP1Comp = document.getElementById('p1-company');
+    const elP1Addr = document.getElementById('p1-address');
+    const elP2Name = document.getElementById('p2-name');
+    const elP2Pos = document.getElementById('p2-position');
+    const elP2Comp = document.getElementById('p2-company');
+    const elP2Addr = document.getElementById('p2-address');
+    const elDuration = document.getElementById('mou-duration');
+    const elClausesContainer = document.getElementById('clauses-editor-container');
+
+    // Preview DOM Elements
+    const pTitleMain = document.getElementById('p-title-main');
+    const pMouNumber = document.getElementById('p-mou-number');
+    const pMouDay = document.getElementById('p-mou-day');
+    const pMouDateRaw = document.getElementById('p-mou-date-raw');
+    const pMouCityRaw = document.getElementById('p-mou-city-raw');
+    const pP1Name = document.getElementById('p-p1-name');
+    const pP1Pos = document.getElementById('p-p1-position');
+    const pP1Comp = document.getElementById('p-p1-company');
+    const pP1CompRef = document.getElementById('p-p1-company-ref');
+    const pP1Addr = document.getElementById('p-p1-address');
+    const pP2Name = document.getElementById('p-p2-name');
+    const pP2Pos = document.getElementById('p-p2-position');
+    const pP2Comp = document.getElementById('p-p2-company');
+    const pP2CompRef = document.getElementById('p-p2-company-ref');
+    const pP2Addr = document.getElementById('p-p2-address');
+    const pDuration = document.getElementById('p-mou-duration');
+    const pClausesContainer = document.getElementById('preview-clauses-container');
+    const pSigCompany1 = document.getElementById('p-sig-company1');
+    const pSigName1 = document.getElementById('p-sig-name1');
+    const pSigPos1 = document.getElementById('p-sig-pos1');
+    const pSigCompany2 = document.getElementById('p-sig-company2');
+    const pSigName2 = document.getElementById('p-sig-name2');
+    const pSigPos2 = document.getElementById('p-sig-pos2');
+
+    // Load Preset Function
+    function loadPreset(key) {
+      const data = PRESETS[key];
+      if (!data) return;
+
+      elTitle.value = data.title;
+      elNumber.value = data.number;
+      elCity.value = data.city;
+      elDate.value = data.date;
+      elP1Name.value = data.p1Name;
+      elP1Pos.value = data.p1Pos;
+      elP1Comp.value = data.p1Comp;
+      elP1Addr.value = data.p1Addr;
+      elP2Name.value = data.p2Name;
+      elP2Pos.value = data.p2Pos;
+      elP2Comp.value = data.p2Comp;
+      elP2Addr.value = data.p2Addr;
+      elDuration.value = data.duration;
+
+      activeClauses = JSON.parse(JSON.stringify(data.clauses));
+      renderClausesEditor();
+      updatePreview();
+
+      // Style Preset buttons
+      ['preset-tech', 'preset-business', 'preset-marketing'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (id === `preset-${key}`) {
+          btn.classList.add('bg-blue-600/20', 'border-blue-500/60', 'text-white');
+          btn.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-300');
+        } else {
+          btn.classList.remove('bg-blue-600/20', 'border-blue-500/60', 'text-white');
+          btn.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-300');
+        }
+      });
+    }
+
+    // Helper to get Indonesian day name from date string
+    function getIndonesianDay(dateStr) {
+      try {
+        if (!dateStr) return 'Senin';
+        // Parse simple Indonesian date e.g. "27 Juni 2026"
+        const indonesianMonths = {
+          'januari': 0, 'februari': 1, 'maret': 2, 'april': 3, 'mei': 4, 'juni': 5,
+          'juli': 6, 'agustus': 7, 'september': 8, 'oktober': 9, 'november': 10, 'desember': 11
+        };
+        const parts = dateStr.toLowerCase().split(' ');
+        if (parts.length >= 3) {
+          const day = parseInt(parts[0], 10);
+          const monthName = parts[1];
+          const year = parseInt(parts[2], 10);
+          const monthIndex = indonesianMonths[monthName] || 0;
+          const d = new Date(year, monthIndex, day);
+          const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+          return days[d.getDay()] || 'Senin';
+        }
+      } catch (e) {
+        // Fallback
+      }
+      return 'Sabtu';
+    }
+
+    // Update Live Preview Text
+    function updatePreview() {
+      pTitleMain.textContent = elTitle.value || 'KERJASAMA KEMITRAAN';
+      pMouNumber.textContent = elNumber.value || '000/MOU-LUMOVELO/2026';
+      pMouDay.textContent = getIndonesianDay(elDate.value);
+      pMouDateRaw.textContent = elDate.value || '...';
+      pMouCityRaw.textContent = elCity.value || '...';
+      
+      pP1Name.textContent = elP1Name.value || '...';
+      pP1Pos.textContent = elP1Pos.value || '...';
+      pP1Comp.textContent = elP1Comp.value || '...';
+      pP1CompRef.textContent = elP1Comp.value || '...';
+      pP1Addr.textContent = elP1Addr.value || '...';
+
+      pP2Name.textContent = elP2Name.value || '...';
+      pP2Pos.textContent = elP2Pos.value || '...';
+      pP2Comp.textContent = elP2Comp.value || '...';
+      pP2CompRef.textContent = elP2Comp.value || '...';
+      pP2Addr.textContent = elP2Addr.value || '...';
+
+      pDuration.textContent = elDuration.value || '...';
+
+      pSigCompany1.textContent = elP1Comp.value || '...';
+      pSigName1.textContent = elP1Name.value || '...';
+      pSigPos1.textContent = elP1Pos.value || '...';
+
+      pSigCompany2.textContent = elP2Comp.value || '...';
+      pSigName2.textContent = elP2Name.value || '...';
+      pSigPos2.textContent = elP2Pos.value || '...';
+
+      renderPreviewClauses();
+    }
+
+    // Render Clauses in Editor (form inputs)
+    function renderClausesEditor() {
+      elClausesContainer.innerHTML = '';
+      activeClauses.forEach((c, idx) => {
+        const div = document.createElement('div');
+        div.className = 'bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2 relative';
+        div.innerHTML = `
+          <button type="button" class="absolute top-2 right-2 text-rose-500 hover:text-rose-400 p-1 cursor-pointer" onclick="deleteClause(${idx})">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+          </button>
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-mono font-bold text-slate-500 uppercase">Pasal ${idx + 1} - Judul</label>
+            <input type="text" value="${c.title}" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none" oninput="updateClauseField(${idx}, 'title', this.value)" />
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-[10px] font-mono font-bold text-slate-500 uppercase">Pasal ${idx + 1} - Isi Perjanjian</label>
+            <textarea class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none h-20" oninput="updateClauseField(${idx}, 'content', this.value)">${c.content}</textarea>
+          </div>
+        `;
+        elClausesContainer.appendChild(div);
+      });
+    }
+
+    // Update specific clause value
+    window.updateClauseField = function(idx, field, value) {
+      activeClauses[idx][field] = value;
+      updatePreview();
+    };
+
+    // Delete a clause
+    window.deleteClause = function(idx) {
+      activeClauses.splice(idx, 1);
+      renderClausesEditor();
+      updatePreview();
+    };
+
+    // Add a new clause
+    document.getElementById('btn-add-clause').addEventListener('click', () => {
+      activeClauses.push({
+        title: 'Pasal Baru',
+        content: 'Isi ketentuan baru silakan dirinci di sini...'
+      });
+      renderClausesEditor();
+      updatePreview();
+    });
+
+    // Render Clauses in the A4 Preview
+    function renderPreviewClauses() {
+      pClausesContainer.innerHTML = '';
+      activeClauses.forEach((c, idx) => {
+        const div = document.createElement('div');
+        div.className = 'space-y-1';
+        div.innerHTML = `
+          <h4 class="font-bold text-center uppercase font-sans text-xs">PASAL ${idx + 1}<br><span class="underline">${c.title}</span></h4>
+          <p class="text-justify">${c.content}</p>
+        `;
+        pClausesContainer.appendChild(div);
+      });
+    }
+
+    // Set up Input Event Listeners for immediate updates
+    const inputs = [
+      elTitle, elNumber, elCity, elDate,
+      elP1Name, elP1Pos, elP1Comp, elP1Addr,
+      elP2Name, elP2Pos, elP2Comp, elP2Addr,
+      elDuration
+    ];
+    inputs.forEach(input => {
+      input.addEventListener('input', updatePreview);
+    });
+
+    // Preset Buttons Click handlers
+    document.getElementById('preset-tech').addEventListener('click', () => loadPreset('tech'));
+    document.getElementById('preset-business').addEventListener('click', () => loadPreset('business'));
+    document.getElementById('preset-marketing').addEventListener('click', () => loadPreset('marketing'));
+
+    // Print PDF Button
+    document.getElementById('btn-download-pdf').addEventListener('click', () => {
+      window.print();
+    });
+
+    // Download Word Document Button
+    document.getElementById('btn-download-word').addEventListener('click', () => {
+      const content = document.getElementById('paper-preview').innerHTML;
+      const titleClean = (elTitle.value || 'MoU_Kerjasama').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+      const filename = `${titleClean}.doc`;
+
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = content;
+
+      // Convert Signature block layout to table
+      const signatureBlock = tempDiv.querySelector('#p-signature-block');
+      if (signatureBlock) {
+        const leftCol = signatureBlock.children[0]?.innerHTML || '';
+        const rightCol = signatureBlock.children[1]?.innerHTML || '';
+        signatureBlock.outerHTML = `
+          <table style="width: 100%; margin-top: 40px; border-collapse: collapse;">
+            <tr style="border: none !important;">
+              <td style="width: 45%; text-align: center; vertical-align: top; border: none !important;">${leftCol}</td>
+              <td style="width: 10%; border: none !important;"></td>
+              <td style="width: 45%; text-align: center; vertical-align: top; border: none !important;">${rightCol}</td>
+            </tr>
+          </table>
+        `;
+      }
+
+      const finalHtmlContent = tempDiv.innerHTML;
+      
+      const wordHtmlHeader = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+      <head><title>MoU Perjanjian</title>
+      <!--[if gte mso 9]>
+      <xml>
+        <w:WordDocument>
+          <w:View>Print</w:View>
+          <w:Zoom>100</w:Zoom>
+          <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+      </xml>
+      <![endif]-->
+      <style>
+        @page Section1 { size: 595.45pt 841.7pt; margin: 1.0in 1.0in 1.0in 1.0in; mso-header-margin:.5in; mso-footer-margin:.5in; }
+        div.Section1 { page: Section1; }
+        body { font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.5; color: #000000; }
+        h1, h2, h3, h4 { font-family: 'Times New Roman', serif; text-align: center; font-weight: bold; margin-top: 12pt; margin-bottom: 6pt; }
+        h1 { font-size: 13pt; text-transform: uppercase; }
+        h4 { font-size: 11pt; text-transform: uppercase; }
+        p { margin-bottom: 6pt; text-align: justify; }
+        .text-center { text-align: center; }
+        .text-justify { text-align: justify; }
+        .font-sans { font-family: 'Arial', sans-serif; }
+        .font-bold { font-weight: bold; }
+        .underline { text-decoration: underline; }
+        .uppercase { text-transform: uppercase; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px; }
+        td { padding: 4px; vertical-align: top; }
+        .w-full { width: 100%; }
+        .pl-4 { padding-left: 15px; }
+        .pr-4 { padding-right: 15px; }
+        .mt-14 { margin-top: 50px; }
+        .flex { display: table; width: 100%; }
+        .justify-between { width: 100%; }
+      </style>
+      </head>
+      <body>
+      <div class="Section1">
+        ${finalHtmlContent}
+      </div>
+      </body>
+      </html>`;
+
+      const blob = new Blob(['\ufeff' + wordHtmlHeader], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Mobile View Tab Switching
+    const tabEditor = document.getElementById('tab-editor');
+    const tabPreview = document.getElementById('tab-preview');
+    const editorPanel = document.getElementById('editor-panel');
+    const previewPanel = document.getElementById('preview-panel');
+
+    tabEditor.addEventListener('click', () => {
+      tabEditor.classList.add('border-blue-500', 'text-white');
+      tabEditor.classList.remove('border-transparent', 'text-slate-400');
+      tabPreview.classList.add('border-transparent', 'text-slate-400');
+      tabPreview.classList.remove('border-blue-500', 'text-white');
+      
+      editorPanel.classList.remove('hidden');
+      editorPanel.classList.add('block');
+      previewPanel.classList.add('hidden');
+      previewPanel.classList.remove('flex');
+    });
+
+    tabPreview.addEventListener('click', () => {
+      tabPreview.classList.add('border-blue-500', 'text-white');
+      tabPreview.classList.remove('border-transparent', 'text-slate-400');
+      tabEditor.classList.add('border-transparent', 'text-slate-400');
+      tabEditor.classList.remove('border-blue-500', 'text-white');
+      
+      previewPanel.classList.remove('hidden');
+      previewPanel.classList.add('flex');
+      editorPanel.classList.add('hidden');
+      editorPanel.classList.remove('block');
+    });
+
+    // Initialization
+    loadPreset('tech');
+
+    // Document Selector Dropdown Toggle
+    const docBtn = document.getElementById('doc-selector-btn');
+    const docMenu = document.getElementById('doc-selector-menu');
+    if (docBtn && docMenu) {
+      docBtn.onclick = (e) => {
+        e.stopPropagation();
+        docMenu.classList.toggle('hidden');
+      };
+      document.addEventListener('click', () => {
+        docMenu.classList.add('hidden');
+      });
+    }
+  </script>
+</Layout>

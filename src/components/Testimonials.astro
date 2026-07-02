@@ -1,69 +1,153 @@
 ---
-const reviews = [
-  {
-    name: "Budi Santoso",
-    role: "Founder, HijabStyle",
-    avatar: "BS",
-    content: "Website kami loading di bawah 1 detik dan konversi penjualan dari WhatsApp naik signifikan sejak migrasi ke platform modern dari Lumovelo. Performa luar biasa!",
-    tag: "WEB_COMMERCE"
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ Ulasan Klien",
+    title1: "Cerita Mitra Kami.",
+    title2: "Hasil Nyata yang Terbukti.",
+    desc: "Dengarkan langsung cerita dari para pemilik bisnis dan pimpinan teknologi yang telah mempercayakan sistem digital mereka bersama kami."
   },
-  {
-    name: "Anita Wijaya",
-    role: "CTO, EduTech Indonesia",
-    avatar: "AW",
-    content: "Kerja sama yang sangat transparan. Kode web kami bersih, tanpa dependency berlebih yang lambat, dan peringkat SEO Google kami meningkat tajam dalam sebulan.",
-    tag: "TECHNICAL_SEO"
-  },
-  {
-    name: "Rendra Kurniawan",
-    role: "Direktur, Logistik Express",
-    avatar: "RK",
-    content: "Otomatisasi respon WhatsApp dari Lumovelo menghemat waktu operasional tim CS kami secara drastis. Integrasi AI mereka bekerja sangat cerdas dan praktis.",
-    tag: "AI_AUTOMATION"
-  },
-  {
-    name: "Hendra Wijaya",
-    role: "Growth Lead, AutoParts Indo",
-    avatar: "HW",
-    content: "Kecepatan loading website kami kini mendapat nilai A di GTmetrix. Sangat berdampak pada iklan berbayar kami yang menjadi jauh lebih efisien dan murah.",
-    tag: "WEB_PERFORMANCE"
-  },
-  {
-    name: "Siti Rahma",
-    role: "Owner, BeautySalon & Spa",
-    avatar: "SR",
-    content: "Sistem booking online otomatis yang diintegrasikan ke WhatsApp sangat mengurangi bounce rate. Lumovelo benar-benar memahami alur bisnis lokal kami.",
-    tag: "INTEGRATION"
-  },
-  {
-    name: "Dian Sastro",
-    role: "Head of Marketing, Retailindo",
-    avatar: "DS",
-    content: "Desain UI/UX yang dibuat Lumovelo sangat fresh dan modern. Pengunjung betah berlama-lama di web kami, bounce rate turun hingga 40% dalam beberapa minggu.",
-    tag: "UI_UX_DESIGN"
-  },
-  {
-    name: "Agus Pratama",
-    role: "Founder, CoffeeHouse Bandung",
-    avatar: "AP",
-    content: "Kami sangat terbantu dengan dashboard CMS kustom dari Lumovelo. Sekarang admin kami bisa upload produk baru dan update stok hanya dalam 2 klik dari HP.",
-    tag: "CMS_DASHBOARD"
-  },
-  {
-    name: "Dewi Lestari",
-    role: "Founder, CraftyStudio",
-    avatar: "DL",
-    content: "Fitur kalkulator harga otomatis di website sangat membantu calon pembeli melakukan estimasi sebelum memesan. Inovatif, responsif, dan fungsional!",
-    tag: "CUSTOM_FEATURES"
-  },
-  {
-    name: "Faisal Basri",
-    role: "Tech Lead, FinGo Indonesia",
-    avatar: "FB",
-    content: "Konsultasi teknis dengan tim Lumovelo sangat solutif. Mereka merekomendasikan solusi serverless yang membuat kami tidak perlu membayar biaya hosting bulanan.",
-    tag: "SERVERLESS_ARCH"
+  en: {
+    sectionHeader: "/ Testimonials",
+    title1: "Our Partners' Stories.",
+    title2: "Proven Real Results.",
+    desc: "Hear directly from business owners and tech leaders who have trusted their digital systems with us."
   }
-];
+}[lang];
+
+const reviews = {
+  id: [
+    {
+      name: "Budi Santoso",
+      role: "Founder, HijabStyle",
+      avatar: "BS",
+      content: "Website kami loading di bawah 1 detik dan konversi penjualan dari WhatsApp naik signifikan sejak migrasi ke platform modern dari Lumovelo. Performa luar biasa!",
+      tag: "WEB_COMMERCE"
+    },
+    {
+      name: "Anita Wijaya",
+      role: "CTO, EduTech Indonesia",
+      avatar: "AW",
+      content: "Kerja sama yang sangat transparan. Kode web kami bersih, tanpa dependency berlebih yang lambat, dan peringkat SEO Google kami meningkat tajam dalam sebulan.",
+      tag: "TECHNICAL_SEO"
+    },
+    {
+      name: "Rendra Kurniawan",
+      role: "Direktur, Logistik Express",
+      avatar: "RK",
+      content: "Otomatisasi respon WhatsApp dari Lumovelo menghemat waktu operasional tim CS kami secara drastis. Integrasi AI mereka bekerja sangat cerdas dan praktis.",
+      tag: "AI_AUTOMATION"
+    },
+    {
+      name: "Hendra Wijaya",
+      role: "Growth Lead, AutoParts Indo",
+      avatar: "HW",
+      content: "Kecepatan loading website kami kini mendapat nilai A di GTmetrix. Sangat berdampak pada iklan berbayar kami yang menjadi jauh lebih efisien dan murah.",
+      tag: "WEB_PERFORMANCE"
+    },
+    {
+      name: "Siti Rahma",
+      role: "Owner, BeautySalon & Spa",
+      avatar: "SR",
+      content: "Sistem booking online otomatis yang diintegrasikan ke WhatsApp sangat mengurangi bounce rate. Lumovelo benar-benar memahami alur bisnis lokal kami.",
+      tag: "INTEGRATION"
+    },
+    {
+      name: "Dian Sastro",
+      role: "Head of Marketing, Retailindo",
+      avatar: "DS",
+      content: "Desain UI/UX yang dibuat Lumovelo sangat fresh dan modern. Pengunjung betah berlama-lama di web kami, bounce rate turun hingga 40% dalam beberapa minggu.",
+      tag: "UI_UX_DESIGN"
+    },
+    {
+      name: "Agus Pratama",
+      role: "Founder, CoffeeHouse Bandung",
+      avatar: "AP",
+      content: "Kami sangat terbantu dengan dashboard CMS kustom dari Lumovelo. Sekarang admin kami bisa upload produk baru dan update stok hanya dalam 2 klik dari HP.",
+      tag: "CMS_DASHBOARD"
+    },
+    {
+      name: "Dewi Lestari",
+      role: "Founder, CraftyStudio",
+      avatar: "DL",
+      content: "Fitur kalkulator harga otomatis di website sangat membantu calon pembeli melakukan estimasi sebelum memesan. Inovatif, responsif, dan fungsional!",
+      tag: "CUSTOM_FEATURES"
+    },
+    {
+      name: "Faisal Basri",
+      role: "Tech Lead, FinGo Indonesia",
+      avatar: "FB",
+      content: "Konsultasi teknis dengan tim Lumovelo sangat solutif. Mereka merekomendasikan solusi serverless yang membuat kami tidak perlu membayar biaya hosting bulanan.",
+      tag: "SERVERLESS_ARCH"
+    }
+  ],
+  en: [
+    {
+      name: "Budi Santoso",
+      role: "Founder, HijabStyle",
+      avatar: "BS",
+      content: "Our website loads in under 1 second and sales conversion from WhatsApp increased significantly since migrating to Lumovelo's modern platform. Outstanding performance!",
+      tag: "WEB_COMMERCE"
+    },
+    {
+      name: "Anita Wijaya",
+      role: "CTO, EduTech Indonesia",
+      avatar: "AW",
+      content: "Very transparent collaboration. Our web code is clean, without slow bloated dependencies, and our Google SEO rankings rose sharply within a month.",
+      tag: "TECHNICAL_SEO"
+    },
+    {
+      name: "Rendra Kurniawan",
+      role: "Director, Logistik Express",
+      avatar: "RK",
+      content: "WhatsApp response automation from Lumovelo dramatically saved our CS team's operational time. Their AI integrations work very smartly and practically.",
+      tag: "AI_AUTOMATION"
+    },
+    {
+      name: "Hendra Wijaya",
+      role: "Growth Lead, AutoParts Indo",
+      avatar: "HW",
+      content: "Our website loading speed now gets an A grade on GTmetrix. Very impactful for our paid advertising which has become much more efficient and cheaper.",
+      tag: "WEB_PERFORMANCE"
+    },
+    {
+      name: "Siti Rahma",
+      role: "Owner, BeautySalon & Spa",
+      avatar: "SR",
+      content: "The automated online booking system integrated with WhatsApp significantly reduced bounce rates. Lumovelo truly understands our local business flow.",
+      tag: "INTEGRATION"
+    },
+    {
+      name: "Dian Sastro",
+      role: "Head of Marketing, Retailindo",
+      avatar: "DS",
+      content: "The UI/UX design created by Lumovelo is very fresh and modern. Visitors stay longer on our web, bounce rates dropped by 40% in just a few weeks.",
+      tag: "UI_UX_DESIGN"
+    },
+    {
+      name: "Agus Pratama",
+      role: "Founder, CoffeeHouse Bandung",
+      avatar: "AP",
+      content: "We were highly helped by the custom CMS dashboard from Lumovelo. Now our admins can upload new products and update stock in just 2 clicks from their phone.",
+      tag: "CMS_DASHBOARD"
+    },
+    {
+      name: "Dewi Lestari",
+      role: "Founder, CraftyStudio",
+      avatar: "DL",
+      content: "The automated price calculator feature on the website is very helpful for potential buyers to make estimates before ordering. Innovative, responsive, and functional!",
+      tag: "CUSTOM_FEATURES"
+    },
+    {
+      name: "Faisal Basri",
+      role: "Tech Lead, FinGo Indonesia",
+      avatar: "FB",
+      content: "Technical consultation with the Lumovelo team was very helpful. They recommended a serverless solution that keeps us from paying monthly hosting fees.",
+      tag: "SERVERLESS_ARCH"
+    }
+  ]
+}[lang];
 ---
 
 <section id="testimoni" class="py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
@@ -73,13 +157,13 @@ const reviews = [
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-16">
-      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ Ulasan Klien</h2>
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
       <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
-        Cerita Mitra Kami.<br/>
-        <span class="text-stroke-neon">Hasil Nyata yang Terbukti.</span>
+        {content.title1}<br/>
+        <span class="text-stroke-neon">{content.title2}</span>
       </h3>
       <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
-        Dengarkan langsung cerita dari para pemilik bisnis dan pimpinan teknologi yang telah mempercayakan sistem digital mereka bersama kami.
+        {content.desc}
       </p>
     </div>
 

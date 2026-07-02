@@ -1,8 +1,58 @@
 ---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ Tentang Kami",
+    title1: "Kolaborasi Digital.",
+    title2: "Tumbuh Bersama Anda.",
+    desc1: "Kami adalah kolektif desainer dan pengembang web yang berdedikasi untuk menyederhanakan kehadiran digital bisnis Anda. Fokus kami adalah menciptakan sistem dan tampilan web yang tidak hanya estetis, tetapi juga fungsional dan relevan dengan kebutuhan pasar saat ini.",
+    desc2: "Kami percaya bahwa teknologi terbaik adalah teknologi yang memudahkan. Oleh karena itu, kami merancang website dengan pendekatan arsitektur modern yang ringan, mudah dikelola secara mandiri, serta dioptimalkan agar mudah ditemukan oleh calon pelanggan Anda di mesin pencari.",
+    cta: "Pelajari Cara Kerja Kami",
+    values: {
+      v1: {
+        title: "Keterbukaan Penuh",
+        desc: "Kami membangun sistem dengan dokumentasi yang jelas. Seluruh aset digital, kode sumber, dan hak akses sepenuhnya menjadi milik Anda tanpa ada keterikatan tersembunyi."
+      },
+      v2: {
+        title: "Performa Optimal",
+        desc: "Kami memprioritaskan kenyamanan pengunjung dengan memastikan waktu muat halaman yang gegas dan navigasi yang responsif di berbagai perangkat."
+      },
+      v3: {
+        title: "Otomatisasi Tepat Guna",
+        desc: "Kami membantu mengintegrasikan sistem otomatisasi komunikasi guna mempermudah pengelolaan pesan masuk dari pelanggan dan menyederhanakan proses operasional harian Anda."
+      }
+    }
+  },
+  en: {
+    sectionHeader: "/ About Us",
+    title1: "Digital Collaboration.",
+    title2: "Growing Together with You.",
+    desc1: "We are a collective of designers and web developers dedicated to simplifying your business's digital presence. Our focus is to create web systems and layouts that are not only aesthetic but also functional and relevant to current market needs.",
+    desc2: "We believe the best technology is technology that simplifies. Therefore, we design websites using a modern, lightweight, self-managed architectural approach, optimized to be easily discovered by your potential customers on search engines.",
+    cta: "Learn How We Work",
+    values: {
+      v1: {
+        title: "Full Transparency",
+        desc: "We build systems with clear documentation. All digital assets, source code, and access rights are fully yours with no hidden lock-ins."
+      },
+      v2: {
+        title: "Optimal Performance",
+        desc: "We prioritize visitor comfort by ensuring blazing-fast page load times and responsive navigation across all devices."
+      },
+      v3: {
+        title: "Effective Automation",
+        desc: "We help integrate communication automation systems to easily manage incoming customer inquiries and simplify your daily operations."
+      }
+    }
+  }
+}[lang];
+
+const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
 ---
 <section id="tentang-kami" class="py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
   <!-- Grid pattern overlay -->
-  <div class="absolute inset-0 bg-[radial-gradient(#2563eb_0.5px,transparent_0.5px)] bg-[size:1rem_1rem] opacity-[0.03] pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(#2563eb_0.5px,transparent_0.5px)] bg-[size:1.5rem_1.5rem] opacity-[0.03] pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -10,29 +60,29 @@
       <!-- Copy text (Left columns) -->
       <div class="lg:col-span-6 space-y-8">
         <div class="space-y-3">
-          <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ Tentang Kami</h2>
+          <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
           <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.1]">
-            Kolaborasi Digital.<br/>
-            <span class="text-blue-600">Tumbuh Bersama Anda.</span>
+            {content.title1}<br/>
+            <span class="text-blue-600">{content.title2}</span>
           </h3>
         </div>
         
         <div class="space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed">
           <p class="font-semibold text-slate-800">
-            Kami adalah kolektif desainer dan pengembang web yang berdedikasi untuk menyederhanakan kehadiran digital bisnis Anda. Fokus kami adalah menciptakan sistem dan tampilan web yang tidak hanya estetis, tetapi juga fungsional dan relevan dengan kebutuhan pasar saat ini.
+            {content.desc1}
           </p>
           
-          <p class="text-xs sm:text-sm">
-            Kami percaya bahwa teknologi terbaik adalah teknologi yang memudahkan. Oleh karena itu, kami merancang website dengan pendekatan arsitektur modern yang ringan, mudah dikelola secara mandiri, serta dioptimalkan agar mudah ditemukan oleh calon pelanggan Anda di mesin pencari.
+          <p class="text-sm sm:text-base">
+            {content.desc2}
           </p>
         </div>
 
         <div class="pt-2">
           <a 
-            href="#konsultasi" 
+            href={contactLink} 
             class="inline-flex items-center justify-center px-8 py-4 border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] hover:shadow-[0_0_20px_rgba(37,99,235,0.2)] active:translate-y-0.5 active:shadow-[2px_2px_0px_#0f172a] rounded-xl cursor-pointer"
           >
-            Pelajari Cara Kerja Kami &nbsp;➔
+            {content.cta} &nbsp;➔
           </a>
         </div>
       </div>
@@ -43,30 +93,30 @@
         <!-- Value 1 -->
         <div class="p-6 bg-white border-2 border-blue-600 rounded-2xl shadow-[4px_4px_0px_#2563eb] space-y-3">
           <div class="flex items-center gap-4">
-            <h4 class="font-display font-black text-lg text-slate-900 uppercase">Keterbukaan Penuh</h4>
+            <h4 class="font-display font-black text-lg text-slate-900 uppercase">{content.values.v1.title}</h4>
           </div>
-          <p class="text-[12px] text-slate-600 leading-relaxed font-semibold">
-            Kami membangun sistem dengan dokumentasi yang jelas. Seluruh aset digital, kode sumber, dan hak akses sepenuhnya menjadi milik Anda tanpa ada keterikatan tersembunyi.
+          <p class="text-sm text-slate-600 leading-relaxed font-semibold">
+            {content.values.v1.desc}
           </p>
         </div>
 
         <!-- Value 2 -->
         <div class="p-6 bg-white border-2 border-blue-600 rounded-2xl shadow-[4px_4px_0px_#2563eb] space-y-3">
           <div class="flex items-center gap-4">
-            <h4 class="font-display font-black text-lg text-slate-900 uppercase">Performa Optimal</h4>
+            <h4 class="font-display font-black text-lg text-slate-900 uppercase">{content.values.v2.title}</h4>
           </div>
-          <p class="text-[12px] text-slate-600 leading-relaxed font-semibold">
-            Kami memprioritaskan kenyamanan pengunjung dengan memastikan waktu muat halaman yang gegas dan navigasi yang responsif di berbagai perangkat.
+          <p class="text-sm text-slate-600 leading-relaxed font-semibold">
+            {content.values.v2.desc}
           </p>
         </div>
 
         <!-- Value 3 -->
         <div class="p-6 bg-white border-2 border-blue-600 rounded-2xl shadow-[4px_4px_0px_#2563eb] space-y-3">
           <div class="flex items-center gap-4">
-            <h4 class="font-display font-black text-lg text-slate-900 uppercase">Otomatisasi Tepat Guna</h4>
+            <h4 class="font-display font-black text-lg text-slate-900 uppercase">{content.values.v3.title}</h4>
           </div>
-          <p class="text-[12px] text-slate-600 leading-relaxed font-semibold">
-            Kami membantu mengintegrasikan sistem otomatisasi komunikasi guna mempermudah pengelolaan pesan masuk dari pelanggan dan menyederhanakan proses operasional harian Anda.
+          <p class="text-sm text-slate-600 leading-relaxed font-semibold">
+            {content.values.v3.desc}
           </p>
         </div>
 

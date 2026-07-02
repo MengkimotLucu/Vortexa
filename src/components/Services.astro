@@ -1,3 +1,132 @@
+---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ LAYANAN KAMI",
+    title1: "Jasa Pembuatan Website.",
+    title2: "Sederhana, Jelas, & Transparan.",
+    desc: "Kami merancang solusi website berkinerja tinggi yang mempermudah bisnis Anda tumbuh tanpa harus pusing memikirkan kendala teknis.",
+    ctaAll: "Lihat Seluruh Layanan",
+    btnSelect: "Pilih Paket",
+    btnContact: "Hubungi Kami",
+    payOnce: "Sekali Bayar",
+    payCustom: "Investasi Mulai Dari",
+    popular: "Populer",
+    p1: {
+      tag: "PROFIL BISNIS",
+      title: "Landing Page / Company Profile",
+      price: "Rp 1.500.000",
+      features: [
+        "Domain (.com/.id) & Hosting 1 tahun",
+        "1 Halaman penjualan konversi tinggi",
+        "Desain kustom responsif & modern",
+        "Integrasi tombol WhatsApp direct",
+        "Batas Revisi: 3 kali"
+      ]
+    },
+    p2: {
+      tag: "TOKO ONLINE",
+      title: "E-Commerce / Toko Online",
+      price: "Rp 3.000.000",
+      features: [
+        "Domain (.com/.id) & Hosting 1 tahun",
+        "Katalog & keranjang belanja (up to 50 produk)",
+        "Form pemesanan otomatis ke WhatsApp",
+        "Dashboard Admin HP (kelola produk & stok)",
+        "Batas Revisi: 5 kali"
+      ]
+    },
+    p3: {
+      tag: "WEB PORTAL",
+      title: "Web Kustom / Aplikasi Portal",
+      price: "Rp 5.000.000",
+      features: [
+        "Sistem keanggotaan / login & registrasi user",
+        "Integrasi pembayaran otomatis (Midtrans/Xendit)",
+        "Sistem cek tarif & pelacakan ongkir otomatis",
+        "Jaminan performa tinggi & data aman",
+        "Batas Revisi: 7 kali"
+      ]
+    },
+    p4: {
+      tag: "CUSTOM",
+      title: "Sistem Khusus / Enterprise",
+      price: "Hubungi Kami",
+      features: [
+        "Arsitektur sistem kompleks & integrasi API khusus",
+        "Visualisasi dasbor analitik bisnis real-time",
+        "Otomatisasi sistem manajemen CRM internal",
+        "Jaminan keamanan & enkripsi data tingkat tinggi",
+        "Revisi tanpa batas selama masa pengembangan"
+      ]
+    }
+  },
+  en: {
+    sectionHeader: "/ OUR SERVICES",
+    title1: "Website Development.",
+    title2: "Simple, Clear, & Transparent.",
+    desc: "We design high-performance website solutions that make it easy for your business to grow without technical headaches.",
+    ctaAll: "View All Services",
+    btnSelect: "Choose Package",
+    btnContact: "Contact Us",
+    payOnce: "One-time Payment",
+    payCustom: "Investment Starting From",
+    popular: "Popular",
+    p1: {
+      tag: "BUSINESS PROFILE",
+      title: "Landing Page / Company Profile",
+      price: "Rp 1.500.000",
+      features: [
+        "Domain (.com/.id) & Hosting 1 year",
+        "1 High-converting landing page",
+        "Custom responsive & modern design",
+        "Direct WhatsApp button integration",
+        "Revision Limit: 3 times"
+      ]
+    },
+    p2: {
+      tag: "ONLINE STORE",
+      title: "E-Commerce / Online Store",
+      price: "Rp 3.000.000",
+      features: [
+        "Domain (.com/.id) & Hosting 1 year",
+        "Catalog & shopping cart (up to 50 products)",
+        "Automated WhatsApp order form",
+        "Mobile Admin Dashboard (manage products & stock)",
+        "Revision Limit: 5 times"
+      ]
+    },
+    p3: {
+      tag: "WEB PORTAL",
+      title: "Custom Web / Portal Apps",
+      price: "Rp 5.000.000",
+      features: [
+        "Membership system / user login & registration",
+        "Automated payment integration (Midtrans/Xendit)",
+        "Automated shipping rate check & tracking",
+        "High performance & data security guarantee",
+        "Revision Limit: 7 times"
+      ]
+    },
+    p4: {
+      tag: "CUSTOM",
+      title: "Enterprise / Custom Systems",
+      price: "Contact Us",
+      features: [
+        "Complex system architecture & custom API integration",
+        "Real-time business analytics dashboard visualization",
+        "Internal CRM management system automation",
+        "High security & data encryption guarantee",
+        "Unlimited revisions during development"
+      ]
+    }
+  }
+}[lang];
+
+const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
+const allServicesLink = lang === 'en' ? '/en/layanan/' : '/layanan/';
+---
 <section id="layanan" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-200">
   <!-- Soft blue decorative background elements -->
   <div class="absolute right-[-10%] top-[20%] w-[350px] h-[350px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -7,13 +136,13 @@
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-16 reveal-on-scroll">
-      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">/ LAYANAN KAMI</h2>
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">{content.sectionHeader}</h2>
       <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-[1.1] uppercase">
-        Jasa Pembuatan Website.<br/>
-        <span class="text-stroke-neon">Sederhana, Jelas, & Transparan.</span>
+        {content.title1}<br/>
+        <span class="text-stroke-neon">{content.title2}</span>
       </h3>
       <p class="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed font-semibold">
-        Kami merancang solusi website berkinerja tinggi yang mempermudah bisnis Anda tumbuh tanpa harus pusing memikirkan kendala teknis.
+        {content.desc}
       </p>
     </div>
 
@@ -24,95 +153,67 @@
       <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
         <div>
           <div class="flex justify-between items-start mb-6">
-            <span class="text-[9px] font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_01</span>
-            <span class="text-[9px] font-black text-blue-600 uppercase">PROFIL BISNIS</span>
+            <span class="text-xs font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_01</span>
+            <span class="text-xs font-black text-blue-600 uppercase">{content.p1.tag}</span>
           </div>
           
-          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">Landing Page / Company Profile</h4>
+          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">{content.p1.title}</h4>
           <div class="my-4">
-            <div class="text-[9px] font-mono text-slate-450 font-bold uppercase">Sekali Bayar</div>
-            <div class="text-2xl font-display font-black text-blue-600 mt-0.5">Rp 1.500.000</div>
+            <div class="text-xs font-mono text-slate-450 font-bold uppercase">{content.payOnce}</div>
+            <div class="text-2xl font-display font-black text-blue-600 mt-0.5">{content.p1.price}</div>
           </div>
 
-          <ul class="space-y-2.5 text-xs text-slate-600 font-semibold mb-6">
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Domain (.com/.id) & Hosting 1 tahun</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>1 Halaman penjualan konversi tinggi</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Desain kustom responsif & modern</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Integrasi tombol WhatsApp direct</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Batas Revisi: 3 kali</span>
-            </li>
+          <ul class="space-y-2.5 text-sm text-slate-600 font-semibold mb-6">
+            {content.p1.features.map((feature) => (
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{feature}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
         <a 
-          href="#konsultasi" 
+          href={contactLink} 
           class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer"
         >
-          Pilih Paket
+          {content.btnSelect}
         </a>
       </div>
 
       <!-- Paket 2: E-Commerce / Toko Online -->
       <div class="service-card border-2 border-slate-900 bg-white p-6 rounded-3xl relative shadow-[5px_5px_0px_#2563eb] hover:shadow-[7px_7px_0px_#1d4ed8] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[480px] z-10">
-        <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
-          Populer
+        <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-xs font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
+          {content.popular}
         </div>
 
         <div>
           <div class="flex justify-between items-start mb-6">
-            <span class="text-[9px] font-mono text-white bg-slate-900 border border-slate-900 px-2 py-0.5 rounded font-bold">PAKET_02</span>
-            <span class="text-[9px] font-black text-blue-600 uppercase">TOKO ONLINE</span>
+            <span class="text-xs font-mono text-white bg-slate-900 border border-slate-900 px-2 py-0.5 rounded font-bold">PAKET_02</span>
+            <span class="text-xs font-black text-blue-600 uppercase">{content.p2.tag}</span>
           </div>
           
-          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">E-Commerce / Toko Online</h4>
+          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">{content.p2.title}</h4>
           <div class="my-4">
-            <div class="text-[9px] font-mono text-slate-450 font-bold uppercase">Sekali Bayar</div>
-            <div class="text-2xl font-display font-black text-blue-600 mt-0.5">Rp 3.000.000</div>
+            <div class="text-xs font-mono text-slate-450 font-bold uppercase">{content.payOnce}</div>
+            <div class="text-2xl font-display font-black text-blue-600 mt-0.5">{content.p2.price}</div>
           </div>
 
-          <ul class="space-y-2.5 text-xs text-slate-600 font-semibold mb-6">
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Domain (.com/.id) & Hosting 1 tahun</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Katalog & keranjang belanja (up to 50 produk)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Form pemesanan otomatis ke WhatsApp</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Dashboard Admin HP (kelola produk & stok)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Batas Revisi: 5 kali</span>
-            </li>
+          <ul class="space-y-2.5 text-sm text-slate-600 font-semibold mb-6">
+            {content.p2.features.map((feature) => (
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{feature}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
         <a 
-          href="#konsultasi" 
+          href={contactLink} 
           class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
         >
-          Pilih Paket
+          {content.btnSelect}
         </a>
       </div>
 
@@ -120,45 +221,31 @@
       <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
         <div>
           <div class="flex justify-between items-start mb-6">
-            <span class="text-[9px] font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_03</span>
-            <span class="text-[9px] font-black text-blue-600 uppercase">WEB PORTAL</span>
+            <span class="text-xs font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_03</span>
+            <span class="text-xs font-black text-blue-600 uppercase">{content.p3.tag}</span>
           </div>
           
-          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">Web Kustom / Aplikasi Portal</h4>
+          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">{content.p3.title}</h4>
           <div class="my-4">
-            <div class="text-[9px] font-mono text-slate-450 font-bold uppercase">Sekali Bayar</div>
-            <div class="text-2xl font-display font-black text-slate-900 mt-0.5">Rp 5.000.000</div>
+            <div class="text-xs font-mono text-slate-450 font-bold uppercase">{content.payOnce}</div>
+            <div class="text-2xl font-display font-black text-slate-900 mt-0.5">{content.p3.price}</div>
           </div>
 
-          <ul class="space-y-2.5 text-xs text-slate-600 font-semibold mb-6">
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Sistem keanggotaan / login & registrasi user</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Integrasi pembayaran otomatis (Midtrans/Xendit)</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Sistem cek tarif & pelacakan ongkir otomatis</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Jaminan performa tinggi & data aman</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Batas Revisi: 7 kali</span>
-            </li>
+          <ul class="space-y-2.5 text-sm text-slate-600 font-semibold mb-6">
+            {content.p3.features.map((feature) => (
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{feature}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
         <a 
-          href="#konsultasi" 
+          href={contactLink} 
           class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer"
         >
-          Pilih Paket
+          {content.btnSelect}
         </a>
       </div>
 
@@ -166,45 +253,31 @@
       <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
         <div>
           <div class="flex justify-between items-start mb-6">
-            <span class="text-[9px] font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_04</span>
-            <span class="text-[9px] font-black text-blue-600 uppercase">CUSTOM</span>
+            <span class="text-xs font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_04</span>
+            <span class="text-xs font-black text-blue-600 uppercase">{content.p4.tag}</span>
           </div>
           
-          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">Sistem Khusus / Enterprise</h4>
+          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">{content.p4.title}</h4>
           <div class="my-4">
-            <div class="text-[9px] font-mono text-slate-450 font-bold uppercase">Investasi Mulai Dari</div>
-            <div class="text-2xl font-display font-black text-slate-900 mt-0.5">Hubungi Kami</div>
+            <div class="text-xs font-mono text-slate-450 font-bold uppercase">{content.payCustom}</div>
+            <div class="text-2xl font-display font-black text-slate-900 mt-0.5">{content.p4.price}</div>
           </div>
 
-          <ul class="space-y-2.5 text-xs text-slate-600 font-semibold mb-6">
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Arsitektur sistem kompleks & integrasi API khusus</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Visualisasi dasbor analitik bisnis real-time</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Otomatisasi sistem manajemen CRM internal</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Jaminan keamanan & enkripsi data tingkat tinggi</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Revisi tanpa batas selama masa pengembangan</span>
-            </li>
+          <ul class="space-y-2.5 text-sm text-slate-600 font-semibold mb-6">
+            {content.p4.features.map((feature) => (
+              <li class="flex items-start gap-2">
+                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{feature}</span>
+              </li>
+            ))}
           </ul>
         </div>
 
         <a 
-          href="#konsultasi" 
+          href={contactLink} 
           class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer"
         >
-          Hubungi Kami
+          {content.btnContact}
         </a>
       </div>
 
@@ -213,10 +286,10 @@
     <!-- CTA to All Services Page -->
     <div class="flex justify-center mt-12 reveal-on-scroll">
       <a 
-        href="/layanan/" 
+        href={allServicesLink} 
         class="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-slate-900 bg-amber-400 hover:bg-amber-500 text-slate-900 font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
       >
-        Lihat Seluruh Layanan
+        {content.ctaAll}
       </a>
     </div>
 

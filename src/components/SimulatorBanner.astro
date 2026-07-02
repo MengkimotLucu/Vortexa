@@ -1,4 +1,24 @@
 ---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    tag: "/ AUDIT PERFORMA WEB",
+    title1: "Website Bisnis Anda Lambat?",
+    title2: "Calon Pelanggan Tidak Akan Menunggu.",
+    desc: "Tahukah Anda bahwa penundaan pemuatan halaman bahkan beberapa detik saja dapat memicu kebocoran prospek (leads) secara masif? Jalankan audit instan gratis untuk mendeteksi latensi DNS, ukuran gambar berlebih, dan skor visibilitas SEO Anda sekarang.",
+    cta: "Uji Performa Web Anda"
+  },
+  en: {
+    tag: "/ WEB PERFORMANCE AUDIT",
+    title1: "Is Your Business Website Slow?",
+    title2: "Potential Customers Won't Wait.",
+    desc: "Did you know that a delay in page loading of even a few seconds can trigger massive lead leakage? Run a free instant audit to detect DNS latency, excessive image sizes, and your SEO visibility score now.",
+    cta: "Test Your Web Performance"
+  }
+}[lang];
+
+const auditLink = lang === 'en' ? '/en/audit/' : '/audit/';
 ---
 <section class="py-16 bg-white relative overflow-hidden border-t-2 border-slate-100">
   <!-- Glowing gradient background decoration -->
@@ -14,26 +34,26 @@
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-600 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-600"></span>
           </span>
-          <span class="text-[9px] font-mono text-rose-600 font-bold uppercase tracking-wider">/ WEB PERFORMANCE AUDIT</span>
+          <span class="text-xs font-mono text-rose-600 font-bold uppercase tracking-wider">{content.tag}</span>
         </div>
         
         <h4 class="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight leading-tight">
-          Website Bisnis Anda Lambat?<br/>
-          <span class="text-blue-600">Calon Pelanggan Tidak Akan Menunggu.</span>
+          {content.title1}<br/>
+          <span class="text-blue-600">{content.title2}</span>
         </h4>
         
         <p class="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed">
-          Tahukah Anda bahwa penundaan pemuatan halaman bahkan beberapa detik saja dapat memicu kebocoran prospek (*leads*) secara masif? Jalankan audit instan gratis untuk mendeteksi latensi DNS, ukuran gambar berlebih, dan skor visibilitas SEO Anda sekarang.
+          {content.desc}
         </p>
       </div>
 
       <!-- Button CTA -->
       <div class="w-full lg:w-auto shrink-0 text-center">
         <a 
-          href="/audit/" 
+          href={auditLink} 
           class="inline-flex items-center justify-center w-full lg:w-auto px-8 py-5 rounded-2xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] active:translate-y-0.5 active:shadow-[2px_2px_0px_#0f172a] cursor-pointer"
         >
-          Uji Performa Web Anda ⚡
+          {content.cta}
         </a>
       </div>
 

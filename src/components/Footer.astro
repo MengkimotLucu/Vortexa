@@ -1,4 +1,82 @@
 ---
+import Logo from './Logo.astro';
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    desc: "Mitra strategis dalam transformasi digital. Kami merancang website berkinerja tinggi dengan sistem otomatisasi AI dan WhatsApp untuk mengamankan pertumbuhan bisnis Anda secara nyata.",
+    col1Title: "PEMBUATAN WEBSITE",
+    col1: [
+      ["Situs Web Profil Perusahaan", "/#layanan"],
+      ["Landing Page Konversi Tinggi", "/#layanan"],
+      ["Kustomisasi Web Headless", "/#layanan"],
+      ["Website Bisnis UMKM", "/#layanan"],
+      ["Web E-Commerce Cepat", "/#layanan"]
+    ],
+    col2Title: "LAYANAN PROFESIONAL",
+    col2: [
+      ["Integrasi Agen AI", "/#layanan"],
+      ["Mendesain Ulang Situs Web", "/#layanan"],
+      ["Otomatisasi Admin WhatsApp", "/#layanan"],
+      ["Iklan Google Ads (SEM)", "/#layanan"],
+      ["Jasa Technical SEO", "/#layanan"]
+    ],
+    col3Title: "FITUR & ALAT",
+    col3: [
+      ["Uji Performa Audit", "/audit/"],
+      ["Blog & Edukasi", "/blog/"],
+      ["Katalog Portofolio", "/portofolio/"]
+    ],
+    col4Title: "INFORMASI UMUM",
+    col4: [
+      ["Tentang Kami", "/#tentang-kami"],
+      ["Testimoni", "/#testimoni"],
+      ["FAQ", "/#faq"],
+      ["Karir", "/karir/"],
+      ["Cara Pemesanan", "/#cara-pemesanan"],
+      ["Hubungi Kami", "/#konsultasi"]
+    ]
+  },
+  en: {
+    desc: "Strategic partner in digital transformation. We design high-performance websites with AI and WhatsApp automation systems to secure your real business growth.",
+    col1Title: "WEBSITE CREATION",
+    col1: [
+      ["Company Profile Website", "/en/#layanan"],
+      ["High-Converting Landing Page", "/en/#layanan"],
+      ["Headless Web Customization", "/en/#layanan"],
+      ["SME Business Website", "/en/#layanan"],
+      ["Fast E-Commerce Web", "/en/#layanan"]
+    ],
+    col2Title: "PROFESSIONAL SERVICES",
+    col2: [
+      ["AI Agent Integration", "/en/#layanan"],
+      ["Website Redesign", "/en/#layanan"],
+      ["WhatsApp Admin Automation", "/en/#layanan"],
+      ["Google Ads (SEM) Service", "/en/#layanan"],
+      ["Technical SEO Service", "/en/#layanan"]
+    ],
+    col3Title: "FEATURES & TOOLS",
+    col3: [
+      ["Audit Performance Test", "/en/audit/"],
+      ["Blog & Education", "/blog/"],
+      ["Portfolio Catalog", "/en/portofolio/"]
+    ],
+    col4Title: "GENERAL INFO",
+    col4: [
+      ["About Us", "/en/#tentang-kami"],
+      ["Testimonials", "/en/#testimoni"],
+      ["FAQ", "/en/#faq"],
+      ["Careers", "/en/karir/"],
+      ["How to Order", "/en/#cara-pemesanan"],
+      ["Contact Us", "/en/#konsultasi"]
+    ]
+  }
+}[lang];
+
+// For brand link
+const homeLink = lang === 'en' ? '/en/' : '/';
+const privacyLink = lang === 'en' ? '/en/privacy-policy/' : '/privacy-policy/';
+const termsLink = lang === 'en' ? '/en/terms-of-service/' : '/terms-of-service/';
 ---
 <footer class="bg-slate-50 text-slate-600 py-20 border-t-2 border-slate-200 relative overflow-hidden">
   <!-- Soft accent light overlay -->
@@ -11,17 +89,14 @@
       
       <!-- Column 1: Brand Info (4 cols width) -->
       <div class="lg:col-span-4 space-y-6">
-        <a href="#" class="flex items-center gap-2.5 group w-fit">
+        <a href={homeLink} class="flex items-center gap-2.5 group w-fit">
           <div class="w-9 h-9 rounded-xl border-2 border-slate-900 bg-blue-600 flex items-center justify-center shadow-[2px_2px_0px_#0f172a] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[0px_0px_0px_#0f172a] transition-all duration-200">
-            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="13 17 18 12 13 7"></polyline>
-              <polyline points="6 17 11 12 6 7"></polyline>
-            </svg>
+            <Logo class="w-4 h-4 text-white" />
           </div>
           <span class="font-display font-black text-lg tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
         </a>
         <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-sm">
-          Mitra strategis dalam transformasi digital. Kami merancang website berkinerja tinggi dengan sistem otomatisasi AI dan WhatsApp untuk mengamankan pertumbuhan bisnis Anda secara nyata.
+          {content.desc}
         </p>
         
         <!-- Social Icons -->
@@ -43,49 +118,41 @@
 
       <!-- Column 2: Web Dev Services (2 cols width) -->
       <div class="lg:col-span-2 space-y-4">
-        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">PEMBUATAN WEBSITE</h4>
+        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">{content.col1Title}</h4>
         <ul class="space-y-2.5 text-xs font-semibold text-slate-500">
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Situs Web Profil Perusahaan</a></li>
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Landing Page Konversi Tinggi</a></li>
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Kustomisasi Web Headless</a></li>
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Website Bisnis UMKM</a></li>
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Web E-Commerce Cepat</a></li>
+          {content.col1.map(([text, href]) => (
+            <li><a href={href} class="hover:text-blue-600 hover:underline transition-colors">{text}</a></li>
+          ))}
         </ul>
       </div>
 
       <!-- Column 3: AI & Growth (2 cols width) -->
       <div class="lg:col-span-2 space-y-4">
-        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">LAYANAN PROFESIONAL</h4>
+        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">{content.col2Title}</h4>
         <ul class="space-y-2.5 text-xs font-semibold text-slate-500">
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Integrasi Agen AI</a></li>
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Mendesain Ulang Situs Web</a></li>
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Otomatisasi Admin WhatsApp</a></li>
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Iklan Google Ads (SEM)</a></li>
-          <li><a href="/#layanan" class="hover:text-blue-600 hover:underline transition-colors">Jasa Technical SEO</a></li>
+          {content.col2.map(([text, href]) => (
+            <li><a href={href} class="hover:text-blue-600 hover:underline transition-colors">{text}</a></li>
+          ))}
         </ul>
       </div>
 
       <!-- Column 4: Fitur & Alat (2 cols width) -->
       <div class="lg:col-span-2 space-y-4">
-        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">FITUR & ALAT</h4>
+        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">{content.col3Title}</h4>
         <ul class="space-y-2.5 text-xs font-semibold text-slate-500">
-          <li><a href="/audit/" class="hover:text-blue-600 hover:underline transition-colors">Uji Performa Audit</a></li>
-          <li><a href="/blog/" class="hover:text-blue-600 hover:underline transition-colors">Blog & Edukasi</a></li>
-          <li><a href="/portofolio/" class="hover:text-blue-600 hover:underline transition-colors">Katalog Portofolio</a></li>
-          <li><a href="/#konsultasi" class="hover:text-blue-600 hover:underline transition-colors">Kalkulator Harga</a></li>
+          {content.col3.map(([text, href]) => (
+            <li><a href={href} class="hover:text-blue-600 hover:underline transition-colors">{text}</a></li>
+          ))}
         </ul>
       </div>
 
       <!-- Column 5: Info (2 cols width) -->
       <div class="lg:col-span-2 space-y-4">
-        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">INFORMASI UMUM</h4>
+        <h4 class="font-mono text-[10px] font-bold tracking-widest text-blue-600 uppercase">{content.col4Title}</h4>
         <ul class="space-y-2.5 text-xs font-semibold text-slate-500">
-          <li><a href="/#tentang-kami" class="hover:text-blue-600 hover:underline transition-colors">Tentang Kami</a></li>
-          <li><a href="/#testimoni" class="hover:text-blue-600 hover:underline transition-colors">Testimoni</a></li>
-          <li><a href="/#faq" class="hover:text-blue-600 hover:underline transition-colors">FAQ</a></li>
-          <li><a href="/karir/" class="hover:text-blue-600 hover:underline transition-colors">Karir</a></li>
-          <li><a href="/#cara-pemesanan" class="hover:text-blue-600 hover:underline transition-colors">Cara Pemesanan</a></li>
-          <li><a href="/#konsultasi" class="hover:text-blue-600 hover:underline transition-colors">Hubungi Kami</a></li>
+          {content.col4.map(([text, href]) => (
+            <li><a href={href} class="hover:text-blue-600 hover:underline transition-colors">{text}</a></li>
+          ))}
         </ul>
       </div>
 
@@ -94,8 +161,8 @@
     <!-- Bottom copyright / Legal -->
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold">
       <div class="flex flex-wrap items-center gap-6 font-mono text-[10px] font-bold tracking-widest uppercase">
-        <a href="/privacy-policy/" class="text-slate-500 hover:text-blue-600 transition-colors">Privacy Policy</a>
-        <a href="/terms-of-service/" class="text-slate-500 hover:text-blue-600 transition-colors">Terms of Service</a>
+        <a href={privacyLink} class="text-slate-500 hover:text-blue-600 transition-colors">Privacy Policy</a>
+        <a href={termsLink} class="text-slate-500 hover:text-blue-600 transition-colors">Terms of Service</a>
       </div>
       <p class="text-slate-400 font-mono text-[10px]">© {new Date().getFullYear()} LUMOVELO. Developed for ultimate growth.</p>
     </div>

@@ -1,0 +1,39 @@
+---
+const pathname = Astro.url.pathname;
+const currentLocale = Astro.currentLocale || 'id';
+
+let idLink = pathname;
+let enLink = pathname;
+
+if (currentLocale === 'en') {
+  // Remove "/en" prefix. E.g. /en/ -> / or /en/layanan/ -> /layanan/
+  idLink = pathname.replace(/^\/en(\/|$)/, '/');
+} else {
+  // Add "/en" prefix. E.g. / -> /en/ or /layanan/ -> /en/layanan/
+  if (pathname === '/') {
+    enLink = '/en/';
+  } else {
+    if (!pathname.startsWith('/en/')) {
+      enLink = `/en${pathname}`;
+    }
+  }
+}
+---
+
+<div class="flex items-center gap-1 font-mono text-[10px] sm:text-xs font-extrabold select-none">
+  <a 
+    href={idLink} 
+    class={`px-1.5 py-0.5 rounded-md border transition-all ${currentLocale === 'id' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-600 hover:text-blue-600'}`}
+    aria-label="Switch to Indonesian"
+  >
+    ID
+  </a>
+  <span class="text-slate-300 mx-0.5">•</span>
+  <a 
+    href={enLink} 
+    class={`px-1.5 py-0.5 rounded-md border transition-all ${currentLocale === 'en' ? 'bg-blue-600 text-white border-blue-600 shadow-sm' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-600 hover:text-blue-600'}`}
+    aria-label="Switch to English"
+  >
+    EN
+  </a>
+</div>

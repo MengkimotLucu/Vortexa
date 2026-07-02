@@ -1,60 +1,165 @@
 ---
-const vacancies = [
-  {
-    id: 'ai-specialist',
-    title: 'AI & Automation Specialist',
-    type: 'FREELANCE / CONTRACT',
-    salary: 'Kompetitif (Per Proyek)',
-    requirements: [
-      'Memiliki pemahaman mendalam tentang LLM, OpenAI API, LangChain/Flowise, atau n8n.',
-      'Pengalaman membangun chatbot otonom dan integrasi WhatsApp Business API.',
-      'Mampu bekerja secara mandiri dan cepat beradaptasi dengan teknologi AI baru.'
-    ],
-    tag: 'SYS_AETHER',
-    bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
-  },
-  {
-    id: 'web-developer',
-    title: 'High-Performance Web Developer',
-    type: 'FREELANCE / CONTRACT',
-    salary: 'Kompetitif (Per Proyek)',
-    requirements: [
-      'Menguasai Astro Framework, Next.js, React, Tailwind CSS, dan TypeScript.',
-      'Paham arsitektur headless CMS (Sanity, Strapi, dll.) dan deployment serverless (Vercel, Netlify).',
-      'Fokus tinggi pada performa loading, optimasi Core Web Vitals, dan kebersihan kode.'
-    ],
-    tag: 'SYS_VELOCE',
-    bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
-  },
-  {
-    id: 'seo-architect',
-    title: 'Technical SEO & Funnel Architect',
-    type: 'FREELANCE / CONTRACT',
-    salary: 'Kompetitif (Per Proyek)',
-    requirements: [
-      'Berpengalaman tinggi dalam technical SEO audit, optimasi kecepatan, dan struktur data schema.',
-      'Mampu merancang sales funnel terarah yang memaksimalkan konversi landing page.',
-      'Menguasai Google Analytics 4, Search Console, Ahrefs, dan riset kata kunci lokal/nasional.'
-    ],
-    tag: 'SYS_APEX',
-    bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
-  },
-  {
-    id: 'uiux-designer',
-    title: 'Futuristic UI/UX Designer',
-    type: 'FREELANCE / CONTRACT',
-    salary: 'Kompetitif (Per Proyek)',
-    requirements: [
-      'Mahir dalam Figma, prototyping interaktif, dan sistem desain yang modern.',
-      'Memiliki portofolio desain bertema brutalist modern, neo-brutalist, atau futuristik dashboard.',
-      'Memahami dasar-dasar HTML/CSS untuk mempermudah kolaborasi dengan tim developer.'
-    ],
-    tag: 'SYS_LUMINA',
-    bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
-  }
-];
----
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
+const content = {
+  id: {
+    sectionHeader: "/ Karir & Kolaborasi",
+    title1: "Gabung Bersama LUMOVELO.",
+    title2: "Bekerja dari Mana Saja.",
+    desc: "Kami membuka kesempatan kolaborasi bagi para profesional berbakat untuk bergabung dalam proyek-proyek teknologi tinggi. Pilih posisi yang sesuai dengan keahlian Anda di bawah ini.",
+    subTitle: "/ Posisi yang Sedang Dibuka",
+    typeLabel: "TIPE",
+    invLabel: "INVESTASI",
+    qualLabel: "Kualifikasi Utama:",
+    formTitle: "Kirim Lamaran",
+    formDesc: "Isi formulir lamaran cepat di bawah untuk langsung terhubung dengan HR LUMOVELO.",
+    fieldName: "Nama Lengkap",
+    phName: "Ketik nama lengkap Anda...",
+    fieldPhone: "Nomor WhatsApp",
+    phPhone: "Contoh: 081234567890...",
+    fieldPosition: "Posisi yang Dilamar",
+    phPosition: "Pilih salah satu posisi...",
+    fieldPortfolio: "Link Portofolio & CV",
+    phPortfolio: "https://behance.net/username atau GitHub link...",
+    fieldNotes: "Catatan Tambahan / Pengalaman Kerja",
+    phNotes: "Tuliskan pengalaman relevan Anda secara singkat...",
+    btnSubmit: "Kirim Lamaran via WhatsApp",
+    vacancies: [
+      {
+        id: 'ai-specialist',
+        title: 'AI & Automation Specialist',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Kompetitif (Per Proyek)',
+        requirements: [
+          'Memiliki pemahaman mendalam tentang LLM, OpenAI API, LangChain/Flowise, atau n8n.',
+          'Pengalaman membangun chatbot otonom dan integrasi WhatsApp Business API.',
+          'Mampu bekerja secara mandiri dan cepat beradaptasi dengan teknologi AI baru.'
+        ],
+        tag: 'SYS_AETHER',
+        bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
+      },
+      {
+        id: 'web-developer',
+        title: 'High-Performance Web Developer',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Kompetitif (Per Proyek)',
+        requirements: [
+          'Menguasai Astro Framework, Next.js, React, Tailwind CSS, dan TypeScript.',
+          'Paham arsitektur headless CMS (Sanity, Strapi, dll.) dan deployment serverless (Vercel, Netlify).',
+          'Fokus tinggi pada performa loading, optimasi Core Web Vitals, dan kebersihan kode.'
+        ],
+        tag: 'SYS_VELOCE',
+        bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
+      },
+      {
+        id: 'seo-architect',
+        title: 'Technical SEO & Funnel Architect',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Kompetitif (Per Proyek)',
+        requirements: [
+          'Berpengalaman tinggi dalam technical SEO audit, optimasi kecepatan, dan struktur data schema.',
+          'Mampu merancang sales funnel terarah yang memaksimalkan konversi landing page.',
+          'Menguasai Google Analytics 4, Search Console, Ahrefs, dan riset kata kunci lokal/nasional.'
+        ],
+        tag: 'SYS_APEX',
+        bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
+      },
+      {
+        id: 'uiux-designer',
+        title: 'Futuristic UI/UX Designer',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Kompetitif (Per Proyek)',
+        requirements: [
+          'Mahir dalam Figma, prototyping interaktif, dan sistem desain yang modern.',
+          'Memiliki portofolio desain bertema brutalist modern, neo-brutalist, atau futuristik dashboard.',
+          'Memahami dasar-dasar HTML/CSS untuk mempermudah kolaborasi dengan tim developer.'
+        ],
+        tag: 'SYS_LUMINA',
+        bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
+      }
+    ]
+  },
+  en: {
+    sectionHeader: "/ Careers & Collaboration",
+    title1: "Join LUMOVELO.",
+    title2: "Work from Anywhere.",
+    desc: "We open collaboration opportunities for talented professionals to join high-tech projects. Select the position that matches your expertise below.",
+    subTitle: "/ Open Positions",
+    typeLabel: "TYPE",
+    invLabel: "INVESTMENT",
+    qualLabel: "Key Qualifications:",
+    formTitle: "Submit Application",
+    formDesc: "Fill out the quick application form below to connect directly with LUMOVELO HR.",
+    fieldName: "Full Name",
+    phName: "Type your full name...",
+    fieldPhone: "WhatsApp Number",
+    phPhone: "e.g. 081234567890...",
+    fieldPosition: "Position Applied For",
+    phPosition: "Select a position...",
+    fieldPortfolio: "Portfolio & CV Link",
+    phPortfolio: "https://behance.net/username or GitHub link...",
+    fieldNotes: "Additional Notes / Work Experience",
+    phNotes: "Write your relevant experience briefly...",
+    btnSubmit: "Submit Application via WhatsApp",
+    vacancies: [
+      {
+        id: 'ai-specialist',
+        title: 'AI & Automation Specialist',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Competitive (Per Project)',
+        requirements: [
+          'Deep understanding of LLMs, OpenAI API, LangChain/Flowise, or n8n.',
+          'Experience building autonomous chatbots and WhatsApp Business API integration.',
+          'Ability to work independently and adapt quickly to new AI technologies.'
+        ],
+        tag: 'SYS_AETHER',
+        bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
+      },
+      {
+        id: 'web-developer',
+        title: 'High-Performance Web Developer',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Competitive (Per Project)',
+        requirements: [
+          'Proficient in Astro Framework, Next.js, React, Tailwind CSS, and TypeScript.',
+          'Understand headless CMS architecture (Sanity, Strapi, etc.) and serverless deployment (Vercel, Netlify).',
+          'High focus on loading performance, Core Web Vitals optimization, and clean code.'
+        ],
+        tag: 'SYS_VELOCE',
+        bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
+      },
+      {
+        id: 'seo-architect',
+        title: 'Technical SEO & Funnel Architect',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Competitive (Per Project)',
+        requirements: [
+          'Highly experienced in technical SEO audit, speed optimization, and schema markup structural data.',
+          'Ability to design goal-oriented sales funnels that maximize landing page conversions.',
+          'Proficient in Google Analytics 4, Search Console, Ahrefs, and local/national keyword research.'
+        ],
+        tag: 'SYS_APEX',
+        bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
+      },
+      {
+        id: 'uiux-designer',
+        title: 'Futuristic UI/UX Designer',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Competitive (Per Project)',
+        requirements: [
+          'Proficient in Figma, interactive prototyping, and modern design systems.',
+          'Portfolio featuring modern brutalist, neo-brutalist, or futuristic dashboard design themes.',
+          'Understanding basic HTML/CSS concepts to facilitate collaboration with developer teams.'
+        ],
+        tag: 'SYS_LUMINA',
+        bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
+      }
+    ]
+  }
+}[lang];
+
+const vacancies = content.vacancies;
+---
 <section id="karir" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-200">
   <!-- Soft background graphics -->
   <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
@@ -63,13 +168,13 @@ const vacancies = [
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-20">
-      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ Karir & Kolaborasi</h2>
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
       <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
-        Gabung Bersama LUMOVELO.<br/>
-        <span class="text-stroke-neon">Bekerja dari Mana Saja.</span>
+        {content.title1}<br/>
+        <span class="text-stroke-neon">{content.title2}</span>
       </h3>
       <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
-        Kami membuka kesempatan kolaborasi bagi para profesional berbakat untuk bergabung dalam proyek-proyek teknologi tinggi. Pilih posisi yang sesuai dengan keahlian Anda di bawah ini.
+        {content.desc}
       </p>
     </div>
 
@@ -78,7 +183,7 @@ const vacancies = [
       
       <!-- Vacancies List (7 columns) -->
       <div class="lg:col-span-7 space-y-6">
-        <h4 class="font-display font-black text-lg text-slate-900 uppercase tracking-wide mb-4">/ Posisi yang Sedang Dibuka</h4>
+        <h4 class="font-display font-black text-lg text-slate-900 uppercase tracking-wide mb-4">{content.subTitle}</h4>
         
         {vacancies.map((job) => (
           <div class="p-6 bg-slate-50 border-2 border-blue-600 rounded-3xl shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-0.5 transition-all duration-200 space-y-4">
@@ -92,12 +197,12 @@ const vacancies = [
             </div>
             
             <div class="flex flex-wrap gap-x-6 gap-y-1 text-[10px] font-mono font-bold text-slate-500">
-              <span>TIPE: {job.type}</span>
-              <span>INVESTASI: {job.salary}</span>
+              <span>{content.typeLabel}: {job.type}</span>
+              <span>{content.invLabel}: {job.salary}</span>
             </div>
 
             <div class="space-y-2 pt-2 border-t border-slate-200">
-              <span class="text-[10px] font-mono font-bold text-slate-700 uppercase">Kualifikasi Utama:</span>
+              <span class="text-[10px] font-mono font-bold text-slate-700 uppercase">{content.qualLabel}</span>
               <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 font-medium pl-1">
                 {job.requirements.map((req) => (
                   <li>{req}</li>
@@ -112,21 +217,21 @@ const vacancies = [
       <div class="lg:col-span-5">
         <div class="border-2 border-blue-600 bg-white rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#2563eb] sticky top-28">
           <div class="mb-6 border-b border-slate-100 pb-4">
-            <h4 class="font-display font-black text-xl text-slate-900 uppercase">Kirim Lamaran</h4>
+            <h4 class="font-display font-black text-xl text-slate-900 uppercase">{content.formTitle}</h4>
             <p class="text-xs text-slate-400 font-semibold mt-1">
-              Isi formulir lamaran cepat di bawah untuk langsung terhubung dengan HR LUMOVELO.
+              {content.formDesc}
             </p>
           </div>
 
-          <form id="career-application-form" class="space-y-5" onsubmit="return false;">
+          <form id="career-application-form" class="space-y-5" onsubmit="return false;" data-lang={lang}>
             <!-- Name -->
             <div class="space-y-1.5">
-              <label for="applicant-name" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">Nama Lengkap</label>
+              <label for="applicant-name" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldName}</label>
               <input 
                 type="text" 
                 id="applicant-name" 
                 name="name" 
-                placeholder="Ketik nama lengkap Anda..." 
+                placeholder={content.phName} 
                 required
                 class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
               />
@@ -134,12 +239,12 @@ const vacancies = [
 
             <!-- WhatsApp -->
             <div class="space-y-1.5">
-              <label for="applicant-phone" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">Nomor WhatsApp</label>
+              <label for="applicant-phone" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPhone}</label>
               <input 
                 type="tel" 
                 id="applicant-phone" 
                 name="phone" 
-                placeholder="Contoh: 081234567890..." 
+                placeholder={content.phPhone} 
                 required
                 class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
               />
@@ -147,7 +252,7 @@ const vacancies = [
 
             <!-- Position Dropdown -->
             <div class="space-y-1.5">
-              <label for="applicant-position" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">Posisi yang Dilamar</label>
+              <label for="applicant-position" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPosition}</label>
               <div class="relative">
                 <select 
                   id="applicant-position" 
@@ -155,7 +260,7 @@ const vacancies = [
                   required
                   class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none appearance-none cursor-pointer"
                 >
-                  <option value="" disabled selected class="text-slate-400">Pilih salah satu posisi...</option>
+                  <option value="" disabled selected class="text-slate-400">{content.phPosition}</option>
                   {vacancies.map((job) => (
                     <option value={job.title} class="text-slate-900">{job.title}</option>
                   ))}
@@ -168,12 +273,12 @@ const vacancies = [
 
             <!-- Portfolio Link -->
             <div class="space-y-1.5">
-              <label for="applicant-portfolio" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">Link Portofolio & CV</label>
+              <label for="applicant-portfolio" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPortfolio}</label>
               <input 
                 type="url" 
                 id="applicant-portfolio" 
                 name="portfolio" 
-                placeholder="https://behance.net/username atau GitHub link..." 
+                placeholder={content.phPortfolio} 
                 required
                 class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
               />
@@ -181,12 +286,12 @@ const vacancies = [
 
             <!-- Motivation -->
             <div class="space-y-1.5">
-              <label for="applicant-notes" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">Catatan Tambahan / Pengalaman Kerja</label>
+              <label for="applicant-notes" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldNotes}</label>
               <textarea 
                 id="applicant-notes" 
                 name="notes" 
                 rows="3" 
-                placeholder="Tuliskan pengalaman relevan Anda secara singkat..." 
+                placeholder={content.phNotes} 
                 required
                 class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400 resize-none"
               ></textarea>
@@ -197,7 +302,7 @@ const vacancies = [
               type="submit" 
               class="w-full py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer text-center"
             >
-              Kirim Lamaran via WhatsApp 🚀
+              {content.btnSubmit}
             </button>
           </form>
         </div>
@@ -220,17 +325,13 @@ const vacancies = [
         const positionVal = (document.getElementById('applicant-position') as HTMLSelectElement).value;
         const portfolioVal = (document.getElementById('applicant-portfolio') as HTMLInputElement).value;
         const notesVal = (document.getElementById('applicant-notes') as HTMLTextAreaElement).value;
+        const formLang = form.getAttribute('data-lang') || 'id';
 
         const targetPhone = "6285624353611";
-        const messageText = `Halo Tim HR Lumovelo, saya ingin mengajukan lamaran kerja. Berikut adalah detail profil saya:
-
-- Nama Lengkap: ${nameVal}
-- Nomor WhatsApp: ${phoneVal}
-- Posisi Dilamar: ${positionVal}
-- Link Portofolio/CV: ${portfolioVal}
-- Catatan Pengalaman: ${notesVal}
-
-Terima kasih. Mohon diproses!`;
+        
+        const messageText = formLang === 'en'
+          ? `Hello Lumovelo HR Team, I would like to submit a job application. Here are my profile details:\n\n- Full Name: ${nameVal}\n- WhatsApp Number: ${phoneVal}\n- Position Applied: ${positionVal}\n- Portfolio/CV Link: ${portfolioVal}\n- Experience Notes: ${notesVal}\n\nThank you. Please process it!`
+          : `Halo Tim HR Lumovelo, saya ingin mengajukan lamaran kerja. Berikut adalah detail profil saya:\n\n- Nama Lengkap: ${nameVal}\n- Nomor WhatsApp: ${phoneVal}\n- Posisi Dilamar: ${positionVal}\n- Link Portofolio/CV: ${portfolioVal}\n- Catatan Pengalaman: ${notesVal}\n\nTerima kasih. Mohon diproses!`;
 
         const encodedMessage = encodeURIComponent(messageText);
         const whatsappUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodedMessage}`;

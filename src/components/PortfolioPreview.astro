@@ -1,4 +1,46 @@
 ---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ Featured Projects",
+    title1: "Karya Pilihan.",
+    title2: "Bukan Sekadar Janji.",
+    desc: "Intip dua proyek unggulan kami yang menggabungkan kecerdasan buatan otonom dan arsitektur web berkecepatan tinggi.",
+    btnAll: "Semua Portofolio ➔",
+    btnDemo: "UJI DEMO INTERAKTIF ➔",
+    p1: {
+      tag: "AI & Agent",
+      desc: "Platform otonom cerdas untuk otomatisasi penulisan konten web berindeks tinggi dan manajemen optimasi backend yang transparan."
+    },
+    p2: {
+      tag: "High-Speed Web",
+      desc: "Sistem e-commerce headless modern dengan optimasi loading sub-detik terintegrasi langsung dengan API toko Shopify."
+    },
+    footerText: "Butuh performa yang disesuaikan khusus untuk pasar lokal Anda?",
+    footerBtn: "Eksplorasi Semua Studi Kasus & Demo Live"
+  },
+  en: {
+    sectionHeader: "/ Featured Projects",
+    title1: "Featured Works.",
+    title2: "More Than Just Promises.",
+    desc: "Sneak peek at our two featured projects combining autonomous artificial intelligence and high-speed web architecture.",
+    btnAll: "All Portfolios ➔",
+    btnDemo: "TEST INTERACTIVE DEMO ➔",
+    p1: {
+      tag: "AI & Agent",
+      desc: "Autonomous smart platform for high-indexing web content automation and transparent backend optimization management."
+    },
+    p2: {
+      tag: "High-Speed Web",
+      desc: "Modern headless e-commerce system with sub-second loading optimization directly integrated with Shopify API."
+    },
+    footerText: "Need custom-tailored performance for your local market?",
+    footerBtn: "Explore All Case Studies & Live Demos"
+  }
+}[lang];
+
+const portfolioLink = lang === 'en' ? '/en/portofolio/' : '/portofolio/';
 ---
 <section id="portofolio-preview" class="py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
   <!-- Grid backdrop -->
@@ -9,22 +51,22 @@
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
       <div class="max-w-2xl">
-        <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">/ Featured Projects</h2>
+        <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">{content.sectionHeader}</h2>
         <h3 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight leading-[1.0] uppercase">
-          Karya Pilihan.<br/>
-          <span class="text-stroke-neon">Bukan Sekadar Janji.</span>
+          {content.title1}<br/>
+          <span class="text-stroke-neon">{content.title2}</span>
         </h3>
         <p class="text-slate-600 mt-4 text-xs sm:text-sm leading-relaxed font-semibold">
-          Intip dua proyek unggulan kami yang menggabungkan kecerdasan buatan otonom dan arsitektur web berkecepatan tinggi.
+          {content.desc}
         </p>
       </div>
 
       <div class="mt-6 md:mt-0">
         <a 
-          href="/portofolio/" 
+          href={portfolioLink} 
           class="inline-flex items-center gap-2 px-6 py-3 border-2 border-blue-600 bg-white hover:bg-blue-50 text-blue-600 font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-[4px_4px_0px_#2563eb] hover:shadow-[2px_2px_0px_#2563eb] hover:translate-x-0.5 active:translate-y-0.5"
         >
-          Semua Portofolio ➔
+          {content.btnAll}
         </a>
       </div>
     </div>
@@ -82,21 +124,21 @@
             <div class="flex items-center justify-between mb-3">
               <h4 class="font-display font-black text-xl text-slate-900 uppercase">Aetheria AI</h4>
               <span class="px-2 py-0.5 text-[8px] font-mono font-bold uppercase tracking-wider text-rose-600 bg-rose-50 border border-rose-200 rounded">
-                AI & Agent
+                {content.p1.tag}
               </span>
             </div>
             
             <p class="text-slate-600 text-xs leading-relaxed mb-6 font-semibold">
-              Platform otonom cerdas untuk otomatisasi penulisan konten web berindeks tinggi dan manajemen optimasi backend yang transparan.
+              {content.p1.desc}
             </p>
           </div>
 
           <div class="flex items-center justify-between border-t border-slate-100 pt-6">
-            <div class="flex items-center gap-1.5 text-[9px] font-mono text-slate-400 uppercase font-bold">
+            <div class="flex items-center gap-1.5 text-[9px] font-mono text-slate-440 uppercase font-bold">
               <span>NextJS</span> • <span>LLM</span> • <span>Serverless</span>
             </div>
-            <a href="/portofolio/" class="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600 hover:underline uppercase tracking-wider">
-              UJI DEMO INTERAKTIF ➔
+            <a href={portfolioLink} class="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600 hover:underline uppercase tracking-wider">
+              {content.btnDemo}
             </a>
           </div>
         </div>
@@ -133,10 +175,6 @@
                 </div>
               </div>
 
-              <!-- Sparkles -->
-              <div class="absolute top-4 right-10 text-teal-400 animate-bounce">⚡</div>
-              <div class="absolute bottom-4 left-10 text-teal-400 animate-pulse">⚡</div>
-
               <div class="absolute bottom-2 right-3 font-mono text-[8px] text-teal-400 font-bold uppercase tracking-widest">
                 [ SPEED RATING: 100/100 ]
               </div>
@@ -145,21 +183,21 @@
             <div class="flex items-center justify-between mb-3">
               <h4 class="font-display font-black text-xl text-slate-900 uppercase">Veloce Commerce</h4>
               <span class="px-2 py-0.5 text-[8px] font-mono font-bold uppercase tracking-wider text-teal-700 bg-teal-50 border border-teal-200 rounded">
-                High-Speed Web
+                {content.p2.tag}
               </span>
             </div>
             
             <p class="text-slate-600 text-xs leading-relaxed mb-6 font-semibold">
-              Sistem e-commerce headless modern dengan optimasi loading sub-detik terintegrasi langsung dengan API toko Shopify.
+              {content.p2.desc}
             </p>
           </div>
 
           <div class="flex items-center justify-between border-t border-slate-100 pt-6">
-            <div class="flex items-center gap-1.5 text-[9px] font-mono text-slate-400 uppercase font-bold">
+            <div class="flex items-center gap-1.5 text-[9px] font-mono text-slate-440 uppercase font-bold">
               <span>Astro</span> • <span>Shopify</span> • <span>FastEdge</span>
             </div>
-            <a href="/portofolio/" class="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600 hover:underline uppercase tracking-wider">
-              UJI DEMO INTERAKTIF ➔
+            <a href={portfolioLink} class="inline-flex items-center gap-1 text-[10px] font-bold text-blue-600 hover:underline uppercase tracking-wider">
+              {content.btnDemo}
             </a>
           </div>
         </div>
@@ -170,13 +208,13 @@
     <!-- Bottom Action CTA -->
     <div class="text-center">
       <p class="text-xs text-slate-400 font-semibold mb-4 uppercase tracking-wider">
-        Butuh performa yang disesuaikan khusus untuk pasar lokal Anda?
+        {content.footerText}
       </p>
       <a 
-        href="/portofolio/" 
+        href={portfolioLink} 
         class="inline-flex items-center justify-center px-10 py-5 rounded-2xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] active:translate-y-0.5 cursor-pointer"
       >
-        Eksplorasi Semua Studi Kasus & Demo Live ⚡
+        {content.footerBtn}
       </a>
     </div>
 

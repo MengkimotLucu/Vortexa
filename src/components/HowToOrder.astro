@@ -1,34 +1,82 @@
 ---
-const steps = [
-  {
-    step: '01',
-    title: 'Konsultasi & Pengisian Formulir',
-    description: 'Mulailah dengan mengisi formulir konsultasi singkat di website kami. Beritahu kami kebutuhan utama, skala proyek, dan estimasi budget yang Anda rencanakan.',
-    tag: 'LANGKAH_AWAL',
-    bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ Alur Kerja & Pemesanan",
+    title1: "Prosedur Pemesanan.",
+    title2: "Sederhana & Tanpa Hambatan.",
+    desc: "Kami merancang proses pemesanan yang efisien and terbuka, memastikan setiap langkah pengerjaan terpantau jelas oleh Anda dari awal hingga peluncuran.",
+    steps: [
+      {
+        step: '01',
+        title: 'Konsultasi & Pengisian Formulir',
+        description: 'Mulailah dengan mengisi formulir konsultasi singkat di website kami. Beritahu kami kebutuhan utama, skala proyek, dan estimasi budget yang Anda rencanakan.',
+        tag: 'LANGKAH_AWAL',
+        bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
+      },
+      {
+        step: '02',
+        title: 'Diskusi Pemetaan Solusi',
+        description: 'Tim ahli LUMOVELO akan menghubungi Anda langsung via WhatsApp untuk menyelaraskan konsep, merinci detail fitur, dan memetakan solusi teknologi terbaik.',
+        tag: 'KOLABORASI',
+        bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
+      },
+      {
+        step: '03',
+        title: 'Penawaran & Persetujuan Kerja',
+        description: 'Kami memberikan penawaran nilai investasi yang kompetitif dan transparan. Setelah rincian disepakati, proyek langsung dimulai tanpa proses administrasi berbelit.',
+        tag: 'DEAL_KESEPAKATAN',
+        bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
+      },
+      {
+        step: '04',
+        title: 'Pengerjaan Transparan & Launch',
+        description: 'Proses pengerjaan dilakukan secara bertahap dan transparan untuk Anda review secara langsung. Website diluncurkan setelah lolos uji performa kecepatan di bawah 3 detik.',
+        tag: 'SERAH_TERIMA',
+        bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
+      }
+    ]
   },
-  {
-    step: '02',
-    title: 'Diskusi Pemetaan Solusi',
-    description: 'Tim ahli LUMOVELO akan menghubungi Anda langsung via WhatsApp untuk menyelaraskan konsep, merinci detail fitur, dan memetakan solusi teknologi terbaik.',
-    tag: 'KOLABORASI',
-    bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
-  },
-  {
-    step: '03',
-    title: 'Penawaran & Persetujuan Kerja',
-    description: 'Kami memberikan penawaran nilai investasi yang kompetitif dan transparan. Setelah rincian disepakati, proyek langsung dimulai tanpa proses administrasi berbelit.',
-    tag: 'DEAL_KESEPAKATAN',
-    bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
-  },
-  {
-    step: '04',
-    title: 'Pengerjaan Transparan & Launch',
-    description: 'Proses pengerjaan dilakukan secara bertahap dan transparan untuk Anda review secara langsung. Website diluncurkan setelah lolos uji performa kecepatan di bawah 3 detik.',
-    tag: 'SERAH_TERIMA',
-    bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
+  en: {
+    sectionHeader: "/ Workflow & Ordering",
+    title1: "Order Procedure.",
+    title2: "Simple & Seamless.",
+    desc: "We design an efficient and transparent ordering process, ensuring every development step is clearly tracked by you from start to launch.",
+    steps: [
+      {
+        step: '01',
+        title: 'Consultation & Form Submission',
+        description: 'Start by filling out the brief consultation form on our website. Let us know your main needs, project scale, and estimated budget.',
+        tag: 'INITIAL_STEP',
+        bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
+      },
+      {
+        step: '02',
+        title: 'Solution Mapping Discussion',
+        description: 'LUMOVELO experts will contact you directly via WhatsApp to align concepts, detail features, and map out the best tech solution.',
+        tag: 'COLLABORATION',
+        bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
+      },
+      {
+        step: '03',
+        title: 'Proposal & Project Approval',
+        description: 'We provide competitive and transparent investment proposals. Once agreed, the project starts immediately without complex bureaucracy.',
+        tag: 'DEAL_AGREEMENT',
+        bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
+      },
+      {
+        step: '04',
+        title: 'Transparent Dev & Launch',
+        description: 'The development process is carried out transparently for your live review. The website launches after passing speed tests under 3 seconds.',
+        tag: 'HANDOVER',
+        bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
+      }
+    ]
   }
-];
+}[lang];
+
+const steps = content.steps;
 ---
 
 <section id="cara-pemesanan" class="py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
@@ -39,13 +87,13 @@ const steps = [
     
     <!-- Section Header -->
     <div class="max-w-3xl mb-20">
-      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ Alur Kerja & Pemesanan</h2>
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
       <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
-        Prosedur Pemesanan.<br/>
-        <span class="text-stroke-neon">Sederhana & Tanpa Hambatan.</span>
+        {content.title1}<br/>
+        <span class="text-stroke-neon">{content.title2}</span>
       </h3>
       <p class="text-slate-600 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
-        Kami merancang proses pemesanan yang efisien and terbuka, memastikan setiap langkah pengerjaan terpantau jelas oleh Anda dari awal hingga peluncuran.
+        {content.desc}
       </p>
     </div>
 

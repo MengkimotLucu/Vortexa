@@ -1,38 +1,99 @@
 ---
-const faqs = [
-  {
-    q: "Apakah LUMOVELO menerapkan biaya langganan bulanan?",
-    a: "Tidak. Kami hanya mengenakan biaya satu kali untuk jasa desain, koding, dan integrasi awal. Untuk penyimpanan file (hosting), kami merancang arsitektur serverless sehingga Anda bisa memanfaatkan kuota gratis serverless dari penyedia global seperti Vercel atau Netlify secara permanen untuk trafik normal bisnis Anda."
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ PERTANYAAN UMUM",
+    title1: "F.A.Q.",
+    title2: "Jawaban Singkat & Jelas.",
+    desc: "Kami merangkum beberapa pertanyaan penting yang sering ditanyakan oleh calon mitra kami untuk mempermudah pemahaman Anda.",
+    ctaTitle: "Punya Pertanyaan Spesifik Lainnya?",
+    ctaDesc: "Tim developer dan analis kami siap menjawab detail kebutuhan teknis atau integrasi sistem bisnis Anda.",
+    ctaBtn: "Tanyakan Langsung"
   },
-  {
-    q: "Berapa lama estimasi waktu pembuatan website?",
-    a: "Untuk pengerjaan landing page konversi tinggi siap pakai biasanya memakan waktu antara 5 hingga 7 hari kerja. Sedangkan untuk aplikasi web kustom yang memerlukan visualisasi dasbor kompleks atau integrasi sistem otomatisasi AI membutuhkan waktu berkisar antara 2 hingga 4 minggu."
-  },
-  {
-    q: "Bagaimana cara saya memperbarui konten website di kemudian hari?",
-    a: "Kami mengintegrasikan dasbor manajemen konten (headless CMS) yang sangat praktis dan intuitif. Anda dapat mengganti teks, memperbarui harga produk, mengunggah foto, dan mempublikasikan tulisan blog baru secara mandiri melalui HP atau laptop tanpa harus menyentuh kode pemrograman."
-  },
-  {
-    q: "Apakah website buatan LUMOVELO aman dari serangan hacker?",
-    a: "Ya. Karena kami menggunakan struktur arsitektur statis serverless, website Anda tidak memiliki server database SQL yang rentan dibobol. Ini meminimalisir celah keamanan secara signifikan, menjadikannya sangat aman dan hampir tidak mungkin diretas dibanding website CMS konvensional."
-  },
-  {
-    q: "Apakah website yang didesain sudah SEO-friendly?",
-    a: "Tentu saja. Kami mengimplementasikan praktik terbaik SEO teknis (technical SEO), mulai dari tag heading semantik, optimasi metadata, kecepatan loading maksimal, hingga struktur sitemap dan robots.txt yang ramah mesin pencari Google."
-  },
-  {
-    q: "Apakah saya akan mendapatkan file source code website?",
-    a: "Ya, sepenuhnya. Setelah proyek selesai dan pelunasan dilakukan, seluruh kepemilikan source code dan aset digital akan diserahkan kepada Anda. Kami tidak mengunci kode Anda agar Anda memiliki fleksibilitas penuh di masa depan."
-  },
-  {
-    q: "Apakah LUMOVELO menyediakan layanan maintenance website?",
-    a: "Ya. Kami menyediakan paket pemeliharaan berkala (maintenance) untuk memastikan website Anda tetap aman, diperbarui ke versi framework terbaru, serta bantuan pengunggahan konten baru jika Anda membutuhkannya."
-  },
-  {
-    q: "Bagaimana proses pembayaran di LUMOVELO?",
-    a: "Kami menggunakan sistem pembayaran bertahap (termin). Biasanya dimulai dengan Down Payment (DP) sebesar 50% untuk memulai fase riset dan desain, dan sisa pelunasan 50% setelah website selesai diuji dan siap diluncurkan secara publik."
+  en: {
+    sectionHeader: "/ F.A.Q.",
+    title1: "F.A.Q.",
+    title2: "Short & Clear Answers.",
+    desc: "We summarize some important questions frequently asked by our potential partners to ease your understanding.",
+    ctaTitle: "Have other specific questions?",
+    ctaDesc: "Our developer and analyst team is ready to answer the technical details or system integrations of your business.",
+    ctaBtn: "Ask Directly"
   }
-];
+}[lang];
+
+const faqs = {
+  id: [
+    {
+      q: "Apakah LUMOVELO menerapkan biaya langganan bulanan?",
+      a: "Tidak. Kami hanya mengenakan biaya satu kali untuk jasa desain, koding, dan integrasi awal. Untuk penyimpanan file (hosting), kami merancang arsitektur serverless sehingga Anda bisa memanfaatkan kuota gratis serverless dari penyedia global seperti Vercel atau Netlify secara permanen untuk trafik normal bisnis Anda."
+    },
+    {
+      q: "Berapa lama estimasi waktu pembuatan website?",
+      a: "Untuk pengerjaan landing page konversi tinggi siap pakai biasanya memakan waktu antara 5 hingga 7 hari kerja. Sedangkan untuk aplikasi web kustom yang memerlukan visualisasi dasbor kompleks atau integrasi sistem otomatisasi AI membutuhkan waktu berkisar antara 2 hingga 4 minggu."
+    },
+    {
+      q: "Bagaimana cara saya memperbarui konten website di kemudian hari?",
+      a: "Kami mengintegrasikan dasbor manajemen konten (headless CMS) yang sangat praktis dan intuitif. Anda dapat mengganti teks, memperbarui harga produk, mengunggah foto, dan mempublikasikan tulisan blog baru secara mandiri melalui HP atau laptop tanpa harus menyentuh kode pemrograman."
+    },
+    {
+      q: "Apakah website buatan LUMOVELO aman dari serangan hacker?",
+      a: "Ya. Karena kami menggunakan struktur arsitektur statis serverless, website Anda tidak memiliki server database SQL yang rentan dibobol. Ini meminimalisir celah keamanan secara signifikan, menjadikannya sangat aman dan hampir tidak mungkin diretas dibanding website CMS konvensional."
+    },
+    {
+      q: "Apakah website yang didesain sudah SEO-friendly?",
+      a: "Tentu saja. Kami mengimplementasikan praktik terbaik SEO teknis (technical SEO), mulai dari tag heading semantik, optimasi metadata, kecepatan loading maksimal, hingga struktur sitemap dan robots.txt yang ramah mesin pencari Google."
+    },
+    {
+      q: "Apakah saya akan mendapatkan file source code website?",
+      a: "Ya, sepenuhnya. Setelah proyek selesai dan pelunasan dilakukan, seluruh kepemilikan source code dan aset digital akan diserahkan kepada Anda. Kami tidak mengunci kode Anda agar Anda memiliki fleksibilitas penuh di masa depan."
+    },
+    {
+      q: "Apakah LUMOVELO menyediakan layanan maintenance website?",
+      a: "Ya. Kami menyediakan paket pemeliharaan berkala (maintenance) untuk memastikan website Anda tetap aman, diperbarui ke versi framework terbaru, serta bantuan pengunggahan konten baru jika Anda membutuhkannya."
+    },
+    {
+      q: "Bagaimana proses pembayaran di LUMOVELO?",
+      a: "Kami menggunakan sistem pembayaran bertahap (termin). Biasanya dimulai dengan Down Payment (DP) sebesar 50% untuk memulai fase riset dan desain, dan sisa pelunasan 50% setelah website selesai diuji dan siap diluncurkan secara publik."
+    }
+  ],
+  en: [
+    {
+      q: "Does LUMOVELO charge a monthly subscription fee?",
+      a: "No. We only charge a one-time fee for design, coding, and initial integration. For file storage (hosting), we design a serverless architecture so you can leverage the free permanent tier of global providers like Vercel or Netlify for your normal business traffic."
+    },
+    {
+      q: "How long does it take to build a website?",
+      a: "A high-converting, ready-to-use landing page typically takes 5 to 7 business days. Custom web applications requiring complex dashboard visualizations or AI automation integrations take between 2 to 4 weeks."
+    },
+    {
+      q: "How do I update website content in the future?",
+      a: "We integrate a practical and intuitive headless CMS. You can edit text, update product prices, upload photos, and publish new blog posts independently via mobile or laptop without touching any code."
+    },
+    {
+      q: "Are websites built by LUMOVELO safe from hackers?",
+      a: "Yes. Because we use a serverless static architecture, your website does not have an SQL database server that is vulnerable to SQL injection. This minimizes security vulnerabilities, making it extremely secure and nearly impossible to hack compared to conventional CMS websites."
+    },
+    {
+      q: "Is the designed website SEO-friendly?",
+      a: "Of course. We implement technical SEO best practices, including semantic heading tags, metadata optimization, maximum loading speed, and search engine friendly sitemap and robots.txt structures."
+    },
+    {
+      q: "Will I get the website's source code files?",
+      a: "Yes, completely. Once the project is finished and the final payment is cleared, all ownership of source code and digital assets will be handed over to you. We do not lock your code so you have full flexibility in the future."
+    },
+    {
+      q: "Does LUMOVELO provide website maintenance services?",
+      a: "Yes. We provide regular maintenance packages to ensure your website remains secure, updated to the latest framework versions, and to assist with uploading new content if you need it."
+    },
+    {
+      q: "How does the payment process work at LUMOVELO?",
+      a: "We use a milestone-based payment system. It usually starts with a 50% Down Payment (DP) to begin the research and design phase, and the remaining 50% balance after the website is tested and ready to launch publicly."
+    }
+  ]
+}[lang];
+
+const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
 ---
 
 <section id="faq" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-100">
@@ -45,27 +106,27 @@ const faqs = [
       <!-- Left Column: Header & CTA (Sticky on Desktop) -->
       <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-8">
         <div>
-          <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ PERTANYAAN UMUM</h2>
+          <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
           <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
-            F.A.Q.<br/>
-            <span class="text-stroke-neon">Jawaban Singkat & Jelas.</span>
+            {content.title1}<br/>
+            <span class="text-stroke-neon">{content.title2}</span>
           </h3>
           <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
-            Kami merangkum beberapa pertanyaan penting yang sering ditanyakan oleh calon mitra kami untuk mempermudah pemahaman Anda.
+            {content.desc}
           </p>
         </div>
 
         <!-- CTA Area inside Left Column -->
         <div class="p-6 border-2 border-blue-600 bg-white rounded-3xl shadow-[4px_4px_0px_#2563eb] space-y-4">
-          <h4 class="font-display font-black text-base text-slate-900 uppercase">Punya Pertanyaan Spesifik Lainnya?</h4>
+          <h4 class="font-display font-black text-base text-slate-900 uppercase">{content.ctaTitle}</h4>
           <p class="text-xs text-slate-500 font-semibold leading-relaxed">
-            Tim developer dan analis kami siap menjawab detail kebutuhan teknis atau integrasi sistem bisnis Anda.
+            {content.ctaDesc}
           </p>
           <a 
-            href="#konsultasi" 
+            href={contactLink} 
             class="inline-flex w-full items-center justify-center px-6 py-3.5 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
           >
-            Tanyakan Langsung
+            {content.ctaBtn}
           </a>
         </div>
       </div>

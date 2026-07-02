@@ -1,35 +1,87 @@
+---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ Live Demo Showcase",
+    title1: "Bukti Nyata.",
+    title2: "Bukan Sekadar Kata.",
+    desc: "Kami tidak menyembunyikan kode. Kami menampilkan prototype dan repositori publik kami secara transparan. Klik untuk mengeksplorasi secara langsung.",
+    fAll: "[ ALL ]",
+    fAi: "[ AI & AGENTS ]",
+    fWeb: "[ HIGH-SPEED WEB ]",
+    fSeo: "[ SEO & CONVERSION ]",
+    p1Desc: "Platform agen kecerdasan buatan otonom untuk otomatisasi penulisan konten berindeks tinggi dan optimasi performa backend secara transparan.",
+    p2Desc: "Sistem e-commerce headless super ngebut terintegrasi API Shopify, menjamin kecepatan transaksi maksimal dan performa visual responsif premium.",
+    p3Desc: "Algoritma indexing otomatis berbasis model machine learning yang merangsang visibilitas Google secara masif dan konstan di pasar lokal maupun global.",
+    p4Desc: "Visualisasi UI dasbor analitik modular dengan interaksi visual termutakhir, mode gelap premium, dan diagram status yang adaptif secara real-time."
+  },
+  en: {
+    sectionHeader: "/ Live Demo Showcase",
+    title1: "Real Proof.",
+    title2: "Not Just Words.",
+    desc: "We do not hide our code. We showcase our prototypes and public repositories transparently. Click to explore them live.",
+    fAll: "[ ALL ]",
+    fAi: "[ AI & AGENTS ]",
+    fWeb: "[ HIGH-SPEED WEB ]",
+    fSeo: "[ SEO & CONVERSION ]",
+    p1Desc: "Autonomous artificial intelligence agent platform for high-indexing content writing automation and transparent backend performance optimization.",
+    p2Desc: "Super fast headless e-commerce system integrated with Shopify API, guaranteeing maximum transaction speed and premium responsive visual performance.",
+    p3Desc: "Automatic indexing algorithm based on machine learning models that stimulates Google visibility massively and constantly in local and global markets.",
+    p4Desc: "Visual UI dashboard analytics modular with cutting-edge visual interaction, premium dark mode, and status diagrams adaptive in real-time."
+  }
+}[lang];
+---
 <section id="portofolio" class="py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
   <!-- Grid backdrop -->
   <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.02)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
+
+  <!-- Hidden i18n data tag for client script -->
+  <div id="portfolio-i18n"
+    data-standby={lang === 'en' ? "> Standby. Press the button below to initialize AI agent..." : "> Standby. Tekan tombol di bawah untuk inisialisasi AI agent..."}
+    data-log-0={lang === 'en' ? "> Initializing Aetheria AI pipeline..." : "> Inisialisasi Aetheria AI pipeline..."}
+    data-log-1={lang === 'en' ? "> Connecting to autonomous nodes..." : "> Menghubungkan ke node otonom..."}
+    data-log-2={lang === 'en' ? "> Syncing LLM model: Llama-3-Groq [READY]" : "> Sinkronisasi LLM model: Llama-3-Groq [READY]"}
+    data-log-3={lang === 'en' ? "> Detecting high-value keyword opportunities..." : "> Mendeteksi peluang kata kunci bernilai tinggi..."}
+    data-log-4={lang === 'en' ? "> Writing SEO-optimized content (+450% reach)" : "> Menulis konten teroptimasi SEO (+450% reach)"}
+    data-log-5={lang === 'en' ? "> Deploying articles to CDN Edge... [SUCCESS]" : "> Deploy artikel ke CDN Edge... [SUCCESS]"}
+    data-log-6={lang === 'en' ? "> Autonomous AI Agent running in the background. Latency: 6ms." : "> AI Agent otonom berjalan di background. Latensi: 6ms."}
+    data-btn-aetheria-run={lang === 'en' ? "RUN AGENT" : "RUN AGENT"}
+    data-btn-aetheria-running={lang === 'en' ? "RUNNING..." : "RUNNING..."}
+    data-btn-veloce-run={lang === 'en' ? "BENCHMARK SPEED" : "BENCHMARK SPEED"}
+    data-btn-veloce-running={lang === 'en' ? "RACING..." : "RACING..."}
+    data-btn-veloce-reset={lang === 'en' ? "RUN SPEED TEST" : "RUN SPEED TEST"}
+    data-val-loading={lang === 'en' ? "LOADING..." : "LOADING..."}
+  ></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
     
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-20">
       <div class="max-w-2xl">
-        <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">/ Live Demo Showcase</h2>
+        <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">{content.sectionHeader}</h2>
         <h3 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tight leading-[1.0] uppercase">
-          Bukti Nyata.<br/>
-          <span class="text-stroke-neon">Bukan Sekadar Kata.</span>
+          {content.title1}<br/>
+          <span class="text-stroke-neon">{content.title2}</span>
         </h3>
         <p class="text-slate-600 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
-          Kami tidak menyembunyikan kode. Kami menampilkan prototype dan repositori publik kami secara transparan. Klik untuk mengeksplorasi secara langsung.
+          {content.desc}
         </p>
       </div>
 
       <!-- Category Filter Tabs -->
       <div class="mt-8 md:mt-0 flex flex-wrap gap-2.5 select-none font-mono">
         <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-blue-600 bg-blue-600 text-[10px] font-bold text-white uppercase tracking-wider rounded-lg transition-all hover:bg-blue-700 shadow-[2px_2px_0px_#0f172a] cursor-pointer" data-filter="all">
-          [ ALL ]
+          {content.fAll}
         </button>
         <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="ai">
-          [ AI & AGENTS ]
+          {content.fAi}
         </button>
         <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="web">
-          [ HIGH-SPEED WEB ]
+          {content.fWeb}
         </button>
         <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="seo">
-          [ SEO & CONVERSION ]
+          {content.fSeo}
         </button>
       </div>
     </div>
@@ -56,7 +108,7 @@
             <!-- Inner Terminal View (Remain dark for dev console realism) -->
             <div class="bg-slate-950 border-2 border-blue-600 rounded-xl p-5 font-mono text-[10px] text-slate-300 mb-6 relative overflow-hidden h-36 flex flex-col justify-end">
               <div id="aetheria-log-box" class="space-y-1 overflow-y-auto scrollbar-thin">
-                <div class="text-slate-600">&gt; Standby. Tekan tombol di bawah untuk inisialisasi AI agent...</div>
+                <div class="text-slate-600">&gt; Standby. {lang === 'en' ? "Press the button below to initialize AI agent..." : "Tekan tombol di bawah untuk inisialisasi AI agent..."}</div>
               </div>
             </div>
 
@@ -67,12 +119,12 @@
                 id="run-aetheria-btn"
                 class="px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]"
               >
-                RUN AGENT ⚡
+                RUN AGENT
               </button>
             </div>
             
             <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
-              Platform agen kecerdasan buatan otonom untuk otomatisasi penulisan konten berindeks tinggi dan optimasi performa backend secara transparan.
+              {content.p1Desc}
             </p>
           </div>
 
@@ -135,12 +187,12 @@
                 id="run-veloce-btn"
                 class="px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]"
               >
-                BENCHMARK SPEED ⚡
+                BENCHMARK SPEED
               </button>
             </div>
             
             <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
-              Sistem e-commerce headless super ngebut terintegrasi API Shopify, menjamin kecepatan transaksi maksimal dan performa visual responsif premium.
+              {content.p2Desc}
             </p>
           </div>
 
@@ -174,7 +226,7 @@
           <div>
             <!-- Custom graph visual -->
             <div class="bg-slate-50 border-2 border-blue-600 rounded-xl p-5 h-28 flex items-end justify-between gap-2.5 mb-6 relative overflow-hidden group/graph shadow-[2px_2px_0px_#2563eb]">
-              <div class="absolute top-2 left-4 text-[8px] font-mono text-slate-400 font-bold">CLIENT ORGANIC IMPRESSIONS // SCALE: YTD</div>
+              <div class="absolute top-2 left-4 text-[8px] font-mono text-slate-440 font-bold">CLIENT ORGANIC IMPRESSIONS // SCALE: YTD</div>
               
               <!-- Simulated graph bars with dynamic height -->
               <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-1" style="height: 30%">
@@ -190,7 +242,7 @@
                 <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-4">+210k</div>
               </div>
               <div class="w-full bg-blue-600 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-5" style="height: 95%">
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-blue-600 border border-blue-400 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-5">+480k 🔥</div>
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-blue-600 border border-blue-400 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-5">+480k</div>
               </div>
             </div>
 
@@ -206,7 +258,7 @@
             </div>
             
             <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
-              Algoritma indexing otomatis berbasis model machine learning yang merangsang visibilitas Google secara masif dan konstan di pasar lokal maupun global.
+              {content.p3Desc}
             </p>
           </div>
 
@@ -266,7 +318,7 @@
             </div>
             
             <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
-              Visualisasi UI dasbor analitik modular dengan interaksi visual termutakhir, mode gelap premium, dan diagram status yang adaptif secara real-time.
+              {content.p4Desc}
             </p>
           </div>
 
@@ -288,6 +340,24 @@
 
 <script>
   function initInteractivePortfolio() {
+    // i18n Elements
+    const i18nEl = document.getElementById('portfolio-i18n');
+    const logs = [
+      { text: i18nEl?.getAttribute('data-log-0') || "", color: "text-blue-400" },
+      { text: i18nEl?.getAttribute('data-log-1') || "", color: "text-slate-500" },
+      { text: i18nEl?.getAttribute('data-log-2') || "", color: "text-teal-400" },
+      { text: i18nEl?.getAttribute('data-log-3') || "", color: "text-slate-500" },
+      { text: i18nEl?.getAttribute('data-log-4') || "", color: "text-emerald-400" },
+      { text: i18nEl?.getAttribute('data-log-5') || "", color: "text-teal-400 font-bold" },
+      { text: i18nEl?.getAttribute('data-log-6') || "", color: "text-white" }
+    ];
+    const btnAetheriaRunText = i18nEl?.getAttribute('data-btn-aetheria-run') || "RUN AGENT";
+    const btnAetheriaRunningText = i18nEl?.getAttribute('data-btn-aetheria-running') || "RUNNING...";
+    const btnVeloceRunText = i18nEl?.getAttribute('data-btn-veloce-run') || "BENCHMARK SPEED";
+    const btnVeloceRunningText = i18nEl?.getAttribute('data-btn-veloce-running') || "RACING...";
+    const btnVeloceResetText = i18nEl?.getAttribute('data-btn-veloce-reset') || "RUN SPEED TEST";
+    const valLoadingText = i18nEl?.getAttribute('data-val-loading') || "LOADING...";
+
     // 1. FILTERING SYSTEM
     const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
     const portfolioCards = document.querySelectorAll('.portfolio-card') as NodeListOf<HTMLDivElement>;
@@ -329,20 +399,10 @@
     let aetheriaRunning = false;
 
     if (runAetheriaBtn && aetheriaLogBox) {
-      const logs = [
-        { text: "> Inisialisasi Aetheria AI pipeline...", color: "text-blue-400" },
-        { text: "> Menghubungkan ke node otonom...", color: "text-slate-500" },
-        { text: "> Sinkronisasi LLM model: Llama-3-Groq [READY]", color: "text-teal-400" },
-        { text: "> Mendeteksi peluang kata kunci bernilai tinggi...", color: "text-slate-500" },
-        { text: "> Menulis konten teroptimasi SEO (+450% reach)", color: "text-emerald-400" },
-        { text: "> Deploy artikel ke CDN Edge... [SUCCESS]", color: "text-teal-400 font-bold" },
-        { text: "> AI Agent otonom berjalan di background. Latensi: 6ms.", color: "text-white" }
-      ];
-
       runAetheriaBtn.addEventListener('click', () => {
         if (aetheriaRunning) return;
         aetheriaRunning = true;
-        runAetheriaBtn.innerText = "RUNNING...";
+        runAetheriaBtn.innerText = btnAetheriaRunningText;
         runAetheriaBtn.className = "px-3 py-1.5 rounded-lg border-2 border-rose-600 bg-rose-50 text-rose-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all cursor-not-allowed animate-pulse shadow-[2px_2px_0px_#e11d48]";
         
         aetheriaLogBox.innerHTML = '';
@@ -362,7 +422,7 @@
 
             if (index === logs.length - 1) {
               aetheriaRunning = false;
-              runAetheriaBtn.innerText = "RUN AGENT ⚡";
+              runAetheriaBtn.innerText = btnAetheriaRunText;
               runAetheriaBtn.className = "px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]";
             }
           }, index * 600);
@@ -382,21 +442,21 @@
       runVeloceBtn.addEventListener('click', () => {
         if (veloceRunning) return;
         veloceRunning = true;
-        runVeloceBtn.innerText = "RACING...";
+        runVeloceBtn.innerText = btnVeloceRunningText;
         runVeloceBtn.className = "px-3 py-1.5 rounded-lg border-2 border-rose-600 bg-rose-50 text-rose-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all cursor-not-allowed animate-pulse shadow-[2px_2px_0px_#e11d48]";
 
         // Reset
         slowBar.style.width = '0%';
         fastBar.style.width = '0%';
-        slowVal.innerText = "LOADING...";
+        slowVal.innerText = valLoadingText;
         slowVal.className = "font-bold text-slate-400";
-        fastVal.innerText = "LOADING...";
+        fastVal.innerText = valLoadingText;
         fastVal.className = "font-bold text-slate-400";
 
         // Fast Load (Lumovelo Astro Stack)
         setTimeout(() => {
           fastBar.style.width = '100%';
-          fastVal.innerText = "0.24s (100/100) 🏆";
+          fastVal.innerText = "0.24s (100/100)";
           fastVal.className = "font-bold text-teal-600 animate-bounce";
         }, 300);
 
@@ -406,7 +466,7 @@
           slowVal.innerText = "2.68s (39/100)";
           slowVal.className = "font-bold text-rose-600";
           
-          runVeloceBtn.innerText = "RUN SPEED TEST 🔄";
+          runVeloceBtn.innerText = btnVeloceResetText;
           runVeloceBtn.className = "px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]";
           veloceRunning = false;
         }, 2200);
@@ -433,15 +493,15 @@
     const dataSet: Record<string, { heights: string[], tooltips: string[] }> = {
       weekly: {
         heights: ['30%', '45%', '60%', '75%', '95%'],
-        tooltips: ['+40k', '+80k', '+120k', '+210k', '+480k 🔥']
+        tooltips: ['+40k', '+80k', '+120k', '+210k', '+480k']
       },
       monthly: {
         heights: ['20%', '35%', '50%', '65%', '88%'],
-        tooltips: ['+180k', '+320k', '+480k', '+750k', '+1.8M 🔥']
+        tooltips: ['+180k', '+320k', '+480k', '+750k', '+1.8M']
       },
       yearly: {
         heights: ['15%', '28%', '40%', '62%', '80%'],
-        tooltips: ['+2.1M', '+3.8M', '+5.2M', '+8.9M', '+22M 🔥']
+        tooltips: ['+2.1M', '+3.8M', '+5.2M', '+8.9M', '+22M']
       }
     };
 

@@ -1,0 +1,755 @@
+﻿---
+import Logo from '../components/Logo.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Premium SPK Builder | LUMOVELO" description="Workspace pembuatan Surat Perintah Kerja (SPK) & Kontrak Kerja interaktif.">
+  <div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between no-print">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center shadow-[2px_2px_0px_rgba(37,99,235,0.4)]">
+            <Logo class="w-4 h-4 text-white" />
+          </div>
+          <span class="font-display font-black text-lg tracking-wider text-white">LUMOVELO</span>
+        </a>
+        <span class="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-slate-400 uppercase tracking-widest">Workspace v1.0</span>
+      </div>
+      
+      <!-- Document Selector Dropdown -->
+      <div class="relative inline-block text-left" id="doc-selector-dropdown-container">
+        <button type="button" id="doc-selector-btn" class="inline-flex justify-between items-center gap-2 px-4 py-2 border border-slate-700 rounded-xl bg-slate-955 text-xs font-bold text-slate-300 hover:text-white hover:border-slate-650 transition-all cursor-pointer select-none">
+          <span>📂 WORKSPACE: SPK / KONTRAK KERJA</span>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div id="doc-selector-menu" class="absolute right-0 mt-2 w-56 rounded-xl border border-slate-800 bg-slate-900 shadow-2xl py-1.5 z-50 hidden transition-all">
+          <a href="/mou/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📝 MoU Perjanjian</a>
+          <a href="/spk/" class="block px-4 py-2 text-xs text-blue-400 bg-slate-800/40 font-bold border-b border-slate-800/30">🤝 SPK / Kontrak Kerja</a>
+          <a href="/rab/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📊 RAB Anggaran Biaya</a>
+          <a href="/srs/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📋 SRS / Lampiran Scope</a>
+          <a href="/invoice/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">💳 Invoice Penagihan</a>
+          <a href="/kuitansi/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">🧾 Kuitansi Pembayaran</a>
+          <a href="/bast/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60">📦 BAST Serah Terima</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <!-- Tabs for Mobile View -->
+      <div class="lg:hidden flex border-b border-slate-800 bg-slate-900 no-print">
+        <button id="tab-editor" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-blue-500 text-white bg-slate-900">
+          Form Editor
+        </button>
+        <button id="tab-preview" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 bg-slate-900">
+          Pratinjau A4
+        </button>
+      </div>
+
+      <!-- Left Panel: Editor Form -->
+      <aside id="editor-panel" class="w-full lg:w-[45%] border-r border-slate-800 bg-slate-900/30 overflow-y-auto p-6 space-y-6 block no-print">
+        <!-- Preset Selector -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3">
+          <label class="block text-xs font-mono font-bold tracking-widest text-blue-400 uppercase">PILIH TEMPLATE SPK</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="preset-spk-tech" class="px-2 py-2 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-xs font-bold text-blue-400 transition-all hover:scale-[1.01] cursor-pointer">
+              Pengembangan Web & SEO
+            </button>
+            <button type="button" id="preset-spk-custom" class="px-2 py-2 rounded-lg bg-slate-800 hover:bg-slate-700/60 border border-slate-700 text-xs font-bold text-slate-300 transition-all hover:scale-[1.01] cursor-pointer">
+              Integrasi AI & Automasi
+            </button>
+          </div>
+        </div>
+
+        <!-- Document Metadata -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">Metadata SPK</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="spk-number" class="text-xs font-semibold text-slate-400">Nomor Perjanjian</label>
+              <input type="text" id="spk-number" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 019/SPK-LV/VI/2026" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="spk-date" class="text-xs font-semibold text-slate-400">Tanggal Tanda Tangan</label>
+              <input type="text" id="spk-date" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 01 Juli 2026" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="spk-city" class="text-xs font-semibold text-slate-400">Kota</label>
+              <input type="text" id="spk-city" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: Bandung" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="spk-project" class="text-xs font-semibold text-slate-400">Nama Proyek</label>
+              <input type="text" id="spk-project" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: Pembuatan Website Portal Klien" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Party 1 (Client) Details -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">Pihak Pertama (Pihak I - Pemberi Kerja)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="p1-name" class="text-xs font-semibold text-slate-400">Nama Lengkap</label>
+              <input type="text" id="p1-name" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Nama perwakilan klien" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="p1-company" class="text-xs font-semibold text-slate-400">Nama Instansi</label>
+              <input type="text" id="p1-company" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Nama instansi klien" />
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <label for="p1-address" class="text-xs font-semibold text-slate-400">Alamat Lengkap</label>
+            <input type="text" id="p1-address" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Alamat instansi" />
+          </div>
+        </div>
+
+        <!-- Party 2 (Provider) Details -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">Pihak Kedua (Pihak II - Pelaksana Kerja)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="p2-name" class="text-xs font-semibold text-slate-400">Nama Lengkap</label>
+              <input type="text" id="p2-name" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="Ahmad Rivaldi" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="p2-company" class="text-xs font-semibold text-slate-400">Nama Instansi / Perusahaan</label>
+              <input type="text" id="p2-company" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="LUMOVELO Agency" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="p2-position" class="text-xs font-semibold text-slate-400">Jabatan</label>
+              <input type="text" id="p2-position" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="CEO / Co-founder" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="p2-address" class="text-xs font-semibold text-slate-400">Alamat Lengkap</label>
+              <input type="text" id="p2-address" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="Jl. Dipati Ukur No. 102, Coblong, Kota Bandung" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Contract Details -->
+        <div class="space-y-4 bg-slate-900/50 border border-slate-800 rounded-2xl p-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 pb-2 uppercase tracking-wider border-b border-slate-800">Detail Nilai Proyek & Durasi</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="spk-cost" class="text-xs font-semibold text-slate-400">Nilai Kontrak (Rp)</label>
+              <input type="number" id="spk-cost" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 15000000" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="spk-duration" class="text-xs font-semibold text-slate-400">Durasi Kerja</label>
+              <input type="text" id="spk-duration" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 30 Hari Kalender" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestones / Termin Pembayaran -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-wider">Termin Pembayaran</h3>
+            <button type="button" id="btn-add-milestone" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold text-[10px] uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer select-none">
+              Tambah Termin
+            </button>
+          </div>
+          <div id="milestones-editor-container" class="space-y-3">
+            <!-- Dynamic milestones injected here -->
+          </div>
+        </div>
+
+        <!-- Clauses / Ketentuan Perjanjian -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-wider">Pasal-Pasal Ketentuan</h3>
+            <button type="button" id="btn-add-clause" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold text-[10px] uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer select-none">
+              Tambah Pasal
+            </button>
+          </div>
+          <div id="clauses-editor-container" class="space-y-3">
+            <!-- Dynamic clauses injected here -->
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button type="button" id="btn-download-pdf" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer select-none">
+            Cetak / Simpan PDF
+          </button>
+          <button type="button" id="btn-download-word" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-slate-700 bg-slate-800 hover:bg-slate-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer select-none">
+            Unduh Word (.doc)
+          </button>
+        </div>
+      </aside>
+
+      <!-- Right Panel: Live Document Preview (A4 representation) -->
+      <section id="preview-panel" class="flex-1 bg-slate-900/20 overflow-y-auto p-4 md:p-8 flex justify-center items-start hidden lg:flex">
+        <!-- Paper Container representing A4 -->
+        <div id="paper-preview" class="w-full max-w-[210mm] min-h-[297mm] bg-white text-black p-[25mm] shadow-2xl rounded border border-slate-200/50 flex flex-col font-serif relative">
+          <!-- Document Header -->
+          <div class="text-center space-y-2 mb-8">
+            <h1 class="text-base font-bold uppercase tracking-wide leading-relaxed border-b-2 border-black pb-3">
+              SURAT PERINTAH KERJA (SPK) & KONTRAK LAYANAN<br>
+              <span id="p-project-name" class="text-sm font-normal">--</span>
+            </h1>
+            <p class="text-xs font-bold font-sans">
+              Nomor: <span id="p-spk-number" class="underline">--</span>
+            </p>
+          </div>
+
+          <!-- Document Body -->
+          <div class="text-xs space-y-6 leading-relaxed text-justify flex-1">
+            <p>
+              Pada hari ini, <strong id="p-spk-day">--</strong> tanggal <strong id="p-spk-date">--</strong>, bertempat di <strong id="p-spk-city">--</strong>, telah disepakati dan ditandatangani Surat Perintah Kerja ini oleh dan di antara:
+            </p>
+
+            <!-- Party 1 -->
+            <div class="pl-4">
+              <table class="w-full no-border font-serif text-xs">
+                <tr>
+                  <td class="w-[25%] font-bold">Nama Pemberi Kerja</td>
+                  <td class="w-[3%]">:</td>
+                  <td><span id="p-p1-name" class="font-bold">--</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Instansi / Perusahaan</td>
+                  <td>:</td>
+                  <td><span id="p-p1-company" class="font-bold">--</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Alamat Instansi</td>
+                  <td>:</td>
+                  <td><span id="p-p1-address">--</span></td>
+                </tr>
+              </table>
+              <p class="pt-2">
+                Bertindak untuk dan atas nama <span id="p-p1-company-ref" class="font-semibold">--</span> yang selanjutnya dalam Perjanjian ini disebut sebagai <strong>Pihak Pertama (Pihak I / Pemberi Kerja)</strong>.
+              </p>
+            </div>
+
+            <!-- Party 2 -->
+            <div class="pl-4 border-t border-slate-100 pt-4">
+              <table class="w-full no-border font-serif text-xs">
+                <tr>
+                  <td class="w-[25%] font-bold">Nama Penerima Kerja</td>
+                  <td class="w-[3%]">:</td>
+                  <td><span class="font-bold" id="p-p2-name">Ahmad Rivaldi</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Jabatan</td>
+                  <td>:</td>
+                  <td><span id="p-p2-position">CEO / Co-founder</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Perusahaan</td>
+                  <td>:</td>
+                  <td><span class="font-bold" id="p-p2-company">LUMOVELO Agency</span></td>
+                </tr>
+                <tr>
+                  <td class="font-bold">Alamat Perusahaan</td>
+                  <td>:</td>
+                  <td><span id="p-p2-address">Jl. Dipati Ukur No. 102, Coblong, Kota Bandung</span></td>
+                </tr>
+              </table>
+              <p class="pt-2">
+                Bertindak untuk dan atas nama <strong id="p-p2-company-ref">LUMOVELO Agency</strong> yang selanjutnya dalam Perjanjian ini disebut sebagai <strong>Pihak Kedua (Pihak II / Pelaksana Kerja)</strong>.
+              </p>
+            </div>
+
+            <p>
+              Dengan ini Pihak Pertama memberikan perintah kerja kepada Pihak Kedua, dan Pihak Kedua menyatakan sepakat untuk melaksanakan pekerjaan tersebut dengan syarat dan ketentuan sebagai berikut:
+            </p>
+
+            <!-- Clauses Preview Container -->
+            <div id="preview-clauses-container" class="space-y-4">
+              <!-- Injected by JS -->
+            </div>
+
+            <!-- Signatures Section -->
+            <div class="pt-12">
+              <div class="flex justify-between items-start mt-8" id="p-signature-block">
+                <div class="w-[45%] text-center space-y-14">
+                  <div>
+                    <p class="text-slate-500 font-sans text-[10px] uppercase font-bold">Pihak Pertama (Pemberi Kerja),</p>
+                    <p class="font-bold font-sans text-xs uppercase mt-0.5"><span id="p-sign-p1-company">--</span></p>
+                  </div>
+                  <div>
+                    <div class="w-32 h-0.5 bg-black mx-auto"></div>
+                    <p class="font-bold text-xs uppercase font-sans mt-1"><span id="p-sign-p1-name">--</span></p>
+                    <p class="text-[9px] text-slate-500 font-sans">Representatif Pihak I</p>
+                  </div>
+                </div>
+
+                <div class="w-[45%] text-center space-y-14">
+                  <div>
+                    <p class="text-slate-500 font-sans text-[10px] uppercase font-bold">Pihak Kedua (Pelaksana Kerja),</p>
+                    <p class="font-bold font-sans text-xs uppercase mt-0.5 text-blue-600" id="p-sign-p2-company">LUMOVELO Agency</p>
+                  </div>
+                  <div>
+                    <div class="w-32 h-0.5 bg-black mx-auto"></div>
+                    <p class="font-bold text-xs uppercase font-sans mt-1" id="p-sign-p2-name">Ahmad Rivaldi</p>
+                    <p class="text-[9px] text-slate-500 font-sans" id="p-sign-p2-title">CEO / Co-founder</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <style is:global>
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #preview-panel, #preview-panel * {
+        visibility: visible;
+      }
+      #preview-panel {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: white !important;
+      }
+      #paper-preview {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+  </style>
+
+  <script>
+    const presets = {
+      tech: {
+        number: '023/SPK-LV/VI/2026',
+        city: 'Bandung',
+        project: 'Pembuatan Landing Page HijabStyle Indonesia',
+        cost: 3000000,
+        duration: '14 Hari Kerja',
+        p1Name: 'Budi Santoso',
+        p1Company: 'PT. HijabStyle Mode',
+        p1Address: 'Jl. Kemang Raya No. 44, Jakarta Selatan',
+        milestones: [
+          { name: 'Down Payment (DP)', percent: 50, note: 'Dibayarkan sebelum pengerjaan proyek dimulai' },
+          { name: 'Pelunasan Akhir', percent: 50, note: 'Dibayarkan setelah uji coba Lighthouse selesai & serah terima' }
+        ],
+        clauses: [
+          { title: 'Ruang Lingkup Pekerjaan', text: 'Pihak Kedua akan merancang wireframe UI/UX, mengimplementasikan framework frontend Astro (dengan skor Lighthouse minimal 95), integrasi formulir kontak ke WhatsApp API, serta serah terima berkas di platform Vercel.' },
+          { title: 'Hak dan Kewajiban', text: 'Pihak Pertama berkewajiban melunasi tagihan sesuai termin dan memberikan aset grafis pendukung. Pihak Kedua berhak mendapatkan akses data domain & hosting dan wajib menyerahkan kode sumber proyek yang bersih.' },
+          { title: 'Garansi dan Maintenance', text: 'Pihak Kedua memberikan garansi bebas bug fungsionalitas selama 30 hari terhitung sejak berita acara serah terima proyek ditandatangani.' }
+        ]
+      },
+      custom: {
+        number: '024/SPK-LV/VI/2026',
+        city: 'Bandung',
+        project: 'Sistem Kustom Autopilot AI Leads Handler',
+        cost: 15000000,
+        duration: '30 Hari Kalender',
+        p1Name: 'Hendra Wijaya',
+        p1Company: 'PT. AutoParts Indo Corp',
+        p1Address: 'Kawasan Industri GIIC Blok C-10, Cikarang',
+        milestones: [
+          { name: 'Termin I (DP Awal)', percent: 30, note: 'Setelah penandatanganan SPK' },
+          { name: 'Termin II (Mid-Milestone)', percent: 40, note: 'Setelah integrasi API WhatsApp & Model Agen AI selesai' },
+          { name: 'Termin III (Pelunasan)', percent: 30, note: 'Setelah serah terima operasional penuh' }
+        ],
+        clauses: [
+          { title: 'Ruang Lingkup Pekerjaan', text: 'Pihak Kedua akan mengembangkan sistem backend portal leads, instalasi model AI otonom untuk menjawab pesan WhatsApp, serta mengintegrasikan dashboard panel admin untuk memantau performa log.' },
+          { title: 'Kerahasiaan Data (NDA)', text: 'Seluruh data leads dan data operasional Pihak Pertama bersifat rahasia dan Pihak Kedua dilarang keras menyebarluaskan atau menyalin data tersebut tanpa persetujuan tertulis.' },
+          { title: 'Penyelesaian Sengketa', text: 'Apabila terjadi perselisihan, kedua belah pihak sepakat untuk menyelesaikannya secara kekeluargaan mufakat. Jika tidak selesai, sengketa akan diselesaikan melalui Kepaniteraan Pengadilan Negeri Bandung.' }
+        ]
+      }
+    };
+
+    let currentMilestones: { name: string; percent: number; note: string }[] = [];
+    let currentClauses: { title: string; text: string }[] = [];
+
+    // Inputs
+    const spkNumInput = document.getElementById('spk-number') as HTMLInputElement;
+    const spkDateInput = document.getElementById('spk-date') as HTMLInputElement;
+    const spkCityInput = document.getElementById('spk-city') as HTMLInputElement;
+    const spkProjInput = document.getElementById('spk-project') as HTMLInputElement;
+    const spkCostInput = document.getElementById('spk-cost') as HTMLInputElement;
+    const spkDurInput = document.getElementById('spk-duration') as HTMLInputElement;
+
+    const p1NameInput = document.getElementById('p1-name') as HTMLInputElement;
+    const p1CompanyInput = document.getElementById('p1-company') as HTMLInputElement;
+    const p1AddrInput = document.getElementById('p1-address') as HTMLInputElement;
+
+    const milestonesContainer = document.getElementById('milestones-editor-container') as HTMLDivElement;
+    const clausesContainer = document.getElementById('clauses-editor-container') as HTMLDivElement;
+
+    // Preview
+    const pSpkNum = document.getElementById('p-spk-number') as HTMLSpanElement;
+    const pSpkDate = document.getElementById('p-spk-date') as HTMLSpanElement;
+    const pSpkCity = document.getElementById('p-spk-city') as HTMLSpanElement;
+    const pProjName = document.getElementById('p-project-name') as HTMLSpanElement;
+    const p1Name = document.getElementById('p-p1-name') as HTMLSpanElement;
+    const p1Company = document.getElementById('p-p1-company') as HTMLSpanElement;
+    const p1CompanyRef = document.getElementById('p-p1-company-ref') as HTMLSpanElement;
+    const p1Address = document.getElementById('p-p1-address') as HTMLSpanElement;
+    const pSignP1Company = document.getElementById('p-sign-p1-company') as HTMLSpanElement;
+    const pSignP1Name = document.getElementById('p-sign-p1-name') as HTMLSpanElement;
+
+    // Pihak 2 Inputs
+    const p2NameInput = document.getElementById('p2-name') as HTMLInputElement;
+    const p2CompanyInput = document.getElementById('p2-company') as HTMLInputElement;
+    const p2PositionInput = document.getElementById('p2-position') as HTMLInputElement;
+    const p2AddrInput = document.getElementById('p2-address') as HTMLInputElement;
+
+    // Pihak 2 Preview elements
+    const pP2Name = document.getElementById('p-p2-name') as HTMLSpanElement;
+    const pP2Position = document.getElementById('p-p2-position') as HTMLSpanElement;
+    const pP2Company = document.getElementById('p-p2-company') as HTMLSpanElement;
+    const pP2CompanyRef = document.getElementById('p-p2-company-ref') as HTMLSpanElement;
+    const pP2Address = document.getElementById('p-p2-address') as HTMLSpanElement;
+    const pSignP2Company = document.getElementById('p-sign-p2-company') as HTMLSpanElement;
+    const pSignP2Name = document.getElementById('p-sign-p2-name') as HTMLSpanElement;
+    const pSignP2Title = document.getElementById('p-sign-p2-title') as HTMLSpanElement;
+
+    function formatRupiah(num: number): string {
+      return 'Rp ' + num.toLocaleString('id-ID');
+    }
+
+    function updateMetadataPreview() {
+      pSpkNum.innerText = spkNumInput.value || '--';
+      pSpkDate.innerText = spkDateInput.value || '--';
+      pSpkCity.innerText = spkCityInput.value || '--';
+      pProjName.innerText = spkProjInput.value || '--';
+      p1Name.innerText = p1NameInput.value || '--';
+      p1Company.innerText = p1CompanyInput.value || '--';
+      p1CompanyRef.innerText = p1CompanyInput.value || '--';
+      p1Address.innerText = p1AddrInput.value || '--';
+      pSignP1Company.innerText = p1CompanyInput.value || 'Perusahaan Klien';
+      pSignP1Name.innerText = p1NameInput.value || 'Nama Pihak I';
+
+      // Update Pihak Kedua Preview
+      if (pP2Name) pP2Name.innerText = p2NameInput.value || '--';
+      if (pP2Position) pP2Position.innerText = p2PositionInput.value || '--';
+      if (pP2Company) pP2Company.innerText = p2CompanyInput.value || '--';
+      if (pP2CompanyRef) pP2CompanyRef.innerText = p2CompanyInput.value || '--';
+      if (pP2Address) pP2Address.innerText = p2AddrInput.value || '--';
+      if (pSignP2Company) pSignP2Company.innerText = p2CompanyInput.value || '--';
+      if (pSignP2Name) pSignP2Name.innerText = p2NameInput.value || '--';
+      if (pSignP2Title) pSignP2Title.innerText = p2PositionInput.value || '--';
+
+      // Update day name based on current date
+      const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+      const dateVal = new Date();
+      document.getElementById('p-spk-day')!.innerText = days[dateVal.getDay()];
+    }
+
+    function renderMilestones() {
+      milestonesContainer.innerHTML = '';
+      currentMilestones.forEach((ms, index) => {
+        const div = document.createElement('div');
+        div.className = "flex gap-2.5 items-center bg-slate-900/60 p-3 rounded-lg border border-slate-800";
+        div.innerHTML = `
+          <div class="flex-1 grid grid-cols-1 md:grid-cols-12 gap-2">
+            <input type="text" class="ms-name bg-slate-950 border border-slate-800 rounded px-2 py-1 text-xs text-white focus:outline-none col-span-5" value="${ms.name}" placeholder="Nama termin" data-index="${index}" />
+            <input type="number" class="ms-percent bg-slate-950 border border-slate-800 rounded px-2 py-1 text-xs text-white focus:outline-none text-center col-span-2" value="${ms.percent}" placeholder="%" data-index="${index}" />
+            <input type="text" class="ms-note bg-slate-950 border border-slate-800 rounded px-2 py-1 text-xs text-white focus:outline-none col-span-5" value="${ms.note}" placeholder="Keterangan pembayaran" data-index="${index}" />
+          </div>
+          <button type="button" class="btn-delete-ms text-rose-500 hover:text-rose-400 p-1 cursor-pointer select-none" data-index="${index}">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+          </button>
+        `;
+        milestonesContainer.appendChild(div);
+      });
+
+      // Listeners
+      document.querySelectorAll('.ms-name').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLInputElement).getAttribute('data-index')!);
+          currentMilestones[idx].name = (e.target as HTMLInputElement).value;
+          renderPreviewClauses();
+        });
+      });
+      document.querySelectorAll('.ms-percent').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLInputElement).getAttribute('data-index')!);
+          currentMilestones[idx].percent = parseInt((e.target as HTMLInputElement).value) || 0;
+          renderPreviewClauses();
+        });
+      });
+      document.querySelectorAll('.ms-note').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLInputElement).getAttribute('data-index')!);
+          currentMilestones[idx].note = (e.target as HTMLInputElement).value;
+          renderPreviewClauses();
+        });
+      });
+      document.querySelectorAll('.btn-delete-ms').forEach(el => {
+        el.addEventListener('click', (e) => {
+          const idx = parseInt((e.currentTarget as HTMLButtonElement).getAttribute('data-index')!);
+          currentMilestones.splice(idx, 1);
+          renderMilestones();
+          renderPreviewClauses();
+        });
+      });
+    }
+
+    function renderClausesEditor() {
+      clausesContainer.innerHTML = '';
+      currentClauses.forEach((c, index) => {
+        const div = document.createElement('div');
+        div.className = "space-y-2 bg-slate-900/60 p-3 rounded-lg border border-slate-800 relative group";
+        div.innerHTML = `
+          <div class="flex items-center justify-between">
+            <input type="text" class="c-title bg-slate-950 border border-slate-800 rounded px-2.5 py-1 text-xs text-white focus:outline-none font-bold w-[75%]" value="${c.title}" placeholder="Judul Pasal" data-index="${index}" />
+            <button type="button" class="btn-delete-c text-rose-500 hover:text-rose-400 p-1 cursor-pointer select-none" data-index="${index}">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            </button>
+          </div>
+          <textarea class="c-text w-full bg-slate-950 border border-slate-800 rounded px-2.5 py-1 text-xs text-slate-350 focus:outline-none h-16" placeholder="Keterangan pasal" data-index="${index}">${c.text}</textarea>
+        `;
+        clausesContainer.appendChild(div);
+      });
+
+      // Listeners
+      document.querySelectorAll('.c-title').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLInputElement).getAttribute('data-index')!);
+          currentClauses[idx].title = (e.target as HTMLInputElement).value;
+          renderPreviewClauses();
+        });
+      });
+      document.querySelectorAll('.c-text').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt((e.target as HTMLTextAreaElement).getAttribute('data-index')!);
+          currentClauses[idx].text = (e.target as HTMLTextAreaElement).value;
+          renderPreviewClauses();
+        });
+      });
+      document.querySelectorAll('.btn-delete-c').forEach(el => {
+        el.addEventListener('click', (e) => {
+          const idx = parseInt((e.currentTarget as HTMLButtonElement).getAttribute('data-index')!);
+          currentClauses.splice(idx, 1);
+          renderClausesEditor();
+          renderPreviewClauses();
+        });
+      });
+    }
+
+    function renderPreviewClauses() {
+      const container = document.getElementById('preview-clauses-container') as HTMLDivElement;
+      container.innerHTML = '';
+
+      let idx = 1;
+
+      // Render Cost & Duration Clause
+      const costVal = parseFloat(spkCostInput.value) || 0;
+      const durVal = spkDurInput.value || '--';
+
+      const rowCost = document.createElement('div');
+      rowCost.className = "space-y-1";
+      rowCost.innerHTML = `
+        <h4 class="font-bold text-xs uppercase font-sans">Pasal ${idx++}: Nilai Investasi & Jangka Waktu</h4>
+        <p>1. Total investasi untuk pelaksanaan pengerjaan proyek adalah sebesar <strong>${formatRupiah(costVal)}</strong> (termasuk biaya domain, ssl, serverless hosting).</p>
+        <p>2. Seluruh pengerjaan layanan wajib diselesaikan oleh Pihak Kedua dalam jangka waktu maksimal <strong>${durVal}</strong> terhitung sejak SPK ditandatangani.</p>
+      `;
+      container.appendChild(rowCost);
+
+      // Render Payments Clause
+      if (currentMilestones.length > 0) {
+        const rowPay = document.createElement('div');
+        rowPay.className = "space-y-1";
+        let listItems = '';
+        currentMilestones.forEach(ms => {
+          const msCost = costVal * (ms.percent / 100);
+          listItems += `<li><strong>${ms.name} (${ms.percent}%)</strong>: sebesar <strong>${formatRupiah(msCost)}</strong>. ${ms.note}.</li>`;
+        });
+        rowPay.innerHTML = `
+          <h4 class="font-bold text-xs uppercase font-sans">Pasal ${idx++}: Ketentuan Pembayaran</h4>
+          <p>Tata cara pembayaran disepakati kedua belah pihak berdasarkan milestone berikut:</p>
+          <ol class="list-decimal pl-5 space-y-1">${listItems}</ol>
+        `;
+        container.appendChild(rowPay);
+      }
+
+      // Render Custom Clauses
+      currentClauses.forEach(c => {
+        const rowC = document.createElement('div');
+        rowC.className = "space-y-1";
+        rowC.innerHTML = `
+          <h4 class="font-bold text-xs uppercase font-sans">Pasal ${idx++}: ${c.title || '--'}</h4>
+          <p>${c.text ? c.text.replace(/\n/g, '<br>') : '--'}</p>
+        `;
+        container.appendChild(rowC);
+      });
+    }
+
+    function loadPreset(key: 'tech' | 'custom') {
+      const config = presets[key];
+      spkNumInput.value = config.number;
+      spkCityInput.value = config.city;
+      spkProjInput.value = config.project;
+      spkCostInput.value = config.cost.toString();
+      spkDurInput.value = config.duration;
+      p1NameInput.value = config.p1Name;
+      p1CompanyInput.value = config.p1Company;
+      p1AddrInput.value = config.p1Address;
+
+      const today = new Date();
+      const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+      spkDateInput.value = `${today.getDate()} ${monthNames[today.getMonth()]} ${today.getFullYear()}`;
+
+      currentMilestones = JSON.parse(JSON.stringify(config.milestones));
+      currentClauses = JSON.parse(JSON.stringify(config.clauses));
+
+      renderMilestones();
+      renderClausesEditor();
+      updateMetadataPreview();
+      renderPreviewClauses();
+
+      // Styles
+      const btnTech = document.getElementById('preset-spk-tech') as HTMLButtonElement;
+      const btnCustom = document.getElementById('preset-spk-custom') as HTMLButtonElement;
+      [btnTech, btnCustom].forEach(btn => {
+        btn.className = "px-2 py-2 rounded-lg bg-slate-800 hover:bg-slate-700/60 border border-slate-700 text-xs font-bold text-slate-300 transition-all hover:scale-[1.01] cursor-pointer";
+      });
+      document.getElementById(`preset-spk-${key}`)!.className = "px-2 py-2 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-xs font-bold text-blue-400 transition-all hover:scale-[1.01] cursor-pointer";
+    }
+
+    // Bind listeners
+    [spkNumInput, spkDateInput, spkCityInput, spkProjInput, spkCostInput, spkDurInput, p1NameInput, p1CompanyInput, p1AddrInput, p2NameInput, p2CompanyInput, p2PositionInput, p2AddrInput].forEach(el => {
+      el.addEventListener('input', () => {
+        updateMetadataPreview();
+        renderPreviewClauses();
+      });
+    });
+
+    document.getElementById('btn-add-milestone')!.addEventListener('click', () => {
+      currentMilestones.push({ name: 'Termin Baru', percent: 0, note: '' });
+      renderMilestones();
+      renderPreviewClauses();
+    });
+
+    document.getElementById('btn-add-clause')!.addEventListener('click', () => {
+      currentClauses.push({ title: 'Pasal Baru', text: '' });
+      renderClausesEditor();
+      renderPreviewClauses();
+    });
+
+    document.getElementById('preset-spk-tech')!.addEventListener('click', () => loadPreset('tech'));
+    document.getElementById('preset-spk-custom')!.addEventListener('click', () => loadPreset('custom'));
+
+    document.getElementById('btn-download-pdf')!.addEventListener('click', () => window.print());
+
+    document.getElementById('btn-download-word')!.addEventListener('click', () => {
+      const filename = `SPK-${p1CompanyInput.value.replace(/\s+/g, '_') || 'LUMOVELO'}.doc`;
+      const content = document.getElementById('paper-preview')!.innerHTML;
+
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = content;
+
+      // Convert Signature block layout to table
+      const signatureBlock = tempDiv.querySelector('#p-signature-block');
+      if (signatureBlock) {
+        const leftCol = signatureBlock.children[0]?.innerHTML || '';
+        const rightCol = signatureBlock.children[1]?.innerHTML || '';
+        signatureBlock.outerHTML = `
+          <table style="width: 100%; margin-top: 40px; border-collapse: collapse;">
+            <tr style="border: none !important;">
+              <td style="width: 45%; text-align: center; vertical-align: top; border: none !important;">${leftCol}</td>
+              <td style="width: 10%; border: none !important;"></td>
+              <td style="width: 45%; text-align: center; vertical-align: top; border: none !important;">${rightCol}</td>
+            </tr>
+          </table>
+        `;
+      }
+
+      const finalHtmlContent = tempDiv.innerHTML;
+
+      const wordHtmlHeader = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+      <head>
+      <title>Surat Perintah Kerja (SPK)</title>
+      <style>
+        @page Section1 { size: 595.3pt 841.9pt; margin: 72pt; }
+        div.Section1 { page: Section1; }
+        body { font-family: 'Times New Roman', serif; font-size: 11pt; line-height: 1.35; }
+        h1 { font-size: 13pt; text-align: center; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; }
+        h4 { font-size: 11pt; font-weight: bold; text-transform: uppercase; margin-top: 15px; margin-bottom: 5px; }
+        p { margin-bottom: 8px; text-align: justify; }
+        ol, ul { margin-top: 5px; margin-bottom: 5px; padding-left: 20px; }
+        li { margin-bottom: 4px; text-align: justify; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        td { padding: 4px; vertical-align: top; }
+        .font-bold { font-weight: bold; }
+        .underline { text-decoration: underline; }
+      </style>
+      </head>
+      <body>
+      <div class="Section1">
+        ${finalHtmlContent}
+      </div>
+      </body>
+      </html>`;
+
+      const blob = new Blob(['\ufeff' + wordHtmlHeader], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Mobile Tabs
+    const tabEditor = document.getElementById('tab-editor')!;
+    const tabPreview = document.getElementById('tab-preview')!;
+    const editorPanel = document.getElementById('editor-panel')!;
+    const previewPanel = document.getElementById('preview-panel')!;
+
+    tabEditor.addEventListener('click', () => {
+      tabEditor.classList.add('border-blue-500', 'text-white');
+      tabEditor.classList.remove('border-transparent', 'text-slate-400');
+      tabPreview.classList.add('border-transparent', 'text-slate-400');
+      tabPreview.classList.remove('border-blue-500', 'text-white');
+      
+      editorPanel.classList.remove('hidden');
+      editorPanel.classList.add('block');
+      previewPanel.classList.add('hidden');
+      previewPanel.classList.remove('flex');
+    });
+
+    tabPreview.addEventListener('click', () => {
+      tabPreview.classList.add('border-blue-500', 'text-white');
+      tabPreview.classList.remove('border-transparent', 'text-slate-400');
+      tabEditor.classList.add('border-transparent', 'text-slate-400');
+      tabEditor.classList.remove('border-blue-500', 'text-white');
+      
+      previewPanel.classList.remove('hidden');
+      previewPanel.classList.add('flex');
+      editorPanel.classList.add('hidden');
+      editorPanel.classList.remove('block');
+    });
+
+    // Dropdown
+    const docBtn = document.getElementById('doc-selector-btn');
+    const docMenu = document.getElementById('doc-selector-menu');
+    if (docBtn && docMenu) {
+      docBtn.onclick = (e) => {
+        e.stopPropagation();
+        docMenu.classList.toggle('hidden');
+      };
+      document.addEventListener('click', () => docMenu.classList.add('hidden'));
+    }
+
+    // Init
+    loadPreset('tech');
+  </script>
+</Layout>

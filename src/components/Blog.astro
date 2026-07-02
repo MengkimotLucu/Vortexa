@@ -1,54 +1,124 @@
 ---
-const posts = [
-  {
-    slug: 'mengenal-lumovelo-growth-agency',
-    title: 'Mengenal LUMOVELO: Alasan Kami Hadir & Solusi Web Praktis untuk Bisnis Anda',
-    date: '17 JUNI 2026',
-    category: 'PROFIL',
-    bgCategory: 'bg-rose-100 text-rose-700 border-rose-200',
-    description: 'Kenapa LUMOVELO ada? Pelajari misi kami menghadirkan website yang cepat dan mudah dikelola dengan harga yang sangat bersahabat bagi bisnis Anda.'
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ Wawasan & Edukasi",
+    title1: "Wacana Teknologi.",
+    title2: "Edukasi Tanpa Omong Kosong.",
+    desc: "Kami menulis artikel teknis terarah untuk membagi wawasan optimasi web performa tinggi, automasi AI otonom, dan taktik SEO yang bekerja nyata.",
+    readMore: "/ BACA SELENGKAPNYA",
+    posts: [
+      {
+        slug: 'mengenal-lumovelo-growth-agency',
+        title: 'Mengenal LUMOVELO: Alasan Kami Hadir & Solusi Web Praktis untuk Bisnis Anda',
+        date: '17 JUNI 2026',
+        category: 'PROFIL',
+        bgCategory: 'bg-rose-100 text-rose-700 border-rose-200',
+        description: 'Kenapa LUMOVELO ada? Pelajari misi kami menghadirkan website yang cepat dan mudah dikelola dengan harga yang sangat bersahabat bagi bisnis Anda.'
+      },
+      {
+        slug: 'pentingnya-kecepatan-website',
+        title: 'Pentingnya Kecepatan Web di Bawah 3 Detik untuk Google Rank dan Pengunjung',
+        date: '15 JUNI 2026',
+        category: 'OPTIMASI SEO',
+        bgCategory: 'bg-blue-100 text-blue-600 border-blue-200',
+        description: 'Kecepatan halaman membantu website Anda lebih mudah ditemukan di Google dan membuat pengunjung merasa nyaman saat mencari informasi.'
+      },
+      {
+        slug: 'website-tanpa-database-lebih-murah',
+        title: 'Mengenal Desain Web Hemat Biaya untuk Efisiensi Operasional Anda',
+        date: '10 JUNI 2026',
+        category: 'EFISIENSI BIAYA',
+        bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
+        description: 'Bagaimana struktur website tertentu dapat membantu menghemat biaya pemeliharaan bulanan Anda secara maksimal.'
+      },
+      {
+        slug: 'otomatisasi-leads-ai-whatsapp',
+        title: 'Cara Otomatisasi Formulir Kontak Langsung Terhubung ke WhatsApp Anda',
+        date: '05 JUNI 2026',
+        category: 'OTOMATISASI',
+        bgCategory: 'bg-indigo-100 text-indigo-700 border-indigo-200',
+        description: 'Membuat alur komunikasi lebih lancar dengan mengirimkan data dari formulir website langsung ke chat WhatsApp Anda.'
+      },
+      {
+        slug: 'desain-visual-modern-ui-ux',
+        title: 'Bagaimana Tampilan Web yang Rapi Membantu Menumbuhkan Kepercayaan Klien',
+        date: '01 JUNI 2026',
+        category: 'TAMPILAN WEB',
+        bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
+        description: 'Desain website yang profesional dan nyaman dilihat membuat pengunjung betah membaca informasi bisnis Anda.'
+      },
+      {
+        slug: 'migrasi-ke-headless-architecture',
+        title: 'Tips Mudah Mengelola dan Memperbarui Konten Website Bisnis Baru Anda',
+        date: '28 MEI 2026',
+        category: 'TIPS MANAJEMEN',
+        bgCategory: 'bg-amber-100 text-amber-700 border-amber-200',
+        description: 'Cara praktis untuk memperbarui teks, foto, dan informasi di website Anda secara mandiri tanpa harus pusing belajar pemrograman.'
+      }
+    ]
   },
-  {
-    slug: 'pentingnya-kecepatan-website',
-    title: 'Pentingnya Kecepatan Web di Bawah 3 Detik untuk Google Rank dan Pengunjung',
-    date: '15 JUNI 2026',
-    category: 'OPTIMASI SEO',
-    bgCategory: 'bg-blue-100 text-blue-600 border-blue-200',
-    description: 'Kecepatan halaman membantu website Anda lebih mudah ditemukan di Google dan membuat pengunjung merasa nyaman saat mencari informasi.'
-  },
-  {
-    slug: 'website-tanpa-database-lebih-murah',
-    title: 'Mengenal Desain Web Hemat Biaya untuk Efisiensi Operasional Anda',
-    date: '10 JUNI 2026',
-    category: 'EFISIENSI BIAYA',
-    bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
-    description: 'Bagaimana struktur website tertentu dapat membantu menghemat biaya pemeliharaan bulanan Anda secara maksimal.'
-  },
-  {
-    slug: 'otomatisasi-leads-ai-whatsapp',
-    title: 'Cara Otomatisasi Formulir Kontak Langsung Terhubung ke WhatsApp Anda',
-    date: '05 JUNI 2026',
-    category: 'OTOMATISASI',
-    bgCategory: 'bg-indigo-100 text-indigo-700 border-indigo-200',
-    description: 'Membuat alur komunikasi lebih lancar dengan mengirimkan data dari formulir website langsung ke chat WhatsApp Anda.'
-  },
-  {
-    slug: 'desain-visual-modern-ui-ux',
-    title: 'Bagaimana Tampilan Web yang Rapi Membantu Menumbuhkan Kepercayaan Klien',
-    date: '01 JUNI 2026',
-    category: 'TAMPILAN WEB',
-    bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
-    description: 'Desain website yang profesional dan nyaman dilihat membuat pengunjung betah membaca informasi bisnis Anda.'
-  },
-  {
-    slug: 'migrasi-ke-headless-architecture',
-    title: 'Tips Mudah Mengelola dan Memperbarui Konten Website Bisnis Baru Anda',
-    date: '28 MEI 2026',
-    category: 'TIPS MANAJEMEN',
-    bgCategory: 'bg-amber-100 text-amber-700 border-amber-200',
-    description: 'Cara praktis untuk memperbarui teks, foto, dan informasi di website Anda secara mandiri tanpa harus pusing belajar pemrograman.'
+  en: {
+    sectionHeader: "/ Insights & Education",
+    title1: "Tech Discourses.",
+    title2: "No BS Education.",
+    desc: "We write technical articles to share insights on high-performance web optimization, autonomous AI automation, and SEO tactics that actually work.",
+    readMore: "/ READ MORE",
+    posts: [
+      {
+        slug: 'mengenal-lumovelo-growth-agency',
+        title: 'Getting to Know LUMOVELO: Why We Exist & Practical Web Solutions for Your Business',
+        date: '17 JUNE 2026',
+        category: 'PROFILE',
+        bgCategory: 'bg-rose-100 text-rose-700 border-rose-200',
+        description: 'Why LUMOVELO? Learn our mission to deliver fast and easy-to-manage websites at very friendly prices for your business.'
+      },
+      {
+        slug: 'pentingnya-kecepatan-website',
+        title: 'The Importance of Under 3-Second Web Speed for Google Rank and Visitors',
+        date: '15 JUNE 2026',
+        category: 'SEO OPTIMIZATION',
+        bgCategory: 'bg-blue-100 text-blue-600 border-blue-200',
+        description: 'Page speed helps your website rank higher on Google and makes visitors feel comfortable when searching for information.'
+      },
+      {
+        slug: 'website-tanpa-database-lebih-murah',
+        title: 'Understanding Cost-Effective Web Design for Your Operational Efficiency',
+        date: '10 JUNE 2026',
+        category: 'COST EFFICIENCY',
+        bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
+        description: 'How specific website architectures can help maximize savings on your monthly maintenance costs.'
+      },
+      {
+        slug: 'otomatisasi-leads-ai-whatsapp',
+        title: 'How to Automate Contact Forms Directly Connected to Your WhatsApp',
+        date: '05 JUNE 2026',
+        category: 'AUTOMATION',
+        bgCategory: 'bg-indigo-100 text-indigo-700 border-indigo-200',
+        description: 'Make communication smoother by sending data from website forms directly to your WhatsApp chat.'
+      },
+      {
+        slug: 'desain-visual-modern-ui-ux',
+        title: 'How Clean Web Layouts Help Build Client Trust',
+        date: '01 JUNE 2026',
+        category: 'WEB DESIGN',
+        bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
+        description: 'A professional and visually pleasing website design keeps visitors reading your business information longer.'
+      },
+      {
+        slug: 'migrasi-ke-headless-architecture',
+        title: 'Easy Tips to Independently Manage and Update Your New Website Content',
+        date: '28 MAY 2026',
+        category: 'MGMT TIPS',
+        bgCategory: 'bg-amber-100 text-amber-700 border-amber-200',
+        description: 'Practical ways to update text, photos, and information on your website independently without learning programming.'
+      }
+    ]
   }
-];
+}[lang];
+
+const posts = content.posts;
 ---
 <section id="blog" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-200">
   <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
@@ -57,13 +127,13 @@ const posts = [
     
     <!-- Section Header -->
     <div class="max-w-2xl mb-20 reveal-on-scroll">
-      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ Wawasan & Edukasi</h2>
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
       <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
-        Wacana Teknologi.<br/>
-        <span class="text-stroke-neon">Edukasi Tanpa Omong Kosong.</span>
+        {content.title1}<br/>
+        <span class="text-stroke-neon">{content.title2}</span>
       </h3>
       <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
-        Kami menulis artikel teknis terarah untuk membagi wawasan optimasi web performa tinggi, automasi AI otonom, dan taktik SEO yang bekerja nyata.
+        {content.desc}
       </p>
     </div>
 
@@ -85,7 +155,7 @@ const posts = [
           </div>
           <div class="border-t border-slate-200 pt-4 mt-6">
             <a href={`/blog/${post.slug}/`} class="text-[10px] font-mono font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1.5 uppercase">
-              / BACA SELENGKAPNYA 
+              {content.readMore} 
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
           </div>

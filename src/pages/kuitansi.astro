@@ -1,0 +1,830 @@
+﻿---
+import Logo from '../components/Logo.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Premium Receipt Generator | LUMOVELO" description="Workspace pembuatan kuitansi pembayaran digital interaktif dengan konversi nominal otomatis dan ekspor PDF & Word.">
+  <div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between font-sans no-print">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center shadow-[2px_2px_0px_rgba(37,99,235,0.4)]">
+            <Logo class="w-4 h-4 text-white" />
+          </div>
+          <span class="font-display font-black text-lg tracking-wider text-white">LUMOVELO</span>
+        </a>
+        <span class="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-slate-400 uppercase tracking-widest">Workspace v1.0</span>
+      </div>
+      
+      <!-- Document Selector Dropdown -->
+      <div class="relative inline-block text-left" id="doc-selector-dropdown-container">
+        <button type="button" id="doc-selector-btn" class="inline-flex justify-between items-center gap-2 px-4 py-2 border border-slate-700 rounded-xl bg-slate-955 text-xs font-bold text-slate-300 hover:text-white hover:border-slate-650 transition-all cursor-pointer select-none">
+          <span>📂 WORKSPACE: KUITANSI PEMBAYARAN</span>
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div id="doc-selector-menu" class="absolute right-0 mt-2 w-56 rounded-xl border border-slate-800 bg-slate-900 shadow-2xl py-1.5 z-50 hidden transition-all">
+          <a href="/mou/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📝 MoU Perjanjian</a>
+          <a href="/spk/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">🤝 SPK / Kontrak Kerja</a>
+          <a href="/rab/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📊 RAB Anggaran Biaya</a>
+          <a href="/srs/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📋 SRS / Lampiran Scope</a>
+          <a href="/invoice/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">💳 Invoice Penagihan</a>
+          <a href="/kuitansi/" class="block px-4 py-2 text-xs text-blue-400 bg-slate-800/40 font-bold border-b border-slate-800/30">🧾 Kuitansi Pembayaran</a>
+          <a href="/bast/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60">📦 BAST Serah Terima</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <!-- Tabs for Mobile View -->
+      <div class="lg:hidden flex border-b border-slate-800 bg-slate-900 no-print">
+        <button id="tab-editor" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-blue-500 text-white bg-slate-900">
+          Form Editor
+        </button>
+        <button id="tab-preview" class="flex-1 py-3 text-center text-sm font-bold border-b-2 border-transparent text-slate-400 bg-slate-900">
+          Pratinjau Kuitansi
+        </button>
+      </div>
+
+      <!-- Left Panel: Editor Form -->
+      <aside id="editor-panel" class="w-full lg:w-[40%] border-r border-slate-800 bg-slate-900/30 overflow-y-auto p-6 space-y-6 block no-print">
+        <!-- Preset Selector -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 space-y-3">
+          <label class="block text-xs font-mono font-bold tracking-widest text-blue-400 uppercase">PILIH TEMPLATE PRESET</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" id="preset-dp" class="px-2 py-2 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 border border-blue-500/30 text-xs font-bold text-blue-400 transition-all hover:scale-[1.01] cursor-pointer">
+              DP Proyek (30%)
+            </button>
+            <button type="button" id="preset-lunas" class="px-2 py-2 rounded-lg bg-slate-800 hover:bg-slate-700/60 border border-slate-700 text-xs font-bold text-slate-300 transition-all hover:scale-[1.01] cursor-pointer">
+              Pelunasan (70%)
+            </button>
+            <button type="button" id="preset-maintenance" class="px-2 py-2 rounded-lg bg-slate-800 hover:bg-slate-700/60 border border-slate-700 text-xs font-bold text-slate-300 transition-all hover:scale-[1.01] cursor-pointer">
+              Maintenance
+            </button>
+          </div>
+        </div>
+
+        <!-- Receipt Basic Info -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">Info Kuitansi</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="rcpt-number" class="text-xs font-semibold text-slate-400">Nomor Kuitansi</label>
+              <input type="text" id="rcpt-number" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="KUI-2026-0001" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="rcpt-from" class="text-xs font-semibold text-slate-400">Telah Diterima Dari</label>
+              <input type="text" id="rcpt-from" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Nama pembayar / klien" />
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <label for="rcpt-for" class="text-xs font-semibold text-slate-400">Untuk Pembayaran</label>
+            <input type="text" id="rcpt-for" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: Pembayaran DP 30% pembuatan Web & AI" />
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="rcpt-city" class="text-xs font-semibold text-slate-400">Kota Transaksi</label>
+              <input type="text" id="rcpt-city" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Bandung" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="rcpt-date" class="text-xs font-semibold text-slate-400">Tanggal Transaksi</label>
+              <input type="text" id="rcpt-date" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="27 Juni 2026" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode Input Nominal -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-wider">Item Tagihan (Itemized List)</h3>
+            <button type="button" id="btn-add-item" class="px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold text-[9px] uppercase tracking-wider flex items-center gap-1 transition-colors cursor-pointer">
+              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Tambah Item
+            </button>
+          </div>
+          <!-- Item list editor container -->
+          <div id="items-editor-container" class="space-y-2">
+            <!-- Dynamic items will be added here by JS -->
+          </div>
+        </div>
+
+        <!-- Potongan / Pembayaran Sebelumnya -->
+        <div class="space-y-4 bg-slate-900/50 border border-slate-800 rounded-2xl p-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 pb-2 uppercase tracking-wider border-b border-slate-800">Potongan / Pembayaran Sebelumnya</h3>
+          <div class="space-y-1.5">
+            <label for="rcpt-deposit" class="text-xs font-semibold text-slate-400">Potongan / Uang Muka / Belum Dibayar (Rp)</label>
+            <input type="number" id="rcpt-deposit" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Contoh: 500000" value="0" />
+          </div>
+        </div>
+
+        <!-- Nominal Manual / Auto Fallback -->
+        <div class="space-y-3 bg-slate-900/40 p-4 border border-slate-800 rounded-xl">
+          <div class="flex justify-between items-center">
+            <label for="rcpt-amount" class="text-xs font-bold text-blue-400 uppercase tracking-wide">Total Nominal Akhir (Rp)</label>
+            <span class="text-[9px] font-mono text-slate-500 uppercase">(Otomatis Terkunci oleh Itemized List)</span>
+          </div>
+          <input type="number" id="rcpt-amount" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2.5 text-base font-mono text-blue-400 font-bold focus:outline-none transition-colors" placeholder="Contoh: 15000000" readonly />
+          
+          <div class="space-y-1">
+            <span class="text-[10px] font-bold text-slate-500 uppercase">Ejaan Terbilang (Otomatis):</span>
+            <p id="spelled-out-text" class="text-xs font-semibold text-slate-300 italic bg-slate-950 p-2.5 rounded-lg border border-slate-800 min-h-[38px]"></p>
+          </div>
+        </div>
+
+        <!-- Recipient details -->
+        <div class="space-y-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 border-b border-slate-800 pb-2 uppercase tracking-wider">Penerima Uang</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="rcpt-by" class="text-xs font-semibold text-slate-400">Nama Penerima</label>
+              <input type="text" id="rcpt-by" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="Ahmad Rivaldi" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="rcpt-by-pos" class="text-xs font-semibold text-slate-400">Jabatan / Instansi</label>
+              <input type="text" id="rcpt-by-pos" class="w-full bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" placeholder="CEO, LUMOVELO Agency" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Profil Perusahaan Penerima -->
+        <div class="space-y-4 bg-slate-900/50 border border-slate-800 rounded-2xl p-4">
+          <h3 class="text-sm font-mono font-bold text-slate-400 pb-2 uppercase tracking-wider border-b border-slate-800">Profil Perusahaan Penerima</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label for="comp-name" class="text-xs font-semibold text-slate-400">Nama Perusahaan</label>
+              <input type="text" id="comp-name" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="LUMOVELO" />
+            </div>
+            <div class="space-y-1.5">
+              <label for="comp-services" class="text-xs font-semibold text-slate-400">Tagline / Layanan</label>
+              <input type="text" id="comp-services" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="Kecerdasan Buatan & Web Performa Tinggi" />
+            </div>
+          </div>
+          <div class="space-y-1.5">
+            <label for="comp-address" class="text-xs font-semibold text-slate-400">Alamat Perusahaan</label>
+            <input type="text" id="comp-address" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none transition-colors" value="Jl. Dipati Ukur No. 102, Coblong, Bandung" />
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button type="button" id="btn-download-pdf" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Cetak / Simpan PDF
+          </button>
+          <button type="button" id="btn-download-word" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-slate-700 bg-slate-800 hover:bg-slate-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Unduh Word (.doc)
+          </button>
+        </div>
+      </aside>
+
+      <!-- Right Panel: Live Document Preview (Receipt representation) -->
+      <section id="preview-panel" class="flex-1 bg-slate-900/20 overflow-y-auto p-4 md:p-8 flex justify-center items-start hidden lg:flex">
+        <!-- Paper receipt card -->
+        <div id="paper-preview" class="w-full max-w-[210mm] bg-white text-black p-10 md:p-12 shadow-2xl rounded border border-slate-200 flex flex-col font-serif relative overflow-hidden" style="background-color: #faf9f6;">
+          
+          <!-- Security grid overlay (Subtle receipt frame) -->
+          <div class="absolute inset-4 border-2 border-double border-slate-700 pointer-events-none p-2 rounded">
+            <div class="w-full h-full border border-dashed border-slate-400"></div>
+          </div>
+
+          <!-- Content Wrapper -->
+          <div class="relative z-10 p-4 space-y-6">
+            <!-- Receipt Header -->
+            <div class="flex justify-between items-start border-b-2 border-slate-800 pb-4" id="p-header-block">
+              <div class="space-y-1">
+                <h1 class="text-xl font-bold font-sans uppercase tracking-widest text-slate-800 flex items-center gap-1.5">
+                  <Logo class="w-5 h-5 text-blue-600 inline" />
+                  <span id="p-comp-name">LUMOVELO</span>
+                </h1>
+                <p class="text-[9px] font-sans text-slate-500 uppercase tracking-widest leading-normal">
+                  <span id="p-comp-services">Kecerdasan Buatan & Web Performa Tinggi</span><br>
+                  <span id="p-comp-address">Jl. Dipati Ukur No. 102, Coblong, Bandung</span>
+                </p>
+              </div>
+              <div class="text-right">
+                <h2 class="text-xl font-black font-sans uppercase tracking-wider text-slate-900">KUITANSI</h2>
+                <p class="text-xs font-mono font-bold text-slate-700">No. <span id="p-rcpt-number" class="underline">KUI-2026-0012</span></p>
+              </div>
+            </div>
+
+            <!-- Receipt Core Grid -->
+            <div class="space-y-4 text-xs font-serif leading-relaxed">
+              <!-- Telah diterima dari -->
+              <div class="flex items-start">
+                <span class="w-[180px] font-sans font-bold text-slate-600 uppercase text-[10px] tracking-wider pt-1">Telah Diterima Dari</span>
+                <span class="w-[15px] pt-1">:</span>
+                <div class="flex-1 border-b border-dotted border-slate-400 font-bold text-sm tracking-wide py-0.5" id="p-rcpt-from">PT. Solusi Digital Abadi</div>
+              </div>
+
+              <!-- Uang sejumlah (Terbilang) -->
+              <div class="flex items-start">
+                <span class="w-[180px] font-sans font-bold text-slate-600 uppercase text-[10px] tracking-wider pt-1">Uang Sejumlah</span>
+                <span class="w-[15px] pt-1">:</span>
+                <div class="flex-1 bg-slate-200/50 border border-slate-300 p-2 text-xs italic font-bold tracking-wide rounded-md text-slate-800" id="p-rcpt-spelled" style="background-color: #f1f0ea;">
+                  Lima Belas Juta Rupiah
+                </div>
+              </div>
+
+              <!-- Untuk pembayaran -->
+              <div class="flex items-start">
+                <span class="w-[180px] font-sans font-bold text-slate-600 uppercase text-[10px] tracking-wider pt-1">Untuk Pembayaran</span>
+                <span class="w-[15px] pt-1">:</span>
+                <div class="flex-1 border-b border-dotted border-slate-400 py-0.5" id="p-rcpt-for">Pembayaran Down Payment (DP) 30% pembuatan Web Headless & Otomatisasi AI</div>
+              </div>
+            </div>
+
+            <!-- Itemized list table (Will only show if items are populated) -->
+            <div id="preview-table-container" class="mt-4">
+              <table class="w-full text-xs font-serif border border-slate-400 border-collapse">
+                <thead>
+                  <tr class="bg-slate-100 font-sans font-bold uppercase tracking-wider text-[9px] text-slate-700" style="background-color: #ebeae4;">
+                    <th class="border border-slate-400 p-2 text-left w-[5%]">No</th>
+                    <th class="border border-slate-400 p-2 text-left">Deskripsi Layanan / Barang</th>
+                    <th class="border border-slate-400 p-2 text-center w-[12%]">Qty</th>
+                    <th class="border border-slate-400 p-2 text-right w-[20%]">Harga Satuan</th>
+                    <th class="border border-slate-400 p-2 text-right w-[20%]">Total</th>
+                  </tr>
+                </thead>
+                <tbody id="preview-items-body">
+                  <!-- Dynamic rows go here -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Receipt Footer Details -->
+            <div class="mt-8 flex justify-between items-end" id="p-footer-block">
+              <!-- Left side: Cash box -->
+              <div class="flex items-center">
+                <div class="bg-slate-800 text-white font-sans font-black text-lg px-6 py-3 border-2 border-slate-900 tracking-wider shadow-[3px_3px_0px_rgba(0,0,0,0.15)] flex items-center gap-1.5" style="background-color: #1e293b;" id="p-amount-box">
+                  <span class="text-xs font-normal">Rp</span>
+                  <span id="p-amount">15.000.000,-</span>
+                </div>
+              </div>
+
+              <!-- Right side: Signature block -->
+              <div class="w-[200px] text-center space-y-1 flex flex-col justify-between min-h-[120px]">
+                <p class="text-[10px] font-sans text-slate-500 uppercase tracking-widest">
+                  <span id="p-rcpt-city-raw">Bandung</span>, <span id="p-rcpt-date-raw">27 Juni 2026</span>
+                </p>
+                <div>
+                  <p class="font-bold text-blue-800 font-sans tracking-wide text-[10px] opacity-70 select-none italic" style="font-family: 'Times New Roman', serif;">( Lunas Terbayar )</p>
+                </div>
+                <div>
+                  <p class="font-bold underline uppercase text-xs" id="p-rcpt-by-name">Ahmad Rivaldi</p>
+                  <p class="text-[9px] font-sans text-slate-500 uppercase tracking-wider" id="p-rcpt-by-pos-raw">CEO, LUMOVELO Agency</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Print Isolation CSS Styling -->
+  <style is:global>
+    @media print {
+      /* Hide workspace elements */
+      .no-print, header, aside, .lg\:hidden {
+        display: none !important;
+      }
+      
+      body, html {
+        background-color: white !important;
+        color: black !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+      }
+
+      #preview-panel {
+        display: block !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+
+      #paper-preview {
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        background: #ffffff !important;
+        font-size: 11pt !important;
+        position: relative !important;
+        color: black !important;
+      }
+
+      /* Adjust print container margins */
+      @page {
+        size: A4 landscape;
+        margin: 15mm;
+      }
+    }
+  </style>
+
+  <!-- Client-side Receipt Script -->
+  <script is:inline>
+    // Templates Presets Data
+    const PRESETS = {
+      dp: {
+        number: "KUI-2026-0043",
+        from: "PT. Solusi Digital Abadi",
+        for: "Pembayaran Down Payment (DP) 30% perancangan website headless & integrasi agen AI asisten",
+        city: "Bandung",
+        date: "27 Juni 2026",
+        by: "Ahmad Rivaldi",
+        byPos: "CEO, LUMOVELO Agency",
+        deposit: 14000000,
+        items: [
+          { name: "Pekerjaan Desain UI/UX & Pembuatan Prototype Figma", qty: 1, price: 15000000 },
+          { name: "Setup Server Headless & Pembelian Kredensial Domain", qty: 1, price: 5000000 }
+        ]
+      },
+      lunas: {
+        number: "KUI-2026-0089",
+        from: "PT. Solusi Digital Abadi",
+        for: "Pelunasan sisa tagihan 70% pekerjaan rekayasa web, optimasi SEO, dan integrasi WhatsApp",
+        city: "Bandung",
+        date: "28 Juni 2026",
+        by: "Ahmad Rivaldi",
+        byPos: "CEO, LUMOVELO Agency",
+        deposit: 6000000,
+        items: [
+          { name: "Pekerjaan Desain UI/UX & Pembuatan Prototype Figma", qty: 1, price: 15000000 },
+          { name: "Setup Server Headless & Pembelian Kredensial Domain", qty: 1, price: 5000000 }
+        ]
+      },
+      maintenance: {
+        number: "KUI-2026-0102",
+        from: "CV. Herbal Prima Utama",
+        for: "Biaya langganan bulanan maintenance website, audit performa, & server management periode Juni 2026",
+        city: "Bandung",
+        date: "27 Juni 2026",
+        by: "Ahmad Rivaldi",
+        byPos: "CEO, LUMOVELO Agency",
+        deposit: 0,
+        items: [
+          { name: "Biaya Maintenance Website & Server Hosting", qty: 1, price: 1500000 },
+          { name: "Pemeliharaan & Update API Otomasi WhatsApp", qty: 1, price: 1000000 }
+        ]
+      }
+    };
+
+    // State Variables
+    let activeItems = [];
+
+    // DOM Elements
+    const elNumber = document.getElementById('rcpt-number');
+    const elFrom = document.getElementById('rcpt-from');
+    const elFor = document.getElementById('rcpt-for');
+    const elCity = document.getElementById('rcpt-city');
+    const elDate = document.getElementById('rcpt-date');
+    const elAmount = document.getElementById('rcpt-amount');
+    const elSpelledText = document.getElementById('spelled-out-text');
+    const elBy = document.getElementById('rcpt-by');
+    const elByPos = document.getElementById('rcpt-by-pos');
+    const elDeposit = document.getElementById('rcpt-deposit');
+    const elItemsContainer = document.getElementById('items-editor-container');
+
+    // Company Profile Inputs
+    const compNameInput = document.getElementById('comp-name');
+    const compServicesInput = document.getElementById('comp-services');
+    const compAddressInput = document.getElementById('comp-address');
+
+    // Preview DOM Elements
+    const pRcptNumber = document.getElementById('p-rcpt-number');
+    const pRcptFrom = document.getElementById('p-rcpt-from');
+    const pRcptSpelled = document.getElementById('p-rcpt-spelled');
+    const pRcptFor = document.getElementById('p-rcpt-for');
+    const pAmount = document.getElementById('p-amount');
+    const pRcptCityRaw = document.getElementById('p-rcpt-city-raw');
+    const pRcptDateRaw = document.getElementById('p-rcpt-date-raw');
+    const pRcptByName = document.getElementById('p-rcpt-by-name');
+    const pRcptByPosRaw = document.getElementById('p-rcpt-by-pos-raw');
+    const pPreviewItemsBody = document.getElementById('preview-items-body');
+
+    // Company Profile Preview
+    const pCompName = document.getElementById('p-comp-name');
+    const pCompServices = document.getElementById('p-comp-services');
+    const pCompAddress = document.getElementById('p-comp-address');
+
+    // Load Preset Function
+    function loadPreset(key) {
+      const data = PRESETS[key];
+      if (!data) return;
+
+      elNumber.value = data.number;
+      elFrom.value = data.from;
+      elFor.value = data.for;
+      elCity.value = data.city;
+      elDate.value = data.date;
+      elBy.value = data.by;
+      elByPos.value = data.byPos;
+      elDeposit.value = (data.deposit !== undefined ? data.deposit : 0).toString();
+
+      activeItems = JSON.parse(JSON.stringify(data.items));
+      renderItemsEditor();
+      calculateTotals();
+
+      // Style Preset buttons
+      ['preset-dp', 'preset-lunas', 'preset-maintenance'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (id === `preset-${key}`) {
+          btn.classList.add('bg-blue-600/20', 'border-blue-500/60', 'text-white');
+          btn.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-300');
+        } else {
+          btn.classList.remove('bg-blue-600/20', 'border-blue-500/60', 'text-white');
+          btn.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-300');
+        }
+      });
+    }
+
+    // Indonesian 'Terbilang' Conversion Algorithm
+    function numberToWords(nilai) {
+      const bilangan = [
+        "", "Satu", "Dua", "Tiga", "Empat", "Lima",
+        "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"
+      ];
+      let temp = "";
+      const n = Math.floor(Math.abs(nilai));
+      
+      if (n === 0) {
+        return "Nol";
+      }
+
+      if (n < 12) {
+        temp = " " + bilangan[n];
+      } else if (n < 20) {
+        temp = numberToWords(n - 10) + " Belas";
+      } else if (n < 100) {
+        temp = numberToWords(n / 10) + " Puluh" + numberToWords(n % 10);
+      } else if (n < 200) {
+        temp = " Seratus" + numberToWords(n - 100);
+      } else if (n < 1000) {
+        temp = numberToWords(n / 100) + " Ratus" + numberToWords(n % 100);
+      } else if (n < 2000) {
+        temp = " Seribu" + numberToWords(n - 1000);
+      } else if (n < 1000000) {
+        temp = numberToWords(n / 1000) + " Ribu" + numberToWords(n % 1000);
+      } else if (n < 1000000000) {
+        temp = numberToWords(n / 1000000) + " Juta" + numberToWords(n % 1000000);
+      } else if (n < 1000000000000) {
+        temp = numberToWords(n / 1000000000) + " Milyar" + numberToWords(n % 1000000000);
+      } else if (n < 1000000000000000) {
+        temp = numberToWords(n / 1000000000000) + " Trilyun" + numberToWords(n % 1000000000000);
+      }
+      
+      let text = temp.replace(/\s+/g, " ");
+      if (nilai < 0) {
+        text = "Minus " + text;
+      }
+      return text;
+    }
+
+    function getTerbilangRupiah(num) {
+      const parsed = parseFloat(num);
+      if (isNaN(parsed)) return "";
+      const text = numberToWords(parsed).trim();
+      return text ? text + " Rupiah" : "";
+    }
+
+    // Format currency display (e.g. 15000000 -> 15.000.000)
+    function formatRupiah(num) {
+      const parsed = parseFloat(num);
+      if (isNaN(parsed)) return "0";
+      return parsed.toLocaleString('id-ID');
+    }
+
+    // Calculate totals based on itemized list
+    function calculateTotals() {
+      let subtotal = 0;
+      activeItems.forEach(item => {
+        const qty = parseFloat(item.qty) || 0;
+        const price = parseFloat(item.price) || 0;
+        subtotal += qty * price;
+      });
+
+      const deposit = parseFloat(elDeposit.value) || 0;
+      const netTotal = subtotal - deposit;
+
+      elAmount.value = netTotal;
+      const terbilangText = getTerbilangRupiah(netTotal);
+      elSpelledText.textContent = terbilangText;
+
+      // Sync to preview
+      pAmount.textContent = formatRupiah(netTotal) + ',-';
+      pRcptSpelled.textContent = terbilangText;
+
+      updatePreviewTextOnly();
+      renderPreviewItemsTable();
+    }
+
+    // Sync input fields that are text-only
+    function updatePreviewTextOnly() {
+      pRcptNumber.textContent = elNumber.value || '...';
+      pRcptFrom.textContent = elFrom.value || '...';
+      pRcptFor.textContent = elFor.value || '...';
+      pRcptCityRaw.textContent = elCity.value || '...';
+      pRcptDateRaw.textContent = elDate.value || '...';
+      pRcptByName.textContent = elBy.value || '...';
+      pRcptByPosRaw.textContent = elByPos.value || '...';
+
+      // Update Company Profile Preview
+      if (pCompName) pCompName.textContent = compNameInput.value || '...';
+      if (pCompServices) pCompServices.textContent = compServicesInput.value || '...';
+      if (pCompAddress) pCompAddress.textContent = compAddressInput.value || '...';
+    }
+
+    // Render items in Left Editor Panel
+    function renderItemsEditor() {
+      elItemsContainer.innerHTML = '';
+      activeItems.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'bg-slate-900 border border-slate-800 rounded-lg p-3 space-y-2 relative';
+        div.innerHTML = `
+          <button type="button" class="absolute top-2 right-2 text-rose-500 hover:text-rose-400 p-1 cursor-pointer" onclick="deleteItem(${idx})">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+          </button>
+          <div class="space-y-1">
+            <label class="text-[9px] font-mono font-bold text-slate-500 uppercase">Item ${idx + 1} - Deskripsi</label>
+            <input type="text" value="${item.name}" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded px-2.5 py-1 text-xs text-white focus:outline-none" oninput="updateItemField(${idx}, 'name', this.value)" />
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="space-y-1">
+              <label class="text-[9px] font-mono font-bold text-slate-500 uppercase">Qty</label>
+              <input type="number" value="${item.qty}" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded px-2.5 py-1 text-xs text-white focus:outline-none" oninput="updateItemField(${idx}, 'qty', this.value)" />
+            </div>
+            <div class="space-y-1">
+              <label class="text-[9px] font-mono font-bold text-slate-500 uppercase">Harga Unit (Rp)</label>
+              <input type="number" value="${item.price}" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded px-2.5 py-1 text-xs text-white focus:outline-none" oninput="updateItemField(${idx}, 'price', this.value)" />
+            </div>
+          </div>
+        `;
+        elItemsContainer.appendChild(div);
+      });
+    }
+
+    // Update dynamic fields
+    window.updateItemField = function(idx, field, value) {
+      activeItems[idx][field] = value;
+      calculateTotals();
+    };
+
+    // Delete item row
+    window.deleteItem = function(idx) {
+      activeItems.splice(idx, 1);
+      renderItemsEditor();
+      calculateTotals();
+    };
+
+    // Add item row
+    document.getElementById('btn-add-item').addEventListener('click', () => {
+      activeItems.push({
+        name: 'Layanan baru',
+        qty: 1,
+        price: 0
+      });
+      renderItemsEditor();
+      calculateTotals();
+    });
+
+    // Render Items inside A4 Preview Table
+    function renderPreviewItemsTable() {
+      pPreviewItemsBody.innerHTML = '';
+      if (activeItems.length === 0) {
+        pPreviewItemsBody.innerHTML = `
+          <tr>
+            <td colspan="5" class="border border-slate-400 p-3 text-center italic text-slate-400">Belum ada item tagihan rincian.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      activeItems.forEach((item, idx) => {
+        const qty = parseFloat(item.qty) || 0;
+        const price = parseFloat(item.price) || 0;
+        const total = qty * price;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="border border-slate-400 p-2 text-left">${idx + 1}</td>
+          <td class="border border-slate-400 p-2 text-left">${item.name}</td>
+          <td class="border border-slate-400 p-2 text-center">${qty}</td>
+          <td class="border border-slate-400 p-2 text-right">Rp ${formatRupiah(price)}</td>
+          <td class="border border-slate-400 p-2 text-right">Rp ${formatRupiah(total)}</td>
+        `;
+        pPreviewItemsBody.appendChild(tr);
+      });
+
+      const subtotal = activeItems.reduce((acc, current) => acc + (parseFloat(current.qty) || 0) * (parseFloat(current.price) || 0), 0);
+      const deposit = parseFloat(elDeposit.value) || 0;
+      const netTotal = subtotal - deposit;
+
+      if (deposit > 0) {
+        // Subtotal row
+        const subtotalTr = document.createElement('tr');
+        subtotalTr.className = 'bg-slate-50';
+        subtotalTr.style.backgroundColor = '#fbfaf8';
+        subtotalTr.innerHTML = `
+          <td colspan="4" class="border border-slate-400 p-2 text-right font-sans uppercase tracking-wider text-[9px] text-slate-700">Subtotal</td>
+          <td class="border border-slate-400 p-2 text-right">Rp ${formatRupiah(subtotal)}</td>
+        `;
+        pPreviewItemsBody.appendChild(subtotalTr);
+
+        // Deposit row
+        const depositTr = document.createElement('tr');
+        depositTr.className = 'bg-slate-50 text-slate-600';
+        depositTr.style.backgroundColor = '#fbfaf8';
+        depositTr.innerHTML = `
+          <td colspan="4" class="border border-slate-400 p-2 text-right font-sans uppercase tracking-wider text-[9px] text-slate-700">Sudah Dibayar (DP) / Potongan</td>
+          <td class="border border-slate-400 p-2 text-right">- Rp ${formatRupiah(deposit)}</td>
+        `;
+        pPreviewItemsBody.appendChild(depositTr);
+      }
+
+      // Add Subtotal row at the bottom of the preview table
+      const totalTr = document.createElement('tr');
+      totalTr.className = 'font-bold bg-slate-50';
+      totalTr.style.backgroundColor = '#fbfaf8';
+      totalTr.innerHTML = `
+        <td colspan="4" class="border border-slate-400 p-2 text-right font-sans uppercase tracking-wider text-[9px] text-slate-700">${deposit > 0 ? 'Total Pembayaran (Sisa)' : 'Total Pembayaran'}</td>
+        <td class="border border-slate-400 p-2 text-right">Rp ${formatRupiah(netTotal)}</td>
+      `;
+      pPreviewItemsBody.appendChild(totalTr);
+    }
+
+    // Set up Input Event Listeners
+    const inputs = [
+      elNumber, elFrom, elFor, elCity, elDate, elBy, elByPos, compNameInput, compServicesInput, compAddressInput
+    ];
+    inputs.forEach(input => {
+      input.addEventListener('input', updatePreviewTextOnly);
+    });
+
+    elDeposit.addEventListener('input', calculateTotals);
+
+    // Preset Buttons Click handlers
+    document.getElementById('preset-dp').addEventListener('click', () => loadPreset('dp'));
+    document.getElementById('preset-lunas').addEventListener('click', () => loadPreset('lunas'));
+    document.getElementById('preset-maintenance').addEventListener('click', () => loadPreset('maintenance'));
+
+    // Print PDF Button
+    document.getElementById('btn-download-pdf').addEventListener('click', () => {
+      window.print();
+    });
+
+    // Download Word Document Button
+    document.getElementById('btn-download-word').addEventListener('click', () => {
+      const content = document.getElementById('paper-preview').innerHTML;
+      const fromClean = (elFrom.value || 'Kuitansi').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+      const filename = `Kuitansi_${fromClean}.doc`;
+
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = content;
+
+      // 1. Convert Header flex layout to table
+      const headerBlock = tempDiv.querySelector('#p-header-block');
+      if (headerBlock) {
+        const leftCol = headerBlock.children[0]?.innerHTML || '';
+        const rightCol = headerBlock.children[1]?.innerHTML || '';
+        headerBlock.outerHTML = `
+          <table style="width: 100%; border-bottom: 2px solid #000000; margin-bottom: 15px; border-collapse: collapse;">
+            <tr style="border: none !important;">
+              <td style="width: 50%; border: none !important; text-align: left; vertical-align: top;">${leftCol}</td>
+              <td style="width: 50%; border: none !important; text-align: right; vertical-align: top;">${rightCol}</td>
+            </tr>
+          </table>
+        `;
+      }
+
+      // 2. Convert Footer flex layout to table (Cash Box & Signature)
+      const footerBlock = tempDiv.querySelector('#p-footer-block');
+      if (footerBlock) {
+        const leftCol = footerBlock.children[0]?.innerHTML || '';
+        const rightCol = footerBlock.children[1]?.innerHTML || '';
+        footerBlock.outerHTML = `
+          <table style="width: 100%; margin-top: 25px; border-collapse: collapse;">
+            <tr style="border: none !important;">
+              <td style="width: 50%; border: none !important; vertical-align: bottom; text-align: left;">${leftCol}</td>
+              <td style="width: 50%; border: none !important; vertical-align: bottom; text-align: center;">${rightCol}</td>
+            </tr>
+          </table>
+        `;
+      }
+
+      const finalHtmlContent = tempDiv.innerHTML;
+      
+      const wordHtmlHeader = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+      <head><title>Kuitansi Pembayaran</title>
+      <!--[if gte mso 9]>
+      <xml>
+        <w:WordDocument>
+          <w:View>Print</w:View>
+          <w:Zoom>100</w:Zoom>
+          <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+      </xml>
+      <![endif]-->
+      <style>
+        @page Section1 { size: 841.7pt 595.45pt; margin: 0.8in 0.8in 0.8in 0.8in; mso-header-margin:.5in; mso-footer-margin:.5in; }
+        div.Section1 { page: Section1; }
+        body { font-family: 'Times New Roman', serif; font-size: 10.5pt; line-height: 1.4; color: #000000; }
+        h1, h2, h3, h4 { font-family: 'Times New Roman', serif; margin: 0; padding: 0; }
+        h1 { font-size: 15pt; font-weight: bold; text-transform: uppercase; color: #1e293b; }
+        h2 { font-size: 15pt; font-weight: bold; text-transform: uppercase; text-align: right; }
+        p { margin-bottom: 4pt; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px; }
+        td { padding: 4px; vertical-align: top; }
+        th { padding: 6px; font-weight: bold; border: 1px solid #475569; }
+        .border-slate-400 { border: 1px solid #94a3b8; }
+        .underline { text-decoration: underline; }
+        .uppercase { text-transform: uppercase; }
+        .font-sans { font-family: 'Arial', sans-serif; }
+        .font-bold { font-weight: bold; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        .flex { display: table; width: 100%; }
+        .justify-between { width: 100%; }
+        .w-full { width: 100%; }
+        .p-2 { padding: 6px; }
+        .bg-slate-800 { background-color: #1e293b; color: #ffffff; }
+        .border-2 { border: 2px solid #000000; }
+      </style>
+      </head>
+      <body>
+      <div class="Section1">
+        ${finalHtmlContent}
+      </div>
+      </body>
+      </html>`;
+
+      const blob = new Blob(['\ufeff' + wordHtmlHeader], { type: 'application/msword' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Mobile View Tab Switching
+    const tabEditor = document.getElementById('tab-editor');
+    const tabPreview = document.getElementById('tab-preview');
+    const editorPanel = document.getElementById('editor-panel');
+    const previewPanel = document.getElementById('preview-panel');
+
+    tabEditor.addEventListener('click', () => {
+      tabEditor.classList.add('border-blue-500', 'text-white');
+      tabEditor.classList.remove('border-transparent', 'text-slate-400');
+      tabPreview.classList.add('border-transparent', 'text-slate-400');
+      tabPreview.classList.remove('border-blue-500', 'text-white');
+      
+      editorPanel.classList.remove('hidden');
+      editorPanel.classList.add('block');
+      previewPanel.classList.add('hidden');
+      previewPanel.classList.remove('flex');
+    });
+
+    tabPreview.addEventListener('click', () => {
+      tabPreview.classList.add('border-blue-500', 'text-white');
+      tabPreview.classList.remove('border-transparent', 'text-slate-400');
+      tabEditor.classList.add('border-transparent', 'text-slate-400');
+      tabEditor.classList.remove('border-blue-500', 'text-white');
+      
+      previewPanel.classList.remove('hidden');
+      previewPanel.classList.add('flex');
+      editorPanel.classList.add('hidden');
+      editorPanel.classList.remove('block');
+    });
+
+    // Initialization
+    loadPreset('dp');
+
+    // Document Selector Dropdown Toggle
+    const docBtn = document.getElementById('doc-selector-btn');
+    const docMenu = document.getElementById('doc-selector-menu');
+    if (docBtn && docMenu) {
+      docBtn.onclick = (e) => {
+        e.stopPropagation();
+        docMenu.classList.toggle('hidden');
+      };
+      document.addEventListener('click', () => {
+        docMenu.classList.add('hidden');
+      });
+    }
+  </script>
+</Layout>

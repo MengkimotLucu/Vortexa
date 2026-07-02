@@ -5,21 +5,26 @@ import CursorGlow from '../components/CursorGlow.astro';
 interface Props {
   title?: string;
   description?: string;
+  lang?: string;
 }
 
 const { 
-  title = "LUMOVELO | Jasa AI, Web Performa Tinggi & SEO Bandung", 
-  description = "Agensi growth & software development terdepan di Bandung. Kami merekayasa solusi kecerdasan buatan (AI), aplikasi web headless super ngebut, dan advanced SEO untuk mendominasi pasar nasional hingga global."
+  title = "LUMOVELO | Jasa Pembuatan Website Performa Tinggi, SEO & Integrasi AI Bandung", 
+  description = "Agensi growth & software development terdepan di Bandung & Jakarta. Kami merekayasa solusi integrasi AI, otomatisasi bisnis, website headless performa tinggi, dan optimasi SEO organik untuk mendominasi pasar nasional hingga global.",
+  lang = "id"
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="id" class="light">
+<html lang={lang} class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link class="astro-icon-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={Astro.url.href} />
+    <link rel="alternate" hreflang="id" href="https://lumovelo.agency/" />
+    <link rel="alternate" hreflang="x-default" href="https://lumovelo.agency/" />
     
     <!-- Google Tag Manager -->
     <script is:inline>
