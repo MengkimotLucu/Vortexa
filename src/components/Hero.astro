@@ -11,7 +11,6 @@ const content = {
       home: "Home",
       about: "Tentang Kami",
       services: "Layanan",
-      portfolio: "Portofolio",
       careers: "Karir",
       contact: "Hubungi Kami",
       discussion: "Mulai Diskusi",
@@ -25,14 +24,13 @@ const content = {
       part4: "Digital Nyata"
     },
     desc: "Kami merancang produk digital berkinerja tinggi, otomatisasi AI cerdas, dan strategi SEO mutakhir yang mendorong pertumbuhan bisnis Anda secara nyata.",
-    cta: "Eksplorasi Karya Kami"
+    cta: "Lihat Layanan Kami"
   },
   en: {
     nav: {
       home: "Home",
       about: "About Us",
       services: "Services",
-      portfolio: "Portfolio",
       careers: "Careers",
       contact: "Contact Us",
       discussion: "Start Discussion",
@@ -46,7 +44,7 @@ const content = {
       part4: "Digital Growth"
     },
     desc: "We design high-performance digital products, smart AI automation, and cutting-edge SEO strategies that drive tangible growth for your business.",
-    cta: "Explore Our Work"
+    cta: "Explore Our Services"
   }
 }[lang];
 
@@ -86,10 +84,6 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
       </a>
       <a href={servicesLink} class="relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-600 hover:text-blue-600 transition-colors group">
         {content.nav.services}
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
-      </a>
-      <a href={portfolioLink} class="relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-600 hover:text-blue-600 transition-colors group">
-        {content.nav.portfolio}
         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
       </a>
       <a href={careersLink} class="relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-600 hover:text-blue-600 transition-colors group">
@@ -168,7 +162,6 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
         <a href={homeLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.home}</a>
         <a href={aboutLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.about}</a>
         <a href={servicesLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.services}</a>
-        <a href={portfolioLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.portfolio}</a>
         <a href={careersLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.careers}</a>
         <a href={contactLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.contact}</a>
       </nav>
@@ -230,7 +223,7 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
         <!-- CTA buttons -->
         <div class="flex flex-wrap items-center gap-4 pt-2">
           <a 
-            href={portfolioLink} 
+            href={servicesLink} 
             class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-slate-950 hover:bg-slate-900 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:shadow-[0_10px_20px_rgba(15,23,42,0.15)] hover:-translate-y-0.5 gap-2 cursor-pointer"
           >
             {content.cta}

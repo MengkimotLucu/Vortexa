@@ -1,0 +1,183 @@
+---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ Standar & Garansi Performa",
+    title1: "Teknologi Modern.",
+    title2: "Garansi Nyata.",
+    desc: "Kami menolak membuat website lambat dan mahal. Setiap produk digital LUMOVELO dibangun di atas standar industri tertinggi.",
+    cta: "Mulai Konsultasi Proyek ➔",
+    cards: [
+      {
+        title: "Kecepatan Sub-Detik",
+        tag: "95+ Score Guarantee",
+        desc: "Setiap milidetik keterlambatan memotong konversi sebesar 7%. Kami menjamin skor Google PageSpeed Insights di atas 95. Super cepat dan anti-lemot.",
+        tech: "Astro • Static Edge Rendering",
+        icon: "lightning"
+      },
+      {
+        title: "Tanpa Biaya Maintenance",
+        tag: "Zero Hosting Fees",
+        desc: "Berkat arsitektur serverless headless, website Anda berjalan di jaringan CDN global secara gratis untuk trafik normal. Ucapkan selamat tinggal pada biaya bulanan yang mahal.",
+        tech: "Cloudflare Edge • Vercel Network",
+        icon: "cloud"
+      },
+      {
+        title: "Keamanan Level Tinggi",
+        tag: "100% Hack-Proof",
+        desc: "Dengan menghilangkan database tradisional di server website, tidak ada celah bagi SQL Injection atau kebocoran data. Data aman, pikiran tenang.",
+        tech: "Headless Web • Jamstack Architecture",
+        icon: "shield"
+      },
+      {
+        title: "Otomatisasi Prospek WhatsApp",
+        tag: "Direct WhatsApp Routing",
+        desc: "Seluruh formulir kontak dan simulasi harga terhubung langsung ke sistem obrolan WhatsApp bisnis Anda. Prospek tersimpan instan tanpa software CRM berbayar.",
+        tech: "Direct WhatsApp Integration",
+        icon: "chat"
+      }
+    ]
+  },
+  en: {
+    sectionHeader: "/ Standards & Performance Guarantees",
+    title1: "Modern Technology.",
+    title2: "Tangible Guarantees.",
+    desc: "We refuse to build slow and expensive websites. Every LUMOVELO digital product is built on the highest industry standards.",
+    cta: "Start Project Consultation ➔",
+    cards: [
+      {
+        title: "Sub-Second Performance",
+        tag: "95+ Score Guarantee",
+        desc: "Every millisecond of delay cuts conversions by 7%. We guarantee a Google PageSpeed Insights score above 95. Blazing fast and responsive.",
+        tech: "Astro • Static Edge Rendering",
+        icon: "lightning"
+      },
+      {
+        title: "Zero Maintenance Costs",
+        tag: "Zero Hosting Fees",
+        desc: "Thanks to headless serverless architecture, your website runs on a global CDN network for free under normal traffic. Say goodbye to expensive hosting bills.",
+        tech: "Cloudflare Edge • Vercel Network",
+        icon: "cloud"
+      },
+      {
+        title: "High-Level Security",
+        tag: "100% Hack-Proof",
+        desc: "By eliminating traditional databases from the web server, there are no avenues for SQL Injections or data leaks. Hack-proof by default.",
+        tech: "Headless Web • Jamstack Architecture",
+        icon: "shield"
+      },
+      {
+        title: "Automated WhatsApp Leads",
+        tag: "Direct WhatsApp Routing",
+        desc: "All contact forms and pricing calculators route directly to your business WhatsApp chat. Store leads instantly without paying for complex CRM software.",
+        tech: "Direct WhatsApp Integration",
+        icon: "chat"
+      }
+    ]
+  }
+}[lang];
+---
+<section id="komitmen-performa" class="py-24 bg-slate-50 relative overflow-hidden border-t-2 border-slate-200">
+  <!-- Grid backdrop -->
+  <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.02)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
+
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16 text-left">
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">{content.sectionHeader}</h2>
+      <h3 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight leading-[1.0] uppercase">
+        {content.title1}<br/>
+        <span class="text-stroke-neon">{content.title2}</span>
+      </h3>
+      <p class="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl font-sans">
+        {content.desc}
+      </p>
+    </div>
+
+    <!-- Guarantees Grid (2x2) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
+      {content.cards.map((card) => (
+        <div class="group relative flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden hover:shadow-[8px_8px_0px_#2563eb] transition-all duration-300">
+          <!-- OS Window Header Style -->
+          <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-teal-500"></span>
+            </div>
+            <span class="text-[9px] font-mono text-slate-500 tracking-wider font-bold">~/lumovelo/commitments/{card.icon}.sh</span>
+            <div class="w-10"></div>
+          </div>
+
+          <!-- Body -->
+          <div class="p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <!-- Abstract SVG Graphics for each guarantee -->
+              <div class="h-32 bg-slate-950 border-2 border-blue-600 rounded-xl mb-6 relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#2563eb_1px,transparent_1px)] bg-[size:10px_10px]"></div>
+                
+                {card.icon === 'lightning' && (
+                  <svg class="w-12 h-12 text-teal-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                )}
+
+                {card.icon === 'cloud' && (
+                  <svg class="w-12 h-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                  </svg>
+                )}
+
+                {card.icon === 'shield' && (
+                  <svg class="w-12 h-12 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                )}
+
+                {card.icon === 'chat' && (
+                  <svg class="w-12 h-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                )}
+
+                <div class="absolute bottom-2 right-3 font-mono text-[8px] text-slate-500 font-bold uppercase tracking-widest">
+                  [ System Active ]
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between mb-3">
+                <h4 class="font-display font-black text-lg text-slate-900 uppercase">{card.title}</h4>
+                <span class="px-2 py-0.5 text-[8px] font-mono font-bold uppercase tracking-wider text-blue-600 bg-blue-50 border border-blue-200 rounded">
+                  {card.tag}
+                </span>
+              </div>
+              
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold font-sans">
+                {card.desc}
+              </p>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-slate-100 pt-6">
+              <div class="flex items-center gap-1.5 text-[9px] font-mono text-slate-400 uppercase font-bold">
+                <span>{card.tech}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Action CTA -->
+    <div class="text-center">
+      <a 
+        href="#konsultasi" 
+        class="inline-flex items-center justify-center px-10 py-5 rounded-2xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] hover:shadow-[0_0_20px_rgba(37,99,235,0.3)] active:translate-y-0.5 cursor-pointer"
+      >
+        {content.cta}
+      </a>
+    </div>
+
+  </div>
+</section>
