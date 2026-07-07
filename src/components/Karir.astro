@@ -15,14 +15,12 @@ const content = {
     formDesc: "Isi formulir lamaran cepat di bawah untuk langsung terhubung dengan HR LUMOVELO.",
     fieldName: "Nama Lengkap",
     phName: "Ketik nama lengkap Anda...",
-    fieldPhone: "Nomor WhatsApp",
-    phPhone: "Contoh: 081234567890...",
     fieldPosition: "Posisi yang Dilamar",
     phPosition: "Pilih salah satu posisi...",
-    fieldPortfolio: "Link Portofolio & CV",
+    fieldCvLinkedin: "Link CV & LinkedIn",
+    phCvLinkedin: "https://linkedin.com/in/username dan link CV Anda...",
+    fieldPortfolio: "Link Portofolio",
     phPortfolio: "https://behance.net/username atau GitHub link...",
-    fieldNotes: "Catatan Tambahan / Pengalaman Kerja",
-    phNotes: "Tuliskan pengalaman relevan Anda secara singkat...",
     btnSubmit: "Kirim Lamaran via WhatsApp",
     vacancies: [
       {
@@ -76,6 +74,45 @@ const content = {
         ],
         tag: 'SYS_LUMINA',
         bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
+      },
+      {
+        id: 'fullstack-developer',
+        title: 'Full-Stack Developer (Custom Systems)',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Kompetitif (Per Proyek)',
+        requirements: [
+          'Menguasai integrasi API pihak ketiga (payment gateway, CRM, Webhooks) dan database PostgreSQL/MongoDB.',
+          'Berpengalaman dengan backend framework Node.js/Go/Python dan deployment serverless/VPS Docker.',
+          'Mampu membaca dokumentasi API eksternal dengan cepat dan mengimplementasikannya secara efisien.'
+        ],
+        tag: 'SYS_NEXUS',
+        bgTag: 'bg-emerald-100 text-emerald-700 border-emerald-200'
+      },
+      {
+        id: 'video-editor',
+        title: 'Video Editor & Motion Designer',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Kompetitif (Per Proyek)',
+        requirements: [
+          'Mahir menggunakan Adobe Premiere Pro, After Effects, DaVinci Resolve, atau CapCut Pro.',
+          'Pengalaman memproduksi konten video pendek (Reels, TikTok) cinematic dengan transisi dinamis & sound FX.',
+          'Mampu mendesain aset grafis media sosial (Figma/Photoshop) dengan visual premium.'
+        ],
+        tag: 'SYS_CHROMA',
+        bgTag: 'bg-pink-100 text-pink-700 border-pink-200'
+      },
+      {
+        id: 'graphic-designer',
+        title: 'Creative Graphic Designer',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Kompetitif (Per Proyek)',
+        requirements: [
+          'Menguasai Adobe Photoshop, Illustrator, Figma, atau Canva Pro.',
+          'Pengalaman merancang visual feed media sosial, carousel interaktif, spanduk digital, dan aset kreatif iklan (Meta/TikTok Ads).',
+          'Memiliki pemahaman yang baik tentang psikologi warna, komposisi layout, dan brand identity design.'
+        ],
+        tag: 'SYS_GRAPHIC',
+        bgTag: 'bg-rose-100 text-rose-700 border-rose-200'
       }
     ]
   },
@@ -92,14 +129,12 @@ const content = {
     formDesc: "Fill out the quick application form below to connect directly with LUMOVELO HR.",
     fieldName: "Full Name",
     phName: "Type your full name...",
-    fieldPhone: "WhatsApp Number",
-    phPhone: "e.g. 081234567890...",
     fieldPosition: "Position Applied For",
     phPosition: "Select a position...",
-    fieldPortfolio: "Portfolio & CV Link",
+    fieldCvLinkedin: "CV & LinkedIn Link",
+    phCvLinkedin: "https://linkedin.com/in/username and your CV link...",
+    fieldPortfolio: "Portfolio Link",
     phPortfolio: "https://behance.net/username or GitHub link...",
-    fieldNotes: "Additional Notes / Work Experience",
-    phNotes: "Write your relevant experience briefly...",
     btnSubmit: "Submit Application via WhatsApp",
     vacancies: [
       {
@@ -153,6 +188,45 @@ const content = {
         ],
         tag: 'SYS_LUMINA',
         bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
+      },
+      {
+        id: 'fullstack-developer',
+        title: 'Full-Stack Developer (Custom Systems)',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Competitive (Per Project)',
+        requirements: [
+          'Proficient in third-party API integrations (payment gateways, CRMs, Webhooks) and PostgreSQL/MongoDB databases.',
+          'Experienced with backend frameworks (Node.js/Go/Python) and serverless/VPS Docker deployments.',
+          'Ability to quickly read external API documentation and implement it efficiently.'
+        ],
+        tag: 'SYS_NEXUS',
+        bgTag: 'bg-emerald-100 text-emerald-700 border-emerald-200'
+      },
+      {
+        id: 'video-editor',
+        title: 'Video Editor & Motion Designer',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Competitive (Per Project)',
+        requirements: [
+          'Proficient in Adobe Premiere Pro, After Effects, DaVinci Resolve, or CapCut Pro.',
+          'Experience producing cinematic short-form video content (Reels, TikTok) with dynamic transitions & sound FX.',
+          'Ability to design premium visual social media assets using Figma/Photoshop.'
+        ],
+        tag: 'SYS_CHROMA',
+        bgTag: 'bg-pink-100 text-pink-700 border-pink-200'
+      },
+      {
+        id: 'graphic-designer',
+        title: 'Creative Graphic Designer',
+        type: 'FREELANCE / CONTRACT',
+        salary: 'Competitive (Per Project)',
+        requirements: [
+          'Proficient in Adobe Photoshop, Illustrator, Figma, or Canva Pro.',
+          'Experience designing social media feeds, interactive carousels, digital banners, and creative ad assets (Meta/TikTok Ads).',
+          'Good understanding of color theory, layout composition, and brand identity design.'
+        ],
+        tag: 'SYS_GRAPHIC',
+        bgTag: 'bg-rose-100 text-rose-700 border-rose-200'
       }
     ]
   }
@@ -160,178 +234,316 @@ const content = {
 
 const vacancies = content.vacancies;
 ---
-<section id="karir" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-200">
+<section id="karir" class="py-12 lg:py-16 bg-white relative overflow-hidden font-sans">
   <!-- Soft background graphics -->
   <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
     
-    <!-- Section Header -->
-    <div class="max-w-3xl mb-20">
+    <!-- Section Header Breadcrumb -->
+    <div class="mb-6">
       <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
-      <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
-        {content.title1}<br/>
-        <span class="text-stroke-neon">{content.title2}</span>
-      </h3>
-      <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
-        {content.desc}
-      </p>
     </div>
 
-    <!-- Layout Grid: Left column (Vacancies List), Right column (Interactive Application Form) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+    <!-- Hero Section -->
+    <div class="relative w-full rounded-[2rem] bg-slate-50 border-2 border-slate-200/80 overflow-hidden px-6 py-12 md:py-20 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-12 mb-16 shadow-[4px_4px_0px_rgba(37,99,235,0.05)]">
       
-      <!-- Vacancies List (7 columns) -->
-      <div class="lg:col-span-7 space-y-6">
-        <h4 class="font-display font-black text-lg text-slate-900 uppercase tracking-wide mb-4">{content.subTitle}</h4>
+      <!-- Content / Info Left Side -->
+      <div class="w-full lg:w-1/2 space-y-6 z-10 relative">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-200 bg-blue-50 text-blue-700 text-xs font-mono font-bold uppercase tracking-wider">
+          We are hiring!
+        </span>
+        <h3 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-[1.0] uppercase tracking-tight">
+          {content.title1}<br/>
+          <span class="text-stroke-neon">{content.title2}</span>
+        </h3>
+        <p class="text-slate-500 text-sm sm:text-base leading-relaxed font-semibold max-w-lg">
+          {content.desc}
+        </p>
         
+        <!-- Hero interactive elements: popular tags -->
+        <div class="pt-4 space-y-4">
+          <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-xs font-mono font-bold text-slate-450 uppercase">Popular Roles:</span>
+            {vacancies.slice(0, 3).map((job) => (
+              <button 
+                type="button" 
+                class="px-3 py-1.5 bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-lg text-xs font-semibold text-slate-600 hover:text-blue-700 transition-colors cursor-pointer"
+                data-scroll-to={job.id}
+              >
+                {job.title.split(' (')[0].replace(' & Automation', '').replace('-Performance ', '')}
+              </button>
+            ))}
+          </div>
+          
+          <!-- Team bubble badges -->
+          <div class="inline-flex items-center gap-4 bg-white p-3 border border-slate-200 rounded-2xl shadow-sm">
+            <div class="flex -space-x-2.5">
+              <div class="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-700">AI</div>
+              <div class="w-8 h-8 rounded-full border-2 border-white bg-purple-100 flex items-center justify-center text-[10px] font-bold text-purple-700">WD</div>
+              <div class="w-8 h-8 rounded-full border-2 border-white bg-teal-100 flex items-center justify-center text-[10px] font-bold text-teal-700">SEO</div>
+              <div class="w-8 h-8 rounded-full border-2 border-white bg-amber-100 flex items-center justify-center text-[10px] font-bold text-amber-700">UI</div>
+            </div>
+            <div class="text-[11px] leading-tight font-semibold text-slate-600">
+              <div class="text-slate-900 font-bold">Gabung 15+ Kreator</div>
+              Kolaborasi Proyek Global & Remote
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Visual Right Side (3D cutout, huge text, floating badges, rotating badge) -->
+      <div class="w-full lg:w-1/2 flex items-center justify-center relative min-h-[380px] lg:min-h-[450px]">
+        
+        <!-- Huge background text "CAREERS LUMOVELO" -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0">
+          <span class="font-display font-black text-[12vw] lg:text-[7vw] uppercase leading-none tracking-tighter text-slate-200/50">CAREERS</span>
+          <span class="font-display font-black text-[10vw] lg:text-[6vw] uppercase leading-none tracking-tighter text-stroke-cyan opacity-25">LUMOVELO</span>
+        </div>
+        
+        <!-- Rotating SVG Circular badge -->
+        <div class="absolute top-4 left-4 z-20">
+          <div class="w-24 h-24 animate-[spin_20s_linear_infinite] hover:animate-[spin_6s_linear_infinite] transition-all duration-300">
+            <svg viewBox="0 0 100 100" class="w-full h-full text-slate-400 fill-current">
+              <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+              <text class="text-[7.5px] font-mono font-bold tracking-widest uppercase">
+                <textPath href="#circlePath" startOffset="0%">
+                  • join the team • lumovelo agency • collaborate • 
+                </textPath>
+              </text>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-7 h-7 rounded-full bg-slate-900 flex items-center justify-center text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Main Cutout Image (AI Generated PNG) -->
+        <div class="relative z-10 w-[280px] h-[340px] md:w-[320px] md:h-[400px] select-none pointer-events-none transition-transform duration-300 hover:scale-[1.02]">
+          <img 
+            src="/career-hero.png" 
+            alt="Lumovelo Career Team" 
+            class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(37,99,235,0.08)]"
+          />
+        </div>
+
+        <!-- Floating Badge 1: @lumovelo Profile card -->
+        <div class="absolute bottom-4 right-0 md:right-4 z-20 floating-sticker bg-white p-3 border border-slate-200 rounded-2xl shadow-lg max-w-[170px] pointer-events-auto">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-[9px] flex items-center justify-center">L</div>
+            <div class="leading-none">
+              <div class="text-[10px] font-bold text-slate-800">@lumovelo</div>
+              <span class="text-[8px] text-slate-400 font-semibold font-mono">HR Specialist</span>
+            </div>
+          </div>
+          <div class="mt-2 pt-2 border-t border-slate-100 flex flex-col gap-1 text-[8px] font-mono font-bold text-slate-500">
+            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Fast Response</span>
+            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> 100% Remote</span>
+          </div>
+        </div>
+
+        <!-- Floating Badge 2: Investment label -->
+        <div class="absolute top-12 right-0 md:right-8 z-20 floating-sticker-delayed bg-white p-3 border border-slate-200 rounded-2xl shadow-lg pointer-events-auto flex items-center gap-2.5">
+          <div class="w-6 h-6 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <div class="text-[9px] font-mono font-bold text-slate-400">INVESTMENT</div>
+            <div class="text-[10px] font-bold text-slate-900">Per-Project Basis</div>
+          </div>
+        </div>
+        
+        <!-- Floating Badge 3: Flexibility label -->
+        <div class="absolute bottom-16 left-0 md:left-6 z-20 floating-sticker-fast bg-white p-3 border border-slate-200 rounded-2xl shadow-lg pointer-events-auto flex items-center gap-2.5">
+          <div class="w-6 h-6 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <div class="text-[9px] font-mono font-bold text-slate-400">GROWTH</div>
+            <div class="text-[10px] font-bold text-slate-900">Flexible Hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vacancies Section (Clean 3-column / 2-column Grid) -->
+    <div class="space-y-6">
+      <div class="border-b border-slate-200 pb-4">
+        <h4 class="font-display font-black text-xl text-slate-900 uppercase tracking-wide">{content.subTitle}</h4>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {vacancies.map((job) => (
-          <div class="p-6 bg-slate-50 border-2 border-blue-600 rounded-3xl shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-0.5 transition-all duration-200 space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <h5 class="font-display font-black text-lg text-slate-900 uppercase">{job.title}</h5>
-              <div class="flex items-center gap-2">
-                <span class={`px-2 py-0.5 rounded border text-[8px] font-mono font-bold tracking-wider uppercase ${job.bgTag}`}>
+          <div id={job.id} class="p-6 bg-slate-50 border-2 border-slate-200 hover:border-blue-600 rounded-3xl transition-all duration-300 flex flex-col justify-between group hover:shadow-[4px_4px_0px_#000] hover:-translate-y-1">
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-2">
+                <h5 class="font-display font-black text-lg text-slate-900 uppercase group-hover:text-blue-600 transition-colors leading-tight">{job.title}</h5>
+                <span class={`px-2 py-0.5 rounded border text-[8px] font-mono font-bold tracking-wider uppercase shrink-0 ${job.bgTag}`}>
                   {job.tag}
                 </span>
               </div>
-            </div>
-            
-            <div class="flex flex-wrap gap-x-6 gap-y-1 text-[10px] font-mono font-bold text-slate-500">
-              <span>{content.typeLabel}: {job.type}</span>
-              <span>{content.invLabel}: {job.salary}</span>
+              
+              <div class="flex flex-wrap gap-x-4 gap-y-1 text-[9px] font-mono font-bold text-slate-400">
+                <span>{content.typeLabel}: {job.type}</span>
+                <span>{content.invLabel}: {job.salary}</span>
+              </div>
+
+              <div class="space-y-2 pt-2 border-t border-slate-200/60">
+                <span class="text-[9px] font-mono font-bold text-slate-500 uppercase">{content.qualLabel}</span>
+                <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 font-medium pl-1 leading-relaxed">
+                  {job.requirements.map((req) => (
+                    <li>{req}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div class="space-y-2 pt-2 border-t border-slate-200">
-              <span class="text-[10px] font-mono font-bold text-slate-700 uppercase">{content.qualLabel}</span>
-              <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 font-medium pl-1">
-                {job.requirements.map((req) => (
-                  <li>{req}</li>
-                ))}
-              </ul>
+            <div class="pt-6">
+              <button 
+                type="button" 
+                class="apply-btn w-full py-3 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 cursor-pointer text-center"
+                data-position-title={job.title}
+              >
+                Lamar Sekarang
+              </button>
             </div>
           </div>
         ))}
       </div>
-
-      <!-- Application Form (5 columns) -->
-      <div class="lg:col-span-5">
-        <div class="border-2 border-blue-600 bg-white rounded-3xl p-6 sm:p-8 shadow-[6px_6px_0px_#2563eb] sticky top-28">
-          <div class="mb-6 border-b border-slate-100 pb-4">
-            <h4 class="font-display font-black text-xl text-slate-900 uppercase">{content.formTitle}</h4>
-            <p class="text-xs text-slate-400 font-semibold mt-1">
-              {content.formDesc}
-            </p>
-          </div>
-
-          <form id="career-application-form" class="space-y-5" onsubmit="return false;" data-lang={lang}>
-            <!-- Name -->
-            <div class="space-y-1.5">
-              <label for="applicant-name" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldName}</label>
-              <input 
-                type="text" 
-                id="applicant-name" 
-                name="name" 
-                placeholder={content.phName} 
-                required
-                class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
-              />
-            </div>
-
-            <!-- WhatsApp -->
-            <div class="space-y-1.5">
-              <label for="applicant-phone" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPhone}</label>
-              <input 
-                type="tel" 
-                id="applicant-phone" 
-                name="phone" 
-                placeholder={content.phPhone} 
-                required
-                class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
-              />
-            </div>
-
-            <!-- Position Dropdown -->
-            <div class="space-y-1.5">
-              <label for="applicant-position" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPosition}</label>
-              <div class="relative">
-                <select 
-                  id="applicant-position" 
-                  name="position" 
-                  required
-                  class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none appearance-none cursor-pointer"
-                >
-                  <option value="" disabled selected class="text-slate-400">{content.phPosition}</option>
-                  {vacancies.map((job) => (
-                    <option value={job.title} class="text-slate-900">{job.title}</option>
-                  ))}
-                </select>
-                <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-400">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-                </div>
-              </div>
-            </div>
-
-            <!-- Portfolio Link -->
-            <div class="space-y-1.5">
-              <label for="applicant-portfolio" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPortfolio}</label>
-              <input 
-                type="url" 
-                id="applicant-portfolio" 
-                name="portfolio" 
-                placeholder={content.phPortfolio} 
-                required
-                class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
-              />
-            </div>
-
-            <!-- Motivation -->
-            <div class="space-y-1.5">
-              <label for="applicant-notes" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldNotes}</label>
-              <textarea 
-                id="applicant-notes" 
-                name="notes" 
-                rows="3" 
-                placeholder={content.phNotes} 
-                required
-                class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400 resize-none"
-              ></textarea>
-            </div>
-
-            <!-- Submit Button -->
-            <button 
-              type="submit" 
-              class="w-full py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer text-center"
-            >
-              {content.btnSubmit}
-            </button>
-          </form>
-        </div>
-      </div>
-
     </div>
 
   </div>
 </section>
 
+<!-- Dynamic Glassmorphic Application Form Modal -->
+<div id="career-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" role="dialog" aria-modal="true">
+  <!-- Backdrop Blur overlay -->
+  <div id="career-modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-md opacity-0 transition-opacity duration-300"></div>
+  
+  <!-- Modal Card Content -->
+  <div id="career-modal-content" class="relative z-10 w-full max-w-lg mx-4 bg-white/95 border-2 border-blue-600 rounded-[2rem] p-6 sm:p-8 shadow-[4px_4px_0px_#000] transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto">
+    
+    <!-- Close Modal Button -->
+    <button 
+      type="button" 
+      id="close-modal-btn" 
+      class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 transition-colors p-1.5 rounded-xl hover:bg-slate-100 cursor-pointer"
+      aria-label="Tutup lamaran"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    
+    <!-- Header -->
+    <div class="mb-6 border-b border-slate-100 pb-4 pr-8">
+      <h4 class="font-display font-black text-2xl text-slate-900 uppercase">{content.formTitle}</h4>
+      <p class="text-xs text-slate-400 font-semibold mt-1">
+        {content.formDesc}
+      </p>
+    </div>
+
+    <!-- Application Form -->
+    <form id="career-application-form" class="space-y-5" onsubmit="return false;" data-lang={lang}>
+      <!-- Name -->
+      <div class="space-y-1.5">
+        <label for="applicant-name" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldName}</label>
+        <input 
+          type="text" 
+          id="applicant-name" 
+          name="name" 
+          placeholder={content.phName} 
+          required
+          class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
+        />
+      </div>
+
+      <!-- Position Dropdown -->
+      <div class="space-y-1.5">
+        <label for="applicant-position" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPosition}</label>
+        <div class="relative">
+          <select 
+            id="applicant-position" 
+            name="position" 
+            required
+            class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none appearance-none cursor-pointer"
+          >
+            <option value="" disabled selected class="text-slate-400">{content.phPosition}</option>
+            {vacancies.map((job) => (
+              <option value={job.title} class="text-slate-900">{job.title}</option>
+            ))}
+          </select>
+          <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- CV & LinkedIn Link -->
+      <div class="space-y-1.5">
+        <label for="applicant-cv-linkedin" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldCvLinkedin}</label>
+        <input 
+          type="url" 
+          id="applicant-cv-linkedin" 
+          name="cv_linkedin" 
+          placeholder={content.phCvLinkedin} 
+          required
+          class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
+        />
+      </div>
+
+      <!-- Portfolio Link -->
+      <div class="space-y-1.5">
+        <label for="applicant-portfolio" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPortfolio}</label>
+        <input 
+          type="url" 
+          id="applicant-portfolio" 
+          name="portfolio" 
+          placeholder={content.phPortfolio} 
+          required
+          class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        class="w-full py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#000] active:translate-y-0.5 active:shadow-[1px_1px_0px_#000] cursor-pointer text-center"
+      >
+        {content.btnSubmit}
+      </button>
+    </form>
+  </div>
+</div>
+
 <script>
-  function initCareerForm() {
+  function initCareerPage() {
+    // 1. WhatsApp form submit handler
     const form = document.getElementById('career-application-form') as HTMLFormElement;
     if (form) {
       form.onsubmit = (e) => {
         e.preventDefault();
         
         const nameVal = (document.getElementById('applicant-name') as HTMLInputElement).value;
-        const phoneVal = (document.getElementById('applicant-phone') as HTMLInputElement).value;
         const positionVal = (document.getElementById('applicant-position') as HTMLSelectElement).value;
+        const cvLinkedinVal = (document.getElementById('applicant-cv-linkedin') as HTMLInputElement).value;
         const portfolioVal = (document.getElementById('applicant-portfolio') as HTMLInputElement).value;
-        const notesVal = (document.getElementById('applicant-notes') as HTMLTextAreaElement).value;
         const formLang = form.getAttribute('data-lang') || 'id';
 
         const targetPhone = "6285624353611";
         
         const messageText = formLang === 'en'
-          ? `Hello Lumovelo HR Team, I would like to submit a job application. Here are my profile details:\n\n- Full Name: ${nameVal}\n- WhatsApp Number: ${phoneVal}\n- Position Applied: ${positionVal}\n- Portfolio/CV Link: ${portfolioVal}\n- Experience Notes: ${notesVal}\n\nThank you. Please process it!`
-          : `Halo Tim HR Lumovelo, saya ingin mengajukan lamaran kerja. Berikut adalah detail profil saya:\n\n- Nama Lengkap: ${nameVal}\n- Nomor WhatsApp: ${phoneVal}\n- Posisi Dilamar: ${positionVal}\n- Link Portofolio/CV: ${portfolioVal}\n- Catatan Pengalaman: ${notesVal}\n\nTerima kasih. Mohon diproses!`;
+          ? `Hello Lumovelo HR Team, I would like to submit a job application. Here are my details:\n\n- Name: ${nameVal}\n- Position: ${positionVal}\n- CV & LinkedIn: ${cvLinkedinVal}\n- Portfolio: ${portfolioVal}\n\nThank you.`
+          : `Halo Tim HR Lumovelo, saya ingin melamar pekerjaan. Berikut adalah detail lamaran saya:\n\n- Nama: ${nameVal}\n- Posisi: ${positionVal}\n- CV & LinkedIn: ${cvLinkedinVal}\n- Portofolio: ${portfolioVal}\n\nTerima kasih.`;
 
         const encodedMessage = encodeURIComponent(messageText);
         const whatsappUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodedMessage}`;
@@ -339,11 +551,86 @@ const vacancies = content.vacancies;
         window.open(whatsappUrl, '_blank');
       };
     }
+
+    // 2. Modal interactions
+    const modal = document.getElementById('career-modal');
+    const backdrop = document.getElementById('career-modal-backdrop');
+    const modalContent = document.getElementById('career-modal-content');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const positionSelect = document.getElementById('applicant-position') as HTMLSelectElement;
+    const applyButtons = document.querySelectorAll('.apply-btn');
+
+    function openModal(positionTitle: string) {
+      if (modal && backdrop && modalContent && positionSelect) {
+        positionSelect.value = positionTitle;
+        modal.classList.remove('hidden');
+        
+        // Force Reflow
+        modal.offsetHeight;
+
+        backdrop.classList.remove('opacity-0');
+        backdrop.classList.add('opacity-100');
+        modalContent.classList.remove('scale-95', 'opacity-0');
+        modalContent.classList.add('scale-100', 'opacity-100');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      if (modal && backdrop && modalContent) {
+        backdrop.classList.remove('opacity-100');
+        backdrop.classList.add('opacity-0');
+        modalContent.classList.remove('scale-100', 'opacity-100');
+        modalContent.classList.add('scale-95', 'opacity-0');
+
+        setTimeout(() => {
+          modal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }, 300);
+      }
+    }
+
+    applyButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const title = btn.getAttribute('data-position-title') || '';
+        openModal(title);
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    // 3. Popular roles auto-scroll & highlight
+    const filterButtons = document.querySelectorAll('[data-scroll-to]');
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-scroll-to');
+        if (targetId) {
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Highlight glow transition
+            targetEl.classList.remove('border-slate-200');
+            targetEl.classList.add('border-blue-600', 'shadow-[0_0_20px_rgba(37,99,235,0.25)]');
+            setTimeout(() => {
+              targetEl.classList.remove('shadow-[0_0_20px_rgba(37,99,235,0.25)]');
+              if (!targetEl.matches(':hover')) {
+                targetEl.classList.remove('border-blue-600');
+                targetEl.classList.add('border-slate-200');
+              }
+            }, 1800);
+          }
+        }
+      });
+    });
   }
 
+  // Handle page load & Astro client transition page loads
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCareerForm);
+    document.addEventListener('DOMContentLoaded', initCareerPage);
   } else {
-    initCareerForm();
+    initCareerPage();
   }
+  document.addEventListener('astro:after-swap', initCareerPage);
 </script>

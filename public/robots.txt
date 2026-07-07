@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /workspace/
 
 Sitemap: https://lumovelo.agency/sitemap-index.xml

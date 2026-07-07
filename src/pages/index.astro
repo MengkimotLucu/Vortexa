@@ -2,47 +2,37 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
-import AboutUs from '../components/AboutUs.astro';
-import SimulatorBanner from '../components/SimulatorBanner.astro';
 import Services from '../components/Services.astro';
-import Guarantees from '../components/Guarantees.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
 import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
-import HowToOrder from '../components/HowToOrder.astro';
-import MultiStepForm from '../components/MultiStepForm.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
-  <!-- Main layout container -->
-  <main class="relative z-10">
-    <!-- Hero Section with Canvas particles -->
+  <!-- Main layout container for Lumovelo agency -->
+  <main class="relative z-10 bg-white">
+    <!-- Hero Section with Interactive Kinetic Workspace -->
     <Hero />
 
-    <!-- Kinetic Marquee 1 -->
-    <Marquee 
-      texts={["AI Integration", "High Performance Web", "Advanced SEO", "Futuristic UI/UX", "Growth Agency", "Serverless Setup"]} 
-      speed="medium" 
-    />
+    <!-- Kinetic Marquee scrolling text (Stacked Dual-Row) -->
+    <div class="flex flex-col py-1 bg-white border-y border-slate-100 gap-0">
+      <Marquee 
+        texts={["AI Automation", "Web Development", "Advanced SEO", "Creative Videos", "Growth Agency"]} 
+        speed="medium" 
+      />
+      <Marquee 
+        texts={["Premium UI/UX", "Custom Coding", "WhatsApp Sales Funnels", "AI Agents", "High Performance"]} 
+        speed="medium" 
+        reverse={true}
+      />
+    </div>
 
-    <!-- Tentang Kami Section -->
-    <AboutUs />
-
-    <!-- Real-time performance simulation stats (now a lightweight banner linking to /audit/) -->
-    <SimulatorBanner />
-
-    <!-- Core Agency Capabilities -->
+    <!-- Core services pricing dashboard with tabs -->
     <Services />
 
-    <!-- Kinetic Marquee 2 (Moving in reverse) -->
-    <Marquee 
-      texts={["100% Clean Code", "SEO-Optimized Structure", "Ultra Fast Speed", "Qualified Leads Only", "No Bullshit Growth"]} 
-      speed="slow" 
-      reverse={true}
-    />
-
-    <!-- Commitments & Performance Guarantees -->
-    <Guarantees />
+    <!-- Why Choose Us Bento Section -->
+    <WhyChooseUs />
 
     <!-- Testimonials Section -->
     <Testimonials />
@@ -50,13 +40,7 @@ import Footer from '../components/Footer.astro';
     <!-- FAQ Section -->
     <FAQ />
 
-    <!-- Cara Pemesanan Section -->
-    <HowToOrder />
-
-    <!-- Closing Funnel: Multi-Step Questionnaire and WhatsApp hook -->
-    <MultiStepForm />
-
-    <!-- New premium multi-column footer -->
+    <!-- Brand footer -->
     <Footer />
   </main>
 </Layout>

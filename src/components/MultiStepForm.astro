@@ -112,13 +112,13 @@ const content = {
   }
 }[lang];
 ---
-<section id="konsultasi" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-100">
+<section id="konsultasi" class="py-8 lg:py-10 bg-white relative overflow-hidden">
   <!-- Decorative background colors -->
-  <div class="absolute left-[-10%] bottom-[-10%] w-[350px] h-[350px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute right-[-10%] top-[10%] w-[350px] h-[350px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute left-[-10%] bottom-[-10%] w-[600px] h-[600px] bg-blue-500/[0.03] rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="absolute right-[-10%] top-[10%] w-[600px] h-[600px] bg-cyan-500/[0.03] rounded-full blur-[100px] pointer-events-none"></div>
 
-  <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+  <div class="max-w-5xl mx-auto px-6 relative z-10 reveal-on-scroll">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
       
       <!-- Left Column: Copy & Value Proposition (5 columns) -->
       <div class="lg:col-span-5 space-y-8">
@@ -162,8 +162,7 @@ const content = {
 
       <!-- Right Column: Interactive Multi-Step Form (7 columns) -->
       <div class="lg:col-span-7 space-y-8">
-        <!-- Scarcity / Urgency Banner (Softer Modern Banner) -->
-        <div class="border border-teal-200 bg-teal-50/20 p-5 rounded-2xl shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="border border-teal-200 bg-teal-50/20 p-5 rounded-2xl shadow-sm flex items-center justify-between gap-4">
           <div class="flex items-center gap-3">
             <span class="relative flex h-2.5 w-2.5">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-600 opacity-75"></span>
@@ -173,9 +172,6 @@ const content = {
               <span class="text-slate-900 font-extrabold uppercase tracking-wide">{content.urgencyTitle}</span> 
               {content.urgencyText}
             </div>
-          </div>
-          <div class="text-[9px] font-mono text-slate-440 bg-white border border-slate-100 px-2.5 py-1.5 rounded-lg shrink-0 select-none">
-            REFRESH_CYCLE: 16_DAYS
           </div>
         </div>
 

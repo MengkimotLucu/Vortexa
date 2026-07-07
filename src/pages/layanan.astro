@@ -1,324 +1,1025 @@
-﻿---
+---
 import Logo from '../components/Logo.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
+
+const services = {
+  web: {
+    label: lang === 'en' ? 'Website Development' : 'Website Development',
+    items: [
+      {
+        id: 'landing-page',
+        label: lang === 'en' ? 'Landing Page' : 'Landing Page',
+        desc: lang === 'en' 
+          ? 'High-conversion single-page sites designed to turn visitors into leads.' 
+          : 'Halaman tunggal fokus konversi tinggi untuk mengubah pengunjung menjadi prospek.',
+        packages: [
+          {
+            name: 'Basic (UKM)',
+            price: 'Rp950.000',
+            features: lang === 'en' ? [
+              'Domain .my.id + Shared Hosting',
+              '1 Page, up to 4 sections',
+              'Indonesian Copywriting (from client materials)',
+              'Direct WhatsApp Button',
+              'Mobile & Desktop Responsive Design',
+              'Revision: 1x minor'
+            ] : [
+              'Domain .my.id + Shared Hosting',
+              '1 Halaman, hingga 4 section',
+              'Copywriting Bahasa Indonesia (dari materi klien)',
+              'Tombol WhatsApp (klik langsung)',
+              'Desain responsif HP & desktop',
+              'Revisi: 1x minor'
+            ]
+          },
+          {
+            name: 'Pro',
+            price: 'Rp1.450.000',
+            popular: true,
+            features: lang === 'en' ? [
+              'Domain .com + Shared Hosting',
+              '1 Page, up to 7 sections',
+              'Persuasive & structured copywriting',
+              'Direct WhatsApp Button',
+              'Conversion-focused design',
+              '1 Ad platform tracking (Meta / TikTok / Google)',
+              'Revision: 2x minor'
+            ] : [
+              'Domain .com + Shared Hosting',
+              '1 Halaman, hingga 7 section',
+              'Copywriting persuasif & terstruktur',
+              'Tombol WhatsApp (klik langsung)',
+              'Desain fokus konversi',
+              'Tracking iklan 1 platform (Meta / TikTok / Google)',
+              'Revisi: 2x minor'
+            ]
+          },
+          {
+            name: 'Elite (Business)',
+            price: 'Rp2.350.000',
+            features: lang === 'en' ? [
+              'Domain .com + Shared Hosting',
+              '1 Page, up to 9 sections',
+              'High-converting persuasive copywriting',
+              'WhatsApp Click / Form + Mini CRM (Google Sheets)',
+              '3 Ad platforms tracking (Meta + TikTok + Google)',
+              'Conversion-focused design',
+              'Revision: 2x minor'
+            ] : [
+              'Domain .com + Shared Hosting',
+              '1 Halaman, hingga 9 section',
+              'Copywriting persuasif konversi tinggi',
+              'WhatsApp Click / WhatsApp Form + Mini CRM Google Spreadsheet',
+              'Tracking iklan 3 platform (Meta + TikTok + Google)',
+              'Desain fokus konversi',
+              'Revisi: 2x minor'
+            ]
+          },
+          {
+            name: 'Custom (Enterprise)',
+            price: 'Mulai Rp3.500.000',
+            features: lang === 'en' ? [
+              'Premium custom domain + Dedicated Server Setup',
+              'Custom pages matching campaign structures',
+              '100% custom Figma design (no templates)',
+              'Backend database & complex interactive animations',
+              'Advanced custom analytics (A/B Testing setup)',
+              'Revision: 3x minor after Figma design handoff'
+            ] : [
+              'Domain kustom premium + Dedicated Server Setup',
+              'Halaman kustom sesuai kebutuhan struktur campaign',
+              'Desain 100% kustom dari Figma (bukan template)',
+              'Integrasi database backend & animasi interaktif kompleks',
+              'Tracking analitik kustom tingkat lanjut (A/B Testing setup)',
+              'Revisi: 3x minor setelah serah terima desain figma'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'company-profile',
+        label: lang === 'en' ? 'Company Profile' : 'Company Profile',
+        desc: lang === 'en'
+          ? 'Professional multi-page business websites to establish brand authority.'
+          : 'Website bisnis multi-halaman profesional untuk membangun kredibilitas brand.',
+        packages: [
+          {
+            name: 'Basic',
+            price: 'Rp1.750.000',
+            features: lang === 'en' ? [
+              'Domain .my.id + Shared Hosting',
+              'Maximum 4 Pages menu',
+              'Modern minimalist design',
+              'WhatsApp & email button integration',
+              'Basic SEO (Meta Tags)',
+              'Revision: 2x minor'
+            ] : [
+              'Domain .my.id + Shared Hosting',
+              'Maksimal 4 Halaman menu',
+              'Desain minimalis modern',
+              'Integrasi tombol WhatsApp & email',
+              'SEO Dasar (Meta Tag)',
+              'Revisi: 2x minor'
+            ]
+          },
+          {
+            name: 'Pro',
+            price: 'Rp2.650.000',
+            popular: true,
+            features: lang === 'en' ? [
+              'Domain .com + Cloud Hosting',
+              'Maximum 8 Pages menu',
+              'Exclusive custom design (Bento style)',
+              'Contact form & Google Maps integration',
+              'Speed Optimization (PageSpeed >85)',
+              'Revision: 3x minor'
+            ] : [
+              'Domain .com + Cloud Hosting',
+              'Maksimal 8 Halaman menu',
+              'Desain kustom eksklusif (Bento style)',
+              'Formulir kontak & Google Map',
+              'Optimasi Kecepatan (PageSpeed >85)',
+              'Revisi: 3x minor'
+            ]
+          },
+          {
+            name: 'Elite',
+            price: 'Rp4.250.000',
+            features: lang === 'en' ? [
+              'Domain .com + Premium Hosting SSD',
+              'Unlimited pages (As needed)',
+              'Luxurious visuals & micro-interactions',
+              'Full analytics integration (GA4 + Pixel)',
+              '3 Months Priority Technical Support',
+              'Free revisions during development'
+            ] : [
+              'Domain .com + Premium Hosting SSD',
+              'Halaman tidak terbatas (Sesuai kebutuhan)',
+              'Visual mewah & micro-interactions',
+              'Integrasi analitik lengkap (GA4 + Pixel)',
+              'Dukungan Teknis Prioritas 3 bulan',
+              'Revisi: Bebas selama pembuatan'
+            ]
+          },
+          {
+            name: 'Custom',
+            price: 'Mulai Rp6.000.000',
+            features: lang === 'en' ? [
+              'Dedicated cloud server architecture for corporates',
+              'Dynamic Multi-Language system (local custom)',
+              'Custom CMS Admin Panel integration for internal content management',
+              'Premium interface design system (Figma components blueprint)',
+              'Intensive system maintenance support for 6 months',
+              'Free progressive revisions during development'
+            ] : [
+              'Arsitektur server cloud dedicated khusus korporat',
+              'Sistem Multi-Bahasa dinamis (Kustomisasi lokal)',
+              'Integrasi Custom CMS Admin Panel untuk manajemen konten internal',
+              'Desain sistem interface premium (Figma components blueprint)',
+              'Dukungan pemeliharaan sistem intensif selama 6 bulan',
+              'Revisi: Bebas bertahap selama pengembangan berjalan'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'katalog-toko',
+        label: lang === 'en' ? 'Catalog & Store' : 'Katalog & Toko Online',
+        desc: lang === 'en'
+          ? 'Showcase products and process secure digital transactions seamlessly.'
+          : 'Tampilkan produk Anda dan lakukan transaksi pembayaran digital secara mudah.',
+        packages: [
+          {
+            name: 'Basic (Catalog)',
+            price: 'Rp1.950.000',
+            features: lang === 'en' ? [
+              'Domain .my.id + Hosting 1 year',
+              'Input maximum 20 products',
+              'Neat gallery layout',
+              'Inquire product via WhatsApp button',
+              'Mobile responsive design',
+              'Revision: 2x',
+              'Benefit: Move your physical storefront to digital so customers can view products anytime independently.'
+            ] : [
+              'Domain .my.id + Hosting 1 tahun',
+              'Input maksimal 20 produk',
+              'Tata letak galeri rapi',
+              'Tombol tanya produk via WA',
+              'Desain responsif mobile',
+              'Revisi: 2x',
+              'Benefit: Memindahkan etalase toko fisik Anda ke digital agar pelanggan bisa melihat produk kapan saja secara mandiri.'
+            ]
+          },
+          {
+            name: 'Pro (E-commerce)',
+            price: 'Rp3.450.000',
+            popular: true,
+            features: lang === 'en' ? [
+              'Domain .com + Fast hosting',
+              'Input maximum 100 products',
+              'Product search & filter features',
+              'Product details with photo gallery',
+              'Payment Gateway (Midtrans/Xendit) & Auto Shipping Calculator (RajaOngkir)',
+              'Revision: 3x'
+            ] : [
+              'Domain .com + Hosting cepat',
+              'Input maksimal 100 produk',
+              'Fitur pencarian & filter produk',
+              'Detail produk dengan galeri foto',
+              'Integrasi Payment Gateway (Midtrans/Xendit) & Kalkulator ongkir otomatis (RajaOngkir)',
+              'Revisi: 3x'
+            ]
+          },
+          {
+            name: 'Elite (Advanced)',
+            price: 'Rp4.450.000',
+            features: lang === 'en' ? [
+              'Domain .com + Cloud Server',
+              'Unlimited product capacity',
+              'Dynamic product specification filters',
+              'Admin dashboard to manage products',
+              'Simple inventory management & basic sales report',
+              'Revision: Free'
+            ] : [
+              'Domain .com + Cloud Server',
+              'Kapasitas produk tidak terbatas',
+              'Filter spesifikasi produk dinamis',
+              'Dashboard admin untuk edit produk',
+              'Sistem manajemen stok sederhana & Laporan penjualan dasar',
+              'Revisi: Bebas'
+            ]
+          },
+          {
+            name: 'Custom (Enterprise Store)',
+            price: 'Mulai Rp7.500.000',
+            features: lang === 'en' ? [
+              'Independent Cloud Server (VPS Dedicated Architecture)',
+              'Custom Discount, Coupon, & Affiliate marketing systems',
+              'Multi-courier logistics integration & auto shipping receipt',
+              'Transaction database architecture with premium SSL encryption',
+              'Comprehensive business turnover & customer data analytics dashboard',
+              'Revision: Fully free'
+            ] : [
+              'Server Cloud Mandiri (VPS Dedicated Architecture)',
+              'Sistem kustom Diskon, Kupon, & Afiliasi marketing',
+              'Integrasi logistik multi-kurir & otomatisasi resi pengiriman',
+              'Arsitektur database transaksi dengan enkripsi SSL premium',
+              'Dashboard analitik omset bisnis & data pelanggan terlengkap',
+              'Revisi: Bebas penuh'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'redesign',
+        label: lang === 'en' ? 'Web Redesign' : 'Redesign Web',
+        desc: lang === 'en'
+          ? 'Modernize your outdated website for better speed, UI/UX, and conversion.'
+          : 'Modernisasi website lama Anda agar lebih cepat, berestetika premium, dan menghasilkan penjualan.',
+        packages: [
+          {
+            name: 'Basic',
+            price: 'Rp1.150.000',
+            features: lang === 'en' ? [
+              'Modernize existing website layout',
+              'Optimize mobile responsiveness',
+              'Clean up old page sitemap structure',
+              'Connect to the latest WhatsApp integration version',
+              'Revision: 2x'
+            ] : [
+              'Modernisasi layout yang sudah ada',
+              'Optimasi responsivitas mobile',
+              'Pembersihan sitemap halaman web lama',
+              'Hubungkan ke WA versi terbaru',
+              'Revisi: 2x'
+            ]
+          },
+          {
+            name: 'Pro',
+            price: 'Rp1.950.000',
+            popular: true,
+            features: lang === 'en' ? [
+              'Total visual redesign (Modern Glass style)',
+              'Speed improvement (Core Web Vitals)',
+              'Re-optimize copywriting for sales conversion',
+              'Integrate GA4 & new tracking pixels',
+              'Revision: 3x'
+            ] : [
+              'Desain visual baru total (Modern Glass style)',
+              'Peningkatan skor loading (Core Web Vitals)',
+              'Pengaturan ulang copywriting agar menjual',
+              'Integrasi GA4 & tracking pixel baru',
+              'Revisi: 3x'
+            ]
+          },
+          {
+            name: 'Elite',
+            price: 'Rp3.850.000',
+            features: lang === 'en' ? [
+              'Migrate to modern frameworks (Astro / Next.js)',
+              'Total on-page SEO restructuration',
+              'Premium custom visual design',
+              'CRM automation webhooks integration',
+              'Revision: Free'
+            ] : [
+              'Migrasi ke framework modern (Astro / Next.js)',
+              'Restrukturisasi SEO on-page total',
+              'Desain visual custom premium',
+              'Integrasi webhook otomatisasi CRM',
+              'Revisi: Bebas'
+            ]
+          },
+          {
+            name: 'Custom',
+            price: 'Mulai Rp5.000.000',
+            features: lang === 'en' ? [
+              'Restructure legacy database systems without losing historical data',
+              'Re-brand visual identity framework digital',
+              'Modular component-based code customization for scalability',
+              'Cloud infrastructure migration for extreme traffic handling',
+              'Revision: Free with terms of contract agreement'
+            ] : [
+              'Penyusunan ulang struktur sistem database lawas tanpa kehilangan data historic',
+              'Desain ulang identitas digital (Re-branding visual framework)',
+              'Kustomisasi kode modular berbasis komponen untuk skalabilitas tinggi',
+              'Migrasi cloud infrastructure untuk performa beban trafik ekstrem',
+              'Revisi: Bebas bersyarat dalam kontrak kerja'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'maintenance',
+        label: lang === 'en' ? 'Maintenance' : 'Pemeliharaan',
+        desc: lang === 'en'
+          ? 'Secure, backup, and optimize your website monthly to ensure zero downtime.'
+          : 'Amankan, cadangkan, dan optimalkan website Anda secara berkala agar bebas downtime.',
+        packages: [
+          {
+            name: 'Basic',
+            price: 'Rp150.000 / bln',
+            features: lang === 'en' ? [
+              'Monthly website file backup',
+              'Security and plugin updates',
+              'Basic uptime monitoring',
+              'Minor text correction assistance',
+              'Monthly report via WhatsApp'
+            ] : [
+              'Backup file website bulanan',
+              'Pembaruan plugin & sistem keamanan',
+              'Monitoring uptime dasar',
+              'Bantuan perbaikan text minor',
+              'Laporan bulanan via WA'
+            ]
+          },
+          {
+            name: 'Aktif',
+            price: 'Rp350.000 / bln',
+            popular: true,
+            features: lang === 'en' ? [
+              'Weekly file & database backup',
+              'Firewall & anti-malware security system',
+              '24/7 Uptime monitoring',
+              'Error debugging support (2 working hours/month)',
+              'Monthly traffic analytics report',
+              'Benefit: Peace of mind without needing a dedicated internal IT team to handle technical issues.'
+            ] : [
+              'Backup file & database mingguan',
+              'Keamanan firewall & anti-malware',
+              'Monitoring uptime 24/7',
+              'Bantuan perbaikan error (2 jam kerja/bln)',
+              'Laporan analisis traffic bulanan',
+              'Benefit: Ketenangan total tanpa perlu memiliki tim IT internal khusus untuk menangani gangguan teknis.'
+            ]
+          },
+          {
+            name: 'Prioritas',
+            price: 'Rp750.000 / bln',
+            features: lang === 'en' ? [
+              'Automated daily backup',
+              'Priority bug & error resolution',
+              'Content update support (5 working hours/month)',
+              'Regular security audits & optimizations',
+              'Dedicated WhatsApp coordination group with developers'
+            ] : [
+              'Backup harian otomatis',
+              'Prioritas penanganan bug & error',
+              'Bantuan update content (5 jam kerja/bln)',
+              'Audit keamanan & optimasi berkala',
+              'Grup koordinasi WA khusus developer'
+            ]
+          },
+          {
+            name: 'Custom',
+            price: 'Hubungi Kami',
+            features: lang === 'en' ? [
+              'Real-time database backup (upon database changes)',
+              'Dedicated Server Management & Cloud Server Scaling monitoring',
+              'Dedicated developer team allocation (up to 20 working hours/month)',
+              'Emergency SLA response under 30 minutes'
+            ] : [
+              'Jadwal backup real-time (setiap ada perubahan database)',
+              'Dedicated Server Management & Cloud Server Scaling monitoring',
+              'Alokasi waktu tim pengembang khusus (hingga 20 jam kerja/bulan)',
+              'SLA (Service Level Agreement) penanganan darurat di bawah 30 menit'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  marketing: {
+    label: lang === 'en' ? 'AI, SEO & Video' : 'Layanan AI, SEO, & Video Editing',
+    items: [
+      {
+        id: 'ai-automation',
+        label: lang === 'en' ? 'AI & Automation' : 'AI & Otomatisasi',
+        desc: lang === 'en'
+          ? 'Streamline manual tasks and automate data pipelines using advanced LLMs.'
+          : 'Pangkas kerja manual dan otomatiskan alur kerja menggunakan agen AI pintar kustom.',
+        packages: [
+          {
+            name: 'Basic (AI Chatbot Standar)',
+            price: 'Rp1.500.000',
+            features: lang === 'en' ? [
+              'Basic FAQ conversation flow setup',
+              'Integration with 1 platform (Website / WhatsApp / Telegram)',
+              'Smart keyword-based auto-response system',
+              'Automated lead contact collection form',
+              'Logic flow revision: 2x minor'
+            ] : [
+              'Setup alur percakapan FAQ dasar otomatis',
+              'Integrasi ke platform pilihan (Website / WhatsApp / Telegram)',
+              'Sistem auto-response berbasis kata kunci pintar',
+              'Form pengumpulan data kontak pelanggan otomatis',
+              'Revisi alur logika: 2x minor'
+            ]
+          },
+          {
+            name: 'Pro (Workflow Automation)',
+            price: 'Rp2.950.000',
+            popular: true,
+            features: lang === 'en' ? [
+              'Automate data sync between platforms (e.g. Web Form to Google Sheets)',
+              'Instant WhatsApp/Email notifications for internal team & clients',
+              'Sales data synchronization to simple CRM/ERP systems',
+              'Automation system config using webhooks / integration tools',
+              'Integration revision: 3x'
+            ] : [
+              'Otomatisasi pengiriman data antar platform (contoh: Web Form ke Google Sheets)',
+              'Integrasi notifikasi otomatis via WhatsApp/Email untuk tim internal & pelanggan',
+              'Sinkronisasi data penjualan ke sistem CRM sederhana/ERP',
+              'Pengaturan sistem otomatisasi menggunakan webhook / integration tools',
+              'Revisi integrasi: 3x'
+            ]
+          },
+          {
+            name: 'Elite (Custom LLM Integration)',
+            price: 'Rp4.850.000',
+            features: lang === 'en' ? [
+              'Smart LLM API model integration (OpenAI / Gemini / Claude) to internal systems',
+              'Model training using custom Knowledge Base (internal SOPs)',
+              'Text processing, automated classification, & smart document generator',
+              'API token usage monitoring dashboard',
+              'Model & prompt instruction revisions: Limited free'
+            ] : [
+              'Integrasi API model pintar (OpenAI / Gemini / Claude) ke sistem internal',
+              'Pelatihan model menggunakan Knowledge Base khusus (Dokumen bisnis internal / SOP)',
+              'Sistem pemrosesan teks, klasifikasi data otomatis, & generator dokumen cerdas',
+              'Dashboard monitoring penggunaan token API',
+              'Revisi model & instruksi prompt: Bebas terbatas'
+            ]
+          },
+          {
+            name: 'Custom AI (Enterprise Agent)',
+            price: 'Mulai Rp8.500.000',
+            features: lang === 'en' ? [
+              'Autonomous smart agent architecture (Agentic workflow) multi-instruction',
+              'High-security internal database integration for big data',
+              'Behavior-based smart product recommendation system (Machine learning)',
+              '3-month intensive model performance maintenance support',
+              'System architecture revisions: Free during contract period'
+            ] : [
+              'Arsitektur agen pintar otonom (Agentic workflow framework) multi-instruksi',
+              'Integrasi database internal skala besar dengan arsitektur keamanan tingkat tinggi',
+              'Sistem rekomendasi produk cerdas berbasis perilaku pengguna (Machine learning model)',
+              'Pemeliharaan performa kecerdasan model khusus selama 3 bulan pertama',
+              'Revisi arsitektur sistem: Bebas berkelanjutan selama masa kontrak'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'seo',
+        label: lang === 'en' ? 'SEO' : 'SEO',
+        desc: lang === 'en'
+          ? 'Dominate Google search results and drive high-intent organic buyers.'
+          : 'Dominasi halaman Google secara organik untuk menjangkau pembeli potensial.',
+        packages: [
+          {
+            name: 'Basic (Technical SEO Audit)',
+            price: 'Rp750.000',
+            features: lang === 'en' ? [
+              'Comprehensive semantic HTML structure audit',
+              'Core Web Vitals tuning (loading speed optimization)',
+              'Sitemap XML creation & Google Search Console indexing setup',
+              'Broken link fixes (404) & mobile friendliness optimization',
+              'One-time Project'
+            ] : [
+              'Audit menyeluruh struktur HTML semantik website',
+              'Optimasi kecepatan muat halaman (Core Web Vitals tuning)',
+              'Pembuatan dan pendaftaran peta situs (Sitemap XML) ke Google Search Console',
+              'Perbaikan error link rusak (404) & optimasi keramahan perangkat mobile',
+              'Proyek Sekali Jalan'
+            ]
+          },
+          {
+            name: 'Pro (Local SEO Optimization)',
+            price: 'Rp1.450.000',
+            popular: true,
+            features: lang === 'en' ? [
+              'Google Business Profile (Maps) setup, verification, & optimization',
+              'High-intent local buyer keyword research',
+              'Product review management framework setup',
+              'On-page content optimization targeting local geographical area',
+              'One-time Project'
+            ] : [
+              'Setup, verifikasi, dan optimasi profil Google Bisnisku (Google Maps)',
+              'Riset kata kunci lokal potensial dengan intensitas beli tinggi',
+              'Strategi penataan ulasan (review management framework) produk',
+              'Optimasi konten halaman utama untuk penargetan wilayah geografis lokal',
+              'Proyek Sekali Jalan'
+            ]
+          },
+          {
+            name: 'Elite (Retainer Content & Keyword)',
+            price: 'Rp2.450.000 / bln',
+            features: lang === 'en' ? [
+              'Monthly competitor keyword research & analysis',
+              '4 SEO-optimized blog articles creation (On-page optimization)',
+              'Keyword rank monitoring & weekly traffic performance evaluation',
+              'Continuous technical SEO fixes matching Google algorithm updates',
+              'Benefit: Drives stable daily organic buyer traffic from Google without ad spend dependencies.'
+            ] : [
+              'Riset berkala kata kunci kompetitor bulanan',
+              'Pembuatan 4 artikel blog teroptimasi SEO (On-page optimization)',
+              'Monitoring peringkat kata kunci & evaluasi performa trafik mingguan',
+              'Perbaikan teknis SEO web berkelanjutan mengikuti update algoritma Google',
+              'Benefit: Mendatangkan traffic pembeli organik yang stabil setiap hari dari Google tanpa ketergantungan pada iklan berbayar.'
+            ]
+          },
+          {
+            name: 'Custom SEO Campaign',
+            price: 'Mulai Rp4.500.000 / bln',
+            features: lang === 'en' ? [
+              'E-commerce / multi-category content portal architectural optimization',
+              'Safe and premium external Link Building acquisition strategies',
+              'Massive content production with the latest industry trend research',
+              'In-depth business ROI performance tracking reports from search channel'
+            ] : [
+              'Optimasi arsitektur website e-commerce skala besar / portal konten multi-kategori',
+              'Strategi akuisisi tautan premium luar secara aman (Off-page Link Building)',
+              'Produksi konten berskala masif dengan riset tren industri terkini',
+              'Laporan analitik mendalam performa bisnis (ROI tracking dari kanal pencarian)'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'video-editing',
+        label: lang === 'en' ? 'Video Editing' : 'Video Editing',
+        desc: lang === 'en'
+          ? 'Premium short-form edits and motion graphics to scale social media channels.'
+          : 'Edit video pendek premium dan grafis gerak untuk mendongkrak sosial media.',
+        packages: [
+          {
+            name: 'Basic (Short-Form Starter)',
+            price: 'Rp950.000 / bln',
+            features: lang === 'en' ? [
+              '4 Short Videos per month (TikTok / Reels / Shorts)',
+              'Clip cutting, alignment, and basic audio cleaning',
+              'Standard dynamic subtitles (easy to read)',
+              'Royalty-free transition sound effects & background music',
+              'Revision: 1x per video'
+            ] : [
+              '4 Video Pendek per bulan (TikTok / Reels / Shorts)',
+              'Editing potong, penyelarasan klip, & pembersihan audio dasar',
+              'Subtitle dinamis standar (mudah terbaca)',
+              'Sound effect & musik pendukung bebas klaim hak cipta',
+              'Revisi: 1x per video'
+            ]
+          },
+          {
+            name: 'Pro (Social Media Growth)',
+            price: 'Rp2.250.000 / bln',
+            popular: true,
+            features: lang === 'en' ? [
+              '8 Short Videos per month (TikTok / Reels / Shorts)',
+              '4 Instagram feed/carousel graphic designs',
+              'Fast-paced editing with 3-second attention hook tactics',
+              'Custom animated subtitles matching brand aesthetic',
+              'Transition sound FX syncing & trending audio tracking',
+              'Revision: 2x per content'
+            ] : [
+              '8 Video Pendek per bulan (TikTok / Reels / Shorts)',
+              '4 Desain grafis feed/carousel Instagram informatif',
+              'Editing ritme cepat dilengkapi taktik penarik perhatian 3 detik pertama (Hook)',
+              'Subtitle animasi berwarna kustom mengikuti estetika brand',
+              'Penyelarasan efek suara transisi & pelacakan musik tren terkini',
+              'Revisi: 2x per konten'
+            ]
+          },
+          {
+            name: 'Elite (Corporate & Motion Graphics)',
+            price: 'Rp4.450.000 / bln',
+            features: lang === 'en' ? [
+              '12 Short Videos per month (TikTok / Reels / Shorts)',
+              '1 Long-form corporate / product promo video (max 3 minutes)',
+              'Custom motion graphics elements & animated logo bumper',
+              'Kinetic typography for educational product highlights',
+              'Advanced color grading & cinematic transitions',
+              'Revision: 3x per video',
+              'Benefit: Build premium brand image and visually explain complex products professionally.'
+            ] : [
+              '12 Video Pendek per bulan (TikTok / Reels / Shorts)',
+              '1 Video promosi produk / Profil Perusahaan durasi panjang (Maksimal 3 menit)',
+              'Elemen grafis bergerak buatan kustom (Motion Graphics) & Bumper Logo animasi',
+              'Penerapan teks bergerak (Kinetic Typography) untuk poin edukasi produk',
+              'Koreksi warna visual tingkat lanjut (Color Grading) & transisi efek sinematik',
+              'Revisi: 3x per video',
+              'Benefit: Membangun citra brand premium dan menjelaskan produk rumit secara visual yang profesional.'
+            ]
+          },
+          {
+            name: 'Custom Content Plan',
+            price: 'Hubungi Kami',
+            features: lang === 'en' ? [
+              'Fully tailored short-form video & visual graphic production volume',
+              'Long-form YouTube video editing (10+ minute format)',
+              'Creative visual assets specialized for paid ads (Meta & TikTok Ads Banner)',
+              'Access to dedicated cloud storage folder',
+              'Revision: Free progressively during active production phase'
+            ] : [
+              'Volume produksi kuantitas video pendek dan visual gambar disesuaikan penuh',
+              'Editing video konten YouTube durasi panjang (Format 10+ menit ke atas)',
+              'Aset kreatif visual khusus performa kampanye iklan berbayar (Meta & TikTok Ads)',
+              'Akses folder penyimpanan komparatif (Cloud storage dedicated server)',
+              'Revisi: Bebas bertahap selama alur masa produksi aktif'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'graphic-design',
+        label: lang === 'en' ? 'Graphic Design' : 'Desain Grafis & Kreatif',
+        desc: lang === 'en'
+          ? 'Stunning visual assets, custom social media posts, carousels, and print designs.'
+          : 'Aset visual memukau, postingan sosial media, carousel, dan materi desain kreatif.',
+        packages: [
+          {
+            name: lang === 'en' ? 'Basic (Social Media Starter)' : 'Basic (Social Media Starter)',
+            price: 'Rp450.000 / bln',
+            features: lang === 'en' ? [
+              '6 Custom feed graphic designs per month',
+              'Standard content format (1:1 or 4:5 resolution)',
+              'Agency-grade premium template layout',
+              'Color palette & text matched to brand logo',
+              'Revision: 1x per design',
+              'Benefit: Secure consistent visual brand presence on social media with minimal budget.'
+            ] : [
+              '6 Desain grafis feed tunggal per bulan',
+              'Format konten standard (Resolusi 1:1 atau 4:5)',
+              'Layout visual berbasis template premium agensi',
+              'Color palette & teks disesuaikan dengan logo brand',
+              'Revisi: 1x per desain',
+            ]
+          },
+          {
+            name: lang === 'en' ? 'Pro (Brand Growth & Engagement)' : 'Pro (Brand Growth & Engagement)',
+            price: 'Rp950.000 / bln',
+            popular: true,
+            features: lang === 'en' ? [
+              '12 Custom feed graphic designs per month',
+              '2 Educational/promotional Carousel posts (max 5 slides per carousel)',
+              'Custom visual design matching brand identity',
+              'Research for visual assets (graphics & licensed premium stock photos)',
+              'Micro-layout optimization for high readability on mobile devices',
+              'Revision: 2x per content',
+              'Benefit: Boost audience engagement (saves & shares) through attractive infographics and carousel visuals.'
+            ] : [
+              '12 Desain grafis feed tunggal per bulan',
+              '2 Konten format Carousel edukatif/promosi (Maksimal 5 slide per carousel)',
+              'Desain visual kustom sesuai identitas unik brand',
+              'Riset visual aset pendukung (Elemen grafis & stock foto premium berlisensi)',
+              'Optimasi tata letak mikro untuk keterbacaan tinggi di HP',
+              'Revisi: 2x per konten',
+              'Benefit: Meningkatkan interaksi audiens (save & share) melalui infografis dan visual carousel yang menarik.'
+            ]
+          },
+          {
+            name: lang === 'en' ? 'Elite (Full Campaign & Marketing Assets)' : 'Elite (Full Campaign & Marketing Assets)',
+            price: 'Rp1.950.000 / bln',
+            features: lang === 'en' ? [
+              '20 Custom feed graphic designs per month',
+              '4 Carousel posts (max 7 slides per carousel)',
+              '5 Instagram Stories interaction templates (Q&A, Polls, Quizzes)',
+              '1 Digital Banner / Website Main Promo Banner design',
+              'Advanced image manipulation (photo retouching & color matching)',
+              'Revision: 3x per design',
+              'Benefit: Provides all visual assets needed for massive product marketing campaigns across digital channels.'
+            ] : [
+              '20 Desain grafis feed tunggal per bulan',
+              '4 Konten format Carousel (Maksimal 7 slide per carousel)',
+              '5 Desain template Instagram Stories khusus interaksi (Q&A, Polling, Quiz)',
+              '1 Desain Spanduk Digital / Banner Promosi Website utama',
+              'Manipulasi gambar tingkat lanjut (Advanced photo retouching & color matching)',
+              'Revisi: 3x per desain',
+              'Benefit: Menyediakan seluruh kebutuhan visual untuk kampanye pemasaran produk secara masif di berbagai kanal digital.'
+            ]
+          },
+          {
+            name: lang === 'en' ? 'Custom Design Plan' : 'Custom Design Plan',
+            price: 'Hubungi Kami',
+            features: lang === 'en' ? [
+              'Fully tailored quantity of graphics, infographics, or carousels',
+              'Complete brand identity design assets (Brand Guidelines, Logo Refresh, Stationery)',
+              'High-converting creative ad banners (Meta & TikTok Ads)',
+              'Print/packaging design materials (Packaging & Merchandise design)',
+              'Revision: Free progressively during active work period',
+              'Benefit: Complete visual creative division solution to support all your corporate daily design needs.'
+            ] : [
+              'Volume kuantitas gambar, infografis, atau carousel disesuaikan penuh',
+              'Desain aset identitas brand menyeluruh (Brand Guidelines, Logo Refresh, Stationery)',
+              'Aset gambar kreatif khusus konversi tinggi untuk performa iklan (Meta & TikTok Ads Banner)',
+              'Desain materi cetak / kemasan (Packaging & Merchandise design)',
+              'Revisi: Bebas bertahap selama alur masa kerja aktif',
+              'Benefit: Solusi total divisi kreatif visual yang siap mendukung segala kebutuhan desain harian skala korporat Anda.'
+            ]
+          }
+        ]
+      }
+    ]
+  }
+};
 ---
 
-<Layout title="Jasa Pembuatan Web, SEO, & Otomatisasi AI | LUMOVELO" description="Layanan lengkap pembuatan website headless performa tinggi, optimasi SEO organik, dan solusi integrasi otomatisasi AI bisnis oleh LUMOVELO.">
+<Layout 
+  title={lang === 'en' ? "Complete Agency Services & Pricing | LUMOVELO" : "Daftar Lengkap Layanan & Harga Jasa | LUMOVELO"} 
+  description={lang === 'en' ? "Explore Lumovelo's premium services: Website development, AI workflows, Search Engine Optimization (SEO), and Creative Video Editing." : "Jelajahi harga transparan dari layanan premium Lumovelo: Pembuatan website, otomatisasi alur kerja AI, optimasi SEO Google, dan editing video sosial media."}
+>
   
   <!-- Header Nav (Sticky) -->
   <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3 group">
+      <a href={lang === 'en' ? '/en/' : '/'} class="flex items-center gap-3 group">
         <div class="w-10 h-10 rounded-xl border-2 border-slate-900 bg-blue-600 flex items-center justify-center shadow-[3px_3px_0px_#0f172a] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[1px_1px_0px_#0f172a] transition-all duration-200">
           <Logo class="w-5 h-5 text-white" />
         </div>
         <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
       </a>
 
-      <a href="/" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all select-none">
-        Kembali Ke Beranda
+      <a href={lang === 'en' ? '/en/' : '/'} class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all select-none">
+        {lang === 'en' ? 'Back to Home' : 'Kembali Ke Beranda'}
       </a>
     </div>
   </header>
 
-  <main class="relative z-10 bg-white">
+  <main class="relative z-10 bg-white font-sans">
     <!-- Hero Header -->
-    <section class="py-20 bg-slate-50 border-b border-slate-200 relative overflow-hidden">
+    <section class="pt-16 pb-6 lg:pt-20 lg:pb-8 bg-white relative overflow-hidden">
       <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
-      <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <h1 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ LAYANAN LENGKAP</h1>
-        <h2 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tight leading-[1.0] uppercase mt-3">
-          Eksplorasi Solusi Kami.<br/>
-          <span class="text-stroke-neon">Sesuai Kebutuhan Bisnis Anda.</span>
+      <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <h1 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">
+          {lang === 'en' ? '/ SERVICES & PRICING' : '/ LAYANAN & HARGA'}
+        </h1>
+        <h2 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight leading-[1.1] uppercase mt-3">
+          {lang === 'en' ? 'Explore Our Services.' : 'Daftar Lengkap Harga Jasa.'}<br/>
+          <span class="text-stroke-neon text-blue-600">
+            {lang === 'en' ? 'Built to Scale Your Business.' : 'Didesain untuk Skala Bisnis Anda.'}
+          </span>
         </h2>
-        <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl">
-          Dari pembuatan website performa tinggi hingga integrasi otomatisasi WhatsApp dan AI, kami siap membantu bisnis Anda beroperasi secara maksimal.
+        <p class="text-slate-500 mt-4 text-xs sm:text-sm leading-relaxed font-semibold max-w-xl mx-auto">
+          {lang === 'en' ? 'Transparent pricing with premium features. Choose your service category to see specific packages and details.' : 'Harga transparan dengan fitur premium. Pilih kategori layanan untuk melihat paket detail.'}
         </p>
       </div>
     </section>
 
-    <!-- SECTION 1: JASA PEMBUATAN WEBSITE -->
-    <section class="py-20 border-b border-slate-200">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="mb-12">
-          <span class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ LAYANAN UTAMA</span>
-          <h3 class="font-display font-black text-3xl text-slate-900 uppercase mt-2">Jasa Pembuatan Website</h3>
-          <p class="text-slate-500 text-xs sm:text-sm mt-2 font-semibold">Tersedia dalam 4 pilihan paket investasi sekali bayar sesuai skala kebutuhan bisnis Anda.</p>
+    <!-- SECTION: MAIN DYNAMIC DASHBOARD -->
+    <section class="pb-16 lg:pb-24 bg-white relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <!-- MAIN CATEGORY TABS (Website Dev vs AI/SEO/Video) -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-3 mb-8">
+          <button 
+            id="main-tab-web" 
+            class="main-tab-btn w-full sm:w-auto px-8 py-4 rounded-2xl border-2 border-slate-900 bg-slate-900 text-white font-display font-black text-xs sm:text-sm uppercase tracking-wider shadow-[3px_3px_0px_#2563eb] hover:shadow-[5px_5px_0px_#2563eb] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_#2563eb] transition-all duration-200 cursor-pointer text-center"
+            data-target="web"
+          >
+            {lang === 'en' ? 'Website Development' : 'Website Development'}
+          </button>
+          <button 
+            id="main-tab-marketing" 
+            class="main-tab-btn w-full sm:w-auto px-8 py-4 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-display font-black text-xs sm:text-sm uppercase tracking-wider hover:border-slate-400 hover:text-slate-900 transition-all duration-200 cursor-pointer text-center"
+            data-target="marketing"
+          >
+            {lang === 'en' ? 'AI, SEO & Video Editing' : 'AI, SEO & Video Editing'}
+          </button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Paket 1 -->
-          <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
-            <div>
-              <div class="flex justify-between items-start mb-6">
-                <span class="text-[9px] font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_01</span>
-                <span class="text-[9px] font-black text-blue-600 uppercase">PROFIL BISNIS</span>
-              </div>
-              <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">Landing Page / Company Profile</h4>
-              <div class="my-4">
-                <div class="text-[9px] font-mono text-slate-450 font-bold uppercase">Sekali Bayar</div>
-                <div class="text-2xl font-display font-black text-blue-600 mt-0.5">Rp 1.500.000</div>
-              </div>
-              <ul class="space-y-2.5 text-xs text-slate-600 font-semibold mb-6">
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Domain (.com/.id) & Hosting 1 tahun</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>1 Halaman penjualan konversi tinggi</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Desain kustom responsif & modern</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Integrasi tombol WhatsApp direct</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Batas Revisi: 3 kali</span>
-                </li>
-              </ul>
-            </div>
-            <a href="/#konsultasi" class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer">Pilih Paket</a>
-          </div>
-
-          <!-- Paket 2 -->
-          <div class="service-card border-2 border-slate-900 bg-white p-6 rounded-3xl relative shadow-[5px_5px_0px_#2563eb] hover:shadow-[7px_7px_0px_#1d4ed8] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[480px] z-10">
-            <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">Populer</div>
-            <div>
-              <div class="flex justify-between items-start mb-6">
-                <span class="text-[9px] font-mono text-white bg-slate-900 border border-slate-900 px-2 py-0.5 rounded font-bold">PAKET_02</span>
-                <span class="text-[9px] font-black text-blue-600 uppercase">TOKO ONLINE</span>
-              </div>
-              <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">E-Commerce / Toko Online</h4>
-              <div class="my-4">
-                <div class="text-[9px] font-mono text-slate-450 font-bold uppercase">Sekali Bayar</div>
-                <div class="text-2xl font-display font-black text-blue-600 mt-0.5">Rp 3.000.000</div>
-              </div>
-              <ul class="space-y-2.5 text-xs text-slate-600 font-semibold mb-6">
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Domain (.com/.id) & Hosting 1 tahun</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Katalog & keranjang belanja (up to 50 produk)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Form pemesanan otomatis ke WhatsApp</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Dashboard Admin HP (kelola produk & stok)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Batas Revisi: 5 kali</span>
-                </li>
-              </ul>
-            </div>
-            <a href="/#konsultasi" class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer">Pilih Paket</a>
-          </div>
-
-          <!-- Paket 3 -->
-          <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
-            <div>
-              <div class="flex justify-between items-start mb-6">
-                <span class="text-[9px] font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_03</span>
-                <span class="text-[9px] font-black text-blue-600 uppercase">WEB PORTAL</span>
-              </div>
-              <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">Web Kustom / Aplikasi Portal</h4>
-              <div class="my-4">
-                <div class="text-[9px] font-mono text-slate-450 font-bold uppercase">Sekali Bayar</div>
-                <div class="text-2xl font-display font-black text-slate-900 mt-0.5">Rp 5.000.000</div>
-              </div>
-              <ul class="space-y-2.5 text-xs text-slate-600 font-semibold mb-6">
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Sistem login & registrasi keanggotaan user</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Integrasi pembayaran otomatis (Midtrans/Xendit)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Sistem cek tarif & pelacakan ongkir otomatis</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Jaminan performa tinggi & data aman</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Batas Revisi: 7 kali</span>
-                </li>
-              </ul>
-            </div>
-            <a href="/#konsultasi" class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer">Pilih Paket</a>
-          </div>
-
-          <!-- Paket 4 -->
-          <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
-            <div>
-              <div class="flex justify-between items-start mb-6">
-                <span class="text-[9px] font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_04</span>
-                <span class="text-[9px] font-black text-blue-600 uppercase">CUSTOM</span>
-              </div>
-              <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">Sistem Khusus / Enterprise</h4>
-              <div class="my-4">
-                <div class="text-[9px] font-mono text-slate-450 font-bold uppercase">Investasi Mulai Dari</div>
-                <div class="text-2xl font-display font-black text-slate-900 mt-0.5">Hubungi Kami</div>
-              </div>
-              <ul class="space-y-2.5 text-xs text-slate-600 font-semibold mb-6">
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Arsitektur sistem kompleks & integrasi API khusus</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Visualisasi dasbor analitik bisnis real-time</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Otomatisasi sistem manajemen CRM internal</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Jaminan keamanan & enkripsi data tingkat tinggi</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Revisi tanpa batas selama masa pengembangan</span>
-                </li>
-              </ul>
-            </div>
-            <a href="/#konsultasi" class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer">Hubungi Kami</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: JASA SEO -->
-    <section class="py-20 border-b border-slate-200 bg-slate-50/50">
-      <div class="max-w-4xl mx-auto px-6">
-        <div class="border-2 border-blue-600 bg-white p-8 rounded-3xl shadow-[5px_5px_0px_#2563eb] reveal-on-scroll">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-slate-100">
-            <div>
-              <span class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ OPTIMISASI PENCARIAN</span>
-              <h3 class="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase mt-2">Jasa SEO (Search Engine Optimization)</h3>
-            </div>
-            <div class="text-left md:text-right shrink-0">
-              <div class="text-[9px] font-mono text-slate-400 font-bold uppercase">Investasi Layanan</div>
-              <div class="text-xl font-display font-black text-blue-600">Rp 1.000.000 - Custom</div>
-            </div>
-          </div>
-
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold mb-8">
-            Dapatkan trafik kunjungan organik berkelanjutan dari hasil pencarian Google. Kami mengoptimasi struktur teknis, konten, dan kecepatan muat situs Anda agar mendominasi peringkat kata kunci lokal maupun nasional.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="space-y-1">
-                <h5 class="text-xs font-display font-black text-slate-900 uppercase">Riset Kata Kunci Bisnis</h5>
-                <p class="text-[10px] text-slate-500 font-medium">Mencari frasa yang paling sering diketik calon pembeli Anda.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="space-y-1">
-                <h5 class="text-xs font-display font-black text-slate-900 uppercase">Optimasi Halaman (On-Page)</h5>
-                <p class="text-[10px] text-slate-500 font-medium">Mengatur meta tags, headings, dan struktur artikel.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="space-y-1">
-                <h5 class="text-xs font-display font-black text-slate-900 uppercase">SEO Teknis & Kecepatan</h5>
-                <p class="text-[10px] text-slate-500 font-medium">Mempercepat loading web agar disukai algoritma Google.</p>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center shrink-0 mt-0.5">
-                <svg class="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="space-y-1">
-                <h5 class="text-xs font-display font-black text-slate-900 uppercase">Integrasi Alat Pelacak</h5>
-                <p class="text-[10px] text-slate-500 font-medium">Menyinkronkan Google Search Console & Analytics.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-slate-100">
-            <span class="text-[9px] font-mono text-slate-400 font-bold">LUMOVELO // SEO_SUITE_SYSTEM</span>
-            <a 
-              href="/#konsultasi" 
-              class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
+        <!-- SUB CATEGORY PILLS (e.g. Landing Page, Company Profile...) -->
+        <!-- Web Sub-categories -->
+        <div id="sub-nav-web" class="sub-nav-container mb-8 overflow-x-auto scrollbar-none border-b border-slate-100 flex justify-start md:justify-center gap-1.5 pb-1">
+          {services.web.items.map((item, idx) => (
+            <button
+              data-sub-id={item.id}
+              data-group="web"
+              class={`sub-tab-btn px-4 py-2.5 text-[11px] font-extrabold tracking-wider uppercase whitespace-nowrap rounded-t-xl transition-all duration-200 cursor-pointer border-b-2 ${
+                idx === 0 
+                  ? 'border-blue-600 text-blue-600 bg-blue-50/5' 
+                  : 'border-transparent text-slate-400 hover:text-slate-700'
+              }`}
             >
-              Hubungi Kami
-            </a>
-          </div>
+              {item.label}
+            </button>
+          ))}
         </div>
-      </div>
-    </section>
 
-    <!-- SECTION 3: JASA AI & OTOMATISASI -->
-    <section class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-6">
-        <div class="border-2 border-blue-600 bg-white p-8 rounded-3xl shadow-[5px_5px_0px_#2563eb] reveal-on-scroll">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 pb-6 border-b border-slate-100">
-            <div>
-              <span class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">/ OTOMATISASI PINTAR</span>
-              <h3 class="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase mt-2">AI & Otomatisasi Bisnis</h3>
-            </div>
-            <div class="text-left md:text-right shrink-0">
-              <div class="text-[9px] font-mono text-slate-440 font-bold uppercase">Investasi Layanan</div>
-              <div class="text-xl font-display font-black text-blue-600">Rp 2.000.000 - Custom</div>
-            </div>
-          </div>
-
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold mb-8">
-            Minimalkan beban kerja operasional harian yang repetitif. Kami membangun integrasi sistem WhatsApp auto-responder, sinkronisasi otomatis formulir prospek langsung ke lembar kerja admin, serta chatbot asisten AI interaktif.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            <div class="flex flex-col justify-between p-5 bg-slate-50 border border-slate-200 rounded-2xl min-h-[140px]">
-              <h5 class="text-xs font-display font-black text-slate-900 uppercase">WhatsApp Responder</h5>
-              <p class="text-[10px] text-slate-500 font-semibold leading-relaxed mt-2">Kirim pesan balasan otomatis seketika saat form di website disubmit pembeli.</p>
-            </div>
-            <div class="flex flex-col justify-between p-5 bg-slate-50 border border-slate-200 rounded-2xl min-h-[140px]">
-              <h5 class="text-xs font-display font-black text-slate-900 uppercase">Google Sheet Sync</h5>
-              <p class="text-[10px] text-slate-500 font-semibold leading-relaxed mt-2">Data pembeli otomatis tercatat di Google Sheets tanpa perlu salin-tempel manual.</p>
-            </div>
-            <div class="flex flex-col justify-between p-5 bg-slate-50 border border-slate-200 rounded-2xl min-h-[140px]">
-              <h5 class="text-xs font-display font-black text-slate-900 uppercase">Chatbot FAQ 24/7</h5>
-              <p class="text-[10px] text-slate-500 font-semibold leading-relaxed mt-2">Asisten obrolan otomatis menjawab pertanyaan umum produk kapan saja.</p>
-            </div>
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-slate-100">
-            <span class="text-[9px] font-mono text-slate-400 font-bold">LUMOVELO // AUTOMATION_ENGINE</span>
-            <a 
-              href="/#konsultasi" 
-              class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
+        <!-- Marketing/AI Sub-categories -->
+        <div id="sub-nav-marketing" class="sub-nav-container hidden mb-8 overflow-x-auto scrollbar-none border-b border-slate-100 flex justify-start md:justify-center gap-1.5 pb-1">
+          {services.marketing.items.map((item, idx) => (
+            <button
+              data-sub-id={item.id}
+              data-group="marketing"
+              class={`sub-tab-btn px-4 py-2.5 text-[11px] font-extrabold tracking-wider uppercase whitespace-nowrap rounded-t-xl transition-all duration-200 cursor-pointer border-b-2 ${
+                idx === 0 
+                  ? 'border-blue-600 text-blue-600 bg-blue-50/5' 
+                  : 'border-transparent text-slate-400 hover:text-slate-700'
+              }`}
             >
-              Hubungi Kami
-            </a>
-          </div>
+              {item.label}
+            </button>
+          ))}
         </div>
+
+        <!-- SUB-SERVICE PANELS -->
+        <div class="relative min-h-[500px]">
+          <!-- WEB GROUPS -->
+          {services.web.items.map((subservice, sIdx) => (
+            <div 
+              id={`panel-${subservice.id}`} 
+              class={`service-panel transition-all duration-300 ${sIdx === 0 ? '' : 'hidden'}`}
+              data-group="web"
+            >
+              <!-- Sub-service header -->
+              <div class="text-center mb-8 max-w-xl mx-auto">
+                <p class="text-slate-500 text-xs sm:text-sm font-semibold leading-relaxed">
+                  {subservice.desc}
+                </p>
+              </div>
+
+              <!-- Packages Grid (Tighter width and gaps) -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                {subservice.packages.map((pkg, pIdx) => {
+                  const waText = encodeURIComponent(
+                    `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "${subservice.label} - ${pkg.name}" (${pkg.price}) yang tertera di website.`
+                  );
+                  const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+                  
+                  return (
+                    <div 
+                      class={`service-card border-2 p-5 rounded-2xl relative transition-all duration-300 flex flex-col justify-between min-h-[440px] ${
+                        pkg.popular
+                          ? 'border-slate-900 bg-white shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1.5'
+                          : 'border-blue-600/10 hover:border-blue-600 bg-slate-50/50 hover:bg-slate-50/80 shadow-[3px_3px_0px_rgba(37,99,235,0.05)] hover:shadow-[4px_4px_0px_#2563eb] hover:-translate-y-1'
+                      }`}
+                    >
+                      {pkg.popular && (
+                        <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
+                          {lang === 'en' ? 'POPULAR' : 'POPULER'}
+                        </div>
+                      )}
+                      <div>
+                        <div class="flex justify-between items-start mb-4">
+                          <span class="text-[8px] font-mono text-slate-400 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                            {pIdx === 3 ? 'CUSTOM' : `TIER_0${pIdx + 1}`}
+                          </span>
+                        </div>
+                        <h4 class="font-display font-black text-base text-slate-900 uppercase leading-snug">{pkg.name}</h4>
+                        <div class="my-3">
+                          <div class="text-[8px] font-mono text-slate-400 font-bold uppercase tracking-widest">{lang === 'en' ? 'Investment' : 'Investasi'}</div>
+                          <div class="text-xl font-display font-black text-blue-600 mt-0.5">{pkg.price}</div>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-600 font-semibold mb-6 border-t border-slate-200/40 pt-3">
+                          {pkg.features.map((feature) => (
+                            <li class="flex items-start gap-1.5 leading-relaxed">
+                              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                              </svg>
+                              <span class="text-[11px]">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <a 
+                        href={waUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class={`w-full inline-flex items-center justify-center py-2.5 rounded-xl border-2 font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                          pkg.popular
+                            ? 'border-emerald-500 bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5'
+                            : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm'
+                        }`}
+                      >
+                        {lang === 'en' ? 'Consult Now' : 'Konsultasi'}
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+
+          <!-- MARKETING GROUPS -->
+          {services.marketing.items.map((subservice) => (
+            <div 
+              id={`panel-${subservice.id}`} 
+              class="service-panel transition-all duration-300 hidden"
+              data-group="marketing"
+            >
+              <!-- Sub-service header -->
+              <div class="text-center mb-8 max-w-xl mx-auto">
+                <p class="text-slate-500 text-xs sm:text-sm font-semibold leading-relaxed">
+                  {subservice.desc}
+                </p>
+              </div>
+
+              <!-- Packages Grid (Tighter width and gaps) -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                {subservice.packages.map((pkg, pIdx) => {
+                  const waText = encodeURIComponent(
+                    `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "${subservice.label} - ${pkg.name}" (${pkg.price}) yang tertera di website.`
+                  );
+                  const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+                  
+                  return (
+                    <div 
+                      class={`service-card border-2 p-5 rounded-2xl relative transition-all duration-300 flex flex-col justify-between min-h-[440px] ${
+                        pkg.popular
+                          ? 'border-slate-900 bg-white shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1.5'
+                          : 'border-blue-600/10 hover:border-blue-600 bg-slate-50/50 hover:bg-slate-50/80 shadow-[3px_3px_0px_rgba(37,99,235,0.05)] hover:shadow-[4px_4px_0px_#2563eb] hover:-translate-y-1'
+                      }`}
+                    >
+                      {pkg.popular && (
+                        <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
+                          {lang === 'en' ? 'POPULAR' : 'POPULER'}
+                        </div>
+                      )}
+                      <div>
+                        <div class="flex justify-between items-start mb-4">
+                          <span class="text-[8px] font-mono text-slate-400 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                            {pIdx === 3 ? 'CUSTOM' : `TIER_0${pIdx + 1}`}
+                          </span>
+                        </div>
+                        <h4 class="font-display font-black text-base text-slate-900 uppercase leading-snug">{pkg.name}</h4>
+                        <div class="my-3">
+                          <div class="text-[8px] font-mono text-slate-400 font-bold uppercase tracking-widest">{lang === 'en' ? 'Investment' : 'Investasi'}</div>
+                          <div class="text-xl font-display font-black text-blue-600 mt-0.5">{pkg.price}</div>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-600 font-semibold mb-6 border-t border-slate-200/40 pt-3">
+                          {pkg.features.map((feature) => (
+                            <li class="flex items-start gap-1.5 leading-relaxed">
+                              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                              </svg>
+                              <span class="text-[11px]">{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <a 
+                        href={waUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class={`w-full inline-flex items-center justify-center py-2.5 rounded-xl border-2 font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                          pkg.popular
+                            ? 'border-emerald-500 bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5'
+                            : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm'
+                        }`}
+                      >
+                        {lang === 'en' ? 'Consult Now' : 'Konsultasi'}
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   </main>
@@ -327,34 +1028,105 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <script>
-  function initCards() {
-    if (window.innerWidth < 768) return;
-    const cards = document.querySelectorAll('.service-card');
-    cards.forEach((card: any) => {
-      card.addEventListener('mousemove', (e: MouseEvent) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--x', `${x}px`);
-        card.style.setProperty('--y', `${y}px`);
+  function initPricingDashboard() {
+    const mainTabBtns = document.querySelectorAll('.main-tab-btn');
+    const subTabBtns = document.querySelectorAll('.sub-tab-btn');
+    const subNavContainers = document.querySelectorAll('.sub-nav-container');
+    const servicePanels = document.querySelectorAll('.service-panel');
 
-        const width = rect.width;
-        const height = rect.height;
-        const rotateX = -((e.clientY - rect.top - height / 2) / height) * 4;
-        const rotateY = ((e.clientX - rect.left - width / 2) / width) * 4;
+    // 1. Main category tab switcher
+    mainTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetGroup = btn.getAttribute('data-target');
 
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-      });
+        // Update active class on main category buttons
+        mainTabBtns.forEach(b => {
+          b.classList.remove('border-slate-900', 'bg-slate-900', 'text-white', 'shadow-[3px_3px_0px_#2563eb]', 'hover:shadow-[5px_5px_0px_#2563eb]', '-translate-x-0.5', '-translate-y-0.5');
+          b.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+        });
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        btn.classList.add('border-slate-900', 'bg-slate-900', 'text-white', 'shadow-[3px_3px_0px_#2563eb]', '-translate-x-0.5', '-translate-y-0.5');
+        btn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+
+        // Toggle sub-navigation containers
+        subNavContainers.forEach(container => {
+          if (container.id === `sub-nav-${targetGroup}`) {
+            container.classList.remove('hidden');
+          } else {
+            container.classList.add('hidden');
+          }
+        });
+
+        // Auto-select the first sub-category in the chosen group
+        const targetSubNav = document.getElementById(`sub-nav-${targetGroup}`);
+        if (targetSubNav) {
+          const firstSubBtn = targetSubNav.querySelector('.sub-tab-btn') as HTMLElement;
+          if (firstSubBtn) {
+            firstSubBtn.click();
+          }
+        }
       });
     });
+
+    // 2. Sub-category tab switcher
+    subTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const subId = btn.getAttribute('data-sub-id');
+        const group = btn.getAttribute('data-group');
+
+        // Get sub-tabs in the current container only
+        const siblingBtns = document.querySelectorAll(`.sub-tab-btn[data-group="${group}"]`);
+
+        // Reset all sub-tabs in this group
+        siblingBtns.forEach(b => {
+          b.classList.remove('border-blue-600', 'text-blue-600', 'bg-blue-50/5');
+          b.classList.add('border-transparent', 'text-slate-400', 'hover:text-slate-700');
+        });
+
+        // Set active sub-tab styling
+        btn.classList.add('border-blue-600', 'text-blue-600', 'bg-blue-50/5');
+        btn.classList.remove('border-transparent', 'text-slate-400', 'hover:text-slate-700');
+
+        // Toggle visibility of panels
+        servicePanels.forEach(panel => {
+          if (panel.id === `panel-${subId}`) {
+            panel.classList.remove('hidden');
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // 3. Card mousemove effects for desktop viewports
+    if (window.innerWidth >= 768) {
+      const cards = document.querySelectorAll('.service-card');
+      cards.forEach((card: any) => {
+        card.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--x', `${x}px`);
+          card.style.setProperty('--y', `${y}px`);
+
+          const width = rect.width;
+          const height = rect.height;
+          const rotateX = -((e.clientY - rect.top - height / 2) / height) * 3;
+          const rotateY = ((e.clientX - rect.left - width / 2) / width) * 3;
+
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.005)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+      });
+    }
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCards);
+    document.addEventListener('DOMContentLoaded', initPricingDashboard);
   } else {
-    initCards();
+    initPricingDashboard();
   }
 </script>

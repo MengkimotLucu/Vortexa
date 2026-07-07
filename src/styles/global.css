@@ -55,20 +55,21 @@
   color: transparent;
 }
 
-/* Custom Glassmorphism & Brutalist mix */
-.brutalist-glass {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 2.5px solid #2563eb;
-  box-shadow: 4px 4px 0px #2563eb;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* Custom Glassmorphism & Premium minimalist look */
+.brutalist-glass, .premium-glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(37, 99, 235, 0.08);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.03), 0 1px 3px rgba(37, 99, 235, 0.01);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.brutalist-glass:hover {
-  border-color: #1d4ed8;
-  box-shadow: 6px 6px 0px #1d4ed8;
-  transform: translate(-2.5px, -2.5px);
+.brutalist-glass:hover, .premium-glass:hover {
+  border-color: rgba(37, 99, 235, 0.25);
+  box-shadow: 0 12px 35px rgba(37, 99, 235, 0.08), 0 2px 4px rgba(37, 99, 235, 0.02);
+  transform: translateY(-4px);
 }
 
 /* Neon Glows */

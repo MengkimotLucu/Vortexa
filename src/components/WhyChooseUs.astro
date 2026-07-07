@@ -1,0 +1,216 @@
+---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ NILAI TAMBAH KAMI",
+    title1: "Mengapa Mempercayakan Digitalisasi Anda",
+    title2: "Kepada Lumovelo?",
+    desc: "Kami tidak sekadar membuat halaman web. Kami merekayasa aset digital berkinerja tinggi yang dirancang khusus untuk mendorong pertumbuhan nyata bisnis Anda.",
+    cards: {
+      c1: {
+        title: "Desain Kustom Unik, Bukan Template Pasaran",
+        desc: "Tim UI/UX desainer kami merancang estetika visual website Anda dari nol. Menghindari template umum copy-paste untuk memastikan brand Anda tampil menonjol, relevan, dan terpercaya di mata klien."
+      },
+      c2: {
+        title: "Alur Kerja Efisien & Terjadwal",
+        desc: "Pengembangan proyek terencana dengan milestone yang jelas. Kami memperbarui progres pekerjaan Anda secara transparan setiap 1-2 hari via grup koordinasi WhatsApp khusus."
+      },
+      c3: {
+        title: "Investasi Jujur Tanpa Biaya Tersembunyi",
+        desc: "Layanan all-in-one mencakup domain, hosting premium, sertifikasi keamanan SSL, dan setup analitik. Rincian biaya tertulis transparan di awal tanpa ada kejutan biaya tambahan di tengah jalan."
+      },
+      c4: {
+        title: "Struktur Bersih & Ramah Google SEO",
+        desc: "Konfigurasi meta tag, heading terstruktur, dan semantic HTML dilakukan langsung sejak tahap coding awal. Website Anda siap diindeks secara optimal oleh mesin pencari Google."
+      },
+      c5: {
+        title: "Fokus Konversi & Alat Penjualan Otomatis",
+        desc: "Menggabungkan seni visual dengan psikologi marketing. Tata letak elemen diposisikan secara strategis untuk mengarahkan traffic kunjungan menjadi leads WhatsApp berkualitas secara otomatis."
+      },
+      c6: {
+        title: "Partner Pertumbuhan Jangka Panjang",
+        desc: "Kami mendampingi perkembangan digital Anda. Menyediakan garansi pasca-rilis, bantuan pemeliharaan sistem, hingga dukungan perluasan sistem otomatisasi AI dan SEO."
+      }
+    }
+  },
+  en: {
+    sectionHeader: "/ OUR VALUE PROPOSITION",
+    title1: "Why Trust Your Digital Transformation",
+    title2: "With Lumovelo?",
+    desc: "We don't just build pages. We engineer high-performance digital assets designed to scale your brand and generate actual business growth.",
+    cards: {
+      c1: {
+        title: "Unique Custom Design, No Generic Templates",
+        desc: "Our UI/UX designers craft your website's aesthetics from scratch. We reject mass-produced templates to ensure your brand stands out, stays relevant, and commands industry trust."
+      },
+      c2: {
+        title: "Streamlined Workflow & Constant Updates",
+        desc: "Structured development with clear milestones. We share transparent progress updates every 1-2 days via a dedicated WhatsApp coordination group."
+      },
+      c3: {
+        title: "Honest Pricing & All-Inclusive Packages",
+        desc: "Get all essentials covered: domain, premium cloud hosting, SSL security, and analytical tools. Transparent costs listed upfront with zero hidden fees mid-way."
+      },
+      c4: {
+        title: "Clean Code & Search Engine Optimization",
+        desc: "Meta tags, heading hierarchies, and semantic HTML are implemented directly during coding. Your website is configured to be search-engine ready from day one."
+      },
+      c5: {
+        title: "Conversion-Focused Architecture",
+        desc: "Blending premium visual arts with consumer psychology. Layout elements are strategically mapped to turn organic visits into qualified WhatsApp inquiries."
+      },
+      c6: {
+        title: "Long-Term Growth Collaboration",
+        desc: "We act as your dedicated tech partner. Providing post-launch support, ongoing maintenance, and scaling tools for AI automations and advanced marketing."
+      }
+    }
+  }
+}[lang];
+---
+
+<section id={lang === 'en' ? 'why-choose-us' : 'kenapa-kami'} class="py-12 lg:py-16 bg-white relative overflow-hidden border-t border-slate-100">
+  <div class="absolute right-[-10%] top-[10%] w-[600px] h-[600px] bg-blue-600/[0.08] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute left-[-10%] bottom-[10%] w-[500px] h-[500px] bg-indigo-500/[0.06] rounded-full blur-3xl pointer-events-none"></div>
+  
+  <!-- Narrower layout container (max-w-5xl) for tighter grid bento presentation -->
+  <div class="max-w-5xl mx-auto px-6 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="max-w-4xl mx-auto text-center mb-12 reveal-on-scroll">
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">{content.sectionHeader}</h2>
+      <h3 class="font-display font-black text-2xl sm:text-4xl text-slate-900 tracking-tight leading-[1.2] uppercase font-sans">
+        {content.title1} <span class="text-blue-600">{content.title2}</span>
+      </h3>
+      <p class="text-slate-500 mt-3 text-xs sm:text-sm leading-relaxed font-semibold max-w-xl mx-auto">
+        {content.desc}
+      </p>
+    </div>
+
+    <!-- Bento Grid Container: Heights are self-adjusting with tight padding (p-6) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal-on-scroll">
+      
+      <!-- Card 1: Custom Design (Spans 2 columns) -->
+      <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between lg:col-span-2">
+        <!-- Abstract Vector Design Layers (Unique Creative SVG) -->
+        <div class="w-full flex items-center justify-center py-4">
+          <svg class="w-full max-w-[240px] h-auto text-blue-600" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Overlapping Layered Art (Creative UI Canvas) -->
+            <rect x="20" y="40" width="110" height="60" rx="8" stroke="#cbd5e1" stroke-dasharray="3 3"/>
+            <rect x="40" y="25" width="110" height="60" rx="8" stroke="#93c5fd" fill="rgba(239, 246, 255, 0.4)"/>
+            <rect x="60" y="10" width="110" height="60" rx="8" stroke="#2563eb" stroke-width="2" fill="rgba(37, 99, 235, 0.05)"/>
+            <!-- Compass/Art icon on the main layer -->
+            <circle cx="115" cy="40" r="10" stroke="#2563eb" stroke-width="1.5"/>
+            <line x1="115" y1="30" x2="115" y2="50" stroke="#ef4444" stroke-width="1.5"/>
+            <line x1="105" y1="40" x2="125" y2="40" stroke="#ef4444" stroke-width="1.5"/>
+          </svg>
+        </div>
+        
+        <div class="text-left mt-3">
+          <h4 class="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight">{content.cards.c1.title}</h4>
+          <p class="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed mt-2">{content.cards.c1.desc}</p>
+        </div>
+      </div>
+
+      <!-- Right column stack of 2 smaller cards -->
+      <div class="flex flex-col gap-6 lg:col-span-1">
+        
+        <!-- Card 2: 2-Day Process -->
+        <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex items-start gap-4">
+          <!-- Unique abstract timeline flow icon -->
+          <div class="shrink-0">
+            <svg class="w-10 h-auto text-blue-600" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="20" cy="12" r="4" stroke="#3b82f6" fill="#3b82f6"/>
+              <line x1="20" y1="16" x2="20" y2="26" stroke="#94a3b8" stroke-dasharray="2 2"/>
+              <circle cx="20" cy="30" r="4" stroke="#3b82f6"/>
+              <line x1="20" y1="34" x2="20" y2="44" stroke="#94a3b8" stroke-dasharray="2 2"/>
+              <circle cx="20" cy="48" r="4" stroke="#22c55e" fill="#22c55e"/>
+            </svg>
+          </div>
+          <div class="space-y-1">
+            <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c2.title}</h4>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c2.desc}</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Complete Package -->
+        <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex items-start gap-4">
+          <!-- Unique Shield/Lock Icon -->
+          <div class="shrink-0">
+            <svg class="w-10 h-auto text-blue-600" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22a8 8 0 0 1 16 0c0 6-8 12-8 12s-8-6-8-12z" stroke="#2563eb" fill="rgba(37, 99, 235, 0.05)"/>
+              <circle cx="20" cy="20" r="3" fill="#ef4444" stroke="none"/>
+            </svg>
+          </div>
+          <div class="space-y-1">
+            <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c3.title}</h4>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c3.desc}</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Row: 3 Equal Columns -->
+      
+      <!-- Card 4: SEO Ready -->
+      <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+        <!-- Google Search Snippet Card (Different from Magnifying glass) -->
+        <div class="w-full flex items-center justify-center py-4">
+          <svg class="w-full max-w-[140px] h-auto text-slate-400" viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Search bar -->
+            <rect x="5" y="10" width="110" height="20" rx="4" stroke="#cbd5e1"/>
+            <line x1="15" y1="20" x2="80" y2="20" stroke="#94a3b8" stroke-width="2"/>
+            <!-- Speed tick -->
+            <circle cx="98" cy="20" r="5" fill="#22c55e" stroke="none"/>
+            <path d="M96 20l1.5 1.5 2-2" stroke="white" stroke-width="1"/>
+            <!-- Result Snippet Card -->
+            <rect x="5" y="42" width="110" height="30" rx="4" stroke="#3b82f6" fill="rgba(59, 130, 246, 0.03)"/>
+            <line x1="15" y1="52" x2="60" y2="52" stroke="#2563eb" stroke-width="2"/>
+            <line x1="15" y1="60" x2="95" y2="60" stroke="#94a3b8"/>
+          </svg>
+        </div>
+        <div class="space-y-2 mt-3">
+          <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c4.title}</h4>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c4.desc}</p>
+        </div>
+      </div>
+
+      <!-- Card 5: Built to Work -->
+      <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+        <!-- Creative Conversion Funnel Icon (Different from standard chart) -->
+        <div class="w-full flex items-center justify-center py-4">
+          <svg class="w-full max-w-[140px] h-auto text-slate-400" viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Funnel layers -->
+            <path d="M20 15h80l-25 30h-30l-25-30z" stroke="#cbd5e1" fill="rgba(241, 245, 249, 0.5)"/>
+            <path d="M42 45h36l-8 20h-20l-8-20z" stroke="#93c5fd" fill="rgba(147, 197, 253, 0.1)"/>
+            <line x1="60" y1="65" x2="60" y2="75" stroke="#2563eb" stroke-width="2"/>
+            <circle cx="60" cy="75" r="3" fill="#22c55e" stroke="none"/>
+          </svg>
+        </div>
+        <div class="space-y-2 mt-3">
+          <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c5.title}</h4>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c5.desc}</p>
+        </div>
+      </div>
+
+      <!-- Card 6: Long-term Partner -->
+      <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+        <!-- Infinity Loop (Unique Concept representation) -->
+        <div class="w-full flex items-center justify-center py-4">
+          <svg class="w-full max-w-[140px] h-auto text-blue-600" viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Infinity Symbol (Smooth bezier) -->
+            <path d="M30 40c0-10 15-15 25-5s20 15 35 15 25-5 25-15-15-15-25-5-20 15-35 15-25-5-25-15z" stroke="#2563eb" stroke-width="2.5" fill="none"/>
+            <circle cx="30" cy="40" r="2.5" fill="#ef4444" stroke="none"/>
+            <circle cx="90" cy="40" r="2.5" fill="#22c55e" stroke="none"/>
+          </svg>
+        </div>
+        <div class="space-y-2 mt-3">
+          <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c6.title}</h4>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c6.desc}</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

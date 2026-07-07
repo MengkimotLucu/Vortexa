@@ -2,20 +2,33 @@
 const pathname = Astro.url.pathname;
 const currentLocale = Astro.currentLocale || 'id';
 
-let idLink = pathname;
-let enLink = pathname;
+// Clean trailing slash for matching
+const cleanPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
 
-if (currentLocale === 'en') {
-  // Remove "/en" prefix. E.g. /en/ -> / or /en/layanan/ -> /layanan/
-  idLink = pathname.replace(/^\/en(\/|$)/, '/');
+// Explicit mapping pairs
+const pairs = [
+  ['/', '/en/'],
+  ['/tentang/', '/en/about-us/'],
+  ['/karir/', '/en/careers/'],
+  ['/kontak/', '/en/contact/'],
+  ['/portofolio/', '/en/portfolio/']
+];
+
+let idLink = '';
+let enLink = '';
+
+const matchedPair = pairs.find(pair => pair[0] === cleanPath || pair[1] === cleanPath);
+if (matchedPair) {
+  idLink = matchedPair[0];
+  enLink = matchedPair[1];
 } else {
-  // Add "/en" prefix. E.g. / -> /en/ or /layanan/ -> /en/layanan/
-  if (pathname === '/') {
-    enLink = '/en/';
+  // If not in explicit pairs, use standard naming convention (e.g. blog pages, policy pages)
+  if (cleanPath.startsWith('/en/')) {
+    enLink = cleanPath;
+    idLink = cleanPath.replace(/^\/en/, '');
   } else {
-    if (!pathname.startsWith('/en/')) {
-      enLink = `/en${pathname}`;
-    }
+    idLink = cleanPath;
+    enLink = `/en${cleanPath}`;
   }
 }
 ---

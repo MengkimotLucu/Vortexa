@@ -1,0 +1,222 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Logo from '../../components/Logo.astro';
+---
+
+<Layout title="Dashboard Admin | LUMOVELO" description="Panel pusat kontrol agensi Lumovelo." noindex={true}>
+  <div id="admin-layout" class="hidden min-h-screen bg-slate-950 text-slate-100 flex font-sans select-none">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 border-r border-slate-800 bg-slate-900 flex flex-col justify-between shrink-0">
+      <div>
+        <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center">
+            <Logo class="w-4 h-4 text-white" />
+          </div>
+          <span class="font-display font-black text-base tracking-widest text-white">LUMOVELO</span>
+        </div>
+
+        <nav class="p-4 space-y-1.5">
+          <a href="/admin/dashboard/" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 text-xs font-black uppercase tracking-wider">
+            📊 Ringkasan Panel
+          </a>
+          <a href="/admin/finance/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            💰 Laporan Keuangan
+          </a>
+          <a href="/admin/profit-sharing/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            🤝 Bagi Hasil Tim
+          </a>
+          <a href="/admin/wedding/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            💍 Undangan Pernikahan
+          </a>
+          <a href="/workspace/invoice/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            📄 Buat Dokumen
+          </a>
+        </nav>
+      </div>
+
+      <div class="p-4 border-t border-slate-800">
+        <button id="btn-logout" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white text-xs font-black uppercase tracking-widest transition-all cursor-pointer">
+          🚪 Keluar Dashboard
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-20 border-b border-slate-800 bg-slate-900/40 px-8 flex items-center justify-between">
+        <div>
+          <h1 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-widest">SISTEM KENDALI UTAMA</h1>
+          <p class="text-xs text-slate-500 mt-0.5">Selamat datang kembali, Administrator.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span class="text-xs font-mono text-slate-400">DATABASE: SUPABASE CONNECTED</span>
+        </div>
+      </header>
+
+      <!-- Dashboard Body -->
+      <div class="p-8 overflow-y-auto flex-1 space-y-8">
+        
+        <!-- Stats Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl">
+            <div class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">OMZET PROYEK</div>
+            <div id="stat-revenue" class="text-2xl font-display font-black text-blue-500 mt-2">Rp 0</div>
+          </div>
+          <div class="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl">
+            <div class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">DOKUMEN TERBIT</div>
+            <div id="stat-docs" class="text-2xl font-display font-black text-white mt-2">0 Dokumen</div>
+          </div>
+          <div class="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl">
+            <div class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">TAGIHAN PENDING</div>
+            <div id="stat-unpaid" class="text-2xl font-display font-black text-rose-500 mt-2">Rp 0</div>
+          </div>
+          <div class="p-6 bg-slate-900/50 border border-slate-800 rounded-2xl">
+            <div class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">UNDANGAN DIGITAL</div>
+            <div id="stat-wedding" class="text-2xl font-display font-black text-emerald-500 mt-2">0 Klien</div>
+          </div>
+        </div>
+
+        <!-- Invoices & Documents Log -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
+          <div class="p-6 border-b border-slate-800 flex justify-between items-center">
+            <h3 class="font-display font-black text-sm text-white uppercase tracking-wider">Riwayat Dokumen Terbaru</h3>
+            <span class="text-[10px] font-mono text-slate-500">REAL-TIME DATA</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-slate-800/80 bg-slate-950/40 text-slate-400 font-bold">
+                  <th class="p-4">NOMOR</th>
+                  <th class="p-4">TANGGAL</th>
+                  <th class="p-4">KLIEN / PERUSAHAAN</th>
+                  <th class="p-4">JENIS</th>
+                  <th class="p-4">TOTAL</th>
+                  <th class="p-4">STATUS</th>
+                </tr>
+              </thead>
+              <tbody id="docs-table-body" class="divide-y divide-slate-800/50 text-slate-300">
+                <tr>
+                  <td colspan="6" class="p-8 text-center text-slate-500 font-medium">Memuat data log dokumen...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    import { supabase } from '../../lib/supabase';
+
+    const adminLayout = document.getElementById('admin-layout')!;
+    const btnLogout = document.getElementById('btn-logout')!;
+    
+    // Auth Validation check
+    async function validateAdminSession() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = '/admin/login/';
+      } else {
+        adminLayout.classList.remove('hidden');
+        loadDashboardStats();
+      }
+    }
+    validateAdminSession();
+
+    // Stats and Tables fetch
+    async function loadDashboardStats() {
+      try {
+        // Fetch all documents
+        const { data: docs, error: docsError } = await supabase
+          .from('documents')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (docsError) throw docsError;
+
+        // Fetch wedding invitations
+        const { count: weddingCount, error: weddingError } = await supabase
+          .from('wedding_invitations')
+          .select('*', { count: 'exact', head: true });
+
+        // Update stats counters
+        const docCount = docs?.length || 0;
+        let revenue = 0;
+        let unpaid = 0;
+
+        docs?.forEach((doc) => {
+          if (doc.doc_type === 'invoice') {
+            const docAmount = Number(doc.amount) || 0;
+            if (doc.status === 'PAID') {
+              revenue += docAmount;
+            } else if (doc.status === 'UNPAID' || doc.status === 'OVERDUE') {
+              unpaid += docAmount;
+            }
+          }
+        });
+
+        document.getElementById('stat-revenue')!.innerText = `Rp ${revenue.toLocaleString('id-ID')}`;
+        document.getElementById('stat-docs')!.innerText = `${docCount} Dokumen`;
+        document.getElementById('stat-unpaid')!.innerText = `Rp ${unpaid.toLocaleString('id-ID')}`;
+        document.getElementById('stat-wedding')!.innerText = `${weddingCount || 0} Klien`;
+
+        // Render table rows
+        const tableBody = document.getElementById('docs-table-body')!;
+        if (!docs || docs.length === 0) {
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="6" class="p-8 text-center text-slate-500 font-medium">Belum ada riwayat dokumen tersimpan.</td>
+            </tr>
+          `;
+          return;
+        }
+
+        tableBody.innerHTML = docs.slice(0, 10).map((doc) => {
+          const formattedAmount = doc.amount ? `Rp ${Number(doc.amount).toLocaleString('id-ID')}` : '-';
+          
+          let statusBadgeClass = 'bg-slate-800 text-slate-400';
+          if (doc.status === 'PAID' || doc.status === 'signed') {
+            statusBadgeClass = 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
+          } else if (doc.status === 'UNPAID' || doc.status === 'draft') {
+            statusBadgeClass = 'bg-amber-500/10 border border-amber-500/20 text-amber-400';
+          } else if (doc.status === 'OVERDUE') {
+            statusBadgeClass = 'bg-rose-500/10 border border-rose-500/20 text-rose-400';
+          }
+
+          return `
+            <tr class="hover:bg-slate-900/20 transition-colors">
+              <td class="p-4 font-mono font-bold text-white">${doc.doc_number || '-'}</td>
+              <td class="p-4 text-slate-400">${doc.doc_date || '-'}</td>
+              <td class="p-4">
+                <div class="font-bold text-white">${doc.client_name || '-'}</div>
+                <div class="text-[10px] text-slate-500 mt-0.5">${doc.client_company || '-'}</div>
+              </td>
+              <td class="p-4 font-bold text-blue-400 uppercase font-mono">${doc.doc_type}</td>
+              <td class="p-4 font-mono text-slate-200 font-bold">${formattedAmount}</td>
+              <td class="p-4">
+                <span class="px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider ${statusBadgeClass}">
+                  ${doc.status}
+                </span>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+      } catch (err) {
+        console.error('Error fetching dashboard stats:', err);
+      }
+    }
+
+    btnLogout.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = '/admin/login/';
+    });
+  </script>
+</Layout>

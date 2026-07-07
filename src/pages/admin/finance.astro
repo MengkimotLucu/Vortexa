@@ -1,0 +1,516 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Logo from '../../components/Logo.astro';
+---
+
+<Layout title="Laporan Keuangan | LUMOVELO" description="Kelola dan ekspor data laporan keuangan Lumovelo." noindex={true}>
+  <div id="admin-layout" class="hidden min-h-screen bg-slate-950 text-slate-100 flex font-sans select-none">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 border-r border-slate-800 bg-slate-900 flex flex-col justify-between shrink-0">
+      <div>
+        <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center">
+            <Logo class="w-4 h-4 text-white" />
+          </div>
+          <span class="font-display font-black text-base tracking-widest text-white">LUMOVELO</span>
+        </div>
+
+        <nav class="p-4 space-y-1.5">
+          <a href="/admin/dashboard/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            📊 Ringkasan Panel
+          </a>
+          <a href="/admin/finance/" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 text-xs font-black uppercase tracking-wider">
+            💰 Laporan Keuangan
+          </a>
+          <a href="/admin/profit-sharing/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            🤝 Bagi Hasil Tim
+          </a>
+          <a href="/admin/wedding/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            💍 Undangan Pernikahan
+          </a>
+          <a href="/workspace/invoice/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            📄 Buat Dokumen
+          </a>
+        </nav>
+      </div>
+
+      <div class="p-4 border-t border-slate-800">
+        <button id="btn-logout" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white text-xs font-black uppercase tracking-widest transition-all cursor-pointer">
+          🚪 Keluar Dashboard
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-20 border-b border-slate-800 bg-slate-900/40 px-8 flex items-center justify-between">
+        <div>
+          <h1 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-widest">LAPORAN KEUANGAN BULANAN</h1>
+          <p class="text-xs text-slate-500 mt-0.5">Kelola, saring, dan ekspor laporan transaksi Lumovelo.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btn-add-trx" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-black uppercase tracking-widest shadow-lg shadow-blue-500/20 transition-all cursor-pointer">
+            ➕ Tambah Transaksi
+          </button>
+          <button id="btn-export" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black uppercase tracking-widest shadow-lg shadow-emerald-500/20 transition-all cursor-pointer">
+            📥 Ekspor ke Excel (CSV)
+          </button>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="p-8 overflow-y-auto flex-1 space-y-6">
+        
+        <!-- Filters Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-900/30 p-4 border border-slate-800 rounded-2xl">
+          <div class="space-y-1">
+            <label for="filter-status" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Saring Status</label>
+            <select id="filter-status" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors">
+              <option value="ALL">SEMUA STATUS</option>
+              <option value="PAID">LUNAS (PAID)</option>
+              <option value="UNPAID">BELUM DIBAYAR (UNPAID)</option>
+              <option value="OVERDUE">JATUH TEMPO (OVERDUE)</option>
+            </select>
+          </div>
+          <div class="space-y-1">
+            <label for="filter-type" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Saring Dokumen</label>
+            <select id="filter-type" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors">
+              <option value="ALL">SEMUA JENIS DOKUMEN</option>
+              <option value="invoice">INVOICE PENAGIHAN</option>
+              <option value="mou">MOU PERJANJIAN</option>
+              <option value="spk">SPK KONTRAK KERJA</option>
+              <option value="kuitansi">KUITANSI PEMBAYARAN</option>
+            </select>
+          </div>
+          <div class="space-y-1">
+            <label for="search-client" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Cari Klien / Perusahaan</label>
+            <input type="text" id="search-client" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors" placeholder="Ketik nama klien..." />
+          </div>
+        </div>
+
+        <!-- Tabular List -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-slate-800/80 bg-slate-950/40 text-slate-400 font-bold">
+                  <th class="p-4">KLIEN</th>
+                  <th class="p-4">KONTAK</th>
+                  <th class="p-4">TGL PESAN</th>
+                  <th class="p-4">DEADLINE</th>
+                  <th class="p-4">KETERANGAN TUGAS</th>
+                  <th class="p-4">EKSEKUTOR</th>
+                  <th class="p-4">STATUS EKSEKUSI</th>
+                  <th class="p-4">TOTAL NILAI</th>
+                  <th class="p-4 text-right">AKSI</th>
+                </tr>
+              </thead>
+              <tbody id="finance-table-body" class="divide-y divide-slate-800/50 text-slate-300">
+                <tr>
+                  <td colspan="8" class="p-8 text-center text-slate-500 font-medium">Memuat data transaksi...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add/Edit Transaction Modal -->
+  <div id="transaction-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-md p-6 space-y-4 shadow-2xl">
+      <h3 id="modal-title" class="font-display font-black text-sm text-white uppercase tracking-wider">Tambah Transaksi Baru</h3>
+      
+      <form id="modal-form" class="space-y-3.5 text-xs text-slate-300">
+        <input type="hidden" id="modal-doc-id" />
+        
+        <div class="grid grid-cols-2 gap-3">
+          <div class="space-y-1">
+            <label for="modal-doc-number" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Nomor Dokumen</label>
+            <input type="text" id="modal-doc-number" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="INV/2026/001" />
+          </div>
+          <div class="space-y-1">
+            <label for="modal-doc-type" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Jenis Dokumen</label>
+            <select id="modal-doc-type" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none">
+              <option value="invoice">Invoice</option>
+              <option value="spk">SPK</option>
+              <option value="mou">MoU</option>
+              <option value="kuitansi">Kuitansi</option>
+              <option value="rab">RAB</option>
+              <option value="bast">BAST</option>
+              <option value="srs">SRS</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label for="modal-client-name" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Nama Klien</label>
+          <input type="text" id="modal-client-name" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="Budi Santoso" />
+        </div>
+
+        <div class="space-y-1">
+          <label for="modal-client-company" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Nama Perusahaan</label>
+          <input type="text" id="modal-client-company" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="PT. HijabStyle Mode" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="space-y-1">
+            <label for="modal-amount" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Nilai Proyek (Rp)</label>
+            <input type="number" id="modal-amount" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="5000000" />
+          </div>
+          <div class="space-y-1">
+            <label for="modal-status" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Status</label>
+            <select id="modal-status" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none">
+              <option value="UNPAID">UNPAID</option>
+              <option value="PAID">PAID</option>
+              <option value="OVERDUE">OVERDUE</option>
+              <option value="draft">draft</option>
+              <option value="signed">signed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="space-y-1">
+            <label for="modal-doc-date" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Tanggal</label>
+            <input type="date" id="modal-doc-date" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" />
+          </div>
+          <div class="space-y-1">
+            <label for="modal-deadline" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Deadline</label>
+            <input type="text" id="modal-deadline" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="30 Hari Kerja" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="space-y-1">
+            <label for="modal-client-phone" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Nomor WA Klien</label>
+            <input type="text" id="modal-client-phone" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="6285..." />
+          </div>
+          <div class="space-y-1">
+            <label for="modal-assignee" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Eksekutor</label>
+            <input type="text" id="modal-assignee" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="Nama rekan tim" />
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label for="modal-task-desc" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Deskripsi Tugas</label>
+          <input type="text" id="modal-task-desc" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="Pekerjaan Landing Page & SEO" />
+        </div>
+
+        <div class="pt-4 flex justify-end gap-3 text-xs">
+          <button type="button" id="modal-btn-cancel" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all cursor-pointer">
+            Batal
+          </button>
+          <button type="submit" id="modal-btn-save" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all cursor-pointer">
+            Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    import { supabase } from '../../lib/supabase';
+
+    const adminLayout = document.getElementById('admin-layout')!;
+    const btnLogout = document.getElementById('btn-logout')!;
+    const btnExport = document.getElementById('btn-export')!;
+    
+    const filterStatus = document.getElementById('filter-status') as HTMLSelectElement;
+    const filterType = document.getElementById('filter-type') as HTMLSelectElement;
+    const searchClient = document.getElementById('search-client') as HTMLInputElement;
+
+    let allDocs: any[] = [];
+    let filteredDocs: any[] = [];
+
+    // Session validation
+    async function validateAdminSession() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = '/admin/login/';
+      } else {
+        adminLayout.classList.remove('hidden');
+        loadTransactions();
+      }
+    }
+    validateAdminSession();
+
+    async function loadTransactions() {
+      try {
+        const { data, error } = await supabase
+          .from('documents')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        allDocs = data || [];
+        applyFilters();
+      } catch (err) {
+        console.error('Error loading transactions:', err);
+      }
+    }
+
+    function applyFilters() {
+      const statusVal = filterStatus.value;
+      const typeVal = filterType.value;
+      const searchVal = searchClient.value.toLowerCase().trim();
+
+      filteredDocs = allDocs.filter((doc) => {
+        const matchStatus = statusVal === 'ALL' || doc.status === statusVal;
+        const matchType = typeVal === 'ALL' || doc.doc_type === typeVal;
+        
+        const clientName = (doc.client_name || '').toLowerCase();
+        const clientComp = (doc.client_company || '').toLowerCase();
+        const matchSearch = !searchVal || clientName.includes(searchVal) || clientComp.includes(searchVal);
+
+        return matchStatus && matchType && matchSearch;
+      });
+
+      renderTable();
+    }
+
+    function renderTable() {
+      const tableBody = document.getElementById('finance-table-body')!;
+      if (filteredDocs.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="8" class="p-8 text-center text-slate-500 font-medium">Tidak ada transaksi yang cocok dengan penyaringan.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tableBody.innerHTML = filteredDocs.map((doc) => {
+        const clientPhone = doc.doc_data?.client_phone || '-';
+        const taskDesc = doc.doc_data?.task_description || doc.doc_type?.toUpperCase() || '-';
+        const assigneeName = doc.doc_data?.assignee || doc.assignee || '-';
+        const formattedDeadline = doc.deadline || '-';
+        
+        const formattedAmount = doc.amount ? `Rp ${Number(doc.amount).toLocaleString('id-ID')}` : '-';
+
+        let statusText = 'Belum Selesai';
+        let statusBadgeClass = 'bg-slate-800 text-slate-400';
+        if (doc.status === 'PAID' || doc.status === 'signed') {
+          statusText = 'Selesai (Paid)';
+          statusBadgeClass = 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
+        } else if (doc.status === 'UNPAID' || doc.status === 'draft') {
+          statusText = 'Belum Selesai';
+          statusBadgeClass = 'bg-amber-500/10 border border-amber-500/20 text-amber-400';
+        } else if (doc.status === 'OVERDUE') {
+          statusText = 'Jatuh Tempo (Overdue)';
+          statusBadgeClass = 'bg-rose-500/10 border border-rose-500/20 text-rose-400';
+        }
+
+        return `
+          <tr class="hover:bg-slate-900/20 transition-colors">
+            <td class="p-4">
+              <div class="font-bold text-white">${doc.client_name || '-'}</div>
+              <div class="text-[10px] text-slate-500 mt-0.5">${doc.client_company || '-'}</div>
+            </td>
+            <td class="p-4 font-mono text-slate-400">${clientPhone}</td>
+            <td class="p-4 text-slate-400">${doc.doc_date || '-'}</td>
+            <td class="p-4 text-slate-400 font-mono">${formattedDeadline}</td>
+            <td class="p-4 max-w-[200px] truncate" title="${taskDesc}">${taskDesc}</td>
+            <td class="p-4 font-bold text-slate-200">${assigneeName}</td>
+            <td class="p-4">
+              <span class="px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider ${statusBadgeClass}">
+                ${statusText}
+              </span>
+            </td>
+            <td class="p-4 font-mono text-slate-200 font-bold">${formattedAmount}</td>
+            <td class="p-4 text-right space-x-1.5">
+              <button class="btn-edit px-2 py-1 bg-blue-600/10 hover:bg-blue-600 hover:text-white border border-blue-500/20 text-blue-400 rounded text-[10px] font-black uppercase transition-colors cursor-pointer" data-id="${doc.id}">
+                Edit
+              </button>
+              <button class="btn-delete px-2 py-1 bg-rose-500/10 hover:bg-rose-500 hover:text-white border border-rose-500/20 text-rose-400 rounded text-[10px] font-black uppercase transition-colors cursor-pointer" data-id="${doc.id}">
+                Hapus
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Export Functionality
+    btnExport.addEventListener('click', () => {
+      if (filteredDocs.length === 0) return;
+
+      const headers = ['Nama Klien', 'Perusahaan', 'Nomor Kontak', 'Tanggal Pemesanan', 'Deadline', 'Keterangan Tugas', 'Eksekutor', 'Status Eksekusi', 'Total Nilai'];
+      
+      const rows = filteredDocs.map((doc) => [
+        doc.client_name || '',
+        doc.client_company || '',
+        doc.doc_data?.client_phone || '',
+        doc.doc_date || '',
+        doc.deadline || '',
+        doc.doc_data?.task_description || doc.doc_type || '',
+        doc.doc_data?.assignee || doc.assignee || '',
+        doc.status === 'PAID' ? 'Selesai' : 'Belum Selesai',
+        doc.amount || 0
+      ]);
+
+      const csvContent = [headers, ...rows]
+        .map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+        .join('\n');
+
+      const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Laporan-Keuangan-Lumovelo-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    // Modal logic
+    const modal = document.getElementById('transaction-modal')!;
+    const modalForm = document.getElementById('modal-form') as HTMLFormElement;
+    const btnAddTrx = document.getElementById('btn-add-trx')!;
+    const btnCancel = document.getElementById('modal-btn-cancel')!;
+    const modalTitle = document.getElementById('modal-title')!;
+
+    // Modal Inputs
+    const mId = document.getElementById('modal-doc-id') as HTMLInputElement;
+    const mNumber = document.getElementById('modal-doc-number') as HTMLInputElement;
+    const mType = document.getElementById('modal-doc-type') as HTMLSelectElement;
+    const mName = document.getElementById('modal-client-name') as HTMLInputElement;
+    const mCompany = document.getElementById('modal-client-company') as HTMLInputElement;
+    const mAmount = document.getElementById('modal-amount') as HTMLInputElement;
+    const mStatus = document.getElementById('modal-status') as HTMLSelectElement;
+    const mDate = document.getElementById('modal-doc-date') as HTMLInputElement;
+    const mDeadline = document.getElementById('modal-deadline') as HTMLInputElement;
+    const mPhone = document.getElementById('modal-client-phone') as HTMLInputElement;
+    const mTask = document.getElementById('modal-task-desc') as HTMLInputElement;
+    const mAssignee = document.getElementById('modal-assignee') as HTMLInputElement;
+
+    // Show modal for adding
+    btnAddTrx.addEventListener('click', () => {
+      modalTitle.innerText = 'Tambah Transaksi Baru';
+      modalForm.reset();
+      mId.value = '';
+      mNumber.disabled = false;
+      modal.classList.remove('hidden');
+    });
+
+    // Hide modal
+    btnCancel.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    // Event delegation on table body for Edit & Delete
+    const tableBody = document.getElementById('finance-table-body')!;
+    tableBody.addEventListener('click', async (e) => {
+      const target = e.target as HTMLElement;
+      if (target.classList.contains('btn-edit')) {
+        const id = target.getAttribute('data-id');
+        openEditModal(id);
+      } else if (target.classList.contains('btn-delete')) {
+        const id = target.getAttribute('data-id');
+        if (confirm('Apakah Anda yakin ingin menghapus transaksi ini?')) {
+          await deleteTransaction(id);
+        }
+      }
+    });
+
+    // Open Edit Modal
+    function openEditModal(id: string | null) {
+      const doc = allDocs.find((d) => d.id === id);
+      if (!doc) return;
+
+      modalTitle.innerText = 'Edit Transaksi';
+      mId.value = doc.id;
+      mNumber.value = doc.doc_number || '';
+      mNumber.disabled = true; // Can't edit doc_number once created
+      mType.value = doc.doc_type || 'invoice';
+      mName.value = doc.client_name || '';
+      mCompany.value = doc.client_company || '';
+      mAmount.value = doc.amount || '0';
+      mStatus.value = doc.status || 'UNPAID';
+      mDate.value = doc.doc_date || '';
+      mDeadline.value = doc.deadline || '';
+      mPhone.value = doc.doc_data?.client_phone || '';
+      mTask.value = doc.doc_data?.task_description || '';
+      mAssignee.value = doc.doc_data?.assignee || doc.assignee || '';
+
+      modal.classList.remove('hidden');
+    }
+
+    // Delete Transaction
+    async function deleteTransaction(id: string | null) {
+      if (!id) return;
+      try {
+        const { error } = await supabase
+          .from('documents')
+          .delete()
+          .eq('id', id);
+
+        if (error) throw error;
+        showToast('Transaksi berhasil dihapus!', 'success');
+        loadTransactions();
+      } catch (err: any) {
+        showToast(err.message || 'Gagal menghapus transaksi.', 'error');
+      }
+    }
+
+    // Submit modal (insert / update)
+    modalForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const id = mId.value;
+      const docData = {
+        doc_type: mType.value,
+        doc_number: mNumber.value.trim(),
+        client_name: mName.value.trim(),
+        client_company: mCompany.value.trim(),
+        amount: parseFloat(mAmount.value) || 0,
+        status: mStatus.value,
+        doc_date: mDate.value,
+        deadline: mDeadline.value.trim(),
+        doc_data: {
+          client_phone: mPhone.value.trim(),
+          task_description: mTask.value.trim(),
+          assignee: mAssignee.value.trim()
+        }
+      };
+
+      try {
+        if (id) {
+          // Update
+          const { error } = await supabase
+            .from('documents')
+            .update(docData)
+            .eq('id', id);
+
+          if (error) throw error;
+          showToast('Transaksi berhasil diperbarui!', 'success');
+        } else {
+          // Insert
+          const { error } = await supabase
+            .from('documents')
+            .insert(docData);
+
+          if (error) throw error;
+          showToast('Transaksi berhasil ditambahkan!', 'success');
+        }
+
+        modal.classList.add('hidden');
+        loadTransactions();
+      } catch (err: any) {
+        showToast(err.message || 'Gagal menyimpan transaksi.', 'error');
+      }
+    });
+
+    filterStatus.addEventListener('change', applyFilters);
+    filterType.addEventListener('change', applyFilters);
+    searchClient.addEventListener('input', applyFilters);
+
+    btnLogout.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = '/admin/login/';
+    });
+  </script>
+</Layout>

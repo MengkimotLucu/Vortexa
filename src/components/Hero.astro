@@ -1,5 +1,4 @@
 ---
-import VortexBackground from './VortexBackground.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import Logo from './Logo.astro';
 
@@ -16,15 +15,15 @@ const content = {
       discussion: "Mulai Diskusi",
       consultation: "Mulai Konsultasi"
     },
-    tag: "IDE • INOVASI • DAMPAK",
+    tag: "KREATIF • INOVASI • PERTUMBUHAN",
     headline: {
-      part1: "Mengubah",
-      part2: "Ide Menjadi",
-      part3: "Sistem",
-      part4: "Digital Nyata"
+      part1: "We Engineer",
+      part2: "Digital Growth",
+      part3: "AI, Web,",
+      part4: "& Creative Assets"
     },
-    desc: "Kami merancang produk digital berkinerja tinggi, otomatisasi AI cerdas, dan strategi SEO mutakhir yang mendorong pertumbuhan bisnis Anda secara nyata.",
-    cta: "Lihat Layanan Kami"
+    desc: "Kami merancang produk digital berkinerja tinggi, otomatisasi AI cerdas, strategi SEO organik mutakhir, serta video kreatif yang mengonversi pengunjung menjadi leads WhatsApp berkualitas.",
+    cta: "Lihat Paket Harga"
   },
   en: {
     nav: {
@@ -36,80 +35,126 @@ const content = {
       discussion: "Start Discussion",
       consultation: "Start Consultation"
     },
-    tag: "IDEAS • INNOVATION • IMPACT",
+    tag: "CREATIVE • INNOVATION • GROWTH",
     headline: {
-      part1: "Transforming",
-      part2: "Ideas into",
-      part3: "Scalable",
-      part4: "Digital Growth"
+      part1: "We Engineer",
+      part2: "Digital Growth",
+      part3: "AI, Web,",
+      part4: "& Creative Assets"
     },
-    desc: "We design high-performance digital products, smart AI automation, and cutting-edge SEO strategies that drive tangible growth for your business.",
-    cta: "Explore Our Services"
+    desc: "We design high-performance digital products, smart AI automation, cutting-edge organic SEO strategies, and creative video editing assets that drive conversions into quality WhatsApp leads.",
+    cta: "View Pricing Packages"
   }
 }[lang];
 
 const homeLink = lang === 'en' ? '/en/' : '/';
-const aboutLink = lang === 'en' ? '/en/#tentang-kami' : '#tentang-kami';
-const servicesLink = lang === 'en' ? '/en/#layanan' : '#layanan';
-const portfolioLink = lang === 'en' ? '/en/portofolio/' : '/portofolio/';
-const careersLink = lang === 'en' ? '/en/karir/' : '/karir/';
-const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
+const aboutLink = lang === 'en' ? '/en/about-us/' : '/tentang/';
+const servicesLink = lang === 'en' ? '/en/#services' : '#layanan';
+const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
+const careersLink = lang === 'en' ? '/en/careers/' : '/karir/';
+const contactLink = lang === 'en' ? '/en/contact/' : '/kontak/';
+const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
 ---
 
 <header 
   id="main-header" 
-  class="fixed top-0 left-0 w-full z-50 border-b border-transparent bg-transparent transition-all duration-300 py-5"
+  class="fixed top-4 left-0 w-full z-50 transition-all duration-300 py-5 px-4 md:px-8"
 >
   <div 
     id="header-container" 
-    class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between transition-all duration-300"
+    class="max-w-5xl mx-auto px-6 h-20 flex items-center justify-between transition-all duration-300 bg-slate-950/90 border border-slate-800/80 shadow-2xl rounded-full backdrop-blur-md"
   >
     <!-- Brand Logo -->
     <a href={homeLink} class="flex items-center gap-3 group">
-      <div class="w-10 h-10 rounded-xl border border-slate-200 bg-white flex items-center justify-center shadow-sm group-hover:scale-105 group-hover:border-blue-500 transition-all duration-300">
+      <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-all duration-300">
         <Logo class="w-5 h-5 text-blue-600" />
       </div>
-      <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
+      <span id="brand-name" class="font-display font-black text-xl tracking-widest text-white group-hover:text-blue-400 transition-colors">LUMOVELO</span>
     </a>
 
-    <!-- Navigation Menu with Sliding Underline animations -->
+    <!-- Navigation Menu with Hover Dropdowns -->
     <nav class="hidden lg:flex items-center gap-8 font-sans">
-      <a href={homeLink} class="relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-600 hover:text-blue-600 transition-colors group">
+      <a href={homeLink} class="nav-link relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-300 hover:text-white transition-colors group">
         {content.nav.home}
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
       </a>
-      <a href={aboutLink} class="relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-600 hover:text-blue-600 transition-colors group">
-        {content.nav.about}
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
-      </a>
-      <a href={servicesLink} class="relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-600 hover:text-blue-600 transition-colors group">
-        {content.nav.services}
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
-      </a>
-      <a href={careersLink} class="relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-600 hover:text-blue-600 transition-colors group">
-        {content.nav.careers}
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
-      </a>
-      <a href={contactLink} class="relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-600 hover:text-blue-600 transition-colors group">
-        {content.nav.contact}
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
-      </a>
-    </nav>
+      
+      <!-- Dropdown Menu Layanan -->
+      <div class="relative group py-2">
+        <button class="nav-link flex items-center gap-1 text-xs font-extrabold tracking-wider uppercase text-slate-300 hover:text-white transition-colors focus:outline-none cursor-pointer">
+          {content.nav.services}
+          <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <!-- Dropdown Menu Panel -->
+        <div class="absolute left-0 mt-2 w-56 rounded-2xl bg-white border border-slate-100 shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 origin-top-left p-2 z-50">
+          <a href={servicesLink} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">Website & Web Apps</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">Landing page & profile penunjang konversi.</span>
+          </a>
+          <a href={lang === 'en' ? '/en/layanan/ai/' : '/layanan/ai/'} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">AI Integration</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">Otomatisasi alur kerja dan agen chatbot.</span>
+          </a>
+          <a href={lang === 'en' ? '/en/layanan/seo/' : '/layanan/seo/'} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">Advanced SEO</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">Optimasi traffic dan funnel pemasaran digital.</span>
+          </a>
+          <a href={lang === 'en' ? '/en/layanan/video/' : '/layanan/video/'} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">Video & Creative Assets</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">Penyuntingan video kreatif & media visual.</span>
+          </a>
+        </div>
+      </div>
 
-    <div class="flex items-center gap-4">
+      <a href={portfolioLink} class="nav-link relative py-2 text-xs font-extrabold tracking-wider uppercase text-slate-300 hover:text-white transition-colors group">
+        Portofolio
+        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
+      </a>
+      
+      <!-- Dropdown Menu Informasi -->
+      <div class="relative group py-2">
+        <button class="nav-link flex items-center gap-1 text-xs font-extrabold tracking-wider uppercase text-slate-300 hover:text-white transition-colors focus:outline-none cursor-pointer">
+          {lang === 'en' ? 'Information' : 'Informasi'}
+          <svg class="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <!-- Dropdown Menu Panel -->
+        <div class="absolute left-0 mt-2 w-56 rounded-2xl bg-white border border-slate-100 shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 origin-top-left p-2 z-50">
+          <a href={aboutLink} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">{content.nav.about}</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">{lang === 'en' ? 'Learn about our digital collective mission.' : 'Pelajari misi kolektif digital kami.'}</span>
+          </a>
+          <a href={careersLink} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">{content.nav.careers}</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">{lang === 'en' ? 'Explore job & collaboration opportunities.' : 'Temukan peluang kerja & kolaborasi.'}</span>
+          </a>
+          <a href={contactLink} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">{lang === 'en' ? 'Contact Us' : 'Hubungi Kami'}</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">{lang === 'en' ? 'Get in touch for free consultation.' : 'Hubungi kami untuk konsultasi gratis.'}</span>
+          </a>
+          <a href={blogLink} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">Blog</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">{lang === 'en' ? 'Read tech, SEO & AI insights.' : 'Baca wawasan teknologi, SEO & AI.'}</span>
+          </a>
+        </div>
+      </div>
+        <div class="flex items-center gap-4">
       <LanguageSwitcher />
       <a 
         href={contactLink} 
-        class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_4px_12px_rgba(37,99,235,0.05)] hover:shadow-[0_4px_12px_rgba(37,99,235,0.2)]"
+        class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-white text-slate-950 hover:bg-slate-100 text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md"
       >
         {content.nav.discussion}
       </a>
-
+ 
       <!-- Mobile Hamburger Button -->
       <button 
         type="button" 
         id="hamburger-btn" 
-        class="lg:hidden p-2 rounded-xl border border-slate-200 hover:border-blue-600 hover:text-blue-600 bg-white/80 backdrop-blur-sm transition-colors focus:outline-none cursor-pointer"
+        class="lg:hidden p-2 rounded-full border border-slate-800 bg-slate-900/50 text-slate-300 hover:border-blue-500 hover:text-white backdrop-blur-sm transition-colors focus:outline-none cursor-pointer"
         aria-label="Open Menu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -158,12 +203,28 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
       </div>
 
       <!-- Drawer Nav Links -->
-      <nav class="flex flex-col gap-6 font-sans">
-        <a href={homeLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.home}</a>
-        <a href={aboutLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.about}</a>
-        <a href={servicesLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.services}</a>
-        <a href={careersLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.careers}</a>
-        <a href={contactLink} class="mobile-drawer-link text-sm font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-2 border-b border-slate-100">{content.nav.contact}</a>
+      <nav class="flex flex-col gap-5 font-sans">
+        <a href={homeLink} class="mobile-drawer-link text-xs font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-1.5 border-b border-slate-100">{content.nav.home}</a>
+        
+        <!-- Layanan sublinks in mobile menu -->
+        <div class="flex flex-col gap-2.5 py-1">
+          <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">Layanan</span>
+          <a href={servicesLink} class="mobile-drawer-link text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors pl-2">Website & Pricing</a>
+          <a href={lang === 'en' ? '/en/layanan/ai/' : '/layanan/ai/'} class="mobile-drawer-link text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors pl-2">AI Integration</a>
+          <a href={lang === 'en' ? '/en/layanan/seo/' : '/layanan/seo/'} class="mobile-drawer-link text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors pl-2">Advanced SEO</a>
+          <a href={lang === 'en' ? '/en/layanan/video/' : '/layanan/video/'} class="mobile-drawer-link text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors pl-2">Video Editing</a>
+        </div>
+
+        <a href={portfolioLink} class="mobile-drawer-link text-xs font-bold tracking-wider uppercase text-slate-700 hover:text-blue-600 transition-colors py-1.5 border-b border-slate-100">Portofolio</a>
+        
+        <!-- Informasi sublinks in mobile menu -->
+        <div class="flex flex-col gap-2.5 py-1">
+          <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">{lang === 'en' ? 'Information' : 'Informasi'}</span>
+          <a href={aboutLink} class="mobile-drawer-link text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors pl-2">{content.nav.about}</a>
+          <a href={careersLink} class="mobile-drawer-link text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors pl-2">{content.nav.careers}</a>
+          <a href={contactLink} class="mobile-drawer-link text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors pl-2">{lang === 'en' ? 'Contact Us' : 'Hubungi Kami'}</a>
+          <a href={blogLink} class="mobile-drawer-link text-xs font-bold text-slate-600 hover:text-blue-600 transition-colors pl-2">Blog</a>
+        </div>
       </nav>
     </div>
 
@@ -176,109 +237,64 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
       >
         {content.nav.discussion}
       </a>
-      <p class="text-xs font-mono text-slate-400 text-center font-bold uppercase tracking-wider">
-        OTOMATISASI & WEB BERPERFORMA TINGGI
-      </p>
     </div>
   </div>
 </div>
 
-<section class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-24 overflow-hidden bg-white">
-  <!-- Dynamic particle warp tunnel background (Blue particles on white) -->
-  <VortexBackground />
+<section class="relative min-h-0 lg:min-h-0 flex flex-col items-center justify-center pt-28 pb-8 lg:pt-36 lg:pb-12 overflow-hidden bg-slate-950 bg-[url('/hero-bg.jpg')] bg-cover bg-center">
+  <!-- Dark overlay to ensure text contrast -->
+  <div class="absolute inset-0 bg-slate-950/40 z-10 pointer-events-none"></div>
 
   <!-- Hero Content Wrapper -->
   <div class="relative max-w-7xl mx-auto px-6 z-20 flex-1 flex flex-col justify-center items-center w-full">
     
-    <!-- Two Column Grid for Desktop (Split layout) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center text-left w-full mt-6">
+    <!-- Centered Content Wrapper -->
+    <div class="flex flex-col items-center text-center w-full max-w-4xl mx-auto mt-6 space-y-6">
+      <!-- Small category tag -->
+      <span class="text-xs sm:text-sm font-extrabold tracking-[0.2em] text-white uppercase font-sans">
+        {content.tag}
+      </span>
       
-      <!-- Left Column: Headline and Text (Width 7/12) -->
-      <div class="lg:col-span-7 space-y-6 flex flex-col justify-center">
-        <!-- Small category tag -->
-        <span class="text-xs font-extrabold tracking-[0.2em] text-emerald-500 uppercase font-sans">
-          {content.tag}
-        </span>
-        
-        <!-- Headline -->
-        <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-[4.2rem] leading-[1.1] text-slate-900 tracking-tight font-sans uppercase">
-          {content.headline.part1}<br>
-          {content.headline.part2}<br>
-          <span class="text-blue-600 font-sans">{content.headline.part3}</span><br>
-          <span class="text-emerald-500 font-sans">{content.headline.part4}</span>
-        </h1>
-        
-        <!-- Squiggly wave underline -->
-        <div class="w-24 h-2 text-blue-600">
-          <svg viewBox="0 0 100 10" class="w-full h-full fill-none stroke-current" stroke-width="4" stroke-linecap="round">
-            <path d="M 0,5 C 20,0 30,10 50,5 C 70,0 80,10 100,5" />
+      <!-- Headline -->
+      <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.15] text-white tracking-tight font-sans uppercase">
+        {content.headline.part1}<br>
+        {content.headline.part2}<br>
+        {content.headline.part3} {content.headline.part4}
+      </h1>
+      
+      <!-- Description -->
+      <p class="text-white/90 font-medium text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-sans mx-auto">
+        {content.desc}
+      </p>
+      
+      <!-- CTA buttons -->
+      <div class="flex flex-row items-center justify-center gap-4 sm:gap-6 pt-4">
+        <a 
+          href={servicesLink} 
+          class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 hover:shadow-[0_10px_20px_rgba(37,99,235,0.15)] hover:-translate-y-0.5 gap-2 cursor-pointer"
+        >
+          {content.cta}
+          <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
-        </div>
+        </a>
         
-        <!-- Description -->
-        <p class="text-slate-500 font-semibold text-sm sm:text-base leading-relaxed max-w-xl font-sans">
-          {content.desc}
-        </p>
-        
-        <!-- CTA buttons -->
-        <div class="flex flex-wrap items-center gap-4 pt-2">
-          <a 
-            href={servicesLink} 
-            class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-slate-950 hover:bg-slate-900 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:shadow-[0_10px_20px_rgba(15,23,42,0.15)] hover:-translate-y-0.5 gap-2 cursor-pointer"
-          >
-            {content.cta}
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        <a 
+          href={contactLink} 
+          class="inline-flex items-center gap-2 sm:gap-3 text-sm sm:text-base font-bold uppercase tracking-wider text-white hover:text-white/80 transition-colors py-2 cursor-pointer"
+        >
+          <div class="w-10 h-10 rounded-full border-2 border-white/20 flex items-center justify-center text-white bg-white/10 hover:bg-white hover:text-slate-950 hover:border-white transition-all hover:scale-105 shrink-0">
+            <svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
             </svg>
-          </a>
-          
-          <!-- Mulai Diskusi / Konsultasi Button -->
-          <a 
-            href={contactLink} 
-            class="inline-flex items-center gap-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors py-2 cursor-pointer"
-          >
-            <div class="w-10 h-10 rounded-full border-2 border-blue-600 flex items-center justify-center text-blue-600 bg-blue-600/5 hover:bg-blue-600/10 transition-all hover:scale-105">
-              <svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            {content.nav.consultation}
-          </a>
-        </div>
+          </div>
+          {content.nav.consultation}
+        </a>
       </div>
-      
-      <!-- Right Column: Gen Z 3D Illustration (Width 5/12) -->
-      <div class="lg:col-span-5 relative flex justify-center lg:justify-end w-full">
-        <!-- Decorative circular backdrop -->
-        <div class="absolute w-[350px] h-[350px] rounded-full bg-blue-600/[0.03] blur-3xl -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-        
-        <!-- Main 3D Illustration (Clean, no floating badges, no movement) -->
-        <div class="relative max-w-[400px] sm:max-w-[450px] w-full select-none">
-          <img 
-            src="/hero-illustration.png" 
-            alt="Mengubah Ide Menjadi Sistem Digital Nyata" 
-            class="w-full h-auto object-contain select-none pointer-events-none mix-blend-multiply"
-          />
-        </div>
-      </div>
-      
     </div>
     
   </div>
 
-  <!-- Animated bottom hint -->
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 text-xs font-bold tracking-widest uppercase no-print">
-    <span>Scroll Down</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-      <polyline points="7 13 12 18 17 13"></polyline>
-      <polyline points="7 6 12 11 17 6"></polyline>
-    </svg>
-  </div>
-</section>
-
-<style>
-  /* Styling animations */
-</style>
 
 <script>
   function initMobileMenu() {
@@ -307,14 +323,12 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
     hamburgerBtn.addEventListener('click', openMenu);
     closeDrawerBtn.addEventListener('click', closeMenu);
     
-    // Close on click outside panel
     mobileDrawer.addEventListener('click', (e) => {
       if (e.target === mobileDrawer) {
         closeMenu();
       }
     });
 
-    // Close menu when a link is clicked
     drawerLinks.forEach(link => {
       link.addEventListener('click', closeMenu);
     });
@@ -327,14 +341,14 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
 
     function checkScroll() {
       if (window.scrollY > 50) {
-        header.classList.remove('py-5', 'bg-transparent', 'border-transparent');
-        header.classList.add('py-3', 'bg-white/95', 'backdrop-blur-md', 'border-slate-200/60', 'shadow-[0_10px_30px_rgba(0,0,0,0.05)]');
+        header.classList.remove('py-5', 'top-4');
+        header.classList.add('py-2', 'top-2');
         container.classList.remove('h-20');
-        container.classList.add('h-14');
+        container.classList.add('h-16');
       } else {
-        header.classList.remove('py-3', 'bg-white/95', 'backdrop-blur-md', 'border-slate-200/60', 'shadow-[0_10px_30px_rgba(0,0,0,0.05)]');
-        header.classList.add('py-5', 'bg-transparent', 'border-transparent');
-        container.classList.remove('h-14');
+        header.classList.remove('py-2', 'top-2');
+        header.classList.add('py-5', 'top-4');
+        container.classList.remove('h-16');
         container.classList.add('h-20');
       }
     }
@@ -343,7 +357,6 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
     checkScroll();
   }
 
-  // Support view transitions and normal load
   function initAll() {
     initMobileMenu();
     initHeaderScroll();

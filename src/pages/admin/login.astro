@@ -1,0 +1,125 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Logo from '../../components/Logo.astro';
+---
+
+<Layout title="Login Admin | LUMOVELO" description="Akses masuk aman ke Dashboard Admin Lumovelo." noindex={true}>
+  <div class="min-h-screen bg-slate-950 flex items-center justify-center px-4 relative overflow-hidden font-sans">
+    
+    <!-- Background subtle lights -->
+    <div class="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[120px] top-[-10%] left-[-10%] pointer-events-none"></div>
+    <div class="absolute w-[500px] h-[500px] rounded-full bg-emerald-500/5 blur-[120px] bottom-[-10%] right-[-10%] pointer-events-none"></div>
+
+    <div class="w-full max-w-md z-10">
+      <!-- Logo Header -->
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center gap-3 mb-4 group">
+          <div class="w-12 h-12 rounded-2xl border-2 border-slate-700 bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:rotate-6 transition-transform">
+            <Logo class="w-6 h-6 text-white" />
+          </div>
+          <span class="font-display font-black text-2xl tracking-widest text-white">LUMOVELO</span>
+        </div>
+        <p class="text-slate-400 text-xs font-mono uppercase tracking-widest">SISTEM KENDALI UTAMA</p>
+      </div>
+
+      <!-- Login Card -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 shadow-2xl backdrop-blur-md">
+        <h1 class="text-lg font-display font-black text-white uppercase tracking-wider mb-6 text-center">LOGIN ADMINISTRATOR</h1>
+        
+        <form id="login-form" class="space-y-5">
+          <!-- Alert error -->
+          <div id="error-alert" class="hidden p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-semibold leading-relaxed"></div>
+          
+          <div class="space-y-1.5">
+            <label for="email" class="text-xs font-bold text-slate-400 uppercase tracking-wider">Alamat Email</label>
+            <input 
+              type="email" 
+              id="email" 
+              required
+              class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" 
+              placeholder="admin@lumovelo.agency" 
+            />
+          </div>
+
+          <div class="space-y-1.5">
+            <div class="flex justify-between items-center">
+              <label for="password" class="text-xs font-bold text-slate-400 uppercase tracking-wider">Kata Sandi</label>
+            </div>
+            <input 
+              type="password" 
+              id="password" 
+              required
+              class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" 
+              placeholder="••••••••" 
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            id="submit-btn"
+            class="w-full bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white py-3.5 rounded-xl text-xs font-black uppercase tracking-widest cursor-pointer shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2"
+          >
+            Masuk Sekarang ➔
+          </button>
+        </form>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="/" class="text-xs font-semibold text-slate-500 hover:text-slate-400 transition-colors uppercase tracking-wider">
+          ← Kembali ke Beranda
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { supabase } from '../../lib/supabase';
+
+    const loginForm = document.getElementById('login-form') as HTMLFormElement;
+    const emailInput = document.getElementById('email') as HTMLInputElement;
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const errorAlert = document.getElementById('error-alert') as HTMLDivElement;
+
+    // Check if session already exists
+    async function checkActiveSession() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        window.location.href = '/admin/dashboard/';
+      }
+    }
+    checkActiveSession();
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Update UI state to loading
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'MEMVERIFIKASI...';
+      errorAlert.classList.add('hidden');
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) {
+          throw error;
+        }
+
+        if (data.session) {
+          window.location.href = '/admin/dashboard/';
+        }
+      } catch (err: any) {
+        errorAlert.innerText = err.message || 'Gagal login. Periksa kembali email dan sandi Anda.';
+        errorAlert.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Masuk Sekarang ➔';
+      }
+    });
+  </script>
+</Layout>

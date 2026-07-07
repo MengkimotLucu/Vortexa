@@ -3,328 +3,480 @@ const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const content = {
   id: {
-    sectionHeader: "/ LAYANAN KAMI",
-    title1: "Jasa Pembuatan Website.",
-    title2: "Sederhana, Jelas, & Transparan.",
-    desc: "Kami merancang solusi website berkinerja tinggi yang mempermudah bisnis Anda tumbuh tanpa harus pusing memikirkan kendala teknis.",
-    ctaAll: "Lihat Seluruh Layanan",
-    btnSelect: "Pilih Paket",
-    btnContact: "Hubungi Kami",
-    payOnce: "Sekali Bayar",
-    payCustom: "Investasi Mulai Dari",
-    popular: "Populer",
-    p1: {
-      tag: "PROFIL BISNIS",
-      title: "Landing Page / Company Profile",
-      price: "Rp 1.500.000",
-      features: [
-        "Domain (.com/.id) & Hosting 1 tahun",
-        "1 Halaman penjualan konversi tinggi",
-        "Desain kustom responsif & modern",
-        "Integrasi tombol WhatsApp direct",
-        "Batas Revisi: 3 kali"
-      ]
-    },
-    p2: {
-      tag: "TOKO ONLINE",
-      title: "E-Commerce / Toko Online",
-      price: "Rp 3.000.000",
-      features: [
-        "Domain (.com/.id) & Hosting 1 tahun",
-        "Katalog & keranjang belanja (up to 50 produk)",
-        "Form pemesanan otomatis ke WhatsApp",
-        "Dashboard Admin HP (kelola produk & stok)",
-        "Batas Revisi: 5 kali"
-      ]
-    },
-    p3: {
-      tag: "WEB PORTAL",
-      title: "Web Kustom / Aplikasi Portal",
-      price: "Rp 5.000.000",
-      features: [
-        "Sistem keanggotaan / login & registrasi user",
-        "Integrasi pembayaran otomatis (Midtrans/Xendit)",
-        "Sistem cek tarif & pelacakan ongkir otomatis",
-        "Jaminan performa tinggi & data aman",
-        "Batas Revisi: 7 kali"
-      ]
-    },
-    p4: {
-      tag: "CUSTOM",
-      title: "Sistem Khusus / Enterprise",
-      price: "Hubungi Kami",
-      features: [
-        "Arsitektur sistem kompleks & integrasi API khusus",
-        "Visualisasi dasbor analitik bisnis real-time",
-        "Otomatisasi sistem manajemen CRM internal",
-        "Jaminan keamanan & enkripsi data tingkat tinggi",
-        "Revisi tanpa batas selama masa pengembangan"
-      ]
-    }
+    sectionHeader: "/ PAKET LAYANAN",
+    title1: "Paket Jasa Pembuatan Website",
+    title2: "Sesuai Skala Bisnismu.",
+    desc: "Mulai dari pembuatan website sederhana hingga profesional, semua bisa kamu pilih sesuai kebutuhan dan tujuan bisnismu secara transparan.",
+    whatsappBtn: "Konsultasi via WhatsApp",
+    bestSeller: "Terpopuler"
   },
   en: {
-    sectionHeader: "/ OUR SERVICES",
-    title1: "Website Development.",
-    title2: "Simple, Clear, & Transparent.",
-    desc: "We design high-performance website solutions that make it easy for your business to grow without technical headaches.",
-    ctaAll: "View All Services",
-    btnSelect: "Choose Package",
-    btnContact: "Contact Us",
-    payOnce: "One-time Payment",
-    payCustom: "Investment Starting From",
-    popular: "Popular",
-    p1: {
-      tag: "BUSINESS PROFILE",
-      title: "Landing Page / Company Profile",
-      price: "Rp 1.500.000",
-      features: [
-        "Domain (.com/.id) & Hosting 1 year",
-        "1 High-converting landing page",
-        "Custom responsive & modern design",
-        "Direct WhatsApp button integration",
-        "Revision Limit: 3 times"
-      ]
-    },
-    p2: {
-      tag: "ONLINE STORE",
-      title: "E-Commerce / Online Store",
-      price: "Rp 3.000.000",
-      features: [
-        "Domain (.com/.id) & Hosting 1 year",
-        "Catalog & shopping cart (up to 50 products)",
-        "Automated WhatsApp order form",
-        "Mobile Admin Dashboard (manage products & stock)",
-        "Revision Limit: 5 times"
-      ]
-    },
-    p3: {
-      tag: "WEB PORTAL",
-      title: "Custom Web / Portal Apps",
-      price: "Rp 5.000.000",
-      features: [
-        "Membership system / user login & registration",
-        "Automated payment integration (Midtrans/Xendit)",
-        "Automated shipping rate check & tracking",
-        "High performance & data security guarantee",
-        "Revision Limit: 7 times"
-      ]
-    },
-    p4: {
-      tag: "CUSTOM",
-      title: "Enterprise / Custom Systems",
-      price: "Contact Us",
-      features: [
-        "Complex system architecture & custom API integration",
-        "Real-time business analytics dashboard visualization",
-        "Internal CRM management system automation",
-        "High security & data encryption guarantee",
-        "Unlimited revisions during development"
-      ]
-    }
+    sectionHeader: "/ SERVICE PACKAGES",
+    title1: "Website Development Packages",
+    title2: "Tailored to Your Business Scale.",
+    desc: "From simple landing pages to professional corporate websites, choose the perfect package transparently based on your goals.",
+    whatsappBtn: "Consult on WhatsApp",
+    bestSeller: "Best Seller"
   }
 }[lang];
 
-const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
-const allServicesLink = lang === 'en' ? '/en/layanan/' : '/layanan/';
+// Pricing data structures
+const categories = [
+  { id: 'landing-page', label: lang === 'en' ? 'Landing Page' : 'Landing Page' },
+  { id: 'company-profile', label: lang === 'en' ? 'Company Profile' : 'Company Profile' },
+  { id: 'product-catalog', label: lang === 'en' ? 'Wedding Invitation' : 'Undangan Digital' },
+  { id: 'toko-online', label: lang === 'en' ? 'E-Commerce' : 'Toko Online' },
+  { id: 'redesign', label: lang === 'en' ? 'Redesign' : 'Redesign Web' },
+  { id: 'maintenance', label: lang === 'en' ? 'Maintenance' : 'Maintenance' }
+];
+
+const packages = {
+  'landing-page': [
+    {
+      tier: 'UMKM',
+      title: 'Landing Page UMKM',
+      price: 'Rp 1.000.000',
+      popular: false,
+      features: [
+        'Domain .my.id + Shared Hosting',
+        '1 Halaman, hingga 4 section',
+        'Copywriting standar industri',
+        'Tombol WhatsApp langsung',
+        'Desain responsif HP & desktop',
+        'Revisi: 1x minor'
+      ]
+    },
+    {
+      tier: 'Mid-Market',
+      title: 'Landing Page Mid-Market',
+      price: 'Rp 1.500.000',
+      popular: true,
+      features: [
+        'Domain .com + Shared Hosting',
+        '1 Halaman, hingga 7 section',
+        'Copywriting persuasif & terstruktur',
+        'Tombol WhatsApp langsung',
+        'Tracking iklan 1 platform (Meta/TikTok)',
+        'Revisi: 2x minor'
+      ]
+    },
+    {
+      tier: 'BUSINESS',
+      title: 'Landing Page Business',
+      price: 'Rp 2.500.000',
+      popular: false,
+      features: [
+        'Domain .com + Shared Hosting',
+        '1 Halaman, hingga 9 section',
+        'Copywriting persuasif konversi tinggi',
+        'WhatsApp Custom Form + Mini CRM',
+        'Tracking iklan 3 platform (Meta+TikTok+Google)',
+        'Revisi: 2x minor'
+      ]
+    }
+  ],
+  'company-profile': [
+    {
+      tier: 'UMKM',
+      title: 'Company Profile Basic',
+      price: 'Rp 1.800.000',
+      popular: false,
+      features: [
+        'Domain .my.id + Shared Hosting',
+        'Maksimal 4 Halaman menu',
+        'Desain minimalis modern',
+        'Integrasi tombol WhatsApp & email',
+        'SEO Dasar (Meta Tag)',
+        'Revisi: 2x minor'
+      ]
+    },
+    {
+      tier: 'Mid-Market',
+      title: 'Company Profile Pro',
+      price: 'Rp 2.800.000',
+      popular: true,
+      features: [
+        'Domain .com + Cloud Hosting',
+        'Maksimal 8 Halaman menu',
+        'Desain custom eksklusif (Bento style)',
+        'Formulir kontak & Google Map',
+        'Optimasi Kecepatan (PageSpeed >85)',
+        'Revisi: 3x minor'
+      ]
+    },
+    {
+      tier: 'BUSINESS',
+      title: 'Company Profile Elite',
+      price: 'Rp 4.500.000',
+      popular: false,
+      features: [
+        'Domain .com + Premium Hosting SSD',
+        'Halaman tidak terbatas (Sesuai kebutuhan)',
+        'Visual mewah & micro-interactions',
+        'Integrasi analitik lengkap (GA4 + Pixel)',
+        'Dukungan Teknis Prioritas 3 bulan',
+        'Revisi: Bebas selama pembuatan'
+      ]
+    }
+  ],
+  'product-catalog': [
+    {
+      tier: 'BASIC',
+      title: lang === 'en' ? 'Template Starter' : 'Template Starter',
+      price: 'Rp 149.000',
+      popular: false,
+      themeUrl: lang === 'en' ? '/en/templates/#starter' : '/templates/#starter',
+      features: lang === 'en' ? [
+        'Active link period: 3 months',
+        'Standard design theme from catalog',
+        'Basic features: Bride info, Rundown, Google Maps',
+        'Standard Wishes & Prayers section (unmoderated)',
+        'Revision: 1x typo-fix only'
+      ] : [
+        'Masa aktif link undangan: 3 bulan',
+        'Pilihan tema desain standard dari katalog agensi',
+        'Fitur dasar: Informasi Mempelai, Rundown Acara, & Google Maps Lokasi',
+        'Kolom Ucapan & Doa standar (tanpa moderasi)',
+        'Revisi: 1x ganti data teks salah ketik'
+      ]
+    },
+    {
+      tier: 'PRO',
+      title: lang === 'en' ? 'Premium Features' : 'Premium Features',
+      price: 'Rp 299.000',
+      popular: true,
+      themeUrl: lang === 'en' ? '/en/templates/#premium' : '/templates/#premium',
+      features: lang === 'en' ? [
+        'Active link period: 1 full year',
+        'Premium responsive themes (exclusive selection)',
+        'Music backsound, Photo Gallery (Max 10 photos), & Countdown Timer',
+        'Custom personalized guest name navigation system',
+        'Digital gift integration (Bank account/QR) & RSVP via WhatsApp',
+        'Revision: 2x minor edits before sharing'
+      ] : [
+        'Masa aktif link undangan: 1 tahun penuh',
+        'Desain visual premium responsif (bebas pilih tema eksklusif)',
+        'Fitur Interaktif: Musik latar belakang (Backsound), Galeri Foto (Max 10 foto), & Countdown Timer',
+        'Sistem Navigasi Nama Tamu Kustom Otomatis (Link khusus per tamu)',
+        'Integrasi Angpao Digital (Rekening Bank / QR Code E-Wallet) & RSVP via WhatsApp',
+        'Revisi: 2x minor sebelum disebarkan'
+      ]
+    },
+    {
+      tier: 'ELITE',
+      title: lang === 'en' ? 'Custom Storytelling' : 'Custom Storytelling',
+      price: 'Rp 599.000',
+      popular: false,
+      themeUrl: lang === 'en' ? '/en/templates/#custom' : '/templates/#custom',
+      features: lang === 'en' ? [
+        'Active link period: Lifetime (no renewal fee)',
+        'Custom semi-Figma layout (matching actual concepts/color palette)',
+        'Video player teaser, background animation & Love Journey',
+        'Digital guest check-in using QR Code at venue',
+        'Admin Dashboard to monitor RSVP & wishes',
+        'Revision: 3x minor edits'
+      ] : [
+        'Masa aktif link undangan: Selamanya (Tanpa biaya perpanjangan)',
+        'Desain tata letak kustom semi-Figma (Menyesuaikan palet warna konsep dekorasi asli)',
+        'Fitur Mewah: Video Teaser/Prewedding player, Background animasi estetik, & Cerita Cinta (Love Journey)',
+        'Sistem Buku Tamu Digital menggunakan QR Code untuk check-in di lokasi acara',
+        'Dashboard Admin khusus untuk memantau data RSVP tamu dan rekap ucapan',
+        'Revisi: 3x minor'
+      ]
+    }
+  ],
+  'toko-online': [
+    {
+      tier: 'UMKM',
+      title: 'Toko Online Basic',
+      price: 'Rp 2.500.000',
+      popular: false,
+      features: [
+        'Domain .my.id + Hosting',
+        'Fitur keranjang belanja standar',
+        'Katalog hingga 50 produk',
+        'Checkout order kirim ke WhatsApp',
+        'Panduan input produk',
+        'Revisi: 2x'
+      ]
+    },
+    {
+      tier: 'Mid-Market',
+      title: 'Toko Online Pro',
+      price: 'Rp 4.500.000',
+      popular: true,
+      features: [
+        'Domain .com + Cloud Hosting',
+        'Integrasi Payment Gateway (Midtrans)',
+        'Kalkulator ongkir otomatis (RajaOngkir)',
+        'Laporan penjualan dasar di Dashboard',
+        'Manajemen stok otomatis',
+        'Revisi: 3x'
+      ]
+    },
+    {
+      tier: 'BUSINESS',
+      title: 'Toko Online Custom',
+      price: 'Rp 7.500.000',
+      popular: false,
+      features: [
+        'Server Cloud Mandiri (VPS)',
+        'Payment gateway + e-wallet lengkap',
+        'Sistem diskon, kupon, & afiliasi',
+        'Integrasi logistik multi-kurir',
+        'Keamanan database SSL premium',
+        'Revisi: Bebas'
+      ]
+    }
+  ],
+  'redesign': [
+    {
+      tier: 'UMKM',
+      title: 'Redesign Basic',
+      price: 'Rp 1.200.000',
+      popular: false,
+      features: [
+        'Modernisasi layout yang sudah ada',
+        'Optimasi responsivitas mobile',
+        'Pemberbersihan sitemap halaman',
+        'Hubungkan ke WA versi terbaru',
+        'Revisi: 2x'
+      ]
+    },
+    {
+      tier: 'Mid-Market',
+      title: 'Visual Overhaul Pro',
+      price: 'Rp 2.200.000',
+      popular: true,
+      features: [
+        'Desain visual baru total (Modern Glass)',
+        'Peningkatan skor loading (Core Web Vitals)',
+        'Pengaturan ulang copywriting agar menjual',
+        'Integrasi GA4 & tracking pixel baru',
+        'Revisi: 3x'
+      ]
+    },
+    {
+      tier: 'BUSINESS',
+      title: 'Re-Platform Enterprise',
+      price: 'Rp 4.000.000',
+      popular: false,
+      features: [
+        'Migrasi ke framework modern (Astro/NextJS)',
+        'Restrukturisasi SEO on-page total',
+        'Desain visual custom premium',
+        'Integrasi webhook otomatisasi CRM',
+        'Revisi: Bebas'
+      ]
+    }
+  ],
+  'maintenance': [
+    {
+      tier: 'UMKM',
+      title: 'Pemeliharaan Basic',
+      price: 'Rp 150.000 / bln',
+      popular: false,
+      features: [
+        'Backup file website bulanan',
+        'Pembaruan plugin & sistem keamanan',
+        'Monitoring uptime dasar',
+        'Bantuan perbaikan text minor',
+        'Laporan bulanan via WA'
+      ]
+    },
+    {
+      tier: 'Mid-Market',
+      title: 'Pemeliharaan Aktif',
+      price: 'Rp 350.000 / bln',
+      popular: true,
+      features: [
+        'Backup file & database mingguan',
+        'Keamanan firewall & anti-malware',
+        'Monitoring uptime 24/7',
+        'Bantuan perbaikan error (2 jam kerja/bln)',
+        'Laporan analisis traffic bulanan'
+      ]
+    },
+    {
+      tier: 'BUSINESS',
+      title: 'Pemeliharaan Prioritas',
+      price: 'Rp 750.000 / bln',
+      popular: false,
+      features: [
+        'Backup harian otomatis',
+        'Prioritas penanganan bug & error',
+        'Bantuan update content (5 jam kerja/bln)',
+        'Audit keamanan & optimasi berkala',
+        'Grup koordinasi WA khusus developer'
+      ]
+    }
+  ]
+};
+
+const waBaseUrl = "https://api.whatsapp.com/send?phone=6285624353611&text=";
+const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
 ---
-<section id="layanan" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-200">
-  <!-- Soft blue decorative background elements -->
-  <div class="absolute right-[-10%] top-[20%] w-[350px] h-[350px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute left-[-10%] bottom-[10%] w-[350px] h-[350px] bg-blue-400/5 rounded-full blur-3xl pointer-events-none"></div>
+
+<section id={lang === 'en' ? 'services' : 'layanan'} class="py-12 lg:py-16 bg-white relative overflow-hidden border-t border-slate-100">
+  <!-- Subtle decorative light gradients -->
+  <div class="absolute right-[-10%] top-[20%] w-[600px] h-[600px] bg-blue-600/[0.08] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute left-[-10%] bottom-[10%] w-[600px] h-[600px] bg-cyan-500/[0.07] rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     
     <!-- Section Header -->
-    <div class="max-w-3xl mb-16 reveal-on-scroll">
+    <div class="max-w-4xl mx-auto text-center mb-16 reveal-on-scroll">
       <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">{content.sectionHeader}</h2>
-      <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 tracking-tight leading-[1.1] uppercase">
-        {content.title1}<br/>
-        <span class="text-stroke-neon">{content.title2}</span>
+      <h3 class="font-display font-black text-3xl sm:text-5xl text-slate-900 tracking-tight leading-[1.15] uppercase font-sans">
+        {content.title1} <span class="text-blue-600">{content.title2}</span>
       </h3>
-      <p class="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed font-semibold">
+      <p class="text-slate-500 mt-4 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl mx-auto">
         {content.desc}
       </p>
     </div>
 
-    <!-- 4 Paket Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 reveal-on-scroll">
-      
-      <!-- Paket 1: Landing Page / Company Profile -->
-      <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
-        <div>
-          <div class="flex justify-between items-start mb-6">
-            <span class="text-xs font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_01</span>
-            <span class="text-xs font-black text-blue-600 uppercase">{content.p1.tag}</span>
-          </div>
-          
-          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">{content.p1.title}</h4>
-          <div class="my-4">
-            <div class="text-xs font-mono text-slate-450 font-bold uppercase">{content.payOnce}</div>
-            <div class="text-2xl font-display font-black text-blue-600 mt-0.5">{content.p1.price}</div>
-          </div>
-
-          <ul class="space-y-2.5 text-sm text-slate-600 font-semibold mb-6">
-            {content.p1.features.map((feature) => (
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <a 
-          href={contactLink} 
-          class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer"
+    <!-- Category Selector Tabs (Screenshot 1 navigation style) -->
+    <div class="mb-10 overflow-x-auto scrollbar-none border-b border-slate-100 flex lg:justify-center gap-2 pb-1 reveal-on-scroll">
+      {categories.map((cat, idx) => (
+        <button
+          data-category-id={cat.id}
+          class={`pricing-tab-btn px-5 py-3 text-xs font-extrabold tracking-wider uppercase whitespace-nowrap rounded-t-xl transition-all duration-200 cursor-pointer border-b-2 ${
+            idx === 0 
+              ? 'border-blue-600 text-blue-600 bg-blue-50/10' 
+              : 'border-transparent text-slate-400 hover:text-slate-700'
+          }`}
         >
-          {content.btnSelect}
-        </a>
-      </div>
-
-      <!-- Paket 2: E-Commerce / Toko Online -->
-      <div class="service-card border-2 border-slate-900 bg-white p-6 rounded-3xl relative shadow-[5px_5px_0px_#2563eb] hover:shadow-[7px_7px_0px_#1d4ed8] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between min-h-[480px] z-10">
-        <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-xs font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
-          {content.popular}
-        </div>
-
-        <div>
-          <div class="flex justify-between items-start mb-6">
-            <span class="text-xs font-mono text-white bg-slate-900 border border-slate-900 px-2 py-0.5 rounded font-bold">PAKET_02</span>
-            <span class="text-xs font-black text-blue-600 uppercase">{content.p2.tag}</span>
-          </div>
-          
-          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">{content.p2.title}</h4>
-          <div class="my-4">
-            <div class="text-xs font-mono text-slate-450 font-bold uppercase">{content.payOnce}</div>
-            <div class="text-2xl font-display font-black text-blue-600 mt-0.5">{content.p2.price}</div>
-          </div>
-
-          <ul class="space-y-2.5 text-sm text-slate-600 font-semibold mb-6">
-            {content.p2.features.map((feature) => (
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <a 
-          href={contactLink} 
-          class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
-        >
-          {content.btnSelect}
-        </a>
-      </div>
-
-      <!-- Paket 3: Web Kustom / Aplikasi Portal -->
-      <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
-        <div>
-          <div class="flex justify-between items-start mb-6">
-            <span class="text-xs font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_03</span>
-            <span class="text-xs font-black text-blue-600 uppercase">{content.p3.tag}</span>
-          </div>
-          
-          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">{content.p3.title}</h4>
-          <div class="my-4">
-            <div class="text-xs font-mono text-slate-450 font-bold uppercase">{content.payOnce}</div>
-            <div class="text-2xl font-display font-black text-slate-900 mt-0.5">{content.p3.price}</div>
-          </div>
-
-          <ul class="space-y-2.5 text-sm text-slate-600 font-semibold mb-6">
-            {content.p3.features.map((feature) => (
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <a 
-          href={contactLink} 
-          class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer"
-        >
-          {content.btnSelect}
-        </a>
-      </div>
-
-      <!-- Paket 4: Paket Custom / Enterprise -->
-      <div class="service-card border-2 border-blue-600 bg-slate-50 p-6 rounded-3xl relative shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between min-h-[460px]">
-        <div>
-          <div class="flex justify-between items-start mb-6">
-            <span class="text-xs font-mono text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold">PAKET_04</span>
-            <span class="text-xs font-black text-blue-600 uppercase">{content.p4.tag}</span>
-          </div>
-          
-          <h4 class="font-display font-black text-lg text-slate-900 uppercase leading-snug">{content.p4.title}</h4>
-          <div class="my-4">
-            <div class="text-xs font-mono text-slate-450 font-bold uppercase">{content.payCustom}</div>
-            <div class="text-2xl font-display font-black text-slate-900 mt-0.5">{content.p4.price}</div>
-          </div>
-
-          <ul class="space-y-2.5 text-sm text-slate-600 font-semibold mb-6">
-            {content.p4.features.map((feature) => (
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <a 
-          href={contactLink} 
-          class="w-full inline-flex items-center justify-center py-3 rounded-xl border-2 border-blue-600 bg-white hover:bg-slate-50 text-blue-600 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-[3px_3px_0px_#2563eb] active:translate-y-0.5 active:shadow-[1px_1px_0px_#2563eb] cursor-pointer"
-        >
-          {content.btnContact}
-        </a>
-      </div>
-
+          {cat.label}
+        </button>
+      ))}
     </div>
 
-    <!-- CTA to All Services Page -->
-    <div class="flex justify-center mt-12 reveal-on-scroll">
-      <a 
-        href={allServicesLink} 
-        class="inline-flex items-center justify-center px-8 py-4 rounded-xl border-2 border-slate-900 bg-amber-400 hover:bg-amber-500 text-slate-900 font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[4px_4px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
-      >
-        {content.ctaAll}
-      </a>
+    <!-- Tab Panels Container -->
+    <div class="reveal-on-scroll">
+      {categories.map((cat, idx) => (
+        <div 
+          id={`panel-${cat.id}`} 
+          class={`pricing-panel ${idx === 0 ? '' : 'hidden'}`}
+        >
+          <!-- Grid wrapper that morphs into a swipeable carousel on mobile -->
+          <div class="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-x-visible gap-6 pb-6 md:pb-0 snap-x snap-mandatory scrollbar-none w-full">
+            {packages[cat.id].map((pkg) => {
+              const waText = encodeURIComponent(
+                `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "${pkg.title}" (${pkg.price}) yang tertera di website.`
+              );
+              const waUrl = `${waBaseUrl}${waText}`;
+              
+              return (
+                <div 
+                  class={`pricing-card w-[85vw] sm:w-[320px] md:w-auto shrink-0 snap-center rounded-3xl p-6 flex flex-col justify-between min-h-[460px] transition-all duration-300 relative border ${
+                    pkg.popular 
+                      ? 'border-blue-200 bg-blue-50/[0.08] shadow-lg shadow-blue-500/[0.02]' 
+                      : 'border-slate-200/80 bg-white shadow-sm'
+                  }`}
+                >
+                  <!-- Best seller tag -->
+                  {pkg.popular && (
+                    <div class="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 rounded-full bg-rose-500 text-[8px] font-mono font-black text-white uppercase tracking-widest shadow-sm">
+                      {content.bestSeller}
+                    </div>
+                  )}
+
+                  <div>
+                    <div class="flex justify-between items-start mb-6">
+                      <span class="text-[9px] font-mono text-slate-400 bg-slate-50 border border-slate-200/50 px-2.5 py-1 rounded-lg font-black uppercase tracking-wider">{pkg.tier}</span>
+                    </div>
+                    
+                    <h4 class="font-display font-black text-lg text-slate-900 leading-snug">{pkg.title}</h4>
+                    <div class="my-4 pb-4 border-b border-slate-100">
+                      <div class="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-widest">Mulai Dari</div>
+                      <div class="text-3xl font-display font-black text-blue-600 mt-1">{pkg.price}</div>
+                    </div>
+
+                    <ul class="space-y-3.5 text-xs text-slate-600 font-semibold mb-6">
+                      {pkg.features.map((feature) => (
+                        <li class="flex items-start gap-2.5 leading-relaxed">
+                          <div class="w-4 h-4 rounded-full bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
+                            <svg class="w-2.5 h-2.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5">
+                              <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                          </div>
+                          <span set:html={feature}></span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div class="flex flex-col gap-2.5 mt-auto w-full">
+                    {cat.id === 'product-catalog' && (
+                      <a 
+                        href={pkg.themeUrl || '#'}
+                        class="w-full inline-flex items-center justify-center py-3 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 gap-2 border border-slate-200/80 hover:border-slate-350 hover:bg-slate-50 text-slate-700 shadow-sm cursor-pointer"
+                      >
+                        👁️ {lang === 'en' ? 'View Themes' : 'Lihat Tema'}
+                      </a>
+                    )}
+                    <a 
+                      href={waUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class={`w-full inline-flex items-center justify-center py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider transition-all duration-300 gap-2 cursor-pointer border ${
+                        pkg.popular 
+                          ? 'bg-emerald-500 hover:bg-emerald-600 text-white border-transparent shadow-[0_4px_12px_rgba(16,185,129,0.25)] hover:shadow-[0_4px_12px_rgba(16,185,129,0.4)] hover:-translate-y-0.5' 
+                          : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200/80 hover:border-slate-300 shadow-sm'
+                      }`}
+                    >
+                      <!-- WhatsApp Icon -->
+                      <svg class="w-4 h-4 shrink-0 fill-current" viewBox="0 0 24 24">
+                        <path d="M19.001 4.908A9.817 9.817 0 0 0 11.992 2C6.534 2 2.085 6.448 2.08 11.91c0 1.748.458 3.45 1.321 4.956L2 22l5.255-1.377a9.831 9.831 0 0 0 4.73 1.206h.005c5.46 0 9.908-4.448 9.913-9.91a9.825 9.825 0 0 0-2.892-6.911zm-7.01 15.396h-.004a8.17 8.17 0 0 1-4.167-1.14l-.299-.178-3.1 1.01L5.47 16.92l-.195-.31a8.196 8.196 0 0 1-1.258-4.385C4.02 7.7 7.594 4.12 12.002 4.12a8.18 8.18 0 0 1 5.792 2.399 8.192 8.192 0 0 1 2.396 5.8c-.004 4.527-3.578 8.207-7.98 8.207l-.219-.022zm4.505-6.16c-.247-.124-1.464-.722-1.692-.806-.228-.083-.393-.124-.559.124-.166.248-.641.806-.786.97-.145.166-.29.187-.537.063a6.786 6.786 0 0 1-1.996-1.229 7.487 7.487 0 0 1-1.38-1.716c-.146-.248-.016-.381.109-.504.113-.11.248-.29.373-.435.124-.145.166-.248.249-.414.083-.166.04-.31-.02-.435-.062-.124-.559-1.347-.766-1.848-.201-.484-.406-.418-.559-.425-.145-.007-.31-.007-.476-.007a.918.918 0 0 0-.663.31c-.228.248-.87.85-8.7 2.07 0 1.22.89 2.4 1.162 2.766.27.366 1.753 2.678 4.248 3.754.593.256 1.058.41 1.419.525.597.19 1.14.163 1.57.1.48-.07 1.465-.6 1.67-.18.206-.418.206-.78 0-.965-.125-.187-.249-.247-.497-.37z"/>
+                      </svg>
+                      {content.whatsappBtn}
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
     </div>
 
   </div>
 </section>
 
 <script>
-  function initCards() {
-    if (window.innerWidth < 768) return;
-    const cards = document.querySelectorAll('.service-card');
-    cards.forEach((card: any) => {
-      card.addEventListener('mousemove', (e: MouseEvent) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--x', `${x}px`);
-        card.style.setProperty('--y', `${y}px`);
+  function initPricingTabs() {
+    const tabButtons = document.querySelectorAll('.pricing-tab-btn');
+    const panels = document.querySelectorAll('.pricing-panel');
 
-        const width = rect.width;
-        const height = rect.height;
-        const rotateX = -((e.clientY - rect.top - height / 2) / height) * 4;
-        const rotateY = ((e.clientX - rect.left - width / 2) / width) * 4;
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const catId = btn.getAttribute('data-category-id');
 
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-      });
+        // Toggle active button states
+        tabButtons.forEach(b => {
+          b.classList.remove('border-blue-600', 'text-blue-600', 'bg-blue-50/10');
+          b.classList.add('border-transparent', 'text-slate-400', 'hover:text-slate-700');
+        });
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        btn.classList.add('border-blue-600', 'text-blue-600', 'bg-blue-50/10');
+        btn.classList.remove('border-transparent', 'text-slate-400', 'hover:text-slate-700');
+
+        // Toggle active panels
+        panels.forEach(panel => {
+          if (panel.id === `panel-${catId}`) {
+            panel.classList.remove('hidden');
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
       });
     });
   }
 
+  // Load hooks
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCards);
+    document.addEventListener('DOMContentLoaded', initPricingTabs);
   } else {
-    initCards();
+    initPricingTabs();
   }
 </script>

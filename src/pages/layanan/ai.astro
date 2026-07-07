@@ -1,0 +1,317 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+import Logo from '../../components/Logo.astro';
+
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    title: "Jasa Integrasi AI & Otomatisasi Bisnis | LUMOVELO",
+    header: "KECERDASAN BUATAN & OTOMATISASI",
+    headline: "Pangkas Kerja Manual, Tingkatkan Efisiensi Bisnis Hingga 80%",
+    desc: "Kami merekayasa dan mengintegrasikan agen AI pintar kustom (LLM) serta alur otomatisasi data untuk menghemat waktu operasional tim Anda secara otomatis.",
+    cta: "Konsultasikan Solusi AI Anda",
+    back: "Kembali ke Beranda",
+    pricingHeader: "/ PAKET INVESTASI AI",
+    pricingTitle: "Pilih Paket Solusi AI Sesuai Kebutuhan Bisnis Anda",
+    periodOnce: "Proyek Sekali Jalan",
+    periodMonthly: "Investasi Bulanan"
+  },
+  en: {
+    title: "AI Integration & Business Automation | LUMOVELO",
+    header: "ARTIFICIAL INTELLIGENCE & AUTOMATION",
+    headline: "Eliminate Manual Work, Boost Business Efficiency up to 80%",
+    desc: "We engineer and integrate custom smart AI agents (LLMs) and automated data workflows to save your team's operational time automatically.",
+    cta: "Consult Your AI Solution",
+    back: "Back to Home",
+    pricingHeader: "/ AI SOLUTIONS PACKAGES",
+    pricingTitle: "Choose the Perfect AI Package for Your Business",
+    periodOnce: "One-time Project",
+    periodMonthly: "Monthly Investment"
+  }
+}[lang];
+
+const packages = [
+  {
+    name: lang === 'en' ? "Basic (Standard AI Chatbot)" : "Basic (AI Chatbot Standar)",
+    price: "Rp1.500.000",
+    period: content.periodOnce,
+    features: lang === 'en' ? [
+      "Basic FAQ conversation flow setup",
+      "Integration with 1 platform (Website / WhatsApp / Telegram)",
+      "Smart keyword-based auto-response system",
+      "Automated lead contact collection form",
+      "Logic flow revision: 2x minor"
+    ] : [
+      "Setup alur percakapan FAQ dasar otomatis",
+      "Integrasi ke platform pilihan (Website / WhatsApp / Telegram)",
+      "Sistem auto-response berbasis kata kunci pintar",
+      "Form pengumpulan data kontak pelanggan otomatis",
+      "Revisi alur logika: 2x minor"
+    ]
+  },
+  {
+    name: lang === 'en' ? "Pro (Workflow Automation)" : "Pro (Workflow Automation)",
+    price: "Rp2.950.000",
+    period: content.periodOnce,
+    popular: true,
+    features: lang === 'en' ? [
+      "Automate data sync between platforms (e.g. Web Form to Google Sheets)",
+      "Instant WhatsApp/Email notifications for internal team & clients",
+      "Sales data synchronization to simple CRM/ERP systems",
+      "Automation system config using webhooks / integration tools",
+      "Integration revision: 3x"
+    ] : [
+      "Otomatisasi pengiriman data antar platform (contoh: Web Form ke Google Sheets)",
+      "Integrasi notifikasi otomatis via WhatsApp/Email untuk tim internal & pelanggan",
+      "Sinkronisasi data penjualan ke sistem CRM sederhana/ERP",
+      "Pengaturan sistem otomatisasi menggunakan webhook / integration tools",
+      "Revisi integrasi: 3x"
+    ]
+  },
+  {
+    name: lang === 'en' ? "Elite (Custom LLM Integration)" : "Elite (Custom LLM Integration)",
+    price: "Rp4.850.000",
+    period: content.periodOnce,
+    features: lang === 'en' ? [
+      "Smart LLM API model integration (OpenAI / Gemini / Claude) to internal systems",
+      "Model training using custom Knowledge Base (internal SOPs)",
+      "Text processing, automated classification, & smart document generator",
+      "API token usage monitoring dashboard",
+      "Model & prompt instruction revisions: Limited free"
+    ] : [
+      "Integrasi API model pintar (OpenAI / Gemini / Claude) ke sistem internal",
+      "Pelatihan model menggunakan Knowledge Base khusus (Dokumen bisnis internal / SOP)",
+      "Sistem pemrosesan teks, klasifikasi data otomatis, & generator dokumen cerdas",
+      "Dashboard monitoring penggunaan token API",
+      "Revisi model & instruksi prompt: Bebas terbatas"
+    ]
+  },
+  {
+    name: lang === 'en' ? "Custom AI (Enterprise Agent)" : "Custom AI (Enterprise Agent)",
+    price: "Mulai Rp8.500.000",
+    period: content.periodOnce,
+    features: lang === 'en' ? [
+      "Autonomous smart agent architecture (Agentic workflow) multi-instruction",
+      "High-security internal database integration for big data",
+      "Behavior-based smart product recommendation system (Machine learning)",
+      "3-month intensive model performance maintenance support",
+      "System architecture revisions: Free during contract period"
+    ] : [
+      "Arsitektur agen pintar otonom (Agentic workflow framework) multi-instruksi",
+      "Integrasi database internal skala besar dengan arsitektur keamanan tingkat tinggi",
+      "Sistem rekomendasi produk cerdas berbasis perilaku pengguna (Machine learning model)",
+      "Pemeliharaan performa kecerdasan model khusus selama 3 bulan pertama",
+      "Revisi arsitektur sistem: Bebas berkelanjutan selama masa kontrak"
+    ]
+  }
+];
+
+const homeLink = lang === 'en' ? '/en/' : '/';
+const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
+---
+
+<Layout title={content.title}>
+  <!-- Simple Subpage Header -->
+  <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href={homeLink} class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl border border-blue-100 bg-white flex items-center justify-center shadow-sm">
+          <Logo class="w-4.5 h-4.5 text-blue-600" />
+        </div>
+        <span class="font-display font-black text-lg tracking-widest text-slate-900">LUMOVELO</span>
+      </a>
+      <a href={homeLink} class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors">
+        {content.back}
+      </a>
+    </div>
+  </header>
+
+  <main class="bg-white min-h-screen relative overflow-hidden font-sans">
+    <!-- Background Glimmer -->
+    <div class="absolute right-[-10%] top-[10%] w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 py-16 relative z-10">
+      
+      <!-- Headline Block -->
+      <div class="max-w-3xl mb-16 text-left">
+        <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3 block">
+          {content.header}
+        </span>
+        <h1 class="font-display font-black text-4xl sm:text-5xl text-slate-900 leading-[1.15] uppercase tracking-tight font-sans">
+          {content.headline}
+        </h1>
+        <p class="text-slate-500 mt-6 text-base sm:text-lg leading-relaxed font-semibold">
+          {content.desc}
+        </p>
+      </div>
+
+      <!-- Key Solutions Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        
+        <!-- Solution 1 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">AI Customer Chatbot</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              Agen chatbot kustom yang dilatih menggunakan dokumen bisnis Anda untuk menjawab pertanyaan pelanggan 24/7 secara natural di WhatsApp atau Website.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Ready to deploy →</span>
+        </div>
+
+        <!-- Solution 2 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">Workflow Automation</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              Otomatisasi pengiriman data antar platform (Google Sheets, WhatsApp CRM, ERP) menggunakan webhook atau integration tools seperti Zapier & Make.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Save 20+ hours/week →</span>
+        </div>
+
+        <!-- Solution 3 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">Custom LLM Integration</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              Integrasi API OpenAI, Claude, atau Gemini ke dalam website atau sistem internal Anda untuk analisis teks, klasifikasi data otomatis, dan generator dokumen.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Custom tailored →</span>
+        </div>
+
+      </div>
+
+      <!-- Pricing Packages Section -->
+      <div class="mb-20">
+        <div class="text-center mb-10">
+          <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">{content.pricingHeader}</h2>
+          <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">{content.pricingTitle}</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {packages.map((pkg, idx) => {
+            const waText = encodeURIComponent(
+              `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "AI - ${pkg.name}" (${pkg.price}) yang tertera di website.`
+            );
+            const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+
+            return (
+              <div 
+                class={`service-card border-2 p-5 rounded-2xl relative transition-all duration-300 flex flex-col justify-between min-h-[440px] ${
+                  pkg.popular
+                    ? 'border-slate-900 bg-white shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1.5'
+                    : 'border-blue-600/10 hover:border-blue-600 bg-slate-50/50 hover:bg-slate-50/80 shadow-[3px_3px_0px_rgba(37,99,235,0.05)] hover:shadow-[4px_4px_0px_#2563eb] hover:-translate-y-1'
+                }`}
+              >
+                {pkg.popular && (
+                  <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
+                    {lang === 'en' ? 'POPULAR' : 'POPULER'}
+                  </div>
+                )}
+                <div>
+                  <div class="flex justify-between items-start mb-4">
+                    <span class="text-[8px] font-mono text-slate-450 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                      {idx === 3 ? 'CUSTOM' : `TIER_0${idx + 1}`}
+                    </span>
+                  </div>
+                  <h4 class="font-display font-black text-base text-slate-900 uppercase leading-snug">{pkg.name}</h4>
+                  <div class="my-3">
+                    <div class="text-[8px] font-mono text-slate-450 font-bold uppercase tracking-widest">{pkg.period}</div>
+                    <div class="text-xl font-display font-black text-blue-600 mt-0.5">{pkg.price}</div>
+                  </div>
+                  <ul class="space-y-2 text-xs text-slate-600 font-semibold mb-6 border-t border-slate-200/40 pt-3">
+                    {pkg.features.map((feature) => (
+                      <li class="flex items-start gap-1.5 leading-relaxed">
+                        <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        <span class="text-[11px]">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <a 
+                  href={waUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class={`w-full inline-flex items-center justify-center py-2.5 rounded-xl border-2 font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                    pkg.popular
+                      ? 'border-emerald-500 bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5'
+                      : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm'
+                  }`}
+                >
+                  {lang === 'en' ? 'Consult Now' : 'Konsultasi'}
+                </a>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Lead Funnel CTA -->
+      <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-2 max-w-xl text-center md:text-left">
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase leading-snug">Siap mengotomatiskan bisnis Anda?</h3>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+            Diskusikan kebutuhan alur kerja bisnis Anda secara gratis dengan tim engineer kami melalui WhatsApp.
+          </p>
+        </div>
+        <a 
+          href={contactLink}
+          class="inline-flex items-center justify-center px-6 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5 cursor-pointer shrink-0"
+        >
+          {content.cta}
+        </a>
+      </div>
+
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  function initHoverEffects() {
+    if (window.innerWidth < 768) return;
+    const cards = document.querySelectorAll('.service-card');
+    cards.forEach((card: any) => {
+      card.addEventListener('mousemove', (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const rotateX = -((e.clientY - rect.top - height / 2) / height) * 3;
+        const rotateY = ((e.clientX - rect.left - width / 2) / width) * 3;
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.005)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHoverEffects);
+  } else {
+    initHoverEffects();
+  }
+</script>

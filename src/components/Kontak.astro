@@ -1,0 +1,352 @@
+---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    sectionHeader: "/ HUBUNGI KAMI",
+    title: "Hubungi kami",
+    desc: "Diskusikan proyek Anda — kami hanya berjarak satu pesan saja.",
+    locationsLabel: "LOKASI",
+    touchLabel: "HUBUNGI",
+    officeTitle: "Bandung:",
+    officeDesc: "Jl. Buahbatu, Cijagra, Kec. Lengkong, Kota Bandung, Jawa Barat 40265, Indonesia",
+    csStatus: "CS Aktif",
+    
+    // Form fields
+    fieldName: "Nama Lengkap *",
+    phName: "Ketik nama lengkap...",
+    fieldEmail: "Email *",
+    phEmail: "nama@perusahaan.com",
+    fieldCompany: "Nama Perusahaan",
+    phCompany: "Masukkan nama brand...",
+    fieldWebsite: "Website / Tautan",
+    phWebsite: "https://bisnisanda.com",
+    fieldService: "Layanan apa yang Anda minati? *",
+    phService: "Pilih kebutuhan utama...",
+    fieldProject: "Ceritakan tentang proyek Anda",
+    phProject: "Tuliskan deskripsi proyek secara singkat...",
+    
+    privacyText: "Dengan mengeklik kirim, saya menyetujui pemrosesan data pribadi.",
+    btnSubmit: "Kirim pesan"
+  },
+  en: {
+    sectionHeader: "/ CONTACT US",
+    title: "Contact us",
+    desc: "Let's discuss your project — we're just a message away.",
+    locationsLabel: "LOCATIONS",
+    touchLabel: "GET IN TOUCH",
+    officeTitle: "Bandung:",
+    officeDesc: "Jl. Buahbatu, Cijagra, Lengkong, Bandung City, West Java 40265, Indonesia",
+    csStatus: "CS Active",
+    
+    // Form fields
+    fieldName: "Full Name *",
+    phName: "Type your name...",
+    fieldEmail: "Email *",
+    phEmail: "name@company.com",
+    fieldCompany: "Company name",
+    phCompany: "Enter brand name...",
+    fieldWebsite: "Website",
+    phWebsite: "https://yourbusiness.com",
+    fieldService: "What services are you interested in? *",
+    phService: "Select primary service...",
+    fieldProject: "Describe your project",
+    phProject: "Write a brief project description...",
+    
+    privacyText: "By clicking submit, I agree to the processing of personal data.",
+    btnSubmit: "Send a message"
+  }
+}[lang];
+
+const servicesList = lang === 'en' ? [
+  ["Website Development", "Website Development (Landing Page, Custom E-commerce)"],
+  ["SEO Services", "SEO Services (Google Search Engine Optimization)"],
+  ["AI & Business Automation", "AI & Business Automation (Workflow, Chatbots)"],
+  ["Full Services (All Services)", "Full Services (Website + SEO + AI)"]
+] : [
+  ["Pembuatan Website", "Pembuatan Website (Landing Page, Toko Online, Web Kustom)"],
+  ["Jasa SEO", "Jasa SEO (Optimisasi Pencarian Google)"],
+  ["AI & Otomatisasi Bisnis", "AI & Otomatisasi Bisnis (WhatsApp Auto-responder, Chatbot)"],
+  ["Layanan Lengkap (Semua Layanan)", "Layanan Lengkap (Website + SEO + AI)"]
+];
+---
+
+<section id="kontak-utama" class="py-16 md:py-24 bg-white relative overflow-hidden">
+  <!-- Soft background graphics -->
+  <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
+    <!-- Section Header Breadcrumb -->
+    <div class="mb-6">
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
+    </div>
+
+    <!-- Huge Header Title (Infini style) -->
+    <div class="mb-12">
+      <h3 class="font-display font-black text-4xl sm:text-7xl md:text-8xl text-blue-600 leading-[1.0] tracking-tight">
+        {content.title}
+      </h3>
+    </div>
+
+    <!-- Split 2-Column Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+      
+      <!-- Left Column: Description, Locations, Contact details & Map (5 columns) -->
+      <div class="lg:col-span-5 space-y-8">
+        <p class="text-slate-500 text-lg sm:text-xl font-medium leading-relaxed max-w-md">
+          {content.desc}
+        </p>
+        
+        <!-- Locations & Quick Contact Stack -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8 pt-4">
+          <!-- Locations -->
+          <div class="space-y-3">
+            <h5 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">{content.locationsLabel}</h5>
+            <div class="text-xs font-semibold text-slate-600 leading-relaxed">
+              <span class="text-slate-900 font-bold block mb-1">{content.officeTitle}</span>
+              {content.officeDesc}
+            </div>
+          </div>
+          
+          <!-- Get in touch -->
+          <div class="space-y-3">
+            <h5 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">{content.touchLabel}</h5>
+            <div class="space-y-2 text-xs font-semibold text-slate-600">
+              <a href="https://wa.me/6285624353611" target="_blank" class="text-slate-900 hover:text-blue-600 hover:underline block font-bold">
+                +62 856-2435-3611 (WhatsApp)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Non-stiff Map -->
+        <div class="pt-4">
+          <div class="border-2 border-slate-900 bg-white rounded-3xl p-2 shadow-[4px_4px_0px_#000] overflow-hidden relative group">
+            
+            <!-- Floating Operational status -->
+            <div class="absolute bottom-4 left-4 z-10 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700/40 shadow-lg flex items-center gap-1.5 pointer-events-none">
+              <span class="relative flex h-1.5 w-1.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+              </span>
+              <span class="text-[8px] font-mono font-bold text-white uppercase tracking-widest">{content.csStatus}</span>
+            </div>
+            
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15842.164388487955!2d107.62534575!3d-6.9453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e86fa6d7e00f%3A0xc391eb3941427c3f!2sJl.%20Buah%20Batu%2C%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sen!2sid!4v1719875432123!5m2!1sen!2sid" 
+              class="w-full h-[220px] border-0 grayscale-[80%] hover:grayscale-0 contrast-[110%] transition-all duration-700 ease-in-out rounded-2xl select-none"
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Lumovelo Bandung Office Map"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Minimalist project form (7 columns) -->
+      <div class="lg:col-span-7">
+        <form id="contact-minimal-form" class="space-y-8 md:space-y-12" onsubmit="return false;" data-lang={lang}>
+          
+          <!-- Row 1: Name & Email -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
+            <!-- Full Name -->
+            <div class="relative z-0 w-full group">
+              <input 
+                type="text" 
+                name="name" 
+                id="client-name" 
+                placeholder=" " 
+                required 
+                class="block py-3 px-0 w-full text-sm text-slate-900 bg-transparent border-0 border-b-2 border-slate-200 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-all font-semibold outline-none"
+              />
+              <label 
+                for="client-name" 
+                class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+              >
+                {content.fieldName}
+              </label>
+            </div>
+            
+            <!-- Email -->
+            <div class="relative z-0 w-full group">
+              <input 
+                type="email" 
+                name="email" 
+                id="client-email" 
+                placeholder=" " 
+                required 
+                class="block py-3 px-0 w-full text-sm text-slate-900 bg-transparent border-0 border-b-2 border-slate-200 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-all font-semibold outline-none"
+              />
+              <label 
+                for="client-email" 
+                class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+              >
+                {content.fieldEmail}
+              </label>
+            </div>
+          </div>
+
+          <!-- Row 2: Company & Website -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
+            <!-- Company -->
+            <div class="relative z-0 w-full group">
+              <input 
+                type="text" 
+                name="company" 
+                id="client-company" 
+                placeholder=" " 
+                class="block py-3 px-0 w-full text-sm text-slate-900 bg-transparent border-0 border-b-2 border-slate-200 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-all font-semibold outline-none"
+              />
+              <label 
+                for="client-company" 
+                class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+              >
+                {content.fieldCompany}
+              </label>
+            </div>
+            
+            <!-- Website -->
+            <div class="relative z-0 w-full group">
+              <input 
+                type="url" 
+                name="website" 
+                id="client-website" 
+                placeholder=" " 
+                class="block py-3 px-0 w-full text-sm text-slate-900 bg-transparent border-0 border-b-2 border-slate-200 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-all font-semibold outline-none"
+              />
+              <label 
+                for="client-website" 
+                class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+              >
+                {content.fieldWebsite}
+              </label>
+            </div>
+          </div>
+
+          <!-- Dropdown: Services -->
+          <div class="relative z-0 w-full group">
+            <select 
+              name="service" 
+              id="client-service" 
+              required
+              class="block py-3 px-0 w-full text-sm text-slate-900 bg-transparent border-0 border-b-2 border-slate-200 focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-all font-semibold cursor-pointer outline-none"
+            >
+              <option value="" disabled selected class="text-slate-400">{content.phService}</option>
+              {servicesList.map(([val, label]) => (
+                <option value={val} class="text-slate-900">{label}</option>
+              ))}
+            </select>
+            <label 
+              for="client-service" 
+              class="absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+            >
+              {content.fieldService}
+            </label>
+          </div>
+
+          <!-- Textarea: Describe project -->
+          <div class="relative z-0 w-full group">
+            <textarea 
+              name="notes" 
+              id="client-notes" 
+              rows="3"
+              placeholder=" " 
+              class="block py-3 px-0 w-full text-sm text-slate-900 bg-transparent border-0 border-b-2 border-slate-200 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer transition-all font-semibold outline-none resize-none"
+            ></textarea>
+            <label 
+              for="client-notes" 
+              class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+            >
+              {content.fieldProject}
+            </label>
+          </div>
+
+          <!-- Privacy Policy Checkbox -->
+          <div class="flex items-start gap-3">
+            <input 
+              type="checkbox" 
+              id="privacy-check" 
+              required
+              class="w-4 h-4 text-blue-600 border-2 border-slate-300 rounded focus:ring-blue-500 cursor-pointer mt-0.5"
+            />
+            <label for="privacy-check" class="text-[11px] text-slate-400 font-semibold leading-relaxed select-none cursor-pointer">
+              {content.privacyText}
+            </label>
+          </div>
+
+          <!-- Submit Button - Infini Style Pill -->
+          <div class="pt-4">
+            <button 
+              type="submit" 
+              class="inline-flex items-center justify-between px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 shadow-lg shadow-blue-600/10 hover:shadow-xl hover:shadow-blue-600/25 hover:-translate-y-0.5 group cursor-pointer"
+            >
+              <span>{content.btnSubmit}</span>
+              <div class="ml-4 w-6 h-6 rounded-full bg-white text-blue-600 flex items-center justify-center transition-transform group-hover:translate-x-1 shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function initContactPageForm() {
+    const form = document.getElementById('contact-minimal-form') as HTMLFormElement;
+    if (!form) return;
+
+    form.onsubmit = (e) => {
+      e.preventDefault();
+
+      const nameVal = (document.getElementById('client-name') as HTMLInputElement).value;
+      const emailVal = (document.getElementById('client-email') as HTMLInputElement).value;
+      const companyVal = (document.getElementById('client-company') as HTMLInputElement).value || '-';
+      const websiteVal = (document.getElementById('client-website') as HTMLInputElement).value || '-';
+      const serviceVal = (document.getElementById('client-service') as HTMLSelectElement).value;
+      const notesVal = (document.getElementById('client-notes') as HTMLTextAreaElement).value || '-';
+      const formLang = form.getAttribute('data-lang') || 'id';
+
+      const targetPhone = "6285624353611";
+      
+      const messageText = formLang === 'en'
+        ? `Hello Lumovelo Team, I would like to consult about a project. Here are my details:\n\n- Name: ${nameVal}\n- Email: ${emailVal}\n- Company: ${companyVal}\n- Website: ${websiteVal}\n- Services: ${serviceVal}\n- Project Description: ${notesVal}\n\nPlease contact me. Thank you!`
+        : `Halo Tim Lumovelo, saya ingin berkonsultasi mengenai proyek. Berikut adalah detail kontak saya:\n\n- Nama Lengkap: ${nameVal}\n- Email: ${emailVal}\n- Nama Perusahaan: ${companyVal}\n- Website: ${websiteVal}\n- Layanan: ${serviceVal}\n- Deskripsi Proyek: ${notesVal}\n\nMohon segera dihubungi kembali. Terima kasih!`;
+
+      const encodedMessage = encodeURIComponent(messageText);
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodedMessage}`;
+
+      window.open(whatsappUrl, '_blank');
+    };
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContactPageForm);
+  } else {
+    initContactPageForm();
+  }
+  document.addEventListener('astro:after-swap', initContactPageForm);
+</script>
+
+<style>
+  /* Ensure clean floating labels behavior on focus and select values */
+  input:focus ~ label,
+  input:not(:placeholder-shown) ~ label,
+  textarea:focus ~ label,
+  textarea:not(:placeholder-shown) ~ label {
+    transform: translateY(-1.5rem) scale(0.75);
+    color: #2563eb;
+  }
+  
+  select:focus ~ label,
+  select:valid ~ label {
+    transform: translateY(-1.5rem) scale(0.75);
+    color: #2563eb;
+  }
+</style>

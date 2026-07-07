@@ -1,163 +1,98 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 export async function getStaticPaths() {
   const posts = [
     {
-      params: { slug: 'mengenal-lumovelo-growth-agency' },
-      props: {
-        title: 'Mengenal LUMOVELO: Alasan Kami Hadir & Solusi Web Praktis untuk Bisnis Anda',
-        date: '17 JUNI 2026',
-        category: 'PROFIL',
-        bgCategory: 'bg-rose-100 text-rose-700 border-rose-200',
-        description: 'Kenapa LUMOVELO ada? Pelajari misi kami menghadirkan website yang cepat dan mudah dikelola dengan harga yang sangat bersahabat bagi bisnis Anda.',
-        content: `
-          <p class="mb-6">
-            Menjalankan bisnis di era digital membutuhkan kehadiran online yang solid. Namun, banyak pelaku usaha merasa kesulitan ketika ingin membuat website karena sering dihadapkan pada biaya pembuatan yang mahal, biaya perawatan bulanan yang membingungkan, serta kendala teknis yang rumit.
-          </p>
-          
-          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Alasan LUMOVELO Hadir</h3>
-          <p class="mb-6">
-            LUMOVELO didirikan untuk memberikan solusi pembuatan website yang ringkas, berkinerja tinggi, dan ramah bagi pelaku usaha. Kami ingin membantu Anda memiliki website profesional tanpa harus pusing memikirkan hal-hal teknis yang membingungkan.
-          </p>
-          <p class="mb-6">
-            Kami merancang website dengan struktur kode yang bersih dan efisien. Hasilnya, website Anda dapat diakses dengan sangat cepat oleh calon pelanggan, memiliki tampilan yang modern, dan tidak memerlukan biaya pemeliharaan sistem yang rumit di kemudian hari.
-          </p>
-
-          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kebijakan Harga: Fleksibel & Sangat Bersahabat</h3>
-          <p class="mb-6">
-            Kami sangat memahami bahwa setiap skala bisnis memiliki alokasi anggaran yang berbeda. Oleh karena itu, di LUMOVELO kami tidak menerapkan tarif kaku. Kami menawarkan skema biaya yang <strong>sangat fleksibel, murah, dan nyaman</strong>, disesuaikan sepenuhnya dengan tingkat kerumitan tampilan dan fitur yang benar-benar Anda butuhkan.
-          </p>
-          <p class="mb-6">
-            Dengan merancang website secara efisien, kami juga meminimalisir biaya langganan sewa ruang penyimpanan di internet (hosting). Anda hanya membayar untuk desain berkualitas tinggi dan hasil pengerjaan profesional yang siap membantu bisnis Anda tumbuh lebih lancar di internet.
-          </p>
-        `
-      }
-    },
-    {
-      params: { slug: 'pentingnya-kecepatan-website' },
-      props: {
-        title: 'Pentingnya Kecepatan Web di Bawah 3 Detik untuk Google Rank dan Pengunjung',
-        date: '15 JUNI 2026',
-        category: 'OPTIMASI SEO',
-        bgCategory: 'bg-blue-100 text-blue-600 border-blue-200',
-        description: 'Kecepatan halaman membantu website Anda lebih mudah ditemukan di Google dan membuat pengunjung merasa nyaman saat mencari informasi.',
-        content: `
-          <p class="mb-6">
-            Kecepatan akses halaman adalah hal pertama yang dirasakan oleh pengunjung saat membuka website bisnis Anda. Ketika calon pelanggan mencari informasi di internet, mereka mengharapkan halaman terbuka dengan cepat—idealnya <strong>di bawah 3 detik</strong>.
-          </p>
-          <p class="mb-6">
-            Jika website membutuhkan waktu loading yang lama, pengunjung cenderung akan menutup tab browser dan beralih mencari alternatif lain. Hal ini tentu mengurangi potensi interaksi bisnis yang berharga.
-          </p>
-          
-          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kenyamanan Pengunjung dan Penilaian Google</h3>
-          <p class="mb-6">
-            Selain memberikan kenyamanan bagi calon pembeli, mesin pencari seperti Google juga memberikan penilaian positif pada website yang responsif dan cepat dibuka. Optimasi kecepatan halaman membantu website Anda memiliki peluang lebih baik untuk tampil di halaman pencarian.
-          </p>
-          <p class="mb-6">
-            Kami fokus merapikan struktur file dan mengompresi gambar di website Anda agar kinerjanya tetap ringan dan stabil saat diakses dari perangkat handphone maupun komputer. Dengan demikian, calon pelanggan dapat membaca produk dan layanan Anda tanpa hambatan waktu tunggu.
-          </p>
-        `
-      }
-    },
-    {
-      params: { slug: 'website-tanpa-database-lebih-murah' },
-      props: {
-        title: 'Mengenal Desain Web Hemat Biaya untuk Efisiensi Operasional Anda',
-        date: '10 JUNI 2026',
-        category: 'EFISIENSI BIAYA',
-        bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
-        description: 'Bagaimana struktur website tertentu dapat membantu menghemat biaya pemeliharaan bulanan Anda secara maksimal.',
-        content: `
-          <p class="mb-6">
-            Ada berbagai metode dalam merancang website bisnis. Sebagian website menggunakan sistem penyimpanan data yang kompleks untuk mengelola informasi dinamis dalam jumlah besar. Namun, untuk kebutuhan seperti profil perusahaan, portofolio karya, atau halaman penawaran produk, struktur website yang lebih sederhana sering kali menjadi pilihan terbaik.
-          </p>
-          
-          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kelebihan Struktur Web Sederhana</h3>
-          <p class="mb-6">
-            Website yang dirancang langsung menggunakan susunan file siap saji dapat menghemat banyak sumber daya server. Karena tidak memerlukan proses pencarian data yang rumit setiap kali halaman dibuka, loading website menjadi sangat instan.
-          </p>
-          <p class="mb-6">
-            Selain cepat, struktur ini juga sangat ramah anggaran. Biaya untuk menyewa ruang penyimpanan di internet menjadi sangat terjangkau karena sistem operasinya yang ringan. Ini adalah pilihan tepat jika Anda menginginkan website profesional dengan biaya operasional bulanan seminimal mungkin.
-          </p>
-        `
-      }
-    },
-    {
       params: { slug: 'otomatisasi-leads-ai-whatsapp' },
       props: {
-        title: 'Cara Otomatisasi Formulir Kontak Langsung Terhubung ke WhatsApp Anda',
-        date: '05 JUNI 2026',
-        category: 'OTOMATISASI',
-        bgCategory: 'bg-indigo-100 text-indigo-700 border-indigo-200',
-        description: 'Membuat alur komunikasi lebih lancar dengan mengirimkan data dari formulir website langsung ke chat WhatsApp Anda.',
+        title: 'Cara Praktis Menggunakan AI Chatbot untuk Menjawab Pelanggan WhatsApp 24/7',
+        date: '05 JULI 2026',
+        category: 'AI & OTOMATISASI',
+        bgCategory: 'bg-indigo-100 text-indigo-750 border-indigo-200',
+        description: 'Menghemat waktu operasional customer service dengan integrasi agen AI pintar pada chat WhatsApp bisnis Anda secara otonom.',
         content: `
-          <p class="mb-6">
-            Ketika pelanggan tertarik dengan layanan Anda setelah membaca isi website, mereka biasanya ingin segera menghubungi Anda untuk bertanya lebih lanjut. Mempermudah alur komunikasi ini sangat penting agar minat calon pembeli tidak hilang.
-          </p>
-          <p class="mb-6">
-            Salah satu solusi termudah adalah menghubungkan formulir kontak di website Anda secara otomatis dengan nomor WhatsApp bisnis Anda.
+          <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+            Menghadapi ratusan pesan dari pelanggan setiap hari di WhatsApp sering kali membuat tim customer service (CS) kewalahan. Jika respons yang diberikan lambat, pelanggan berpotensi beralih ke kompetitor. Di sinilah peran penting <a href="/layanan/ai/" class="text-blue-600 hover:underline font-extrabold">otomatisasi AI Chatbot WhatsApp</a>.
           </p>
           
-          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Alur Pesan Otomatis yang Praktis</h3>
-          <p class="mb-6">
-            Saat calon pembeli mengisi data di website—seperti nama dan layanan yang diminati—sistem akan secara otomatis menyusun pesan tersebut dengan format yang rapi dan sopan. Ketika tombol kirim ditekan, pengunjung akan langsung diarahkan ke chat WhatsApp Anda dengan pesan yang sudah terisi otomatis.
+          <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Respons Kilat & Tanpa Henti</h3>
+          <p class="mb-6 text-slate-600 leading-relaxed">
+            Dengan mengintegrasikan model kecerdasan buatan (seperti GPT atau LLM kustom) ke dalam WhatsApp Business API Anda, sistem dapat secara otonom menjawab berbagai pertanyaan umum seputar harga, ketersediaan produk, lokasi, hingga cara melakukan pemesanan.
           </p>
-          <p class="mb-6">
-            Dengan cara ini, Anda tidak perlu repot menyalin data secara manual. Anda dapat membalas dan melayani pertanyaan calon pelanggan dengan lebih cepat, ramah, dan profesional.
+          <p class="mb-6 text-slate-600 leading-relaxed">
+            AI dilatih menggunakan basis dokumen bisnis Anda (knowledge base), sehingga respons yang diberikan terasa natural, sopan, dan sangat akurat. Hal ini menghemat waktu operasional CS Anda hingga 70%, memungkinkan mereka fokus pada penjualan berskala besar saja.
           </p>
         `
       }
     },
     {
-      params: { slug: 'desain-visual-modern-ui-ux' },
+      params: { slug: 'keunggulan-website-headless-modern' },
       props: {
-        title: 'Bagaimana Tampilan Web yang Rapi Membantu Menumbuhkan Kepercayaan Klien',
-        date: '01 JUNI 2026',
-        category: 'TAMPILAN WEB',
+        title: 'Mengapa Website Headless Serverless Jauh Lebih Cepat dan Aman Dibanding WordPress Tradisional',
+        date: '02 JULI 2026',
+        category: 'IT & WEB DEVELOP',
+        bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
+        description: 'Mengenal arsitektur website modern tanpa database tradisional untuk kecepatan loading maksimal di bawah 1 detik dan bebas retasan.',
+        content: `
+          <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+            Banyak website bisnis tradisional masih menggunakan arsitektur monolitik seperti WordPress yang bergantung pada server database aktif. Struktur ini rentan terhadap kelemahan keamanan (hacker) dan lambat saat diakses dengan koneksi mobile.
+          </p>
+          
+          <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kelebihan Arsitektur Headless Serverless</h3>
+          <p class="mb-6 text-slate-600 leading-relaxed">
+            Melalui <a href="/#layanan" class="text-blue-600 hover:underline font-extrabold">arsitektur modern</a> (seperti Astro atau Next.js yang kami gunakan), konten website dipisahkan sepenuhnya dari kode presentasi. Halaman web di-compile menjadi file HTML statis yang disebarkan secara global melalui CDN (Content Delivery Network).
+          </p>
+          <p class="mb-6 text-slate-600 leading-relaxed">
+            Dampaknya, website Anda dapat dimuat dengan kecepatan kurang dari 1 detik di perangkat handphone pelanggan. Selain itu, karena tidak ada database SQL yang aktif di belakang layar, celah serangan peretas hampir tidak ada, memberikan perlindungan penuh pada reputasi digital brand Anda.
+          </p>
+        `
+      }
+    },
+    {
+      params: { slug: 'strategi-technical-seo-lokal' },
+      props: {
+        title: 'Panduan Memulai Technical SEO untuk Meningkatkan Peringkat Bisnis Anda di Google Search',
+        date: '28 JUNI 2026',
+        category: 'SEO & MARKETING',
+        bgCategory: 'bg-blue-100 text-blue-600 border-blue-200',
+        description: 'Langkah-langkah praktis mengoptimasi struktur website, sitemap, dan meta tag agar bisnis Anda mudah ditemukan pelanggan di Google.',
+        content: `
+          <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+            Banyak pemilik bisnis memfokuskan upaya SEO hanya pada penulisan kata kunci (keywords). Padahal, fondasi utama agar website Anda dapat diindeks dengan baik oleh Google adalah <a href="/layanan/seo/" class="text-blue-600 hover:underline font-extrabold">Technical SEO</a>.
+          </p>
+          
+          <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Mengoptimasi Struktur Di Balik Layar</h3>
+          <p class="mb-6 text-slate-600 leading-relaxed">
+            Technical SEO meliputi penataan struktur sitemap XML yang bersih, kerapian file robots.txt, penggunaan tag heading semantik (H1, H2, H3), kecepatan Core Web Vitals, serta responsivitas tampilan mobile.
+          </p>
+          <p class="mb-6 text-slate-600 leading-relaxed">
+            Ketika Google bot melakukan crawling pada website Anda, struktur yang bersih dan cepat mempermudah bot memahami konten Anda. Hal ini secara signifikan meningkatkan peluang website Anda muncul di peringkat teratas pencarian kata kunci yang dicari oleh calon pelanggan potensial Anda.
+          </p>
+        `
+      }
+    },
+    {
+      params: { slug: 'peran-video-creative-landing-page' },
+      props: {
+        title: 'Cara Video Creative Menarik Perhatian Pengunjung dan Menaikkan Konversi Penjualan Hingga 40%',
+        date: '25 JUNI 2026',
+        category: 'VIDEO & CREATIVE',
         bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
-        description: 'Desain website yang profesional dan nyaman dilihat membuat pengunjung betah membaca informasi bisnis Anda.',
+        description: 'Mengapa menyertakan konten video pendek berkualitas sangat berdampak pada penurunan bounce rate website produk dan meyakinkan calon pelanggan.',
         content: `
-          <p class="mb-6">
-            Saat calon pembeli mengunjungi website Anda untuk pertama kali, mereka akan menilai bisnis Anda dari kerapian tampilannya. Desain visual yang profesional dan tertata dengan baik memberikan kesan pertama yang tepercaya.
-          </p>
-          <p class="mb-6">
-            Tata letak gambar yang berantakan atau teks yang sulit dibaca bisa membuat pengunjung kurang yakin dan cepat meninggalkan halaman website Anda.
+          <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+            Pengunjung internet rata-rata hanya memiliki waktu fokus 5 hingga 8 detik ketika pertama kali membuka sebuah landing page. Jika halaman Anda hanya berisi barisan paragraf teks panjang yang membosankan, mereka akan segera menutup halaman Anda (bounce).
           </p>
           
-          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kenyamanan Membaca dan Kredibilitas</h3>
-          <p class="mb-6">
-            Desain visual yang modern tidak harus rumit. Pemilihan kombinasi warna yang teduh, ukuran tulisan yang pas untuk dibaca dari handphone, serta penempatan tombol yang jelas akan membuat pengunjung betah berlama-lama mencari informasi tentang produk Anda.
+          <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kekuatan Visual yang Mengonversi</h3>
+          <p class="mb-6 text-slate-600 leading-relaxed">
+            Dengan menyisipkan <a href="/layanan/video/" class="text-blue-600 hover:underline font-extrabold">video produk pendek (short creative video)</a> yang interaktif, Anda dapat menyampaikan solusi produk atau layanan Anda secara visual dalam hitungan detik. Video berdurasi 30-60 detik terbukti meningkatkan kenyamanan membaca pengunjung.
           </p>
-          <p class="mb-6">
-            Di LUMOVELO, kami merancang setiap bagian website agar terasa personal dan mencerminkan kualitas dari usaha Anda. Website yang didesain secara profesional membantu membangun kredibilitas bisnis Anda di mata pelanggan baru.
-          </p>
-        `
-      }
-    },
-    {
-      params: { slug: 'migrasi-ke-headless-architecture' },
-      props: {
-        title: 'Tips Mudah Mengelola dan Memperbarui Konten Website Bisnis Baru Anda',
-        date: '28 MEI 2026',
-        category: 'TIPS MANAJEMEN',
-        bgCategory: 'bg-amber-100 text-amber-700 border-amber-200',
-        description: 'Cara praktis untuk memperbarui teks, foto, dan informasi di website Anda secara mandiri tanpa harus pusing belajar pemrograman.',
-        content: `
-          <p class="mb-6">
-            Banyak pemilik usaha merasa cemas bahwa memiliki website baru berarti mereka harus selalu bergantung pada programmer untuk mengganti detail kecil, seperti mengubah info nomor kontak, mengganti harga produk, atau memperbarui foto layanan.
-          </p>
-          <p class="mb-6">
-            Kabar baiknya, sistem website modern dirancang agar sangat mudah dikelola oleh siapa saja secara mandiri, tanpa membutuhkan latar belakang keahlian pemrograman komputer.
-          </p>
-          
-          <h3 class="text-xl font-bold text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kemudahan Pembaruan Konten</h3>
-          <p class="mb-6">
-            Kami menyediakan halaman dasbor pengelolaan yang sederhana dan berbahasa Indonesia. Anda dapat memperbarui informasi penting atau mengunggah foto produk baru semudah memperbarui status di media sosial.
-          </p>
-          <p class="mb-6">
-            Untuk pemeliharaan teknis rutin di balik layar, tim LUMOVELO selalu siap sedia membantu Anda. Dengan demikian, Anda dapat memfokuskan waktu dan energi sepenuhnya untuk mengelola dan mengembangkan penjualan bisnis Anda.
+          <p class="mb-6 text-slate-600 leading-relaxed">
+            Elemen video yang ditempatkan secara strategis di sebelah tombol panggilan (Call to Action / CTA) dapat menaikkan minat beli secara emosional. Ini membantu mempercepat pengambilan keputusan calon pembeli untuk mengklik tombol WhatsApp dan melakukan pemesanan langsung ke bisnis Anda.
           </p>
         `
       }
@@ -167,62 +102,103 @@ export async function getStaticPaths() {
   return posts;
 }
 
-const { title, date, category, bgCategory, content } = Astro.props;
+const { title, date, category, bgCategory, content, description } = Astro.props;
+
+const isEn = Astro.currentLocale === 'en';
+const localizedContent = content
+  .replaceAll('href="/layanan/ai/"', `href="${isEn ? '/en/layanan/ai/' : '/layanan/ai/'}"`)
+  .replaceAll('href="/layanan/seo/"', `href="${isEn ? '/en/layanan/seo/' : '/layanan/seo/'}"`)
+  .replaceAll('href="/layanan/video/"', `href="${isEn ? '/en/layanan/video/' : '/layanan/video/'}"`)
+  .replaceAll('href="/#layanan"', `href="${isEn ? '/en/#services' : '/#layanan'}"`);
 ---
 
-<Layout title={`${title} | LUMOVELO Wawasan`} description={title}>
+<Layout title={`${title} | LUMOVELO Wawasan`} description={description}>
   <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2 group">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 flex items-center justify-center font-display font-black text-white text-xl tracking-wider shadow-lg shadow-blue-600/10 group-hover:rotate-6 transition-transform">
+      <a href={isEn ? '/en/' : '/'} class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl border-2 border-slate-900 bg-blue-600 flex items-center justify-center font-display font-black text-white text-xl tracking-wider shadow-lg shadow-blue-600/10 group-hover:rotate-6 transition-transform">
           L
         </div>
         <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
       </a>
 
-      <a href="/#blog" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all">
-        ➔ Kembali Ke Blog
+      <a href={isEn ? '/en/blog/' : '/blog/'} class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all">
+        ➔ {isEn ? 'Back To Blog' : 'Kembali Ke Blog'}
       </a>
     </div>
   </header>
 
-  <main class="py-16 md:py-24 bg-slate-50 min-h-screen">
+  <main class="py-16 md:py-24 bg-white min-h-screen">
     <article class="max-w-3xl mx-auto px-6">
       
+      <!-- Breadcrumbs -->
+      <div class="mb-4">
+        <Breadcrumbs />
+      </div>
+
       <!-- Article Meta Header -->
       <div class="space-y-4 mb-8">
-        <div class="flex items-center gap-3 text-xs font-mono font-bold text-slate-500">
+        <div class="flex items-center gap-3 text-xs font-mono font-bold text-slate-400">
           <span>{date}</span>
-          <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
-          <span class={`px-2 py-0.5 rounded border uppercase ${bgCategory}`}>{category}</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-200"></span>
+          <span class={`px-2.5 py-0.5 rounded-full border text-[9px] uppercase tracking-wider ${bgCategory}`}>{category}</span>
         </div>
         
         <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-slate-900 uppercase tracking-tight leading-[1.1] mb-6">
           {title}
         </h1>
-
-        <div class="w-full h-1 bg-gradient-to-r from-blue-600 to-teal-600 rounded-full opacity-30"></div>
       </div>
 
-      <!-- Article Content Body -->
-      <div class="prose prose-slate max-w-none text-slate-700 text-sm sm:text-base leading-relaxed font-semibold font-sans" set:html={content}>
-      </div>
+      <!-- Divider line -->
+      <div class="h-0.5 w-full bg-slate-100 mb-10"></div>
 
-      <!-- Call to Action Area inside Article -->
-      <div class="mt-16 p-8 border-2 border-blue-600 bg-white rounded-3xl shadow-[6px_6px_0px_#2563eb] space-y-4">
-        <h3 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Ingin Mengimplementasikan Solusi Ini pada Bisnis Anda?</h3>
-        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-          Hubungi tim profesional LUMOVELO sekarang juga untuk berkonsultasi mengenai pembuatan website performa tinggi yang handal, otomatisasi pesan WhatsApp pelanggan, atau optimasi tampilan halaman dengan biaya yang terjangkau dan bersahabat.
-        </p>
-        <div class="pt-2">
-          <a href="/#konsultasi" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer">
-            Mulai Konsultasi Gratis ➔
-          </a>
+      <!-- Body Content -->
+      <div class="prose prose-slate max-w-none text-slate-650" set:html={localizedContent}></div>
+
+      <!-- Author Box -->
+      <div class="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center sm:items-start gap-5">
+        <div class="w-16 h-16 rounded-2xl border-2 border-slate-900 bg-blue-100 flex items-center justify-center font-display font-black text-slate-900 text-xl overflow-hidden shrink-0 shadow-[2px_2px_0px_#0f172a]">
+          <span class="text-blue-600">LV</span>
         </div>
+        <div class="text-center sm:text-left space-y-1">
+          <h4 class="font-display font-black text-sm text-slate-900 uppercase">{isEn ? 'Lumovelo Editorial Team' : 'Tim Edukasi Lumovelo'}</h4>
+          <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">{isEn ? 'Digital Technology & SEO Analysts' : 'Analis Teknologi Digital & SEO'}</p>
+          <p class="text-xs text-slate-600 leading-relaxed max-w-lg pt-1">
+            {isEn 
+              ? 'We write technical guidelines and updates to share insights about modern web performance, intelligent AI chatbots, and proven organic SEO strategies.' 
+              : 'Kami menulis panduan teknis dan pembaruan untuk membagikan wawasan seputar performa web modern, AI chatbot cerdas, dan strategi SEO organik yang terbukti berhasil.'}
+          </p>
+          <div class="pt-2">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[10px] font-bold font-mono text-blue-600 hover:text-blue-700 transition-colors uppercase">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              LinkedIn Profile
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="mt-12 p-8 border-2 border-slate-900 rounded-3xl shadow-[5px_5px_0px_#0f172a] bg-slate-50/50 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <h4 class="font-display font-black text-lg text-slate-900 uppercase">
+            {isEn ? 'Want to consult about this topic?' : 'Ingin berkonsultasi tentang materi ini?'}
+          </h4>
+          <p class="text-xs text-slate-500 font-semibold mt-1">
+            {isEn 
+              ? 'Lumovelo team is ready to map out your business technical requirements.' 
+              : 'Tim Lumovelo siap membantu menjabarkan detail kebutuhan teknis sistem bisnis Anda.'}
+          </p>
+        </div>
+        <a 
+          href="https://api.whatsapp.com/send?phone=6285624353611&text=Halo%20Lumovelo%2C%20saya%20tertarik%20berdiskusi%20lebih%20lanjut%20tentang%20layanan%20teknologi%20Anda."
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex shrink-0 items-center justify-center px-6 py-3.5 border-2 border-slate-900 bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] rounded-xl cursor-pointer"
+        >
+          {isEn ? 'Consult Now' : 'Diskusi Sekarang'}
+        </a>
       </div>
 
     </article>
   </main>
-
-  <Footer />
 </Layout>

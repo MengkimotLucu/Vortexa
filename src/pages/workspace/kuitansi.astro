@@ -1,9 +1,9 @@
-﻿---
-import Logo from '../components/Logo.astro';
-import Layout from '../layouts/Layout.astro';
+---
+import Logo from '../../components/Logo.astro';
+import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Premium Receipt Generator | LUMOVELO" description="Workspace pembuatan kuitansi pembayaran digital interaktif dengan konversi nominal otomatis dan ekspor PDF & Word.">
+<Layout title="Premium Receipt Generator | LUMOVELO" description="Workspace pembuatan kuitansi pembayaran digital interaktif dengan konversi nominal otomatis dan ekspor PDF & Word." noindex={true}>
   <div class="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans select-none">
     <!-- Header -->
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between font-sans no-print">
@@ -15,6 +15,9 @@ import Layout from '../layouts/Layout.astro';
           <span class="font-display font-black text-lg tracking-wider text-white">LUMOVELO</span>
         </a>
         <span class="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-slate-400 uppercase tracking-widest">Workspace v1.0</span>
+        <a href="/admin/dashboard/" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-[10px] font-bold uppercase tracking-wider transition-colors">
+          📊 Dashboard
+        </a>
       </div>
       
       <!-- Document Selector Dropdown -->
@@ -24,13 +27,13 @@ import Layout from '../layouts/Layout.astro';
           <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="doc-selector-menu" class="absolute right-0 mt-2 w-56 rounded-xl border border-slate-800 bg-slate-900 shadow-2xl py-1.5 z-50 hidden transition-all">
-          <a href="/mou/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📝 MoU Perjanjian</a>
-          <a href="/spk/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">🤝 SPK / Kontrak Kerja</a>
-          <a href="/rab/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📊 RAB Anggaran Biaya</a>
-          <a href="/srs/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📋 SRS / Lampiran Scope</a>
-          <a href="/invoice/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">💳 Invoice Penagihan</a>
-          <a href="/kuitansi/" class="block px-4 py-2 text-xs text-blue-400 bg-slate-800/40 font-bold border-b border-slate-800/30">🧾 Kuitansi Pembayaran</a>
-          <a href="/bast/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60">📦 BAST Serah Terima</a>
+          <a href="/workspace/mou/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📝 MoU Perjanjian</a>
+          <a href="/workspace/spk/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">🤝 SPK / Kontrak Kerja</a>
+          <a href="/workspace/rab/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📊 RAB Anggaran Biaya</a>
+          <a href="/workspace/srs/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">📋 SRS / Lampiran Scope</a>
+          <a href="/workspace/invoice/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60 border-b border-slate-800/30">💳 Invoice Penagihan</a>
+          <a href="/workspace/kuitansi/" class="block px-4 py-2 text-xs text-blue-400 bg-slate-800/40 font-bold border-b border-slate-800/30">🧾 Kuitansi Pembayaran</a>
+          <a href="/workspace/bast/" class="block px-4 py-2 text-xs text-slate-300 hover:text-white hover:bg-slate-800/60">📦 BAST Serah Terima</a>
         </div>
       </div>
     </header>
@@ -167,18 +170,17 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <!-- Actions -->
-        <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <button type="button" id="btn-download-pdf" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Cetak / Simpan PDF
-          </button>
-          <button type="button" id="btn-download-word" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-slate-700 bg-slate-800 hover:bg-slate-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Unduh Word (.doc)
+        <div class="pt-2 space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button type="button" id="btn-download-pdf" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
+              Cetak / Simpan PDF
+            </button>
+            <button type="button" id="btn-download-word" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-slate-700 bg-slate-800 hover:bg-slate-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
+              Unduh Word (.doc)
+            </button>
+          </div>
+          <button type="button" id="btn-save-db" class="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl border-2 border-emerald-600 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm uppercase tracking-wider shadow-[4px_4px_0px_#020617] transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:shadow-none cursor-pointer">
+            💾 Simpan Ke Database
           </button>
         </div>
       </aside>
@@ -338,7 +340,8 @@ import Layout from '../layouts/Layout.astro';
   </style>
 
   <!-- Client-side Receipt Script -->
-  <script is:inline>
+  <script>
+    import { supabase } from '../../lib/supabase';
     // Templates Presets Data
     const PRESETS = {
       dp: {
@@ -826,5 +829,47 @@ import Layout from '../layouts/Layout.astro';
         docMenu.classList.add('hidden');
       });
     }
+    const btnSaveDb = document.getElementById('btn-save-db') as HTMLButtonElement;
+
+    btnSaveDb.addEventListener('click', async () => {
+      btnSaveDb.disabled = true;
+      btnSaveDb.innerText = 'MENYIMPAN...';
+
+      const docNum = elNumber.value.trim();
+      const clientName = elFrom.value.trim();
+      const amount = parseFloat(elAmount.value) || 0;
+      const docDate = elDate.value;
+
+      try {
+        const { error } = await supabase
+          .from('documents')
+          .upsert({
+            doc_type: 'kuitansi',
+            doc_number: docNum,
+            client_name: clientName,
+            client_company: clientName,
+            amount: amount,
+            status: 'PAID',
+            doc_date: docDate,
+            deadline: null,
+            doc_data: {
+              for: elFor.value,
+              city: elCity.value,
+              by: elBy.value,
+              by_pos: elByPos.value,
+              spelled_out: document.getElementById('spelled-out-text')!.innerText,
+              items: activeItems
+            }
+          }, { onConflict: 'doc_number' });
+
+        if (error) throw error;
+        showToast('Kuitansi berhasil disimpan ke database!', 'success');
+      } catch (err: any) {
+        showToast(err.message || 'Gagal menyimpan kuitansi.', 'error');
+      } finally {
+        btnSaveDb.disabled = false;
+        btnSaveDb.innerText = '💾 Simpan Ke Database';
+      }
+    });
   </script>
 </Layout>

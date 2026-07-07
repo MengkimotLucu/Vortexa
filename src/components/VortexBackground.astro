@@ -17,7 +17,7 @@
       this.canvas = canvas;
       this.ctx = canvas.getContext('2d')!;
       this.particles = [];
-      this.particleCount = window.innerWidth < 768 ? 0 : 160;
+      this.particleCount = window.innerWidth < 768 ? 0 : window.innerWidth > 1920 ? 280 : 160;
       this.speed = 1;
       this.targetSpeed = 1;
       this.isPaused = window.innerWidth < 768;
@@ -137,9 +137,8 @@
         return;
       }
 
-      // Clear with slight alpha to create motion trails (white for light mode)
-      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      // Clear canvas cleanly to keep it transparent for global background grids & glows
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       const centerX = this.canvas.width / 2;
       const centerY = this.canvas.height / 2;

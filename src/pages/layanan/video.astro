@@ -1,0 +1,522 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+import Logo from '../../components/Logo.astro';
+
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    title: "Jasa Edit Video & Produksi Aset Kreatif | LUMOVELO",
+    header: "VIDEO EDITING & CREATIVE ASSETS",
+    headline: "Ciptakan Konten Visual Berdampak Tinggi yang Menghasilkan Konversi",
+    desc: "Kami menyunting video promosi dan konten kreatif berkualitas tinggi yang dirancang untuk menarik perhatian pemirsa sejak 3 detik pertama di media sosial.",
+    cta: "Konsultasikan Kebutuhan Video Anda",
+    back: "Kembali ke Beranda",
+    pricingHeader: "/ PAKET INVESTASI VISUAL & VIDEO",
+    pricingTitle: "Pilih Paket Produksi Visual Sesuai Kebutuhan Brand Anda",
+    tabVideo: "Video Editing",
+    tabGraphic: "Desain Grafis",
+    periodMonthly: "Investasi Bulanan",
+    periodCustom: "Kerja Sama Kustom"
+  },
+  en: {
+    title: "Video Editing & Creative Asset Services | LUMOVELO",
+    header: "VIDEO EDITING & CREATIVE ASSETS",
+    headline: "Create High-Impact Visual Content That Drives Conversion",
+    desc: "We edit premium promotional videos and creative social content designed to capture viewer attention within the first 3 seconds.",
+    cta: "Consult Your Video Needs",
+    back: "Back to Home",
+    pricingHeader: "/ VIDEO & VISUAL PRODUCTION PACKAGES",
+    pricingTitle: "Choose the Perfect Visual Package for Your Brand",
+    tabVideo: "Video Editing",
+    tabGraphic: "Graphic Design",
+    periodMonthly: "Monthly Investment",
+    periodCustom: "Custom Agreement"
+  }
+}[lang];
+
+const videoPackages = [
+  {
+    name: lang === 'en' ? "Basic (Short-Form Starter)" : "Basic (Short-Form Starter)",
+    price: "Rp950.000 / bln",
+    period: content.periodMonthly,
+    features: lang === 'en' ? [
+      "4 Short Videos per month (TikTok / Reels / Shorts)",
+      "Clip cutting, alignment, and basic audio cleaning",
+      "Standard dynamic subtitles (easy to read)",
+      "Royalty-free transition sound effects & background music",
+      "Revision: 1x per video"
+    ] : [
+      "4 Video Pendek per bulan (TikTok / Reels / Shorts)",
+      "Editing potong, penyelarasan klip, & pembersihan audio dasar",
+      "Subtitle dinamis standar (mudah terbaca)",
+      "Sound effect & musik pendukung bebas klaim hak cipta",
+      "Revisi: 1x per video"
+    ]
+  },
+  {
+    name: lang === 'en' ? "Pro (Social Media Growth)" : "Pro (Social Media Growth)",
+    price: "Rp2.250.000 / bln",
+    period: content.periodMonthly,
+    popular: true,
+    features: lang === 'en' ? [
+      "8 Short Videos per month (TikTok / Reels / Shorts)",
+      "4 Instagram feed/carousel graphic designs",
+      "Fast-paced editing with 3-second attention hook tactics",
+      "Custom animated subtitles matching brand aesthetic",
+      "Transition sound FX syncing & trending audio tracking",
+      "Revision: 2x per content"
+    ] : [
+      "8 Video Pendek per bulan (TikTok / Reels / Shorts)",
+      "4 Desain grafis feed/carousel Instagram informatif",
+      "Editing ritme cepat dilengkapi taktik penarik perhatian 3 detik pertama (Hook)",
+      "Subtitle animasi berwarna kustom mengikuti estetika brand",
+      "Penyelarasan efek suara transisi & pelacakan musik tren terkini",
+      "Revisi: 2x per konten"
+    ]
+  },
+  {
+    name: lang === 'en' ? "Elite (Corporate & Motion Graphics)" : "Elite (Corporate & Motion Graphics)",
+    price: "Rp4.450.000 / bln",
+    period: content.periodMonthly,
+    features: lang === 'en' ? [
+      "12 Short Videos per month (TikTok / Reels / Shorts)",
+      "1 Long-form corporate / product promo video (max 3 minutes)",
+      "Custom motion graphics elements & animated logo bumper",
+      "Kinetic typography for educational product highlights",
+      "Advanced color grading & cinematic transitions",
+      "Revision: 3x per video",
+    ] : [
+      "12 Video Pendek per bulan (TikTok / Reels / Shorts)",
+      "1 Video promosi produk / Profil Perusahaan durasi panjang (Maksimal 3 menit)",
+      "Elemen grafis bergerak buatan kustom (Motion Graphics) & Bumper Logo animasi",
+      "Penerapan teks bergerak (Kinetic Typography) untuk poin edukasi produk",
+      "Koreksi warna visual tingkat lanjut (Color Grading) & transisi efek sinematik",
+      "Revisi: 3x per video",
+    ]
+  },
+  {
+    name: lang === 'en' ? "Custom Content Plan" : "Custom Content Plan",
+    price: "Hubungi Kami",
+    period: content.periodCustom,
+    features: lang === 'en' ? [
+      "Fully tailored short-form video & visual graphic production volume",
+      "Long-form YouTube video editing (10+ minute format)",
+      "Creative visual assets specialized for paid ads (Meta & TikTok Ads Banner)",
+      "Access to dedicated cloud storage folder",
+      "Revision: Free progressively during active production phase"
+    ] : [
+      "Volume produksi kuantitas video pendek dan visual gambar disesuaikan penuh",
+      "Editing video konten YouTube durasi panjang (Format 10+ menit ke atas)",
+      "Aset kreatif visual khusus performa kampanye iklan berbayar (Meta & TikTok Ads)",
+      "Akses folder penyimpanan komparatif (Cloud storage dedicated server)",
+      "Revisi: Bebas bertahap selama alur masa produksi aktif"
+    ]
+  }
+];
+
+const graphicPackages = [
+  {
+    name: lang === 'en' ? "Basic (Social Media Starter)" : "Basic (Social Media Starter)",
+    price: "Rp450.000 / bln",
+    period: content.periodMonthly,
+    features: lang === 'en' ? [
+      "6 Custom feed graphic designs per month",
+      "Standard content format (1:1 or 4:5 resolution)",
+      "Agency-grade premium template layout",
+      "Color palette & text matched to brand logo",
+      "Revision: 1x per design",
+      "Benefit: Secure consistent visual brand presence on social media with minimal budget."
+    ] : [
+      "6 Desain grafis feed tunggal per bulan",
+      "Format konten standard (Resolusi 1:1 atau 4:5)",
+      "Layout visual berbasis template premium agensi",
+      "Color palette & teks disesuaikan dengan logo brand",
+      "Revisi: 1x per desain",
+    ]
+  },
+  {
+    name: lang === 'en' ? "Pro (Brand Growth & Engagement)" : "Pro (Brand Growth & Engagement)",
+    price: "Rp950.000 / bln",
+    period: content.periodMonthly,
+    popular: true,
+    features: lang === 'en' ? [
+      "12 Custom feed graphic designs per month",
+      "2 Educational/promotional Carousel posts (max 5 slides per carousel)",
+      "Custom visual design matching brand identity",
+      "Research for visual assets (graphics & licensed premium stock photos)",
+      "Micro-layout optimization for high readability on mobile devices",
+      "Revision: 2x per content",
+      "Benefit: Boost audience engagement (saves & shares) through attractive infographics and carousel visuals."
+    ] : [
+      "12 Desain grafis feed tunggal per bulan",
+      "2 Konten format Carousel edukatif/promosi (Maksimal 5 slide per carousel)",
+      "Desain visual kustom sesuai identitas unik brand",
+      "Riset visual aset pendukung (Elemen grafis & stock foto premium berlisensi)",
+      "Optimasi tata letak mikro untuk keterbacaan tinggi di HP",
+      "Revisi: 2x per konten",
+    ]
+  },
+  {
+    name: lang === 'en' ? "Elite (Full Campaign & Marketing Assets)" : "Elite (Full Campaign & Marketing Assets)",
+    price: "Rp1.950.000 / bln",
+    period: content.periodMonthly,
+    features: lang === 'en' ? [
+      "20 Custom feed graphic designs per month",
+      "4 Carousel posts (max 7 slides per carousel)",
+      "5 Instagram Stories interaction templates (Q&A, Polls, Quizzes)",
+      "1 Digital Banner / Website Main Promo Banner design",
+      "Advanced image manipulation (photo retouching & color matching)",
+      "Revision: 3x per design",
+    ] : [
+      "20 Desain grafis feed tunggal per bulan",
+      "4 Konten format Carousel (Maksimal 7 slide per carousel)",
+      "5 Desain template Instagram Stories khusus interaksi (Q&A, Polling, Quiz)",
+      "1 Desain Spanduk Digital / Banner Promosi Website utama",
+      "Manipulasi gambar tingkat lanjut (Advanced photo retouching & color matching)",
+      "Revisi: 3x per desain",
+    ]
+  },
+  {
+    name: lang === 'en' ? "Custom Design Plan" : "Custom Design Plan",
+    price: "Hubungi Kami",
+    period: content.periodCustom,
+    features: lang === 'en' ? [
+      "Fully tailored quantity of graphics, infographics, or carousels",
+      "Complete brand identity design assets (Brand Guidelines, Logo Refresh, Stationery)",
+      "High-converting creative ad banners (Meta & TikTok Ads)",
+      "Print/packaging design materials (Packaging & Merchandise design)",
+      "Revision: Free progressively during active work period",
+      "Benefit: Complete visual creative division solution to support all your corporate daily design needs."
+    ] : [
+      "Volume kuantitas gambar, infografis, atau carousel disesuaikan penuh",
+      "Desain aset identitas brand menyeluruh (Brand Guidelines, Logo Refresh, Stationery)",
+      "Aset gambar kreatif khusus konversi tinggi untuk performa iklan (Meta & TikTok Ads Banner)",
+      "Desain materi cetak / kemasan (Packaging & Merchandise design)",
+      "Revisi: Bebas bertahap selama alur masa kerja aktif",
+    ]
+  }
+];
+
+const homeLink = lang === 'en' ? '/en/' : '/';
+const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
+---
+
+<Layout title={content.title}>
+  <!-- Simple Subpage Header -->
+  <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href={homeLink} class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl border border-blue-100 bg-white flex items-center justify-center shadow-sm">
+          <Logo class="w-4.5 h-4.5 text-blue-600" />
+        </div>
+        <span class="font-display font-black text-lg tracking-widest text-slate-900">LUMOVELO</span>
+      </a>
+      <a href={homeLink} class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors">
+        {content.back}
+      </a>
+    </div>
+  </header>
+
+  <main class="bg-white min-h-screen relative overflow-hidden font-sans">
+    <!-- Background Glimmer -->
+    <div class="absolute right-[-10%] top-[10%] w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 py-16 relative z-10">
+      
+      <!-- Headline Block -->
+      <div class="max-w-3xl mb-16 text-left">
+        <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3 block">
+          {content.header}
+        </span>
+        <h1 class="font-display font-black text-4xl sm:text-5xl text-slate-900 leading-[1.15] uppercase tracking-tight font-sans">
+          {content.headline}
+        </h1>
+        <p class="text-slate-500 mt-6 text-base sm:text-lg leading-relaxed font-semibold">
+          {content.desc}
+        </p>
+      </div>
+
+      <!-- Key Solutions Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        
+        <!-- Solution 1 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">Short-Form Content</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              Penyuntingan video ritme cepat (TikTok, Instagram Reels, YouTube Shorts) dengan sound effect, caption dinamis, dan hook visual untuk meningkatkan engagement penonton.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Maximize retention rates →</span>
+        </div>
+
+        <!-- Solution 2 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">Corporate Promo Video</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              Pembuatan video presentasi produk, profil perusahaan Company Profile, iklan layanan, dengan warna, transisi cinematic, dan voice over profesional.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Clean corporate edits →</span>
+        </div>
+
+        <!-- Solution 3 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">Motion Graphics</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              Animasi grafis kustom, infografis bergerak, bumper logo, dan teks kinetik Kinetic Typography untuk memperjelas pesan teknis yang ingin disampaikan oleh brand Anda.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Custom visual designs →</span>
+        </div>
+
+      </div>
+
+      <!-- Pricing Packages Section -->
+      <div class="mb-20">
+        <div class="text-center mb-8">
+          <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">{content.pricingHeader}</h2>
+          <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">{content.pricingTitle}</h3>
+        </div>
+
+        <!-- TOGGLE SUB-TABS (Video vs Graphic) -->
+        <div class="flex justify-center gap-2 mb-8 border-b border-slate-100 pb-1">
+          <button 
+            id="sub-tab-video" 
+            class="media-tab-btn px-5 py-2.5 text-xs font-extrabold tracking-wider uppercase whitespace-nowrap rounded-t-xl transition-all duration-200 cursor-pointer border-b-2 border-blue-600 text-blue-600 bg-blue-50/5"
+            data-target="video"
+          >
+            {content.tabVideo}
+          </button>
+          <button 
+            id="sub-tab-graphic" 
+            class="media-tab-btn px-5 py-2.5 text-xs font-extrabold tracking-wider uppercase whitespace-nowrap rounded-t-xl transition-all duration-200 cursor-pointer border-b-2 border-transparent text-slate-400 hover:text-slate-700"
+            data-target="graphic"
+          >
+            {content.tabGraphic}
+          </button>
+        </div>
+
+        <!-- Video Editing Packages Panel -->
+        <div id="panel-video" class="media-panel">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {videoPackages.map((pkg, idx) => {
+              const waText = encodeURIComponent(
+                `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "Video Editing - ${pkg.name}" (${pkg.price}) yang tertera di website.`
+              );
+              const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+
+              return (
+                <div 
+                  class={`service-card border-2 p-5 rounded-2xl relative transition-all duration-300 flex flex-col justify-between min-h-[440px] ${
+                    pkg.popular
+                      ? 'border-slate-900 bg-white shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1.5'
+                      : 'border-blue-600/10 hover:border-blue-600 bg-slate-50/50 hover:bg-slate-50/80 shadow-[3px_3px_0px_rgba(37,99,235,0.05)] hover:shadow-[4px_4px_0px_#2563eb] hover:-translate-y-1'
+                  }`}
+                >
+                  {pkg.popular && (
+                    <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
+                      {lang === 'en' ? 'POPULAR' : 'POPULER'}
+                    </div>
+                  )}
+                  <div>
+                    <div class="flex justify-between items-start mb-4">
+                      <span class="text-[8px] font-mono text-slate-450 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                        {idx === 3 ? 'CUSTOM' : `TIER_0${idx + 1}`}
+                      </span>
+                    </div>
+                    <h4 class="font-display font-black text-base text-slate-900 uppercase leading-snug">{pkg.name}</h4>
+                    <div class="my-3">
+                      <div class="text-[8px] font-mono text-slate-450 font-bold uppercase tracking-widest">{pkg.period}</div>
+                      <div class="text-xl font-display font-black text-blue-600 mt-0.5">{pkg.price}</div>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-600 font-semibold mb-6 border-t border-slate-200/40 pt-3">
+                      {pkg.features.map((feature) => (
+                        <li class="flex items-start gap-1.5 leading-relaxed">
+                          <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                          </svg>
+                          <span class="text-[11px]">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a 
+                    href={waUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class={`w-full inline-flex items-center justify-center py-2.5 rounded-xl border-2 font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                      pkg.popular
+                        ? 'border-emerald-500 bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5'
+                        : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm'
+                    }`}
+                  >
+                    {lang === 'en' ? 'Consult Now' : 'Konsultasi'}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <!-- Graphic Design Packages Panel -->
+        <div id="panel-graphic" class="media-panel hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {graphicPackages.map((pkg, idx) => {
+              const waText = encodeURIComponent(
+                `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "Graphic Design - ${pkg.name}" (${pkg.price}) yang tertera di website.`
+              );
+              const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+
+              return (
+                <div 
+                  class={`service-card border-2 p-5 rounded-2xl relative transition-all duration-300 flex flex-col justify-between min-h-[440px] ${
+                    pkg.popular
+                      ? 'border-slate-900 bg-white shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1.5'
+                      : 'border-blue-600/10 hover:border-blue-600 bg-slate-50/50 hover:bg-slate-50/80 shadow-[3px_3px_0px_rgba(37,99,235,0.05)] hover:shadow-[4px_4px_0px_#2563eb] hover:-translate-y-1'
+                  }`}
+                >
+                  {pkg.popular && (
+                    <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
+                      {lang === 'en' ? 'POPULAR' : 'POPULER'}
+                    </div>
+                  )}
+                  <div>
+                    <div class="flex justify-between items-start mb-4">
+                      <span class="text-[8px] font-mono text-slate-450 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                        {idx === 3 ? 'CUSTOM' : `TIER_0${idx + 1}`}
+                      </span>
+                    </div>
+                    <h4 class="font-display font-black text-base text-slate-900 uppercase leading-snug">{pkg.name}</h4>
+                    <div class="my-3">
+                      <div class="text-[8px] font-mono text-slate-450 font-bold uppercase tracking-widest">{pkg.period}</div>
+                      <div class="text-xl font-display font-black text-blue-600 mt-0.5">{pkg.price}</div>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-600 font-semibold mb-6 border-t border-slate-200/40 pt-3">
+                      {pkg.features.map((feature) => (
+                        <li class="flex items-start gap-1.5 leading-relaxed">
+                          <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"/>
+                          </svg>
+                          <span class="text-[11px]">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a 
+                    href={waUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class={`w-full inline-flex items-center justify-center py-2.5 rounded-xl border-2 font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                      pkg.popular
+                        ? 'border-emerald-500 bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5'
+                        : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm'
+                    }`}
+                  >
+                    {lang === 'en' ? 'Consult Now' : 'Konsultasi'}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <!-- Lead Funnel CTA -->
+      <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-2 max-w-xl text-center md:text-left">
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase leading-snug">Ingin menaikkan level konten visual Anda?</h3>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+            Mulailah menyusun konsep video promosi kreatif Anda sekarang dengan berdiskusi langsung bersama tim editor kami.
+          </p>
+        </div>
+        <a 
+          href={contactLink}
+          class="inline-flex items-center justify-center px-6 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5 cursor-pointer shrink-0"
+        >
+          {content.cta}
+        </a>
+      </div>
+
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  function initHoverEffects() {
+    // 1. Hover 3D animations for cards
+    if (window.innerWidth >= 768) {
+      const cards = document.querySelectorAll('.service-card');
+      cards.forEach((card: any) => {
+        card.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const width = rect.width;
+          const height = rect.height;
+          const rotateX = -((e.clientY - rect.top - height / 2) / height) * 3;
+          const rotateY = ((e.clientX - rect.left - width / 2) / width) * 3;
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.005)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+      });
+    }
+
+    // 2. Toggle Tab Panel for Video vs Graphic
+    const tabBtns = document.querySelectorAll('.media-tab-btn');
+    const panels = document.querySelectorAll('.media-panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+
+        // Reset active styles
+        tabBtns.forEach(b => {
+          b.classList.remove('border-blue-600', 'text-blue-600', 'bg-blue-50/5');
+          b.classList.add('border-transparent', 'text-slate-400', 'hover:text-slate-700');
+        });
+
+        // Add active style to selected button
+        btn.classList.add('border-blue-600', 'text-blue-600', 'bg-blue-50/5');
+        btn.classList.remove('border-transparent', 'text-slate-400', 'hover:text-slate-700');
+
+        // Toggle panel visibility
+        panels.forEach(panel => {
+          if (panel.id === `panel-${target}`) {
+            panel.classList.remove('hidden');
+          } else {
+            panel.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHoverEffects);
+  } else {
+    initHoverEffects();
+  }
+</script>

@@ -1,0 +1,44 @@
+---
+import Logo from '../components/Logo.astro';
+import Layout from '../layouts/Layout.astro';
+import AboutUs from '../components/AboutUs.astro';
+import Footer from '../components/Footer.astro';
+
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const meta = {
+  id: {
+    title: "Tentang Kami - Kolaborasi Digital & Profil | LUMOVELO",
+    description: "Pelajari visi, misi, dan profil Lumovelo. Kami berdedikasi menciptakan website performa tinggi dengan integrasi AI dan optimasi SEO.",
+    backBtn: "Kembali Ke Beranda"
+  },
+  en: {
+    title: "About Us - Digital Collaboration & Profile | LUMOVELO",
+    description: "Learn about Lumovelo's vision, mission, and profile. We are dedicated to creating high-performance websites with AI integration and SEO optimization.",
+    backBtn: "Back to Home"
+  }
+}[lang];
+---
+
+<Layout title={meta.title} description={meta.description}>
+  <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href={lang === 'en' ? '/en/' : '/'} class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl border-2 border-slate-900 bg-blue-600 flex items-center justify-center shadow-[3px_3px_0px_#0f172a] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[1px_1px_0px_#0f172a] transition-all duration-200">
+          <Logo class="w-5 h-5 text-white" />
+        </div>
+        <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
+      </a>
+
+      <a href={lang === 'en' ? '/en/' : '/'} class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all select-none">
+        {meta.backBtn}
+      </a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <AboutUs />
+  </main>
+
+  <Footer />
+</Layout>

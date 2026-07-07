@@ -55,6 +55,18 @@ const faqs = {
     {
       q: "Bagaimana proses pembayaran di LUMOVELO?",
       a: "Kami menggunakan sistem pembayaran bertahap (termin). Biasanya dimulai dengan Down Payment (DP) sebesar 50% untuk memulai fase riset dan desain, dan sisa pelunasan 50% setelah website selesai diuji dan siap diluncurkan secara publik."
+    },
+    {
+      q: "Metode pembayaran apa saja yang didukung oleh LUMOVELO?",
+      a: "Kami mendukung transfer bank lokal (BCA, Mandiri, BNI, BRI), kartu kredit, dan metode pembayaran digital terverifikasi. Pembayaran dilakukan secara bertahap melalui sistem termin resmi dengan invoice dan kwitansi berstempel resmi."
+    },
+    {
+      q: "Bagaimana cara mendapatkan diskon atau penawaran khusus?",
+      a: "Kami menawarkan diskon khusus untuk startup tahap awal, yayasan nirlaba/sosial, serta paket bundling (seperti pembuatan website profil perusahaan sekaligus integrasi chatbot AI & setup SEO bulanan). Silakan diskusikan langsung dengan tim kami untuk mendapatkan penawaran terbaik."
+    },
+    {
+      q: "Apakah ada garansi jika website mengalami error setelah diluncurkan?",
+      a: "Ya, kami memberikan garansi bug-free penuh selama 3 bulan pertama setelah peluncuran. Jika terjadi kendala teknis atau error sistem, tim kami akan memperbaikinya segera tanpa biaya tambahan."
     }
   ],
   en: [
@@ -89,6 +101,18 @@ const faqs = {
     {
       q: "How does the payment process work at LUMOVELO?",
       a: "We use a milestone-based payment system. It usually starts with a 50% Down Payment (DP) to begin the research and design phase, and the remaining 50% balance after the website is tested and ready to launch publicly."
+    },
+    {
+      q: "What payment methods are supported by LUMOVELO?",
+      a: "We support local bank transfers, credit cards, and verified digital payment methods. Payments are made in stages through an official milestone system with stamped invoices and receipts."
+    },
+    {
+      q: "How do I get discounts or special offers?",
+      a: "We offer special discounts for early-stage startups, non-profit/social foundations, and bundling packages (such as company profile website creation combined with AI chatbot integration & monthly SEO setup). Please discuss directly with our team to secure the best package deal."
+    },
+    {
+      q: "Is there a warranty if the website encounters errors after launch?",
+      a: "Yes, we provide a full bug-free warranty for the first 3 months post-launch. If any technical issues or system errors occur, our team will resolve them immediately at no extra charge."
     }
   ]
 }[lang];
@@ -96,7 +120,9 @@ const faqs = {
 const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
 ---
 
-<section id="faq" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-100">
+<section id="faq" class="py-12 lg:py-16 bg-white relative overflow-hidden border-t-2 border-slate-100">
+  <div class="absolute right-[-15%] top-[15%] w-[600px] h-[600px] bg-blue-600/[0.08] rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute left-[-15%] bottom-[15%] w-[600px] h-[600px] bg-cyan-500/[0.07] rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
@@ -134,7 +160,7 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
       <!-- Right Column: Accordion Stack -->
       <div class="lg:col-span-7 space-y-4">
         {faqs.map((item) => (
-          <div class="faq-item border-2 border-blue-600 rounded-2xl bg-slate-50 p-6 shadow-[3px_3px_0px_#2563eb] transition-all duration-300">
+          <div class="faq-item border-2 border-blue-600 rounded-2xl bg-white p-6 shadow-[3px_3px_0px_#2563eb] transition-all duration-300">
             <button type="button" class="faq-toggle w-full flex items-center justify-between text-left font-display font-black text-sm sm:text-base uppercase text-slate-900 tracking-tight cursor-pointer select-none">
               <span>{item.q}</span>
               <svg class="faq-chevron w-4 h-4 text-blue-600 transform transition-transform duration-300 shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -154,6 +180,7 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
 
   </div>
 </section>
+
 
 <script>
   function initFaq() {

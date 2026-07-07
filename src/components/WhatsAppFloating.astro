@@ -1,0 +1,41 @@
+---
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    tooltip: "Hubungi Kami",
+    text: "Konsultasi Gratis"
+  },
+  en: {
+    tooltip: "Contact Us",
+    text: "Free Consultation"
+  }
+}[lang];
+
+const waNumber = "6285624353611";
+const message = lang === 'en' 
+  ? "Hello Lumovelo, I'd like to consult on a project." 
+  : "Halo Lumovelo, saya ingin berkonsultasi tentang proyek website/AI.";
+const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(message)}`;
+---
+
+<a
+  href={waUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="fixed bottom-6 right-6 z-[99] flex items-center gap-2.5 px-5 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-[0_8px_30px_rgba(16,185,129,0.35)] hover:shadow-[0_8px_35px_rgba(16,185,129,0.55)] hover:-translate-y-1 active:translate-y-0 group select-none"
+  id="whatsapp-floating-btn"
+  aria-label={content.tooltip}
+>
+  <!-- Pulse Wave Effect -->
+  <span class="absolute -inset-1 rounded-full bg-emerald-500/30 opacity-75 animate-ping -z-10 group-hover:bg-emerald-600/30"></span>
+  
+  <!-- WhatsApp Icon SVG -->
+  <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.517 2.266 2.27 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.86.002-2.637-1.019-5.115-2.875-6.973-1.857-1.857-4.335-2.875-6.977-2.877-5.44 0-9.863 4.418-9.867 9.862 0 1.637.425 3.235 1.238 4.646L1.88 22.007l4.766-1.253zM17.56 14.84c-.304-.151-1.796-.884-2.05-.975-.253-.092-.437-.138-.62.138-.182.277-.706.885-.866 1.07-.16.183-.319.206-.622.055-.304-.151-1.282-.472-2.444-1.508-.904-.805-1.514-1.8-1.691-2.105-.178-.304-.019-.469.132-.619.136-.134.304-.354.456-.53.152-.177.202-.295.304-.492.102-.197.051-.369-.026-.52-.076-.151-.62-1.492-.85-2.042-.224-.54-.47-.464-.62-.47-.138-.006-.296-.007-.455-.007-.158 0-.417.06-.635.297-.218.238-.83.812-.83 1.982 0 1.17.85 2.296.968 2.455.118.16 1.674 2.557 4.05 3.58.567.244 1.01.388 1.356.499.57.18 1.088.155 1.499.094.457-.067 1.796-.734 2.05-1.442.253-.707.253-1.314.177-1.441-.076-.127-.278-.203-.582-.354z"/>
+  </svg>
+  
+  <span class="font-sans font-black text-[11px] tracking-widest text-white uppercase mt-0.5">
+    {content.text}
+  </span>
+</a>

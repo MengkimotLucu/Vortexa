@@ -1,0 +1,446 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Logo from '../../components/Logo.astro';
+---
+
+<Layout title="Bagi Hasil Tim | LUMOVELO" description="Kalkulasi dan pencatatan bagi hasil tim internal agensi." noindex={true}>
+  <div id="admin-layout" class="hidden min-h-screen bg-slate-950 text-slate-100 flex font-sans select-none">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 border-r border-slate-800 bg-slate-900 flex flex-col justify-between shrink-0">
+      <div>
+        <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center">
+            <Logo class="w-4 h-4 text-white" />
+          </div>
+          <span class="font-display font-black text-base tracking-widest text-white">LUMOVELO</span>
+        </div>
+
+        <nav class="p-4 space-y-1.5">
+          <a href="/admin/dashboard/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            📊 Ringkasan Panel
+          </a>
+          <a href="/admin/finance/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            💰 Laporan Keuangan
+          </a>
+          <a href="/admin/profit-sharing/" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 text-xs font-black uppercase tracking-wider">
+            🤝 Bagi Hasil Tim
+          </a>
+          <a href="/admin/wedding/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            💍 Undangan Pernikahan
+          </a>
+          <a href="/workspace/invoice/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            📄 Buat Dokumen
+          </a>
+        </nav>
+      </div>
+
+      <div class="p-4 border-t border-slate-800">
+        <button id="btn-logout" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white text-xs font-black uppercase tracking-widest transition-all cursor-pointer">
+          🚪 Keluar Dashboard
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-20 border-b border-slate-800 bg-slate-900/40 px-8 flex items-center justify-between">
+        <div>
+          <h1 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-widest">BAGI HASIL REKAN TIM</h1>
+          <p class="text-xs text-slate-500 mt-0.5">Kelola kalkulasi komisi proyek secara transparan.</p>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="p-8 overflow-y-auto flex-1 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left 1 Col: Form Calculator -->
+        <div class="lg:col-span-1 space-y-6">
+          
+          <!-- Interactive Calculator -->
+          <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 space-y-4">
+            <h3 class="font-display font-black text-sm text-white uppercase tracking-wider">Kalkulator Pembagian Hasil</h3>
+            
+            <div class="grid grid-cols-1 gap-4">
+              <div class="space-y-1">
+                <label for="calc-doc" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Pilih Proyek / Invoice</label>
+                <select id="calc-doc" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors">
+                  <option value="">PILIH PROYEK (INVOICE)</option>
+                </select>
+              </div>
+              <div class="space-y-1">
+                <label for="calc-amount" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Nilai Proyek (IDR)</label>
+                <input type="number" id="calc-amount" disabled class="w-full bg-slate-950/40 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-400 focus:outline-none" placeholder="Pilih proyek terlebih dahulu" />
+              </div>
+            </div>
+
+            <!-- Dynamic Team Members Split Inputs -->
+            <div class="space-y-2">
+              <label class="text-[10px] font-mono font-bold text-slate-400 uppercase block mb-1">Rincian Penerima Komisi</label>
+              
+              <div id="members-list-container" class="space-y-3">
+                <!-- Row 1: Kas Agensi (Default) -->
+                <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
+                  <div class="flex-1 font-bold text-xs text-white">Kas Agensi (Lumovelo)</div>
+                  <div class="w-20 shrink-0">
+                    <input type="number" value="60" id="share-agensi" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-2 py-1 text-xs text-center text-white focus:outline-none transition-colors share-percent-input" />
+                  </div>
+                  <div class="text-xs font-mono font-bold text-slate-400 shrink-0 w-24 text-right" id="share-val-agensi">Rp 0</div>
+                </div>
+              </div>
+
+              <!-- Button Add Member -->
+              <button type="button" id="btn-add-member" class="px-4 py-2 border border-dashed border-slate-700 hover:border-slate-500 rounded-xl text-[10px] font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all cursor-pointer">
+                + Tambah Anggota Pelaksana
+              </button>
+            </div>
+
+            <!-- Total validation alert -->
+            <div id="total-alert" class="hidden text-xs text-rose-500 font-bold">Total persentase harus tepat 100%!</div>
+
+            <button type="button" id="btn-save-sharing" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-xs font-black uppercase tracking-widest cursor-pointer shadow-lg shadow-blue-500/20 transition-all">
+              Simpan Pembagian Hasil Ke Database
+            </button>
+          </div>
+        </div>
+
+        <!-- Right 2 Cols: DB Log -->
+        <div class="lg:col-span-2 space-y-6">
+          <!-- Log table of saved sharing entries -->
+          <div class="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
+            <div class="p-6 border-b border-slate-800">
+              <h3 class="font-display font-black text-sm text-white uppercase tracking-wider">Riwayat Pembagian Terdaftar</h3>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="border-b border-slate-800/80 bg-slate-950/40 text-slate-400 font-bold">
+                    <th class="p-4">NAMA</th>
+                    <th class="p-4">PERAN</th>
+                    <th class="p-4">PERSENTASE</th>
+                    <th class="p-4">JUMLAH DITERIMA</th>
+                    <th class="p-4">STATUS</th>
+                    <th class="p-4">AKSI</th>
+                  </tr>
+                </thead>
+                <tbody id="sharing-log-body" class="divide-y divide-slate-800/50 text-slate-300">
+                  <tr>
+                    <td colspan="6" class="p-8 text-center text-slate-500 font-medium">Memuat riwayat pembagian...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    import { supabase } from '../../lib/supabase';
+
+    const showToast = (window as any).showToast;
+
+    const adminLayout = document.getElementById('admin-layout')!;
+    const btnLogout = document.getElementById('btn-logout')!;
+    const calcDoc = document.getElementById('calc-doc') as HTMLSelectElement;
+    const calcAmount = document.getElementById('calc-amount') as HTMLInputElement;
+    const btnAddMember = document.getElementById('btn-add-member')!;
+    const container = document.getElementById('members-list-container')!;
+    const totalAlert = document.getElementById('total-alert')!;
+    const btnSaveSharing = document.getElementById('btn-save-sharing') as HTMLButtonElement;
+
+    let availableProjects: any[] = [];
+    let customMembers: any[] = [];
+
+    // Session validation
+    async function validateAdminSession() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = '/admin/login/';
+      } else {
+        adminLayout.classList.remove('hidden');
+        loadProjects();
+        loadSharingLog();
+      }
+    }
+    validateAdminSession();
+
+    async function loadProjects() {
+      try {
+        const { data, error } = await supabase
+          .from('documents')
+          .select('id, doc_number, client_name, amount')
+          .eq('doc_type', 'invoice')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        availableProjects = data || [];
+        
+        calcDoc.innerHTML = '<option value="">PILIH PROYEK (INVOICE)</option>' + availableProjects.map(p => 
+          `<option value="${p.id}">${p.doc_number} - ${p.client_name}</option>`
+        ).join('');
+      } catch (err) {
+        console.error('Error loading projects:', err);
+      }
+    }
+
+    calcDoc.addEventListener('change', () => {
+      const selectedId = calcDoc.value;
+      const proj = availableProjects.find(p => p.id === selectedId);
+      if (proj) {
+        calcAmount.value = proj.amount;
+      } else {
+        calcAmount.value = '';
+      }
+      recalculateShares();
+    });
+
+    function recalculateShares() {
+      const totalAmount = Number(calcAmount.value) || 0;
+      
+      // Kas Agensi calculation
+      const agensiPercent = Number((document.getElementById('share-agensi') as HTMLInputElement).value) || 0;
+      const agensiShare = (agensiPercent / 100) * totalAmount;
+      document.getElementById('share-val-agensi')!.innerText = `Rp ${agensiShare.toLocaleString('id-ID')}`;
+
+      // Custom members calculation
+      let totalPercentSum = agensiPercent;
+      customMembers.forEach(m => {
+        const percentInput = document.getElementById(`share-pct-${m.id}`) as HTMLInputElement;
+        const valLabel = document.getElementById(`share-val-${m.id}`) as HTMLDivElement;
+        
+        if (percentInput && valLabel) {
+          const percent = Number(percentInput.value) || 0;
+          totalPercentSum += percent;
+          const share = (percent / 100) * totalAmount;
+          valLabel.innerText = `Rp ${share.toLocaleString('id-ID')}`;
+        }
+      });
+
+      if (totalPercentSum !== 100 && totalAmount > 0) {
+        totalAlert.innerText = `Total persentase saat ini: ${totalPercentSum}%. Harus tepat 100%!`;
+        totalAlert.classList.remove('hidden');
+      } else {
+        totalAlert.classList.add('hidden');
+      }
+    }
+
+    // Add team member row
+    let memberIdCounter = 0;
+    btnAddMember.addEventListener('click', () => {
+      memberIdCounter++;
+      const id = memberIdCounter;
+
+      const row = document.createElement('div');
+      row.className = 'flex items-center gap-3 bg-slate-950/20 p-3 rounded-xl border border-slate-800/40';
+      row.id = `member-row-${id}`;
+      row.innerHTML = `
+        <div class="flex-1 min-w-0 grid grid-cols-2 gap-2">
+          <input type="text" id="member-name-${id}" placeholder="Nama Anggota" class="bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-2 py-1 text-xs text-white focus:outline-none w-full" />
+          <input type="text" id="member-role-${id}" placeholder="Peran / Role" class="bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-2 py-1 text-xs text-white focus:outline-none w-full" />
+        </div>
+        <div class="w-20 shrink-0">
+          <input type="number" value="10" id="share-pct-${id}" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-2 py-1 text-xs text-center text-white focus:outline-none share-percent-input" />
+        </div>
+        <div class="text-xs font-mono font-bold text-slate-400 shrink-0 w-24 text-right" id="share-val-${id}">Rp 0</div>
+        <button type="button" class="text-rose-500 hover:text-rose-400 text-xs px-1 cursor-pointer font-bold btn-remove-member-row" data-id="${id}">✕</button>
+      `;
+
+      container.appendChild(row);
+      customMembers.push({ id });
+
+      row.querySelector('.share-percent-input')!.addEventListener('input', recalculateShares);
+      row.querySelector(`.btn-remove-member-row`)!.addEventListener('click', (e: any) => {
+        const rowId = e.target.getAttribute('data-id');
+        document.getElementById(`member-row-${rowId}`)!.remove();
+        customMembers = customMembers.filter(m => m.id !== Number(rowId));
+        recalculateShares();
+      });
+
+      recalculateShares();
+    });
+
+    document.getElementById('share-agensi')!.addEventListener('input', recalculateShares);
+
+    // Save sharing records
+    btnSaveSharing.addEventListener('click', async () => {
+      const selectedId = calcDoc.value;
+      if (!selectedId) {
+        showToast('Pilih proyek terlebih dahulu.', 'warning');
+        return;
+      }
+
+      const totalAmount = Number(calcAmount.value) || 0;
+      if (totalAmount <= 0) {
+        showToast('Nilai proyek tidak valid.', 'warning');
+        return;
+      }
+
+      // Check sum percentage
+      const agensiPercent = Number((document.getElementById('share-agensi') as HTMLInputElement).value) || 0;
+      let totalPercentSum = agensiPercent;
+      const payload: any[] = [];
+
+      // Add Agensi row
+      payload.push({
+        doc_id: selectedId,
+        member_name: 'Kas Agensi (Lumovelo)',
+        role: 'Agensi',
+        percentage: agensiPercent,
+        amount: (agensiPercent / 100) * totalAmount,
+        status: 'paid'
+      });
+
+      // Add custom members
+      const selectedNames = new Set();
+      for (const m of customMembers) {
+        const nameInp = document.getElementById(`member-name-${m.id}`) as HTMLInputElement;
+        const roleInp = document.getElementById(`member-role-${m.id}`) as HTMLInputElement;
+        const pctInp = document.getElementById(`share-pct-${m.id}`) as HTMLInputElement;
+        
+        if (nameInp && roleInp && pctInp) {
+          const name = nameInp.value.trim();
+          if (!name) {
+            showToast('Nama anggota tidak boleh kosong!', 'warning');
+            return;
+          }
+          if (selectedNames.has(name)) {
+            showToast(`Nama anggota tim "${name}" tidak boleh dimasukkan lebih dari sekali!`, 'warning');
+            return;
+          }
+          selectedNames.add(name);
+
+          const role = roleInp.value.trim() || 'Pelaksana';
+          const pct = Number(pctInp.value) || 0;
+          totalPercentSum += pct;
+
+          payload.push({
+            doc_id: selectedId,
+            member_name: name,
+            role,
+            percentage: pct,
+            amount: (pct / 100) * totalAmount,
+            status: 'unpaid'
+          });
+        }
+      }
+
+      if (totalPercentSum !== 100) {
+        showToast(`Persentase total adalah ${totalPercentSum}%. Harus tepat 100%!`, 'warning');
+        return;
+      }
+
+      btnSaveSharing.disabled = true;
+      btnSaveSharing.innerText = 'MENYIMPAN...';
+
+      try {
+        const { error } = await supabase
+          .from('profit_sharing')
+          .insert(payload);
+
+        if (error) throw error;
+
+        showToast('Berhasil menyimpan data pembagian bagi hasil!', 'success');
+        
+        // Reset dynamic rows
+        customMembers.forEach(m => {
+          document.getElementById(`member-row-${m.id}`)?.remove();
+        });
+        customMembers = [];
+        (document.getElementById('share-agensi') as HTMLInputElement).value = '60';
+        recalculateShares();
+
+        loadSharingLog();
+      } catch (err: any) {
+        showToast(err.message || 'Gagal menyimpan.', 'error');
+      } finally {
+        btnSaveSharing.disabled = false;
+        btnSaveSharing.innerText = 'Simpan Pembagian Hasil Ke Database';
+      }
+    });
+
+    // Load saved profit sharing logs
+    async function loadSharingLog() {
+      try {
+        const { data, error } = await supabase
+          .from('profit_sharing')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        const tableBody = document.getElementById('sharing-log-body')!;
+        if (!data || data.length === 0) {
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="6" class="p-8 text-center text-slate-500 font-medium">Belum ada pembagian hasil terdaftar.</td>
+            </tr>
+          `;
+          return;
+        }
+
+        tableBody.innerHTML = data.map((item) => {
+          const formattedAmount = `Rp ${Number(item.amount).toLocaleString('id-ID')}`;
+          
+          let statusBadgeClass = 'bg-slate-800 text-slate-400';
+          if (item.status === 'paid') {
+            statusBadgeClass = 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
+          } else {
+            statusBadgeClass = 'bg-amber-500/10 border border-amber-500/20 text-amber-400';
+          }
+
+          const actionBtn = item.status === 'unpaid' 
+            ? `<button class="px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold font-sans cursor-pointer btn-pay-share" data-id="${item.id}">Bayar</button>`
+            : '-';
+
+          return `
+            <tr class="hover:bg-slate-900/20 transition-colors">
+              <td class="p-4 font-bold text-white">${item.member_name}</td>
+              <td class="p-4 text-slate-400">${item.role}</td>
+              <td class="p-4 font-mono font-bold">${item.percentage}%</td>
+              <td class="p-4 font-mono text-slate-200 font-bold">${formattedAmount}</td>
+              <td class="p-4">
+                <span class="px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider ${statusBadgeClass}">
+                  ${item.status.toUpperCase()}
+                </span>
+              </td>
+              <td class="p-4">${actionBtn}</td>
+            </tr>
+          `;
+        }).join('');
+
+        // Bind update status trigger
+        document.querySelectorAll('.btn-pay-share').forEach((btn) => {
+          btn.addEventListener('click', async (e: any) => {
+            const id = e.target.getAttribute('data-id');
+            if (id && confirm('Konfirmasi bahwa bagi hasil ini sudah dibayar/ditransfer?')) {
+              try {
+                const { error } = await supabase
+                  .from('profit_sharing')
+                  .update({ status: 'paid' })
+                  .eq('id', id);
+
+                if (error) throw error;
+
+                (window as any).showToast('Bagi hasil berhasil dikonfirmasi lunas!', 'success');
+                loadSharingLog();
+              } catch (err: any) {
+                (window as any).showToast(err.message || 'Gagal memperbarui status bagi hasil.', 'error');
+              }
+            }
+          });
+        });
+
+      } catch (err) {
+        console.error('Error loading sharing log:', err);
+      }
+    }
+
+    btnLogout.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = '/admin/login/';
+    });
+  </script>
+</Layout>

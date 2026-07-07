@@ -1,0 +1,93 @@
+---
+const pathname = Astro.url.pathname;
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+// Remove leading/trailing slashes and split path
+const segments = pathname.split('/').filter(Boolean);
+
+// Define translation mapping for segments
+const translations = {
+  id: {
+    home: "Beranda",
+    blog: "Blog",
+    karir: "Karir",
+    careers: "Karir",
+    kontak: "Kontak",
+    contact: "Kontak",
+    portofolio: "Portofolio",
+    portfolio: "Portofolio",
+    layanan: "Layanan",
+    services: "Layanan",
+    about: "Tentang Kami",
+    "about-us": "Tentang Kami",
+    tentang: "Tentang Kami",
+    ai: "Integrasi AI",
+    seo: "Advanced SEO",
+    video: "Video Creative"
+  },
+  en: {
+    home: "Home",
+    blog: "Blog",
+    karir: "Careers",
+    careers: "Careers",
+    kontak: "Contact",
+    contact: "Contact",
+    portofolio: "Portfolio",
+    portfolio: "Portfolio",
+    layanan: "Services",
+    services: "Services",
+    about: "About Us",
+    "about-us": "About Us",
+    tentang: "About Us",
+    ai: "AI Integration",
+    seo: "Advanced SEO",
+    video: "Video & Creative"
+  }
+}[lang];
+
+// Build breadcrumb items list
+const items = [{
+  label: translations.home,
+  url: lang === 'en' ? '/en/' : '/'
+}];
+
+let currentUrl = lang === 'en' ? '/en' : '';
+segments.forEach((segment) => {
+  // If segment is "en", skip it as we already handled it in home Link
+  if (segment === 'en') return;
+  
+  currentUrl += `/${segment}`;
+  
+  // Format slug or segment
+  let label = translations[segment];
+  if (!label) {
+    // If not found in translations (e.g. blog post title/slug), clean the slug
+    label = segment
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+  
+  items.push({
+    label,
+    url: `${currentUrl}/`
+  });
+});
+---
+
+<nav aria-label="Breadcrumb" class="flex py-4 font-mono text-[10px] sm:text-xs font-semibold select-none text-slate-400">
+  <ol class="inline-flex items-center space-x-1.5 md:space-x-2">
+    {items.map((item, idx) => (
+      <li class="inline-flex items-center">
+        {idx > 0 && (
+          <span class="mx-1.5 md:mx-2 text-slate-350">/</span>
+        )}
+        {idx === items.length - 1 ? (
+          <span class="text-blue-600 font-extrabold truncate max-w-[200px] sm:max-w-[350px]" aria-current="page">{item.label}</span>
+        ) : (
+          <a href={item.url} class="hover:text-blue-500 transition-colors uppercase">{item.label}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

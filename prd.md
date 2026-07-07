@@ -1,86 +1,110 @@
 # Product Requirement Document (PRD)
-## Project: LUMOVELO Landing Page (V1.0)
+## Project: LUMOVELO Agency Website (V2.0 - Redesign)
 
 ---
 
 ## 1. Project Overview & Objective
 * **Brand Name:** LUMOVELO
+* **Concept:** Creative Growth Agency (Web Development, AI Automation, SEO, Video Editing).
 * **Tagline Concept:** *We don’t just build software. We engineer digital growth.*
-* **Objective:** Membangun website profil *full-stack growth agency* (AI, Software Dev, SEO, Design) yang berorientasi pada konversi tinggi (*high-converting sales funnel*), menyasar klien UMKM hingga Enterprise Global. Target utama: Menghasilkan leads WhatsApp secara konsisten setiap bulan.
-* **Target Audience:** Startup founders, UMKM pemilik bisnis yang ingin digitalisasi, dan IT Decision Makers di korporat skala global.
+* **Objective:** Membangun website profil *creative growth agency* premium berorientasi pada konversi tinggi (*high-converting leads generator*) dengan menyingkirkan gaya kaku Neo-Brutalisme, beralih ke estetika **Premium Cyber-Minimalism (Light Mode)**.
+* **Target Audience:** Startup founders, UMKM pemilik bisnis yang ingin melakukan digitalisasi, Content Creators, dan IT Decision Makers di korporat skala global/lokal.
+* **Conversion Goal:** Menghasilkan qualified leads secara langsung via WhatsApp dengan kuesioner terintegrasi.
 
 ---
 
-## 2. Design & Visual Identity (Gen Z Futuristic Minimalist)
-* **Theme:** Dark Mode Dominant (Premium & Tech-forward).
-* **Color Palette:** Deep Cyber Black/Charcoal, Neon Purple/Violet (#8B5CF6) sebagai warna aksen, dan Emerald Green (#10B981) untuk elemen konversi (CTA/WhatsApp).
-* **UI/UX Style:** 
-  * *Glassmorphic Effects* (elemen transparan seperti kaca).
-  * *Bold & Clean Typography* (Menggunakan font Sans-Serif modern seperti Inter atau Syne).
-  * *Micro-interactions & Smooth Scrolling* untuk memberikan kesan teknologi tinggi saat web dijelajahi.
+## 2. Design & Visual Identity (Premium Cyber-Minimalism - Light Mode)
+* **Theme:** Light Mode Dominant (Clean, Modern, & High-tech).
+* **Color Palette:**
+  * **Background Utama:** Pure White (`#FFFFFF`) & Soft Frost White (`#F8FAFC`).
+  * **Warna Aksen:** Royal Blue (`#2563EB`) untuk kredibilitas/teknologi, dan Electric Cyan (`#06B6D4`) untuk sentuhan AI/kreativitas.
+  * **Warna Teks:** Deep Navy/Slate (`#0F172A`) untuk kontras tinggi dan kenyamanan membaca.
+  * **Warna Konversi (CTA):** Emerald Green (`#10B981`) khusus untuk tombol WhatsApp.
+* **UI/UX Style:**
+  * **Bento Grid Layout:** Struktur grid modern terintegrasi yang responsif, menyusun info secara rapi baik di desktop maupun mobile.
+  * **Glassmorphic Elements:** Kartu transparan dengan border biru tipis (`rgba(37,99,235,0.08)`) dan efek blur latar belakang.
+  * **Typography:** Headline menggunakan font Sans-Serif berkarakter kuat (**Syne** atau **Outfit**), sedangkan body text menggunakan font modern fungsional (**Inter** atau **Plus Jakarta Sans**).
+  * **Micro-interactions:** Animasi penunjuk (hover) 3D, magnetik button, dan fluid scroll.
 
 ---
 
 ## 3. Tech Stack & Architecture
-* **Architecture:** 100% Static Site Generation (SSO) — Tidak menggunakan database server untuk menjamin kecepatan *loading* < 1.5 detik, keamanan mutlak, dan performa SEO SEO yang maksimal.
-* **Framework:** Next.js (React) atau Astro.
+* **Architecture:** Static Site Generation (SSG) via Astro Framework. Menjamin kecepatan loading < 1.5 detik di mobile dan performa SEO maksimal.
 * **Styling:** Tailwind CSS.
-* **Deployment & Hosting:** Vercel atau Netlify (Global CDN, Auto-SSL).
-* **Tracking & Analytics:** Google Analytics 4 (GA4) + Meta Pixel terintegrasi di setiap tombol CTA.
+* **Interactive/3D Animation:** 
+  * Animasi 3D interaktif menggunakan **Rive App (Lottie/Canvas)** atau **Three.js/Spline** (WebGL teroptimasi).
+  * **Lazy Hydration:** Integrasi menggunakan directive Astro `client:visible` agar asset 3D tidak membebani loading awal halaman di HP.
+* **Hosting & Deployment:** Vercel / Netlify.
+* **Analytics:** Google Analytics 4 + Facebook Pixel terintegrasi pada event submit form.
 
 ---
 
 ## 4. Structure & Page Flow (Sitemap)
-Website ini berupa satu halaman panjang (*Single-Page Landing Page*) dengan struktur alur psikologi marketing sebagai berikut:
 
-### Section 1: Hero Section (The Hook)
-* **Visual:** Animasi partikel melingkar (Vortex) statis yang interaktif di latar belakang.
-* **Headline:** *"Transforming Bold Ideas into Scalable AI, Software, & Digital Growth."*
-* **Sub-headline:** Penjelasan transparan tentang siapa kita: *"Kami adalah tim kolektif engineer, desainer, dan pakar pertumbuhan digital yang membantu bisnis Anda mendominasi pasar lokal maupun global."*
-* **Primary CTA Button:** "Konsultasi Proyek Gratis" (Desain mencolok dengan efek menyala).
+Website dirancang menggunakan arsitektur multi-halaman ramping untuk mengoptimalkan mobile UX dan performa SEO.
 
-### Section 2: Real-time Data Simulator (The Social Proof Fake-Trigger)
-* **Fitur:** Komponen JavaScript interaktif yang menampilkan data bergerak naik secara otomatis sejak user membuka halaman (Statis tanpa database, digerakkan script).
-* **Tampilan:**
-  * `[Counter Bergerak] Tokens Processed by our AI Today`
-  * `[Counter Bergerak] Organic Impressions Generated for Clients`
-  * `99.9% Uptime Guaranteed Code`
+### A. Halaman Utama (Home Page - Single-Page Funnel)
+Halaman utama berfungsi sebagai core landing page yang fokus pada penawaran jasa pembuatan website secara instan.
 
-### Section 3: Core Services (What We Do)
-Kartu layanan interaktif (bisa di-hover dengan efek glassmorphism):
-1. **AI & Automation Integration:** Pembuatan sistem pintar untuk efisiensi bisnis.
-2. **High-Performance Web & Mobile Apps:** Koding bersih, cepat, dan siap pakai.
-3. **Advanced SEO & Marketing Funnel:** Membawa bisnis Anda ke halaman pertama Google secara global.
-4. **Futuristic UI/UX Design:** Desain visual modern yang mengonversi pengunjung menjadi pembeli.
+* **Section 1: Hero Section (Kinetic Editor Workspace)**
+  * **Visual:** Kanvas visual di tengah dengan toolbar interaktif di bawahnya (`Code`, `AI`, `SEO`, `Render`). User dapat menekan tombol untuk melihat transformasi kanvas secara 3D (elemen koding terbang, transisi video, grafik SEO tumbuh).
+  * **Headline:** *"Transforming Bold Ideas into Scalable AI, Websites, & Digital Growth."*
+  * **Primary CTA:** "Lihat Paket Harga" (smooth scroll ke Section 2).
 
-### Section 4: Live Demo Showcase (The Proof)
-* **Konten:** Grid portofolio interaktif yang menampilkan *mockup* proyek siap pakai. 
-* **Tautan:** Setiap kartu mengarah ke tautan demo publik (seperti GitHub/Figma/Live Demo) untuk membuktikan kemampuan teknis tim.
+* **Section 2: Paket Jasa Pembuatan Website (Tab Pricing)**
+  * **Fitur Tab:** Pilihan tab antara *Landing Page / Company Profile / Toko Online / Redesign / Maintenance*.
+  * **Layout Mobile:** Ditampilkan dalam bentuk **Horizontal Swipeable Carousel** agar user HP mudah menggeser paket tanpa memakan tempat vertikal.
+  * **Struktur Kartu:** Menyajikan 3 opsi paket (UMKM, SMB, Business) dengan detail harga, daftar fitur, dan tombol CTA hijau "Konsultasi via WhatsApp".
 
-### Section 5: The "Scarcity" Funnel & Multi-Step Form (The Closing Machine)
-Sebelum dialihkan ke WhatsApp, user diminta mengisi kuesioner singkat untuk menyaring klien berkualitas (*qualified leads*).
-* **Form Questions:**
-  1. Siapa nama Anda?
-  2. Apa nama bisnis/perusahaan Anda?
-  3. Layanan apa yang Anda butuhkan? (Dropdown: AI / Web / SEO / Design / Semua)
-  4. Berapa estimasi budget proyek Anda? (Dropdown: < $1k, $1k - $5k, $5k - $20k, $20k+)
-* **Urgency Text:** *"Slot konsultasi gratis terbatas untuk 3 klien baru bulan ini. Sisa 1 slot tersedia."*
+* **Section 3: Real-time Data Simulator & Social Proof**
+  * Metrik statis interaktif (statis tanpa database, dijalankan JS) berupa counter bergerak:
+    * `[Counter] Impresi Organik Klien`
+    * `[Counter] AI Tokens Diproses`
+    * `99.9% Uptime Kode Garansi`
+  * Barisan logo partner/klien dalam bentuk greyscale yang bersih.
+
+* **Section 4: Portofolio Unggulan (Featured Projects)**
+  * Slider horizontal berisi 3-4 mockup proyek website terbaik. Setiap item memiliki link eksternal ke live demo.
+
+* **Section 5: Multi-Step Lead Qualification Form**
+  * Formulir interaktif bergaya Typeform (kaca transparan) sebelum diarahkan ke WhatsApp untuk menyaring leads berkualitas.
+
+---
+
+### B. Subhalaman Terpisah (Akses via Navbar Dropdown)
+Untuk layanan non-website, disediakan halaman tersendiri demi optimasi SEO halaman spesifik.
+
+1. **Jasa Integrasi AI & Otomatisasi (`/layanan/ai`):**
+   * Fokus pada pembuatan chatbot kustom, otomatisasi alur kerja, integrasi API LLM (ChatGPT/Claude).
+2. **Advanced SEO & Marketing Funnel (`/layanan/seo`):**
+   * Fokus pada optimasi pencarian organik, riset keyword, auditing, dan strategi konversi berbayar.
+3. **Jasa Edit Video & Aset Kreatif (`/layanan/video`):**
+   * Fokus pada portofolio video (TikTok, YouTube Shorts, Company Profile) menggunakan video player terintegrasi yang estetik dan grid interaktif.
+4. **Portofolio Lengkap (`/portofolio`):**
+   * Galeri lengkap semua kategori proyek yang dilengkapi tombol filter (All, Web, AI, SEO, Video).
+5. **Tentang Kami & Karir (`/tentang`):**
+   * Profil singkat tim Lumovelo dan lowongan kerja aktif (jika ada).
 
 ---
 
 ## 5. Technical Integration: Form to WhatsApp Logic
 
-Saat user menekan tombol **"Submit & Mulai Konsultasi"**, sistem tidak menyimpan data ke database, melainkan menjalankan fungsi JavaScript untuk membuka API WhatsApp.
+Setiap form submit akan memicu fungsi JavaScript untuk mengonversi data input menjadi tautan WhatsApp dinamis.
 
-### Spesifikasi Logika Koding:
-* **Nomor WhatsApp Tujuan:** `6285624353611`
-* **Format Pesan Otomatis (URL Encoded):**
-```text
-Halo Tim Lumovelo, saya ingin mengajukan konsultasi proyek. Berikut detailnya:
-
-- Nama: [Input Nama]
-- Perusahaan: [Input Perusahaan]
-- Kebutuhan: [Input Layanan]
-- Estimasi Budget: [Input Budget]
-
-Tolong jadwalkan waktu untuk diskusi ya. Terima kasih!
+### Spesifikasi Teknis:
+* **Nomor Tujuan:** `6285624353611`
+* **Alur Logika:**
+  1. User mengisi kuesioner 3-langkah (Nama, Nama Bisnis, Layanan, Estimasi Budget).
+  2. Klik tombol "Mulai Konsultasi".
+  3. Sistem me-render URL WhatsApp dengan format pesan:
+     ```text
+     Halo Tim Lumovelo, saya ingin berkonsultasi mengenai proyek saya:
+     
+     - Nama: [Nama]
+     - Bisnis/Perusahaan: [Bisnis]
+     - Kebutuhan Jasa: [Layanan]
+     - Estimasi Budget: [Budget]
+     
+     Tolong jadwalkan waktu untuk diskusi ya. Terima kasih!
+     ```
+  4. User otomatis diarahkan ke aplikasi WhatsApp/WhatsApp Web.
