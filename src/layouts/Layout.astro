@@ -9,13 +9,24 @@ interface Props {
   lang?: string;
 }
 
+const currentLocale = Astro.url.pathname.startsWith('/en/') || Astro.url.pathname === '/en' ? 'en' : 'id';
+
+const defaultTitles = {
+  id: "LUMOVELO | Jasa Bikin Website, Video Kreatif & SEO Terbaik",
+  en: "LUMOVELO | Custom Web Design, Creative Video & SEO Agency"
+};
+
+const defaultDescriptions = {
+  id: "Tingkatkan penjualan dengan website premium, video promosi kreatif, dan SEO ranking 1 Google. Cepat & profesional mulai Rp 999rb. Gratis Konsultasi!",
+  en: "Boost your sales with premium custom websites, engaging promo videos, and top-tier SEO services. High-converting solutions starting at $99. Contact us now!"
+};
+
 const { 
-  title = "LUMOVELO | Jasa Pembuatan Website Performa Tinggi, SEO & Integrasi AI Bandung", 
-  description = "Agensi growth & software development terdepan di Bandung & Jakarta. Kami merekayasa solusi integrasi AI, otomatisasi bisnis, website headless performa tinggi, dan optimasi SEO organik untuk mendominasi pasar nasional hingga global.",
-  lang = "id"
+  title = defaultTitles[currentLocale], 
+  description = defaultDescriptions[currentLocale],
+  lang = currentLocale
 } = Astro.props;
 
-const currentLocale = Astro.url.pathname.startsWith('/en/') || Astro.url.pathname === '/en' ? 'en' : 'id';
 const isWorkspaceOrAdmin = Astro.url.pathname.includes('/admin') || Astro.url.pathname.includes('/workspace');
 
 const getAlternates = (pathname: string) => {
