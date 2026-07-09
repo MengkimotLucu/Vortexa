@@ -241,7 +241,7 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
   </div>
 </div>
 
-<section class="relative min-h-0 lg:min-h-0 flex flex-col items-center justify-center pt-28 pb-8 lg:pt-36 lg:pb-12 overflow-hidden bg-slate-950 bg-[url('/hero-bg.jpg')] bg-cover bg-center">
+<section class="relative min-h-0 lg:min-h-0 flex flex-col items-center justify-center pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden bg-slate-950 bg-[url('/hero-bg.jpg')] bg-cover bg-center">
   <!-- Dark overlay to ensure text contrast -->
   <div class="absolute inset-0 bg-slate-950/40 z-10 pointer-events-none"></div>
 
@@ -292,8 +292,32 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
         </a>
       </div>
     </div>
-    
+  </div> <!-- Closes the max-w-7xl content wrapper opened at line 249 -->
+
+  <!-- SVG Wave transition at bottom of Hero -->
+  <div class="absolute bottom-0 inset-x-0 w-full overflow-hidden leading-none z-20 select-none pointer-events-none transform translate-y-[1px]">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[50px] md:h-[80px] lg:h-[110px]">
+      <defs>
+        <linearGradient id="hero-wave-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1d4ed8" />
+          <stop offset="50%" stop-color="#3b82f6" />
+          <stop offset="100%" stop-color="#06b6d4" />
+        </linearGradient>
+        <linearGradient id="hero-wave-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1e3a8a" />
+          <stop offset="50%" stop-color="#2563eb" />
+          <stop offset="100%" stop-color="#00f2fe" />
+        </linearGradient>
+      </defs>
+      <!-- Wave 1 (Back wave, deep blue gradient with opacity) -->
+      <path d="M0,30 C150,90 350,50 500,70 C650,90 850,10 1000,20 C1100,26 1150,60 1200,40 L1200,118 L0,118 Z" fill="url(#hero-wave-grad-1)" opacity="0.3"></path>
+      <!-- Wave 2 (Middle wave, royal blue-cyan gradient with opacity) -->
+      <path d="M0,50 C200,80 300,95 480,80 C660,65 780,30 930,35 C1080,40 1150,75 1200,60 L1200,118 L0,118 Z" fill="url(#hero-wave-grad-2)" opacity="0.45"></path>
+      <!-- Wave 3 (Front wave, solid white to merge with services background) -->
+      <path d="M0,70 C250,110 450,110 600,90 C750,70 850,50 1000,50 C1100,50 1150,85 1200,80 L1200,125 L0,125 Z" fill="#ffffff"></path>
+    </svg>
   </div>
+</section>
 
 
 <script>

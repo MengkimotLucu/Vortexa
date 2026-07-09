@@ -10,7 +10,12 @@ const content = {
     cards: {
       c1: {
         title: "Desain Kustom Unik, Bukan Template Pasaran",
-        desc: "Tim UI/UX desainer kami merancang estetika visual website Anda dari nol. Menghindari template umum copy-paste untuk memastikan brand Anda tampil menonjol, relevan, dan terpercaya di mata klien."
+        desc: "Tim UI/UX desainer kami merancang estetika visual website Anda dari nol. Menghindari template umum copy-paste untuk memastikan brand Anda tampil menonjol, relevan, dan terpercaya di mata klien.",
+        features: [
+          "100% Desain Kustom Spesifik untuk Brand Anda",
+          "Figma-to-Code Presisi Tanpa Asal Copy-Paste",
+          "Tata Letak Modern dengan Struktur Aset Premium"
+        ]
       },
       c2: {
         title: "Alur Kerja Efisien & Terjadwal",
@@ -42,7 +47,12 @@ const content = {
     cards: {
       c1: {
         title: "Unique Custom Design, No Generic Templates",
-        desc: "Our UI/UX designers craft your website's aesthetics from scratch. We reject mass-produced templates to ensure your brand stands out, stays relevant, and commands industry trust."
+        desc: "Our UI/UX designers craft your website's aesthetics from scratch. We reject mass-produced templates to ensure your brand stands out, stays relevant, and commands industry trust.",
+        features: [
+          "100% Bespoke Design Tailored to Your Brand",
+          "Pixel-Perfect Figma-to-Code Implementation",
+          "Modern Aesthetics with Premium Custom Assets"
+        ]
       },
       c2: {
         title: "Streamlined Workflow & Constant Updates",
@@ -69,7 +79,7 @@ const content = {
 }[lang];
 ---
 
-<section id={lang === 'en' ? 'why-choose-us' : 'kenapa-kami'} class="py-12 lg:py-16 bg-white relative overflow-hidden border-t border-slate-100">
+<section id={lang === 'en' ? 'why-choose-us' : 'kenapa-kami'} class="py-12 lg:py-16 bg-white relative overflow-hidden">
   <div class="absolute right-[-10%] top-[10%] w-[600px] h-[600px] bg-blue-600/[0.08] rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute left-[-10%] bottom-[10%] w-[500px] h-[500px] bg-indigo-500/[0.06] rounded-full blur-3xl pointer-events-none"></div>
   
@@ -87,14 +97,14 @@ const content = {
       </p>
     </div>
 
-    <!-- Bento Grid Container: Heights are self-adjusting with tight padding (p-6) -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal-on-scroll">
+    <!-- 3-Column Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-on-scroll">
       
-      <!-- Card 1: Custom Design (Spans 2 columns) -->
-      <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between lg:col-span-2">
+      <!-- Card 1: Custom Design -->
+      <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
         <!-- Abstract Vector Design Layers (Unique Creative SVG) -->
         <div class="w-full flex items-center justify-center py-4">
-          <svg class="w-full max-w-[240px] h-auto text-blue-600" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="w-full max-w-[140px] h-auto text-blue-600" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <!-- Overlapping Layered Art (Creative UI Canvas) -->
             <rect x="20" y="40" width="110" height="60" rx="8" stroke="#cbd5e1" stroke-dasharray="3 3"/>
             <rect x="40" y="25" width="110" height="60" rx="8" stroke="#93c5fd" fill="rgba(239, 246, 255, 0.4)"/>
@@ -106,52 +116,45 @@ const content = {
           </svg>
         </div>
         
-        <div class="text-left mt-3">
-          <h4 class="text-base sm:text-lg font-black text-slate-900 uppercase tracking-tight">{content.cards.c1.title}</h4>
-          <p class="text-xs sm:text-sm text-slate-500 font-semibold leading-relaxed mt-2">{content.cards.c1.desc}</p>
+        <div class="space-y-2 mt-3">
+          <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c1.title}</h4>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c1.desc}</p>
         </div>
       </div>
 
-      <!-- Right column stack of 2 smaller cards -->
-      <div class="flex flex-col gap-6 lg:col-span-1">
-        
-        <!-- Card 2: 2-Day Process -->
-        <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex items-start gap-4">
-          <!-- Unique abstract timeline flow icon -->
-          <div class="shrink-0">
-            <svg class="w-10 h-auto text-blue-600" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <circle cx="20" cy="12" r="4" stroke="#3b82f6" fill="#3b82f6"/>
-              <line x1="20" y1="16" x2="20" y2="26" stroke="#94a3b8" stroke-dasharray="2 2"/>
-              <circle cx="20" cy="30" r="4" stroke="#3b82f6"/>
-              <line x1="20" y1="34" x2="20" y2="44" stroke="#94a3b8" stroke-dasharray="2 2"/>
-              <circle cx="20" cy="48" r="4" stroke="#22c55e" fill="#22c55e"/>
-            </svg>
-          </div>
-          <div class="space-y-1">
-            <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c2.title}</h4>
-            <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c2.desc}</p>
-          </div>
+      <!-- Card 2: 2-Day Process -->
+      <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+        <!-- Abstract timeline flow icon -->
+        <div class="w-full flex items-center justify-center py-4">
+          <svg class="w-full max-w-[40px] h-[80px] text-blue-600" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="20" cy="12" r="4" stroke="#3b82f6" fill="#3b82f6"/>
+            <line x1="20" y1="16" x2="20" y2="26" stroke="#94a3b8" stroke-dasharray="2 2"/>
+            <circle cx="20" cy="30" r="4" stroke="#3b82f6"/>
+            <line x1="20" y1="34" x2="20" y2="44" stroke="#94a3b8" stroke-dasharray="2 2"/>
+            <circle cx="20" cy="48" r="4" stroke="#22c55e" fill="#22c55e"/>
+          </svg>
         </div>
-
-        <!-- Card 3: Complete Package -->
-        <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex items-start gap-4">
-          <!-- Unique Shield/Lock Icon -->
-          <div class="shrink-0">
-            <svg class="w-10 h-auto text-blue-600" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22a8 8 0 0 1 16 0c0 6-8 12-8 12s-8-6-8-12z" stroke="#2563eb" fill="rgba(37, 99, 235, 0.05)"/>
-              <circle cx="20" cy="20" r="3" fill="#ef4444" stroke="none"/>
-            </svg>
-          </div>
-          <div class="space-y-1">
-            <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c3.title}</h4>
-            <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c3.desc}</p>
-          </div>
+        <div class="space-y-2 mt-3">
+          <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c2.title}</h4>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c2.desc}</p>
         </div>
-
       </div>
 
-      <!-- Bottom Row: 3 Equal Columns -->
-      
+      <!-- Card 3: Complete Package -->
+      <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+        <!-- Shield/Lock Icon -->
+        <div class="w-full flex items-center justify-center py-4">
+          <svg class="w-full max-w-[40px] h-[80px] text-blue-600" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22a8 8 0 0 1 16 0c0 6-8 12-8 12s-8-6-8-12z" stroke="#2563eb" fill="rgba(37, 99, 235, 0.05)"/>
+            <circle cx="20" cy="20" r="3" fill="#ef4444" stroke="none"/>
+          </svg>
+        </div>
+        <div class="space-y-2 mt-3">
+          <h4 class="text-sm font-black text-slate-900 uppercase tracking-tight">{content.cards.c3.title}</h4>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">{content.cards.c3.desc}</p>
+        </div>
+      </div>
+
       <!-- Card 4: SEO Ready -->
       <div class="premium-glass p-6 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
         <!-- Google Search Snippet Card (Different from Magnifying glass) -->

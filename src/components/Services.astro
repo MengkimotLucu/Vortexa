@@ -24,7 +24,6 @@ const content = {
 const categories = [
   { id: 'landing-page', label: lang === 'en' ? 'Landing Page' : 'Landing Page' },
   { id: 'company-profile', label: lang === 'en' ? 'Company Profile' : 'Company Profile' },
-  { id: 'product-catalog', label: lang === 'en' ? 'Wedding Invitation' : 'Undangan Digital' },
   { id: 'toko-online', label: lang === 'en' ? 'E-Commerce' : 'Toko Online' },
   { id: 'redesign', label: lang === 'en' ? 'Redesign' : 'Redesign Web' },
   { id: 'maintenance', label: lang === 'en' ? 'Maintenance' : 'Maintenance' }
@@ -116,72 +115,6 @@ const packages = {
         'Integrasi analitik lengkap (GA4 + Pixel)',
         'Dukungan Teknis Prioritas 3 bulan',
         'Revisi: Bebas selama pembuatan'
-      ]
-    }
-  ],
-  'product-catalog': [
-    {
-      tier: 'BASIC',
-      title: lang === 'en' ? 'Template Starter' : 'Template Starter',
-      price: 'Rp 149.000',
-      popular: false,
-      themeUrl: lang === 'en' ? '/en/templates/#starter' : '/templates/#starter',
-      features: lang === 'en' ? [
-        'Active link period: 3 months',
-        'Standard design theme from catalog',
-        'Basic features: Bride info, Rundown, Google Maps',
-        'Standard Wishes & Prayers section (unmoderated)',
-        'Revision: 1x typo-fix only'
-      ] : [
-        'Masa aktif link undangan: 3 bulan',
-        'Pilihan tema desain standard dari katalog agensi',
-        'Fitur dasar: Informasi Mempelai, Rundown Acara, & Google Maps Lokasi',
-        'Kolom Ucapan & Doa standar (tanpa moderasi)',
-        'Revisi: 1x ganti data teks salah ketik'
-      ]
-    },
-    {
-      tier: 'PRO',
-      title: lang === 'en' ? 'Premium Features' : 'Premium Features',
-      price: 'Rp 299.000',
-      popular: true,
-      themeUrl: lang === 'en' ? '/en/templates/#premium' : '/templates/#premium',
-      features: lang === 'en' ? [
-        'Active link period: 1 full year',
-        'Premium responsive themes (exclusive selection)',
-        'Music backsound, Photo Gallery (Max 10 photos), & Countdown Timer',
-        'Custom personalized guest name navigation system',
-        'Digital gift integration (Bank account/QR) & RSVP via WhatsApp',
-        'Revision: 2x minor edits before sharing'
-      ] : [
-        'Masa aktif link undangan: 1 tahun penuh',
-        'Desain visual premium responsif (bebas pilih tema eksklusif)',
-        'Fitur Interaktif: Musik latar belakang (Backsound), Galeri Foto (Max 10 foto), & Countdown Timer',
-        'Sistem Navigasi Nama Tamu Kustom Otomatis (Link khusus per tamu)',
-        'Integrasi Angpao Digital (Rekening Bank / QR Code E-Wallet) & RSVP via WhatsApp',
-        'Revisi: 2x minor sebelum disebarkan'
-      ]
-    },
-    {
-      tier: 'ELITE',
-      title: lang === 'en' ? 'Custom Storytelling' : 'Custom Storytelling',
-      price: 'Rp 599.000',
-      popular: false,
-      themeUrl: lang === 'en' ? '/en/templates/#custom' : '/templates/#custom',
-      features: lang === 'en' ? [
-        'Active link period: Lifetime (no renewal fee)',
-        'Custom semi-Figma layout (matching actual concepts/color palette)',
-        'Video player teaser, background animation & Love Journey',
-        'Digital guest check-in using QR Code at venue',
-        'Admin Dashboard to monitor RSVP & wishes',
-        'Revision: 3x minor edits'
-      ] : [
-        'Masa aktif link undangan: Selamanya (Tanpa biaya perpanjangan)',
-        'Desain tata letak kustom semi-Figma (Menyesuaikan palet warna konsep dekorasi asli)',
-        'Fitur Mewah: Video Teaser/Prewedding player, Background animasi estetik, & Cerita Cinta (Love Journey)',
-        'Sistem Buku Tamu Digital menggunakan QR Code untuk check-in di lokasi acara',
-        'Dashboard Admin khusus untuk memantau data RSVP tamu dan rekap ucapan',
-        'Revisi: 3x minor'
       ]
     }
   ],
@@ -317,7 +250,7 @@ const waBaseUrl = "https://api.whatsapp.com/send?phone=6285624353611&text=";
 const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
 ---
 
-<section id={lang === 'en' ? 'services' : 'layanan'} class="py-12 lg:py-16 bg-white relative overflow-hidden border-t border-slate-100">
+<section id={lang === 'en' ? 'services' : 'layanan'} class="py-12 lg:py-16 bg-white relative overflow-hidden">
   <!-- Subtle decorative light gradients -->
   <div class="absolute right-[-10%] top-[20%] w-[600px] h-[600px] bg-blue-600/[0.08] rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute left-[-10%] bottom-[10%] w-[600px] h-[600px] bg-cyan-500/[0.07] rounded-full blur-3xl pointer-events-none"></div>
@@ -359,7 +292,7 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
           class={`pricing-panel ${idx === 0 ? '' : 'hidden'}`}
         >
           <!-- Grid wrapper that morphs into a swipeable carousel on mobile -->
-          <div class="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-x-visible gap-6 pb-6 md:pb-0 snap-x snap-mandatory scrollbar-none w-full">
+          <div class="flex md:grid overflow-x-auto md:overflow-x-visible gap-[2rem] pb-6 md:pb-0 snap-x snap-mandatory scrollbar-none w-full" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
             {packages[cat.id].map((pkg) => {
               const waText = encodeURIComponent(
                 `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "${pkg.title}" (${pkg.price}) yang tertera di website.`

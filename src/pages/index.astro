@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
 import Services from '../components/Services.astro';
 import WhyChooseUs from '../components/WhyChooseUs.astro';
 import Testimonials from '../components/Testimonials.astro';
@@ -14,19 +13,6 @@ import Footer from '../components/Footer.astro';
   <main class="relative z-10 bg-white">
     <!-- Hero Section with Interactive Kinetic Workspace -->
     <Hero />
-
-    <!-- Kinetic Marquee scrolling text (Stacked Dual-Row) -->
-    <div class="flex flex-col py-1 bg-white border-y border-slate-100 gap-0">
-      <Marquee 
-        texts={["AI Automation", "Web Development", "Advanced SEO", "Creative Videos", "Growth Agency"]} 
-        speed="medium" 
-      />
-      <Marquee 
-        texts={["Premium UI/UX", "Custom Coding", "WhatsApp Sales Funnels", "AI Agents", "High Performance"]} 
-        speed="medium" 
-        reverse={true}
-      />
-    </div>
 
     <!-- Core services pricing dashboard with tabs -->
     <Services />

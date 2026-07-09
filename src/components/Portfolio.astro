@@ -3,596 +3,602 @@ const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const content = {
   id: {
-    sectionHeader: "/ Live Demo Showcase",
+    sectionHeader: "/ Portofolio Karya",
     title1: "Bukti Nyata.",
     title2: "Bukan Sekadar Kata.",
-    desc: "Kami tidak menyembunyikan kode. Kami menampilkan prototype dan repositori publik kami secara transparan. Klik untuk mengeksplorasi secara langsung.",
-    fAll: "[ ALL ]",
-    fAi: "[ AI & AGENTS ]",
-    fWeb: "[ HIGH-SPEED WEB ]",
-    fSeo: "[ SEO & CONVERSION ]",
-    p1Desc: "Platform agen kecerdasan buatan otonom untuk otomatisasi penulisan konten berindeks tinggi dan optimasi performa backend secara transparan.",
-    p2Desc: "Sistem e-commerce headless super ngebut terintegrasi API Shopify, menjamin kecepatan transaksi maksimal dan performa visual responsif premium.",
-    p3Desc: "Algoritma indexing otomatis berbasis model machine learning yang merangsang visibilitas Google secara masif dan konstan di pasar lokal maupun global.",
-    p4Desc: "Visualisasi UI dasbor analitik modular dengan interaksi visual termutakhir, mode gelap premium, dan diagram status yang adaptif secara real-time."
+    desc: "Kami tidak sekadar menulis kode. Kami menciptakan solusi digital eksklusif yang dirancang khusus untuk meningkatkan performa bisnis Anda secara masif.",
+    fAll: "[ SEMUA ]",
+    fLanding: "[ LANDING PAGE ]",
+    fProfile: "[ COMPANY PROFILE ]",
+    fEcom: "[ TOKO ONLINE ]",
+    fRedesign: "[ REDESIGN WEB ]",
+    fMaint: "[ MAINTENANCE ]",
+    btnView: "Lihat Mockup",
+    btnWa: "Konsultasi Layanan Ini",
+    titleLightbox: "Detail Desain",
+    techHeader: "Teknologi yang Digunakan"
   },
   en: {
-    sectionHeader: "/ Live Demo Showcase",
+    sectionHeader: "/ Work Portfolio",
     title1: "Real Proof.",
     title2: "Not Just Words.",
-    desc: "We do not hide our code. We showcase our prototypes and public repositories transparently. Click to explore them live.",
+    desc: "We do not just write code. We create exclusive digital solutions custom-tailored to massively boost your business performance.",
     fAll: "[ ALL ]",
-    fAi: "[ AI & AGENTS ]",
-    fWeb: "[ HIGH-SPEED WEB ]",
-    fSeo: "[ SEO & CONVERSION ]",
-    p1Desc: "Autonomous artificial intelligence agent platform for high-indexing content writing automation and transparent backend performance optimization.",
-    p2Desc: "Super fast headless e-commerce system integrated with Shopify API, guaranteeing maximum transaction speed and premium responsive visual performance.",
-    p3Desc: "Automatic indexing algorithm based on machine learning models that stimulates Google visibility massively and constantly in local and global markets.",
-    p4Desc: "Visual UI dashboard analytics modular with cutting-edge visual interaction, premium dark mode, and status diagrams adaptive in real-time."
+    fLanding: "[ LANDING PAGE ]",
+    fProfile: "[ COMPANY PROFILE ]",
+    fEcom: "[ E-COMMERCE ]",
+    fRedesign: "[ WEB REDESIGN ]",
+    fMaint: "[ MAINTENANCE ]",
+    btnView: "View Mockup",
+    btnWa: "Inquire about Service",
+    titleLightbox: "Design Details",
+    techHeader: "Technologies Used"
   }
 }[lang];
+
+// 6 Projects representing the 6 core services from Services.astro
+const projects = [
+  {
+    id: 'landing-page',
+    category: 'landing-page',
+    categoryLabel: lang === 'en' ? 'Landing Page' : 'Landing Page',
+    filePath: '~/lumovelo/portfolio/saas-landing-page.png',
+    title: 'Aetheria SaaS Landing Page',
+    image: '/portfolio-landing-page.png',
+    tech: ['Astro', 'Tailwind CSS', 'React'],
+    desc: lang === 'en' 
+      ? 'High-speed SaaS Landing Page with persuasive copywriting, clean layouts, and complete analytics integration for maximum lead conversion.' 
+      : 'Landing Page SaaS berkecepatan tinggi dengan copywriting persuasif, tata letak bersih, dan integrasi analytics lengkap untuk konversi prospek maksimal.',
+    metric: lang === 'en' ? 'PageSpeed: 99/100' : 'Skor PageSpeed: 99/100',
+    spanClass: 'md:col-span-8',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the Landing Page service (Aetheria SaaS project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Landing Page (proyek Aetheria SaaS) yang saya lihat di portofolio.'
+    )}`
+  },
+  {
+    id: 'company-profile',
+    category: 'company-profile',
+    categoryLabel: lang === 'en' ? 'Company Profile' : 'Company Profile',
+    filePath: '~/lumovelo/portfolio/corp-profile.png',
+    title: 'Apex Corp Global Profile',
+    image: '/portfolio-company-profile.png',
+    tech: ['Astro', 'Bento UI', 'Framer Motion'],
+    desc: lang === 'en' 
+      ? 'Multinational company profile website featuring an exclusive bento layout style, modern minimal graphics, and interactive elements.' 
+      : 'Website profil perusahaan multinasional dengan gaya tata letak bento eksklusif, grafis minimalis modern, dan elemen interaktif.',
+    metric: lang === 'en' ? 'Premium Bento Layout' : 'Desain Bento Eksklusif',
+    spanClass: 'md:col-span-4',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the Company Profile service (Apex Corp project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Company Profile (proyek Apex Corp) yang saya lihat di portofolio.'
+    )}`
+  },
+  {
+    id: 'toko-online',
+    category: 'toko-online',
+    categoryLabel: lang === 'en' ? 'E-Commerce' : 'Toko Online',
+    filePath: '~/lumovelo/portfolio/toko-online.png',
+    title: 'Veloce Headless Store',
+    image: '/portfolio-toko-online.png',
+    tech: ['Next.js', 'Shopify API', 'Tailwind'],
+    desc: lang === 'en' 
+      ? 'Ultra-fast headless e-commerce store with an interactive cart system, instant page navigation, and secure checkout.' 
+      : 'Toko online headless e-commerce super kencang dengan sistem keranjang belanja interaktif, navigasi halaman instan, dan checkout aman.',
+    metric: lang === 'en' ? 'Checkout: <3 Sec' : 'Transaksi: <3 Detik',
+    spanClass: 'md:col-span-4',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the E-Commerce/Toko Online service (Veloce Headless project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Toko Online (proyek Veloce Headless) yang saya lihat di portofolio.'
+    )}`
+  },
+  {
+    id: 'redesign',
+    category: 'redesign',
+    categoryLabel: lang === 'en' ? 'Web Redesign' : 'Redesign Web',
+    filePath: '~/lumovelo/portfolio/redesign.png',
+    title: 'Lumina Dashboard Redesign',
+    image: '/portfolio-redesign-web.png',
+    tech: ['Tailwind CSS', 'Astro', 'React'],
+    desc: lang === 'en' 
+      ? 'Complete visual overhaul converting a legacy website into a fast, high-performance, and modern responsive dashboard.' 
+      : 'Overhaul visual total situs web lama menjadi dasbor responsif modern yang cepat dan dioptimalkan secara penuh.',
+    metric: lang === 'en' ? 'Conversion +45%' : 'Laju Konversi +45%',
+    spanClass: 'md:col-span-4',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the Web Redesign service (Lumina Dashboard project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa Redesign Web (proyek Lumina Dashboard) yang saya lihat di portofolio.'
+    )}`
+  },
+  {
+    id: 'maintenance',
+    category: 'maintenance',
+    categoryLabel: lang === 'en' ? 'Maintenance' : 'Pemeliharaan Web',
+    filePath: '~/lumovelo/portfolio/maintenance.png',
+    title: 'Priority Support & Cloud',
+    image: '/portfolio-maintenance.png',
+    tech: ['VPS Server', 'Cloudflare', 'Security Audit'],
+    desc: lang === 'en' 
+      ? 'Priority server maintenance and active monitoring with automated backups, uptime checks, and security firewall configuration.' 
+      : 'Pemeliharaan server prioritas dan pemantauan aktif dengan pencadangan otomatis, pemeriksaan uptime, dan konfigurasi firewall keamanan.',
+    metric: lang === 'en' ? 'System Uptime 99.9%' : 'Uptime Sistem: 99.9%',
+    spanClass: 'md:col-span-4',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the Web Maintenance & Support service (Priority Support project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa Pemeliharaan/Maintenance Website (proyek Priority Support) yang saya lihat di portofolio.'
+    )}`
+  }
+];
 ---
 <section id="portofolio" class="py-12 lg:py-16 bg-white relative overflow-hidden">
   <!-- Grid backdrop -->
   <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.02)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
 
-  <!-- Hidden i18n data tag for client script -->
-  <div id="portfolio-i18n"
-    data-standby={lang === 'en' ? "> Standby. Press the button below to initialize AI agent..." : "> Standby. Tekan tombol di bawah untuk inisialisasi AI agent..."}
-    data-log-0={lang === 'en' ? "> Initializing Aetheria AI pipeline..." : "> Inisialisasi Aetheria AI pipeline..."}
-    data-log-1={lang === 'en' ? "> Connecting to autonomous nodes..." : "> Menghubungkan ke node otonom..."}
-    data-log-2={lang === 'en' ? "> Syncing LLM model: Llama-3-Groq [READY]" : "> Sinkronisasi LLM model: Llama-3-Groq [READY]"}
-    data-log-3={lang === 'en' ? "> Detecting high-value keyword opportunities..." : "> Mendeteksi peluang kata kunci bernilai tinggi..."}
-    data-log-4={lang === 'en' ? "> Writing SEO-optimized content (+450% reach)" : "> Menulis konten teroptimasi SEO (+450% reach)"}
-    data-log-5={lang === 'en' ? "> Deploying articles to CDN Edge... [SUCCESS]" : "> Deploy artikel ke CDN Edge... [SUCCESS]"}
-    data-log-6={lang === 'en' ? "> Autonomous AI Agent running in the background. Latency: 6ms." : "> AI Agent otonom berjalan di background. Latensi: 6ms."}
-    data-btn-aetheria-run={lang === 'en' ? "RUN AGENT" : "RUN AGENT"}
-    data-btn-aetheria-running={lang === 'en' ? "RUNNING..." : "RUNNING..."}
-    data-btn-veloce-run={lang === 'en' ? "BENCHMARK SPEED" : "BENCHMARK SPEED"}
-    data-btn-veloce-running={lang === 'en' ? "RACING..." : "RACING..."}
-    data-btn-veloce-reset={lang === 'en' ? "RUN SPEED TEST" : "RUN SPEED TEST"}
-    data-val-loading={lang === 'en' ? "LOADING..." : "LOADING..."}
-  ></div>
-
   <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
     
-    <!-- Section Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-20">
-      <div class="max-w-2xl">
-        <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">{content.sectionHeader}</h2>
-        <h3 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tight leading-[1.0] uppercase">
-          {content.title1}<br/>
-          <span class="text-stroke-neon">{content.title2}</span>
-        </h3>
-        <p class="text-slate-600 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
-          {content.desc}
-        </p>
-      </div>
+    <!-- Centered Section Header -->
+    <div class="max-w-3xl mx-auto text-center mb-10 lg:mb-14 reveal-on-scroll">
+      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase mb-3">{content.sectionHeader}</h2>
+      <h3 class="font-display font-black text-4xl sm:text-6xl text-slate-900 tracking-tight leading-[1.0] uppercase">
+        {content.title1}<br/>
+        <span class="text-stroke-neon">{content.title2}</span>
+      </h3>
+      <p class="text-slate-600 mt-6 text-sm sm:text-base leading-relaxed font-semibold">
+        {content.desc}
+      </p>
 
-      <!-- Category Filter Tabs -->
-      <div class="mt-8 md:mt-0 flex flex-wrap gap-2.5 select-none font-mono">
-        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-blue-600 bg-blue-600 text-[10px] font-bold text-white uppercase tracking-wider rounded-lg transition-all hover:bg-blue-700 shadow-[2px_2px_0px_#0f172a] cursor-pointer" data-filter="all">
+      <!-- Centered Category Filter Tabs (Mapped exactly to the 6 services) -->
+      <div class="mt-8 flex flex-wrap justify-center gap-2.5 select-none font-mono">
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-900 bg-slate-900 text-[10px] font-bold text-white uppercase tracking-wider rounded-lg transition-all hover:bg-slate-800 shadow-[2px_2px_0px_#000] cursor-pointer" data-filter="all">
           {content.fAll}
         </button>
-        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="ai">
-          {content.fAi}
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-slate-900 hover:text-slate-900 cursor-pointer" data-filter="landing-page">
+          {content.fLanding}
         </button>
-        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="web">
-          {content.fWeb}
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-slate-900 hover:text-slate-900 cursor-pointer" data-filter="company-profile">
+          {content.fProfile}
         </button>
-        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer" data-filter="seo">
-          {content.fSeo}
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-slate-900 hover:text-slate-900 cursor-pointer" data-filter="toko-online">
+          {content.fEcom}
+        </button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-slate-900 hover:text-slate-900 cursor-pointer" data-filter="redesign">
+          {content.fRedesign}
+        </button>
+        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-slate-900 hover:text-slate-900 cursor-pointer" data-filter="maintenance">
+          {content.fMaint}
         </button>
       </div>
     </div>
 
-    <!-- OS Window Grid layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-      
-      <!-- Project 1: Aetheria AI -->
-      <div class="portfolio-card os-window flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#000] transition-all duration-300 transform" data-category="ai">
-        <!-- OS Window Header -->
-        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
+    <!-- OS Window Bento Grid Layout -->
+    <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-12 gap-6 reveal-on-scroll">
+      {projects.map((project) => (
+        <div 
+          class={`portfolio-card group relative overflow-hidden rounded-2xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-300 flex flex-col cursor-pointer ${project.spanClass} ${project.heightClass}`}
+          data-category={project.category}
+          data-image={project.image}
+          data-title={project.title}
+          data-desc={project.desc}
+          data-tech={project.tech.join(' • ')}
+          data-metric={project.metric}
+          data-wa-url={project.waUrl}
+          data-category-label={project.categoryLabel}
+          data-span-class={project.spanClass}
+        >
+          <!-- OS Window Header -->
+          <div class="flex items-center justify-between px-4 py-2.5 bg-slate-50 border-b-2 border-slate-900 select-none">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500 border border-slate-950"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400 border border-slate-950"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 border border-slate-950"></span>
+            </div>
+            <span class="text-[9px] font-mono text-slate-500 font-bold tracking-wider">{project.filePath}</span>
+            <div class="w-10"></div>
           </div>
-          <span class="text-[10px] font-mono text-slate-500 tracking-wider font-bold">~/lumovelo/projects/aetheria-ai.sh</span>
-          <div class="w-14"></div>
-        </div>
 
-        <!-- OS Window Body -->
-        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-          <div>
-            <!-- Inner Terminal View (Remain dark for dev console realism) -->
-            <div class="bg-slate-950 border-2 border-blue-600 rounded-xl p-5 font-mono text-[10px] text-slate-300 mb-6 relative overflow-hidden h-36 flex flex-col justify-end">
-              <div id="aetheria-log-box" class="space-y-1 overflow-y-auto scrollbar-thin">
-                <div class="text-slate-600">&gt; Standby. {lang === 'en' ? "Press the button below to initialize AI agent..." : "Tekan tombol di bawah untuk inisialisasi AI agent..."}</div>
+          <!-- Image Area / Card Body -->
+          <div class="relative flex-1 overflow-hidden min-h-[220px]">
+            <img 
+              src={project.image} 
+              alt={project.title}
+              class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+              loading="lazy"
+            />
+
+            <!-- Default visible metadata footer for premium styling -->
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-4 flex flex-col justify-end text-white select-none">
+              <div class="flex justify-between items-end">
+                <div>
+                  <span class="text-[8px] font-mono font-bold tracking-widest text-blue-400 bg-blue-950/80 border border-blue-800/50 px-2 py-0.5 rounded uppercase mb-1.5 inline-block">{project.categoryLabel}</span>
+                  <h4 class="font-display font-black text-lg sm:text-xl tracking-tight uppercase leading-none">{project.title}</h4>
+                </div>
+                <!-- Interactive visual marker -->
+                <span class="text-[9px] font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded uppercase shrink-0 whitespace-nowrap">{project.metric}</span>
               </div>
             </div>
 
-            <div class="flex items-center justify-between mb-4">
-              <h4 class="font-display font-black text-2xl text-slate-900 uppercase font-bold">Aetheria AI</h4>
-              <button 
-                type="button" 
-                id="run-aetheria-btn"
-                class="px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]"
-              >
-                RUN AGENT
-              </button>
-            </div>
-            
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
-              {content.p1Desc}
-            </p>
-          </div>
-
-          <div class="flex items-center justify-between border-t border-slate-100 pt-6">
-            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase font-bold">
-              <span>NextJS</span> • <span>LLM</span> • <span>Serverless</span>
-            </div>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:underline uppercase tracking-wider">
-              / SOURCE CODE 
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2: Veloce Commerce -->
-      <div class="portfolio-card os-window flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#000] transition-all duration-300 transform" data-category="web">
-        <!-- OS Window Header -->
-        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
-          </div>
-          <span class="text-[10px] font-mono text-slate-500 tracking-wider font-bold">~/lumovelo/projects/veloce.xml</span>
-          <div class="w-14"></div>
-        </div>
-
-        <!-- OS Window Body -->
-        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-          <div>
-            <!-- Performance HUD / Race Simulation -->
-            <div class="bg-slate-50 border-2 border-blue-600 rounded-xl p-5 mb-6 space-y-3 font-mono text-[9px] shadow-[2px_2px_0px_#2563eb]">
-              <!-- Race Standard -->
-              <div class="space-y-1">
-                <div class="flex justify-between text-slate-500 font-bold">
-                  <span>STANDARD MONOLITH APP:</span>
-                  <span id="veloce-slow-val" class="font-bold">STANDBY</span>
+            <!-- Glassmorphism overlay on hover -->
+            <div class="absolute inset-0 bg-slate-950/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 text-white z-20">
+              <div>
+                <div class="flex justify-between items-center mb-3">
+                  <span class="text-[9px] font-mono font-bold tracking-wider text-blue-400 border border-blue-500/40 px-2 py-0.5 rounded bg-blue-950/40 uppercase">{project.categoryLabel}</span>
+                  <span class="text-[9px] font-mono font-bold text-emerald-400 border border-emerald-500/40 px-2 py-0.5 rounded bg-emerald-950/40 uppercase">{project.metric}</span>
                 </div>
-                <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
-                  <div id="veloce-slow-bar" class="h-full bg-rose-500 w-0 transition-all duration-200"></div>
-                </div>
+                <h4 class="font-display font-black text-2xl uppercase tracking-tight mb-2 text-white">{project.title}</h4>
+                <p class="text-xs text-slate-355 leading-relaxed font-semibold mb-4">{project.desc}</p>
               </div>
-              <!-- Race Lumovelo -->
-              <div class="space-y-1">
-                <div class="flex justify-between text-slate-500 font-bold">
-                  <span>LUMOVELO EDGE (ASTRO):</span>
-                  <span id="veloce-fast-val" class="font-bold text-teal-600">STANDBY</span>
+
+              <div class="flex flex-col gap-2.5">
+                <!-- Tech stack indicators -->
+                <div class="flex flex-wrap gap-1.5 text-[8px] font-mono text-slate-400 font-bold uppercase mb-2">
+                  {project.tech.map(tag => (
+                    <span class="bg-slate-900 border border-slate-800 px-1.5 py-0.5 rounded">{tag}</span>
+                  ))}
                 </div>
-                <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
-                  <div id="veloce-fast-bar" class="h-full bg-teal-500 w-0 transition-all duration-200"></div>
+                
+                <!-- CTAs -->
+                <div class="flex gap-2">
+                  <button 
+                    type="button" 
+                    class="view-mockup-btn flex-1 py-2.5 text-center rounded-lg border border-slate-800 bg-white text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider hover:bg-slate-100 transition-all cursor-pointer select-none"
+                  >
+                    {content.btnView}
+                  </button>
+                  <a 
+                    href={project.waUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-3.5 py-2.5 flex items-center justify-center rounded-lg bg-emerald-500 hover:bg-emerald-600 border border-transparent text-white transition-all cursor-pointer"
+                    aria-label={lang === 'en' ? 'Inquire on WhatsApp' : 'Konsultasi di WhatsApp'}
+                  >
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M19.001 4.908A9.817 9.817 0 0 0 11.992 2C6.534 2 2.085 6.448 2.08 11.91c0 1.748.458 3.45 1.321 4.956L2 22l5.255-1.377a9.831 9.831 0 0 0 4.73 1.206h.005c5.46 0 9.908-4.448 9.913-9.91a9.825 9.825 0 0 0-2.892-6.911zm-7.01 15.396h-.004a8.17 8.17 0 0 1-4.167-1.14l-.299-.178-3.1 1.01L5.47 16.92l-.195-.31a8.196 8.196 0 0 1-1.258-4.385C4.02 7.7 7.594 4.12 12.002 4.12a8.18 8.18 0 0 1 5.792 2.399 8.192 8.192 0 0 1 2.396 5.8c-.004 4.527-3.578 8.207-7.98 8.207l-.219-.022zm4.505-6.16c-.247-.124-1.464-.722-1.692-.806-.228-.083-.393-.124-.559.124-.166.248-.641.806-.786.97-.145.166-.29.187-.537.063a6.786 6.786 0 0 1-1.996-1.229 7.487 7.487 0 0 1-1.38-1.716c-.146-.248-.016-.381.109-.504.113-.11.248-.29.373-.435.124-.145.166-.248.249-.414.083-.166.04-.31-.02-.435-.062-.124-.559-1.347-.766-1.848-.201-.484-.406-.418-.559-.425-.145-.007-.31-.007-.476-.007a.918.918 0 0 0-.663.31c-.228.248-.87.85-8.7 2.07 0 1.22.89 2.4 1.162 2.766.27.366 1.753 2.678 4.248 3.754.593.256 1.058.41 1.419.525.597.19 1.14.163 1.57.1.48-.07 1.465-.6 1.67-.18.206-.418.206-.78 0-.965-.125-.187-.249-.247-.497-.37z"/>
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
-
-            <div class="flex items-center justify-between mb-4">
-              <h4 class="font-display font-black text-2xl text-slate-900 uppercase font-bold">Veloce Commerce</h4>
-              <button 
-                type="button" 
-                id="run-veloce-btn"
-                class="px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]"
-              >
-                BENCHMARK SPEED
-              </button>
-            </div>
-            
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
-              {content.p2Desc}
-            </p>
-          </div>
-
-          <div class="flex items-center justify-between border-t border-slate-100 pt-6">
-            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase font-bold">
-              <span>Astro</span> • <span>Shopify</span> • <span>FastEdge</span>
-            </div>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:underline uppercase tracking-wider">
-              / EXPLORE LIVE
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </a>
           </div>
         </div>
-      </div>
+      ))}
+    </div>
 
-      <!-- Project 3: Apex SEO Engine -->
-      <div class="portfolio-card os-window flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#000] transition-all duration-300 transform" data-category="seo">
-        <!-- OS Window Header -->
-        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
-          </div>
-          <span class="text-[10px] font-mono text-slate-500 tracking-wider font-bold">~/lumovelo/projects/apex-seo.py</span>
-          <div class="w-14"></div>
-        </div>
-
-        <!-- OS Window Body -->
-        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-          <div>
-            <!-- Custom graph visual -->
-            <div class="bg-slate-50 border-2 border-blue-600 rounded-xl p-5 h-28 flex items-end justify-between gap-2.5 mb-6 relative overflow-hidden group/graph shadow-[2px_2px_0px_#2563eb]">
-              <div class="absolute top-2 left-4 text-[8px] font-mono text-slate-440 font-bold">CLIENT ORGANIC IMPRESSIONS // SCALE: YTD</div>
-              
-              <!-- Simulated graph bars with dynamic height -->
-              <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-1" style="height: 30%">
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-1">+40k</div>
-              </div>
-              <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-2" style="height: 45%">
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-2">+80k</div>
-              </div>
-              <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-3" style="height: 60%">
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-3">+120k</div>
-              </div>
-              <div class="w-full bg-slate-200 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-4" style="height: 75%">
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-slate-900 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-4">+210k</div>
-              </div>
-              <div class="w-full bg-blue-600 rounded-sm transition-all duration-500 relative group/bar cursor-pointer" id="apex-bar-5" style="height: 95%">
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-0.5 rounded bg-blue-600 border border-blue-400 text-[8px] font-mono text-white opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap" id="apex-tooltip-5">+480k</div>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between mb-4">
-              <h4 class="font-display font-black text-2xl text-slate-900 uppercase font-bold">Apex SEO Core</h4>
-              
-              <!-- Period select buttons -->
-              <div class="flex gap-1 bg-slate-100 border-2 border-slate-200 p-0.5 rounded-lg font-mono text-[8px] font-bold">
-                <button type="button" class="apex-tab-btn px-2 py-1 rounded bg-white border border-slate-200 text-slate-800 cursor-pointer" data-period="weekly">WK</button>
-                <button type="button" class="apex-tab-btn px-2 py-1 rounded text-slate-400 hover:text-slate-900 cursor-pointer" data-period="monthly">MO</button>
-                <button type="button" class="apex-tab-btn px-2 py-1 rounded text-slate-400 hover:text-slate-900 cursor-pointer" data-period="yearly">YR</button>
-              </div>
-            </div>
-            
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
-              {content.p3Desc}
-            </p>
-          </div>
-
-          <div class="flex items-center justify-between border-t border-slate-100 pt-6">
-            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase font-bold">
-              <span>Python</span> • <span>MLModel</span> • <span>DataAPI</span>
-            </div>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:underline uppercase tracking-wider">
-              / INSPECT CORE
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 4: Lumina Analytics -->
-      <div class="portfolio-card os-window flex flex-col border-2 border-blue-600 bg-white rounded-2xl overflow-hidden shadow-[3px_3px_0px_#000] hover:shadow-[4px_4px_0px_#000] transition-all duration-300 transform" data-category="web">
-        <!-- OS Window Header -->
-        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-100 border-b-2 border-blue-600 select-none">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-            <span class="w-3 h-3 rounded-full bg-teal-500"></span>
-          </div>
-          <span class="text-[10px] font-mono text-slate-500 tracking-wider font-bold">~/lumovelo/projects/lumina.ui</span>
-          <div class="w-14"></div>
-        </div>
-
-        <!-- OS Window Body -->
-        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-          <div>
-            <!-- Grid visual with customizable themes -->
-            <div class="bg-slate-50 border-2 border-slate-200 p-5 flex gap-4 mb-6 transition-all duration-300 rounded-xl" id="lumina-mock-widget">
-              <div 
-                id="lumina-mock-circle" 
-                class="w-10 h-10 rounded-full border-4 border-teal-200 border-t-teal-600 flex items-center justify-center text-[9px] font-mono font-bold text-teal-600 transition-all duration-300 bg-white"
-              >
-                94%
-              </div>
-              <div class="flex-1 space-y-2">
-                <div class="h-2.5 bg-slate-200 rounded-full w-4/5 relative overflow-hidden">
-                  <div id="lumina-mock-bar" class="h-full bg-teal-600 w-4/5 transition-all duration-300"></div>
-                </div>
-                <div class="h-1.5 bg-slate-100 rounded-full w-1/2"></div>
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between mb-4">
-              <h4 class="font-display font-black text-2xl text-slate-900 uppercase font-bold">Lumina Dashboard</h4>
-              
-              <!-- Color theme selector chips -->
-              <div class="flex gap-2.5 items-center select-none">
-                <button type="button" class="lumina-theme-chip w-3.5 h-3.5 rounded-full bg-teal-600 border-2 border-white scale-125 cursor-pointer shadow-md" data-color="neon-green" aria-label="Emerald Green"></button>
-                <button type="button" class="lumina-theme-chip w-3.5 h-3.5 rounded-full bg-blue-500 border-2 border-transparent cursor-pointer shadow-sm" data-color="neon-cyan" aria-label="Neon Cyan"></button>
-                <button type="button" class="lumina-theme-chip w-3.5 h-3.5 rounded-full bg-rose-600 border-2 border-transparent cursor-pointer shadow-sm" data-color="neon-pink" aria-label="Neon Pink"></button>
-              </div>
-            </div>
-            
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 font-semibold">
-              {content.p4Desc}
-            </p>
-          </div>
-
-          <div class="flex items-center justify-between border-t border-slate-100 pt-6">
-            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase font-bold">
-              <span>NextJS</span> • <span>Tailwind</span> • <span>Framer</span>
-            </div>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-teal-600 hover:underline uppercase tracking-wider transition-colors duration-300 font-bold" id="lumina-cta-link">
-              / RUN PROTOTYPE
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
+    <!-- Centered Pagination Controls -->
+    <div id="portfolio-pagination" class="mt-12 flex justify-center items-center gap-2 select-none font-mono">
+      <!-- Generated dynamically in script -->
     </div>
   </div>
 </section>
 
+<!-- Fullscreen Lightbox Modal -->
+<div id="portfolio-lightbox" class="fixed inset-0 z-50 bg-slate-950/95 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+  <!-- Close Button -->
+  <button 
+    type="button" 
+    id="lightbox-close" 
+    class="absolute top-6 right-6 p-3 rounded-full border-2 border-slate-700 bg-slate-900 text-slate-400 hover:text-white hover:border-white transition-all cursor-pointer shadow-md select-none"
+    aria-label="Close"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <!-- Modal Content Card -->
+  <div class="w-full max-w-5xl flex flex-col md:flex-row bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden shadow-2xl scale-95 transition-transform duration-300" id="lightbox-card">
+    <!-- Image Preview Area -->
+    <div class="flex-1 bg-slate-950 p-4 flex items-center justify-center min-h-[250px] md:min-h-[450px] max-h-[50vh] md:max-h-[70vh]">
+      <img 
+        id="lightbox-image" 
+        src="" 
+        alt="" 
+        class="max-w-full max-h-[45vh] md:max-h-[65vh] object-contain rounded-xl shadow-lg border border-slate-800/50"
+      />
+    </div>
+
+    <!-- Metadata Sidebar -->
+    <div class="w-full md:w-80 p-6 flex flex-col justify-between border-t md:border-t-0 md:border-l border-slate-800 text-white">
+      <div>
+        <div class="flex justify-between items-center mb-4">
+          <span id="lightbox-tag" class="text-[9px] font-mono font-bold tracking-wider text-blue-400 border border-blue-500/40 px-2 py-0.5 rounded bg-blue-950/40 uppercase"></span>
+          <span id="lightbox-metric" class="text-[9px] font-mono font-bold text-emerald-400 border border-emerald-500/40 px-2 py-0.5 rounded bg-emerald-950/40 uppercase"></span>
+        </div>
+        <h4 id="lightbox-title" class="font-display font-black text-xl md:text-2xl uppercase tracking-tight mb-3"></h4>
+        <p id="lightbox-desc" class="text-xs text-slate-350 leading-relaxed font-semibold mb-6"></p>
+        
+        <div class="mb-6">
+          <div class="text-[8px] font-mono text-slate-400 font-bold uppercase tracking-wider mb-2">{content.techHeader}</div>
+          <div id="lightbox-tech" class="flex flex-wrap gap-1.5 text-[8px] font-mono text-slate-400 font-bold uppercase">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- Primary Action -->
+        <a 
+          id="lightbox-wa-btn" 
+          href="" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="w-full inline-flex items-center justify-center py-3.5 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider transition-all duration-300 gap-2 border border-transparent shadow-[0_4px_12px_rgba(16,185,129,0.2)]"
+        >
+          <!-- WhatsApp Icon -->
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M19.001 4.908A9.817 9.817 0 0 0 11.992 2C6.534 2 2.085 6.448 2.08 11.91c0 1.748.458 3.45 1.321 4.956L2 22l5.255-1.377a9.831 9.831 0 0 0 4.73 1.206h.005c5.46 0 9.908-4.448 9.913-9.91a9.825 9.825 0 0 0-2.892-6.911zm-7.01 15.396h-.004a8.17 8.17 0 0 1-4.167-1.14l-.299-.178-3.1 1.01L5.47 16.92l-.195-.31a8.196 8.196 0 0 1-1.258-4.385C4.02 7.7 7.594 4.12 12.002 4.12a8.18 8.18 0 0 1 5.792 2.399 8.192 8.192 0 0 1 2.396 5.8c-.004 4.527-3.578 8.207-7.98 8.207l-.219-.022zm4.505-6.16c-.247-.124-1.464-.722-1.692-.806-.228-.083-.393-.124-.559.124-.166.248-.641.806-.786.97-.145.166-.29.187-.537.063a6.786 6.786 0 0 1-1.996-1.229 7.487 7.487 0 0 1-1.38-1.716c-.146-.248-.016-.381.109-.504.113-.11.248-.29.373-.435.124-.145.166-.248.249-.414.083-.166.04-.31-.02-.435-.062-.124-.559-1.347-.766-1.848-.201-.484-.406-.418-.559-.425-.145-.007-.31-.007-.476-.007a.918.918 0 0 0-.663.31c-.228.248-.87.85-8.7 2.07 0 1.22.89 2.4 1.162 2.766.27.366 1.753 2.678 4.248 3.754.593.256 1.058.41 1.419.525.597.19 1.14.163 1.57.1.48-.07 1.465-.6 1.67-.18.206-.418.206-.78 0-.965-.125-.187-.249-.247-.497-.37z"/>
+          </svg>
+          {content.btnWa}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   function initInteractivePortfolio() {
-    // i18n Elements
-    const i18nEl = document.getElementById('portfolio-i18n');
-    const logs = [
-      { text: i18nEl?.getAttribute('data-log-0') || "", color: "text-blue-400" },
-      { text: i18nEl?.getAttribute('data-log-1') || "", color: "text-slate-500" },
-      { text: i18nEl?.getAttribute('data-log-2') || "", color: "text-teal-400" },
-      { text: i18nEl?.getAttribute('data-log-3') || "", color: "text-slate-500" },
-      { text: i18nEl?.getAttribute('data-log-4') || "", color: "text-emerald-400" },
-      { text: i18nEl?.getAttribute('data-log-5') || "", color: "text-teal-400 font-bold" },
-      { text: i18nEl?.getAttribute('data-log-6') || "", color: "text-white" }
-    ];
-    const btnAetheriaRunText = i18nEl?.getAttribute('data-btn-aetheria-run') || "RUN AGENT";
-    const btnAetheriaRunningText = i18nEl?.getAttribute('data-btn-aetheria-running') || "RUNNING...";
-    const btnVeloceRunText = i18nEl?.getAttribute('data-btn-veloce-run') || "BENCHMARK SPEED";
-    const btnVeloceRunningText = i18nEl?.getAttribute('data-btn-veloce-running') || "RACING...";
-    const btnVeloceResetText = i18nEl?.getAttribute('data-btn-veloce-reset') || "RUN SPEED TEST";
-    const valLoadingText = i18nEl?.getAttribute('data-val-loading') || "LOADING...";
+    // State variables
+    const ITEMS_PER_PAGE = 4;
+    let currentPage = 1;
+    let activeFilter = 'all';
 
-    // 1. FILTERING SYSTEM
+    // 1. FILTERING & PAGINATION SYSTEM
     const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
     const portfolioCards = document.querySelectorAll('.portfolio-card') as NodeListOf<HTMLDivElement>;
+    const gridContainer = document.getElementById('portfolio-grid');
+    const paginationContainer = document.getElementById('portfolio-pagination');
 
+    function updatePagination() {
+      if (!gridContainer || !paginationContainer) return;
+
+      // Toggle grid container layout based on current filter state
+      if (activeFilter === 'all') {
+        gridContainer.classList.add('md:grid-cols-12');
+        gridContainer.classList.remove('md:grid-cols-2', 'lg:grid-cols-3');
+      } else {
+        gridContainer.classList.remove('md:grid-cols-12');
+        gridContainer.classList.add('md:grid-cols-2', 'lg:grid-cols-3');
+      }
+
+      // 1. Build list of candidates matching the active filter
+      const candidates: HTMLDivElement[] = [];
+      portfolioCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (activeFilter === 'all' || category === activeFilter) {
+          candidates.push(card);
+        } else {
+          // Hide cards not belonging to the current filter
+          card.classList.add('hidden');
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+        }
+      });
+
+      // 2. Calculate pagination metrics
+      const totalItems = candidates.length;
+      const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+      // Boundaries correction
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      // 3. Show/hide items matching page range & toggle span styles
+      candidates.forEach((card, index) => {
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = currentPage * ITEMS_PER_PAGE - 1;
+        const spanClass = card.getAttribute('data-span-class') || '';
+
+        if (index >= startIndex && index <= endIndex) {
+          // Display
+          card.classList.remove('hidden');
+          
+          // Adjust span classes
+          if (activeFilter === 'all') {
+            if (spanClass) {
+              spanClass.split(' ').forEach(cls => {
+                if (cls) card.classList.add(cls);
+              });
+            }
+          } else {
+            if (spanClass) {
+              spanClass.split(' ').forEach(cls => {
+                if (cls) card.classList.remove(cls);
+              });
+            }
+          }
+
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          }, 50);
+        } else {
+          // Hide items belonging to other pages
+          card.classList.add('hidden');
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+        }
+      });
+
+      // 4. Render pagination controls
+      paginationContainer.innerHTML = '';
+      if (totalPages <= 1) {
+        paginationContainer.classList.add('hidden');
+        return;
+      }
+      paginationContainer.classList.remove('hidden');
+
+      // Helper to generate a button
+      const createBtn = (label: string, pageTarget: number, disabled = false, active = false) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.innerText = label;
+
+        if (disabled) {
+          btn.className = "px-3.5 py-1.5 border-2 border-slate-100 bg-slate-50 text-slate-300 rounded-lg font-bold text-xs cursor-not-allowed";
+          btn.disabled = true;
+        } else if (active) {
+          btn.className = "px-3.5 py-1.5 border-2 border-slate-900 bg-slate-900 text-white rounded-lg font-bold shadow-[2px_2px_0px_#000] text-xs cursor-pointer";
+        } else {
+          btn.className = "px-3.5 py-1.5 border-2 border-slate-200 bg-white text-slate-500 rounded-lg hover:border-slate-900 hover:text-slate-900 transition-all font-bold text-xs cursor-pointer";
+          btn.addEventListener('click', () => {
+            currentPage = pageTarget;
+            updatePagination();
+            // Scroll smoothly back to section top
+            const section = document.getElementById('portofolio');
+            if (section) {
+              section.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        }
+
+        return btn;
+      };
+
+      // Add Prev button
+      paginationContainer.appendChild(createBtn('[ < ]', currentPage - 1, currentPage === 1));
+
+      // Add Page Number buttons
+      for (let i = 1; i <= totalPages; i++) {
+        paginationContainer.appendChild(createBtn(String(i), i, false, i === currentPage));
+      }
+
+      // Add Next button
+      paginationContainer.appendChild(createBtn('[ > ]', currentPage + 1, currentPage === totalPages));
+    }
+
+    // Attach click events on filter buttons
     filterButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
         const clickedBtn = e.currentTarget as HTMLButtonElement;
         const filter = clickedBtn.getAttribute('data-filter');
+        if (!filter) return;
 
-        // Update active class on buttons to Neo-brutalist white/blue states
+        // Toggle active filter tab UI styling
         filterButtons.forEach(b => {
-          b.className = "portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-blue-600 hover:text-blue-600 cursor-pointer";
+          b.className = "portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-slate-900 hover:text-slate-900 cursor-pointer";
         });
-        clickedBtn.className = "portfolio-filter-btn px-4 py-2 border-2 border-blue-600 bg-blue-600 text-[10px] font-bold text-white uppercase tracking-wider rounded-lg transition-all hover:bg-blue-700 shadow-[2px_2px_0px_#0f172a] cursor-pointer";
+        clickedBtn.className = "portfolio-filter-btn px-4 py-2 border-2 border-slate-900 bg-slate-900 text-[10px] font-bold text-white uppercase tracking-wider rounded-lg transition-all hover:bg-slate-800 shadow-[2px_2px_0px_#000] cursor-pointer";
 
-        // Filter cards with animations
-        portfolioCards.forEach(card => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            card.classList.remove('hidden');
-            setTimeout(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'scale(1)';
-            }, 50);
-          } else {
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-              card.classList.add('hidden');
-            }, 300);
-          }
-        });
+        // Reset to page 1 on filter switch
+        activeFilter = filter;
+        currentPage = 1;
+        updatePagination();
       });
     });
 
-    // 2. CARD 1: AETHERIA TERMINAL SIMULATION
-    const runAetheriaBtn = document.getElementById('run-aetheria-btn');
-    const aetheriaLogBox = document.getElementById('aetheria-log-box');
-    let aetheriaRunning = false;
+    // Initialize pagination load state
+    updatePagination();
 
-    if (runAetheriaBtn && aetheriaLogBox) {
-      runAetheriaBtn.addEventListener('click', () => {
-        if (aetheriaRunning) return;
-        aetheriaRunning = true;
-        runAetheriaBtn.innerText = btnAetheriaRunningText;
-        runAetheriaBtn.className = "px-3 py-1.5 rounded-lg border-2 border-rose-600 bg-rose-50 text-rose-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all cursor-not-allowed animate-pulse shadow-[2px_2px_0px_#e11d48]";
-        
-        aetheriaLogBox.innerHTML = '';
-        
-        logs.forEach((log, index) => {
-          setTimeout(() => {
-            const div = document.createElement('div');
-            div.className = `${log.color} transition-all duration-300 opacity-0 translate-y-1`;
-            div.innerText = log.text;
-            aetheriaLogBox.appendChild(div);
-            
-            setTimeout(() => {
-              div.classList.remove('opacity-0', 'translate-y-1');
-            }, 50);
+    // 2. LIGHTBOX MODAL CONTROLS
+    const lightbox = document.getElementById('portfolio-lightbox');
+    const lightboxCard = document.getElementById('lightbox-card');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
+    const lightboxTag = document.getElementById('lightbox-tag');
+    const lightboxMetric = document.getElementById('lightbox-metric');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    const lightboxTech = document.getElementById('lightbox-tech');
+    const lightboxWaBtn = document.getElementById('lightbox-wa-btn') as HTMLAnchorElement;
 
-            aetheriaLogBox.scrollTop = aetheriaLogBox.scrollHeight;
+    function openLightbox(card: HTMLDivElement) {
+      if (!lightbox || !lightboxCard || !lightboxImage || !lightboxTag || !lightboxMetric || !lightboxTitle || !lightboxDesc || !lightboxTech || !lightboxWaBtn) return;
 
-            if (index === logs.length - 1) {
-              aetheriaRunning = false;
-              runAetheriaBtn.innerText = btnAetheriaRunText;
-              runAetheriaBtn.className = "px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]";
-            }
-          }, index * 600);
+      const image = card.getAttribute('data-image') || '';
+      const title = card.getAttribute('data-title') || '';
+      const desc = card.getAttribute('data-desc') || '';
+      const tag = card.getAttribute('data-category-label') || '';
+      const metric = card.getAttribute('data-metric') || '';
+      const techStr = card.getAttribute('data-tech') || '';
+      const waUrl = card.getAttribute('data-wa-url') || '';
+
+      // Set lightbox data
+      lightboxImage.src = image;
+      lightboxImage.alt = title;
+      lightboxTitle.innerText = title;
+      lightboxDesc.innerText = desc;
+      lightboxTag.innerText = tag;
+      lightboxMetric.innerText = metric;
+      lightboxWaBtn.href = waUrl;
+
+      // Set tech list tags
+      lightboxTech.innerHTML = '';
+      if (techStr) {
+        techStr.split(' • ').forEach(t => {
+          const span = document.createElement('span');
+          span.className = 'bg-slate-800 border border-slate-700 px-2 py-0.5 rounded';
+          span.innerText = t;
+          lightboxTech.appendChild(span);
         });
-      });
-    }
-
-    // 3. CARD 2: VELOCE SPEED RACE SIMULATION
-    const runVeloceBtn = document.getElementById('run-veloce-btn');
-    const slowVal = document.getElementById('veloce-slow-val');
-    const fastVal = document.getElementById('veloce-fast-val');
-    const slowBar = document.getElementById('veloce-slow-bar');
-    const fastBar = document.getElementById('veloce-fast-bar');
-    let veloceRunning = false;
-
-    if (runVeloceBtn && slowVal && fastVal && slowBar && fastBar) {
-      runVeloceBtn.addEventListener('click', () => {
-        if (veloceRunning) return;
-        veloceRunning = true;
-        runVeloceBtn.innerText = btnVeloceRunningText;
-        runVeloceBtn.className = "px-3 py-1.5 rounded-lg border-2 border-rose-600 bg-rose-50 text-rose-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all cursor-not-allowed animate-pulse shadow-[2px_2px_0px_#e11d48]";
-
-        // Reset
-        slowBar.style.width = '0%';
-        fastBar.style.width = '0%';
-        slowVal.innerText = valLoadingText;
-        slowVal.className = "font-bold text-slate-400";
-        fastVal.innerText = valLoadingText;
-        fastVal.className = "font-bold text-slate-400";
-
-        // Fast Load (Lumovelo Astro Stack)
-        setTimeout(() => {
-          fastBar.style.width = '100%';
-          fastVal.innerText = "0.24s (100/100)";
-          fastVal.className = "font-bold text-teal-600 animate-bounce";
-        }, 300);
-
-        // Slow Load (Standard Monolithic)
-        setTimeout(() => {
-          slowBar.style.width = '100%';
-          slowVal.innerText = "2.68s (39/100)";
-          slowVal.className = "font-bold text-rose-600";
-          
-          runVeloceBtn.innerText = btnVeloceResetText;
-          runVeloceBtn.className = "px-3 py-1.5 rounded-lg border-2 border-blue-600 bg-blue-50 text-blue-600 font-mono text-[10px] font-bold uppercase tracking-wider transition-all hover:bg-blue-600 hover:text-white cursor-pointer shadow-[2px_2px_0px_#2563eb]";
-          veloceRunning = false;
-        }, 2200);
-      });
-    }
-
-    // 4. CARD 3: APEX SEO GRAPH SELECTOR
-    const apexTabs = document.querySelectorAll('.apex-tab-btn');
-    const apexBars = [
-      document.getElementById('apex-bar-1'),
-      document.getElementById('apex-bar-2'),
-      document.getElementById('apex-bar-3'),
-      document.getElementById('apex-bar-4'),
-      document.getElementById('apex-bar-5')
-    ];
-    const apexTooltips = [
-      document.getElementById('apex-tooltip-1'),
-      document.getElementById('apex-tooltip-2'),
-      document.getElementById('apex-tooltip-3'),
-      document.getElementById('apex-tooltip-4'),
-      document.getElementById('apex-tooltip-5')
-    ];
-
-    const dataSet: Record<string, { heights: string[], tooltips: string[] }> = {
-      weekly: {
-        heights: ['30%', '45%', '60%', '75%', '95%'],
-        tooltips: ['+40k', '+80k', '+120k', '+210k', '+480k']
-      },
-      monthly: {
-        heights: ['20%', '35%', '50%', '65%', '88%'],
-        tooltips: ['+180k', '+320k', '+480k', '+750k', '+1.8M']
-      },
-      yearly: {
-        heights: ['15%', '28%', '40%', '62%', '80%'],
-        tooltips: ['+2.1M', '+3.8M', '+5.2M', '+8.9M', '+22M']
       }
-    };
 
-    apexTabs.forEach(tab => {
-      tab.addEventListener('click', (e) => {
-        const clickedTab = e.currentTarget as HTMLButtonElement;
-        const period = clickedTab.getAttribute('data-period');
-        if (!period) return;
+      // Show lightbox modal
+      lightbox.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        lightboxCard.classList.remove('scale-95');
+        lightboxCard.classList.add('scale-100');
+      }, 50);
 
-        // Button styling active
-        apexTabs.forEach(t => {
-          t.className = "apex-tab-btn px-2 py-1 rounded text-slate-400 hover:text-slate-900 cursor-pointer";
-        });
-        clickedTab.className = "apex-tab-btn px-2 py-1 rounded bg-white border border-slate-200 text-slate-800 cursor-pointer";
+      // Disable page body scroll
+      document.body.style.overflow = 'hidden';
+    }
 
-        // Animate bars & change tooltip content
-        const config = dataSet[period];
-        apexBars.forEach((bar, idx) => {
-          if (bar) bar.style.height = config.heights[idx];
-        });
-        apexTooltips.forEach((tip, idx) => {
-          if (tip) tip.innerText = config.tooltips[idx];
-        });
+    function closeLightbox() {
+      if (!lightbox || !lightboxCard) return;
+
+      lightboxCard.classList.remove('scale-100');
+      lightboxCard.classList.add('scale-95');
+      
+      lightbox.classList.add('opacity-0', 'pointer-events-none');
+
+      // Enable page body scroll
+      document.body.style.overflow = '';
+    }
+
+    // Attach click events on portfolio cards
+    portfolioCards.forEach(card => {
+      // Clicking the card itself (except clicking the direct whatsapp icon inside the hover overlay)
+      card.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        // Don't open lightbox if clicking the actual WhatsApp redirect anchor inside hover overlay
+        if (target.closest('a[target="_blank"]')) return;
+        
+        openLightbox(card);
       });
     });
 
-    // 5. CARD 4: LUMINA THEME SWITCHER
-    const themeChips = document.querySelectorAll('.lumina-theme-chip');
-    const mockWidget = document.getElementById('lumina-mock-widget');
-    const mockCircle = document.getElementById('lumina-mock-circle');
-    const mockBar = document.getElementById('lumina-mock-bar');
-    const ctaLink = document.getElementById('lumina-cta-link');
+    // Close lightbox events
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', closeLightbox);
+    }
 
-    const themeColors: Record<string, { circleBorder: string, circleText: string, barBg: string, ctaText: string, borderTint: string }> = {
-      'neon-green': {
-        circleBorder: 'border-t-teal-600',
-        circleText: 'text-teal-600',
-        barBg: 'bg-teal-600',
-        ctaText: 'text-teal-600',
-        borderTint: 'border-teal-600/20'
-      },
-      'neon-cyan': {
-        circleBorder: 'border-t-blue-500',
-        circleText: 'text-blue-500',
-        barBg: 'bg-blue-500',
-        ctaText: 'text-blue-500',
-        borderTint: 'border-blue-500/20'
-      },
-      'neon-pink': {
-        circleBorder: 'border-t-rose-600',
-        circleText: 'text-rose-600',
-        barBg: 'bg-rose-600',
-        ctaText: 'text-rose-600',
-        borderTint: 'border-rose-600/20'
-      }
-    };
-
-    themeChips.forEach(chip => {
-      chip.addEventListener('click', (e) => {
-        const clickedChip = e.currentTarget as HTMLButtonElement;
-        const color = clickedChip.getAttribute('data-color');
-        if (!color || !themeColors[color]) return;
-
-        // Chip scaling highlight
-        themeChips.forEach(c => {
-          c.className = "lumina-theme-chip w-3.5 h-3.5 rounded-full border-2 border-transparent cursor-pointer shadow-sm";
-        });
-        clickedChip.className = "lumina-theme-chip w-3.5 h-3.5 rounded-full border-2 border-white scale-125 cursor-pointer shadow-md";
-
-        // Apply theme mapping dynamically using explicit strings
-        const mapping = themeColors[color];
-        
-        if (mockWidget && mockCircle && mockBar && ctaLink) {
-          // Remove all possible Tailwind theme classes to prevent conflicts
-          Object.values(themeColors).forEach(c => {
-            mockCircle.classList.remove(c.circleBorder, c.circleText);
-            mockBar.classList.remove(c.barBg);
-            ctaLink.classList.remove(c.ctaText);
-            mockWidget.classList.remove(c.borderTint);
-          });
-
-          // Add new selected classes
-          mockCircle.classList.add(mapping.circleBorder, mapping.circleText);
-          mockBar.classList.add(mapping.barBg);
-          ctaLink.classList.add(mapping.ctaText);
-          mockWidget.classList.add(mapping.borderTint);
+    if (lightbox) {
+      lightbox.addEventListener('click', (e) => {
+        // Close if clicking outside the card content
+        if (e.target === lightbox) {
+          closeLightbox();
         }
       });
+    }
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
     });
   }
 
+  // Load hooks
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initInteractivePortfolio);
   } else {

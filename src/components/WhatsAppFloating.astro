@@ -39,3 +39,25 @@ const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIC
     {content.text}
   </span>
 </a>
+
+<style>
+  #whatsapp-floating-btn {
+    right: 1.5rem;
+    transition: right 0.3s ease-in-out, transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  @media (min-width: 1280px) {
+    #whatsapp-floating-btn {
+      right: calc((100vw - 1200px) / 2 + 1.5rem);
+    }
+  }
+  @media (min-width: 1440px) {
+    #whatsapp-floating-btn {
+      right: calc((100vw - 1320px) / 2 + 1.5rem);
+    }
+  }
+  @media (min-width: 1680px) {
+    #whatsapp-floating-btn {
+      right: calc((100vw - 1400px) / 2 + 1.5rem);
+    }
+  }
+</style>
