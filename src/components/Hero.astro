@@ -15,16 +15,15 @@ const content = {
       discussion: "Mulai Diskusi",
       consultation: "Mulai Konsultasi"
     },
-    tag: "KREATIF • INOVASI • PERTUMBUHAN",
+    tag: "REKAYASA DIGITAL PERTUMBUHAN BISNIS • PREMIUM & TRANSPARAN",
     headline: {
       part1: "We Engineer",
-      part2: "Digital Growth",
-      part3: "AI, Web,",
-      part4: "& Creative Assets"
+      part2: "Digital Growth"
     },
-    desc: "Kami merancang produk digital berkinerja tinggi, otomatisasi AI cerdas, strategi SEO organik mutakhir, serta video kreatif yang mengonversi pengunjung menjadi leads WhatsApp berkualitas.",
+    desc: "Kami merancang website kustom berkinerja tinggi, otomatisasi AI cerdas, dan video kreatif yang dirancang khusus untuk meningkatkan konversi dan penjualan bisnis Anda.",
     cta: "Lihat Paket Harga",
-    promo: "🔥 Promo Peluncuran: Diskon 20% untuk 5 Klien Pertama Bulan Ini!"
+    promo: "🔥 Promo Peluncuran: Diskon 20% untuk 5 Klien Pertama Bulan Ini!",
+    trust: "✓ Konsultasi Gratis • Tanpa Kontrak Awal • Sisa 2 Slot Proyek Bulan Ini"
   },
   en: {
     nav: {
@@ -36,16 +35,15 @@ const content = {
       discussion: "Start Discussion",
       consultation: "Start Consultation"
     },
-    tag: "CREATIVE • INNOVATION • GROWTH",
+    tag: "ENGINEERING DIGITAL BUSINESS GROWTH • PREMIUM & TRANSPARENT",
     headline: {
       part1: "We Engineer",
-      part2: "Digital Growth",
-      part3: "AI, Web,",
-      part4: "& Creative Assets"
+      part2: "Digital Growth"
     },
-    desc: "We design high-performance digital products, smart AI automation, cutting-edge organic SEO strategies, and creative video editing assets that drive conversions into quality WhatsApp leads.",
+    desc: "We design high-performance custom websites, smart AI automations, and creative assets engineered to increase your conversions and scale your brand revenue.",
     cta: "View Pricing Packages",
-    promo: "🔥 Launch Promo: Get 20% Off for the First 5 Clients This Month!"
+    promo: "🔥 Launch Promo: Get 20% Off for the First 5 Clients This Month!",
+    trust: "✓ Free Consultation • No Initial Contract • Only 2 Project Slots Left This Month"
   }
 }[lang];
 
@@ -258,11 +256,18 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
         {content.tag}
       </span>
       
-      <!-- Headline -->
-      <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.15] text-white tracking-tight font-sans uppercase">
+      <!-- Headline with dynamic vertical text rotator -->
+      <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.25] text-white tracking-tight font-sans uppercase">
         {content.headline.part1}<br>
         {content.headline.part2}<br>
-        {content.headline.part3} {content.headline.part4}
+        <span class="text-blue-400 text-rotate-container font-black">
+          <span class="text-rotate-list">
+            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'Custom Websites' : 'Website Custom'}</span>
+            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'AI Automations' : 'Otomatisasi AI'}</span>
+            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'SEO Strategies' : 'Strategi SEO'}</span>
+            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'Creative Assets' : 'Aset Kreatif'}</span>
+          </span>
+        </span>
       </h1>
       
       <!-- Description -->
@@ -270,12 +275,12 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
         {content.desc}
       </p>
       
-      <!-- CTA buttons & Launch Promo Badge -->
+      <!-- CTA buttons & Trust indicators -->
       <div class="flex flex-col items-center gap-4 pt-4">
-        <div class="flex flex-row items-center justify-center gap-4 sm:gap-6">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <a 
             href={servicesLink} 
-            class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 hover:shadow-[0_10px_20px_rgba(37,99,235,0.15)] hover:-translate-y-0.5 gap-2 cursor-pointer"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 hover:shadow-[0_10px_20px_rgba(37,99,235,0.15)] hover:-translate-y-0.5 gap-2 cursor-pointer"
           >
             {content.cta}
             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -285,7 +290,7 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
           
           <a 
             href={contactLink} 
-            class="inline-flex items-center gap-2 sm:gap-3 text-sm sm:text-base font-bold uppercase tracking-wider text-white hover:text-white/80 transition-colors py-2 cursor-pointer"
+            class="w-full sm:w-auto inline-flex items-center gap-2 sm:gap-3 text-sm sm:text-base font-bold uppercase tracking-wider text-white hover:text-white/80 transition-colors py-2 cursor-pointer"
           >
             <div class="w-10 h-10 rounded-full border-2 border-white/20 flex items-center justify-center text-white bg-white/10 hover:bg-white hover:text-slate-950 hover:border-white transition-all hover:scale-105 shrink-0">
               <svg class="w-3.5 h-3.5 fill-current ml-0.5" viewBox="0 0 24 24">
@@ -296,13 +301,18 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
           </a>
         </div>
         
-        <!-- Launching Promo Banner -->
+        <!-- Trust Guarantee Checklist -->
+        <p class="text-[10px] sm:text-xs font-mono font-bold text-white/70 tracking-wider">
+          {content.trust}
+        </p>
+        
+        <!-- Launching Promo Banner (Dark mode styled) -->
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 backdrop-blur-sm text-[10px] sm:text-xs font-mono font-bold text-blue-300 uppercase tracking-wider shadow-inner select-none">
           {content.promo}
         </div>
       </div>
     </div>
-  </div> <!-- Closes the max-w-7xl content wrapper opened at line 249 -->
+  </div> <!-- Closes the max-w-7xl content wrapper -->
 
   <!-- SVG Wave transition at bottom of Hero -->
   <div class="absolute -bottom-[3px] sm:-bottom-[1px] inset-x-0 w-full overflow-hidden leading-none z-20 select-none pointer-events-none">

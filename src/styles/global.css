@@ -359,8 +359,104 @@ section:not([class*="pt-28"]):not([class*="pt-36"]) {
 }
 
 @media (min-width: 1600px) {
-  /* Extra styling for 1600px+ viewports */
-  .max-w-7xl, .max-w-6xl {
-    max-width: 1200px !important;
-  }
 }
+
+/* Dynamic Text Rotator for Hero Headline */
+.text-rotate-container {
+  display: inline-flex;
+  flex-direction: column;
+  height: 1.25em;
+  overflow: hidden;
+  vertical-align: bottom;
+  position: relative;
+}
+
+.text-rotate-list {
+  display: flex;
+  flex-direction: column;
+  animation: text-slide-up 10s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+
+@keyframes text-slide-up {
+  0%, 20% { transform: translateY(0); }
+  25%, 45% { transform: translateY(-25%); }
+  50%, 70% { transform: translateY(-50%); }
+  75%, 95% { transform: translateY(-75%); }
+  100% { transform: translateY(0); }
+}
+
+/* Horizontal Infinite Marquee */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+}
+
+.marquee-content {
+  display: inline-flex;
+  gap: 3rem;
+  animation: marquee-scroll 35s linear infinite;
+  padding: 1.5rem 0;
+  will-change: transform;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Hero Light Cyber-Minimalist Background */
+.hero-tech-bg {
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.045) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.04) 0%, transparent 50%),
+    linear-gradient(rgba(37, 99, 235, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+  background-color: #ffffff;
+}
+
+/* Bestseller Animated Border Glow */
+.bestseller-glow {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  z-index: 1;
+}
+
+.bestseller-glow::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6, #06b6d4, #2563eb);
+  background-size: 400% 400%;
+  z-index: -1;
+  border-radius: 26px;
+  animation: border-glow-move 8s linear infinite;
+  opacity: 0.8;
+  filter: blur(1px);
+}
+
+@keyframes border-glow-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Magnetic-like Micro Interaction */
+.magnetic-hover {
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+}
+
+.magnetic-hover:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(37, 99, 235, 0.1);
+}
