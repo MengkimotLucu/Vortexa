@@ -39,24 +39,25 @@ const content = {
 // 6 Projects representing the 6 core services from Services.astro
 const projects = [
   {
-    id: 'landing-page',
+    id: 'fasteat-cafe',
     category: 'landing-page',
     categoryLabel: lang === 'en' ? 'Landing Page' : 'Landing Page',
-    filePath: '~/lumovelo/portfolio/saas-landing-page.png',
-    title: 'Aetheria SaaS Landing Page',
-    image: '/portfolio-landing-page.png',
-    tech: ['Astro', 'Tailwind CSS', 'React'],
+    filePath: '~/lumovelo/portfolio/fasteat-cafe.png',
+    title: 'FastEat Cafe & Restaurant',
+    image: '/portfolio-fasteat-mockup.png',
+    tech: ['React', 'Vite', 'Tailwind CSS'],
     desc: lang === 'en' 
-      ? 'High-speed SaaS Landing Page with persuasive copywriting, clean layouts, and complete analytics integration for maximum lead conversion.' 
-      : 'Landing Page SaaS berkecepatan tinggi dengan copywriting persuasif, tata letak bersih, dan integrasi analytics lengkap untuk konversi prospek maksimal.',
-    metric: lang === 'en' ? 'PageSpeed: 99/100' : 'Skor PageSpeed: 99/100',
+      ? 'A sleek and modern F&B landing page for FastEat Cafe & Restaurant featuring interactive menus, fast responsiveness, and smooth layouts.' 
+      : 'Landing Page F&B moderen dan elegan untuk FastEat Cafe & Restaurant dengan menu interaktif, responsivitas tinggi, dan tata letak halus.',
+    metric: lang === 'en' ? 'Design: 10/10' : 'Desain: 10/10',
     spanClass: 'md:col-span-8',
     heightClass: 'h-[380px]',
     waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
       lang === 'en' 
-        ? 'Hello Lumovelo, I am interested in inquiring about the Landing Page service (Aetheria SaaS project) I saw in your portfolio.' 
-        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Landing Page (proyek Aetheria SaaS) yang saya lihat di portofolio.'
-    )}`
+        ? 'Hello Lumovelo, I am interested in inquiring about the Cafe/Restaurant Landing Page (FastEat project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Landing Page Cafe/Restoran (proyek FastEat) yang saya lihat di portofolio.'
+    )}`,
+    demoUrl: 'https://fasteat-theta.vercel.app/'
   },
   {
     id: 'company-profile',
@@ -76,27 +77,29 @@ const projects = [
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the Company Profile service (Apex Corp project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Company Profile (proyek Apex Corp) yang saya lihat di portofolio.'
-    )}`
+    )}`,
+    demoUrl: ''
   },
   {
-    id: 'toko-online',
+    id: 'ecommerce-buah',
     category: 'toko-online',
     categoryLabel: lang === 'en' ? 'E-Commerce' : 'Toko Online',
-    filePath: '~/lumovelo/portfolio/toko-online.png',
-    title: 'Veloce Headless Store',
-    image: '/portfolio-toko-online.png',
-    tech: ['Next.js', 'Shopify API', 'Tailwind'],
+    filePath: '~/lumovelo/portfolio/ecommerce-buah.png',
+    title: 'FruitFresh Organic Store',
+    image: '/portfolio-buah-mockup.png',
+    tech: ['Next.js', 'React', 'Tailwind CSS'],
     desc: lang === 'en' 
-      ? 'Ultra-fast headless e-commerce store with an interactive cart system, instant page navigation, and secure checkout.' 
-      : 'Toko online headless e-commerce super kencang dengan sistem keranjang belanja interaktif, navigasi halaman instan, dan checkout aman.',
-    metric: lang === 'en' ? 'Checkout: <3 Sec' : 'Transaksi: <3 Detik',
+      ? 'A vibrant fruit e-commerce shop with smooth item grid selection, clean cart management, and modern minimalist design.' 
+      : 'Toko online e-commerce buah organik segar dengan seleksi grid produk yang mulus, pengelolaan keranjang bersih, dan desain minimalis modern.',
+    metric: lang === 'en' ? 'Uptime: 100%' : 'Uptime: 100%',
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
     waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
       lang === 'en' 
-        ? 'Hello Lumovelo, I am interested in inquiring about the E-Commerce/Toko Online service (Veloce Headless project) I saw in your portfolio.' 
-        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Toko Online (proyek Veloce Headless) yang saya lihat di portofolio.'
-    )}`
+        ? 'Hello Lumovelo, I am interested in inquiring about the E-Commerce fruit store (FruitFresh project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa Toko Online buah (proyek FruitFresh) yang saya lihat di portofolio.'
+    )}`,
+    demoUrl: 'https://ecommercebuah.vercel.app/'
   },
   {
     id: 'redesign',
@@ -116,7 +119,8 @@ const projects = [
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the Web Redesign service (Lumina Dashboard project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa Redesign Web (proyek Lumina Dashboard) yang saya lihat di portofolio.'
-    )}`
+    )}`,
+    demoUrl: ''
   },
   {
     id: 'maintenance',
@@ -136,7 +140,8 @@ const projects = [
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the Web Maintenance & Support service (Priority Support project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa Pemeliharaan/Maintenance Website (proyek Priority Support) yang saya lihat di portofolio.'
-    )}`
+    )}`,
+    demoUrl: ''
   }
 ];
 ---
@@ -194,6 +199,7 @@ const projects = [
           data-wa-url={project.waUrl}
           data-category-label={project.categoryLabel}
           data-span-class={project.spanClass}
+          data-demo-url={project.demoUrl || ''}
         >
           <!-- OS Window Header -->
           <div class="flex items-center justify-between px-4 py-2.5 bg-slate-50 border-b-2 border-slate-900 select-none">
@@ -245,15 +251,28 @@ const projects = [
                     <span class="bg-slate-900 border border-slate-800 px-1.5 py-0.5 rounded">{tag}</span>
                   ))}
                 </div>
-                
-                <!-- CTAs -->
-                <div class="flex gap-2">
-                  <button 
-                    type="button" 
-                    class="view-mockup-btn flex-1 py-2.5 text-center rounded-lg border border-slate-800 bg-white text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider hover:bg-slate-100 transition-all cursor-pointer select-none"
-                  >
-                    {content.btnView}
-                  </button>
+                               <!-- CTAs -->
+                <div class="flex gap-2 w-full">
+                  {project.demoUrl ? (
+                    <a 
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex-1 py-2.5 text-center rounded-lg border border-slate-800 bg-white text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider hover:bg-slate-100 transition-all cursor-pointer select-none flex items-center justify-center gap-1.5"
+                    >
+                      Demo Live
+                      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <button 
+                      type="button" 
+                      class="view-mockup-btn flex-1 py-2.5 text-center rounded-lg border border-slate-800 bg-white text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider hover:bg-slate-100 transition-all cursor-pointer select-none"
+                    >
+                      {content.btnView}
+                    </button>
+                  )}
                   <a 
                     href={project.waUrl}
                     target="_blank"
@@ -324,7 +343,21 @@ const projects = [
         </div>
       </div>
 
-      <div>
+      <div class="flex flex-col gap-2.5">
+        <!-- Live Demo Button -->
+        <a 
+          id="lightbox-demo-btn" 
+          href="" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="w-full inline-flex items-center justify-center py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-slate-950 font-black text-xs uppercase tracking-wider transition-all duration-300 gap-2 border border-slate-800 shadow-md hidden"
+        >
+          Kunjungi Website
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+
         <!-- Primary Action -->
         <a 
           id="lightbox-wa-btn" 
@@ -509,6 +542,7 @@ const projects = [
     const lightboxDesc = document.getElementById('lightbox-desc');
     const lightboxTech = document.getElementById('lightbox-tech');
     const lightboxWaBtn = document.getElementById('lightbox-wa-btn') as HTMLAnchorElement;
+    const lightboxDemoBtn = document.getElementById('lightbox-demo-btn') as HTMLAnchorElement;
 
     function openLightbox(card: HTMLDivElement) {
       if (!lightbox || !lightboxCard || !lightboxImage || !lightboxTag || !lightboxMetric || !lightboxTitle || !lightboxDesc || !lightboxTech || !lightboxWaBtn) return;
@@ -520,6 +554,7 @@ const projects = [
       const metric = card.getAttribute('data-metric') || '';
       const techStr = card.getAttribute('data-tech') || '';
       const waUrl = card.getAttribute('data-wa-url') || '';
+      const demoUrl = card.getAttribute('data-demo-url') || '';
 
       // Set lightbox data
       lightboxImage.src = image;
@@ -529,6 +564,16 @@ const projects = [
       lightboxTag.innerText = tag;
       lightboxMetric.innerText = metric;
       lightboxWaBtn.href = waUrl;
+
+      // Handle demo button visibility
+      if (lightboxDemoBtn) {
+        if (demoUrl) {
+          lightboxDemoBtn.href = demoUrl;
+          lightboxDemoBtn.classList.remove('hidden');
+        } else {
+          lightboxDemoBtn.classList.add('hidden');
+        }
+      }
 
       // Set tech list tags
       lightboxTech.innerHTML = '';

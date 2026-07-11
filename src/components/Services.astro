@@ -26,6 +26,8 @@ const categories = [
   { id: 'company-profile', label: lang === 'en' ? 'Company Profile' : 'Company Profile' },
   { id: 'toko-online', label: lang === 'en' ? 'E-Commerce' : 'Toko Online' },
   { id: 'redesign', label: lang === 'en' ? 'Redesign' : 'Redesign Web' },
+  { id: 'ai-automation', label: lang === 'en' ? 'AI Automation' : 'Otomatisasi AI' },
+  { id: 'seo-creative', label: lang === 'en' ? 'SEO & Video' : 'SEO & Video' },
   { id: 'maintenance', label: lang === 'en' ? 'Maintenance' : 'Maintenance' }
 ];
 
@@ -200,6 +202,94 @@ const packages = {
         'Desain visual custom premium',
         'Integrasi webhook otomatisasi CRM',
         'Revisi: Bebas'
+      ]
+    }
+  ],
+  'ai-automation': [
+    {
+      tier: 'AI CHATBOT',
+      title: lang === 'en' ? 'WhatsApp AI Chatbot' : 'AI Chatbot WA',
+      price: lang === 'en' ? 'From Rp 1,500,000' : 'Mulai Rp 1.500.000',
+      popular: true,
+      features: lang === 'en' ? [
+        'WhatsApp API integration',
+        '24/7 smart auto-reply',
+        'Custom FAQ database',
+        'Structured conversation flows',
+        'Automated human agent handover',
+        '3-month bug-free warranty'
+      ] : [
+        'Integrasi API WhatsApp',
+        'Auto-reply cerdas 24/7',
+        'Custom database tanya-jawab (FAQ)',
+        'Alur percakapan terstruktur',
+        'Handover ke admin manusia',
+        'Garansi bug-free 3 bulan'
+      ]
+    },
+    {
+      tier: 'AUTOMATION',
+      title: lang === 'en' ? 'Workflow Automation' : 'Automasi Alur Kerja',
+      price: lang === 'en' ? 'Custom' : 'Kustom',
+      popular: false,
+      features: lang === 'en' ? [
+        'Auto-sync leads to Google Sheets/CRM',
+        'Instant WhatsApp alert after submit',
+        'Webhook & 3rd party API integration',
+        'Automated client data synchronization',
+        'Active workflow monitoring',
+        'Custom revisions based on needs'
+      ] : [
+        'Automasi data leads ke Google Sheets/CRM',
+        'Notifikasi WhatsApp instan setelah form submit',
+        'Integrasi webhook & API pihak ketiga',
+        'Sinkronisasi data pelanggan otomatis',
+        'Pemantauan alur kerja aktif',
+        'Revisi kustom sesuai kebutuhan'
+      ]
+    }
+  ],
+  'seo-creative': [
+    {
+      tier: 'SEO OPTIMIZATION',
+      title: lang === 'en' ? 'Google SEO Optimization' : 'Optimasi SEO Google',
+      price: lang === 'en' ? 'From Rp 1,200,000' : 'Mulai Rp 1.200.000',
+      popular: false,
+      features: lang === 'en' ? [
+        'Google Search Console & GA4 Setup',
+        'Competitor keyword research',
+        'Heading & meta tags optimization (On-Page)',
+        'Sitemap & robots.txt generation',
+        'Optimized Google indexing guarantee',
+        'Monthly SEO performance report'
+      ] : [
+        'Setup Google Search Console & GA4',
+        'Audit kata kunci kompetitor (Keyword Research)',
+        'Optimasi heading & meta tags (On-Page SEO)',
+        'Peningkatan sitemap & robots.txt',
+        'Garansi indeks Google teroptimasi',
+        'Laporan performa SEO bulanan'
+      ]
+    },
+    {
+      tier: 'CREATIVE EDITING',
+      title: lang === 'en' ? 'Video & Creative Assets' : 'Video & Konten Kreatif',
+      price: lang === 'en' ? 'Contact Us' : 'Hubungi Kami',
+      popular: true,
+      features: lang === 'en' ? [
+        'Promo video editing (Reels/TikTok/Shorts)',
+        'Visual & digital branding alignment',
+        'Video script copywriting',
+        'Social media ad banner designs',
+        'High-resolution export formats',
+        '3x minor revisions'
+      ] : [
+        'Editing video promosi (Reels/TikTok/Shorts)',
+        'Penyelarasan visual & branding digital',
+        'Copywriting naskah/script video',
+        'Desain banner iklan media sosial',
+        'Format ekspor resolusi tinggi',
+        'Revisi minor: 3x'
       ]
     }
   ],

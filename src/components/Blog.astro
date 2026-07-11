@@ -1,4 +1,6 @@
 ---
+import { supabase } from '../lib/supabase';
+
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const content = {
@@ -86,29 +88,75 @@ const content = {
   }
 }[lang];
 
-const posts = content.posts;
+// Fetch dynamic posts from database
+let dbPosts = [];
+try {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if (data && data.length > 0) {
+    dbPosts = data;
+  }
+} catch (e) {
+  console.error('Error loading posts from database:', e);
+}
+
+// Fallback to static posts if database is empty
+const rawPosts = dbPosts.length > 0 ? dbPosts : content.posts;
+
+const posts = rawPosts.map(p => ({
+  slug: p.slug,
+  title: p.title,
+  date: p.date,
+  category: p.category,
+  bgCategory: p.bg_category || p.bgCategory || 'bg-blue-100 text-blue-650 border-blue-200',
+  description: p.description
+}));
 ---
 <section id="blog" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-100">
   <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     
-    <!-- Section Header -->
-    <div class="max-w-3xl mb-20 reveal-on-scroll mx-auto text-center">
+    <!-- Left-aligned Section Header -->
+    <div class="mb-12 text-left reveal-on-scroll">
       <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
       <h3 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
         {content.title1}<br/>
         <span class="text-stroke-neon">{content.title2}</span>
       </h3>
-      <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold max-w-xl mx-auto">
+      <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl">
         {content.desc}
       </p>
     </div>
 
+    <!-- Category Filter Tabs -->
+    <div class="flex flex-wrap gap-2.5 mb-14 border-b border-slate-100 pb-8 reveal-on-scroll">
+      <button data-filter="ALL" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-slate-950 text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-[3px_3px_0px_#2563eb]">
+        SEMUA
+      </button>
+      <button data-filter="AI & OTOMATISASI" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+        AI & Otomatisasi
+      </button>
+      <button data-filter="IT & WEB DEVELOP" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+        IT & Web Develop
+      </button>
+      <button data-filter="SEO & MARKETING" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+        SEO & Marketing
+      </button>
+      <button data-filter="VIDEO & CREATIVE" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+        Video & Creative
+      </button>
+    </div>
+
     <!-- Blog Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <div id="latest-posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
       {posts.map((post) => (
-        <article class="p-8 bg-white border-2 border-slate-900 rounded-3xl shadow-[5px_5px_0px_#0f172a] hover:shadow-[2px_2px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex flex-col justify-between h-full reveal-on-scroll">
+        <article 
+          data-category={post.category}
+          class="blog-post-card p-8 bg-white border-2 border-slate-950 rounded-3xl shadow-[5px_5px_0px_#0f172a] hover:shadow-[2px_2px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex flex-col justify-between h-full reveal-on-scroll"
+        >
           <div class="space-y-4">
             <div class="flex items-center justify-between text-[10px] font-mono font-bold text-slate-400">
               <span>{post.date}</span>
@@ -132,3 +180,38 @@ const posts = content.posts;
     </div>
   </div>
 </section>
+
+<script>
+  const filterTabs = document.querySelectorAll('.btn-filter-tab');
+  const postCards = document.querySelectorAll('.blog-post-card');
+
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const filterValue = tab.getAttribute('data-filter')!;
+
+      // Update active button styling
+      filterTabs.forEach(t => {
+        t.classList.remove('bg-slate-950', 'text-white', 'shadow-[3px_3px_0px_#2563eb]');
+        t.classList.add('bg-white', 'text-slate-950');
+      });
+      tab.classList.remove('bg-white', 'text-slate-950');
+      tab.classList.add('bg-slate-950', 'text-white', 'shadow-[3px_3px_0px_#2563eb]');
+
+      // Filter cards
+      if (filterValue === 'ALL') {
+        postCards.forEach(card => {
+          (card as HTMLElement).style.display = 'flex';
+        });
+      } else {
+        postCards.forEach(card => {
+          const cardCat = card.getAttribute('data-category');
+          if (cardCat === filterValue) {
+            (card as HTMLElement).style.display = 'flex';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      }
+    });
+  });
+</script>

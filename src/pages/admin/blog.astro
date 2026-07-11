@@ -1,0 +1,406 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Logo from '../../components/Logo.astro';
+---
+
+<Layout title="Kelola Blog | LUMOVELO" description="Panel pusat pengelola artikel blog Lumovelo." noindex={true}>
+  <div id="admin-layout" class="hidden min-h-screen bg-slate-950 text-slate-100 flex font-sans select-none">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 border-r border-slate-800 bg-slate-900 flex flex-col justify-between shrink-0">
+      <div>
+        <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center">
+            <Logo class="w-4 h-4 text-white" />
+          </div>
+          <span class="font-display font-black text-base tracking-widest text-white">LUMOVELO</span>
+        </div>
+
+        <nav class="p-4 space-y-1.5">
+          <a href="/admin/dashboard/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            📊 Ringkasan Panel
+          </a>
+          <a href="/admin/finance/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            💰 Laporan Keuangan
+          </a>
+          <a href="/admin/profit-sharing/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            🤝 Bagi Hasil Tim
+          </a>
+          <a href="/admin/blog/" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 text-xs font-black uppercase tracking-wider">
+            ✍️ Kelola Blog
+          </a>
+          <a href="/workspace/invoice/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
+            📄 Buat Dokumen
+          </a>
+        </nav>
+      </div>
+
+      <div class="p-4 border-t border-slate-800">
+        <button id="btn-logout" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white text-xs font-black uppercase tracking-widest transition-all cursor-pointer">
+          🚪 Keluar Dashboard
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col min-w-0">
+      <header class="h-20 border-b border-slate-800 bg-slate-900/40 px-8 flex items-center justify-between">
+        <div>
+          <h1 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-widest">KELOLA ARTIKEL BLOG</h1>
+          <p class="text-xs text-slate-500 mt-0.5">Tulis, edit, dan kelola wawasan edukasi teknologi Lumovelo.</p>
+        </div>
+        <div>
+          <button id="btn-add-post" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-black uppercase tracking-widest shadow-lg shadow-blue-500/20 transition-all cursor-pointer">
+            ➕ Tambah Artikel
+          </button>
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="p-8 overflow-y-auto flex-1 space-y-6">
+        
+        <!-- Filters Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900/30 p-4 border border-slate-800 rounded-2xl">
+          <div class="space-y-1">
+            <label for="filter-category" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Saring Kategori</label>
+            <select id="filter-category" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors">
+              <option value="ALL">SEMUA KATEGORI</option>
+              <option value="AI & OTOMATISASI">AI & OTOMATISASI</option>
+              <option value="IT & WEB DEVELOP">IT & WEB DEVELOP</option>
+              <option value="SEO & MARKETING">SEO & MARKETING</option>
+              <option value="VIDEO & CREATIVE">VIDEO & CREATIVE</option>
+            </select>
+          </div>
+          <div class="space-y-1">
+            <label for="search-title" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Cari Judul Postingan</label>
+            <input type="text" id="search-title" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors" placeholder="Ketik kata kunci judul..." />
+          </div>
+        </div>
+
+        <!-- Tabular List -->
+        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="border-b border-slate-800/80 bg-slate-950/40 text-slate-400 font-bold">
+                  <th class="p-4">JUDUL ARTIKEL</th>
+                  <th class="p-4">KATEGORI</th>
+                  <th class="p-4">TANGGAL RILIS</th>
+                  <th class="p-4">SLUG</th>
+                  <th class="p-4 text-right">AKSI</th>
+                </tr>
+              </thead>
+              <tbody id="blog-table-body" class="divide-y divide-slate-800/50 text-slate-300">
+                <tr>
+                  <td colspan="5" class="p-8 text-center text-slate-500 font-medium">Memuat data artikel...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add/Edit Blog Post Modal -->
+  <div id="post-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl p-6 space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
+      <h3 id="modal-title" class="font-display font-black text-sm text-white uppercase tracking-wider">Tambah Artikel Baru</h3>
+      
+      <form id="modal-form" class="space-y-3.5 text-xs text-slate-300">
+        <input type="hidden" id="modal-post-id" />
+        
+        <div class="space-y-1">
+          <label for="modal-post-title" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Judul Artikel *</label>
+          <input type="text" id="modal-post-title" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="Cara Praktis Menggunakan AI Chatbot..." />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="space-y-1">
+            <label for="modal-post-slug" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Slug URL (Unik) *</label>
+            <input type="text" id="modal-post-slug" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none font-mono" placeholder="cara-praktis-chatbot-ai" />
+          </div>
+          <div class="space-y-1">
+            <label for="modal-post-date" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Tanggal Rilis *</label>
+            <input type="text" id="modal-post-date" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="05 JULI 2026" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="space-y-1">
+            <label for="modal-post-category" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Kategori *</label>
+            <select id="modal-post-category" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none">
+              <option value="AI & OTOMATISASI">AI & OTOMATISASI</option>
+              <option value="IT & WEB DEVELOP">IT & WEB DEVELOP</option>
+              <option value="SEO & MARKETING">SEO & MARKETING</option>
+              <option value="VIDEO & CREATIVE">VIDEO & CREATIVE</option>
+            </select>
+          </div>
+          <div class="space-y-1">
+            <label for="modal-post-bg" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Styling Badge HTML</label>
+            <input type="text" id="modal-post-bg" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="bg-indigo-100 text-indigo-750 border-indigo-200" />
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label for="modal-post-desc" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Ringkasan Artikel (Description) *</label>
+          <textarea id="modal-post-desc" required rows="2" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none resize-none" placeholder="Menghemat waktu operasional customer service dengan integrasi agen AI..."></textarea>
+        </div>
+
+        <div class="space-y-1">
+          <label for="modal-post-content" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Isi Konten Artikel (Format HTML) *</label>
+          <textarea id="modal-post-content" required rows="8" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none font-mono" placeholder="&lt;p class='mb-6'&gt;Teks artikel...&lt;/p&gt;"></textarea>
+        </div>
+
+        <div class="pt-4 flex justify-end gap-3 text-xs">
+          <button type="button" id="modal-btn-cancel" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all cursor-pointer">
+            Batal
+          </button>
+          <button type="submit" id="modal-btn-save" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all cursor-pointer">
+            Simpan Artikel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    import { supabase } from '../../lib/supabase';
+
+    const adminLayout = document.getElementById('admin-layout')!;
+    const btnLogout = document.getElementById('btn-logout')!;
+    const btnAddPost = document.getElementById('btn-add-post')!;
+    const postModal = document.getElementById('post-modal')!;
+    const modalForm = document.getElementById('modal-form') as HTMLFormElement;
+    
+    const filterCategory = document.getElementById('filter-category') as HTMLSelectElement;
+    const searchTitle = document.getElementById('search-title') as HTMLInputElement;
+
+    const modalTitle = document.getElementById('modal-title')!;
+    const modalPostId = document.getElementById('modal-post-id') as HTMLInputElement;
+    const modalPostTitle = document.getElementById('modal-post-title') as HTMLInputElement;
+    const modalPostSlug = document.getElementById('modal-post-slug') as HTMLInputElement;
+    const modalPostDate = document.getElementById('modal-post-date') as HTMLInputElement;
+    const modalPostCategory = document.getElementById('modal-post-category') as HTMLSelectElement;
+    const modalPostBg = document.getElementById('modal-post-bg') as HTMLInputElement;
+    const modalPostDesc = document.getElementById('modal-post-desc') as HTMLTextAreaElement;
+    const modalPostContent = document.getElementById('modal-post-content') as HTMLTextAreaElement;
+    const modalBtnCancel = document.getElementById('modal-btn-cancel')!;
+
+    let allPosts: any[] = [];
+    let filteredPosts: any[] = [];
+
+    // Session validation
+    async function validateAdminSession() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = '/admin/login/';
+      } else {
+        adminLayout.classList.remove('hidden');
+        loadBlogPosts();
+      }
+    }
+    validateAdminSession();
+
+    // Fetch posts
+    async function loadBlogPosts() {
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          // Table might not exist yet, we will just show empty state or alert
+          console.warn('Post table not ready or error:', error);
+          allPosts = [];
+        } else {
+          allPosts = data || [];
+        }
+        applyFilters();
+      } catch (err) {
+        console.error('Error loading posts:', err);
+      }
+    }
+
+    // Filters
+    function applyFilters() {
+      const cat = filterCategory.value;
+      const q = searchTitle.value.toLowerCase().trim();
+
+      filteredPosts = allPosts.filter(p => {
+        const matchCat = cat === 'ALL' || p.category === cat;
+        const matchTitle = !q || p.title.toLowerCase().includes(q);
+        return matchCat && matchTitle;
+      });
+
+      renderTable();
+    }
+
+    // Render HTML Table
+    function renderTable() {
+      const tableBody = document.getElementById('blog-table-body')!;
+      if (filteredPosts.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="5" class="p-8 text-center text-slate-500 font-medium">Tidak ada artikel blog ditemukan. Klik "Tambah Artikel" untuk membuat artikel pertama.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      tableBody.innerHTML = filteredPosts.map(p => {
+        return `
+          <tr class="hover:bg-slate-900/20 transition-colors">
+            <td class="p-4">
+              <div class="font-bold text-white max-w-sm sm:max-w-md truncate" title="${p.title}">${p.title}</div>
+            </td>
+            <td class="p-4 font-mono font-bold text-blue-400 text-[10px]">${p.category}</td>
+            <td class="p-4 text-slate-400 font-mono">${p.date}</td>
+            <td class="p-4 text-slate-400 font-mono">${p.slug}</td>
+            <td class="p-4 text-right space-x-2 shrink-0">
+              <button data-id="${p.id}" class="btn-edit px-2.5 py-1.5 rounded-lg bg-blue-600/10 border border-blue-500/20 text-blue-400 hover:bg-blue-600 hover:text-white transition-all cursor-pointer font-bold uppercase tracking-wider text-[9px]">Edit</button>
+              <button data-id="${p.id}" class="btn-delete px-2.5 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white transition-all cursor-pointer font-bold uppercase tracking-wider text-[9px]">Hapus</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      // Add event listeners to table action buttons
+      tableBody.querySelectorAll('.btn-edit').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = (e.currentTarget as HTMLButtonElement).getAttribute('data-id');
+          openEditModal(id);
+        });
+      });
+
+      tableBody.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = (e.currentTarget as HTMLButtonElement).getAttribute('data-id');
+          handleDeletePost(id);
+        });
+      });
+    }
+
+    // Modal Control
+    function resetForm() {
+      modalPostId.value = '';
+      modalPostTitle.value = '';
+      modalPostSlug.value = '';
+      modalPostDesc.value = '';
+      modalPostContent.value = '';
+      modalPostCategory.value = 'AI & OTOMATISASI';
+      
+      // Auto-set current date like "05 JULI 2026"
+      const monthNamesID = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
+      const d = new Date();
+      modalPostDate.value = `${String(d.getDate()).padStart(2, '0')} ${monthNamesID[d.getMonth()]} ${d.getFullYear()}`;
+      modalPostBg.value = 'bg-blue-100 text-blue-650 border-blue-200';
+    }
+
+    function openCreateModal() {
+      modalTitle.innerText = "Tambah Artikel Baru";
+      resetForm();
+      postModal.classList.remove('hidden');
+    }
+
+    function openEditModal(id: string | null) {
+      const post = allPosts.find(p => p.id === id);
+      if (!post) return;
+
+      modalTitle.innerText = "Edit Artikel";
+      modalPostId.value = post.id;
+      modalPostTitle.value = post.title;
+      modalPostSlug.value = post.slug;
+      modalPostDate.value = post.date;
+      modalPostCategory.value = post.category;
+      modalPostBg.value = post.bg_category || post.bgCategory || 'bg-blue-100 text-blue-650 border-blue-200';
+      modalPostDesc.value = post.description;
+      modalPostContent.value = post.content;
+
+      postModal.classList.remove('hidden');
+    }
+
+    function closePostModal() {
+      postModal.classList.add('hidden');
+    }
+
+    // Auto-generate Slug on Title input
+    modalPostTitle.addEventListener('input', () => {
+      if (!modalPostId.value) { // Only auto-generate for new posts
+        modalPostSlug.value = modalPostTitle.value
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '') // remove non-word chars
+          .replace(/\s+/g, '-')     // replace spaces with hyphens
+          .replace(/-+/g, '-');     // remove duplicate hyphens
+      }
+    });
+
+    // Form Submit (Save / Update)
+    modalForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const id = modalPostId.value;
+      const payload = {
+        title: modalPostTitle.value.trim(),
+        slug: modalPostSlug.value.trim().toLowerCase(),
+        date: modalPostDate.value.trim(),
+        category: modalPostCategory.value,
+        bg_category: modalPostBg.value.trim(),
+        description: modalPostDesc.value.trim(),
+        content: modalPostContent.value.trim()
+      };
+
+      try {
+        if (id) {
+          // Edit
+          const { error } = await supabase
+            .from('posts')
+            .update(payload)
+            .eq('id', id);
+          if (error) throw error;
+        } else {
+          // Create
+          const { error } = await supabase
+            .from('posts')
+            .insert([payload]);
+          if (error) throw error;
+        }
+
+        closePostModal();
+        loadBlogPosts();
+      } catch (err: any) {
+        alert('Gagal menyimpan postingan. Pastikan slug unik dan tabel database "posts" sudah dibuat.\nError: ' + err.message);
+      }
+    });
+
+    // Delete Post
+    async function handleDeletePost(id: string | null) {
+      if (!confirm('Apakah Anda yakin ingin menghapus artikel ini permanen?')) return;
+
+      try {
+        const { error } = await supabase
+          .from('posts')
+          .delete()
+          .eq('id', id);
+
+        if (error) throw error;
+        loadBlogPosts();
+      } catch (err: any) {
+        alert('Gagal menghapus artikel.\nError: ' + err.message);
+      }
+    }
+
+    // Event Listeners for controls
+    btnAddPost.addEventListener('click', openCreateModal);
+    modalBtnCancel.addEventListener('click', closePostModal);
+    filterCategory.addEventListener('change', applyFilters);
+    searchTitle.addEventListener('input', applyFilters);
+
+    btnLogout.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = '/admin/login/';
+    });
+  </script>
+</Layout>

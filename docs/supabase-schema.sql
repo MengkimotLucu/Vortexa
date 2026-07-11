@@ -82,3 +82,29 @@ CREATE POLICY "Allow public read wedding_invitations" ON public.wedding_invitati
 CREATE POLICY "Allow public insert wedding_invitations" ON public.wedding_invitations FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow public update wedding_invitations" ON public.wedding_invitations FOR UPDATE USING (true);
 CREATE POLICY "Allow public delete wedding_invitations" ON public.wedding_invitations FOR DELETE USING (true);
+
+
+-- 4. Create table for Blog Posts
+CREATE TABLE IF NOT EXISTS public.posts (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    slug TEXT UNIQUE NOT NULL,
+    title TEXT NOT NULL,
+    date TEXT NOT NULL,
+    category TEXT NOT NULL,
+    bg_category TEXT DEFAULT 'bg-blue-100 text-blue-650 border-blue-200',
+    description TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Enable Row Level Security (RLS)
+ALTER TABLE public.posts ENABLE ROW LEVEL SECURITY;
+
+-- Create policies for posts (public read, public write to align with existing document policies)
+CREATE POLICY "Allow public read posts" ON public.posts FOR SELECT USING (true);
+CREATE POLICY "Allow public insert posts" ON public.posts FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow public update posts" ON public.posts FOR UPDATE USING (true);
+CREATE POLICY "Allow public delete posts" ON public.posts FOR DELETE USING (true);
+
+-- 5. Add image_url column to Posts
+ALTER TABLE public.posts ADD COLUMN IF NOT EXISTS image_url TEXT;
