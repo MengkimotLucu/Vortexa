@@ -6,9 +6,74 @@ import WhyChooseUs from '../components/WhyChooseUs.astro';
 import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
+
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const faqs = {
+  id: [
+    {
+      q: "Apakah LUMOVELO menerapkan biaya langganan bulanan?",
+      a: "Tidak. Kami hanya mengenakan biaya satu kali untuk jasa desain, koding, dan integrasi awal. Untuk penyimpanan file (hosting), kami merancang arsitektur serverless sehingga Anda bisa memanfaatkan kuota gratis serverless dari penyedia global seperti Vercel atau Netlify secara permanen untuk trafik normal bisnis Anda."
+    },
+    {
+      q: "Berapa lama estimasi waktu pembuatan website?",
+      a: "Untuk pengerjaan landing page konversi tinggi siap pakai biasanya memakan waktu antara 5 hingga 7 hari kerja. Sedangkan untuk aplikasi web kustom yang memerlukan visualisasi dasbor kompleks atau integrasi sistem otomatisasi AI membutuhkan waktu berkisar antara 2 hingga 4 minggu."
+    },
+    {
+      q: "Bagaimana cara saya memperbarui konten website di kemudian hari?",
+      a: "Kami mengintegrasikan dasbor manajemen konten (headless CMS) yang sangat praktis dan intuitif. Anda dapat mengganti teks, memperbarui harga produk, mengunggah foto, dan mempublikasikan tulisan blog baru secara mandiri melalui HP atau laptop tanpa harus menyentuh kode pemrograman."
+    },
+    {
+      q: "Apakah website buatan LUMOVELO aman dari serangan hacker?",
+      a: "Ya. Karena kami menggunakan struktur arsitektur statis serverless, website Anda tidak memiliki server database SQL yang rentan dibobol. Ini meminimalisir celah keamanan secara signifikan, menjadikannya sangat aman dan hampir tidak mungkin diretas dibanding website CMS konvensional."
+    },
+    {
+      q: "Apakah website yang didesain sudah SEO-friendly?",
+      a: "Tentu saja. Kami mengimplementasikan praktik terbaik SEO teknis (technical SEO), mulai dari tag heading semantik, optimasi metadata, kecepatan loading maksimal, hingga struktur sitemap dan robots.txt yang ramah mesin pencari Google."
+    }
+  ],
+  en: [
+    {
+      q: "Does LUMOVELO charge a monthly subscription fee?",
+      a: "No. We only charge a one-time fee for design, development, and initial integration. For hosting, we design a serverless architecture so you can leverage free tier quotas from global providers like Vercel or Netlify permanently for normal traffic."
+    },
+    {
+      q: "What is the estimated time to build a website?",
+      a: "Developing a ready-to-use high-converting landing page usually takes 5 to 7 business days. Custom web applications requiring complex dashboard visualization or AI automation workflows take around 2 to 4 weeks."
+    },
+    {
+      q: "How can I update my website content in the future?",
+      a: "We integrate a highly practical and intuitive headless CMS. You can modify text, update prices, upload photos, and publish new blog posts independently from your mobile phone or laptop without writing code."
+    },
+    {
+      q: "Is a website built by LUMOVELO secure from hackers?",
+      a: "Yes. Since we use a headless serverless static architecture, your website does not have an active SQL database server vulnerable to breaches, significantly minimizing security flaws compared to traditional CMS platforms."
+    },
+    {
+      q: "Is the designed website SEO-friendly?",
+      a: "Absolutely. We implement technical SEO best practices, including semantic heading tags, metadata optimization, maximized load speed, and search-engine-friendly sitemap/robots.txt structures."
+    }
+  ]
+}[lang];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 
 <Layout>
+  <!-- JSON-LD FAQ Schema Markup -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+
   <!-- Main layout container for Lumovelo agency -->
   <main class="relative z-10 bg-white">
     <!-- Hero Section with Interactive Kinetic Workspace -->

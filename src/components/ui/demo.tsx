@@ -40,7 +40,7 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
     {
       text: "Desain UI/UX yang dibuat Lumovelo sangat fresh dan modern. Pengunjung betah berlama-lama di web kami, bounce rate turun hingga 40% dalam beberapa minggu.",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
-      name: "Dian Sastro",
+      name: "Dian",
       role: "Head of Marketing, Retailindo",
     },
     {
@@ -96,7 +96,7 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
     {
       text: "The UI/UX design created by Lumovelo is very fresh and modern. Visitors stay longer on our web, bounce rates dropped by 40% in just a few weeks.",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
-      name: "Dian Sastro",
+      name: "Dian",
       role: "Head of Marketing, Retailindo",
     },
     {

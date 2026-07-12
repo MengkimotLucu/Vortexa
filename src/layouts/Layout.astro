@@ -7,6 +7,7 @@ interface Props {
   title?: string;
   description?: string;
   lang?: string;
+  noindex?: boolean;
 }
 
 const currentLocale = Astro.url.pathname.startsWith('/en/') || Astro.url.pathname === '/en' ? 'en' : 'id';
@@ -24,7 +25,8 @@ const defaultDescriptions = {
 const { 
   title = defaultTitles[currentLocale], 
   description = defaultDescriptions[currentLocale],
-  lang = currentLocale
+  lang = currentLocale,
+  noindex = false
 } = Astro.props;
 
 const isWorkspaceOrAdmin = Astro.url.pathname.includes('/admin') || Astro.url.pathname.includes('/workspace');
@@ -79,18 +81,37 @@ const alternates = getAlternates(Astro.url.pathname);
     <link rel="alternate" hreflang="id" href={alternates.id} />
     <link rel="alternate" hreflang="en" href={alternates.en} />
     <link rel="alternate" hreflang="x-default" href={alternates.id} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     
     <!-- Google Tag Manager -->
     <script is:inline>
-      window.addEventListener('load', () => {
-        setTimeout(() => {
+      (function() {
+        let gtmLoaded = false;
+        function loadGTM() {
+          if (gtmLoaded) return;
+          gtmLoaded = true;
+          
+          window.removeEventListener('scroll', loadGTM);
+          window.removeEventListener('mousemove', loadGTM);
+          window.removeEventListener('touchstart', loadGTM);
+          window.removeEventListener('click', loadGTM);
+          
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-TKCVBB6F');
-        }, 1000);
-      });
+        }
+        
+        window.addEventListener('scroll', loadGTM, { passive: true });
+        window.addEventListener('mousemove', loadGTM, { passive: true });
+        window.addEventListener('touchstart', loadGTM, { passive: true });
+        window.addEventListener('click', loadGTM, { passive: true });
+        
+        window.addEventListener('load', () => {
+          setTimeout(loadGTM, 4000);
+        });
+      })();
     </script>
     <!-- End Google Tag Manager -->
     
@@ -110,16 +131,16 @@ const alternates = getAlternates(Astro.url.pathname);
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://lumovelo.agency/" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content={new URL('/og-image.png', 'https://lumovelo.agency').href} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="/og-image.png" />
+    <meta property="twitter:image" content={new URL('/og-image.png', 'https://lumovelo.agency').href} />
     
     <!-- Meta Pixel / Google Analytics placeholders -->
     <script is:inline>

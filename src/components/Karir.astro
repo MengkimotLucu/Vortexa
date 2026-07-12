@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import careerHeroImg from '../assets/career-hero.png';
+
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const content = {
@@ -324,10 +327,11 @@ const vacancies = content.vacancies;
         
         <!-- Main Cutout Image (AI Generated PNG) -->
         <div class="relative z-10 w-[280px] h-[340px] md:w-[320px] md:h-[400px] select-none pointer-events-none transition-transform duration-300 hover:scale-[1.02]">
-          <img 
-            src="/career-hero.png" 
+          <Image 
+            src={careerHeroImg} 
             alt="Lumovelo Career Team" 
             class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(37,99,235,0.08)]"
+            loading="lazy"
           />
         </div>
 

@@ -1,4 +1,13 @@
 ---
+import { Image } from 'astro:assets';
+import imgFasteat from '../assets/portfolio-fasteat-mockup.png';
+import imgCompanyProfile from '../assets/portfolio-company-profile.png';
+import imgBuah from '../assets/portfolio-buah-mockup.png';
+import imgRedesignWeb from '../assets/portfolio-redesign-web.png';
+import imgXplored from '../assets/portfolio-xplored.png';
+import imgBelanjahub from '../assets/portfolio-belanjahub.png';
+import imgMaintenance from '../assets/portfolio-maintenance.png';
+
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const content = {
@@ -44,12 +53,15 @@ const projects = [
     categoryLabel: lang === 'en' ? 'Landing Page' : 'Landing Page',
     filePath: '~/lumovelo/portfolio/fasteat-cafe.png',
     title: 'FastEat Cafe & Restaurant',
-    image: '/portfolio-fasteat-mockup.png',
+    image: imgFasteat,
     tech: ['React', 'Vite', 'Tailwind CSS'],
     desc: lang === 'en' 
       ? 'A sleek and modern F&B landing page for FastEat Cafe & Restaurant featuring interactive menus, fast responsiveness, and smooth layouts.' 
       : 'Landing Page F&B moderen dan elegan untuk FastEat Cafe & Restaurant dengan menu interaktif, responsivitas tinggi, dan tata letak halus.',
     metric: lang === 'en' ? 'Design: 10/10' : 'Desain: 10/10',
+    altText: lang === 'en' 
+      ? "FastEat Cafe & Restaurant high converting landing page development"
+      : "Jasa pembuatan landing page F&B FastEat Cafe & Restaurant konversi tinggi",
     spanClass: 'md:col-span-8',
     heightClass: 'h-[380px]',
     waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
@@ -65,12 +77,15 @@ const projects = [
     categoryLabel: lang === 'en' ? 'Company Profile' : 'Company Profile',
     filePath: '~/lumovelo/portfolio/corp-profile.png',
     title: 'Apex Corp Global Profile',
-    image: '/portfolio-company-profile.png',
+    image: imgCompanyProfile,
     tech: ['Astro', 'Bento UI', 'Framer Motion'],
     desc: lang === 'en' 
       ? 'Multinational company profile website featuring an exclusive bento layout style, modern minimal graphics, and interactive elements.' 
       : 'Website profil perusahaan multinasional dengan gaya tata letak bento eksklusif, grafis minimalis modern, dan elemen interaktif.',
     metric: lang === 'en' ? 'Premium Bento Layout' : 'Desain Bento Eksklusif',
+    altText: lang === 'en' 
+      ? "Apex Corp Global Profile corporate website design & development"
+      : "Jasa pembuatan website company profile perusahaan multinasional - Apex Corp",
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
     waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
@@ -86,12 +101,15 @@ const projects = [
     categoryLabel: lang === 'en' ? 'E-Commerce' : 'Toko Online',
     filePath: '~/lumovelo/portfolio/ecommerce-buah.png',
     title: 'FruitFresh Organic Store',
-    image: '/portfolio-buah-mockup.png',
+    image: imgBuah,
     tech: ['Next.js', 'React', 'Tailwind CSS'],
     desc: lang === 'en' 
       ? 'A vibrant fruit e-commerce shop with smooth item grid selection, clean cart management, and modern minimalist design.' 
       : 'Toko online e-commerce buah organik segar dengan seleksi grid produk yang mulus, pengelolaan keranjang bersih, dan desain minimalis modern.',
     metric: lang === 'en' ? 'Uptime: 100%' : 'Uptime: 100%',
+    altText: lang === 'en' 
+      ? "FruitFresh Organic Store custom e-commerce website development"
+      : "Jasa pembuatan toko online e-commerce buah organik - FruitFresh",
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
     waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
@@ -107,12 +125,15 @@ const projects = [
     categoryLabel: lang === 'en' ? 'Web Redesign' : 'Redesign Web',
     filePath: '~/lumovelo/portfolio/redesign.png',
     title: 'Lumina Dashboard Redesign',
-    image: '/portfolio-redesign-web.png',
+    image: imgRedesignWeb,
     tech: ['Tailwind CSS', 'Astro', 'React'],
     desc: lang === 'en' 
       ? 'Complete visual overhaul converting a legacy website into a fast, high-performance, and modern responsive dashboard.' 
       : 'Overhaul visual total situs web lama menjadi dasbor responsif modern yang cepat dan dioptimalkan secara penuh.',
     metric: lang === 'en' ? 'Conversion +45%' : 'Laju Konversi +45%',
+    altText: lang === 'en' 
+      ? "Lumina Dashboard website overhaul and redesign service"
+      : "Jasa redesign website dasbor responsif modern - Lumina Dashboard",
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
     waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
@@ -123,17 +144,68 @@ const projects = [
     demoUrl: ''
   },
   {
+    id: 'xplored-agency',
+    category: 'company-profile',
+    categoryLabel: lang === 'en' ? 'Company Profile' : 'Company Profile',
+    filePath: '~/lumovelo/portfolio/xplored-agency.png',
+    title: 'Xplored UI Agency',
+    image: imgXplored,
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    desc: lang === 'en' 
+      ? 'A modern UI/UX design agency website mockup featuring interactive features, clean responsive layout, and beautiful bento grid sections.' 
+      : 'Website profil perusahaan agensi desain UI/UX modern dengan fitur interaktif, tata letak responsif bersih, dan bagian bento grid yang indah.',
+    metric: lang === 'en' ? 'Interactive UI' : 'UI Interaktif',
+    altText: lang === 'en' 
+      ? "Xplored UI Agency corporate website design and development"
+      : "Jasa pembuatan website company profile agensi desain UI/UX - Xplored",
+    spanClass: 'md:col-span-8',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the UI Agency Website (Xplored project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Website Agensi UI (proyek Xplored) yang saya lihat di portofolio.'
+    )}`,
+    demoUrl: 'https://xplored-zeta.vercel.app/'
+  },
+  {
+    id: 'belanjahub-marketing',
+    category: 'company-profile',
+    categoryLabel: lang === 'en' ? 'Company Profile' : 'Company Profile',
+    filePath: '~/lumovelo/portfolio/belanjahub-marketing.png',
+    title: 'BelanjaHub Marketing',
+    image: imgBelanjahub,
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    desc: lang === 'en' 
+      ? 'A sleek digital marketing agency landing page featuring service grids, animated stats, and modern illustrations.' 
+      : 'Landing page agensi pemasaran digital elegan yang dilengkapi grid layanan, animasi statistik, dan ilustrasi modern.',
+    metric: lang === 'en' ? 'SEO Optimized' : 'Teroptimasi SEO',
+    altText: lang === 'en' 
+      ? "BelanjaHub digital marketing agency landing page and SEO"
+      : "Jasa pembuatan website agensi pemasaran digital teroptimasi SEO - BelanjaHub",
+    spanClass: 'md:col-span-4',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the Digital Marketing Website (BelanjaHub project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Website Pemasaran Digital (proyek BelanjaHub) yang saya lihat di portofolio.'
+    )}`,
+    demoUrl: 'https://belanjahub.vercel.app/'
+  },
+  {
     id: 'maintenance',
     category: 'maintenance',
     categoryLabel: lang === 'en' ? 'Maintenance' : 'Pemeliharaan Web',
     filePath: '~/lumovelo/portfolio/maintenance.png',
     title: 'Priority Support & Cloud',
-    image: '/portfolio-maintenance.png',
+    image: imgMaintenance,
     tech: ['VPS Server', 'Cloudflare', 'Security Audit'],
     desc: lang === 'en' 
       ? 'Priority server maintenance and active monitoring with automated backups, uptime checks, and security firewall configuration.' 
       : 'Pemeliharaan server prioritas dan pemantauan aktif dengan pencadangan otomatis, pemeriksaan uptime, dan konfigurasi firewall keamanan.',
     metric: lang === 'en' ? 'System Uptime 99.9%' : 'Uptime Sistem: 99.9%',
+    altText: lang === 'en' 
+      ? "Priority server maintenance and active web support service"
+      : "Jasa pemeliharaan website bulanan dan monitoring uptime server - Priority Support",
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
     waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
@@ -191,7 +263,7 @@ const projects = [
         <div 
           class={`portfolio-card group relative overflow-hidden rounded-2xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-300 flex flex-col cursor-pointer ${project.spanClass} ${project.heightClass}`}
           data-category={project.category}
-          data-image={project.image}
+          data-image={project.image.src}
           data-title={project.title}
           data-desc={project.desc}
           data-tech={project.tech.join(' • ')}
@@ -214,9 +286,9 @@ const projects = [
 
           <!-- Image Area / Card Body -->
           <div class="relative flex-1 overflow-hidden min-h-[220px]">
-            <img 
+            <Image 
               src={project.image} 
-              alt={project.title}
+              alt={project.altText}
               class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700 ease-out"
               loading="lazy"
             />

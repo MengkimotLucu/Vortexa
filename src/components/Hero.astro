@@ -1,6 +1,8 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import Logo from './Logo.astro';
+import { Image } from 'astro:assets';
+import heroBg from '../assets/hero-bg.jpg';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
@@ -242,7 +244,14 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
   </div>
 </div>
 
-<section class="relative min-h-0 lg:min-h-0 flex flex-col items-center justify-center pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden bg-slate-950 bg-[url('/hero-bg.jpg')] bg-cover bg-center">
+<section class="relative min-h-0 lg:min-h-0 flex flex-col items-center justify-center pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden bg-slate-950">
+  <Image 
+    src={heroBg} 
+    alt="Lumovelo Hero Background" 
+    class="absolute inset-0 w-full h-full object-cover z-0"
+    loading="eager"
+    fetchpriority="high"
+  />
   <!-- Dark overlay to ensure text contrast -->
   <div class="absolute inset-0 bg-slate-950/40 z-10 pointer-events-none"></div>
 

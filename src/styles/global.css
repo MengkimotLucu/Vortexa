@@ -105,7 +105,8 @@
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease;
+  opacity: 0;
+  transition: opacity 0.5s ease, width 0.3s ease, height 0.3s ease;
   mix-blend-mode: screen;
 }
 
@@ -385,30 +386,7 @@ section:not([class*="pt-28"]):not([class*="pt-36"]) {
   100% { transform: translateY(0); }
 }
 
-/* Horizontal Infinite Marquee */
-.marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
-  width: 100%;
-}
 
-.marquee-content {
-  display: inline-flex;
-  gap: 3rem;
-  animation: marquee-scroll 35s linear infinite;
-  padding: 1.5rem 0;
-  will-change: transform;
-}
-
-.marquee-content:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee-scroll {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
-}
 
 /* Hero Light Cyber-Minimalist Background */
 .hero-tech-bg {
