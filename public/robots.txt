@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /workspace/
 
-Sitemap: https://lumovelo.agency/sitemap-index.xml
+Sitemap: https://lumovelo.com/sitemap-index.xml

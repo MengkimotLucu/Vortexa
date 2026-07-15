@@ -62,12 +62,12 @@ const getAlternates = (pathname: string) => {
   }
   
   return {
-    id: new URL(idRelative, 'https://lumovelo.agency').href,
-    en: new URL(enRelative, 'https://lumovelo.agency').href,
+    id: new URL(idRelative, 'https://lumovelo.com').href,
+    en: new URL(enRelative, 'https://lumovelo.com').href,
   };
 };
 
-const canonicalURL = new URL(Astro.url.pathname, 'https://lumovelo.agency').href;
+const canonicalURL = new URL(Astro.url.pathname, 'https://lumovelo.com').href;
 const alternates = getAlternates(Astro.url.pathname);
 ---
 
@@ -135,13 +135,13 @@ const alternates = getAlternates(Astro.url.pathname);
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL('/og-image.png', 'https://lumovelo.agency').href} />
+    <meta property="og:image" content={new URL('/og-image.png', 'https://lumovelo.com').href} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL('/og-image.png', 'https://lumovelo.agency').href} />
+    <meta property="twitter:image" content={new URL('/og-image.png', 'https://lumovelo.com').href} />
     
     <!-- Meta Pixel / Google Analytics placeholders -->
     <script is:inline>
@@ -157,9 +157,9 @@ const alternates = getAlternates(Astro.url.pathname);
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "name": "LUMOVELO",
-        "image": "https://lumovelo.agency/og-image.png",
-        "@id": "https://lumovelo.agency/#website",
-        "url": "https://lumovelo.agency",
+        "image": "https://lumovelo.com/og-image.png",
+        "@id": "https://lumovelo.com/#website",
+        "url": "https://lumovelo.com",
         "telephone": "+6285624353611",
         "priceRange": "$$",
         "address": {

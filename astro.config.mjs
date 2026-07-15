@@ -8,7 +8,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://lumovelo.agency',
+  site: 'https://lumovelo.com',
   adapter: vercel(),
   integrations: [sitemap(), react()],
   i18n: {
