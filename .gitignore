@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # temporary shell wrapper
 powershell.bat
+
+# Vercel
+.vercel/
