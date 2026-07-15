@@ -4,128 +4,204 @@ import Logo from '../../components/Logo.astro';
 ---
 
 <Layout title="Bagi Hasil Tim | LUMOVELO" description="Kalkulasi dan pencatatan bagi hasil tim internal agensi." noindex={true}>
-  <div id="admin-layout" class="hidden min-h-screen bg-slate-950 text-slate-100 flex font-sans select-none">
+  <div id="admin-layout" class="hidden min-h-screen dashboard-root grain flex">
     
     <!-- Sidebar Navigation -->
-    <aside class="w-64 border-r border-slate-800 bg-slate-900 flex flex-col justify-between shrink-0">
-      <div>
-        <div class="p-6 border-b border-slate-800 flex items-center gap-3">
-          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center">
-            <Logo class="w-4 h-4 text-white" />
-          </div>
-          <span class="font-display font-black text-base tracking-widest text-white">LUMOVELO</span>
+    <aside class="hidden lg:flex w-[248px] shrink-0 flex-col border-r border-[#1A1A1E] bg-[#0C0C0E]">
+      <!-- Logo -->
+      <div class="px-5 pt-6 pb-7 flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-[#C5F82A]">
+          <Logo class="w-4 h-4 text-[#0A0A0B]" />
         </div>
-
-        <nav class="p-4 space-y-1.5">
-          <a href="/admin/dashboard/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
-            📊 Ringkasan Panel
-          </a>
-          <a href="/admin/finance/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
-            💰 Laporan Keuangan
-          </a>
-          <a href="/admin/profit-sharing/" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 text-xs font-black uppercase tracking-wider">
-            🤝 Bagi Hasil Tim
-          </a>
-          <a href="/admin/blog/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
-            ✍️ Kelola Blog
-          </a>
-          <a href="/workspace/invoice/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
-            📄 Buat Dokumen
-          </a>
-        </nav>
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-semibold tracking-tight text-[15px] text-white">LUMOVELO</span>
+          <span class="mono text-[10px] text-[#5C5C63]">v2.4</span>
+        </div>
       </div>
 
-      <div class="p-4 border-t border-slate-800">
-        <button id="btn-logout" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white text-xs font-black uppercase tracking-widest transition-all cursor-pointer">
-          🚪 Keluar Dashboard
+      <!-- Workspace switcher -->
+      <div class="px-3 mb-5">
+        <div class="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg border border-[#232328] bg-[#131316]">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center text-[10px] font-bold bg-[#2A2A30] text-[#C5F82A]">LV</div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[12px] font-medium leading-tight text-white">Lumovelo Agency</div>
+            <div class="text-[10px] mono text-[#5C5C63]">workspace · admin</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <nav class="px-3 flex-1 overflow-y-auto scroll-thin" id="nav">
+        <div class="px-2.5 mb-1.5 mono text-[10px] uppercase tracking-wider text-[#5C5C63]">Analytics</div>
+        <a href="/admin/dashboard/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          Overview
+        </a>
+        <a href="/admin/finance/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+          Revenue
+        </a>
+        <a href="/admin/profit-sharing/" class="nav-item active flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#F4F4F2]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="6" r="2.5"/><path d="M14 21v-1a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v1"/></svg>
+          Bagi Hasil Tim
+        </a>
+        <a href="/admin/blog/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+          Kelola Blog
+        </a>
+        <a href="/admin/leads/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Leads AI
+        </a>
+        <a href="/admin/ai-settings/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Pengaturan AI
+        </a>
+
+        <div class="px-2.5 mb-1.5 mt-5 mono text-[10px] uppercase tracking-wider text-[#5C5C63]">Workspace</div>
+        <a href="/workspace/invoice/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          Buat Invoice
+        </a>
+      </nav>
+
+      <!-- User logout footer -->
+      <div class="px-3 pb-4 pt-1 border-t border-[#1A1A1E]">
+        <button id="btn-logout" class="w-full flex items-center gap-2.5 px-2 py-2 rounded-md hover:bg-[#16161A] transition text-left group">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold bg-[#2A2A30] text-[#F4F4F2]">AD</div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[12px] font-medium leading-tight text-white group-hover:text-[#F87171] transition-colors">Sign Out</div>
+            <div class="text-[10px] mono text-[#5C5C63]">administrator</div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#8A8A90] group-hover:text-[#F87171] transition-colors"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         </button>
       </div>
     </aside>
 
     <!-- Main Content Area -->
-    <main class="flex-1 flex flex-col min-w-0">
-      <header class="h-20 border-b border-slate-800 bg-slate-900/40 px-8 flex items-center justify-between">
-        <div>
-          <h1 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-widest">BAGI HASIL REKAN TIM</h1>
-          <p class="text-xs text-slate-500 mt-0.5">Kelola kalkulasi komisi proyek secara transparan.</p>
+    <main class="flex-1 min-w-0 flex flex-col">
+      <!-- Top bar -->
+      <header class="sticky top-0 z-20 flex items-center gap-3 px-4 lg:px-8 h-16 border-b border-[#1A1A1E] backdrop-blur-md bg-[rgba(10,10,11,0.78)]">
+        <button class="lg:hidden p-2 rounded-md hover:bg-[#16161A] text-white">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+        <div class="hidden md:flex items-center gap-2 text-[13px] text-[#8A8A90]">
+          <span>Lumovelo</span>
+          <span class="text-[#5C5C63]">/</span>
+          <span class="text-[#F4F4F2] font-medium">Bagi Hasil Tim</span>
         </div>
       </header>
 
-      <!-- Body -->
-      <div class="p-8 overflow-y-auto flex-1 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Content -->
+      <div class="flex-1 overflow-y-auto scroll-thin px-4 lg:px-8 py-7 grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Left 1 Col: Form Calculator -->
+        <!-- Left Column: Form Calculator -->
         <div class="lg:col-span-1 space-y-6">
-          
-          <!-- Interactive Calculator -->
-          <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 space-y-4">
-            <h3 class="font-display font-black text-sm text-white uppercase tracking-wider">Kalkulator Pembagian Hasil</h3>
+          <section>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="live-dot w-1.5 h-1.5 rounded-full bg-[#C5F82A]"></span>
+              <span class="mono text-[11px] uppercase tracking-wider text-[#8A8A90]">BAGI HASIL TIM REKAN</span>
+            </div>
+            <h1 class="serif text-[44px] leading-[0.95] text-white">Bagi Hasil</h1>
+            <p class="mt-2 text-[14px] text-[#8A8A90]">Kalkulasikan komisi pembagian hasil untuk rekan tim secara transparan dan aman.</p>
+          </section>
+
+          <!-- Calculator panel -->
+          <div class="card p-5 space-y-4 border border-[#232328]">
+            <h3 class="serif text-xl text-white">Kalkulator Bagi Hasil</h3>
             
-            <div class="grid grid-cols-1 gap-4">
-              <div class="space-y-1">
-                <label for="calc-doc" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Pilih Proyek / Invoice</label>
-                <select id="calc-doc" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors">
+            <div class="space-y-4">
+              <div class="space-y-1.5">
+                <label for="calc-doc" class="text-[10px] font-mono font-bold text-[#8A8A90] uppercase tracking-wider">Pilih Proyek / Invoice</label>
+                <select id="calc-doc" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors">
                   <option value="">PILIH PROYEK (INVOICE)</option>
                 </select>
               </div>
-              <div class="space-y-1">
-                <label for="calc-amount" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Nilai Proyek (IDR)</label>
-                <input type="number" id="calc-amount" disabled class="w-full bg-slate-950/40 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-400 focus:outline-none" placeholder="Pilih proyek terlebih dahulu" />
+              <div class="space-y-1.5">
+                <label for="calc-amount" class="text-[10px] font-mono font-bold text-[#8A8A90] uppercase tracking-wider">Nilai Proyek (IDR)</label>
+                <input type="number" id="calc-amount" disabled class="w-full bg-[#0A0A0B]/40 border border-[#232328] rounded-xl px-3 py-2 text-xs text-slate-400 focus:outline-none" placeholder="Pilih proyek terlebih dahulu" />
               </div>
             </div>
 
-            <!-- Dynamic Team Members Split Inputs -->
-            <div class="space-y-2">
-              <label class="text-[10px] font-mono font-bold text-slate-400 uppercase block mb-1">Rincian Penerima Komisi</label>
+            <!-- Dynamic Team Members splits -->
+            <div class="space-y-3">
+              <label class="text-[10px] font-mono font-bold text-[#8A8A90] uppercase tracking-wider block">Rincian Penerima Komisi</label>
               
               <div id="members-list-container" class="space-y-3">
                 <!-- Row 1: Kas Agensi (Default) -->
-                <div class="flex items-center gap-3 bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
+                <div class="flex items-center gap-3 bg-[#0A0A0B]/40 p-3 rounded-xl border border-[#232328]">
                   <div class="flex-1 font-bold text-xs text-white">Kas Agensi (Lumovelo)</div>
                   <div class="w-20 shrink-0">
-                    <input type="number" value="60" id="share-agensi" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-2 py-1 text-xs text-center text-white focus:outline-none transition-colors share-percent-input" />
+                    <input type="number" value="60" id="share-agensi" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg px-2 py-1 text-xs text-center text-white focus:outline-none transition-colors share-percent-input" />
                   </div>
-                  <div class="text-xs font-mono font-bold text-slate-400 shrink-0 w-24 text-right" id="share-val-agensi">Rp 0</div>
+                  <div class="text-xs font-mono font-bold text-[#8A8A90] shrink-0 w-24 text-right" id="share-val-agensi">Rp 0</div>
                 </div>
               </div>
 
               <!-- Button Add Member -->
-              <button type="button" id="btn-add-member" class="px-4 py-2 border border-dashed border-slate-700 hover:border-slate-500 rounded-xl text-[10px] font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all cursor-pointer">
+              <button type="button" id="btn-add-member" class="w-full py-2.5 border border-dashed border-[#232328] hover:border-[#8A8A90] rounded-xl text-[10px] font-bold uppercase tracking-wider text-[#8A8A90] hover:text-white transition-all cursor-pointer">
                 + Tambah Anggota Pelaksana
               </button>
             </div>
 
             <!-- Total validation alert -->
-            <div id="total-alert" class="hidden text-xs text-rose-500 font-bold">Total persentase harus tepat 100%!</div>
+            <div id="total-alert" class="hidden text-xs text-[#F87171] font-bold">Total persentase harus tepat 100%!</div>
 
-            <button type="button" id="btn-save-sharing" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl text-xs font-black uppercase tracking-widest cursor-pointer shadow-lg shadow-blue-500/20 transition-all">
-              Simpan Pembagian Hasil Ke Database
+            <button type="button" id="btn-save-sharing" class="w-full bg-[#C5F82A] hover:opacity-90 text-[#0A0A0B] py-3 rounded-xl text-xs font-bold uppercase tracking-widest cursor-pointer transition-all">
+              Simpan Pembagian Hasil
             </button>
           </div>
         </div>
 
-        <!-- Right 2 Cols: DB Log -->
+        <!-- Right Column: Database Log -->
         <div class="lg:col-span-2 space-y-6">
-          <!-- Log table of saved sharing entries -->
-          <div class="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
-            <div class="p-6 border-b border-slate-800">
-              <h3 class="font-display font-black text-sm text-white uppercase tracking-wider">Riwayat Pembagian Terdaftar</h3>
+          <!-- Summary Card -->
+          <div class="card overflow-hidden border border-[#232328]">
+            <div class="p-5 border-b border-[#1A1A1E]">
+              <h2 class="text-[15px] font-semibold text-white">Akumulasi Penerimaan Tim</h2>
+              <p class="text-[12px] mt-0.5 text-[#8A8A90]">Total seluruh dana komisi bagi hasil terakumulasi per penerima</p>
             </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left border-collapse text-xs">
+            <div class="overflow-x-auto scroll-thin">
+              <table class="w-full text-[13px]">
                 <thead>
-                  <tr class="border-b border-slate-800/80 bg-slate-950/40 text-slate-400 font-bold">
-                    <th class="p-4">NAMA</th>
-                    <th class="p-4">PERAN</th>
-                    <th class="p-4">PERSENTASE</th>
-                    <th class="p-4">JUMLAH DITERIMA</th>
-                    <th class="p-4">STATUS</th>
-                    <th class="p-4">AKSI</th>
+                  <tr class="text-[10px] mono uppercase tracking-wider text-[#5C5C63] bg-[#0E0E11]">
+                    <th class="px-5 py-3 text-left font-medium">Nama Anggota</th>
+                    <th class="px-3 py-3 text-left font-medium">Peran Utama</th>
+                    <th class="px-3 py-3 text-left font-medium">Proyek Diikuti</th>
+                    <th class="px-3 py-3 text-right font-medium text-emerald-400">Lunas (Paid)</th>
+                    <th class="px-3 py-3 text-right font-medium text-amber-400">Pending (Unpaid)</th>
+                    <th class="px-5 py-3 text-right font-medium">Total Akumulasi</th>
                   </tr>
                 </thead>
-                <tbody id="sharing-log-body" class="divide-y divide-slate-800/50 text-slate-300">
+                <tbody id="summary-sharing-body" class="divide-y divide-[#1A1A1E] text-[#8A8A90]">
                   <tr>
-                    <td colspan="6" class="p-8 text-center text-slate-500 font-medium">Memuat riwayat pembagian...</td>
+                    <td colspan="6" class="p-8 text-center text-[#5C5C63] font-medium">Memuat ringkasan komisi...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card overflow-hidden border border-[#232328]">
+            <div class="p-5 border-b border-[#1A1A1E]">
+              <h2 class="text-[15px] font-semibold text-white">Riwayat Pembagian Terdaftar</h2>
+              <p class="text-[12px] mt-0.5 text-[#8A8A90]">Daftar detail distribusi komisi dari database</p>
+            </div>
+            <div class="overflow-x-auto scroll-thin">
+              <table class="w-full text-[13px]">
+                <thead>
+                  <tr class="text-[10px] mono uppercase tracking-wider text-[#5C5C63] bg-[#0E0E11]">
+                    <th class="px-5 py-3 text-left font-medium">Nama</th>
+                    <th class="px-3 py-3 text-left font-medium">Peran</th>
+                    <th class="px-3 py-3 text-left font-medium">Persentase</th>
+                    <th class="px-3 py-3 text-left font-medium">Jumlah Diterima</th>
+                    <th class="px-3 py-3 text-left font-medium">Status</th>
+                    <th class="px-5 py-3 text-right font-medium">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="sharing-log-body" class="divide-y divide-[#1A1A1E] text-[#8A8A90]">
+                  <tr>
+                    <td colspan="6" class="p-8 text-center text-[#5C5C63] font-medium">Memuat riwayat pembagian...</td>
                   </tr>
                 </tbody>
               </table>
@@ -137,10 +213,113 @@ import Logo from '../../components/Logo.astro';
     </main>
   </div>
 
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    
+    :root {
+      --bg: #0A0A0B;
+      --panel: #131316;
+      --panel-2: #18181C;
+      --border: #232328;
+      --border-soft: #1A1A1E;
+      --ink: #F4F4F2;
+      --muted: #8A8A90;
+      --muted-2: #5C5C63;
+      --accent: #C5F82A;
+      --accent-dim: #8FB520;
+      --warn: #F5A524;
+      --rose: #F87171;
+    }
+    
+    .dashboard-root {
+      background: var(--bg) !important;
+      color: var(--ink) !important;
+      font-family: 'Inter', system-ui, sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .serif {
+      font-family: 'Instrument Serif', serif !important;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    
+    .mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+    
+    .grain {
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0);
+      background-size: 3px 3px;
+    }
+    
+    .card {
+      background: var(--panel) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 14px;
+    }
+    
+    .nav-item {
+      transition: all .18s ease;
+      position: relative;
+    }
+    
+    .nav-item:hover {
+      background: var(--panel-2) !important;
+      color: var(--ink) !important;
+    }
+    
+    .nav-item.active {
+      background: var(--panel-2) !important;
+      color: var(--ink) !important;
+    }
+    
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    
+    .row-hover:hover {
+      background: var(--panel-2) !important;
+    }
+    
+    .scroll-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    
+    .scroll-thin::-webkit-scrollbar-thumb {
+      background: #2a2a30;
+      border-radius: 3px;
+    }
+    
+    .scroll-thin::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    @keyframes pulse-soft {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: .45;
+      }
+    }
+    
+    .live-dot {
+      animation: pulse-soft 1.8s ease-in-out infinite;
+    }
+  </style>
+
   <script>
     import { supabase } from '../../lib/supabase';
-
-    const showToast = (window as any).showToast;
 
     const adminLayout = document.getElementById('admin-layout')!;
     const btnLogout = document.getElementById('btn-logout')!;
@@ -234,17 +413,17 @@ import Logo from '../../components/Logo.astro';
       const id = memberIdCounter;
 
       const row = document.createElement('div');
-      row.className = 'flex items-center gap-3 bg-slate-950/20 p-3 rounded-xl border border-slate-800/40';
+      row.className = 'flex items-center gap-3 bg-[#0A0A0B]/20 p-3 rounded-xl border border-[#232328]';
       row.id = `member-row-${id}`;
       row.innerHTML = `
         <div class="flex-1 min-w-0 grid grid-cols-2 gap-2">
-          <input type="text" id="member-name-${id}" placeholder="Nama Anggota" class="bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-2 py-1 text-xs text-white focus:outline-none w-full" />
-          <input type="text" id="member-role-${id}" placeholder="Peran / Role" class="bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-2 py-1 text-xs text-white focus:outline-none w-full" />
+          <input type="text" id="member-name-${id}" placeholder="Nama Anggota" class="bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg px-2 py-1 text-xs text-white focus:outline-none w-full" />
+          <input type="text" id="member-role-${id}" placeholder="Peran / Role" class="bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg px-2 py-1 text-xs text-white focus:outline-none w-full" />
         </div>
         <div class="w-20 shrink-0">
-          <input type="number" value="10" id="share-pct-${id}" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg px-2 py-1 text-xs text-center text-white focus:outline-none share-percent-input" />
+          <input type="number" value="10" id="share-pct-${id}" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg px-2 py-1 text-xs text-center text-white focus:outline-none share-percent-input" />
         </div>
-        <div class="text-xs font-mono font-bold text-slate-400 shrink-0 w-24 text-right" id="share-val-${id}">Rp 0</div>
+        <div class="text-xs font-mono font-bold text-[#8A8A90] shrink-0 w-24 text-right" id="share-val-${id}">Rp 0</div>
         <button type="button" class="text-rose-500 hover:text-rose-400 text-xs px-1 cursor-pointer font-bold btn-remove-member-row" data-id="${id}">✕</button>
       `;
 
@@ -268,12 +447,14 @@ import Logo from '../../components/Logo.astro';
     btnSaveSharing.addEventListener('click', async () => {
       const selectedId = calcDoc.value;
       if (!selectedId) {
+        // @ts-ignore
         showToast('Pilih proyek terlebih dahulu.', 'warning');
         return;
       }
 
       const totalAmount = Number(calcAmount.value) || 0;
       if (totalAmount <= 0) {
+        // @ts-ignore
         showToast('Nilai proyek tidak valid.', 'warning');
         return;
       }
@@ -303,10 +484,12 @@ import Logo from '../../components/Logo.astro';
         if (nameInp && roleInp && pctInp) {
           const name = nameInp.value.trim();
           if (!name) {
+            // @ts-ignore
             showToast('Nama anggota tidak boleh kosong!', 'warning');
             return;
           }
           if (selectedNames.has(name)) {
+            // @ts-ignore
             showToast(`Nama anggota tim "${name}" tidak boleh dimasukkan lebih dari sekali!`, 'warning');
             return;
           }
@@ -328,6 +511,7 @@ import Logo from '../../components/Logo.astro';
       }
 
       if (totalPercentSum !== 100) {
+        // @ts-ignore
         showToast(`Persentase total adalah ${totalPercentSum}%. Harus tepat 100%!`, 'warning');
         return;
       }
@@ -342,6 +526,7 @@ import Logo from '../../components/Logo.astro';
 
         if (error) throw error;
 
+        // @ts-ignore
         showToast('Berhasil menyimpan data pembagian bagi hasil!', 'success');
         
         // Reset dynamic rows
@@ -354,10 +539,11 @@ import Logo from '../../components/Logo.astro';
 
         loadSharingLog();
       } catch (err: any) {
+        // @ts-ignore
         showToast(err.message || 'Gagal menyimpan.', 'error');
       } finally {
         btnSaveSharing.disabled = false;
-        btnSaveSharing.innerText = 'Simpan Pembagian Hasil Ke Database';
+        btnSaveSharing.innerText = 'Simpan Pembagian Hasil';
       }
     });
 
@@ -372,41 +558,91 @@ import Logo from '../../components/Logo.astro';
         if (error) throw error;
 
         const tableBody = document.getElementById('sharing-log-body')!;
+        const summaryBody = document.getElementById('summary-sharing-body')!;
+
         if (!data || data.length === 0) {
           tableBody.innerHTML = `
             <tr>
-              <td colspan="6" class="p-8 text-center text-slate-500 font-medium">Belum ada pembagian hasil terdaftar.</td>
+              <td colspan="6" class="p-8 text-center text-[#5C5C63] font-medium">Belum ada pembagian hasil terdaftar.</td>
+            </tr>
+          `;
+          summaryBody.innerHTML = `
+            <tr>
+              <td colspan="6" class="p-8 text-center text-[#5C5C63] font-medium">Belum ada ringkasan komisi.</td>
             </tr>
           `;
           return;
         }
 
+        // Aggregate totals per member
+        const summaryStats: Record<string, { name: string; role: string; projectCount: number; paid: number; unpaid: number; total: number }> = {};
+        data.forEach((item) => {
+          const name = item.member_name || 'Kas Agensi (Lumovelo)';
+          const role = item.role || 'Pelaksana';
+          const amt = Number(item.amount) || 0;
+          const isPaid = item.status === 'paid';
+
+          if (!summaryStats[name]) {
+            summaryStats[name] = {
+              name,
+              role,
+              projectCount: 0,
+              paid: 0,
+              unpaid: 0,
+              total: 0
+            };
+          }
+
+          summaryStats[name].projectCount += 1;
+          summaryStats[name].total += amt;
+          if (isPaid) {
+            summaryStats[name].paid += amt;
+          } else {
+            summaryStats[name].unpaid += amt;
+          }
+        });
+
+        // Render summary table rows
+        const sortedSummary = Object.values(summaryStats).sort((a, b) => b.total - a.total);
+        summaryBody.innerHTML = sortedSummary.map((member) => {
+          return `
+            <tr class="row-hover border-t border-[#1A1A1E] transition">
+              <td class="px-5 py-3 font-bold text-white">${member.name}</td>
+              <td class="px-3 py-3 text-slate-300">${member.role}</td>
+              <td class="px-3 py-3 text-slate-300 font-mono">${member.projectCount}</td>
+              <td class="px-3 py-3 text-right text-emerald-400 font-mono">Rp ${member.paid.toLocaleString('id-ID')}</td>
+              <td class="px-3 py-3 text-right text-amber-400 font-mono">Rp ${member.unpaid.toLocaleString('id-ID')}</td>
+              <td class="px-5 py-3 text-right text-white font-mono font-bold">Rp ${member.total.toLocaleString('id-ID')}</td>
+            </tr>
+          `;
+        }).join('');
+
         tableBody.innerHTML = data.map((item) => {
           const formattedAmount = `Rp ${Number(item.amount).toLocaleString('id-ID')}`;
           
-          let statusBadgeClass = 'bg-slate-800 text-slate-400';
+          let statusBadgeClass = 'border-[#232328] text-[#8A8A90] bg-[#131316]';
           if (item.status === 'paid') {
-            statusBadgeClass = 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
+            statusBadgeClass = 'border-emerald-500/20 text-emerald-400 bg-emerald-500/10';
           } else {
-            statusBadgeClass = 'bg-amber-500/10 border border-amber-500/20 text-amber-400';
+            statusBadgeClass = 'border-amber-500/20 text-amber-400 bg-amber-500/10';
           }
 
           const actionBtn = item.status === 'unpaid' 
-            ? `<button class="px-2 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold font-sans cursor-pointer btn-pay-share" data-id="${item.id}">Bayar</button>`
+            ? `<button class="px-2 py-1 bg-[#2563eb]/10 border border-[#2563eb]/20 text-[#3b82f6] hover:bg-[#2563eb] hover:text-white rounded text-[10px] font-semibold uppercase transition-all cursor-pointer btn-pay-share" data-id="${item.id}">Bayar</button>`
             : '-';
 
           return `
-            <tr class="hover:bg-slate-900/20 transition-colors">
-              <td class="p-4 font-bold text-white">${item.member_name}</td>
-              <td class="p-4 text-slate-400">${item.role}</td>
-              <td class="p-4 font-mono font-bold">${item.percentage}%</td>
-              <td class="p-4 font-mono text-slate-200 font-bold">${formattedAmount}</td>
-              <td class="p-4">
-                <span class="px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider ${statusBadgeClass}">
+            <tr class="row-hover border-t border-[#1A1A1E] transition">
+              <td class="px-5 py-3 font-bold text-white">${item.member_name}</td>
+              <td class="px-3 py-3 text-slate-300">${item.role}</td>
+              <td class="px-3 py-3 font-mono font-bold text-slate-300">${item.percentage}%</td>
+              <td class="px-3 py-3 font-mono text-[#F4F4F2] font-bold text-right">${formattedAmount}</td>
+              <td class="px-3 py-3">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md border text-[9px] font-black uppercase tracking-wider ${statusBadgeClass}">
                   ${item.status.toUpperCase()}
                 </span>
               </td>
-              <td class="p-4">${actionBtn}</td>
+              <td class="px-5 py-3 text-right">${actionBtn}</td>
             </tr>
           `;
         }).join('');
@@ -424,10 +660,12 @@ import Logo from '../../components/Logo.astro';
 
                 if (error) throw error;
 
-                (window as any).showToast('Bagi hasil berhasil dikonfirmasi lunas!', 'success');
+                // @ts-ignore
+                showToast('Bagi hasil berhasil dikonfirmasi lunas!', 'success');
                 loadSharingLog();
               } catch (err: any) {
-                (window as any).showToast(err.message || 'Gagal memperbarui status bagi hasil.', 'error');
+                // @ts-ignore
+                showToast(err.message || 'Gagal memperbarui status bagi hasil.', 'error');
               }
             }
           });

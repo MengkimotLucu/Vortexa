@@ -17,7 +17,7 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
       text: "Kerja sama yang sangat transparan. Kode web kami bersih, tanpa dependency berlebih yang lambat, dan peringkat SEO Google kami meningkat tajam dalam sebulan.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       name: "Anita Wijaya",
-      role: "CTO, EduTech Indonesia",
+      role: "CTO ",
     },
     {
       text: "Otomatisasi respon WhatsApp dari Lumovelo menghemat waktu operasional tim CS kami secara drastis. Integrasi AI mereka bekerja sangat cerdas dan praktis.",
@@ -29,7 +29,7 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
       text: "Kecepatan loading website kami kini mendapat nilai A di GTmetrix. Sangat berdampak pada iklan berbayar kami yang menjadi jauh lebih efisien dan murah.",
       image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=face",
       name: "Hendra Wijaya",
-      role: "Growth Lead, AutoParts Indo",
+      role: "Growth Lead ",
     },
     {
       text: "Sistem booking online otomatis yang diintegrasikan ke WhatsApp sangat mengurangi bounce rate. Lumovelo benar-benar memahami alur bisnis lokal kami.",
@@ -41,7 +41,7 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
       text: "Desain UI/UX yang dibuat Lumovelo sangat fresh dan modern. Pengunjung betah berlama-lama di web kami, bounce rate turun hingga 40% dalam beberapa minggu.",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
       name: "Dian",
-      role: "Head of Marketing, Retailindo",
+      role: "Head of Marketing ",
     },
     {
       text: "Kami sangat terbantu dengan dashboard CMS kustom dari Lumovelo. Sekarang admin kami bisa upload produk baru dan update stok hanya dalam 2 klik dari HP.",
@@ -53,13 +53,13 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
       text: "Fitur kalkulator harga otomatis di website sangat membantu calon pembeli melakukan estimasi sebelum memesan. Inovatif, responsif, dan fungsional!",
       image: "https://images.unsplash.com/photo-1534751516642-a131ffd10795?w=150&h=150&fit=crop&crop=face",
       name: "Dewi Lestari",
-      role: "Founder, CraftyStudio",
+      role: "Founder ",
     },
     {
       text: "Konsultasi teknis dengan tim Lumovelo sangat solutif. Mereka merekomendasikan solusi serverless yang membuat kami tidak perlu membayar biaya hosting bulanan.",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-      name: "Faisal Basri",
-      role: "Tech Lead, FinGo Indonesia",
+      name: "Faisal ",
+      role: "Tech Lead ",
     },
   ],
   en: [
@@ -73,7 +73,7 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
       text: "Very transparent collaboration. Our web code is clean, without slow bloated dependencies, and our Google SEO rankings rose sharply within a month.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       name: "Anita Wijaya",
-      role: "CTO, EduTech Indonesia",
+      role: "CTO ",
     },
     {
       text: "WhatsApp response automation from Lumovelo dramatically saved our CS team's operational time. Their AI integrations work very smartly and practically.",
@@ -85,7 +85,7 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
       text: "Our website loading speed now gets an A grade on GTmetrix. Very impactful for our paid advertising which has become much more efficient and cheaper.",
       image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=face",
       name: "Hendra Wijaya",
-      role: "Growth Lead, AutoParts Indo",
+      role: "Growth Lead ",
     },
     {
       text: "The automated online booking system integrated with WhatsApp significantly reduced bounce rates. Lumovelo truly understands our local business flow.",
@@ -97,7 +97,7 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
       text: "The UI/UX design created by Lumovelo is very fresh and modern. Visitors stay longer on our web, bounce rates dropped by 40% in just a few weeks.",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
       name: "Dian",
-      role: "Head of Marketing, Retailindo",
+      role: "Head of Marketing ",
     },
     {
       text: "We were highly helped by the custom CMS dashboard from Lumovelo. Now our admins can upload new products and update stock in just 2 clicks from their phone.",
@@ -109,13 +109,13 @@ const testimonialsData: Record<"en" | "id", Testimonial[]> = {
       text: "The automated price calculator feature on the website is very helpful for potential buyers to make estimates before ordering. Innovative, responsive, and functional!",
       image: "https://images.unsplash.com/photo-1534751516642-a131ffd10795?w=150&h=150&fit=crop&crop=face",
       name: "Dewi Lestari",
-      role: "Founder, CraftyStudio",
+      role: "Founder ",
     },
     {
       text: "Technical consultation with the Lumovelo team was very helpful. They recommended a serverless solution that keeps us from paying monthly hosting fees.",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-      name: "Faisal Basri",
-      role: "Tech Lead, FinGo Indonesia",
+      name: "Faisal ",
+      role: "Tech Lead ",
     },
   ],
 };
@@ -177,3 +177,14 @@ export const Testimonials = ({ lang = "id" }: TestimonialsProps) => {
 };
 
 export default { Testimonials };
+
+import * as React from "react";
+import Index from "@/components/ui/travel-connect-signin-1";
+
+function DemoAiAssistatBasic() {
+  return (
+    <Index />
+  );
+}
+
+export { DemoAiAssistatBasic };

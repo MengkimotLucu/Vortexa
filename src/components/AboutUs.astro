@@ -1,7 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import aboutUsImg from '../assets/about-us.png';
-
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const content = {
@@ -11,7 +8,14 @@ const content = {
     title2: "Tumbuh Bersama Anda.",
     desc1: "Kami adalah kolektif desainer dan pengembang web yang berdedikasi untuk menyederhanakan kehadiran digital bisnis Anda. Fokus kami adalah menciptakan sistem dan tampilan web yang tidak hanya estetis, tetapi juga fungsional dan relevan dengan kebutuhan pasar saat ini.",
     desc2: "Kami percaya bahwa teknologi terbaik adalah teknologi yang memudahkan. Oleh karena itu, kami merancang website dengan pendekatan arsitektur modern yang ringan, mudah dikelola secara mandiri, serta dioptimalkan agar mudah ditemukan oleh calon pelanggan Anda di mesin pencari.",
-    cta: "Pelajari Cara Kerja Kami"
+    desc3: "Didirikan atas dasar kolaborasi dan kreativitas, Lumovelo memadukan keahlian teknis tingkat lanjut dalam coding dengan naluri estetika desain modern. Kami tidak hanya membuat kode program; kami merancang identitas digital Anda, merapikan operasional Anda dengan sistem automasi AI, dan memastikan bisnis Anda berdiri tegak di tengah persaingan pasar digital yang ketat.",
+    cta: "Pelajari Cara Kerja Kami",
+    visionHeader: "VISI KAMI",
+    visionTitle: "Mendorong Inovasi Digital Tanpa Batas",
+    visionDesc: "Menjadi mitra transformasi teknologi terdepan yang mendemokrasikan sistem kecerdasan buatan (AI) dan desain web kelas dunia untuk semua skala bisnis, mendorong pertumbuhan yang terukur, efisien, dan berkelanjutan.",
+    missionHeader: "MISI KAMI",
+    missionTitle: "Membangun Teknologi yang Memberdayakan",
+    missionDesc: "Kami berdedikasi menciptakan website berkinerja tinggi, mengintegrasikan otomatisasi cerdas yang memotong biaya operasional, dan menghadirkan optimasi pencarian Google yang mendominasi pasar demi kesuksesan jangka panjang mitra kami."
   },
   en: {
     sectionHeader: "About Us",
@@ -19,7 +23,14 @@ const content = {
     title2: "Growing Together with You.",
     desc1: "We are a collective of designers and web developers dedicated to simplifying your business's digital presence. Our focus is to create web systems and layouts that are not only aesthetic but also functional and relevant to current market needs.",
     desc2: "We believe the best technology is technology that simplifies. Therefore, we design websites using a modern, lightweight, self-managed architectural approach, optimized to be easily discovered by your potential customers on search engines.",
-    cta: "Learn How We Work"
+    desc3: "Founded on collaboration and creativity, Lumovelo merges advanced technical coding expertise with modern design aesthetics. We do not just write code; we design your digital identity, streamline your operations with AI automation systems, and ensure your business stands strong amidst intense digital market competition.",
+    cta: "Learn How We Work",
+    visionHeader: "OUR VISION",
+    visionTitle: "Driving Limitless Digital Innovation",
+    visionDesc: "To be the leading technology transformation partner that democratizes world-class AI systems and web design for all business sizes, driving measurable, efficient, and sustainable growth.",
+    missionHeader: "OUR MISSION",
+    missionTitle: "Building Technology that Empowers",
+    missionDesc: "We are dedicated to creating high-performance websites, integrating smart automation that slashes operational costs, and delivering search-engine-dominant SEO strategies for our partners' long-term success."
   }
 }[lang];
 
@@ -42,13 +53,17 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
           </h3>
         </div>
         
-        <div class="space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed">
+        <div class="space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
           <p class="font-semibold text-slate-800">
             {content.desc1}
           </p>
           
-          <p class="text-sm sm:text-base">
+          <p>
             {content.desc2}
+          </p>
+
+          <p class="text-xs sm:text-[13px] text-slate-550 leading-relaxed font-normal">
+            {content.desc3}
           </p>
         </div>
 
@@ -65,8 +80,8 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
       <!-- Image Column (Right columns) -->
       <div class="lg:col-span-6 relative">
         <div class="relative rounded-3xl overflow-hidden border-2 border-slate-900 shadow-[6px_6px_0px_#0f172a] transition-transform hover:scale-[1.01] duration-300">
-          <Image 
-            src={aboutUsImg} 
+          <img 
+            src="/about-us.png" 
             alt="Kolaborasi Digital LUMOVELO" 
             class="w-full h-auto object-cover"
             loading="lazy"
@@ -74,6 +89,33 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
         </div>
       </div>
 
+    </div>
+
+    <!-- Vision & Mission Section -->
+    <div class="mt-20 pt-16 border-t border-slate-100">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Visi Card -->
+        <div class="bg-slate-50 border border-slate-200/60 p-8 rounded-2xl relative overflow-hidden group hover:border-blue-500/30 transition-all duration-300">
+          <div class="absolute right-0 top-0 translate-x-4 -translate-y-4 w-24 h-24 bg-blue-500/[0.03] rounded-full blur-xl"></div>
+          <div class="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center mb-4 text-blue-600 text-sm font-bold">
+            🎯
+          </div>
+          <h4 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">{content.visionHeader}</h4>
+          <h3 class="text-xl font-extrabold text-slate-900 mb-3">{content.visionTitle}</h3>
+          <p class="text-slate-600 text-xs sm:text-[13px] leading-relaxed font-medium">{content.visionDesc}</p>
+        </div>
+
+        <!-- Misi Card -->
+        <div class="bg-slate-50 border border-slate-200/60 p-8 rounded-2xl relative overflow-hidden group hover:border-blue-500/30 transition-all duration-300">
+          <div class="absolute right-0 top-0 translate-x-4 -translate-y-4 w-24 h-24 bg-blue-500/[0.03] rounded-full blur-xl"></div>
+          <div class="w-10 h-10 rounded-xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center mb-4 text-blue-600 text-sm font-bold">
+            🚀
+          </div>
+          <h4 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">{content.missionHeader}</h4>
+          <h3 class="text-xl font-extrabold text-slate-900 mb-3">{content.missionTitle}</h3>
+          <p class="text-slate-600 text-xs sm:text-[13px] leading-relaxed font-medium">{content.missionDesc}</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -4,66 +4,118 @@ import Logo from '../../components/Logo.astro';
 ---
 
 <Layout title="Kelola Blog | LUMOVELO" description="Panel pusat pengelola artikel blog Lumovelo." noindex={true}>
-  <div id="admin-layout" class="hidden min-h-screen bg-slate-950 text-slate-100 flex font-sans select-none">
+  <div id="admin-layout" class="hidden min-h-screen dashboard-root grain flex">
     
     <!-- Sidebar Navigation -->
-    <aside class="w-64 border-r border-slate-800 bg-slate-900 flex flex-col justify-between shrink-0">
-      <div>
-        <div class="p-6 border-b border-slate-800 flex items-center gap-3">
-          <div class="w-8 h-8 rounded-lg border border-slate-700 bg-blue-600 flex items-center justify-center">
-            <Logo class="w-4 h-4 text-white" />
-          </div>
-          <span class="font-display font-black text-base tracking-widest text-white">LUMOVELO</span>
+    <aside class="hidden lg:flex w-[248px] shrink-0 flex-col border-r border-[#1A1A1E] bg-[#0C0C0E]">
+      <!-- Logo -->
+      <div class="px-5 pt-6 pb-7 flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-[#C5F82A]">
+          <Logo class="w-4 h-4 text-[#0A0A0B]" />
         </div>
-
-        <nav class="p-4 space-y-1.5">
-          <a href="/admin/dashboard/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
-            📊 Ringkasan Panel
-          </a>
-          <a href="/admin/finance/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
-            💰 Laporan Keuangan
-          </a>
-          <a href="/admin/profit-sharing/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
-            🤝 Bagi Hasil Tim
-          </a>
-          <a href="/admin/blog/" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-600/10 text-blue-400 border border-blue-500/20 text-xs font-black uppercase tracking-wider">
-            ✍️ Kelola Blog
-          </a>
-          <a href="/workspace/invoice/" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 border border-transparent hover:border-slate-800 text-xs font-black uppercase tracking-wider transition-all">
-            📄 Buat Dokumen
-          </a>
-        </nav>
+        <div class="flex items-baseline gap-1.5">
+          <span class="font-semibold tracking-tight text-[15px] text-white">LUMOVELO</span>
+          <span class="mono text-[10px] text-[#5C5C63]">v2.4</span>
+        </div>
       </div>
 
-      <div class="p-4 border-t border-slate-800">
-        <button id="btn-logout" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white text-xs font-black uppercase tracking-widest transition-all cursor-pointer">
-          🚪 Keluar Dashboard
+      <!-- Workspace switcher -->
+      <div class="px-3 mb-5">
+        <div class="w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg border border-[#232328] bg-[#131316]">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center text-[10px] font-bold bg-[#2A2A30] text-[#C5F82A]">LV</div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[12px] font-medium leading-tight text-white">Lumovelo Agency</div>
+            <div class="text-[10px] mono text-[#5C5C63]">workspace · admin</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <nav class="px-3 flex-1 overflow-y-auto scroll-thin" id="nav">
+        <div class="px-2.5 mb-1.5 mono text-[10px] uppercase tracking-wider text-[#5C5C63]">Analytics</div>
+        <a href="/admin/dashboard/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          Overview
+        </a>
+        <a href="/admin/finance/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+          Revenue
+        </a>
+        <a href="/admin/profit-sharing/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="17" cy="6" r="2.5"/><path d="M14 21v-1a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3v1"/></svg>
+          Bagi Hasil Tim
+        </a>
+        <a href="/admin/blog/" class="nav-item active flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#F4F4F2]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+          Kelola Blog
+        </a>
+        <a href="/admin/leads/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Leads AI
+        </a>
+        <a href="/admin/ai-settings/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Pengaturan AI
+        </a>
+
+        <div class="px-2.5 mb-1.5 mt-5 mono text-[10px] uppercase tracking-wider text-[#5C5C63]">Workspace</div>
+        <a href="/workspace/invoice/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          Buat Invoice
+        </a>
+      </nav>
+
+      <!-- User logout footer -->
+      <div class="px-3 pb-4 pt-1 border-t border-[#1A1A1E]">
+        <button id="btn-logout" class="w-full flex items-center gap-2.5 px-2 py-2 rounded-md hover:bg-[#16161A] transition text-left group">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-semibold bg-[#2A2A30] text-[#F4F4F2]">AD</div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[12px] font-medium leading-tight text-white group-hover:text-[#F87171] transition-colors">Sign Out</div>
+            <div class="text-[10px] mono text-[#5C5C63]">administrator</div>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#8A8A90] group-hover:text-[#F87171] transition-colors"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         </button>
       </div>
     </aside>
 
     <!-- Main Content Area -->
-    <main class="flex-1 flex flex-col min-w-0">
-      <header class="h-20 border-b border-slate-800 bg-slate-900/40 px-8 flex items-center justify-between">
-        <div>
-          <h1 class="text-sm font-mono font-bold text-slate-400 uppercase tracking-widest">KELOLA ARTIKEL BLOG</h1>
-          <p class="text-xs text-slate-500 mt-0.5">Tulis, edit, dan kelola wawasan edukasi teknologi Lumovelo.</p>
+    <main class="flex-1 min-w-0 flex flex-col">
+      <!-- Top bar -->
+      <header class="sticky top-0 z-20 flex items-center gap-3 px-4 lg:px-8 h-16 border-b border-[#1A1A1E] backdrop-blur-md bg-[rgba(10,10,11,0.78)]">
+        <button class="lg:hidden p-2 rounded-md hover:bg-[#16161A] text-white">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
+        <div class="hidden md:flex items-center gap-2 text-[13px] text-[#8A8A90]">
+          <span>Lumovelo</span>
+          <span class="text-[#5C5C63]">/</span>
+          <span class="text-[#F4F4F2] font-medium">Kelola Blog</span>
         </div>
-        <div>
-          <button id="btn-add-post" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-black uppercase tracking-widest shadow-lg shadow-blue-500/20 transition-all cursor-pointer">
-            ➕ Tambah Artikel
+
+        <div class="ml-auto flex items-center gap-3">
+          <button id="btn-add-post" class="flex items-center gap-1.5 h-9 px-3 rounded-lg text-[12px] font-semibold bg-[#C5F82A] text-[#0A0A0B] hover:opacity-90 transition-opacity cursor-pointer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Tambah Artikel
           </button>
         </div>
       </header>
 
-      <!-- Body -->
-      <div class="p-8 overflow-y-auto flex-1 space-y-6">
-        
+      <!-- Content -->
+      <div class="flex-1 overflow-y-auto scroll-thin px-4 lg:px-8 py-7">
+        <!-- Page header -->
+        <section class="mb-6">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="live-dot w-1.5 h-1.5 rounded-full bg-[#C5F82A]"></span>
+            <span class="mono text-[11px] uppercase tracking-wider text-[#8A8A90]">MODUL MANAJEMEN KONTEN</span>
+          </div>
+          <h1 class="serif text-[44px] leading-[0.95] text-white">Kelola Blog</h1>
+          <p class="mt-2 text-[14px] text-[#8A8A90]">Tulis wawasan, berita rilis produk, dan publikasikan artikel edukasi agensi Lumovelo.</p>
+        </section>
+
         <!-- Filters Row -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900/30 p-4 border border-slate-800 rounded-2xl">
+        <section class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#131316] p-4 border border-[#232328] rounded-2xl mb-6">
           <div class="space-y-1">
-            <label for="filter-category" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Saring Kategori</label>
-            <select id="filter-category" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors">
+            <label for="filter-category" class="text-[10px] font-mono font-bold text-[#8A8A90] uppercase tracking-wider">Saring Kategori</label>
+            <select id="filter-category" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors">
               <option value="ALL">SEMUA KATEGORI</option>
               <option value="AI & OTOMATISASI">AI & OTOMATISASI</option>
               <option value="IT & WEB DEVELOP">IT & WEB DEVELOP</option>
@@ -72,65 +124,75 @@ import Logo from '../../components/Logo.astro';
             </select>
           </div>
           <div class="space-y-1">
-            <label for="search-title" class="text-[10px] font-mono font-bold text-slate-400 uppercase">Cari Judul Postingan</label>
-            <input type="text" id="search-title" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors" placeholder="Ketik kata kunci judul..." />
+            <label for="search-title" class="text-[10px] font-mono font-bold text-[#8A8A90] uppercase tracking-wider">Cari Judul Postingan</label>
+            <input type="text" id="search-title" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-xl px-3 py-2 text-xs text-white focus:outline-none transition-colors" placeholder="Ketik kata kunci judul..." />
           </div>
-        </div>
+        </section>
 
-        <!-- Tabular List -->
-        <div class="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs">
+        <!-- Blog Posts Table -->
+        <section class="card overflow-hidden border border-[#232328]">
+          <div class="overflow-x-auto scroll-thin">
+            <table class="w-full text-[13px]">
               <thead>
-                <tr class="border-b border-slate-800/80 bg-slate-950/40 text-slate-400 font-bold">
-                  <th class="p-4">JUDUL ARTIKEL</th>
-                  <th class="p-4">KATEGORI</th>
-                  <th class="p-4">TANGGAL RILIS</th>
-                  <th class="p-4">SLUG</th>
-                  <th class="p-4 text-right">AKSI</th>
+                <tr class="text-[10px] mono uppercase tracking-wider text-[#5C5C63] bg-[#0E0E11]">
+                  <th class="px-5 py-3 text-left font-medium">Judul Artikel</th>
+                  <th class="px-3 py-3 text-left font-medium">Kategori</th>
+                  <th class="px-3 py-3 text-left font-medium">Tanggal Rilis</th>
+                  <th class="px-3 py-3 text-left font-medium">Slug URL</th>
+                  <th class="px-5 py-3 text-right font-medium">Aksi</th>
                 </tr>
               </thead>
-              <tbody id="blog-table-body" class="divide-y divide-slate-800/50 text-slate-300">
+              <tbody id="blog-table-body" class="divide-y divide-[#1A1A1E] text-[#8A8A90]">
                 <tr>
-                  <td colspan="5" class="p-8 text-center text-slate-500 font-medium">Memuat data artikel...</td>
+                  <td colspan="5" class="p-8 text-center text-[#5C5C63] font-medium">Memuat data artikel...</td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </div>
+        </section>
 
+        <!-- Footer -->
+        <footer class="mt-6 pt-5 border-t border-[#1A1A1E] flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[#5C5C63]">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#C5F82A] live-dot"></span>
+            <span class="mono">All systems operational · 99.98% uptime</span>
+          </div>
+          <div class="flex items-center gap-4 mono text-[#5C5C63]">
+            <span>© 2026 Lumovelo Control Panel</span>
+          </div>
+        </footer>
       </div>
     </main>
   </div>
 
   <!-- Add/Edit Blog Post Modal -->
   <div id="post-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-2xl p-6 space-y-4 shadow-2xl overflow-y-auto max-h-[90vh]">
-      <h3 id="modal-title" class="font-display font-black text-sm text-white uppercase tracking-wider">Tambah Artikel Baru</h3>
+    <div class="bg-[#131316] border border-[#232328] rounded-2xl w-full max-w-2xl p-6 space-y-4 shadow-2xl overflow-y-auto max-h-[90vh] scroll-thin">
+      <h3 id="modal-title" class="serif text-xl text-white">Tambah Artikel Baru</h3>
       
       <form id="modal-form" class="space-y-3.5 text-xs text-slate-300">
         <input type="hidden" id="modal-post-id" />
         
         <div class="space-y-1">
-          <label for="modal-post-title" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Judul Artikel *</label>
-          <input type="text" id="modal-post-title" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="Cara Praktis Menggunakan AI Chatbot..." />
+          <label for="modal-post-title" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Judul Artikel *</label>
+          <input type="text" id="modal-post-title" required class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none" placeholder="Cara Praktis Menggunakan AI Chatbot..." />
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="space-y-1">
-            <label for="modal-post-slug" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Slug URL (Unik) *</label>
-            <input type="text" id="modal-post-slug" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none font-mono" placeholder="cara-praktis-chatbot-ai" />
+            <label for="modal-post-slug" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Slug URL (Unik) *</label>
+            <input type="text" id="modal-post-slug" required class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none font-mono" placeholder="cara-praktis-chatbot-ai" />
           </div>
           <div class="space-y-1">
-            <label for="modal-post-date" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Tanggal Rilis *</label>
-            <input type="text" id="modal-post-date" required class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="05 JULI 2026" />
+            <label for="modal-post-date" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Tanggal Rilis *</label>
+            <input type="text" id="modal-post-date" required class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none" placeholder="05 JULI 2026" />
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div class="space-y-1">
-            <label for="modal-post-category" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Kategori *</label>
-            <select id="modal-post-category" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none">
+            <label for="modal-post-category" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Kategori *</label>
+            <select id="modal-post-category" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none">
               <option value="AI & OTOMATISASI">AI & OTOMATISASI</option>
               <option value="IT & WEB DEVELOP">IT & WEB DEVELOP</option>
               <option value="SEO & MARKETING">SEO & MARKETING</option>
@@ -138,32 +200,147 @@ import Logo from '../../components/Logo.astro';
             </select>
           </div>
           <div class="space-y-1">
-            <label for="modal-post-bg" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Styling Badge HTML</label>
-            <input type="text" id="modal-post-bg" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none" placeholder="bg-indigo-100 text-indigo-750 border-indigo-200" />
+            <label for="modal-post-bg" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Styling Badge HTML</label>
+            <input type="text" id="modal-post-bg" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none" placeholder="bg-indigo-100 text-indigo-750 border-indigo-200" />
           </div>
         </div>
 
         <div class="space-y-1">
-          <label for="modal-post-desc" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Ringkasan Artikel (Description) *</label>
-          <textarea id="modal-post-desc" required rows="2" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none resize-none" placeholder="Menghemat waktu operasional customer service dengan integrasi agen AI..."></textarea>
+          <label for="modal-post-desc" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Ringkasan Artikel (Description) *</label>
+          <textarea id="modal-post-desc" required rows="2" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none resize-none" placeholder="Menghemat waktu operasional customer service dengan integrasi agen AI..."></textarea>
         </div>
 
         <div class="space-y-1">
-          <label for="modal-post-content" class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Isi Konten Artikel (Format HTML) *</label>
-          <textarea id="modal-post-content" required rows="8" class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-lg p-2.5 text-white outline-none font-mono" placeholder="&lt;p class='mb-6'&gt;Teks artikel...&lt;/p&gt;"></textarea>
+          <label for="modal-post-content" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Isi Konten Artikel (Format HTML) *</label>
+          <textarea id="modal-post-content" required rows="8" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none font-mono" placeholder="&lt;p class='mb-6'&gt;Teks artikel...&lt;/p&gt;"></textarea>
         </div>
 
         <div class="pt-4 flex justify-end gap-3 text-xs">
-          <button type="button" id="modal-btn-cancel" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all cursor-pointer">
+          <button type="button" id="modal-btn-cancel" class="px-4 py-2 bg-[#232328] hover:bg-[#2e2e34] text-white rounded-xl font-semibold transition-colors cursor-pointer">
             Batal
           </button>
-          <button type="submit" id="modal-btn-save" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all cursor-pointer">
+          <button type="submit" id="modal-btn-save" class="px-5 py-2 bg-[#C5F82A] hover:opacity-90 text-[#0A0A0B] rounded-xl font-bold transition-all cursor-pointer">
             Simpan Artikel
           </button>
         </div>
       </form>
     </div>
   </div>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    
+    :root {
+      --bg: #0A0A0B;
+      --panel: #131316;
+      --panel-2: #18181C;
+      --border: #232328;
+      --border-soft: #1A1A1E;
+      --ink: #F4F4F2;
+      --muted: #8A8A90;
+      --muted-2: #5C5C63;
+      --accent: #C5F82A;
+      --accent-dim: #8FB520;
+      --warn: #F5A524;
+      --rose: #F87171;
+    }
+    
+    .dashboard-root {
+      background: var(--bg) !important;
+      color: var(--ink) !important;
+      font-family: 'Inter', system-ui, sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .serif {
+      font-family: 'Instrument Serif', serif !important;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    
+    .mono {
+      font-family: 'JetBrains Mono', monospace !important;
+    }
+    
+    .grain {
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0);
+      background-size: 3px 3px;
+    }
+    
+    .card {
+      background: var(--panel) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 14px;
+    }
+    
+    .nav-item {
+      transition: all .18s ease;
+      position: relative;
+    }
+    
+    .nav-item:hover {
+      background: var(--panel-2) !important;
+      color: var(--ink) !important;
+    }
+    
+    .nav-item.active {
+      background: var(--panel-2) !important;
+      color: var(--ink) !important;
+    }
+    
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    
+    .row-hover:hover {
+      background: var(--panel-2) !important;
+    }
+    
+    .scroll-thin::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    
+    .scroll-thin::-webkit-scrollbar-thumb {
+      background: #2a2a30;
+      border-radius: 3px;
+    }
+    
+    .scroll-thin::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    @keyframes pulse-soft {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: .45;
+      }
+    }
+    
+    .live-dot {
+      animation: pulse-soft 1.8s ease-in-out infinite;
+    }
+    
+    .kbd {
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 10px;
+      border: 1px solid var(--border);
+      border-bottom-width: 2px;
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: var(--muted);
+    }
+  </style>
 
   <script>
     import { supabase } from '../../lib/supabase';
@@ -212,7 +389,6 @@ import Logo from '../../components/Logo.astro';
           .order('created_at', { ascending: false });
 
         if (error) {
-          // Table might not exist yet, we will just show empty state or alert
           console.warn('Post table not ready or error:', error);
           allPosts = [];
         } else {
@@ -244,7 +420,7 @@ import Logo from '../../components/Logo.astro';
       if (filteredPosts.length === 0) {
         tableBody.innerHTML = `
           <tr>
-            <td colspan="5" class="p-8 text-center text-slate-500 font-medium">Tidak ada artikel blog ditemukan. Klik "Tambah Artikel" untuk membuat artikel pertama.</td>
+            <td colspan="5" class="p-8 text-center text-[#5C5C63] font-medium">Tidak ada artikel blog ditemukan. Klik "Tambah Artikel" untuk membuat artikel pertama.</td>
           </tr>
         `;
         return;
@@ -252,16 +428,16 @@ import Logo from '../../components/Logo.astro';
 
       tableBody.innerHTML = filteredPosts.map(p => {
         return `
-          <tr class="hover:bg-slate-900/20 transition-colors">
-            <td class="p-4">
+          <tr class="row-hover border-t border-[#1A1A1E] transition">
+            <td class="px-5 py-3">
               <div class="font-bold text-white max-w-sm sm:max-w-md truncate" title="${p.title}">${p.title}</div>
             </td>
-            <td class="p-4 font-mono font-bold text-blue-400 text-[10px]">${p.category}</td>
-            <td class="p-4 text-slate-400 font-mono">${p.date}</td>
-            <td class="p-4 text-slate-400 font-mono">${p.slug}</td>
-            <td class="p-4 text-right space-x-2 shrink-0">
-              <button data-id="${p.id}" class="btn-edit px-2.5 py-1.5 rounded-lg bg-blue-600/10 border border-blue-500/20 text-blue-400 hover:bg-blue-600 hover:text-white transition-all cursor-pointer font-bold uppercase tracking-wider text-[9px]">Edit</button>
-              <button data-id="${p.id}" class="btn-delete px-2.5 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 hover:bg-rose-500 hover:text-white transition-all cursor-pointer font-bold uppercase tracking-wider text-[9px]">Hapus</button>
+            <td class="px-3 py-3 font-mono font-bold text-blue-400 text-[11px]">${p.category}</td>
+            <td class="px-3 py-3 text-slate-300 font-mono">${p.date}</td>
+            <td class="px-3 py-3 text-slate-300 font-mono">${p.slug}</td>
+            <td class="px-5 py-3 text-right space-x-2 shrink-0">
+              <button data-id="${p.id}" class="btn-edit px-2 py-1 bg-[#2563eb]/10 border border-[#2563eb]/20 text-[#3b82f6] hover:bg-[#2563eb] hover:text-white rounded text-[10px] font-semibold uppercase transition-all cursor-pointer">Edit</button>
+              <button data-id="${p.id}" class="btn-delete px-2 py-1 bg-[#f87171]/10 border border-[#f87171]/20 text-[#f87171] hover:bg-[#f87171] hover:text-white rounded text-[10px] font-semibold uppercase transition-all cursor-pointer">Hapus</button>
             </td>
           </tr>
         `;
@@ -292,7 +468,6 @@ import Logo from '../../components/Logo.astro';
       modalPostContent.value = '';
       modalPostCategory.value = 'AI & OTOMATISASI';
       
-      // Auto-set current date like "05 JULI 2026"
       const monthNamesID = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
       const d = new Date();
       modalPostDate.value = `${String(d.getDate()).padStart(2, '0')} ${monthNamesID[d.getMonth()]} ${d.getFullYear()}`;

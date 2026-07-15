@@ -57,7 +57,6 @@ Berikut adalah daftar seluruh file di dalam proyek beserta penjelasan fungsinya 
 *   **@[src/components/Testimonials.astro]**: Menampilkan ulasan kepuasan dari klien.
 *   **@[src/components/FAQ.astro]**: Daftar pertanyaan umum (FAQ) dalam bentuk akordeon interaktif.
 *   **@[src/components/Kontak.astro]**: Bagian formulir konsultasi serta peta lokasi agensi.
-*   **@[src/components/MultiStepForm.astro]**: Formulir pemesanan multi-step interaktif yang mengirimkan data order ke WhatsApp.
 *   **@[src/components/Blog.astro]**: Daftar postingan artikel blog.
 *   **@[src/components/Footer.astro]**: Navigasi kaki halaman (links navigasi i18n, social media, dan copyright).
 *   **@[src/components/ui/demo.tsx]**: File demo komponen visual interaktif berbasis React.

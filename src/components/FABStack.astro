@@ -1,0 +1,212 @@
+---
+const currentLocale = Astro.url.pathname.startsWith('/en/') || Astro.url.pathname === '/en' ? 'en' : 'id';
+
+const waNumber = "6285624353611";
+
+// Rujukan template pesan WhatsApp yang disesuaikan
+const urls = {
+  join: `https://wa.me/${waNumber}?text=${encodeURIComponent("Halo Lumovelo, saya tertarik bergabung dengan tim.")}`,
+  afterSales: `https://wa.me/${waNumber}?text=${encodeURIComponent("Halo Lumovelo, saya butuh bantuan after-sales.")}`,
+  contactUs: `https://wa.me/${waNumber}?text=${encodeURIComponent("Halo Lumovelo, saya ingin menghubungi tim marketing.")}`,
+  whatsapp: `https://wa.me/${waNumber}?text=${encodeURIComponent("Halo Lumovelo, saya ingin berkonsultasi tentang proyek website/AI.")}`
+};
+---
+
+<div id="fab-stack-container" class="fixed right-2 sm:right-4 top-1/2 -translate-y-1/2 z-[999] select-none font-sans">
+  <div class="bg-white/10 dark:bg-slate-950/20 backdrop-blur-md border border-slate-300/20 dark:border-slate-800/20 p-2.5 flex flex-col gap-3 rounded-[28px] shadow-[0_12px_40px_rgba(0,0,0,0.12)]">
+    
+    <!-- 1. LumoAI (Toggles AI Chat) -->
+    <button
+      id="fab-submit-enquiry"
+      class="fab-btn fab-btn-ai bg-[#2563EB] hover:bg-[#1D4ED8] text-white flex flex-col items-center justify-center cursor-pointer relative group"
+      title="Tanya LumoAI"
+    >
+      <svg class="fab-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l-.813-5.096L3 15l5.187-.813L9 9l.813 5.187L15 15l-5.187.813zM21 7l-1 2.5L17.5 7 20 4.5 21 7zM16 3l-.5 1.5-1.5-.5 1 1.5-.5 1.5z" />
+      </svg>
+      <span class="fab-text">LumoAI</span>
+      <!-- Notification dot synced with AI Chat -->
+      <span id="fab-chat-badge" class="fab-badge hidden"></span>
+    </button>
+
+    <!-- 5. WhatsApp -->
+    <a
+      href={urls.whatsapp}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fab-btn fab-btn-wa bg-[#25D366] hover:bg-[#20BA5A] text-white flex flex-col items-center justify-center group"
+      title="WhatsApp"
+    >
+      <svg class="fab-icon fill-current" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.517 2.266 2.27 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.86.002-2.637-1.019-5.115-2.875-6.973-1.857-1.857-4.335-2.875-6.977-2.877-5.44 0-9.863 4.418-9.867 9.862 0 1.637.425 3.235 1.238 4.646L1.88 22.007l4.766-1.253zM17.56 14.84c-.304-.151-1.796-.884-2.05-.975-.253-.092-.437-.138-.62.138-.182.277-.706.885-.866 1.07-.16.183-.319.206-.622.055-.304-.151-1.282-.472-2.444-1.508-.904-.805-1.514-1.8-1.691-2.105-.178-.304-.019-.469.132-.619.136-.134.304-.354.456-.53.152-.177.202-.295.304-.492.102-.197.051-.369-.026-.52-.076-.151-.62-1.492-.85-2.042-.224-.54-.47-.464-.62-.47-.138-.006-.296-.007-.455-.007-.158 0-.417.06-.635.297-.218.238-.83.812-.83 1.982 0 1.17.85 2.296.968 2.455.118.16 1.674 2.557 4.05 3.58.567.244 1.01.388 1.356.499.57.18 1.088.155 1.499.094.457-.067 1.796-.734 2.05-1.442.253-.707.253-1.314.177-1.441-.076-.127-.278-.203-.582-.354z"/>
+      </svg>
+      <span class="fab-text">WhatsApp</span>
+    </a>
+
+  </div>
+</div>
+
+<style>
+  /* Container styling */
+  #fab-stack-container > div {
+    padding: 10px;
+    gap: 12px;
+    border-radius: 28px;
+    transition: all 0.3s ease;
+  }
+
+  /* Ukuran tombol di desktop  */
+  .fab-btn {
+    width: 88px;
+    height: 88px;
+    border-radius: 22px;
+    padding: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fab-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  .fab-btn:active {
+    transform: translateY(-1px) scale(0.96);
+  }
+
+  /* Glow shadows for premium look */
+  .fab-btn-ai {
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+  }
+  .fab-btn-ai:hover {
+    box-shadow: 0 12px 32px rgba(37, 99, 235, 0.45);
+  }
+
+  .fab-btn-wa {
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.25);
+  }
+  .fab-btn-wa:hover {
+    box-shadow: 0 12px 32px rgba(37, 211, 102, 0.45);
+  }
+
+  .fab-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .fab-btn:hover .fab-icon {
+    transform: scale(1.1);
+  }
+
+  .fab-text {
+    font-size: 11px;
+    font-weight: 800; /* Extra bold */
+    line-height: 1.2;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+
+  /* Badge styling */
+  .fab-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: #f43f5e; /* bg-rose-500 */
+    border: 1.5px solid white;
+    border-radius: 9999px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  /* Ukuran responsif di versi mobile */
+  @media (max-width: 640px) {
+    #fab-stack-container {
+      right: 6px;
+    }
+    
+    #fab-stack-container > div {
+      padding: 6px;
+      gap: 8px;
+      border-radius: 18px;
+    }
+
+    .fab-btn {
+      width: 58px; /* Lebih besar dari sebelumnya 48px agar terbaca jelas */
+      height: 58px;
+      border-radius: 14px;
+      padding: 5px;
+    }
+    
+    .fab-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .fab-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .fab-text {
+      font-size: 8px; /* Lebih besar dari sebelumnya 6px agar terbaca jelas */
+      margin-top: 3px;
+      line-height: 1.1;
+      letter-spacing: 0.2px;
+      font-weight: 800;
+    }
+
+    .fab-badge {
+      top: 5px;
+      right: 5px;
+      width: 8px;
+      height: 8px;
+      border: 1px solid white;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const fabEnquiryBtn = document.getElementById('fab-submit-enquiry');
+    const aiToggleBtn = document.getElementById('ai-chat-toggle-btn');
+    const fabBadge = document.getElementById('fab-chat-badge');
+    const chatBadge = document.getElementById('chat-badge');
+
+    // Hubungkan tombol Submit Enquiry ke Widget AI Chat
+    if (fabEnquiryBtn && aiToggleBtn) {
+      fabEnquiryBtn.addEventListener('click', () => {
+        aiToggleBtn.click();
+      });
+    }
+
+    // Sinkronisasikan status badge notifikasi jika ada
+    if (chatBadge && fabBadge) {
+      const observer = new MutationObserver(() => {
+        if (chatBadge.classList.contains('hidden')) {
+          fabBadge.classList.add('hidden');
+        } else {
+          fabBadge.classList.remove('hidden');
+        }
+      });
+
+      observer.observe(chatBadge, { attributes: true, attributeFilter: ['class'] });
+      
+      // Sinkronisasi awal
+      if (!chatBadge.classList.contains('hidden')) {
+        fabBadge.classList.remove('hidden');
+      }
+    }
+  });
+</script>

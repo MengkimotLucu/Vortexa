@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
 import CursorGlow from '../components/CursorGlow.astro';
-import WhatsAppFloating from '../components/WhatsAppFloating.astro';
+import FABStack from '../components/FABStack.astro';
+import AIChatWidget from '../components/AIChatWidget.astro';
 
 interface Props {
   title?: string;
@@ -206,8 +207,11 @@ const alternates = getAlternates(Astro.url.pathname);
     <!-- Aura cursor trail following mouse -->
     <CursorGlow />
 
-    <!-- Floating WhatsApp contact button -->
-    {!isWorkspaceOrAdmin && <WhatsAppFloating />}
+    <!-- Floating Action Button (FAB) Stack -->
+    {!isWorkspaceOrAdmin && <FABStack />}
+
+    <!-- AI Chat Widget -->
+    {!isWorkspaceOrAdmin && <AIChatWidget />}
 
     <!-- Scroll Reveal script -->
     <script is:inline>

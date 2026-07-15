@@ -36,9 +36,16 @@ const packages = {
     {
       tier: 'Starter Pack',
       title: 'Landing Page Starter',
-      price: 'Rp 1.000.000',
+      price: lang === 'en' ? '$70' : 'Rp 1.000.000',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        'Domain of Choice + Fast Serverless Hosting',
+        '1 High-converting Landing Page',
+        'Industry-standard Copywriting',
+        'Direct WhatsApp Button Integration',
+        'Modern responsive mobile & desktop design',
+        'Priority Design Revision Support'
+      ] : [
         'Domain Pilihan + Hosting Serverless Cepat',
         '1 Halaman Landing Page konversi',
         'Copywriting standar industri',
@@ -50,9 +57,16 @@ const packages = {
     {
       tier: 'Growth Scale',
       title: 'Landing Page Growth',
-      price: 'Rp 1.500.000',
+      price: lang === 'en' ? '$100' : 'Rp 1.500.000',
       popular: true,
-      features: [
+      features: lang === 'en' ? [
+        '.com Domain + Priority Serverless Cloud',
+        '1 High-converting Landing Page (long-form)',
+        'Persuasive sales-driven copywriting',
+        'Smart WhatsApp Form integration',
+        'Ad tracking on 1 platform (Meta/TikTok)',
+        'Priority Design & Coding Revision Support'
+      ] : [
         'Domain .com + Cloud Serverless Prioritas',
         '1 Halaman Landing Page konversi (panjang)',
         'Copywriting persuasif pendorong penjualan',
@@ -64,9 +78,16 @@ const packages = {
     {
       tier: 'Enterprise Elite',
       title: 'Landing Page Enterprise',
-      price: 'Rp 2.500.000',
+      price: lang === 'en' ? '$170' : 'Rp 2.500.000',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        '.com Domain + Dedicated Serverless Cloud',
+        'Premium multi-section Landing Page',
+        'High-converting persuasive copywriting',
+        'Custom WhatsApp Form + CRM Leads Filter',
+        'Ad tracking on 3 platforms (Meta+TikTok+Google)',
+        'Custom Priority Design & Coding Support'
+      ] : [
         'Domain .com + Cloud Serverless Dedikasi',
         'Halaman Landing Page multi-section premium',
         'Copywriting persuasif konversi tinggi',
@@ -80,9 +101,16 @@ const packages = {
     {
       tier: 'Starter Pack',
       title: 'Company Profile Starter',
-      price: 'Rp 1.800.000',
+      price: lang === 'en' ? '$120' : 'Rp 1.800.000',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        'Domain of Choice + Fast Serverless Hosting',
+        'Maximum 4 Core Pages',
+        'Clean & modern minimalist design',
+        'Connected to WA & Business Email',
+        'Basic SEO Structure (Google-friendly Meta Tags)',
+        'Design Revision Support'
+      ] : [
         'Domain Pilihan + Hosting Serverless Cepat',
         'Maksimal 4 Halaman menu utama',
         'Desain minimalis modern & bersih',
@@ -94,9 +122,16 @@ const packages = {
     {
       tier: 'Growth Scale',
       title: 'Company Profile Growth',
-      price: 'Rp 2.800.000',
+      price: lang === 'en' ? '$190' : 'Rp 2.800.000',
       popular: true,
-      features: [
+      features: lang === 'en' ? [
+        '.com Domain + Priority Serverless Cloud',
+        'Maximum 8 Pages (Complete Structure)',
+        'Exclusive custom design (Bento Grid Style)',
+        'Contact Us Form & Google Maps integration',
+        'Extreme Speed Optimization (PageSpeed >85)',
+        'Priority Design & Coding Revision Support'
+      ] : [
         'Domain .com + Cloud Serverless Prioritas',
         'Maksimal 8 Halaman menu (Struktur lengkap)',
         'Desain custom eksklusif (Bento Grid Style)',
@@ -108,9 +143,16 @@ const packages = {
     {
       tier: 'Enterprise Elite',
       title: 'Company Profile Enterprise',
-      price: 'Rp 4.500.000',
+      price: lang === 'en' ? '$300' : 'Rp 4.500.000',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        '.com Domain + Elite SSD Serverless Cloud',
+        'Unlimited Pages (As needed)',
+        'Luxurious visuals & advanced micro-interactions',
+        'Conversion analytics integration (GA4 + Pixel)',
+        'Full 3-month Priority Technical Support',
+        'Fully Custom Revision Support'
+      ] : [
         'Domain .com + Cloud Serverless Elite SSD',
         'Halaman tidak terbatas (Sesuai kebutuhan)',
         'Visual mewah & micro-interactions canggih',
@@ -124,9 +166,16 @@ const packages = {
     {
       tier: 'Starter Pack',
       title: 'Toko Online Starter',
-      price: 'Rp 2.500.000',
+      price: lang === 'en' ? '$170' : 'Rp 2.500.000',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        'Domain of Choice + E-Commerce Hosting',
+        'Standard shopping cart features',
+        'Catalog for up to 50 ready-to-sell products',
+        'Direct Checkout to WhatsApp',
+        'Self-managed product catalog guide',
+        'Design Revision Support'
+      ] : [
         'Domain Pilihan + Hosting E-Commerce',
         'Fitur keranjang belanja standar',
         'Katalog hingga 50 produk siap jual',
@@ -138,9 +187,16 @@ const packages = {
     {
       tier: 'Growth Scale',
       title: 'Toko Online Growth',
-      price: 'Rp 4.500.000',
+      price: lang === 'en' ? '$300' : 'Rp 4.500.000',
       popular: true,
-      features: [
+      features: lang === 'en' ? [
+        '.com Domain + Serverless E-Commerce Cloud',
+        'Automatic Payment Gateway integration (Midtrans)',
+        'Automatic shipping calculator (RajaOngkir)',
+        'Integrated sales report dashboard',
+        'Automatic stock management system',
+        'Priority Revision & Coding Support'
+      ] : [
         'Domain .com + Cloud Serverless E-Commerce',
         'Integrasi Payment Gateway otomatis (Midtrans)',
         'Kalkulator ongkos kirim otomatis (RajaOngkir)',
@@ -152,9 +208,16 @@ const packages = {
     {
       tier: 'Enterprise Elite',
       title: 'Toko Online Enterprise',
-      price: 'Rp 7.500.000',
+      price: lang === 'en' ? '$500' : 'Rp 7.500.000',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        'Dedicated Serverless VPS Cloud',
+        'Full verified payment gateways & e-wallets',
+        'Coupons, discounts, & affiliate system',
+        'Automatic multi-courier logistics integration',
+        'High-grade premium SSL database security',
+        'Fully Custom Revision Support'
+      ] : [
         'Cloud Serverless VPS Dedicated',
         'Payment gateway + e-wallet lengkap terverifikasi',
         'Sistem kupon, diskon, & sistem afiliasi',
@@ -168,9 +231,15 @@ const packages = {
     {
       tier: 'Starter Pack',
       title: 'Redesign Starter',
-      price: 'Rp 1.200.000',
+      price: lang === 'en' ? '$80' : 'Rp 1.200.000',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        'Modernization of existing layouts',
+        'Full mobile responsiveness optimization',
+        'Link cleanup & sitemap optimization',
+        'Connect to latest business WA',
+        'Design Revision Support'
+      ] : [
         'Modernisasi tata letak yang sudah ada',
         'Optimasi responsivitas mobile penuh',
         'Pembersihan link & sitemap halaman',
@@ -181,9 +250,15 @@ const packages = {
     {
       tier: 'Growth Scale',
       title: 'Visual Overhaul Growth',
-      price: 'Rp 2.200.000',
+      price: lang === 'en' ? '$150' : 'Rp 2.200.000',
       popular: true,
-      features: [
+      features: lang === 'en' ? [
+        'Complete visual redesign (Modern Glassmorphism)',
+        'Loading speed boost (Core Web Vitals)',
+        'Sales-oriented copywriting redesign',
+        'New GA4 & tracking pixel integration',
+        'Priority Revision & Coding Support'
+      ] : [
         'Desain visual baru total (Modern Glassmorphism)',
         'Peningkatan skor loading (Core Web Vitals)',
         'Pengaturan ulang copywriting agar menjual',
@@ -194,9 +269,15 @@ const packages = {
     {
       tier: 'Enterprise Elite',
       title: 'Re-Platform Enterprise',
-      price: 'Rp 4.000.000',
+      price: lang === 'en' ? '$270' : 'Rp 4.000.000',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        'Migration to modern frameworks (Astro/NextJS)',
+        'Complete on-page SEO restructuring',
+        'Premium custom visual design',
+        'CRM automation webhook integration',
+        'Fully Custom Revision Support'
+      ] : [
         'Migrasi ke framework modern (Astro/NextJS)',
         'Restrukturisasi SEO on-page total',
         'Desain visual custom premium',
@@ -209,7 +290,7 @@ const packages = {
     {
       tier: 'AI CHATBOT',
       title: lang === 'en' ? 'WhatsApp AI Chatbot' : 'AI Chatbot WA',
-      price: lang === 'en' ? 'From Rp 1,500,000' : 'Mulai Rp 1.500.000',
+      price: lang === 'en' ? 'From $100' : 'Mulai Rp 1.500.000',
       popular: true,
       features: lang === 'en' ? [
         'WhatsApp API integration',
@@ -253,7 +334,7 @@ const packages = {
     {
       tier: 'SEO OPTIMIZATION',
       title: lang === 'en' ? 'Google SEO Optimization' : 'Optimasi SEO Google',
-      price: lang === 'en' ? 'From Rp 1,200,000' : 'Mulai Rp 1.200.000',
+      price: lang === 'en' ? 'From $80' : 'Mulai Rp 1.200.000',
       popular: false,
       features: lang === 'en' ? [
         'Google Search Console & GA4 Setup',
@@ -296,10 +377,16 @@ const packages = {
   'maintenance': [
     {
       tier: 'Starter Pack',
-      title: 'Pemeliharaan Starter',
-      price: 'Rp 150.000 / bln',
+      title: lang === 'en' ? 'Starter Maintenance' : 'Pemeliharaan Starter',
+      price: lang === 'en' ? '$10 / mo' : 'Rp 150.000 / bln',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        'Monthly website files backup',
+        'Plugin & security systems updates',
+        'Basic uptime monitoring',
+        'Minor text fixes support',
+        'Monthly report via WA'
+      ] : [
         'Pencadangan file website bulanan',
         'Pembaruan plugin & sistem keamanan',
         'Pemantauan uptime dasar',
@@ -309,10 +396,16 @@ const packages = {
     },
     {
       tier: 'Growth Scale',
-      title: 'Pemeliharaan Aktif',
-      price: 'Rp 350.000 / bln',
+      title: lang === 'en' ? 'Active Maintenance' : 'Pemeliharaan Aktif',
+      price: lang === 'en' ? '$25 / mo' : 'Rp 350.000 / bln',
       popular: true,
-      features: [
+      features: lang === 'en' ? [
+        'Weekly database & files backup',
+        'Firewall & anti-malware security system',
+        '24/7 active uptime monitoring',
+        'Error troubleshooting (2 work hours/mo)',
+        'Monthly traffic analysis report'
+      ] : [
         'Pencadangan file & database mingguan',
         'Sistem keamanan firewall & anti-malware',
         'Pemantauan uptime aktif 24/7',
@@ -322,10 +415,16 @@ const packages = {
     },
     {
       tier: 'Enterprise Elite',
-      title: 'Pemeliharaan Prioritas',
-      price: 'Rp 750.000 / bln',
+      title: lang === 'en' ? 'Priority Maintenance' : 'Pemeliharaan Prioritas',
+      price: lang === 'en' ? '$50 / mo' : 'Rp 750.000 / bln',
       popular: false,
-      features: [
+      features: lang === 'en' ? [
+        'Automated daily backups',
+        'Priority instant bug & error resolution',
+        'Content updates support (5 work hours/mo)',
+        'Regular security audits & optimization',
+        'Dedicated WA coordination group with developers'
+      ] : [
         'Pencadangan harian otomatis',
         'Prioritas penanganan bug & error instan',
         'Bantuan update content (5 jam kerja/bln)',
