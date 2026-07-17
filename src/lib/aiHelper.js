@@ -13,7 +13,7 @@ const TELEGRAM_CHAT_ID = import.meta.env.TelegramChatId;
  * @param {string} systemInstruction - Instruksi sistem/prompt.
  * @returns {Promise<object>} Objek hasil ekstraksi JSON dari Groq.
  */
-export async function callGroq(history, systemInstruction) {
+export async function callGroq(history, systemInstruction, options = {}) {
   if (GROQ_KEYS.length === 0) {
     throw new Error('GROQ_API_KEY tidak ditemukan di environment variables.');
   }
@@ -26,11 +26,11 @@ export async function callGroq(history, systemInstruction) {
   ];
 
   const requestBody = {
-    model: 'llama-3.3-70b-versatile',
+    model: options.model || 'llama-3.3-70b-versatile',
     messages: messages,
     response_format: { type: 'json_object' },
-    max_tokens: 500,
-    temperature: 0.7
+    max_tokens: options.max_tokens || 500,
+    temperature: options.temperature !== undefined ? options.temperature : 0.7
   };
 
   // Coba gunakan kunci satu per satu jika terjadi rate limit (429)

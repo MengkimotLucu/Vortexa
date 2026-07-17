@@ -1,5 +1,6 @@
 ---
-import Page, { getStaticPaths as pageGetStaticPaths } from '../../blog/[slug].astro';
-export const getStaticPaths = pageGetStaticPaths;
+export const prerender = false;
+
+import Page from '../../blog/[slug].astro';
 ---
-<Page {...Astro.props} />
+<Page />

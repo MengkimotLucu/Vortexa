@@ -5,11 +5,12 @@ const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const content = {
   id: {
-    welcome: "Halo! Saya Asisten AI LUMOVELO. Ada yang bisa saya bantu terkait jasa website, SEO, edit video, atau sistem AI? Silakan tanyakan di sini!",
+    welcome: "Halo! Saya Asisten AI LUMOVELO. Ada yang bisa saya bantu terkait jasa website, SEO, keamanan jaringan, audit SEO gratis, edit video, atau sistem AI? Silakan tanyakan di sini!",
     quickReplies: [
       { label: "🌐 Jasa Website", value: "Jasa Pembuatan Website" },
       { label: "📈 Paket Growth Scale", value: "Tanya Paket Growth Scale" },
-      { label: "⏳ Lama Pengerjaan", value: "Berapa lama proses pengerjaan website?" },
+      { label: "🔒 Keamanan Jaringan", value: "Tanya Jasa Keamanan Jaringan & Pentest B2B" },
+      { label: "📊 Audit SEO Gratis", value: "Tanya Audit SEO & Performa Website Gratis" },
       { label: "🤖 Otomatisasi AI", value: "Otomatisasi Sistem AI" }
     ],
     statusOnline: "ONLINE",
@@ -20,11 +21,12 @@ const content = {
     toggleBtnLabel: "Tanya AI"
   },
   en: {
-    welcome: "Hello! I am the LUMOVELO AI Assistant. How can I help you with web development, SEO, video editing, or AI systems? Feel free to ask!",
+    welcome: "Hello! I am the LUMOVELO AI Assistant. How can I help you with web development, SEO, network security, free SEO audits, video editing, or AI systems? Feel free to ask!",
     quickReplies: [
       { label: "🌐 Web Development", value: "Web Development Services" },
       { label: "📈 Growth Scale Pack", value: "Tell me about the Growth Scale Package" },
-      { label: "⏳ Project Timeline", value: "How long does a web project take?" },
+      { label: "🔒 Network Security", value: "Tell me about B2B Network Security & Pentest Services" },
+      { label: "📊 Free SEO Audit", value: "How can I run a Free SEO & Speed Audit?" },
       { label: "🤖 AI Automation", value: "AI Automation Services" }
     ],
     statusOnline: "ONLINE",
@@ -236,6 +238,7 @@ const content = {
   }
 
   let isAiEnabled = true;
+  let loadedMessagesCount = 0;
   let pollInterval = null;
 
   const toggleBtn = document.getElementById('ai-chat-toggle-btn');
@@ -389,6 +392,7 @@ const content = {
 
       const data = await response.json();
       isAiEnabled = data.is_ai_enabled;
+      loadedMessagesCount = data.messages ? data.messages.length : 0;
 
       // Hapus pesan lama kecuali welcome message
       const welcome = messagesContainer.firstElementChild;
@@ -426,11 +430,9 @@ const content = {
       updateLastActive();
       checkAndApplyMessageLimit();
 
-      // Kelola polling jika mode manual
-      if (!isAiEnabled) {
+      // Selalu aktifkan polling jika ada sesi aktif
+      if (sessionId) {
         startPolling();
-      } else {
-        stopPolling();
       }
 
     } catch (err) {
@@ -475,6 +477,26 @@ const content = {
         `;
         messagesContainer.appendChild(waDiv);
         scrollToBottom();
+
+        const waLink = waDiv.querySelector('a');
+        if (waLink) {
+          waLink.addEventListener('click', async () => {
+            if (!sessionId) return;
+            try {
+              await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  message: '[System Info: Client clicked WhatsApp redirect button]',
+                  sessionId,
+                  lang: clientLang
+                })
+              });
+            } catch (err) {
+              console.error('Error tracking WhatsApp redirect click:', err);
+            }
+          });
+        }
       }
     } else {
       const waBtn = document.getElementById('ai-wa-redirect-btn');
@@ -541,7 +563,8 @@ const content = {
       const data = await response.json();
 
       // Simpan session ID jika baru
-      if (data.sessionId && data.sessionId !== sessionId) {
+      const isNewSession = data.sessionId && data.sessionId !== sessionId;
+      if (isNewSession) {
         sessionId = data.sessionId;
         localStorage.setItem('ai_chat_session_id', sessionId);
       }
@@ -553,6 +576,9 @@ const content = {
       if (data.reply) {
         appendMessage('assistant', data.reply);
         scrollToBottom();
+        loadedMessagesCount += 2;
+      } else {
+        loadedMessagesCount += 1;
       }
 
       // Cek dynamic limit dari backend
@@ -564,7 +590,7 @@ const content = {
 
       updateStatus(isAiEnabled ? 'active' : 'need_admin', isAiEnabled);
 
-      if (!isAiEnabled) {
+      if (sessionId) {
         startPolling();
       }
 
@@ -576,21 +602,22 @@ const content = {
     }
   });
 
-  // 5. Polling Manual Messages (Setiap 5 Detik jika mode manual)
+  // 5. Polling Manual/Admin Messages (Setiap 5 Detik jika mode manual, 10 Detik jika AI)
   function startPolling() {
     if (pollInterval) return;
-    pollInterval = setInterval(async () => {
+
+    const getInterval = () => isAiEnabled ? 10000 : 5000;
+
+    const poll = async () => {
       if (!sessionId) return;
       try {
         const response = await fetch(`/api/chat?sessionId=${sessionId}`);
         if (response.ok) {
           const data = await response.json();
           
-          // Hitung jumlah pesan saat ini
-          const currentMsgs = messagesContainer.querySelectorAll('.bg-slate-800\\/50, .bg-blue-600\\/20, .bg-slate-800').length;
-          const newMsgs = data.messages.length;
+          const newMsgs = data.messages ? data.messages.length : 0;
 
-          if (newMsgs > currentMsgs) {
+          if (newMsgs > loadedMessagesCount) {
             // Muat ulang pesan untuk menampilkan balasan admin baru
             loadChatHistory();
             if (!isOpen) {
@@ -598,17 +625,22 @@ const content = {
             }
           }
 
+          const oldAiEnabled = isAiEnabled;
           isAiEnabled = data.is_ai_enabled;
           updateStatus(data.status, isAiEnabled);
 
-          if (isAiEnabled) {
+          // Jika status AI berubah, restart polling dengan interval yang baru
+          if (oldAiEnabled !== isAiEnabled) {
             stopPolling();
+            startPolling();
           }
         }
       } catch (err) {
         console.error('Polling error:', err);
       }
-    }, 5000);
+    };
+
+    pollInterval = setInterval(poll, getInterval());
   }
 
   function stopPolling() {
@@ -930,10 +962,9 @@ const content = {
       })
       .then(data => {
         isAiEnabled = data.is_ai_enabled;
+        loadedMessagesCount = data.messages ? data.messages.length : 0;
         updateStatus(data.status, isAiEnabled);
-        if (!isAiEnabled) {
-          startPolling();
-        }
+        startPolling();
       })
       .catch(err => console.error('Error auto-checking session on load:', err));
   }

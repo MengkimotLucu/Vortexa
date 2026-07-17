@@ -209,11 +209,26 @@ import Logo from '../../components/Logo.astro';
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
       window.location.href = '/admin/login/';
-    } else {
-      sessionToken = session.access_token;
-      adminLayout.classList.remove('hidden');
-      loadAIConfig();
+      return;
     }
+
+    // Check if user email is authorized admin
+    const userEmail = session.user.email?.toLowerCase();
+    const allowedEmails = (import.meta.env.PUBLIC_ADMIN_EMAILS || 'admin@lumovelo.com')
+      .split(',')
+      .map(e => e.trim().toLowerCase());
+    const isAdmin = userEmail && (allowedEmails.includes(userEmail) || userEmail.endsWith('@lumovelo.com'));
+
+    if (!isAdmin) {
+      await supabase.auth.signOut();
+      alert('Akses Ditolak: Anda bukan administrator resmi.');
+      window.location.href = '/admin/login/';
+      return;
+    }
+
+    sessionToken = session.access_token;
+    adminLayout.classList.remove('hidden');
+    loadAIConfig();
   }
   validateAdminSession();
 

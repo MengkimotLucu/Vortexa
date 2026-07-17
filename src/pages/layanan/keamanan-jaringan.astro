@@ -1,0 +1,410 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+import Logo from '../../components/Logo.astro';
+
+const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+
+const content = {
+  id: {
+    title: "Jasa Keamanan Jaringan & Audit Keamanan Informasi B2B | LUMOVELO",
+    header: "KEAMANAN JARINGAN & CYBERSECURITY B2B",
+    headline: "Jasa Network Security Assessment & Penetration Testing Indonesia",
+    desc: "Konsultan keamanan jaringan perusahaan bersertifikat. Menyediakan layanan audit keamanan informasi, pentest siber, kepatuhan regulasi OJK & UU PDP, serta sertifikasi ISO 27001.",
+    cta: "Konsultasikan Keamanan Sistem Anda",
+    back: "Kembali ke Beranda",
+    pricingHeader: "/ PAKET CYBER SECURITY & ENDPOINT PROTECTION",
+    pricingTitle: "Investasi Proteksi Jaringan Sesuai Skala Infrastruktur IT Anda",
+    periodOnce: "Setup Awal (Sekali)",
+    periodMonthly: "Investasi Lisensi & Support",
+    annualNote: "*Tersedia penawaran tahunan dengan diskon khusus"
+  },
+  en: {
+    title: "Managed Network Security Services & Penetration Testing | LUMOVELO",
+    header: "NETWORK SECURITY SERVICES & COMPLIANCE",
+    headline: "Remote Network Vulnerability Assessment & External Penetration Testing Services",
+    desc: "Managed cloud security services & remote penetration testing services for fintech, e-commerce, and corporate IT infrastructures to ensure maximum security & compliance.",
+    cta: "Consult Your System Security",
+    back: "Back to Home",
+    pricingHeader: "/ CYBER SECURITY & ENDPOINT PROTECTION PACKAGES",
+    pricingTitle: "Invest in Network Security Built for Your IT Infrastructure Scale",
+    periodOnce: "Initial Setup (One-time)",
+    periodMonthly: "License & Support Investment",
+    annualNote: "*Annual plans available with special discount rates"
+  }
+}[lang];
+
+const packages = [
+  {
+    name: lang === 'en' ? "Starter Protection" : "Starter Protection",
+    price: "Rp300.000",
+    setup: "Rp3.000.000",
+    period: lang === 'en' ? "/ month" : "/ bulan",
+    target: lang === 'en' ? "Up to 5 Endpoints (PC/Laptop)" : "Maksimal 5 Endpoint (PC/Laptop)",
+    software: "ESET / Kaspersky Endpoint Security",
+    features: lang === 'en' ? [
+      "Centralized cloud endpoint management console",
+      "Real-time Malware, Ransomware, & USB blocking",
+      "Basic MikroTik Firewall (Port forwarding & isolation)",
+      "Initial network vulnerability assessment & scanning",
+      "B2B cybersecurity support (Business Hours)"
+    ] : [
+      "Konsol manajemen cloud endpoint terpusat",
+      "Proteksi Real-time Malware, Ransomware, & blokir USB",
+      "Basic MikroTik Firewall (Port forwarding & isolasi port)",
+      "Layanan cybersecurity B2B & scanning berkala",
+      "Dukungan teknis responsif (Jam Kerja)"
+    ]
+  },
+  {
+    name: lang === 'en' ? "Business Pro Security" : "Business Pro Security",
+    price: "Rp1.500.000",
+    setup: "Rp5.000.000",
+    period: lang === 'en' ? "/ month" : "/ bulan",
+    target: lang === 'en' ? "Up to 25 Endpoints & Local Server" : "Maksimal 25 Endpoint & Server Lokal",
+    software: "Sophos Intercept X / Bitdefender GravityZone",
+    popular: true,
+    features: lang === 'en' ? [
+      "Advanced Exploit Prevention & Web/IP Filtering",
+      "Central EDR console with active threat alert monitoring",
+      "Next-Gen Router Firewall (RB5009/FortiGate 40F setup)",
+      "External penetration testing services & site VPN",
+      "Remote threat mitigation & managed cloud security services",
+      "WhatsApp & Email priority support"
+    ] : [
+      "Konsultan keamanan jaringan & exploit prevention aktif",
+      "Konsol EDR terpusat dengan monitoring alert ancaman aktif",
+      "Next-Gen Router Firewall (Setup RB5009/FortiGate 40F)",
+      "Layanan penetration testing siber & VPN site-to-site",
+      "Mitigasi ancaman jarak jauh & troubleshoot sistem dasar",
+      "Prioritas dukungan WhatsApp & Email"
+    ]
+  },
+  {
+    name: lang === 'en' ? "Enterprise Elite Defense" : "Enterprise Elite Defense",
+    price: "Rp3.500.000",
+    setup: "Rp10.000.000",
+    period: lang === 'en' ? "/ month" : "/ bulan",
+    target: lang === 'en' ? "Up to 50+ Endpoints & Multi-Server" : "Maksimal 50+ Endpoint & Multi-Server",
+    software: "CrowdStrike Falcon / SentinelOne Complete",
+    features: lang === 'en' ? [
+      "AI-driven proactive Threat Hunting (OSCP guidelines)",
+      "Next-Gen Firewall UTM active features (IPS, Gateway AV)",
+      "Cloudflare Zero Trust Access (ZTNA) implementation",
+      "Dual-WAN Failover & Load Balancing firewall setup",
+      "Continuous network monitoring & vulnerability assessment reports",
+      "Priority SLA support under 1 hour by certified engineers"
+    ] : [
+      "Threat Hunting proaktif berbasis AI (Panduan OSCP)",
+      "Firewall Next-Gen UTM Aktif (IPS/IDS, Gateway Antivirus)",
+      "Implementasi Cloudflare Zero Trust Access (ZTNA)",
+      "Audit keamanan siber regulasi OJK & kepatuhan UU PDP",
+      "Jasa audit keamanan informasi & vulnerability assessment bulanan",
+      "WhatsApp Group Khusus & SLA dukungan di bawah 1 jam"
+    ]
+  },
+  {
+    name: lang === 'en' ? "Custom Corporate Defense" : "Custom Corporate Defense",
+    price: lang === 'en' ? "Contact Us" : "Hubungi Kami",
+    setup: lang === 'en' ? "Custom Quotation" : "Kustomisasi Biaya",
+    period: "",
+    target: lang === 'en' ? "Unlimited Endpoints & Datacenters" : "Unlimited Endpoint & Datacenter Lokal",
+    software: "Palo Alto NGFW, Cisco ISE, Splunk SIEM",
+    features: lang === 'en' ? [
+      "Custom security topology blueprint architectural design",
+      "Centralized SIEM (Splunk/Elastic Cloud) setup & correlation",
+      "Advanced Zero Trust identity verification integration",
+      "Regular penetration testing & compliance (Fintech/Healthcare/e-Commerce)",
+      "Dedicated certified engineers (CISSP & OSCP accredited)",
+      "24/7/365 Emergency incident response SLA support"
+    ] : [
+      "Rancangan arsitektur kustom oleh konsultan keamanan jaringan perusahaan",
+      "Integrasi SIEM terpusat (Splunk / Elastic Cloud Logging)",
+      "Implementasi Zero Trust identity verification tingkat lanjut",
+      "Jasa audit ISO 27001 Indonesia & penetration testing eksternal berkala",
+      "Alokasi Engineer bersertifikat khusus (OSCP & CISSP certified)",
+      "SLA penanganan darurat (Incident Response) 24/7/365"
+    ]
+  }
+];
+
+const homeLink = lang === 'en' ? '/en/' : '/';
+const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
+const generalWaText = encodeURIComponent(
+  lang === 'en'
+    ? "Hi Lumovelo Team, I would like to consult about the Network Security & Endpoint protection services."
+    : "Halo Tim Lumovelo, saya ingin berkonsultasi mengenai layanan Keamanan Jaringan & Proteksi Endpoint."
+);
+const generalWaUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${generalWaText}`;
+
+// Schema Markup for SEO
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": lang === 'en' ? "Network & Endpoint Security Solutions - LUMOVELO" : "Jasa Keamanan Jaringan & Proteksi Endpoint - LUMOVELO",
+  "image": "https://lumovelo.com/og-image.png",
+  "description": lang === 'en'
+    ? "Premium corporate cybersecurity services, endpoint protection software license integration, and hardware firewall deployment to safeguard business digital assets."
+    : "Jasa keamanan siber korporat premium, integrasi lisensi antivirus endpoint cloud terpusat, dan konfigurasi hardware firewall untuk melindungi aset digital bisnis.",
+  "brand": {
+    "@type": "Brand",
+    "name": "LUMOVELO"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "IDR",
+    "lowPrice": "300000",
+    "highPrice": "4000000",
+    "offerCount": "3",
+    "offers": packages.slice(0, 3).map((pkg) => ({
+      "@type": "Offer",
+      "name": pkg.name,
+      "price": pkg.price.replace(/[^0-9]/g, ""),
+      "priceCurrency": "IDR",
+      "url": "https://lumovelo.com/layanan/keamanan-jaringan/"
+    }))
+  }
+};
+---
+
+<Layout title={content.title}>
+  <!-- JSON-LD Structured Data Schema -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+
+  <!-- Simple Subpage Header -->
+  <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <a href={homeLink} class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl border border-blue-100 bg-white flex items-center justify-center shadow-sm">
+          <Logo class="w-4.5 h-4.5 text-blue-600" />
+        </div>
+        <span class="font-display font-black text-lg tracking-widest text-slate-900">LUMOVELO</span>
+      </a>
+      <a href={homeLink} class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors">
+        {content.back}
+      </a>
+    </div>
+  </header>
+
+  <main class="bg-white min-h-screen relative overflow-hidden font-sans">
+    <!-- Background Glimmer -->
+    <div class="absolute right-[-10%] top-[10%] w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute left-[-10%] bottom-[10%] w-[300px] h-[300px] bg-emerald-500/[0.01] rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 py-16 relative z-10">
+      
+      <!-- Headline Block -->
+      <div class="max-w-3xl mb-16 text-left animate-fade-in">
+        <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3 block">
+          {content.header}
+        </span>
+        <h1 class="font-display font-black text-4xl sm:text-5xl text-slate-900 leading-[1.15] uppercase tracking-tight font-sans">
+          {content.headline}
+        </h1>
+        <p class="text-slate-500 mt-6 text-base sm:text-lg leading-relaxed font-semibold">
+          {content.desc}
+        </p>
+      </div>
+
+      <!-- Solutions Grid (Highlights what we do) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+        <!-- Solution 1 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">{lang === 'en' ? 'Centralized EDR Protection' : 'Proteksi EDR Terpusat'}</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              {lang === 'en' 
+                ? 'Central monitoring console blockading ransomware, malware, and rogue USB hardware on employee laptops directly from the cloud.'
+                : 'Konsol monitoring terpusat untuk memblokir ransomware, malware, dan USB asing berbahaya pada laptop karyawan langsung dari cloud.'}
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Secure Endpoint Console →</span>
+        </div>
+
+        <!-- Solution 2 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">{lang === 'en' ? 'Perimeter Hardware Firewall' : 'Firewall Hardware Perimeter'}</h3>
+            <p class="text-xs text-slate-550 leading-relaxed font-medium">
+              {lang === 'en'
+                ? 'Installation and tuning of physical firewall units to prevent brute-force attacks, manage internet usage, and protect local databases.'
+                : 'Instalasi dan penyelarasan unit firewall fisik untuk memblokir serangan luar, menyaring pemakaian internet kantor, dan melindungi database lokal.'}
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Hardware Protection Setup →</span>
+        </div>
+
+        <!-- Solution 3 -->
+        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-black text-slate-900 uppercase">{lang === 'en' ? 'Secure Remote Access (VPN)' : 'Akses Remote Aman (VPN)'}</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              {lang === 'en'
+                ? 'Establish encrypted tunnels for employees to securely open internal office files and servers from home without exposure.'
+                : 'Pembangunan jalur terenkripsi khusus agar karyawan dapat mengakses file server internal kantor dari rumah tanpa khawatir disadap.'}
+            </p>
+          </div>
+          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Zero Trust / VPN Access →</span>
+        </div>
+      </div>
+
+      <!-- Pricing Packages Section -->
+      <div class="mb-20">
+        <div class="text-center mb-12">
+          <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">{content.pricingHeader}</h2>
+          <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">{content.pricingTitle}</h3>
+          <p class="text-[10px] text-slate-400 font-mono font-bold mt-2">{content.annualNote}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+          {packages.map((pkg, idx) => {
+            const isCustom = idx === 3;
+            const waText = encodeURIComponent(
+              lang === 'en'
+                ? `Hello Lumovelo Team, I am interested in consulting about the Network Security "${pkg.name}" package.`
+                : `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket Keamanan Jaringan "${pkg.name}" yang tertera di website.`
+            );
+            const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+
+            return (
+              <div 
+                class={`service-card border-2 p-5 rounded-2xl relative transition-all duration-300 flex flex-col justify-between min-h-[460px] ${
+                  pkg.popular
+                    ? 'border-slate-900 bg-white shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1.5'
+                    : 'border-blue-600/10 hover:border-blue-600 bg-slate-50/50 hover:bg-slate-50/80 shadow-[3px_3px_0px_rgba(37,99,235,0.05)] hover:shadow-[4px_4px_0px_#2563eb] hover:-translate-y-1'
+                }`}
+              >
+                {pkg.popular && (
+                  <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
+                    {lang === 'en' ? 'POPULAR' : 'POPULER'}
+                  </div>
+                )}
+                <div>
+                  <div class="flex justify-between items-start mb-3">
+                    <span class="text-[8px] font-mono text-slate-450 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                      {isCustom ? 'CUSTOM' : `TIER_0${idx + 1}`}
+                    </span>
+                  </div>
+                  <h4 class="font-display font-black text-base text-slate-900 uppercase leading-snug">{pkg.name}</h4>
+                  <p class="text-[9px] text-slate-400 font-bold mt-1 uppercase tracking-wide font-mono">{pkg.target}</p>
+                  
+                  <div class="my-4 border-y border-slate-200/40 py-2.5">
+                    <div class="text-[8px] font-mono text-slate-400 font-bold uppercase tracking-widest">{content.periodMonthly}</div>
+                    <div class="text-xl font-display font-black text-blue-600 mt-0.5">
+                      {pkg.price}
+                      <span class="text-[10px] font-mono text-slate-400 font-bold">{pkg.period}</span>
+                    </div>
+                    
+                    <div class="text-[8px] font-mono text-slate-400 font-bold uppercase tracking-widest mt-2">{content.periodOnce}</div>
+                    <div class="text-xs font-display font-bold text-slate-800 mt-0.5">{pkg.setup}</div>
+                  </div>
+
+                  <div class="mb-4">
+                    <span class="text-[8px] font-mono text-slate-450 font-bold uppercase tracking-widest block mb-1">Tech Stack</span>
+                    <span class="text-[10px] font-bold text-blue-600/90">{pkg.software}</span>
+                  </div>
+
+                  <ul class="space-y-2 text-xs text-slate-600 font-semibold mb-6 border-t border-slate-200/40 pt-3">
+                    {pkg.features.map((feature) => (
+                      <li class="flex items-start gap-1.5 leading-relaxed">
+                        <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        <span class="text-[11px]">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <a 
+                  href={waUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class={`w-full inline-flex items-center justify-center py-2.5 rounded-xl border-2 font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                    pkg.popular
+                      ? 'border-emerald-500 bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5'
+                      : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm'
+                  }`}
+                >
+                  {lang === 'en' ? 'Consult Now' : 'Konsultasi'}
+                </a>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Call to Action Banner -->
+      <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
+        <div class="space-y-2 max-w-xl text-center md:text-left">
+          <span class="text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest block mb-1">🔒 {lang === 'en' ? 'ZERO VULNERABILITY POLICY' : 'KEBIJAKAN TANPA CELAH KEAMANAN'}</span>
+          <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase leading-snug">{lang === 'en' ? 'Ready to Establish a Secure Network?' : 'Butuh solusi keamanan jaringan khusus?'}</h3>
+          <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+            {lang === 'en' 
+              ? 'Consult our certified cybersecurity engineers to analyze your network topology and draft a robust defense blueprint for free.'
+              : 'Konsultasikan topologi jaringan kantor, lisensi EDR/Antivirus, atau pemasangan firewall terpadu Anda secara gratis.'}
+          </p>
+        </div>
+        <a 
+          href={generalWaUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-6 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5 cursor-pointer shrink-0"
+        >
+          {content.cta}
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  function initSecurityCards() {
+    if (window.innerWidth >= 768) {
+      const cards = document.querySelectorAll('.service-card');
+      cards.forEach((card: any) => {
+        card.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--x', `${x}px`);
+          card.style.setProperty('--y', `${y}px`);
+
+          const width = rect.width;
+          const height = rect.height;
+          const rotateX = -((e.clientY - rect.top - height / 2) / height) * 3;
+          const rotateY = ((e.clientX - rect.left - width / 2) / width) * 3;
+
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.005)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSecurityCards);
+  } else {
+    initSecurityCards();
+  }
+</script>

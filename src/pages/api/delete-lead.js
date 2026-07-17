@@ -36,6 +36,20 @@ export async function POST({ request }) {
       });
     }
 
+    // Otorisasi email admin
+    const adminEmails = (import.meta.env.ADMIN_EMAILS || import.meta.env.PUBLIC_ADMIN_EMAILS || 'admin@lumovelo.com')
+      .split(',')
+      .map(email => email.trim().toLowerCase());
+    const userEmail = user.email?.toLowerCase();
+    const isAdmin = userEmail && (adminEmails.includes(userEmail) || userEmail.endsWith('@lumovelo.com'));
+
+    if (!isAdmin) {
+      return new Response(JSON.stringify({ error: 'Akses ditolak. Pengguna bukan administrator resmi.' }), {
+        status: 403,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     // Hapus data secara relasional
     // 1. Hapus data lead
     const { error: leadErr } = await supabaseAdmin

@@ -1,128 +1,148 @@
 ---
+export const prerender = false;
+
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { supabase } from '../../lib/supabase';
 
-export async function getStaticPaths() {
-  const staticPosts = [
-    {
-      slug: 'otomatisasi-leads-ai-whatsapp',
-      title: 'Cara Praktis Menggunakan AI Chatbot untuk Menjawab Pelanggan WhatsApp 24/7',
-      date: '05 JULI 2026',
-      category: 'AI & OTOMATISASI',
-      bgCategory: 'bg-indigo-100 text-indigo-750 border-indigo-200',
-      description: 'Menghemat waktu operasional customer service dengan integrasi agen AI pintar pada chat WhatsApp bisnis Anda secara otonom.',
-      content: `
-        <p class="mb-6 text-slate-650 leading-relaxed font-medium">
-          Menghadapi ratusan pesan dari pelanggan setiap hari di WhatsApp sering kali membuat tim customer service (CS) kewalahan. Jika respons yang diberikan lambat, pelanggan berpotensi beralih ke kompetitor. Di sinilah peran penting <a href="/layanan/ai/" class="text-blue-600 hover:underline font-extrabold">otomatisasi AI Chatbot WhatsApp</a>.
-        </p>
-        
-        <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Respons Kilat & Tanpa Henti</h3>
-        <p class="mb-6 text-slate-600 leading-relaxed">
-          Dengan mengintegrasikan model kecerdasan buatan (seperti GPT atau LLM kustom) ke dalam WhatsApp Business API Anda, sistem dapat secara otonom menjawab berbagai pertanyaan umum seputar harga, ketersediaan produk, lokasi, hingga cara melakukan pemesanan.
-        </p>
-        <p class="mb-6 text-slate-600 leading-relaxed">
-          AI dilatih menggunakan basis dokumen bisnis Anda (knowledge base), sehingga respons yang diberikan terasa natural, sopan, dan sangat akurat. Hal ini menghemat waktu operasional CS Anda hingga 70%, memungkinkan mereka fokus pada penjualan berskala besar saja.
-        </p>
-      `
-    },
-    {
-      slug: 'keunggulan-website-headless-modern',
-      title: 'Mengapa Website Headless Serverless Jauh Lebih Cepat dan Aman Dibanding WordPress Tradisional',
-      date: '02 JULI 2026',
-      category: 'IT & WEB DEVELOP',
-      bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
-      description: 'Mengenal arsitektur website modern tanpa database tradisional untuk kecepatan loading maksimal di bawah 1 detik dan bebas retasan.',
-      content: `
-        <p class="mb-6 text-slate-650 leading-relaxed font-medium">
-          Banyak website bisnis tradisional masih menggunakan arsitektur monolitik seperti WordPress yang bergantung pada server database aktif. Struktur ini rentan terhadap kelemahan keamanan (hacker) dan lambat saat diakses dengan koneksi mobile.
-        </p>
-        
-        <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kelebihan Arsitektur Headless Serverless</h3>
-        <p class="mb-6 text-slate-600 leading-relaxed">
-          Melalui <a href="/#layanan" class="text-blue-600 hover:underline font-extrabold">arsitektur modern</a> (seperti Astro atau Next.js yang kami gunakan), konten website dipisahkan sepenuhnya dari kode presentasi. Halaman web di-compile menjadi file HTML statis yang disebarkan secara global melalui CDN (Content Delivery Network).
-        </p>
-        <p class="mb-6 text-slate-600 leading-relaxed">
-          Dampaknya, website Anda dapat dimuat dengan kecepatan kurang dari 1 detik di perangkat handphone pelanggan. Selain itu, karena tidak ada database SQL yang aktif di belakang layar, celah serangan peretas hampir tidak ada, memberikan perlindungan penuh pada reputasi digital brand Anda.
-        </p>
-      `
-    },
-    {
-      slug: 'strategi-technical-seo-lokal',
-      title: 'Panduan Memulai Technical SEO untuk Meningkatkan Peringkat Bisnis Anda di Google Search',
-      date: '28 JUNI 2026',
-      category: 'SEO & MARKETING',
-      bgCategory: 'bg-blue-100 text-blue-650 border-blue-200',
-      description: 'Langkah-langkah praktis mengoptimasi struktur website, sitemap, dan meta tag agar bisnis Anda mudah ditemukan pelanggan di Google.',
-      content: `
-        <p class="mb-6 text-slate-650 leading-relaxed font-medium">
-          Banyak pemilik bisnis memfokuskan upaya SEO hanya pada penulisan kata kunci (keywords). Padahal, fondasi utama agar website Anda dapat diindeks dengan baik oleh Google adalah <a href="/layanan/seo/" class="text-blue-600 hover:underline font-extrabold">Technical SEO</a>.
-        </p>
-        
-        <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Mengoptimasi Struktur Di Balik Layar</h3>
-        <p class="mb-6 text-slate-600 leading-relaxed">
-          Technical SEO meliputi penataan struktur sitemap XML yang bersih, kerapian file robots.txt, penggunaan tag heading semantik (H1, H2, H3), kecepatan Core Web Vitals, serta responsivitas tampilan mobile.
-        </p>
-        <p class="mb-6 text-slate-600 leading-relaxed">
-          Ketika Google bot melakukan crawling pada website Anda, struktur yang bersih dan cepat mempermudah bot memahami konten Anda. Hal ini secara signifikan meningkatkan peluang website Anda muncul di peringkat teratas pencarian kata kunci yang dicari oleh calon pelanggan potensial Anda.
-        </p>
-      `
-    },
-    {
-      slug: 'peran-video-creative-landing-page',
-      title: 'Cara Video Creative Menarik Perhatian Pengunjung dan Menaikkan Konversi Penjualan Hingga 40%',
-      date: '25 JUNI 2026',
-      category: 'VIDEO & CREATIVE',
-      bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
-      description: 'Mengapa menyertakan konten video pendek berkualitas sangat berdampak pada penurunan bounce rate website produk dan meyakinkan calon pelanggan.',
-      content: `
-        <p class="mb-6 text-slate-650 leading-relaxed font-medium">
-          Pengunjung internet rata-rata hanya memiliki waktu fokus 5 hingga 8 detik ketika pertama kali membuka sebuah landing page. Jika halaman Anda hanya berisi barisan paragraf teks panjang yang membosankan, mereka akan segera menutup halaman Anda (bounce).
-        </p>
-        
-        <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kekuatan Visual yang Mengonversi</h3>
-        <p class="mb-6 text-slate-600 leading-relaxed">
-          Dengan menyisipkan <a href="/layanan/video/" class="text-blue-600 hover:underline font-extrabold">video produk pendek (short creative video)</a> yang interaktif, Anda dapat menyampaikan solusi produk atau layanan Anda secara visual dalam hitungan detik. Video berdurasi 30-60 detik terbukti meningkatkan kenyamanan membaca pengunjung.
-        </p>
-        <p class="mb-6 text-slate-600 leading-relaxed">
-          Elemen video yang ditempatkan secara strategis di sebelah tombol panggilan (Call to Action / CTA) dapat menaikkan minat beli secara emosional. Ini membantu mempercepat pengambilan keputusan calon pembeli untuk mengklik tombol WhatsApp dan melakukan pemesanan langsung ke bisnis Anda.
-        </p>
-      `
-    }
-  ];
+const staticPosts = [
+  {
+    slug: 'otomatisasi-leads-ai-whatsapp',
+    title: 'Cara Praktis Menggunakan AI Chatbot untuk Menjawab Pelanggan WhatsApp 24/7',
+    date: '05 JULI 2026',
+    category: 'AI & OTOMATISASI',
+    bgCategory: 'bg-indigo-100 text-indigo-750 border-indigo-200',
+    description: 'Menghemat waktu operasional customer service dengan integrasi agen AI pintar pada chat WhatsApp bisnis Anda secara otonom.',
+    content: `
+      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+        Menghadapi ratusan pesan dari pelanggan setiap hari di WhatsApp sering kali membuat tim customer service (CS) kewalahan. Jika respons yang diberikan lambat, pelanggan berpotensi beralih ke kompetitor. Di sinilah peran penting <a href="/layanan/ai/" class="text-blue-600 hover:underline font-extrabold">otomatisasi AI Chatbot WhatsApp</a>.
+      </p>
+      
+      <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Respons Kilat & Tanpa Henti</h3>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Dengan mengintegrasikan model kecerdasan buatan (seperti GPT atau LLM kustom) ke dalam WhatsApp Business API Anda, sistem dapat secara otonom menjawab berbagai pertanyaan umum seputar harga, ketersediaan produk, lokasi, hingga cara melakukan pemesanan.
+      </p>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        AI dilatih menggunakan basis dokumen bisnis Anda (knowledge base), sehingga respons yang diberikan terasa natural, sopan, dan sangat akurat. Hal ini menghemat waktu operasional CS Anda hingga 70%, memungkinkan mereka fokus pada penjualan berskala besar saja.
+      </p>
+    `
+  },
+  {
+    slug: 'keunggulan-website-headless-modern',
+    title: 'Mengapa Website Headless Serverless Jauh Lebih Cepat dan Aman Dibanding WordPress Tradisional',
+    date: '02 JULI 2026',
+    category: 'IT & WEB DEVELOP',
+    bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
+    description: 'Mengenal arsitektur website modern tanpa database tradisional untuk kecepatan loading maksimal di bawah 1 detik dan bebas retasan.',
+    content: `
+      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+        Banyak website bisnis tradisional masih menggunakan arsitektur monolitik seperti WordPress yang bergantung pada server database aktif. Struktur ini rentan terhadap kelemahan keamanan (hacker) dan lambat saat diakses dengan koneksi mobile.
+      </p>
+      
+      <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kelebihan Arsitektur Headless Serverless</h3>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Melalui <a href="/#layanan" class="text-blue-600 hover:underline font-extrabold">arsitektur modern</a> (seperti Astro atau Next.js yang kami gunakan), konten website dipisahkan sepenuhnya dari kode presentasi. Halaman web di-compile menjadi file HTML statis yang disebarkan secara global melalui CDN (Content Delivery Network).
+      </p>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Dampaknya, website Anda dapat dimuat dengan kecepatan kurang dari 1 detik di perangkat handphone pelanggan. Selain itu, karena tidak ada database SQL yang aktif di belakang layar, celah serangan peretas hampir tidak ada, memberikan perlindungan penuh pada reputasi digital brand Anda.
+      </p>
+    `
+  },
+  {
+    slug: 'strategi-technical-seo-lokal',
+    title: 'Panduan Memulai Technical SEO untuk Meningkatkan Peringkat Bisnis Anda di Google Search',
+    date: '28 JUNI 2026',
+    category: 'SEO & MARKETING',
+    bgCategory: 'bg-blue-100 text-blue-650 border-blue-200',
+    description: 'Langkah-langkah praktis mengoptimasi struktur website, sitemap, dan meta tag agar bisnis Anda mudah ditemukan pelanggan di Google.',
+    content: `
+      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+        Banyak pemilik bisnis memfokuskan upaya SEO hanya pada penulisan kata kunci (keywords). Padahal, fondasi utama agar website Anda dapat diindeks dengan baik oleh Google adalah <a href="/layanan/seo/" class="text-blue-600 hover:underline font-extrabold">Technical SEO</a>.
+      </p>
+      
+      <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Mengoptimasi Struktur Di Balik Layar</h3>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Technical SEO meliputi penataan struktur sitemap XML yang bersih, kerapian file robots.txt, penggunaan tag heading semantik (H1, H2, H3), kecepatan Core Web Vitals, serta responsivitas tampilan mobile.
+      </p>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Ketika Google bot melakukan crawling pada website Anda, struktur yang bersih dan cepat mempermudah bot memahami konten Anda. Hal ini secara signifikan meningkatkan peluang website Anda muncul di peringkat teratas pencarian kata kunci yang dicari oleh calon pelanggan potensial Anda.
+      </p>
+    `
+  },
+  {
+    slug: 'peran-video-creative-landing-page',
+    title: 'Cara Video Creative Menarik Perhatian Pengunjung dan Menaikkan Konversi Penjualan Hingga 40%',
+    date: '25 JUNI 2026',
+    category: 'VIDEO & CREATIVE',
+    bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
+    description: 'Mengapa menyertakan konten video pendek berkualitas sangat berdampak pada penurunan bounce rate website produk dan meyakinkan calon pelanggan.',
+    content: `
+      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+        Pengunjung internet rata-rata hanya memiliki waktu fokus 5 hingga 8 detik ketika pertama kali membuka sebuah landing page. Jika halaman Anda hanya berisi barisan paragraf teks panjang yang membosankan, mereka akan segera menutup halaman Anda (bounce).
+      </p>
+      
+      <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Kekuatan Visual yang Mengonversi</h3>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Dengan menyisipkan <a href="/layanan/video/" class="text-blue-600 hover:underline font-extrabold">video produk pendek (short creative video)</a> yang interaktif, Anda dapat menyampaikan solusi produk atau layanan Anda secara visual dalam hitungan detik. Video berdurasi 30-60 detik terbukti meningkatkan kenyamanan membaca pengunjung.
+      </p>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Elemen video yang ditempatkan secara strategis di sebelah tombol panggilan (Call to Action / CTA) dapat menaikkan minat beli secara emosional. Ini membantu mempercepat pengambilan keputusan calon pembeli untuk mengklik tombol WhatsApp dan melakukan pemesanan langsung ke bisnis Anda.
+      </p>
+    `
+  }
+];
 
-  // Fetch dynamic posts from database
-  let dbPosts = [];
+const { slug } = Astro.params;
+
+let post = staticPosts.find(p => p.slug === slug);
+
+if (!post) {
   try {
     const { data, error } = await supabase
       .from('posts')
       .select('*')
-      .order('created_at', { ascending: false });
-    if (data && data.length > 0) {
-      dbPosts = data;
+      .eq('slug', slug)
+      .maybeSingle();
+
+    if (data) {
+      post = {
+        slug: data.slug,
+        title: data.title,
+        date: data.date,
+        category: data.category,
+        bgCategory: data.bg_category || 'bg-blue-100 text-blue-650 border-blue-200',
+        description: data.description,
+        content: data.content
+      };
     }
   } catch (e) {
-    console.error('Error loading posts from database:', e);
+    console.error('Error loading post from database:', e);
   }
-
-  // Fallback to static posts if database is empty
-  const rawPosts = dbPosts.length > 0 ? dbPosts : staticPosts;
-
-  return rawPosts.map(post => ({
-    params: { slug: post.slug },
-    props: {
-      title: post.title,
-      date: post.date,
-      category: post.category,
-      bgCategory: post.bg_category || post.bgCategory || 'bg-blue-100 text-blue-650 border-blue-200',
-      description: post.description,
-      content: post.content
-    }
-  }));
 }
 
-const { title, date, category, bgCategory, content, description } = Astro.props;
+if (!post) {
+  Astro.response.status = 404;
+  Astro.response.statusText = 'Not Found';
+  post = {
+    slug: 'not-found',
+    title: 'Artikel Tidak Ditemukan',
+    date: 'TIDAK TERSEDIA',
+    category: 'ERROR 404',
+    bgCategory: 'bg-rose-100 text-rose-700 border-rose-200',
+    description: 'Artikel yang Anda cari tidak dapat ditemukan.',
+    content: `
+      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+        Maaf, artikel yang Anda cari tidak ditemukan. Halaman ini mungkin telah dipindahkan atau dihapus.
+      </p>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Silakan kembali ke <a href="/blog/" class="text-blue-600 hover:underline font-extrabold">halaman utama blog</a> untuk membaca artikel menarik lainnya seputar wawasan teknologi agensi kami.
+      </p>
+    `
+  };
+}
+
+const { title, date, category, bgCategory, content, description } = post;
 
 const isEn = Astro.currentLocale === 'en';
 const localizedContent = content

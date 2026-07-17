@@ -1,6 +1,6 @@
 # Lumovelo
 
-Agensi growth & software development terdepan. Kami merekayasa solusi kecerdasan buatan (AI), aplikasi web headless super ngebut, dan advanced SEO untuk mendominasi pasar nasional hingga global.
+Agensi growth & software development terdepan.
 
 ## 🚀 Prosedur Menjalankan Project
 

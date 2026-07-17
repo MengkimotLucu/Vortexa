@@ -21,7 +21,6 @@ const content = {
     fProfile: "[ COMPANY PROFILE ]",
     fEcom: "[ TOKO ONLINE ]",
     fRedesign: "[ REDESIGN WEB ]",
-    fMaint: "[ MAINTENANCE ]",
     btnView: "Lihat Mockup",
     btnWa: "Konsultasi Layanan Ini",
     titleLightbox: "Detail Desain",
@@ -37,7 +36,6 @@ const content = {
     fProfile: "[ COMPANY PROFILE ]",
     fEcom: "[ E-COMMERCE ]",
     fRedesign: "[ WEB REDESIGN ]",
-    fMaint: "[ MAINTENANCE ]",
     btnView: "View Mockup",
     btnWa: "Inquire about Service",
     titleLightbox: "Design Details",
@@ -190,30 +188,6 @@ const projects = [
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Website Pemasaran Digital (proyek BelanjaHub) yang saya lihat di portofolio.'
     )}`,
     demoUrl: 'https://belanjahub.vercel.app/'
-  },
-  {
-    id: 'maintenance',
-    category: 'maintenance',
-    categoryLabel: lang === 'en' ? 'Maintenance' : 'Pemeliharaan Web',
-    filePath: '~/lumovelo/portfolio/maintenance.png',
-    title: 'Priority Support & Cloud',
-    image: imgMaintenance,
-    tech: ['VPS Server', 'Cloudflare', 'Security Audit'],
-    desc: lang === 'en' 
-      ? 'Priority server maintenance and active monitoring with automated backups, uptime checks, and security firewall configuration.' 
-      : 'Pemeliharaan server prioritas dan pemantauan aktif dengan pencadangan otomatis, pemeriksaan uptime, dan konfigurasi firewall keamanan.',
-    metric: lang === 'en' ? 'System Uptime 99.9%' : 'Uptime Sistem: 99.9%',
-    altText: lang === 'en' 
-      ? "Priority server maintenance and active web support service"
-      : "Jasa pemeliharaan website bulanan dan monitoring uptime server - Priority Support",
-    spanClass: 'md:col-span-4',
-    heightClass: 'h-[380px]',
-    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
-      lang === 'en' 
-        ? 'Hello Lumovelo, I am interested in inquiring about the Web Maintenance & Support service (Priority Support project) I saw in your portfolio.' 
-        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa Pemeliharaan/Maintenance Website (proyek Priority Support) yang saya lihat di portofolio.'
-    )}`,
-    demoUrl: ''
   }
 ];
 ---
@@ -251,9 +225,7 @@ const projects = [
         <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-slate-900 hover:text-slate-900 cursor-pointer" data-filter="redesign">
           {content.fRedesign}
         </button>
-        <button type="button" class="portfolio-filter-btn px-4 py-2 border-2 border-slate-200 bg-white text-[10px] font-bold text-slate-500 uppercase tracking-wider rounded-lg transition-all hover:border-slate-900 hover:text-slate-900 cursor-pointer" data-filter="maintenance">
-          {content.fMaint}
-        </button>
+
       </div>
     </div>
 

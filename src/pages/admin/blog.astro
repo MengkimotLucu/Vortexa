@@ -92,6 +92,10 @@ import Logo from '../../components/Logo.astro';
         </div>
 
         <div class="ml-auto flex items-center gap-3">
+          <button id="btn-generate-ai" class="flex items-center gap-1.5 h-9 px-3 rounded-lg text-[12px] font-semibold bg-indigo-600 hover:bg-indigo-750 text-white transition-colors cursor-pointer shadow-lg shadow-indigo-600/10">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
+            Buat Artikel AI
+          </button>
           <button id="btn-add-post" class="flex items-center gap-1.5 h-9 px-3 rounded-lg text-[12px] font-semibold bg-[#C5F82A] text-[#0A0A0B] hover:opacity-90 transition-opacity cursor-pointer">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
             Tambah Artikel
@@ -121,6 +125,7 @@ import Logo from '../../components/Logo.astro';
               <option value="IT & WEB DEVELOP">IT & WEB DEVELOP</option>
               <option value="SEO & MARKETING">SEO & MARKETING</option>
               <option value="VIDEO & CREATIVE">VIDEO & CREATIVE</option>
+              <option value="KEAMANAN JARINGAN">KEAMANAN JARINGAN</option>
             </select>
           </div>
           <div class="space-y-1">
@@ -197,6 +202,7 @@ import Logo from '../../components/Logo.astro';
               <option value="IT & WEB DEVELOP">IT & WEB DEVELOP</option>
               <option value="SEO & MARKETING">SEO & MARKETING</option>
               <option value="VIDEO & CREATIVE">VIDEO & CREATIVE</option>
+              <option value="KEAMANAN JARINGAN">KEAMANAN JARINGAN</option>
             </select>
           </div>
           <div class="space-y-1">
@@ -221,6 +227,45 @@ import Logo from '../../components/Logo.astro';
           </button>
           <button type="submit" id="modal-btn-save" class="px-5 py-2 bg-[#C5F82A] hover:opacity-90 text-[#0A0A0B] rounded-xl font-bold transition-all cursor-pointer">
             Simpan Artikel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- AI Blog Post Generator Modal -->
+  <div id="ai-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+    <div class="bg-[#131316] border border-[#232328] rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="live-dot w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping"></span>
+        <h3 class="serif text-xl text-white">Buat Artikel AI (Groq)</h3>
+      </div>
+      <p class="text-[11px] text-[#8A8A90] -mt-2 leading-relaxed">Pilih kategori dan tentukan topik spesifik. AI akan secara otomatis menghasilkan artikel SEO bahasa Indonesia yang lengkap dengan internal linking.</p>
+      
+      <form id="ai-form" class="space-y-4 text-xs text-slate-300">
+        <div class="space-y-1">
+          <label for="ai-post-category" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Kategori Artikel *</label>
+          <select id="ai-post-category" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none">
+            <option value="AI & OTOMATISASI">AI & OTOMATISASI</option>
+            <option value="IT & WEB DEVELOP">IT & WEB DEVELOP</option>
+            <option value="SEO & MARKETING">SEO & MARKETING</option>
+            <option value="VIDEO & CREATIVE">VIDEO & CREATIVE</option>
+            <option value="KEAMANAN JARINGAN">KEAMANAN JARINGAN</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label for="ai-post-keyword" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Topik Spesifik / Kata Kunci (Opsional)</label>
+          <input type="text" id="ai-post-keyword" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none" placeholder="Contoh: Pentingnya firewall FortiGate di kantor, dsb." />
+        </div>
+
+        <div class="pt-4 flex justify-end gap-3 text-xs">
+          <button type="button" id="ai-btn-cancel" class="px-4 py-2 bg-[#232328] hover:bg-[#2e2e34] text-white rounded-xl font-semibold transition-colors cursor-pointer">
+            Batal
+          </button>
+          <button type="submit" id="ai-btn-submit" class="px-5 py-2 bg-indigo-600 hover:opacity-90 text-white rounded-xl font-bold transition-all cursor-pointer flex items-center gap-1.5">
+            <span id="ai-btn-text">Mulai Generate</span>
+            <div id="ai-btn-spinner" class="hidden w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
           </button>
         </div>
       </form>
@@ -350,6 +395,17 @@ import Logo from '../../components/Logo.astro';
     const btnAddPost = document.getElementById('btn-add-post')!;
     const postModal = document.getElementById('post-modal')!;
     const modalForm = document.getElementById('modal-form') as HTMLFormElement;
+
+    // AI Generator elements
+    const btnGenerateAi = document.getElementById('btn-generate-ai')!;
+    const aiModal = document.getElementById('ai-modal')!;
+    const aiForm = document.getElementById('ai-form') as HTMLFormElement;
+    const aiPostCategory = document.getElementById('ai-post-category') as HTMLSelectElement;
+    const aiPostKeyword = document.getElementById('ai-post-keyword') as HTMLInputElement;
+    const aiBtnCancel = document.getElementById('ai-btn-cancel')!;
+    const aiBtnSubmit = document.getElementById('ai-btn-submit') as HTMLButtonElement;
+    const aiBtnText = document.getElementById('ai-btn-text')!;
+    const aiBtnSpinner = document.getElementById('ai-btn-spinner')!;
     
     const filterCategory = document.getElementById('filter-category') as HTMLSelectElement;
     const searchTitle = document.getElementById('search-title') as HTMLInputElement;
@@ -373,10 +429,25 @@ import Logo from '../../components/Logo.astro';
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
         window.location.href = '/admin/login/';
-      } else {
-        adminLayout.classList.remove('hidden');
-        loadBlogPosts();
+        return;
       }
+
+      // Check if user email is authorized admin
+      const userEmail = session.user.email?.toLowerCase();
+      const allowedEmails = (import.meta.env.PUBLIC_ADMIN_EMAILS || 'admin@lumovelo.com')
+        .split(',')
+        .map(e => e.trim().toLowerCase());
+      const isAdmin = userEmail && (allowedEmails.includes(userEmail) || userEmail.endsWith('@lumovelo.com'));
+
+      if (!isAdmin) {
+        await supabase.auth.signOut();
+        alert('Akses Ditolak: Anda bukan administrator resmi.');
+        window.location.href = '/admin/login/';
+        return;
+      }
+
+      adminLayout.classList.remove('hidden');
+      loadBlogPosts();
     }
     validateAdminSession();
 
@@ -566,6 +637,64 @@ import Logo from '../../components/Logo.astro';
         alert('Gagal menghapus artikel.\nError: ' + err.message);
       }
     }
+
+    // Event Listeners for AI Modal
+    btnGenerateAi.addEventListener('click', () => {
+      aiPostKeyword.value = '';
+      aiPostCategory.value = 'AI & OTOMATISASI';
+      aiModal.classList.remove('hidden');
+    });
+
+    aiBtnCancel.addEventListener('click', () => {
+      aiModal.classList.add('hidden');
+    });
+
+    aiForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const category = aiPostCategory.value;
+      const keyword = aiPostKeyword.value.trim();
+      
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        alert('Sesi Anda telah berakhir. Silakan login kembali.');
+        window.location.href = '/admin/login/';
+        return;
+      }
+
+      // Set loading state
+      aiBtnSubmit.disabled = true;
+      aiBtnText.innerText = "Generating...";
+      aiBtnSpinner.classList.remove('hidden');
+
+      try {
+        const response = await fetch('/api/admin/generate-blog', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            category,
+            keyword,
+            token: session.access_token
+          })
+        });
+
+        const resData = await response.json();
+        if (!response.ok || resData.error) {
+          throw new Error(resData.error || 'Terjadi kesalahan saat generate artikel.');
+        }
+
+        alert('Sukses! Artikel AI berhasil digenerate dan dipublikasikan.');
+        aiModal.classList.add('hidden');
+        loadBlogPosts(); // Reload posts table
+      } catch (err: any) {
+        alert('Gagal generate artikel AI:\n' + err.message);
+      } finally {
+        // Reset loading state
+        aiBtnSubmit.disabled = false;
+        aiBtnText.innerText = "Mulai Generate";
+        aiBtnSpinner.classList.add('hidden');
+      }
+    });
 
     // Event Listeners for controls
     btnAddPost.addEventListener('click', openCreateModal);
