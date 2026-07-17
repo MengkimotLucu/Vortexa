@@ -9,6 +9,8 @@ import imgBelanjahub from '../assets/portfolio-belanjahub.png';
 import imgMaintenance from '../assets/portfolio-maintenance.png';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
+
 
 const content = {
   id: {
@@ -62,7 +64,7 @@ const projects = [
       : "Jasa pembuatan landing page F&B FastEat Cafe & Restaurant konversi tinggi",
     spanClass: 'md:col-span-8',
     heightClass: 'h-[380px]',
-    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the Cafe/Restaurant Landing Page (FastEat project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Landing Page Cafe/Restoran (proyek FastEat) yang saya lihat di portofolio.'
@@ -86,7 +88,7 @@ const projects = [
       : "Jasa pembuatan website company profile perusahaan multinasional - Apex Corp",
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
-    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the Company Profile service (Apex Corp project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Company Profile (proyek Apex Corp) yang saya lihat di portofolio.'
@@ -110,7 +112,7 @@ const projects = [
       : "Jasa pembuatan toko online e-commerce buah organik - FruitFresh",
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
-    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the E-Commerce fruit store (FruitFresh project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa Toko Online buah (proyek FruitFresh) yang saya lihat di portofolio.'
@@ -134,7 +136,7 @@ const projects = [
       : "Jasa redesign website dasbor responsif modern - Lumina Dashboard",
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
-    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the Web Redesign service (Lumina Dashboard project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa Redesign Web (proyek Lumina Dashboard) yang saya lihat di portofolio.'
@@ -158,7 +160,7 @@ const projects = [
       : "Jasa pembuatan website company profile agensi desain UI/UX - Xplored",
     spanClass: 'md:col-span-8',
     heightClass: 'h-[380px]',
-    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the UI Agency Website (Xplored project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Website Agensi UI (proyek Xplored) yang saya lihat di portofolio.'
@@ -182,7 +184,7 @@ const projects = [
       : "Jasa pembuatan website agensi pemasaran digital teroptimasi SEO - BelanjaHub",
     spanClass: 'md:col-span-4',
     heightClass: 'h-[380px]',
-    waUrl: `https://api.whatsapp.com/send?phone=6285624353611&text=${encodeURIComponent(
+    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
       lang === 'en' 
         ? 'Hello Lumovelo, I am interested in inquiring about the Digital Marketing Website (BelanjaHub project) I saw in your portfolio.' 
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Website Pemasaran Digital (proyek BelanjaHub) yang saya lihat di portofolio.'

@@ -41,7 +41,7 @@ export async function POST({ request }) {
       .split(',')
       .map(email => email.trim().toLowerCase());
     const userEmail = user.email?.toLowerCase();
-    const isAdmin = userEmail && (adminEmails.includes(userEmail) || userEmail.endsWith('@lumovelo.com'));
+    const isAdmin = userEmail && adminEmails.includes(userEmail);
 
     if (!isAdmin) {
       return new Response(JSON.stringify({ error: 'Akses ditolak. Pengguna bukan administrator resmi.' }), {

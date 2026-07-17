@@ -543,7 +543,7 @@ const vacancies = content.vacancies;
         const portfolioVal = (document.getElementById('applicant-portfolio') as HTMLInputElement).value;
         const formLang = form.getAttribute('data-lang') || 'id';
 
-        const targetPhone = "6285624353611";
+        const targetPhone = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
         
         const messageText = formLang === 'en'
           ? `Hello Lumovelo HR Team, I would like to submit a job application. Here are my details:\n\n- Name: ${nameVal}\n- Position: ${positionVal}\n- CV & LinkedIn: ${cvLinkedinVal}\n- Portfolio: ${portfolioVal}\n\nThank you.`

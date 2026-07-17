@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
+
 
 const services = {
   web: {
@@ -807,7 +809,7 @@ const services = {
                   const waText = encodeURIComponent(
                     `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "${subservice.label} - ${pkg.name}" (${pkg.price}) yang tertera di website.`
                   );
-                  const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+                  const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${waText}`;
                   
                   return (
                     <div 
@@ -883,7 +885,7 @@ const services = {
                   const waText = encodeURIComponent(
                     `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "${subservice.label} - ${pkg.name}" (${pkg.price}) yang tertera di website.`
                   );
-                  const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+                  const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${waText}`;
                   
                   return (
                     <div 

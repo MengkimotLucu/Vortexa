@@ -12,7 +12,7 @@ const content = {
   }
 }[lang];
 
-const waNumber = "6285624353611";
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
 const message = lang === 'en' 
   ? "Hello Lumovelo, I'd like to consult on a project." 
   : "Halo Lumovelo, saya ingin berkonsultasi tentang proyek website/AI.";

@@ -1,4 +1,5 @@
 ---
+export const prerender = false;
 import Layout from '../../layouts/Layout.astro';
 import Logo from '../../components/Logo.astro';
 ---
@@ -537,7 +538,7 @@ import Logo from '../../components/Logo.astro';
       const allowedEmails = (import.meta.env.PUBLIC_ADMIN_EMAILS || 'admin@lumovelo.com')
         .split(',')
         .map(e => e.trim().toLowerCase());
-      const isAdmin = userEmail && (allowedEmails.includes(userEmail) || userEmail.endsWith('@lumovelo.com'));
+      const isAdmin = userEmail && allowedEmails.includes(userEmail);
 
       if (!isAdmin) {
         await supabase.auth.signOut();
@@ -1009,6 +1010,8 @@ import Logo from '../../components/Logo.astro';
 
     btnLogout.addEventListener('click', async () => {
       await supabase.auth.signOut();
+      document.cookie = 'sb-access-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; Secure';
+      document.cookie = 'sb-refresh-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; Secure';
       window.location.href = '/admin/login/';
     });
 

@@ -277,6 +277,10 @@ const SignInCard = () => {
       }
 
       if (data.session) {
+        const { access_token, refresh_token, expires_in } = data.session;
+        // Simpan token ke cookie agar terbaca oleh middleware di sisi server
+        document.cookie = `sb-access-token=${access_token}; path=/; max-age=${expires_in}; SameSite=Lax; Secure`;
+        document.cookie = `sb-refresh-token=${refresh_token}; path=/; max-age=604800; SameSite=Lax; Secure`;
         window.location.href = '/admin/dashboard/';
       }
     } catch (err: any) {

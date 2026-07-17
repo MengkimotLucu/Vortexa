@@ -230,7 +230,7 @@ const localizedContent = content
           </p>
         </div>
         <a 
-          href="https://api.whatsapp.com/send?phone=6285624353611&text=Halo%20Lumovelo%2C%20saya%20tertarik%20berdiskusi%20lebih%20lanjut%20tentang%20layanan%20teknologi%20Anda."
+          href={"https://api.whatsapp.com/send?phone=" + (import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611") + "&text=Halo%20Lumovelo%2C%20saya%20tertarik%20berdiskusi%20lebih%20lanjut%20tentang%20layanan%20teknologi%20Anda."}
           target="_blank" 
           rel="noopener noreferrer"
           class="inline-flex shrink-0 items-center justify-center px-6 py-3.5 border-2 border-slate-900 bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] rounded-xl cursor-pointer"

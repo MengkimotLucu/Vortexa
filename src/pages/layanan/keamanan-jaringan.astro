@@ -4,6 +4,8 @@ import Footer from '../../components/Footer.astro';
 import Logo from '../../components/Logo.astro';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
+
 
 const content = {
   id: {
@@ -279,7 +281,7 @@ const schema = {
                 ? `Hello Lumovelo Team, I am interested in consulting about the Network Security "${pkg.name}" package.`
                 : `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket Keamanan Jaringan "${pkg.name}" yang tertera di website.`
             );
-            const waUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${waText}`;
+            const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${waText}`;
 
             return (
               <div 

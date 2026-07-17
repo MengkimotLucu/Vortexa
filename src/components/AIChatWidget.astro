@@ -458,8 +458,30 @@ const content = {
         waDiv.id = 'ai-wa-redirect-btn';
         waDiv.className = 'flex flex-col items-center gap-2.5 mt-4 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl w-full';
 
-        const waNumber = "6285624353611"; // Nomor WA agensi
-        const waMessage = encodeURIComponent(translations.waMessage);
+        const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611"; // Nomor WA agensi dari env
+        
+        // Buat pesan pre-filled terpersonalisasi secara dinamis
+        const userName = localStorage.getItem('lead_name') || '';
+        let customMessage = translations.waMessage;
+
+        // Ambil isi teks pesan user terakhir untuk konteks admin
+        const userMessages = Array.from(messagesContainer.querySelectorAll('.bg-blue-600\\/20'));
+        let lastUserText = '';
+        if (userMessages.length > 0) {
+          lastUserText = userMessages[userMessages.length - 1].textContent.trim();
+        }
+
+        if (userName) {
+          customMessage = clientLang === 'en'
+            ? `Hello Lumovelo, I'm ${userName}. I'd like to continue my consultation from LumoAI.${lastUserText ? ` My last inquiry was: "${lastUserText}"` : ''}`
+            : `Halo Lumovelo, saya ${userName}. Saya ingin melanjutkan konsultasi dari LumoAI.${lastUserText ? ` Pertanyaan terakhir saya: "${lastUserText}"` : ''}`;
+        } else if (lastUserText) {
+          customMessage = clientLang === 'en'
+            ? `Hello Lumovelo, I'd like to continue my consultation from LumoAI regarding: "${lastUserText}"`
+            : `Halo Lumovelo, saya ingin melanjutkan konsultasi dari LumoAI terkait: "${lastUserText}"`;
+        }
+
+        const waMessage = encodeURIComponent(customMessage);
         const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
 
         waDiv.innerHTML = `

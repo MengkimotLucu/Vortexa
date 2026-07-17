@@ -434,7 +434,7 @@ const packages = {
   ]
 };
 
-const waBaseUrl = "https://api.whatsapp.com/send?phone=6285624353611&text=";
+const waBaseUrl = `https://api.whatsapp.com/send?phone=${import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611"}&text=`;
 const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
 ---
 

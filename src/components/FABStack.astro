@@ -1,7 +1,7 @@
 ---
 const currentLocale = Astro.url.pathname.startsWith('/en/') || Astro.url.pathname === '/en' ? 'en' : 'id';
 
-const waNumber = "6285624353611";
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
 
 // Rujukan template pesan WhatsApp yang disesuaikan
 const urls = {
