@@ -36,6 +36,24 @@ const THANK_YOU_WORDS = [
 ];
 
 /**
+ * Menormalisasi nomor WhatsApp ke format internasional (diawali 62).
+ */
+function normalizeWhatsAppNumber(number) {
+  if (!number) return '';
+  let cleaned = number.replace(/[^0-9+]/g, '');
+  if (cleaned.startsWith('+62')) {
+    cleaned = '62' + cleaned.slice(3);
+  } else if (cleaned.startsWith('0')) {
+    cleaned = '62' + cleaned.slice(1);
+  } else if (cleaned.startsWith('+')) {
+    cleaned = cleaned.slice(1);
+  } else if (!cleaned.startsWith('62') && cleaned.length >= 9 && cleaned.length <= 15) {
+    cleaned = '62' + cleaned;
+  }
+  return cleaned.replace(/[^0-9]/g, '');
+}
+
+/**
  * Memeriksa apakah pesan mengandung kata kunci layanan.
  */
 function containsKeywords(text) {
@@ -68,7 +86,7 @@ export async function POST({ request, clientAddress }) {
   }
 
   try {
-    const { message, sessionId, lang, clientName, whatsappNumber } = await request.json();
+    const { message, sessionId, lang, clientName, whatsappNumber, isTester } = await request.json();
     const isEn = lang === 'en';
 
     if (!message || message.trim() === '') {
@@ -128,14 +146,16 @@ export async function POST({ request, clientAddress }) {
       const leadData = {
         session_id: activeSessionId,
         ...(clientName && { client_name: clientName }),
-        ...(whatsappNumber && { whatsapp_number: whatsappNumber })
+        ...(whatsappNumber && { whatsapp_number: normalizeWhatsAppNumber(whatsappNumber) })
       };
 
-      const { data: existingLead } = await supabaseAdmin
+      const { data: existingLeads } = await supabaseAdmin
         .from('leads')
         .select('id')
         .eq('session_id', activeSessionId)
-        .maybeSingle();
+        .order('created_at', { ascending: false })
+        .limit(1);
+      const existingLead = existingLeads && existingLeads.length > 0 ? existingLeads[0] : null;
 
       if (existingLead) {
         await supabaseAdmin
@@ -214,23 +234,32 @@ export async function POST({ request, clientAddress }) {
       });
     }
 
+    let userMsgCount = 0;
+    let lead = null;
+    let hasWa = false;
+
     // 3.5 Batasi chat gratis jika belum memasukkan nomor WhatsApp
     try {
-      const { count: userMsgCount } = await supabaseAdmin
+      const { count: fetchedUserMsgCount, error: countErr } = await supabaseAdmin
         .from('ai_chat_messages')
         .select('*', { count: 'exact', head: true })
         .eq('session_id', activeSessionId)
         .eq('sender', 'user');
 
-      const { data: lead } = await supabaseAdmin
+      if (countErr) throw countErr;
+      userMsgCount = fetchedUserMsgCount || 0;
+
+      const { data: leads } = await supabaseAdmin
         .from('leads')
-        .select('whatsapp_number')
+        .select('whatsapp_number, client_name')
         .eq('session_id', activeSessionId)
-        .maybeSingle();
+        .order('created_at', { ascending: false })
+        .limit(1);
+      lead = leads && leads.length > 0 ? leads[0] : null;
 
-      const hasWa = lead && lead.whatsapp_number && lead.whatsapp_number.trim() !== '';
+      hasWa = lead && lead.whatsapp_number && lead.whatsapp_number.trim() !== '';
 
-      if (userMsgCount >= 5 && !hasWa) {
+      if (userMsgCount >= 5 && !hasWa && !isTester) {
         const limitReply = isEn
           ? "You have reached the limit of 5 free messages. Please fill out the name & WhatsApp form at the top of the chat to unlock unlimited consultation."
           : "Maaf, Anda telah mencapai batas 5 pesan obrolan gratis. Silakan isi nama dan nomor WhatsApp Anda pada formulir di bagian atas obrolan terlebih dahulu untuk melanjutkan konsultasi tanpa batas dengan asisten AI kami.";
@@ -257,13 +286,14 @@ export async function POST({ request, clientAddress }) {
       console.error('Error checking message limits:', countErr);
     }
 
-    // 4. Cek filter kata kunci
+    // 4. Cek filter kata kunci (hanya untuk pesan pertama dalam sesi)
+    const isFirstMessage = userMsgCount <= 1;
     const msgHasKeywords = containsKeywords(message);
     const msgIsGreeting = isGreeting(message);
     const msgIsThankYou = isThankYou(message);
 
-    // Jika tidak mengandung kata kunci DAN bukan sapaan DAN bukan ucapan terima kasih, arahkan ke admin manual
-    if (!msgHasKeywords && !msgIsGreeting && !msgIsThankYou) {
+    // Jika pesan pertama tidak mengandung kata kunci DAN bukan sapaan DAN bukan ucapan terima kasih, arahkan ke admin manual
+    if (isFirstMessage && !msgHasKeywords && !msgIsGreeting && !msgIsThankYou) {
       const manualReply = isEn
         ? "Your question has been forwarded to our Admin. Our admin will reply to your chat here shortly or contact you directly."
         : "Pertanyaan Anda telah diteruskan ke Admin kami. Admin akan segera membalas obrolan Anda di sini atau menghubungi kontak Anda.";
@@ -303,7 +333,7 @@ export async function POST({ request, clientAddress }) {
       });
     }
 
-    // 4.5. Anti-Spam / Rate Limiting (Maksimal 5 pesan per menit per sesi)
+    // 4.5. Anti-Spam / Rate Limiting (Maksimal 15 pesan per menit per sesi)
     const oneMinuteAgo = new Date(Date.now() - 60 * 1000).toISOString();
     const { count: msgCount, error: countError } = await supabaseAdmin
       .from('ai_chat_messages')
@@ -314,10 +344,10 @@ export async function POST({ request, clientAddress }) {
 
     if (countError) {
       console.error('Error saat mengecek rate limit:', countError);
-    } else if (msgCount && msgCount >= 5) {
+    } else if (msgCount && msgCount >= 15) {
       const throttleReply = isEn
-        ? "You are sending messages too quickly. Please wait about 1 minute before sending another message."
-        : "Anda mengirim pesan terlalu cepat. Silakan tunggu sekitar 1 menit sebelum mengirim pesan lagi.";
+        ? "You are sending messages too quickly. Please wait about 15-30 seconds before sending another message."
+        : "Anda mengirim pesan terlalu cepat. Silakan tunggu sekitar 15-30 detik sebelum mengirim pesan lagi.";
       
       await supabaseAdmin
         .from('ai_chat_messages')
@@ -341,13 +371,13 @@ export async function POST({ request, clientAddress }) {
       .from('ai_chat_messages')
       .select('sender, message_content')
       .eq('session_id', activeSessionId)
-      .order('created_at', { ascending: true })
+      .order('created_at', { ascending: false })
       .limit(10);
 
     if (fetchMsgsErr) throw fetchMsgsErr;
 
-    // Format pesan sesuai format OpenAI/Groq API
-    const history = dbMessages.map(msg => ({
+    // Balikkan urutan agar kronologis (lama ke baru) untuk Groq API
+    const history = [...dbMessages].reverse().map(msg => ({
       role: msg.sender, // 'user' atau 'assistant'
       content: msg.message_content
     }));
@@ -371,6 +401,14 @@ export async function POST({ request, clientAddress }) {
     if (!systemInstruction) {
       systemInstruction = isEn ? systemInstructionEn : systemInstructionId;
     }
+
+    // Tambahkan info status pengisian form ke instruksi sistem secara dinamis
+    const clientNameInDb = lead && lead.client_name ? lead.client_name : '';
+    const formStatusContext = isEn
+      ? `\n\n[USER_CONTEXT: The user has ${hasWa ? 'ALREADY filled' : 'NOT filled'} the contact form. User Name: "${clientNameInDb || 'unknown'}". WhatsApp: "${lead?.whatsapp_number || 'unknown'}". If they have already filled the form, DO NOT ask them to fill it again. Instead, proceed directly to the next steps (Step 02: Solution mapping discussion via WhatsApp, Step 03: Proposal, Step 04: Dev & Launch) and inform them that our team will contact them shortly on WhatsApp.]`
+      : `\n\n[USER_CONTEXT: Pengguna ${hasWa ? 'SUDAH mengisi' : 'BELUM mengisi'} form kontak. Nama Pengguna: "${clientNameInDb || 'tidak diketahui'}". WhatsApp: "${lead?.whatsapp_number || 'tidak diketahui'}". Jika pengguna SUDAH mengisi form, JANGAN suruh/minta mereka mengisi form kontak lagi. Jelaskan langsung bahwa langkah selanjutnya adalah tim LUMOVELO akan menghubungi mereka melalui WhatsApp untuk melakukan Diskusi Pemetaan Solusi (Langkah 02), dilanjutkan Penawaran (Langkah 03), dan Pengerjaan (Langkah 04).]`;
+      
+    systemInstruction += formStatusContext;
 
     // 6. Panggil Groq API
     let groqResponse;
@@ -429,21 +467,24 @@ export async function POST({ request, clientAddress }) {
     // 8. Update tabel Leads jika ada info prospek yang berhasil diekstrak AI
     if (client_name || company_name || project_needs || whatsapp_number) {
       // Cek apakah lead sudah ada untuk sesi ini
-      const { data: existingLead } = await supabaseAdmin
+      const { data: existingLeads } = await supabaseAdmin
         .from('leads')
         .select('id')
         .eq('session_id', activeSessionId)
-        .maybeSingle();
+        .order('created_at', { ascending: false })
+        .limit(1);
+      const existingLead = existingLeads && existingLeads.length > 0 ? existingLeads[0] : null;
 
       const leadData = {
         session_id: activeSessionId,
-        ...(client_name && { client_name }),
+        client_name: isTester ? (client_name ? `[TESTER] ${client_name}` : '[MODE TESTER]') : client_name,
         ...(company_name && { company_name }),
-        ...(project_needs && { project_needs }),
+        project_needs: isTester ? `[MODE TESTER] ${project_needs || 'Pengujian Internal'}` : project_needs,
         ...(tech_stack && { tech_stack }),
-        ...(whatsapp_number && { whatsapp_number }),
-        ...(lead_temperature && { lead_temperature }),
-        ...(estimated_budget && { estimated_budget })
+        ...(whatsapp_number && { whatsapp_number: normalizeWhatsAppNumber(whatsapp_number) }),
+        ...(lead_temperature && { lead_temperature: isTester ? 'cold' : lead_temperature }),
+        ...(estimated_budget && { estimated_budget }),
+        ...(isTester && { is_tester: true })
       };
 
       if (existingLead) {
@@ -456,28 +497,31 @@ export async function POST({ request, clientAddress }) {
           .from('leads')
           .insert(leadData);
 
-        // Kirim notifikasi Telegram untuk lead baru pertama kali
-        const tempEmoji = lead_temperature === 'hot' ? '🔥 HOT' : (lead_temperature === 'warm' ? '☀️ WARM' : '❄️ COLD');
-        await sendTelegramNotification(
-          `💼 *Prospek Baru Terdeteksi!*\n\n` +
-          `*Nama:* ${client_name || '-'}\n` +
-          `*Perusahaan:* ${company_name || '-'}\n` +
-          `*Kebutuhan:* ${project_needs || '-'}\n` +
-          `*Tech Stack:* ${tech_stack || '-'}\n` +
-          `*WhatsApp:* ${whatsapp_number || '-'}\n` +
-          `*Estimasi Budget:* ${estimated_budget || '-'}\n` +
-          `*Suhu Lead:* ${tempEmoji}\n\n` +
-          `Cek selengkapnya di Dashboard Admin Lumovelo!`
-        );
+        // Kirim notifikasi Telegram untuk lead baru pertama kali (kecuali mode tester)
+        if (!isTester) {
+          const tempEmoji = lead_temperature === 'hot' ? '🔥 HOT' : (lead_temperature === 'warm' ? '☀️ WARM' : '❄️ COLD');
+          await sendTelegramNotification(
+            `💼 *Prospek Baru Terdeteksi!*\n\n` +
+            `*Nama:* ${client_name || '-'}\n` +
+            `*Perusahaan:* ${company_name || '-'}\n` +
+            `*Kebutuhan:* ${project_needs || '-'}\n` +
+            `*Tech Stack:* ${tech_stack || '-'}\n` +
+            `*WhatsApp:* ${whatsapp_number || '-'}\n` +
+            `*Estimasi Budget:* ${estimated_budget || '-'}\n` +
+            `*Suhu Lead:* ${tempEmoji}\n\n` +
+            `Cek selengkapnya di Dashboard Admin Lumovelo!`
+          );
+        }
       }
 
       // Update info nama dan whatsapp ke ai_chat_sessions jika ada
-      if (client_name || whatsapp_number) {
+      if (client_name || whatsapp_number || isTester) {
         await supabaseAdmin
           .from('ai_chat_sessions')
           .update({
-            ...(client_name && { client_name }),
-            ...(whatsapp_number && { client_whatsapp: whatsapp_number })
+            client_name: isTester ? (client_name ? `[TESTER] ${client_name}` : '[MODE TESTER]') : client_name,
+            ...(whatsapp_number && { client_whatsapp: whatsapp_number }),
+            ...(isTester && { is_tester: true })
           })
           .eq('id', activeSessionId);
       }
@@ -493,13 +537,15 @@ export async function POST({ request, clientAddress }) {
         })
         .eq('id', activeSessionId);
 
-      await sendTelegramNotification(
-        `🔔 *Pengalihan Chat Manual (Permintaan AI / Handover)*\n\n` +
-        `*Nama Klien:* ${client_name || 'Tidak diketahui'}\n` +
-        `*Kebutuhan:* ${project_needs || 'Tidak diketahui'}\n` +
-        `*Sesi ID:* \`${activeSessionId}\`\n\n` +
-        `Harap segera dibalas di dashboard admin!`
-      );
+      if (!isTester) {
+        await sendTelegramNotification(
+          `🔔 *Pengalihan Chat Manual (Permintaan AI / Handover)*\n\n` +
+          `*Nama Klien:* ${client_name || 'Tidak diketahui'}\n` +
+          `*Kebutuhan:* ${project_needs || 'Tidak diketahui'}\n` +
+          `*Sesi ID:* \`${activeSessionId}\`\n\n` +
+          `Harap segera dibalas di dashboard admin!`
+        );
+      }
     }
 
     return new Response(JSON.stringify({

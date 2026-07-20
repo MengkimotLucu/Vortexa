@@ -1,4 +1,5 @@
 // Helper utility untuk integrasi Google Gemini API dan Telegram Bot API.
+import { supabaseAdmin } from './supabase';
 
 // Pisahkan GROQ_API_KEY berdasarkan koma (jika ada beberapa key)
 const GROQ_KEYS = (import.meta.env.GROQ_API_KEY || '').split(',').map(k => k.trim()).filter(Boolean);
@@ -33,13 +34,73 @@ export async function callGroq(history, systemInstruction, options = {}) {
     temperature: options.temperature !== undefined ? options.temperature : 0.7
   };
 
-  // Coba gunakan kunci satu per satu jika terjadi rate limit (429)
-  let lastError = null;
-  
-  // Acak kunci (Load Balancing) agar beban request merata
-  const shuffledKeys = [...GROQ_KEYS].sort(() => Math.random() - 0.5);
+  // 1. Coba baca dari database monitor jika tabel sudah dimigrasi
+  let keysMap = [];
+  let dbSupported = false;
 
-  for (const apiKey of shuffledKeys) {
+  if (supabaseAdmin) {
+    try {
+      const { data: dbKeys, error: dbErr } = await supabaseAdmin
+        .from('api_keys_monitor')
+        .select('*')
+        .order('id', { ascending: true });
+
+      if (!dbErr && dbKeys && dbKeys.length > 0) {
+        dbSupported = true;
+        // Cari baris kunci Groq
+        const groqRows = dbKeys.filter(k => k.key_name.toLowerCase().includes('groq'));
+        
+        // Map database keys ke actual keys berdasarkan index
+        groqRows.forEach((row, index) => {
+          if (GROQ_KEYS[index]) {
+            keysMap.push({
+              row: row,
+              actualKey: GROQ_KEYS[index]
+            });
+          }
+        });
+
+        // Auto-restore limited keys jika waktu tunggu sudah terlewati
+        const now = new Date();
+        for (const item of keysMap) {
+          if (item.row.status === 'limited' && item.row.last_limited_at) {
+            const limitTime = new Date(item.row.last_limited_at);
+            const diffSeconds = (now.getTime() - limitTime.getTime()) / 1000;
+            if (diffSeconds >= (item.row.reset_duration_seconds || 60)) {
+              item.row.status = 'active';
+              item.row.last_limited_at = null;
+              await supabaseAdmin
+                .from('api_keys_monitor')
+                .update({ status: 'active', last_limited_at: null })
+                .eq('id', item.row.id);
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[aiHelper] Gagal memuat API Key dari database. Menggunakan fallback env...', err.message);
+    }
+  }
+
+  // Tentukan urutan API Key yang akan digunakan
+  let sortedKeysToTry = [];
+  if (dbSupported && keysMap.length > 0) {
+    const activeSelected = keysMap.filter(k => k.row.is_selected && k.row.status === 'active');
+    const activeOthers = keysMap.filter(k => !k.row.is_selected && k.row.status === 'active').sort(() => Math.random() - 0.5);
+    const limitedKeys = keysMap.filter(k => k.row.status === 'limited');
+    sortedKeysToTry = [...activeSelected, ...activeOthers, ...limitedKeys];
+  } else {
+    // Fallback: Acak kunci (Load Balancing) bawaan env
+    sortedKeysToTry = GROQ_KEYS.map(key => ({
+      actualKey: key,
+      row: null
+    })).sort(() => Math.random() - 0.5);
+  }
+
+  let lastError = null;
+
+  for (const keyToTry of sortedKeysToTry) {
+    const apiKey = keyToTry.actualKey;
     try {
       const response = await fetch(url, {
         method: 'POST',
@@ -51,7 +112,14 @@ export async function callGroq(history, systemInstruction, options = {}) {
       });
 
       if (response.status === 429) {
-        console.warn(`[Groq API Warning] Key ${apiKey.substring(0, 10)}... terkena rate limit (429). Mencoba kunci cadangan...`);
+        console.warn(`[Groq API Warning] Key ${apiKey.substring(0, 10)}... terkena rate limit (429).`);
+        if (dbSupported && keyToTry.row) {
+          // Tandai status as limited di database
+          await supabaseAdmin
+            .from('api_keys_monitor')
+            .update({ status: 'limited', last_limited_at: new Date().toISOString() })
+            .eq('id', keyToTry.row.id);
+        }
         continue;
       }
 
@@ -65,6 +133,14 @@ export async function callGroq(history, systemInstruction, options = {}) {
       
       if (!rawText) {
         throw new Error('Groq API mengembalikan respons kosong.');
+      }
+
+      // Catat penggunaan sukses di database
+      if (dbSupported && keyToTry.row) {
+        await supabaseAdmin
+          .from('api_keys_monitor')
+          .update({ used_quota: (keyToTry.row.used_quota || 0) + 1 })
+          .eq('id', keyToTry.row.id);
       }
 
       return JSON.parse(rawText);
@@ -91,6 +167,18 @@ export async function sendTelegramNotification(message) {
 
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
+  // Konversi Markdown dasar ke HTML untuk mencegah error parsing karakter khusus Telegram Markdown
+  let htmlMessage = message
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  // Ganti *teks* menjadi <b>teks</b>
+  htmlMessage = htmlMessage.replace(/\*(.*?)\*/g, '<b>$1</b>');
+
+  // Ganti `teks` menjadi <code>teks</code>
+  htmlMessage = htmlMessage.replace(/`(.*?)`/g, '<code>$1</code>');
+
   try {
     const response = await fetch(url, {
       method: 'POST',
@@ -99,8 +187,8 @@ export async function sendTelegramNotification(message) {
       },
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
-        text: message,
-        parse_mode: 'Markdown'
+        text: htmlMessage,
+        parse_mode: 'HTML'
       })
     });
 

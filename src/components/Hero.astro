@@ -91,7 +91,7 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
         </button>
         <!-- Dropdown Menu Panel -->
         <div class="absolute left-0 mt-2 w-56 rounded-2xl bg-white border border-slate-100 shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-200 origin-top-left p-2 z-50">
-          <a href={servicesLink} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+          <a href={lang === 'en' ? '/en/layanan/web/' : '/layanan/web/'} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
             <span class="text-xs font-bold text-slate-800">Website & Web Apps</span>
             <span class="text-[9px] text-slate-400 mt-0.5">Landing page & profile penunjang konversi.</span>
           </a>
@@ -110,6 +110,10 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
           <a href={lang === 'en' ? '/en/layanan/keamanan-jaringan/' : '/layanan/keamanan-jaringan/'} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
             <span class="text-xs font-bold text-slate-800">{lang === 'en' ? 'Network Security' : 'Keamanan Jaringan'}</span>
             <span class="text-[9px] text-slate-400 mt-0.5">{lang === 'en' ? 'Endpoint protection & professional firewall setup.' : 'Proteksi sistem, endpoint & setup firewall profesional.'}</span>
+          </a>
+          <a href={lang === 'en' ? '/en/layanan/qa/' : '/layanan/qa/'} class="flex flex-col p-2.5 rounded-xl hover:bg-blue-50/50 transition-colors">
+            <span class="text-xs font-bold text-slate-800">Software QA & Testing</span>
+            <span class="text-[9px] text-slate-400 mt-0.5">{lang === 'en' ? 'Functional testing, API load test & automation.' : 'Uji fungsional, performa beban, & otomatisasi aplikasi.'}</span>
           </a>
         </div>
       </div>

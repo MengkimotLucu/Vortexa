@@ -8,7 +8,9 @@ const content = {
     title2: "Sesuai Skala Bisnismu.",
     desc: "Mulai dari pembuatan website sederhana hingga profesional, semua bisa kamu pilih sesuai kebutuhan dan tujuan bisnismu secara transparan.",
     whatsappBtn: "Konsultasi via WhatsApp",
-    bestSeller: "Terpopuler"
+    bestSeller: "Terpopuler",
+    viewAllBtn: "Lihat Semua Layanan & Paket Selengkapnya →",
+    viewAllSubtitle: "Termasuk Redesign Web, Optimasi SEO, Video Editing, Desain Grafis & Software QA"
   },
   en: {
     sectionHeader: "SERVICE PACKAGES",
@@ -16,18 +18,18 @@ const content = {
     title2: "Tailored to Your Business Scale.",
     desc: "From simple landing pages to professional corporate websites, choose the perfect package transparently based on your goals.",
     whatsappBtn: "Consult on WhatsApp",
-    bestSeller: "Best Seller"
+    bestSeller: "Best Seller",
+    viewAllBtn: "Explore All Services & Full Details →",
+    viewAllSubtitle: "Including Web Redesign, SEO Optimization, Video Editing, Graphic Design & Software QA"
   }
 }[lang];
 
-// Pricing data structures
+// Pricing data structures (Core 5 Services for Home Section)
 const categories = [
   { id: 'landing-page', label: lang === 'en' ? 'Landing Page' : 'Landing Page' },
   { id: 'company-profile', label: lang === 'en' ? 'Company Profile' : 'Company Profile' },
   { id: 'toko-online', label: lang === 'en' ? 'E-Commerce' : 'Toko Online' },
-  { id: 'redesign', label: lang === 'en' ? 'Redesign' : 'Redesign Web' },
   { id: 'ai-automation', label: lang === 'en' ? 'AI Automation' : 'Otomatisasi AI' },
-  { id: 'seo-creative', label: lang === 'en' ? 'SEO & Video' : 'SEO & Video' },
   { id: 'keamanan-jaringan', label: lang === 'en' ? 'Network Security' : 'Keamanan Jaringan' }
 ];
 
@@ -481,7 +483,7 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
         >
           <!-- Grid wrapper that morphs into a swipeable carousel on mobile -->
           <div class="flex md:grid overflow-x-auto md:overflow-x-visible gap-[2rem] pb-6 md:pb-0 snap-x snap-mandatory scrollbar-none w-full" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-            {packages[cat.id].map((pkg) => {
+            {packages[cat.id as keyof typeof packages].map((pkg: any) => {
               const waText = encodeURIComponent(
                 `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "${pkg.title}" (${pkg.price}) yang tertera di website.`
               );
@@ -514,7 +516,7 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
                     </div>
 
                     <ul class="space-y-3.5 text-xs text-slate-600 font-semibold mb-6">
-                      {pkg.features.map((feature) => (
+                      {pkg.features.map((feature: string) => (
                         <li class="flex items-start gap-2.5 leading-relaxed">
                           <div class="w-4 h-4 rounded-full bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
                             <svg class="w-2.5 h-2.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5">
@@ -567,6 +569,22 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- CTA to Full Services Page -->
+    <div class="mt-12 text-center reveal-on-scroll">
+      <a 
+        href={lang === 'en' ? '/en/layanan/' : '/layanan/'}
+        class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-slate-900 hover:bg-blue-600 text-white font-black text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-lg shadow-slate-900/10 hover:shadow-blue-600/25 hover:-translate-y-0.5 group cursor-pointer"
+      >
+        <span>{content.viewAllBtn}</span>
+        <svg class="w-4.5 h-4.5 text-slate-300 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+      <p class="text-xs text-slate-600 mt-3.5 font-bold">
+        {content.viewAllSubtitle}
+      </p>
     </div>
 
   </div>

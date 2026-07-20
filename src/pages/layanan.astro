@@ -683,6 +683,90 @@ const services = {
             ]
           }
         ]
+      },
+      {
+        id: 'software-qa',
+        label: lang === 'en' ? 'Software QA & Testing' : 'Software QA & Testing',
+        desc: lang === 'en'
+          ? 'Ensure your website and application are secure, fast, and bug-free on all devices.'
+          : 'Pastikan website dan aplikasi Anda aman, cepat, dan bebas dari bug di semua perangkat.',
+        packages: [
+          {
+            name: 'Basic (Smoke Audit)',
+            price: lang === 'en' ? '$69' : 'Rp950.000',
+            features: lang === 'en' ? [
+              'Critical path testing (smoke/sanity checks)',
+              'Responsiveness audit on 2 major mobile/desktop browsers',
+              'Broken links verification & input validation',
+              'Basic bug report (Excel/PDF format)',
+              'Best for quick landing page & small website sanity checks'
+            ] : [
+              'Pengujian alur kritis utama (smoke & sanity checks)',
+              'Audit responsivitas di 2 browser HP/Desktop terpopuler',
+              'Verifikasi link rusak & validasi form input',
+              'Laporan buglist dasar (format Excel/PDF)',
+              'Cocok untuk landing page & web portofolio sederhana'
+            ]
+          },
+          {
+            name: 'Pro (Multi-Device QA)',
+            price: lang === 'en' ? '$169' : 'Rp2.450.000',
+            popular: true,
+            features: lang === 'en' ? [
+              'End-to-end functional testing (up to 8 pages/modules)',
+              'Compatibility testing on 5+ real physical devices (Android & iOS)',
+              'E-commerce checkout & payment gateway flow verification',
+              'Detailed bug reports with screen recordings & screenshots',
+              '1x free re-testing after developer bug fixes',
+              'Ideal for mobile app MVPs & corporate web systems'
+            ] : [
+              'Pengujian fungsional penuh end-to-end (maks 8 halaman/modul)',
+              'Pengujian kompatibilitas di 5+ perangkat fisik asli (Android & iOS)',
+              'Verifikasi alur checkout e-commerce & payment gateway',
+              'Laporan bug terperinci dengan video rekaman & screenshot',
+              '1x verifikasi ulang gratis setelah developer melakukan bug fix',
+              'Ideal untuk MVP aplikasi mobile & sistem web korporasi'
+            ]
+          },
+          {
+            name: 'Elite (Performance & API)',
+            price: lang === 'en' ? '$289' : 'Rp4.250.000',
+            features: lang === 'en' ? [
+              'Server load testing (up to 1,000 concurrent virtual users)',
+              'API response speed, reliability & validation',
+              'App memory leaks & battery usage analytics',
+              'Basic security headers check & vulnerability scan',
+              'Optimization recommendation report for hosting/servers',
+              'Best for SaaS apps, large portals, or high-traffic sites'
+            ] : [
+              'Load testing server hingga 1.000 concurrent virtual users',
+              'Uji responsivitas, latency, & validasi endpoint API',
+              'Analisis konsumsi baterai & kebocoran memori aplikasi',
+              'Pengecekan basic security headers & vulnerability scan',
+              'Laporan rekomendasi optimasi server & hosting',
+              'Cocok untuk aplikasi SaaS, portal besar, atau web traffic tinggi'
+            ]
+          },
+          {
+            name: 'Custom (Automation & Security)',
+            price: lang === 'en' ? 'From $649' : 'Mulai Rp9.500.000',
+            features: lang === 'en' ? [
+              'Automated test scripts creation (Cypress / Playwright / Appium)',
+              'CI/CD pipeline integration (GitHub Actions / GitLab CI)',
+              'Basic penetration testing (OWASP Web/Mobile Top 10)',
+              'Handoff training session for your internal tech team',
+              '1-month test script maintenance & support',
+              'Perfect for fintech apps, e-commerce, or enterprise systems'
+            ] : [
+              'Pembuatan skrip testing otomatis (Cypress / Playwright / Appium)',
+              'Integrasi pengujian otomatis ke pipeline CI/CD (GitHub Actions)',
+              'Audit keamanan penetrasi dasar (OWASP Web/Mobile Top 10)',
+              'Sesi pelatihan serah terima kode untuk tim developer internal',
+              'Dukungan pemeliharaan skrip otomatisasi selama 1 bulan pertama',
+              'Sangat cocok untuk aplikasi fintech, e-commerce, atau korporat'
+            ]
+          }
+        ]
       }
     ]
   }

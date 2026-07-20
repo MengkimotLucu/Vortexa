@@ -86,11 +86,13 @@ Berikut adalah daftar seluruh file di dalam proyek beserta penjelasan fungsinya 
 *   **@[src/pages/layanan/ai.astro]**: Halaman detail jasa otomatisasi & integrasi agen AI LLM.
 *   **@[src/pages/layanan/seo.astro]**: Halaman detail jasa optimasi SEO & marketing.
 *   **@[src/pages/layanan/video.astro]**: Halaman detail jasa edit video & aset kreatif.
+*   **@[src/pages/layanan/qa.astro]**: Halaman detail jasa Software QA & testing (QA Center).
+
 
 #### C. /en/ (Mirror Halaman Bahasa Inggris)
 file mirror yang merender halaman ID dengan konten bahasa Inggris berdasarkan deteksi locale dinamis:
 *   `index.astro`, `about-us.astro`, `careers.astro`, `contact.astro`, `portfolio.astro`, `privacy-policy.astro`, `terms-of-service.astro`, `layanan.astro`.
-*   `/layanan/ai.astro`, `/layanan/seo.astro`, `/layanan/video.astro`, `/layanan/web.astro`.
+*   `/layanan/ai.astro`, `/layanan/seo.astro`, `/layanan/video.astro`, `/layanan/web.astro`, `/layanan/qa.astro`.
 
 #### D. /admin/ (Panel Administrasi - Terproteksi noindex)
 *   **@[src/pages/admin/dashboard.astro]**: Halaman dasbor panel kontrol utama.

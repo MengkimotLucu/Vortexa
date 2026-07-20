@@ -12,11 +12,15 @@ const content = {
     title: "Jasa Integrasi AI & Otomatisasi Bisnis | LUMOVELO",
     header: "KECERDASAN BUATAN & OTOMATISASI",
     headline: "Pangkas Kerja Manual, Tingkatkan Efisiensi Bisnis Hingga 80%",
-    desc: "Kami merekayasa dan mengintegrasikan agen AI pintar kustom (LLM) serta alur otomatisasi data untuk menghemat waktu operasional tim Anda secara otomatis.",
+    desc: "Kami menghadirkan asisten otomatis dan alur kerja cerdas untuk menjawab pelanggan 24/7 dan menghemat ratusan jam operasional tim Anda secara otomatis.",
     cta: "Konsultasikan Solusi AI Anda",
     back: "Kembali ke Beranda",
     pricingHeader: "/ PAKET INVESTASI AI",
     pricingTitle: "Pilih Paket Solusi AI Sesuai Kebutuhan Bisnis Anda",
+    workflowHeader: "/ ALUR KERJA IMPLEMENTASI",
+    workflowTitle: "Proses Praktis Integrasi AI & Otomatisasi Bisnis",
+    whyUsHeader: "/ KEUNGGULAN KAMI",
+    whyUsTitle: "Mengapa Menggunakan Layanan Otomatisasi Lumovelo?",
     periodOnce: "Proyek Sekali Jalan",
     periodMonthly: "Investasi Bulanan"
   },
@@ -24,11 +28,15 @@ const content = {
     title: "AI Integration & Business Automation | LUMOVELO",
     header: "ARTIFICIAL INTELLIGENCE & AUTOMATION",
     headline: "Eliminate Manual Work, Boost Business Efficiency up to 80%",
-    desc: "We engineer and integrate custom smart AI agents (LLMs) and automated data workflows to save your team's operational time automatically.",
+    desc: "We deliver 24/7 automated smart assistants and workflow automations that save hundreds of operational hours for your team.",
     cta: "Consult Your AI Solution",
     back: "Back to Home",
     pricingHeader: "/ AI SOLUTIONS PACKAGES",
     pricingTitle: "Choose the Perfect AI Package for Your Business",
+    workflowHeader: "/ OUR IMPLEMENTATION WORKFLOW",
+    workflowTitle: "Practical AI Integration Process",
+    whyUsHeader: "/ WHY CHOOSE US",
+    whyUsTitle: "Why Automate Your Workflows With Lumovelo?",
     periodOnce: "One-time Project",
     periodMonthly: "Monthly Investment"
   }
@@ -137,7 +145,7 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
     <div class="max-w-6xl mx-auto px-6 py-16 relative z-10">
       
       <!-- Headline Block -->
-      <div class="max-w-3xl mb-16 text-left">
+      <div class="max-w-3xl mx-auto mb-16 text-center">
         <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3 block">
           {content.header}
         </span>
@@ -200,6 +208,93 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
           <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Custom tailored →</span>
         </div>
 
+      </div>
+
+      <!-- Workflow Process Section -->
+      <div class="mb-20">
+        <div class="text-center mb-12">
+          <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-2 block">
+            {content.workflowHeader}
+          </span>
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
+            {content.workflowTitle}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">01</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">01</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Audit Alur Kerja</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Menganalisis proses bisnis berulang yang paling menyita waktu tim Anda untuk diotomatiskan.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">02</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">02</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Perancangan Respon</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Menyusun database materi bisnis dan aturan alur percakapan agar asisten menjawab akurat.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">03</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">03</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Integrasi & Uji Coba</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Menghubungkan otomatisasi ke WhatsApp atau Website Anda dan melakukan pengujian intensif.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">04</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">04</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Peluncuran & Garansi</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Sistem berjalan otomatis melayani pelanggan, didukung garansi pemeliharaan teknis.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Choose Us Section -->
+      <div class="mb-20 p-8 sm:p-12 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-xl">
+        <div class="absolute right-0 top-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 relative z-10">
+          <span class="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-2 block">
+            {content.whyUsHeader}
+          </span>
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+            {content.whyUsTitle}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Respon Cerdas 24/7 Tanpa Henti</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Pelanggan Anda terlayani cepat di jam berapa pun, memastikan tidak ada prospek potensial yang hilang karena keterlambatan balasan.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Hemat Waktu & Biaya Operasional</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Mengurangi beban tugas rutin tim hingga 80%, sehingga tim Anda bisa fokus pada penutupan penjualan dan pengembangan bisnis.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Mudah Digunakan & Siap Pakai</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Sistem disiapkan sepenuhnya oleh tim kami hingga siap pakai tanpa perlu keahlian teknis dari pihak Anda.
+            </p>
+          </div>
+        </div>
       </div>
 
       <!-- Pricing Packages Section -->

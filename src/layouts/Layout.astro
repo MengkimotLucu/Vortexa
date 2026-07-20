@@ -202,6 +202,11 @@ const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCVBB6F"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <!-- Sidebar backdrop for admin pages -->
+    {isWorkspaceOrAdmin && (
+      <div id="sidebar-backdrop" class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm hidden lg:hidden"></div>
+    )}
+
     <slot />
     
     <!-- Aura cursor trail following mouse -->
@@ -281,9 +286,130 @@ const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
           toast.classList.add('translate-y-4', 'opacity-0');
           setTimeout(() => {
             toast.remove();
-          }, 300);
         }, 4000);
       };
+
+      // Custom Alert Modal
+      window.showAlert = function(message) {
+        return new Promise((resolve) => {
+          const backdrop = document.createElement('div');
+          backdrop.className = 'fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300';
+          
+          const modal = document.createElement('div');
+          modal.className = 'bg-[#0E0E11]/95 border border-[#1A1A1E] p-6 rounded-2xl max-w-sm w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-300 flex flex-col gap-4';
+          
+          modal.innerHTML = `
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 text-sm">⚠️</div>
+              <div class="flex-1">
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-1">Informasi</h4>
+                <p class="text-[11px] text-slate-300 leading-relaxed">${message.replace(/\n/g, '<br>')}</p>
+              </div>
+            </div>
+            <div class="flex justify-end mt-2">
+              <button class="px-4 py-1.5 bg-[#C5F82A] hover:opacity-90 text-[#0A0A0B] rounded-lg text-[10px] font-bold uppercase tracking-wider transition cursor-pointer" id="alert-ok-btn">OK</button>
+            </div>
+          `;
+          
+          backdrop.appendChild(modal);
+          document.body.appendChild(backdrop);
+          
+          // Animate in
+          requestAnimationFrame(() => {
+            backdrop.classList.remove('opacity-0');
+            modal.classList.remove('scale-95', 'opacity-0');
+          });
+          
+          const close = () => {
+            backdrop.classList.add('opacity-0');
+            modal.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+              backdrop.remove();
+              resolve();
+            }, 300);
+          };
+          
+          modal.querySelector('#alert-ok-btn').addEventListener('click', close);
+        });
+      };
+
+      // Custom Confirm Modal
+      window.showConfirm = function(message) {
+        return new Promise((resolve) => {
+          const backdrop = document.createElement('div');
+          backdrop.className = 'fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300';
+          
+          const modal = document.createElement('div');
+          modal.className = 'bg-[#0E0E11]/95 border border-[#1A1A1E] p-6 rounded-2xl max-w-sm w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-300 flex flex-col gap-4';
+          
+          modal.innerHTML = `
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center shrink-0 text-sm">❓</div>
+              <div class="flex-1">
+                <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-1">Konfirmasi</h4>
+                <p class="text-[11px] text-slate-300 leading-relaxed">${message.replace(/\n/g, '<br>')}</p>
+              </div>
+            </div>
+            <div class="flex justify-end gap-2.5 mt-2">
+              <button class="px-3.5 py-1.5 bg-slate-900 border border-slate-800 text-slate-400 hover:text-white rounded-lg text-[10px] font-bold uppercase tracking-wider transition cursor-pointer" id="confirm-cancel-btn">Batal</button>
+              <button class="px-3.5 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wider transition cursor-pointer" id="confirm-ok-btn">Lanjutkan</button>
+            </div>
+          `;
+          
+          backdrop.appendChild(modal);
+          document.body.appendChild(backdrop);
+          
+          // Animate in
+          requestAnimationFrame(() => {
+            backdrop.classList.remove('opacity-0');
+            modal.classList.remove('scale-95', 'opacity-0');
+          });
+          
+          const cleanup = (result) => {
+            backdrop.classList.add('opacity-0');
+            modal.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+              backdrop.remove();
+              resolve(result);
+            }, 300);
+          };
+          
+          modal.querySelector('#confirm-ok-btn').addEventListener('click', () => cleanup(true));
+          modal.querySelector('#confirm-cancel-btn').addEventListener('click', () => cleanup(false));
+        });
+      };
     </script>
+
+    {isWorkspaceOrAdmin && (
+      <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+          const openBtn = document.getElementById('btn-open-sidebar');
+          const closeBtn = document.getElementById('btn-close-sidebar');
+          const sidebar = document.getElementById('admin-sidebar');
+          const backdrop = document.getElementById('sidebar-backdrop');
+
+          if (openBtn && sidebar) {
+            openBtn.addEventListener('click', () => {
+              sidebar.classList.remove('-translate-x-full');
+              if (backdrop) backdrop.classList.remove('hidden');
+            });
+          }
+
+          if (closeBtn && sidebar) {
+            closeBtn.addEventListener('click', () => {
+              sidebar.classList.add('-translate-x-full');
+              if (backdrop) backdrop.classList.add('hidden');
+            });
+          }
+
+          if (backdrop && sidebar) {
+            backdrop.addEventListener('click', () => {
+              sidebar.classList.add('-translate-x-full');
+              backdrop.classList.add('hidden');
+            });
+          }
+        });
+      </script>
+    )}
   </body>
 </html>

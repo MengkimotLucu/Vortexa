@@ -16,19 +16,27 @@ const content = {
     cta: "Konsultasikan Strategi SEO Anda",
     back: "Kembali ke Beranda",
     pricingHeader: "/ PAKET INVESTASI SEO",
-    pricingTitle: "Pilih Paket SEO Sesuai Kebutuhan Bisnis Anda",
+    pricingTitle: "Pilih Paket Optimasi SEO Sesuai Target Bisnis Anda",
+    workflowHeader: "/ ALUR KERJA OPTIMASI",
+    workflowTitle: "Proses Transparan Meningkatkan Peringkat Google",
+    whyUsHeader: "/ KEUNGGULAN KAMI",
+    whyUsTitle: "Mengapa Memilih Jasa SEO Lumovelo?",
     periodOnce: "Proyek Sekali Jalan",
     periodMonthly: "Investasi Bulanan"
   },
   en: {
-    title: "Advanced SEO & Marketing Funnel Services | LUMOVELO",
-    header: "ADVANCED SEO & MARKETING FUNNEL",
-    headline: "Dominate Search Results and Capture High-Intent Traffic",
-    desc: "We optimize your website's architecture and craft targeted content strategies to drive high-quality organic traffic ready to convert.",
+    title: "Advanced SEO & Digital Marketing Funnel Agency | LUMOVELO",
+    header: "ADVANCED SEO & DIGITAL FUNNEL",
+    headline: "Dominate Google Search Results & Drive High-Intent Buyers Organically",
+    desc: "Drive targeted organic traffic every day. We optimize your website search rankings to reach ready-to-buy customers.",
     cta: "Consult Your SEO Strategy",
     back: "Back to Home",
     pricingHeader: "/ SEO INVESTMENT PACKAGES",
-    pricingTitle: "Choose the Perfect SEO Package for Your Business",
+    pricingTitle: "Choose the Perfect SEO Package for Your Business Goals",
+    workflowHeader: "/ OUR OPTIMIZATION WORKFLOW",
+    workflowTitle: "Transparent Process to Boost Google Rankings",
+    whyUsHeader: "/ WHY CHOOSE US",
+    whyUsTitle: "Why Scale Organic Traffic With Lumovelo?",
     periodOnce: "One-time Project",
     periodMonthly: "Monthly Investment"
   }
@@ -131,7 +139,7 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
     <div class="max-w-6xl mx-auto px-6 py-16 relative z-10">
       
       <!-- Headline Block -->
-      <div class="max-w-3xl mb-16 text-left">
+      <div class="max-w-3xl mx-auto mb-16 text-center">
         <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3 block">
           {content.header}
         </span>
@@ -194,6 +202,93 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
           <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">High conversion funnel →</span>
         </div>
 
+      </div>
+
+      <!-- Workflow Process Section -->
+      <div class="mb-20">
+        <div class="text-center mb-12">
+          <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-2 block">
+            {content.workflowHeader}
+          </span>
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
+            {content.workflowTitle}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">01</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">01</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Audit & Riset Kata Kunci</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Menganalisis pencarian calon pembeli dan strategi kompetitor untuk menemukan kata kunci paling berpotensi.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">02</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">02</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Optimasi Konten & Struktur</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Merapi konten dan struktur halaman agar mudah dibaca calon pembeli dan ramah mesin pencari Google.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">03</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">03</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Penguatan Otoritas Website</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Membangun reputasi dan aksesibilitas website agar memenangkan persaingan di posisi teratas Google.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">04</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">04</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Evaluasi & Laporan Bulanan</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Memantau pertumbuhan trafik dan posisi kata kunci secara berkala dengan laporan yang transparan.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Choose Us Section -->
+      <div class="mb-20 p-8 sm:p-12 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-xl">
+        <div class="absolute right-0 top-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 relative z-10">
+          <span class="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-2 block">
+            {content.whyUsHeader}
+          </span>
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+            {content.whyUsTitle}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Trafik Organik Siap Beli</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Menargetkan pencarian dengan niat beli tinggi sehingga pengunjung yang datang adalah calon pembeli potensial.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Tanpa Ketergantungan Iklan</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Mendapatkan calon pembeli secara stabil dan berkelanjutan tanpa perlu terus menerus membakar anggaran iklan berbayar.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Laporan Transparan & Terukur</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Laporan perkembangan peringkat dan trafik secara berkala yang mudah dipahami tanpa istilah teknis yang membingungkan.
+            </p>
+          </div>
+        </div>
       </div>
 
       <!-- Pricing Packages Section -->

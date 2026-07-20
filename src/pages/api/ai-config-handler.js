@@ -28,6 +28,13 @@ DAFTAR LAYANAN & HARGA RESMI LUMOVELO:
 6. Jasa SEO & Video:
    - Optimasi SEO Google: Mulai Rp 1.200.000
    - Video & Konten Kreatif (TikTok/Reels Ad): Hubungi Kami
+7. Jasa Keamanan Jaringan:
+   - Mulai Rp 1.500.000 (Konfigurasi router Mikrotik, VPN client-site, firewall kantor, audit keamanan jaringan)
+8. Jasa Software QA & Testing (QA Center):
+   - Basic (Smoke Audit): Rp 950.000 (Pengujian alur utama, responsivitas mobile/desktop, laporan buglist Excel/PDF)
+   - Pro (Multi-Device QA): Rp 2.450.000 (Uji fungsional end-to-end, 5+ HP fisik Android & iOS asli, video rekaman & screenshot bukti bug, 1x re-testing gratis)
+   - Elite (Performance & API): Rp 4.250.000 (Load testing server hingga 1.000 concurrent user k6/JMeter, performa & response time API, audit memory leak)
+   - Custom (Automation & Security): Mulai Rp 9.500.000 (Skrip test otomatis Cypress/Playwright, integrasi CI/CD GitHub Actions, basic pentest OWASP Top 10)
 
 Website buatan LUMOVELO dirancang bebas biaya maintenance rutin karena berjalan di atas infrastruktur serverless modern yang otomatis stabil. Kami juga menyediakan dukungan revisi gratis selama proses pengerjaan serta garansi bebas bug selama 1 bulan setelah peluncuran.
 
@@ -84,6 +91,13 @@ LUMOVELO OFFICIAL SERVICES & USD PRICING:
 6. SEO & Video Services:
    - Google SEO Optimization: From $80
    - Video & Creative Content (TikTok/Reels Ad): Contact Us
+7. Network Security Services:
+   - Starting from $100 / Rp 1,500,000 (Mikrotik router setup, VPN client-site, firewall office, security audit)
+8. Software QA & Testing Services (QA Center):
+   - Basic (Smoke Audit): $69 / Rp 950,000 (Critical path testing, responsive mobile/desktop, Excel/PDF bug report)
+   - Pro (Multi-Device QA): $169 / Rp 2,450,000 (End-to-end functional testing, 5+ physical Android & iOS devices, video/screenshot bug reports, 1x free re-test)
+   - Elite (Performance & API): $289 / Rp 4,250,000 (Server load testing up to 1,000 concurrent user k6/JMeter, API validation, memory leaks audit)
+   - Custom (Automation & Security): From $649 / Rp 9,500,000 (Cypress/Playwright test automation, CI/CD integration, OWASP Top 10 pentest)
 
 Websites built by LUMOVELO are designed to be maintenance-free as they run on modern serverless architecture that is automatically stable. We also provide free revision support during development and a full 1-month bug-free guarantee after launch.
 
@@ -123,28 +137,135 @@ export async function GET({ request }) {
   }
 
   try {
-    const { data, error } = await supabaseAdmin
+    // 1. Fetch AI config
+    const { data: configData, error: configError } = await supabaseAdmin
       .from('ai_config')
       .select('system_instruction_id, system_instruction_en')
       .eq('id', 'default')
       .maybeSingle();
 
-    if (error || !data) {
-      // Jika data belum ada, return fallback
+    if (configError && (configError.message.includes('relation') || configError.message.includes('find the table') || configError.code === 'PGRST205')) {
       return new Response(JSON.stringify({
-        system_instruction_id: fallbackId,
-        system_instruction_en: fallbackEn,
-        is_fallback: true
+        need_migration: true,
+        sql: `CREATE TABLE IF NOT EXISTS ai_config (
+  id TEXT PRIMARY KEY,
+  system_instruction_id TEXT,
+  system_instruction_en TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS api_keys_monitor (
+  id SERIAL PRIMARY KEY,
+  key_name TEXT NOT NULL UNIQUE,
+  api_key_masked TEXT NOT NULL,
+  used_quota INTEGER DEFAULT 0,
+  max_quota INTEGER DEFAULT 1000,
+  status TEXT DEFAULT 'active',
+  last_limited_at TIMESTAMP WITH TIME ZONE,
+  reset_duration_seconds INTEGER DEFAULT 60,
+  is_selected BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);`
       }), {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
+    // 2. Fetch API keys monitor
+    let { data: keysData, error: keysError } = await supabaseAdmin
+      .from('api_keys_monitor')
+      .select('*')
+      .order('id', { ascending: true });
+
+    if (keysError && (keysError.message.includes('relation') || keysError.message.includes('find the table') || keysError.code === 'PGRST205')) {
+      return new Response(JSON.stringify({
+        need_migration: true,
+        sql: `CREATE TABLE IF NOT EXISTS ai_config (
+  id TEXT PRIMARY KEY,
+  system_instruction_id TEXT,
+  system_instruction_en TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS api_keys_monitor (
+  id SERIAL PRIMARY KEY,
+  key_name TEXT NOT NULL UNIQUE,
+  api_key_masked TEXT NOT NULL,
+  used_quota INTEGER DEFAULT 0,
+  max_quota INTEGER DEFAULT 1000,
+  status TEXT DEFAULT 'active',
+  last_limited_at TIMESTAMP WITH TIME ZONE,
+  reset_duration_seconds INTEGER DEFAULT 60,
+  is_selected BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);`
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Seed default keys if table is empty
+    let apiKeys = keysData || [];
+    if (!keysError && apiKeys.length === 0) {
+      const groqKeysEnv = (import.meta.env.GROQ_API_KEY || process.env.GROQ_API_KEY || '').split(',').map(k => k.trim()).filter(Boolean);
+      const pageSpeedKey = import.meta.env.PAGESPEED_API_KEY || process.env.PAGESPEED_API_KEY || '';
+
+      const seedRows = [];
+      groqKeysEnv.forEach((key, index) => {
+        const masked = key.substring(0, 8) + '...' + key.substring(key.length - 8);
+        seedRows.push({
+          key_name: `Groq Key ${index + 1} (${index === 0 ? 'Utama Chat' : index === 3 ? 'Blog AI' : 'Cadangan Chat'})`,
+          api_key_masked: masked,
+          max_quota: 1000,
+          used_quota: 0,
+          status: 'active',
+          is_selected: index === 0,
+          reset_duration_seconds: 60
+        });
+      });
+
+      if (pageSpeedKey) {
+        const masked = pageSpeedKey.substring(0, 8) + '...' + pageSpeedKey.substring(pageSpeedKey.length - 8);
+        seedRows.push({
+          key_name: `Google PageSpeed API Key (Audit)`,
+          api_key_masked: masked,
+          max_quota: 500,
+          used_quota: 0,
+          status: 'active',
+          is_selected: false,
+          reset_duration_seconds: 3600
+        });
+      }
+
+      if (seedRows.length > 0) {
+        const { data: seeded, error: seedErr } = await supabaseAdmin
+          .from('api_keys_monitor')
+          .insert(seedRows)
+          .select();
+        
+        if (!seedErr && seeded) {
+          apiKeys = seeded;
+        } else {
+          console.error('Error seeding api_keys_monitor:', seedErr);
+        }
+      }
+    }
+
+    const config = configData || {
+      system_instruction_id: fallbackId,
+      system_instruction_en: fallbackEn,
+      is_fallback: true
+    };
+
     return new Response(JSON.stringify({
-      system_instruction_id: data.system_instruction_id,
-      system_instruction_en: data.system_instruction_en,
-      is_fallback: false
+      system_instruction_id: config.system_instruction_id,
+      system_instruction_en: config.system_instruction_en,
+      is_fallback: !configData,
+      api_keys: apiKeys
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
@@ -167,7 +288,8 @@ export async function POST({ request }) {
   }
 
   try {
-    const { system_instruction_id, system_instruction_en, token } = await request.json();
+    const body = await request.json();
+    const { token, action } = body;
 
     if (!token) {
       return new Response(JSON.stringify({ error: 'Token autentikasi wajib dilampirkan.' }), {
@@ -199,7 +321,67 @@ export async function POST({ request }) {
       });
     }
 
-    // Simpan ke Supabase (gunakan upsert)
+    // Handle Actions
+    if (action === 'switch_key') {
+      const { keyId } = body;
+      if (!keyId) {
+        return new Response(JSON.stringify({ error: 'keyId tidak ditemukan.' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+
+      // Reset is_selected to false for all keys
+      await supabaseAdmin
+        .from('api_keys_monitor')
+        .update({ is_selected: false })
+        .neq('id', 0); // match all
+
+      // Set selected to true and reset limited status for this key
+      const { error: updateErr } = await supabaseAdmin
+        .from('api_keys_monitor')
+        .update({ is_selected: true, status: 'active', last_limited_at: null })
+        .eq('id', keyId);
+
+      if (updateErr) throw updateErr;
+
+      return new Response(JSON.stringify({ success: true, message: 'API Key berhasil diubah!' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    if (action === 'reset_key') {
+      const { keyId } = body;
+      if (!keyId) {
+        return new Response(JSON.stringify({ error: 'keyId tidak ditemukan.' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+
+      const { error: resetErr } = await supabaseAdmin
+        .from('api_keys_monitor')
+        .update({ used_quota: 0, status: 'active', last_limited_at: null })
+        .eq('id', keyId);
+
+      if (resetErr) throw resetErr;
+
+      return new Response(JSON.stringify({ success: true, message: 'Kuota API Key berhasil di-reset!' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Default: Save prompts
+    const { system_instruction_id, system_instruction_en } = body;
+    if (!system_instruction_id || !system_instruction_en) {
+      return new Response(JSON.stringify({ error: 'Instruksi prompt tidak boleh kosong!' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     const { error: upsertErr } = await supabaseAdmin
       .from('ai_config')
       .upsert({
@@ -210,8 +392,7 @@ export async function POST({ request }) {
       });
 
     if (upsertErr) {
-      // Jika tabel belum ada, beri pesan instruksi pembuatan tabel
-      if (upsertErr.message.includes('relation "ai_config" does not exist')) {
+      if (upsertErr.message.includes('relation') || upsertErr.message.includes('find the table') || upsertErr.code === 'PGRST205') {
         return new Response(JSON.stringify({ 
           error: 'Tabel "ai_config" belum dibuat di database Supabase Anda.',
           need_migration: true,
@@ -221,6 +402,19 @@ export async function POST({ request }) {
   system_instruction_en TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS api_keys_monitor (
+  id SERIAL PRIMARY KEY,
+  key_name TEXT NOT NULL UNIQUE,
+  api_key_masked TEXT NOT NULL,
+  used_quota INTEGER DEFAULT 0,
+  max_quota INTEGER DEFAULT 1000,
+  status TEXT DEFAULT 'active',
+  last_limited_at TIMESTAMP WITH TIME ZONE,
+  reset_duration_seconds INTEGER DEFAULT 60,
+  is_selected BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );`
         }), {
           status: 400,

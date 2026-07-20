@@ -8,16 +8,22 @@ import Logo from '../../components/Logo.astro';
   <div id="admin-layout" class="hidden min-h-screen dashboard-root grain flex">
     
     <!-- Sidebar Navigation -->
-    <aside class="hidden lg:flex w-[248px] shrink-0 flex-col border-r border-[#1A1A1E] bg-[#0C0C0E]">
+    <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[248px] -translate-x-full flex-col border-r border-[#1A1A1E] bg-[#0C0C0E] transition-transform duration-300 lg:static lg:flex lg:translate-x-0 lg:z-auto">
       <!-- Logo -->
-      <div class="px-5 pt-6 pb-7 flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-[#C5F82A]">
-          <Logo class="w-4 h-4 text-[#0A0A0B]" />
+      <div class="px-5 pt-6 pb-7 flex items-center justify-between gap-2.5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-[#C5F82A]">
+            <Logo class="w-4 h-4 text-[#0A0A0B]" />
+          </div>
+          <div class="flex items-baseline gap-1.5">
+            <span class="font-semibold tracking-tight text-[15px] text-white">LUMOVELO</span>
+            <span class="mono text-[10px] text-[#5C5C63]">v2.4</span>
+          </div>
         </div>
-        <div class="flex items-baseline gap-1.5">
-          <span class="font-semibold tracking-tight text-[15px] text-white">LUMOVELO</span>
-          <span class="mono text-[10px] text-[#5C5C63]">v2.4</span>
-        </div>
+        <!-- Close button on mobile -->
+        <button id="btn-close-sidebar" class="lg:hidden p-1.5 rounded-md hover:bg-[#16161A] text-white cursor-pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
       </div>
 
       <!-- Workspace switcher -->
@@ -83,7 +89,7 @@ import Logo from '../../components/Logo.astro';
     <main class="flex-1 min-w-0 flex flex-col">
       <!-- Top bar -->
       <header class="sticky top-0 z-20 flex items-center gap-3 px-4 lg:px-8 h-16 border-b border-[#1A1A1E] backdrop-blur-md bg-[rgba(10,10,11,0.78)]">
-        <button class="lg:hidden p-2 rounded-md hover:bg-[#16161A] text-white">
+        <button id="btn-open-sidebar" class="lg:hidden p-2 rounded-md hover:bg-[#16161A] text-white cursor-pointer">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
         </button>
         <div class="hidden md:flex items-center gap-2 text-[13px] text-[#8A8A90]">
@@ -127,6 +133,7 @@ import Logo from '../../components/Logo.astro';
               <option value="SEO & MARKETING">SEO & MARKETING</option>
               <option value="VIDEO & CREATIVE">VIDEO & CREATIVE</option>
               <option value="KEAMANAN JARINGAN">KEAMANAN JARINGAN</option>
+              <option value="SOFTWARE QA & TESTING">SOFTWARE QA & TESTING</option>
             </select>
           </div>
           <div class="space-y-1">
@@ -204,6 +211,7 @@ import Logo from '../../components/Logo.astro';
               <option value="SEO & MARKETING">SEO & MARKETING</option>
               <option value="VIDEO & CREATIVE">VIDEO & CREATIVE</option>
               <option value="KEAMANAN JARINGAN">KEAMANAN JARINGAN</option>
+              <option value="SOFTWARE QA & TESTING">SOFTWARE QA & TESTING</option>
             </select>
           </div>
           <div class="space-y-1">
@@ -252,6 +260,7 @@ import Logo from '../../components/Logo.astro';
             <option value="SEO & MARKETING">SEO & MARKETING</option>
             <option value="VIDEO & CREATIVE">VIDEO & CREATIVE</option>
             <option value="KEAMANAN JARINGAN">KEAMANAN JARINGAN</option>
+            <option value="SOFTWARE QA & TESTING">SOFTWARE QA & TESTING</option>
           </select>
         </div>
 
@@ -442,7 +451,7 @@ import Logo from '../../components/Logo.astro';
 
       if (!isAdmin) {
         await supabase.auth.signOut();
-        alert('Akses Ditolak: Anda bukan administrator resmi.');
+        await (window as any).showAlert('Akses Ditolak: Anda bukan administrator resmi.');
         window.location.href = '/admin/login/';
         return;
       }
@@ -618,13 +627,13 @@ import Logo from '../../components/Logo.astro';
         closePostModal();
         loadBlogPosts();
       } catch (err: any) {
-        alert('Gagal menyimpan postingan. Pastikan slug unik dan tabel database "posts" sudah dibuat.\nError: ' + err.message);
+        await (window as any).showAlert('Gagal menyimpan postingan. Pastikan slug unik dan tabel database "posts" sudah dibuat.\nError: ' + err.message);
       }
     });
 
     // Delete Post
     async function handleDeletePost(id: string | null) {
-      if (!confirm('Apakah Anda yakin ingin menghapus artikel ini permanen?')) return;
+      if (!await (window as any).showConfirm('Apakah Anda yakin ingin menghapus artikel ini permanen?')) return;
 
       try {
         const { error } = await supabase
@@ -635,7 +644,7 @@ import Logo from '../../components/Logo.astro';
         if (error) throw error;
         loadBlogPosts();
       } catch (err: any) {
-        alert('Gagal menghapus artikel.\nError: ' + err.message);
+        await (window as any).showAlert('Gagal menghapus artikel.\nError: ' + err.message);
       }
     }
 
@@ -658,7 +667,7 @@ import Logo from '../../components/Logo.astro';
       
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        alert('Sesi Anda telah berakhir. Silakan login kembali.');
+        await (window as any).showAlert('Sesi Anda telah berakhir. Silakan login kembali.');
         window.location.href = '/admin/login/';
         return;
       }
@@ -684,11 +693,11 @@ import Logo from '../../components/Logo.astro';
           throw new Error(resData.error || 'Terjadi kesalahan saat generate artikel.');
         }
 
-        alert('Sukses! Artikel AI berhasil digenerate dan dipublikasikan.');
+        await (window as any).showAlert('Sukses! Artikel AI berhasil digenerate dan dipublikasikan.');
         aiModal.classList.add('hidden');
         loadBlogPosts(); // Reload posts table
       } catch (err: any) {
-        alert('Gagal generate artikel AI:\n' + err.message);
+        await (window as any).showAlert('Gagal generate artikel AI:\n' + err.message);
       } finally {
         // Reset loading state
         aiBtnSubmit.disabled = false;

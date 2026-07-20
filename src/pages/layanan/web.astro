@@ -1,178 +1,219 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Footer from '../../components/Footer.astro';
-import Logo from '../../components/Logo.astro';
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import Logo from "../../components/Logo.astro";
 
-const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
-const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
-
+const lang = Astro.currentLocale === "en" ? "en" : "id";
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
 
 const content = {
   id: {
     title: "Jasa Pembuatan Website & Landing Page Premium | LUMOVELO",
     header: "WEBSITE DEVELOPMENT & LANDING PAGE",
     headline: "Website Premium Kustom, Cepat, Aman & Fokus Konversi Penjualan",
-    desc: "Kami membangun website modern menggunakan arsitektur headless (Astro/NextJS) yang memuat halaman di bawah 1 detik, 100% aman dari hacker, dan ramah optimasi SEO Google.",
+    desc: "Kami merancang website profesional kustom yang memuat instan, berpenampilan premium, aman dari gangguan teknis, serta siap mendatangkan pembeli potensial untuk bisnis Anda.",
     cta: "Konsultasikan Proyek Website Anda",
     back: "Kembali ke Beranda",
     pricingHeader: "/ PAKET PILIHAN WEB DEVELOPMENT",
     pricingTitle: "Investasi Solusi Website Sesuai Kebutuhan Bisnis Anda",
+    workflowHeader: "/ ALUR KERJA PENGERJAAN",
+    workflowTitle: "Proses Transparan dari Ide Hingga Peluncuran",
+    whyUsHeader: "/ KEUNGGULAN KAMI",
+    whyUsTitle: "Mengapa Memilih Jasa Pembuatan Website Lumovelo?",
     periodOnce: "Proyek Sekali Jalan",
-    periodMonthly: "Investasi Bulanan"
+    periodMonthly: "Investasi Bulanan",
   },
   en: {
     title: "Premium Web Development & Custom Landing Page Agency | LUMOVELO",
     header: "WEBSITE DEVELOPMENT & LANDING PAGE",
-    headline: "High-Performance Custom Websites Engineered for Sales Conversion",
-    desc: "We build modern websites using headless serverless architectures (Astro/NextJS) that load in under 1 second, secure against hacking, and highly optimized for SEO.",
+    headline:
+      "High-Performance Custom Websites Engineered for Sales Conversion",
+    desc: "We design custom professional websites engineered for instant loading, premium brand aesthetics, ironclad security, and high sales conversion.",
     cta: "Consult Your Web Project",
     back: "Back to Home",
     pricingHeader: "/ WEB DEVELOPMENT CHOSEN PACKAGES",
     pricingTitle: "Invest in the Perfect Web Solution for Your Business",
+    workflowHeader: "/ OUR DEVELOPMENT WORKFLOW",
+    workflowTitle: "Transparent Process From Concept to Launch",
+    whyUsHeader: "/ WHY CHOOSE US",
+    whyUsTitle: "Why Build Your Website With Lumovelo?",
     periodOnce: "One-time Project",
-    periodMonthly: "Monthly Investment"
-  }
+    periodMonthly: "Monthly Investment",
+  },
 }[lang];
 
 const packages = [
   {
-    name: lang === 'en' ? "Landing Page Pro" : "Landing Page Pro",
+    name: lang === "en" ? "Landing Page Pro" : "Landing Page Pro",
     price: "Rp1.450.000",
     period: content.periodOnce,
-    features: lang === 'en' ? [
-      "Domain .com + Hosting",
-      "1 Page, up to 7 converting sections",
-      "Persuasive structured copywriting",
-      "Direct WhatsApp Form & Button Integration",
-      "Mobile & Desktop Responsive Design",
-      "1 Ad platform tracking (Meta / TikTok / Google)",
-      "Revision: 2x minor"
-    ] : [
-      "Domain .com + Hosting",
-      "1 Halaman, hingga 7 section konversi",
-      "Copywriting persuasif pendorong penjualan",
-      "Integrasi Form & Tombol WhatsApp",
-      "Desain responsif HP & desktop",
-      "Tracking iklan 1 platform (Meta / TikTok / Google)",
-      "Revisi: 2x minor"
-    ]
+    features:
+      lang === "en"
+        ? [
+            "Domain .com + Hosting",
+            "1 Page, up to 7 converting sections",
+            "Persuasive structured copywriting",
+            "Direct WhatsApp Form & Button Integration",
+            "Mobile & Desktop Responsive Design",
+            "1 Ad platform tracking (Meta / TikTok / Google)",
+            "Revision: 2x minor",
+          ]
+        : [
+            "Domain .com + Hosting",
+            "1 Halaman, hingga 7 section konversi",
+            "Copywriting persuasif pendorong penjualan",
+            "Integrasi Form & Tombol WhatsApp",
+            "Desain responsif HP & desktop",
+            "Tracking iklan 1 platform (Meta / TikTok / Google)",
+            "Revisi: 2x minor",
+          ],
   },
   {
-    name: lang === 'en' ? "Company Profile Pro" : "Company Profile Pro",
+    name: lang === "en" ? "Company Profile Pro" : "Company Profile Pro",
     price: "Rp2.650.000",
     period: content.periodOnce,
     popular: true,
-    features: lang === 'en' ? [
-      "Domain .com + Hosting",
-      "Up to 8 Pages clean navigation menu",
-      "100% exclusive custom design",
-      "Contact form & Google Maps integration",
-      "Technical Speed Optimization (PageSpeed >85)",
-      "Headless CMS for easy self-updating",
-      "Revision: 3x minor"
-    ] : [
-      "Domain .com + Hosting",
-      "Maksimal 8 Halaman menu navigasi bersih",
-      "Desain kustom eksklusif 100%",
-      "Integrasi formulir kontak & Google Map",
-      "Optimasi Kecepatan Teknis (PageSpeed >85)",
-      "Headless CMS untuk kemudahan update mandiri",
-      "Revisi: 3x minor"
-    ]
+    features:
+      lang === "en"
+        ? [
+            "Domain .com + Hosting",
+            "Up to 8 Pages clean navigation menu",
+            "100% exclusive custom design",
+            "Contact form & Google Maps integration",
+            "Technical Speed Optimization (PageSpeed >85)",
+            "Headless CMS for easy self-updating",
+            "Revision: 3x minor",
+          ]
+        : [
+            "Domain .com + Hosting",
+            "Maksimal 8 Halaman menu navigasi bersih",
+            "Desain kustom eksklusif 100%",
+            "Integrasi formulir kontak & Google Map",
+            "Optimasi Kecepatan Teknis (PageSpeed >85)",
+            "Headless CMS untuk kemudahan update mandiri",
+            "Revisi: 3x minor",
+          ],
   },
   {
-    name: lang === 'en' ? "E-commerce Pro (Toko Online)" : "Toko Online E-commerce Pro",
+    name:
+      lang === "en"
+        ? "E-commerce Pro (Toko Online)"
+        : "Toko Online E-commerce Pro",
     price: "Rp3.450.000",
     period: content.periodOnce,
-    features: lang === 'en' ? [
-      "Domain .com + Hosting",
-      "Input maximum 100 products catalog database",
-      "Product search & dynamic category filter features",
-      "Midtrans / Xendit Payment Gateway Integration",
-      "Auto shipping cost calculator (RajaOngkir)",
-      "Secure transaction database & SSL certificate",
-      "3x Design & Coding Revisions During Development"
-    ] : [
-      "Domain .com + Hosting",
-      "Input maksimal 100 produk ke database katalog",
-      "Fitur pencarian produk & filter kategori dinamis",
-      "Integrasi Payment Gateway Midtrans / Xendit",
-      "Kalkulator ongkir otomatis (RajaOngkir)",
-      "Database transaksi aman & sertifikat SSL",
-      "Dukungan Revisi Desain & Koding 3x Selama Pengerjaan"
-    ]
+    features:
+      lang === "en"
+        ? [
+            "Domain .com + Hosting",
+            "Input maximum 100 products catalog database",
+            "Product search & dynamic category filter features",
+            "Midtrans / Xendit Payment Gateway Integration",
+            "Auto shipping cost calculator (RajaOngkir)",
+            "Secure transaction database & SSL certificate",
+            "3x Design & Coding Revisions During Development",
+          ]
+        : [
+            "Domain .com + Hosting",
+            "Input maksimal 100 produk ke database katalog",
+            "Fitur pencarian produk & filter kategori dinamis",
+            "Integrasi Payment Gateway Midtrans / Xendit",
+            "Kalkulator ongkir otomatis (RajaOngkir)",
+            "Database transaksi aman & sertifikat SSL",
+            "Dukungan Revisi Desain & Koding 3x Selama Pengerjaan",
+          ],
   },
   {
-    name: lang === 'en' ? "Custom Enterprise Web" : "Custom Enterprise Web",
+    name: lang === "en" ? "Custom Enterprise Web" : "Custom Enterprise Web",
     price: "Mulai Rp6.000.000",
     period: content.periodOnce,
-    features: lang === 'en' ? [
-      "Corporate Hosting Setup",
-      "Dynamic Multi-Language system implementation",
-      "Figma premium component blueprint design system",
-      "Complex interactive visual animations & databases",
-      "Advanced custom analytics setup (A/B testing)",
-      "Full technical support for 1 month",
-      "Revision: Free progressively during development"
-    ] : [
-      "Setup Hosting khusus korporat",
-      "Implementasi sistem Multi-Bahasa dinamis",
-      "Desain sistem blueprint figma premium",
-      "Database & animasi visual interaktif kompleks",
-      "Tracking analitik kustom tingkat lanjut (A/B testing)",
-      "Bantuan teknis penuh selama 1 bulan",
-      "Revisi: Bebas bertahap selama pengerjaan"
-    ]
-  }
+    features:
+      lang === "en"
+        ? [
+            "Corporate Hosting Setup",
+            "Dynamic Multi-Language system implementation",
+            "Figma premium component blueprint design system",
+            "Complex interactive visual animations & databases",
+            "Advanced custom analytics setup (A/B testing)",
+            "Full technical support for 1 month",
+            "Revision: Free progressively during development",
+          ]
+        : [
+            "Setup Hosting khusus korporat",
+            "Implementasi sistem Multi-Bahasa dinamis",
+            "Desain sistem blueprint figma premium",
+            "Database & animasi visual interaktif kompleks",
+            "Tracking analitik kustom tingkat lanjut (A/B testing)",
+            "Bantuan teknis penuh selama 1 bulan",
+            "Revisi: Bebas bertahap selama pengerjaan",
+          ],
+  },
 ];
 
-const homeLink = lang === 'en' ? '/en/' : '/';
-const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
+const homeLink = lang === "en" ? "/en/" : "/";
+const contactLink = lang === "en" ? "/en/kontak/" : "/kontak/";
 
 // Structured Schema Markup
 const schema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": lang === 'en' ? "Website & Landing Page Development - LUMOVELO" : "Jasa Pembuatan Website & Landing Page - LUMOVELO",
-  "image": "https://lumovelo.com/og-image.png",
-  "description": lang === 'en' 
-    ? "Premium custom corporate website creation, high-converting landing pages, and headless e-commerce stores integrated with payment gateways using fast serverless technology."
-    : "Jasa pembuatan website company profile kustom, landing page konversi tinggi, dan toko online modern menggunakan teknologi headless serverless super cepat.",
-  "brand": {
+  name:
+    lang === "en"
+      ? "Website & Landing Page Development - LUMOVELO"
+      : "Jasa Pembuatan Website & Landing Page - LUMOVELO",
+  image: "https://lumovelo.com/og-image.png",
+  description:
+    lang === "en"
+      ? "Premium custom corporate website creation, high-converting landing pages, and headless e-commerce stores integrated with payment gateways using fast serverless technology."
+      : "Jasa pembuatan website company profile kustom, landing page konversi tinggi, dan toko online modern menggunakan teknologi headless serverless super cepat.",
+  brand: {
     "@type": "Brand",
-    "name": "LUMOVELO"
+    name: "LUMOVELO",
   },
-  "offers": {
+  offers: {
     "@type": "AggregateOffer",
-    "priceCurrency": "IDR",
-    "lowPrice": "950000",
-    "highPrice": "7500000",
-    "offerCount": "4",
-    "offers": packages.map((pkg, idx) => ({
+    priceCurrency: "IDR",
+    lowPrice: "950000",
+    highPrice: "7500000",
+    offerCount: "4",
+    offers: packages.map((pkg, idx) => ({
       "@type": "Offer",
-      "name": pkg.name,
-      "price": pkg.price.replace(/[^0-9]/g, ""),
-      "priceCurrency": "IDR",
-      "url": "https://lumovelo.com/layanan/web/"
-    }))
-  }
+      name: pkg.name,
+      price: pkg.price.replace(/[^0-9]/g, ""),
+      priceCurrency: "IDR",
+      url: "https://lumovelo.com/layanan/web/",
+    })),
+  },
 };
 ---
 
 <Layout title={content.title}>
   <!-- JSON-LD Structured Data Schema -->
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(schema)}
+  />
 
   <!-- Simple Subpage Header -->
-  <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
+  <header
+    class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50"
+  >
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
       <a href={homeLink} class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-xl border border-blue-100 bg-white flex items-center justify-center shadow-sm">
+        <div
+          class="w-9 h-9 rounded-xl border border-blue-100 bg-white flex items-center justify-center shadow-sm"
+        >
           <Logo class="w-4.5 h-4.5 text-blue-600" />
         </div>
-        <span class="font-display font-black text-lg tracking-widest text-slate-900">LUMOVELO</span>
+        <span
+          class="font-display font-black text-lg tracking-widest text-slate-900"
+          >LUMOVELO</span
+        >
       </a>
-      <a href={homeLink} class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors">
+      <a
+        href={homeLink}
+        class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors"
+      >
         {content.back}
       </a>
     </div>
@@ -180,171 +221,446 @@ const schema = {
 
   <main class="bg-white min-h-screen relative overflow-hidden font-sans">
     <!-- Background Glimmer -->
-    <div class="absolute right-[-10%] top-[10%] w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-3xl pointer-events-none"></div>
-    
+    <div
+      class="absolute right-[-10%] top-[10%] w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-3xl pointer-events-none"
+    >
+    </div>
+
     <div class="max-w-6xl mx-auto px-6 py-16 relative z-10">
-      
       <!-- Headline Block -->
-      <div class="max-w-3xl mb-16 text-left">
-        <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3 block">
+      <div class="max-w-3xl mx-auto mb-16 text-center">
+        <span
+          class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3 block"
+        >
           {content.header}
         </span>
-        <h1 class="font-display font-black text-4xl sm:text-5xl text-slate-900 leading-[1.15] uppercase tracking-tight font-sans">
+        <h1
+          class="font-display font-black text-4xl sm:text-5xl text-slate-900 leading-[1.15] uppercase tracking-tight font-sans"
+        >
           {content.headline}
         </h1>
-        <p class="text-slate-500 mt-6 text-base sm:text-lg leading-relaxed font-semibold">
+        <p
+          class="text-slate-500 mt-6 text-base sm:text-lg leading-relaxed font-semibold"
+        >
           {content.desc}
         </p>
       </div>
 
       <!-- Key Solutions Bento Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-        
         <!-- Solution 1 -->
-        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+        <div
+          class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between"
+        >
           <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            <div
+              class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-black text-slate-900 uppercase">Landing Page Konversi</h3>
+            <h3 class="text-lg font-black text-slate-900 uppercase">
+              Landing Page Konversi
+            </h3>
             <p class="text-xs text-slate-500 leading-relaxed font-medium">
-              Didesain khusus untuk kampanye marketing Anda. Layout fokus konversi penjualan, integrasi form lead otomatis, dan optimasi load speed super kilat.
+              Didesain khusus untuk kampanye marketing Anda. Layout fokus
+              konversi penjualan, integrasi form lead otomatis, dan optimasi
+              load speed super kilat.
             </p>
           </div>
-          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Ready for Google Ads/Meta Ads →</span>
+          <span
+            class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block"
+            >Ready for Google Ads/Meta Ads →</span
+          >
         </div>
 
         <!-- Solution 2 -->
-        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+        <div
+          class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between"
+        >
           <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            <div
+              class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-lg font-black text-slate-900 uppercase">Company Profile Bento Grid</h3>
+            <h3 class="text-lg font-black text-slate-900 uppercase">
+              Company Profile
+            </h3>
             <p class="text-xs text-slate-550 leading-relaxed font-medium">
-              Tingkatkan kredibilitas korporat dengan layout modern berbasis bento grid eksklusif. Terintegrasi headless CMS untuk kemudahan mengubah konten secara mandiri.
+              Tingkatkan kredibilitas korporat dengan layout modern berbasis
+              bento grid eksklusif. Terintegrasi headless CMS untuk kemudahan
+              mengubah konten secara mandiri.
             </p>
           </div>
-          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Premium brand presence →</span>
+          <span
+            class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block"
+            >Premium brand presence →</span
+          >
         </div>
 
         <!-- Solution 3 -->
-        <div class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between">
+        <div
+          class="premium-glass p-8 bg-white border border-slate-100 shadow-sm rounded-3xl flex flex-col justify-between"
+        >
           <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600">
-              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            <div
+              class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-black text-slate-900 uppercase">Toko Online E-Commerce</h3>
+            <h3 class="text-lg font-black text-slate-900 uppercase">
+              Toko Online E-Commerce
+            </h3>
             <p class="text-xs text-slate-500 leading-relaxed font-medium">
-              Jual produk dengan mudah melalui integrasi logistik ongkir otomatis (RajaOngkir) dan gerbang pembayaran digital Midtrans/Xendit secara aman.
+              Jual produk dengan mudah melalui integrasi logistik ongkir
+              otomatis (RajaOngkir) dan gerbang pembayaran digital
+              Midtrans/Xendit secara aman.
             </p>
           </div>
-          <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Headless checkout system →</span>
+          <span
+            class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block"
+            >Headless checkout system →</span
+          >
+        </div>
+      </div>
+
+      <!-- Workflow Process Section -->
+      <div class="mb-20">
+        <div class="text-center mb-12">
+          <span
+            class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-2 block"
+          >
+            {content.workflowHeader}
+          </span>
+          <h2
+            class="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight"
+          >
+            {content.workflowTitle}
+          </h2>
         </div>
 
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div
+            class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative"
+          >
+            <span
+              class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4"
+              >01</span
+            >
+            <div
+              class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm"
+            >
+              01
+            </div>
+            <h3
+              class="font-display font-black text-base text-slate-900 uppercase mb-2"
+            >
+              Konsultasi & Strategi Bisnis
+            </h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Memahami tujuan bisnis, target pembeli, serta merancang struktur
+              website yang siap mendorong angka penjualan.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative"
+          >
+            <span
+              class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4"
+              >02</span
+            >
+            <div
+              class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm"
+            >
+              02
+            </div>
+            <h3
+              class="font-display font-black text-base text-slate-900 uppercase mb-2"
+            >
+              Perancangan Visual Eksklusif
+            </h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Merancang tampilan visual modern, profesional, dan persuasif yang
+              meningkatkan kredibilitas brand Anda.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative"
+          >
+            <span
+              class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4"
+              >03</span
+            >
+            <div
+              class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm"
+            >
+              03
+            </div>
+            <h3
+              class="font-display font-black text-base text-slate-900 uppercase mb-2"
+            >
+              Pembangunan & Pengujian
+            </h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Membangun sistem website cepat, aman, serta siap pakai yang
+              beroperasi lancar di semua tipe smartphone dan komputer.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative"
+          >
+            <span
+              class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4"
+              >04</span
+            >
+            <div
+              class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm"
+            >
+              04
+            </div>
+            <h3
+              class="font-display font-black text-base text-slate-900 uppercase mb-2"
+            >
+              Peluncuran & Garansi
+            </h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Website resmi dipublikasikan untuk mulai mendatangkan pelanggan,
+              didukung garansi pemeliharaan teknis penuh.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Choose Us Section -->
+      <div
+        class="mb-20 p-8 sm:p-12 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-xl"
+      >
+        <div
+          class="absolute right-0 top-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"
+        >
+        </div>
+
+        <div class="text-center max-w-2xl mx-auto mb-12 relative z-10">
+          <span
+            class="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-2 block"
+          >
+            {content.whyUsHeader}
+          </span>
+          <h2
+            class="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight"
+          >
+            {content.whyUsTitle}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+          <div
+            class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500"
+          >
+            <h3
+              class="font-display font-black text-base text-white uppercase mb-2"
+            >
+              Fokus Penjualan & Konversi Prospek
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Didesain khusus dengan alur visual persuasif yang mendorong
+              pengunjung langsung melakukan transaksi atau menghubungi Anda via
+              WhatsApp.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500"
+          >
+            <h3
+              class="font-display font-black text-base text-white uppercase mb-2"
+            >
+              Performa Cepat & Tanpa Lemot
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Website dapat diakses instan dalam hitungan milidetik, mencegah
+              calon pelanggan kabur akibat waktu muat halaman yang lambat.
+            </p>
+          </div>
+
+          <div
+            class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500"
+          >
+            <h3
+              class="font-display font-black text-base text-white uppercase mb-2"
+            >
+              Hak Milik Penuh & Tanpa Biaya Tersembunyi
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Seluruh aset website sepenuhnya menjadi hak milik bisnis Anda.
+              Transparansi biaya terjamin tanpa biaya langganan yang mengikat.
+            </p>
+          </div>
+        </div>
       </div>
 
       <!-- Pricing Packages Section -->
       <div class="mb-20">
         <div class="text-center mb-10">
-          <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">{content.pricingHeader}</h2>
-          <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">{content.pricingTitle}</h3>
+          <h2
+            class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2"
+          >
+            {content.pricingHeader}
+          </h2>
+          <h3
+            class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug"
+          >
+            {content.pricingTitle}
+          </h3>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-          {packages.map((pkg, idx) => {
-            const waText = encodeURIComponent(
-              `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "Web - ${pkg.name}" (${pkg.price}) yang tertera di website.`
-            );
-            const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${waText}`;
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
+        >
+          {
+            packages.map((pkg, idx) => {
+              const waText = encodeURIComponent(
+                `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "Web - ${pkg.name}" (${pkg.price}) yang tertera di website.`,
+              );
+              const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${waText}`;
 
-            return (
-              <div 
-                class={`service-card border-2 p-5 rounded-2xl relative transition-all duration-300 flex flex-col justify-between min-h-[440px] ${
-                  pkg.popular
-                    ? 'border-slate-900 bg-white shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1.5'
-                    : 'border-blue-600/10 hover:border-blue-600 bg-slate-50/50 hover:bg-slate-50/80 shadow-[3px_3px_0px_rgba(37,99,235,0.05)] hover:shadow-[4px_4px_0px_#2563eb] hover:-translate-y-1'
-                }`}
-              >
-                {pkg.popular && (
-                  <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
-                    {lang === 'en' ? 'POPULAR' : 'POPULER'}
-                  </div>
-                )}
-                <div>
-                  <div class="flex justify-between items-start mb-4">
-                    <span class="text-[8px] font-mono text-slate-450 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
-                      {idx === 3 ? 'CUSTOM' : `TIER_0${idx + 1}`}
-                    </span>
-                  </div>
-                  <h4 class="font-display font-black text-base text-slate-900 uppercase leading-snug">{pkg.name}</h4>
-                  <div class="my-3">
-                    <div class="text-[8px] font-mono text-slate-450 font-bold uppercase tracking-widest">{pkg.period}</div>
-                    <div class="text-xl font-display font-black text-blue-600 mt-0.5">{pkg.price}</div>
-                  </div>
-                  <ul class="space-y-2 text-xs text-slate-600 font-semibold mb-6 border-t border-slate-200/40 pt-3">
-                    {pkg.features.map((feature) => (
-                      <li class="flex items-start gap-1.5 leading-relaxed">
-                        <svg class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                          <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                        <span class="text-[11px]">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <a 
-                  href={waUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class={`w-full inline-flex items-center justify-center py-2.5 rounded-xl border-2 font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+              return (
+                <div
+                  class={`service-card border-2 p-5 rounded-2xl relative transition-all duration-300 flex flex-col justify-between min-h-[440px] ${
                     pkg.popular
-                      ? 'border-emerald-500 bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5'
-                      : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm'
+                      ? "border-slate-900 bg-white shadow-[4px_4px_0px_#2563eb] hover:shadow-[6px_6px_0px_#1d4ed8] hover:-translate-y-1.5"
+                      : "border-blue-600/10 hover:border-blue-600 bg-slate-50/50 hover:bg-slate-50/80 shadow-[3px_3px_0px_rgba(37,99,235,0.05)] hover:shadow-[4px_4px_0px_#2563eb] hover:-translate-y-1"
                   }`}
                 >
-                  {lang === 'en' ? 'Consult Now' : 'Konsultasi'}
-                </a>
-              </div>
-            );
-          })}
+                  {pkg.popular && (
+                    <div class="absolute top-0 right-6 -translate-y-1/2 px-2.5 py-0.5 rounded-full border-2 border-slate-900 bg-amber-400 text-[8px] font-mono font-black text-slate-900 uppercase tracking-widest shadow-[1px_1px_0px_#0f172a]">
+                      {lang === "en" ? "POPULAR" : "POPULER"}
+                    </div>
+                  )}
+                  <div>
+                    <div class="flex justify-between items-start mb-4">
+                      <span class="text-[8px] font-mono text-slate-450 bg-white border border-slate-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                        {idx === 3 ? "CUSTOM" : `TIER_0${idx + 1}`}
+                      </span>
+                    </div>
+                    <h4 class="font-display font-black text-base text-slate-900 uppercase leading-snug">
+                      {pkg.name}
+                    </h4>
+                    <div class="my-3">
+                      <div class="text-[8px] font-mono text-slate-450 font-bold uppercase tracking-widest">
+                        {pkg.period}
+                      </div>
+                      <div class="text-xl font-display font-black text-blue-600 mt-0.5">
+                        {pkg.price}
+                      </div>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-600 font-semibold mb-6 border-t border-slate-200/40 pt-3">
+                      {pkg.features.map((feature) => (
+                        <li class="flex items-start gap-1.5 leading-relaxed">
+                          <svg
+                            class="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="3"
+                          >
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                          <span class="text-[11px]">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a
+                    href={waUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={`w-full inline-flex items-center justify-center py-2.5 rounded-xl border-2 font-black text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                      pkg.popular
+                        ? "border-emerald-500 bg-emerald-500 hover:bg-emerald-600 text-white shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                        : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-sm"
+                    }`}
+                  >
+                    {lang === "en" ? "Consult Now" : "Konsultasi"}
+                  </a>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
 
       <!-- Lead Funnel CTA -->
-      <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">
+      <div
+        class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8"
+      >
         <div class="space-y-2 max-w-xl text-center md:text-left">
-          <h3 class="text-xl sm:text-2xl font-black text-slate-900 uppercase leading-snug">Butuh solusi website khusus?</h3>
+          <h3
+            class="text-xl sm:text-2xl font-black text-slate-900 uppercase leading-snug"
+          >
+            Butuh solusi website khusus?
+          </h3>
           <p class="text-xs text-slate-500 font-semibold leading-relaxed">
-            Konsultasikan ide desain kustom, visualisasi data dasbor, atau migrasi sistem web Anda secara gratis.
+            Konsultasikan ide desain kustom, visualisasi data dasbor, atau
+            migrasi sistem web Anda secara gratis.
           </p>
         </div>
-        <a 
+        <a
           href={contactLink}
           class="inline-flex items-center justify-center px-6 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs uppercase tracking-wider transition-all duration-300 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5 cursor-pointer shrink-0"
         >
           {content.cta}
         </a>
       </div>
-
     </div>
   </main>
-  
+
   <Footer />
 </Layout>
 
 <script>
   function initHoverEffects() {
     if (window.innerWidth < 768) return;
-    const cards = document.querySelectorAll('.service-card');
+    const cards = document.querySelectorAll(".service-card");
     cards.forEach((card: any) => {
-      card.addEventListener('mousemove', (e: MouseEvent) => {
+      card.addEventListener("mousemove", (e: MouseEvent) => {
         const rect = card.getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
@@ -353,14 +669,14 @@ const schema = {
         card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.005)`;
       });
 
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
       });
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHoverEffects);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHoverEffects);
   } else {
     initHoverEffects();
   }

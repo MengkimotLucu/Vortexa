@@ -8,16 +8,22 @@ import Logo from '../../components/Logo.astro';
   <div id="admin-layout" class="hidden min-h-screen dashboard-root grain flex">
     
     <!-- Sidebar Navigation -->
-    <aside class="hidden lg:flex w-[248px] shrink-0 flex-col border-r border-[#1A1A1E] bg-[#0C0C0E]">
+    <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[248px] -translate-x-full flex-col border-r border-[#1A1A1E] bg-[#0C0C0E] transition-transform duration-300 lg:static lg:flex lg:translate-x-0 lg:z-auto">
       <!-- Logo -->
-      <div class="px-5 pt-6 pb-7 flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-[#C5F82A]">
-          <Logo class="w-4 h-4 text-[#0A0A0B]" />
+      <div class="px-5 pt-6 pb-7 flex items-center justify-between gap-2.5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-[#C5F82A]">
+            <Logo class="w-4 h-4 text-[#0A0A0B]" />
+          </div>
+          <div class="flex items-baseline gap-1.5">
+            <span class="font-semibold tracking-tight text-[15px] text-white">LUMOVELO</span>
+            <span class="mono text-[10px] text-[#5C5C63]">v2.4</span>
+          </div>
         </div>
-        <div class="flex items-baseline gap-1.5">
-          <span class="font-semibold tracking-tight text-[15px] text-white">LUMOVELO</span>
-          <span class="mono text-[10px] text-[#5C5C63]">v2.4</span>
-        </div>
+        <!-- Close button on mobile -->
+        <button id="btn-close-sidebar" class="lg:hidden p-1.5 rounded-md hover:bg-[#16161A] text-white cursor-pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
       </div>
 
       <!-- Workspace switcher -->
@@ -83,7 +89,7 @@ import Logo from '../../components/Logo.astro';
     <main class="flex-1 min-w-0 flex flex-col h-screen overflow-hidden">
       <!-- Top bar -->
       <header class="sticky top-0 z-20 flex items-center gap-3 px-4 lg:px-8 h-16 border-b border-[#1A1A1E] backdrop-blur-md bg-[rgba(10,10,11,0.78)] shrink-0">
-        <button class="lg:hidden p-2 rounded-md hover:bg-[#16161A] text-white">
+        <button id="btn-open-sidebar" class="lg:hidden p-2 rounded-md hover:bg-[#16161A] text-white cursor-pointer">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
         </button>
         <div class="hidden md:flex items-center gap-2 text-[13px] text-[#8A8A90]">
@@ -146,6 +152,35 @@ import Logo from '../../components/Logo.astro';
               class="w-full bg-[#131316]/50 border border-[#232328] focus:border-[#C5F82A] focus:outline-none rounded-lg p-4 text-[12px] leading-relaxed text-slate-200 placeholder-slate-600 font-mono scroll-thin"
               placeholder="Write the instruction behavior and service prices..."
             ></textarea>
+          </div>
+
+          <!-- API Keys Monitor Section -->
+          <div class="card p-5 bg-[#0C0C0E]/50 border border-[#1A1A1E] rounded-xl flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-[#1A1A1E] pb-3">
+              <div>
+                <h3 class="text-[14px] font-bold text-white uppercase tracking-wider">Pemantauan Kuota & Status API Key</h3>
+                <p class="text-[11px] text-[#8A8A90] mt-0.5">Pantau kuota sisa, rate-limit, dan beralih otomatis/manual antar kunci API.</p>
+              </div>
+              <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Active Keys</span>
+            </div>
+
+            <!-- Warning Alert for limited/exhausted keys -->
+            <div id="api-keys-warning-banner" class="hidden p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl">
+              <div class="flex items-start gap-2.5">
+                <span class="text-sm">🛑</span>
+                <div>
+                  <h4 class="text-[11px] font-bold uppercase tracking-wider text-rose-400">Peringatan: API Utama Terkena Limit!</h4>
+                  <p class="text-[10px] text-slate-300 mt-0.5 leading-relaxed">
+                    Sistem mendeteksi API Key utama yang dipilih sedang terblokir (Rate limit). Sistem akan otomatis menggunakan API cadangan aktif lainnya, atau Anda dapat menukar kunci utama secara manual di bawah ini.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- API Keys Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="api-keys-list-container">
+              <div class="col-span-full text-center py-6 text-[#5C5C63] text-xs">Memuat data API monitor...</div>
+            </div>
           </div>
 
           <!-- Submit Button banner -->
@@ -222,7 +257,7 @@ import Logo from '../../components/Logo.astro';
 
     if (!isAdmin) {
       await supabase.auth.signOut();
-      alert('Akses Ditolak: Anda bukan administrator resmi.');
+      await (window as any).showAlert('Akses Ditolak: Anda bukan administrator resmi.');
       window.location.href = '/admin/login/';
       return;
     }
@@ -238,10 +273,23 @@ import Logo from '../../components/Logo.astro';
     try {
       statusMsg.textContent = 'Memuat konfigurasi...';
       const response = await fetch('/api/ai-config-handler');
+      const data = await response.json();
+
+      if (data.need_migration) {
+        migrationAlert.classList.remove('hidden');
+        migrationSqlCode.textContent = data.sql;
+        statusMsg.textContent = 'Migrasi database diperlukan.';
+        statusMsg.className = 'text-[11px] text-amber-400 font-semibold';
+        return;
+      }
+
       if (response.ok) {
-        const data = await response.json();
         promptIdInput.value = data.system_instruction_id || '';
         promptEnInput.value = data.system_instruction_en || '';
+        
+        // Render API monitor keys
+        renderApiKeys(data.api_keys || []);
+
         if (data.is_fallback) {
           statusMsg.textContent = 'Menampilkan template fallback default (belum ada di database).';
         } else {
@@ -256,13 +304,215 @@ import Logo from '../../components/Logo.astro';
     }
   }
 
+  // Render API keys visual progress bars
+  function renderApiKeys(keys: any[]) {
+    const container = document.getElementById('api-keys-list-container')!;
+    const warningBanner = document.getElementById('api-keys-warning-banner')!;
+    
+    if (keys.length === 0) {
+      container.innerHTML = `<div class="col-span-full text-center py-6 text-[#5C5C63] text-xs">Belum ada API Key terdaftar.</div>`;
+      warningBanner.classList.add('hidden');
+      return;
+    }
+
+    // Check if any selected key is limited/exhausted or exceeded limit
+    const selectedKey = keys.find(k => k.is_selected);
+    if (selectedKey && (selectedKey.status === 'limited' || selectedKey.status === 'exhausted' || (selectedKey.used_quota >= selectedKey.max_quota))) {
+      warningBanner.classList.remove('hidden');
+    } else {
+      warningBanner.classList.add('hidden');
+    }
+
+    container.innerHTML = keys.map(key => {
+      const percent = Math.min((key.used_quota / key.max_quota) * 100, 100);
+      let barColor = 'bg-[#C5F82A]'; // green
+      if (percent >= 90 || key.status === 'limited') {
+        barColor = 'bg-[#F87171]'; // red
+      } else if (percent >= 70) {
+        barColor = 'bg-[#F5A524]'; // orange/amber
+      }
+
+      let badgeClass = 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400';
+      let statusText = 'Normal';
+      if (key.status === 'limited') {
+        badgeClass = 'bg-rose-500/10 border-rose-500/20 text-rose-400 animate-pulse';
+        statusText = 'Rate-Limited';
+      } else if (key.status === 'exhausted' || percent >= 100) {
+        badgeClass = 'bg-rose-500/10 border-rose-500/20 text-rose-400';
+        statusText = 'Kuota Habis';
+      }
+
+      let isSelectedBadge = key.is_selected 
+        ? '<span class="text-[9px] font-bold uppercase px-2 py-0.5 rounded bg-[#C5F82A] text-[#0A0A0B] border border-[#C5F82A]">UTAMA</span>' 
+        : '';
+
+      let timerHtml = '';
+      if (key.status === 'limited' && key.last_limited_at) {
+        timerHtml = `<div class="mono text-[10px] text-rose-400 mt-1.5 font-bold" data-countdown-id="${key.id}" data-limited-at="${key.last_limited_at}" data-duration="${key.reset_duration_seconds}">
+          Reset dalam: --:--
+        </div>`;
+      }
+
+      return `
+        <div class="p-4 rounded-xl border ${key.is_selected ? 'border-[#C5F82A]/30 bg-[#0E0E11]/80' : 'border-[#1A1A1E] bg-[#0C0C0E]/50'} flex flex-col gap-3">
+          <div class="flex items-center justify-between">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-white text-[12px] font-bold">${key.key_name}</span>
+              <span class="text-[10px] mono text-[#5C5C63] mt-0.5">${key.api_key_masked}</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              ${isSelectedBadge}
+              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold border ${badgeClass}">
+                ${statusText}
+              </span>
+            </div>
+          </div>
+          
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] text-[#8A8A90]">Digunakan: <b>${key.used_quota}</b> / ${key.max_quota} req</span>
+              <span class="mono text-[10px] text-[#8A8A90]">${percent.toFixed(1)}%</span>
+            </div>
+            <div class="h-1.5 rounded-full overflow-hidden bg-[#1A1A1E]">
+              <div class="h-full rounded-full ${barColor}" style="width: ${percent}%"></div>
+            </div>
+            ${timerHtml}
+          </div>
+
+          <div class="flex items-center justify-between mt-1 pt-2 border-t border-[#1A1A1E]">
+            <div class="flex items-center gap-2">
+              <button 
+                data-switch-id="${key.id}" 
+                class="px-2.5 py-1 rounded ${key.is_selected ? 'bg-[#232328] text-[#5C5C63] cursor-not-allowed' : 'bg-[#131316] hover:bg-[#232328] border border-[#232328] text-white hover:text-[#C5F82A] cursor-pointer'} text-[10px] font-bold uppercase tracking-wider transition"
+                ${key.is_selected ? 'disabled' : ''}
+              >
+                Switch
+              </button>
+              <button 
+                data-reset-id="${key.id}" 
+                class="p-1 rounded hover:bg-[#16161A] text-[#8A8A90] hover:text-white transition cursor-pointer" 
+                title="Reset Kuota ke 0"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              </button>
+            </div>
+            <span class="text-[9px] mono text-[#5C5C63]">Reset: ${key.reset_duration_seconds}s</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Bind switch actions
+    container.querySelectorAll('[data-switch-id]').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const id = (e.target as HTMLElement).getAttribute('data-switch-id');
+        if (id) await switchApiKey(parseInt(id));
+      });
+    });
+
+    // Bind reset actions
+    container.querySelectorAll('[data-reset-id]').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const target = (e.target as HTMLElement).closest('[data-reset-id]');
+        const id = target ? target.getAttribute('data-reset-id') : null;
+        if (id) await resetApiKeyQuota(parseInt(id));
+      });
+    });
+  }
+
+  // Switch API key action
+  async function switchApiKey(keyId: number) {
+    try {
+      statusMsg.textContent = 'Mengganti API Key...';
+      const response = await fetch('/api/ai-config-handler', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: sessionToken,
+          action: 'switch_key',
+          keyId: keyId
+        })
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        window.showToast?.('API Key berhasil diganti!', 'success');
+        loadAIConfig();
+      } else {
+        throw new Error(result.error || 'Gagal mengganti key.');
+      }
+    } catch (err: any) {
+      console.error(err);
+      window.showToast?.('Gagal: ' + err.message, 'error');
+      loadAIConfig();
+    }
+  }
+
+  // Reset API key quota action
+  async function resetApiKeyQuota(keyId: number) {
+    if (!await (window as any).showConfirm('Apakah Anda yakin ingin me-reset hitungan kuota kunci API ini kembali ke 0?')) {
+      return;
+    }
+    try {
+      statusMsg.textContent = 'Mereset kuota...';
+      const response = await fetch('/api/ai-config-handler', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          token: sessionToken,
+          action: 'reset_key',
+          keyId: keyId
+        })
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        window.showToast?.('Kuota API Key berhasil direset!', 'success');
+        loadAIConfig();
+      } else {
+        throw new Error(result.error || 'Gagal reset kuota.');
+      }
+    } catch (err: any) {
+      console.error(err);
+      window.showToast?.('Gagal: ' + err.message, 'error');
+      loadAIConfig();
+    }
+  }
+
+  // Update countdown timers dynamically
+  setInterval(() => {
+    document.querySelectorAll('[data-countdown-id]').forEach((el) => {
+      const limitedAtStr = el.getAttribute('data-limited-at');
+      const durationSeconds = parseInt(el.getAttribute('data-duration') || '60', 10);
+      if (!limitedAtStr) return;
+
+      const limitedAt = new Date(limitedAtStr);
+      const now = new Date();
+      const diffMs = now.getTime() - limitedAt.getTime();
+      const diffSeconds = Math.floor(diffMs / 1000);
+      const remaining = durationSeconds - diffSeconds;
+
+      if (remaining <= 0) {
+        el.innerHTML = '<span class="text-emerald-400 font-bold">Siap Pulih (muat ulang)...</span>';
+        setTimeout(() => {
+          loadAIConfig();
+        }, 3000);
+      } else {
+        const mins = Math.floor(remaining / 60);
+        const secs = remaining % 60;
+        const formatted = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        el.textContent = `Reset dalam: ${formatted}`;
+      }
+    });
+  }, 1000);
+
   // Save Config to Server API
   btnSave.addEventListener('click', async () => {
     const system_instruction_id = promptIdInput.value.trim();
     const system_instruction_en = promptEnInput.value.trim();
 
     if (!system_instruction_id || !system_instruction_en) {
-      alert('Instruksi prompt tidak boleh kosong!');
+      await (window as any).showAlert('Instruksi prompt tidak boleh kosong!');
       return;
     }
 

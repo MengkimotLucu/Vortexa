@@ -17,6 +17,10 @@ const content = {
     back: "Kembali ke Beranda",
     pricingHeader: "/ PAKET CYBER SECURITY & ENDPOINT PROTECTION",
     pricingTitle: "Investasi Proteksi Jaringan Sesuai Skala Infrastruktur IT Anda",
+    workflowHeader: "/ ALUR KERJA AUDIT & PROTEKSI",
+    workflowTitle: "Proses Transparan Pengamanan Sistem & Jaringan",
+    whyUsHeader: "/ KEUNGGULAN KAMI",
+    whyUsTitle: "Mengapa Memilih Layanan Keamanan Lumovelo?",
     periodOnce: "Setup Awal (Sekali)",
     periodMonthly: "Investasi Lisensi & Support",
     annualNote: "*Tersedia penawaran tahunan dengan diskon khusus"
@@ -30,6 +34,10 @@ const content = {
     back: "Back to Home",
     pricingHeader: "/ CYBER SECURITY & ENDPOINT PROTECTION PACKAGES",
     pricingTitle: "Invest in Network Security Built for Your IT Infrastructure Scale",
+    workflowHeader: "/ OUR SECURITY WORKFLOW",
+    workflowTitle: "Transparent Process for System & Network Protection",
+    whyUsHeader: "/ WHY CHOOSE US",
+    whyUsTitle: "Why Protect Your Systems With Lumovelo?",
     periodOnce: "Initial Setup (One-time)",
     periodMonthly: "License & Support Investment",
     annualNote: "*Annual plans available with special discount rates"
@@ -196,7 +204,7 @@ const schema = {
     <div class="max-w-6xl mx-auto px-6 py-16 relative z-10">
       
       <!-- Headline Block -->
-      <div class="max-w-3xl mb-16 text-left animate-fade-in">
+      <div class="max-w-3xl mx-auto mb-16 text-center animate-fade-in">
         <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3 block">
           {content.header}
         </span>
@@ -262,6 +270,93 @@ const schema = {
             </p>
           </div>
           <span class="text-[10px] font-mono font-bold text-blue-600 uppercase tracking-widest mt-6 block">Zero Trust / VPN Access →</span>
+        </div>
+      </div>
+
+      <!-- Workflow Process Section -->
+      <div class="mb-20">
+        <div class="text-center mb-12">
+          <span class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-2 block">
+            {content.workflowHeader}
+          </span>
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-slate-900 uppercase tracking-tight">
+            {content.workflowTitle}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">01</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">01</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Audit Kebutuhan & Celah</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Pemeriksaan menyeluruh terhadap infrastruktur jaringan dan perangkat kerja kantor Anda.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">02</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">02</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Perancangan Arsitektur Aman</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Menyusun aturan sistem pertahanan, pembatasan hak akses, dan proteksi server internal.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">03</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">03</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Pemasangan & Pengujian</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Instalasi proteksi dan uji ketahanan sistem untuk memastikan tidak ada celah berbahaya.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200/80 rounded-2xl relative">
+            <span class="text-3xl font-display font-black text-blue-600/20 absolute top-4 right-4">04</span>
+            <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center mb-4 text-sm">04</div>
+            <h3 class="font-display font-black text-base text-slate-900 uppercase mb-2">Pemantauan & Dukungan</h3>
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+              Perlindungan aktif berlanjut dengan bantuan tim teknis yang siap menangani kendala.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Choose Us Section -->
+      <div class="mb-20 p-8 sm:p-12 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-xl">
+        <div class="absolute right-0 top-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 relative z-10">
+          <span class="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase mb-2 block">
+            {content.whyUsHeader}
+          </span>
+          <h2 class="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+            {content.whyUsTitle}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Perlindungan Aset Data Perusahaan</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Memastikan data sensitif pelanggan dan bisnis Anda aman dari risiko kebocoran data atau ancaman serangan siber.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Kepatuhan Regulasi & Bebas Khawatir</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Membantu pemenuhan standar regulasi bisnis dan keamanan informasi tanpa membebani operasional harian tim.
+            </p>
+          </div>
+
+          <div class="p-6 bg-slate-800/60 border border-slate-700/60 rounded-2xl border-t-2 border-t-blue-500">
+            <h3 class="font-display font-black text-base text-white uppercase mb-2">Pemantauan & Bantuan Siap Sedia</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-medium">
+              Sistem jaringan beroperasi stabil dengan dukungan tim ahli yang selalu siap siaga saat terjadi kendala teknis.
+            </p>
+          </div>
         </div>
       </div>
 

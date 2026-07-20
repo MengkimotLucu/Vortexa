@@ -5,9 +5,10 @@ const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const content = {
   id: {
-    welcome: "Halo! Saya Asisten AI LUMOVELO. Ada yang bisa saya bantu terkait jasa website, SEO, keamanan jaringan, audit SEO gratis, edit video, atau sistem AI? Silakan tanyakan di sini!",
+    welcome: "Halo! Saya Asisten AI LUMOVELO. Ada yang bisa saya bantu terkait jasa website, SEO, Software QA, keamanan jaringan, audit SEO gratis, edit video, atau sistem AI? Silakan tanyakan di sini!",
     quickReplies: [
       { label: "🌐 Jasa Website", value: "Jasa Pembuatan Website" },
+      { label: "🧪 Software QA", value: "Tanya Jasa Software QA & Testing" },
       { label: "📈 Paket Growth Scale", value: "Tanya Paket Growth Scale" },
       { label: "🔒 Keamanan Jaringan", value: "Tanya Jasa Keamanan Jaringan & Pentest B2B" },
       { label: "📊 Audit SEO Gratis", value: "Tanya Audit SEO & Performa Website Gratis" },
@@ -21,9 +22,10 @@ const content = {
     toggleBtnLabel: "Tanya AI"
   },
   en: {
-    welcome: "Hello! I am the LUMOVELO AI Assistant. How can I help you with web development, SEO, network security, free SEO audits, video editing, or AI systems? Feel free to ask!",
+    welcome: "Hello! I am the LUMOVELO AI Assistant. How can I help you with web development, SEO, Software QA, network security, free SEO audits, video editing, or AI systems? Feel free to ask!",
     quickReplies: [
       { label: "🌐 Web Development", value: "Web Development Services" },
+      { label: "🧪 Software QA", value: "Tell me about Software QA & Testing Services" },
       { label: "📈 Growth Scale Pack", value: "Tell me about the Growth Scale Package" },
       { label: "🔒 Network Security", value: "Tell me about B2B Network Security & Pentest Services" },
       { label: "📊 Free SEO Audit", value: "How can I run a Free SEO & Speed Audit?" },
@@ -59,7 +61,7 @@ const content = {
   </button>
 
   <!-- 2. Chat Window (Glassmorphism & Hidden by Default) -->
-  <div id="ai-chat-window" class="fixed bottom-24 right-4 left-4 w-auto sm:right-6 sm:left-auto sm:w-[360px] md:right-auto md:left-1/2 md:-translate-x-1/2 md:w-[460px] h-[550px] md:h-[650px] bg-slate-900/95 border border-slate-800 rounded-2xl shadow-2xl flex flex-col transition-all duration-300 transform scale-95 opacity-0 pointer-events-none z-50 overflow-hidden select-none font-sans">
+  <div id="ai-chat-window" data-size-state="normal" class="fixed bottom-24 right-4 left-4 w-auto sm:right-6 sm:left-auto sm:w-[360px] md:right-auto md:left-1/2 md:-translate-x-1/2 md:w-[460px] h-[550px] md:h-[650px] bg-slate-900/95 border border-slate-800 rounded-2xl shadow-2xl flex flex-col transition-all duration-300 transform scale-95 opacity-0 pointer-events-none z-50 overflow-hidden select-none font-sans">
 
     <!-- Custom Reset Confirmation Modal -->
     <div id="ai-chat-reset-modal" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
@@ -100,6 +102,14 @@ const content = {
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
           </svg>
         </button>
+        <button id="ai-chat-maximize-btn" class="text-slate-400 hover:text-white transition-colors cursor-pointer p-1" title={lang === 'en' ? 'Enlarge Chat Window' : 'Perbesar Jendela Chat'}>
+          <svg id="ai-icon-maximize" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75v4.5m0-4.5h-4.5m4.5 0L15 9M20.25 20.25v-4.5m0 4.5h-4.5m4.5 0L15 15" />
+          </svg>
+          <svg id="ai-icon-minimize" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4 hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9V4.5M15 9h4.5M15 9l5.25-5.25M15 15v4.5M15 15h4.5M15 15l5.25 5.25" />
+          </svg>
+        </button>
         <button id="ai-chat-close-btn" class="text-slate-400 hover:text-white transition-colors cursor-pointer p-1" aria-label={content.closeBtnLabel}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -108,81 +118,117 @@ const content = {
       </div>
     </div>
 
-    <!-- Lead Form Banner -->
-    <div id="ai-chat-lead-banner" class="bg-blue-950/40 border-b border-slate-800/80 p-3 flex flex-col gap-2 transition-all duration-300">
-      <div class="flex items-center justify-between">
-        <span class="text-[10px] font-bold text-blue-400 uppercase tracking-wider">📝 Konsultasi Prioritas</span>
-        <button type="button" id="btn-toggle-lead-form" class="text-[9px] text-slate-400 hover:text-white transition-colors cursor-pointer underline">Sembunyikan</button>
-      </div>
-      <div id="lead-form-fields" class="grid grid-cols-2 gap-2">
-        <input
-          type="text"
-          id="lead-input-name"
-          placeholder="Nama Anda..."
-          autocomplete="off"
-          class="bg-slate-900/60 border border-slate-800 focus:border-blue-500 focus:outline-none rounded-lg px-2.5 py-1 text-[11px] text-white placeholder-slate-500 transition-colors"
-        />
-        <input
-          type="text"
-          id="lead-input-whatsapp"
-          placeholder="WhatsApp (e.g. 0812...)"
-          autocomplete="off"
-          class="bg-slate-900/60 border border-slate-800 focus:border-blue-500 focus:outline-none rounded-lg px-2.5 py-1 text-[11px] text-white placeholder-slate-500 transition-colors"
-        />
-      </div>
-      <button
-        type="button"
-        id="btn-submit-lead-form"
-        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-1.5 rounded-lg text-[9px] transition-all uppercase tracking-wider cursor-pointer text-center"
-      >
-        Kirim Data Kontak
-      </button>
-    </div>
-
-    <!-- Messages Container -->
-    <div id="ai-chat-messages-container" class="flex-1 p-4 overflow-y-auto space-y-4 text-xs scrollbar-thin scrollbar-thumb-slate-800">
-      <!-- Welcome message -->
-      <div class="flex items-start gap-2.5">
-        <div class="w-6 h-6 rounded-full bg-blue-600/10 border border-blue-500/20 flex items-center justify-center shrink-0">🤖</div>
-        <div class="bg-slate-800/50 text-slate-200 border border-slate-800/80 p-3 rounded-2xl rounded-tl-none max-w-[80%] leading-relaxed">
-          <span>{content.welcome}</span>
-          
-          <!-- Quick Reply Buttons -->
-          <div id="ai-quick-replies" class="flex flex-wrap gap-2 mt-3">
-            {content.quickReplies.map((reply) => (
-              <button type="button" class="btn-quick bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 hover:text-blue-300 border border-blue-500/20 px-2.5 py-1.5 rounded-xl cursor-pointer transition-all text-[10px] font-semibold" data-value={reply.value}>
-                {reply.label}
-              </button>
-            ))}
+    <!-- Chat Main Grid Wrapper (Supports Split-Screen layout in Full screen state) -->
+    <div class="flex-1 flex overflow-hidden chat-body-grid">
+      
+      <!-- Left Panel: Pricing & Services (Visible only in data-size-state="full" on desktop) -->
+      <div class="hidden md:flex flex-col w-[280px] border-r border-slate-800 bg-slate-950/20 p-4 overflow-y-auto space-y-4 text-xs select-none chat-side-panel shrink-0">
+        <h5 class="font-bold text-white uppercase tracking-wider text-[11px] mb-2 border-b border-slate-800 pb-2 flex items-center gap-1.5">
+          <span>📋</span> {lang === 'en' ? 'LUMOVELO Packages' : 'Paket Layanan LUMOVELO'}
+        </h5>
+        <div class="space-y-3">
+          <div class="p-3 rounded-xl border border-blue-500/10 bg-blue-950/10 flex flex-col gap-1">
+            <span class="font-bold text-blue-400 text-[10px]">LANDING PAGE</span>
+            <span class="text-slate-300 font-medium text-[11px]">Starter: $70 | Scale: $100 | Elite: $170</span>
+          </div>
+          <div class="p-3 rounded-xl border border-slate-800 bg-slate-900/40 flex flex-col gap-1">
+            <span class="font-bold text-slate-300 text-[10px]">COMPANY PROFILE</span>
+            <span class="text-slate-300 font-medium text-[11px]">Starter: $120 | Scale: $190 | Elite: $300</span>
+          </div>
+          <div class="p-3 rounded-xl border border-slate-800 bg-slate-900/40 flex flex-col gap-1">
+            <span class="font-bold text-slate-300 text-[10px]">{lang === 'en' ? 'ONLINE STORE' : 'TOKO ONLINE'}</span>
+            <span class="text-slate-300 font-medium text-[11px]">Starter: $170 | Scale: $300 | Elite: $500</span>
+          </div>
+          <div class="p-3 rounded-xl border border-slate-800 bg-slate-900/40 flex flex-col gap-1">
+            <span class="font-bold text-slate-300 text-[10px]">{lang === 'en' ? 'AI AUTOMATION' : 'JASA AI & OTOMATISASI'}</span>
+            <span class="text-slate-300 font-medium text-[11px]">WA Chatbot: Mulai $100 | Workflow: Custom</span>
+          </div>
+          <div class="p-3 rounded-xl border border-slate-800 bg-slate-900/40 flex flex-col gap-1">
+            <span class="font-bold text-slate-300 text-[10px]">{lang === 'en' ? 'SOFTWARE QA & TESTING' : 'SOFTWARE QA & TESTING'}</span>
+            <span class="text-slate-300 font-medium text-[11px]">Basic: $69 | Pro: $169 | Elite: $289</span>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Mode manual indicator -->
-    <div id="manual-mode-badge" class="bg-amber-500/10 border-t border-b border-amber-500/20 py-2 px-4 text-center hidden">
-      <span class="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider">{content.statusManualBadge}</span>
-    </div>
+      <!-- Right Panel: Actual Chat interface -->
+      <div class="flex-1 flex flex-col overflow-hidden relative">
+        <!-- Lead Form Banner -->
+        <div id="ai-chat-lead-banner" class="bg-blue-950/40 border-b border-slate-800/80 p-3 flex flex-col gap-2 transition-all duration-300">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-blue-400 uppercase tracking-wider">📝 Konsultasi Prioritas</span>
+            <button type="button" id="btn-toggle-lead-form" class="text-[9px] text-slate-400 hover:text-white transition-colors cursor-pointer underline">Sembunyikan</button>
+          </div>
+          <div id="lead-form-fields" class="grid grid-cols-2 gap-2">
+            <input
+              type="text"
+              id="lead-input-name"
+              placeholder="Nama Anda..."
+              autocomplete="off"
+              class="bg-slate-900/60 border border-slate-800 focus:border-blue-500 focus:outline-none rounded-lg px-2.5 py-1 text-[11px] text-white placeholder-slate-500 transition-colors"
+            />
+            <input
+              type="text"
+              id="lead-input-whatsapp"
+              placeholder="WhatsApp (e.g. 0812...)"
+              autocomplete="off"
+              class="bg-slate-900/60 border border-slate-800 focus:border-blue-500 focus:outline-none rounded-lg px-2.5 py-1 text-[11px] text-white placeholder-slate-500 transition-colors"
+            />
+          </div>
+          <button
+            type="button"
+            id="btn-submit-lead-form"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-1.5 rounded-lg text-[9px] transition-all uppercase tracking-wider cursor-pointer text-center"
+          >
+            Kirim Data Kontak
+          </button>
+        </div>
 
-    <!-- Input Form -->
-    <form id="ai-chat-form" class="p-3 border-t border-slate-800 bg-slate-950/20 flex items-center gap-2">
-      <input
-        type="text"
-        id="ai-chat-input"
-        placeholder={content.inputPlaceholder}
-        autocomplete="off"
-        class="flex-1 bg-slate-800/40 border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 transition-colors"
-      />
-      <button
-        type="submit"
-        id="ai-chat-send-btn"
-        class="bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-xl transition-all shadow-[0_4px_12px_rgba(37,99,235,0.2)] hover:shadow-[0_4px_15px_rgba(37,99,235,0.3)] shrink-0 cursor-pointer"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-        </svg>
-      </button>
-    </form>
+        <!-- Messages Container -->
+        <div id="ai-chat-messages-container" class="flex-1 p-4 overflow-y-auto space-y-4 text-xs scrollbar-thin scrollbar-thumb-slate-800">
+          <!-- Welcome message -->
+          <div class="flex items-start gap-2.5">
+            <div class="w-6 h-6 rounded-full bg-blue-600/10 border border-blue-500/20 flex items-center justify-center shrink-0">🤖</div>
+            <div class="bg-slate-800/50 text-slate-200 border border-slate-800/80 p-3 rounded-2xl rounded-tl-none max-w-[80%] leading-relaxed">
+              <span>{content.welcome}</span>
+              
+              <!-- Quick Reply Buttons -->
+              <div id="ai-quick-replies" class="flex flex-wrap gap-2 mt-3">
+                {content.quickReplies.map((reply) => (
+                  <button type="button" class="btn-quick bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 hover:text-blue-300 border border-blue-500/20 px-2.5 py-1.5 rounded-xl cursor-pointer transition-all text-[10px] font-semibold" data-value={reply.value}>
+                    {reply.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mode manual indicator -->
+        <div id="manual-mode-badge" class="bg-amber-500/10 border-t border-b border-amber-500/20 py-2 px-4 text-center hidden">
+          <span class="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider">{content.statusManualBadge}</span>
+        </div>
+
+        <!-- Input Form -->
+        <form id="ai-chat-form" class="p-3 border-t border-slate-800 bg-slate-950/20 flex items-center gap-2">
+          <input
+            type="text"
+            id="ai-chat-input"
+            placeholder={content.inputPlaceholder}
+            autocomplete="off"
+            class="flex-1 bg-slate-800/40 border border-slate-800 focus:border-blue-500 focus:outline-none rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 transition-colors"
+          />
+          <button
+            type="submit"
+            id="ai-chat-send-btn"
+            class="bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-xl transition-all shadow-[0_4px_12px_rgba(37,99,235,0.2)] hover:shadow-[0_4px_15px_rgba(37,99,235,0.3)] shrink-0 cursor-pointer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -204,10 +250,127 @@ const content = {
   #ai-chat-toggle-btn {
     display: none !important;
   }
+
+  /* Transition sizes dynamically */
+  #ai-chat-window {
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                height 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.2s ease, 
+                transform 0.05s ease-out; /* Super responsive drag transform */
+    will-change: transform, width, height;
+  }
+
+  /* Half-Page State (1/2 Halaman) */
+  #ai-chat-window[data-size-state="half"] {
+    width: 620px !important;
+    height: 700px !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  /* Full-Page State (Full Halaman) */
+  #ai-chat-window[data-size-state="full"] {
+    width: calc(100% - 48px) !important;
+    max-width: 1160px !important;
+    height: calc(100vh - 80px) !important;
+    max-height: 820px !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  /* Hide side panel by default */
+  .chat-side-panel {
+    display: none !important;
+  }
+  
+  /* Show side panel in full state on desktop */
+  @media (min-width: 768px) {
+    #ai-chat-window[data-size-state="full"] .chat-side-panel {
+      display: flex !important;
+    }
+    #ai-chat-window[data-size-state="full"] .chat-body-grid {
+      display: grid !important;
+      grid-template-cols: 280px 1fr !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Mobile styles for half state */
+    #ai-chat-window[data-size-state="half"] {
+      width: calc(100% - 24px) !important;
+      height: 70vh !important;
+      bottom: 12px !important;
+      right: 12px !important;
+      left: 12px !important;
+      top: auto !important;
+      transform: none !important;
+    }
+
+    /* Mobile styles for full state */
+    #ai-chat-window[data-size-state="full"] {
+      width: 100% !important;
+      height: 100% !important;
+      bottom: 0 !important;
+      right: 0 !important;
+      left: 0 !important;
+      top: 0 !important;
+      border-radius: 0 !important;
+      max-width: none !important;
+      max-height: none !important;
+      transform: none !important;
+    }
+  }
 </style>
 
 <script>
   let isOpen = false;
+  
+  // Custom Toast Notification System
+  function showNotification(message, type = 'error') {
+    let container = document.getElementById('ai-chat-toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'ai-chat-toast-container';
+      container.className = 'fixed top-6 left-1/2 -translate-x-1/2 z-[9999] flex flex-col gap-2 pointer-events-none w-full max-w-[320px] px-4';
+      document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = 'p-3.5 rounded-xl border text-[11px] font-semibold shadow-2xl transition-all duration-300 transform translate-y-2 opacity-0 flex items-center gap-2.5 pointer-events-auto backdrop-blur-md';
+    
+    if (type === 'error') {
+      toast.className += ' bg-slate-900/95 border-red-500/30 text-red-400';
+    } else {
+      toast.className += ' bg-slate-900/95 border-emerald-500/30 text-emerald-400';
+    }
+
+    const icon = type === 'error' ? '⚠️' : '✓';
+    toast.innerHTML = `
+      <span class="text-[14px] leading-none shrink-0">${icon}</span>
+      <span class="flex-1 leading-normal">${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-2', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+    }, 10);
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-2', 'opacity-0');
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }, 4000);
+  }
   
 
 
@@ -326,6 +489,130 @@ const content = {
     chatWindow.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
     chatWindow.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
   });
+
+  // Maximize / Minimize Chat Window with 3 states: normal -> half -> full -> normal
+  const maximizeBtn = document.getElementById('ai-chat-maximize-btn');
+  const iconMaximize = document.getElementById('ai-icon-maximize');
+  const iconMinimize = document.getElementById('ai-icon-minimize');
+  let sizeState = 'normal'; // 'normal', 'half', 'full'
+  
+  // Translation offsets for dragging (GPU accelerated translate3d)
+  let translateX = 0, translateY = 0;
+  let currentTranslateX = 0, currentTranslateY = 0;
+
+  if (maximizeBtn && iconMaximize && iconMinimize) {
+    maximizeBtn.addEventListener('click', () => {
+      if (sizeState === 'normal') {
+        sizeState = 'half';
+      } else if (sizeState === 'half') {
+        sizeState = 'full';
+      } else {
+        sizeState = 'normal';
+      }
+
+      chatWindow.setAttribute('data-size-state', sizeState);
+
+      if (sizeState === 'normal') {
+        iconMaximize.classList.remove('hidden');
+        iconMinimize.classList.add('hidden');
+        // Restore translate transform when returning to normal state
+        chatWindow.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+      } else {
+        iconMaximize.classList.add('hidden');
+        iconMinimize.classList.remove('hidden');
+        // Reset transform to none in half/full states so CSS styles govern centering/full layout
+        chatWindow.style.transform = 'none';
+      }
+      scrollToBottom();
+    });
+  }
+
+  // Draggable logic for chat widget (using GPU-accelerated translate3d and requestAnimationFrame)
+  const chatHeader = chatWindow.querySelector('.p-4.border-b');
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let rafId = null;
+
+  if (chatHeader) {
+    chatHeader.style.cursor = 'grab';
+
+    const dragStart = (e) => {
+      // Don't drag if not in normal state
+      if (chatWindow.getAttribute('data-size-state') !== 'normal') return;
+      // Don't drag if clicking buttons
+      if (e.target.closest('button') || e.target.closest('svg')) return;
+
+      isDragging = true;
+      chatHeader.style.cursor = 'grabbing';
+
+      const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+      startX = clientX - translateX;
+      startY = clientY - translateY;
+
+      if (e.type !== 'touchstart') {
+        e.preventDefault();
+      }
+    };
+
+    const dragMove = (e) => {
+      if (!isDragging) return;
+
+      const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+      currentTranslateX = clientX - startX;
+      currentTranslateY = clientY - startY;
+
+      // Restrict dragging boundaries
+      const rect = chatWindow.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      // Min/Max translations to keep within viewport bounds
+      const minTranslateX = -rect.left + translateX;
+      const maxTranslateX = viewportWidth - rect.right + translateX;
+      const minTranslateY = -rect.top + translateY;
+      const maxTranslateY = viewportHeight - rect.bottom + translateY;
+
+      if (currentTranslateX < minTranslateX) currentTranslateX = minTranslateX;
+      if (currentTranslateX > maxTranslateX) currentTranslateX = maxTranslateX;
+
+      if (currentTranslateY < minTranslateY) currentTranslateY = minTranslateY;
+      if (currentTranslateY > maxTranslateY) currentTranslateY = maxTranslateY;
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(updatePosition);
+      }
+    };
+
+    const updatePosition = () => {
+      translateX = currentTranslateX;
+      translateY = currentTranslateY;
+      chatWindow.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+      rafId = null;
+    };
+
+    const dragEnd = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      chatHeader.style.cursor = 'grab';
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+    };
+
+    chatHeader.addEventListener('mousedown', dragStart);
+    chatHeader.addEventListener('touchstart', dragStart, { passive: true });
+
+    window.addEventListener('mousemove', dragMove);
+    window.addEventListener('touchmove', dragMove, { passive: true });
+
+    window.addEventListener('mouseup', dragEnd);
+    window.addEventListener('touchend', dragEnd);
+  }
 
   const resetBtn = document.getElementById('ai-chat-reset-btn');
   const resetModal = document.getElementById('ai-chat-reset-modal');
@@ -555,6 +842,20 @@ const content = {
       return;
     }
 
+    // Intercept perintah Mode Tester / Developer
+    const testerCommands = ['/tester', '/dev', '/qa', 'mode tester', 'dev mode', 'tester'];
+    if (testerCommands.includes(normalizedText)) {
+      localStorage.setItem('is_tester_mode', 'true');
+      localStorage.removeItem('ai_chat_message_count');
+      chatInput.value = '';
+      appendMessage('assistant', clientLang === 'en'
+        ? '🧪 **TESTER MODE ACTIVATED!** 5-message limit disabled for this browser. Testing chats will not notify admin or pollute the lead database.'
+        : '🧪 **MODE TESTER AKTIF!** Limit 5 pesan telah dinonaktifkan untuk browser ini. Percakapan uji coba ini tidak akan mengganggu WhatsApp Admin atau mengotori database lead.');
+      checkAndApplyMessageLimit();
+      scrollToBottom();
+      return;
+    }
+
     chatInput.value = '';
     appendMessage('user', text);
     scrollToBottom();
@@ -572,10 +873,11 @@ const content = {
     const typingId = showTypingIndicator();
 
     try {
+      const isTesterMode = localStorage.getItem('is_tester_mode') === 'true';
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, sessionId, lang: clientLang })
+        body: JSON.stringify({ message: text, sessionId, lang: clientLang, isTester: isTesterMode })
       });
 
       removeTypingIndicator(typingId);
@@ -728,6 +1030,9 @@ const content = {
   }
 
   function appendInlineLeadForm() {
+    const isTester = localStorage.getItem('is_tester_mode') === 'true';
+    if (isTester) return;
+
     if (document.getElementById('inline-lead-box')) return;
 
     const formDiv = document.createElement('div');
@@ -774,7 +1079,13 @@ const content = {
         const whatsapp = waInput.value.trim();
 
         if (!name || !whatsapp) {
-          alert(clientLang === 'en' ? 'Please fill in both name and WhatsApp.' : 'Mohon isi nama dan nomor WhatsApp Anda.');
+          showNotification(clientLang === 'en' ? 'Please fill in both name and WhatsApp.' : 'Mohon isi nama dan nomor WhatsApp Anda.');
+          return;
+        }
+
+        const phoneRegex = /^[0-9+\s-]{9,18}$/;
+        if (!phoneRegex.test(whatsapp)) {
+          showNotification(clientLang === 'en' ? 'Please enter a valid WhatsApp number.' : 'Mohon masukkan nomor WhatsApp yang valid.');
           return;
         }
 
@@ -837,6 +1148,23 @@ const content = {
   function checkAndApplyMessageLimit() {
     if (!chatInput) return;
     
+    const isTester = localStorage.getItem('is_tester_mode') === 'true';
+    if (isTester) {
+      const inlineBox = document.getElementById('inline-lead-box');
+      if (inlineBox) inlineBox.remove();
+      if (leadBanner) leadBanner.style.display = 'none';
+
+      chatInput.disabled = false;
+      chatInput.placeholder = clientLang === 'en' ? "Tester Mode (Unlimited Messages)..." : "Mode Tester (Bebas Pesan)...";
+      const sendBtn = document.getElementById('ai-chat-send-btn');
+      if (sendBtn) sendBtn.style.display = 'block';
+      if (chatStatus) {
+        chatStatus.textContent = 'MODE TESTER (UNLIMITED)';
+        chatStatus.className = "text-[9px] font-mono text-emerald-400 font-bold";
+      }
+      return;
+    }
+
     const hasSession = !!localStorage.getItem('ai_chat_session_id');
     const isSubmitted = localStorage.getItem('lead_submitted') === 'true';
     const msgCount = parseInt(localStorage.getItem('ai_chat_message_count') || '0', 10);
@@ -924,7 +1252,13 @@ const content = {
       const name = leadInputName.value.trim();
       const whatsapp = leadInputWhatsapp.value.trim();
       if (!name || !whatsapp) {
-        alert('Mohon isi nama dan nomor WhatsApp Anda.');
+        showNotification(clientLang === 'en' ? 'Please fill in both name and WhatsApp.' : 'Mohon isi nama dan nomor WhatsApp Anda.');
+        return;
+      }
+
+      const phoneRegex = /^[0-9+\s-]{9,18}$/;
+      if (!phoneRegex.test(whatsapp)) {
+        showNotification(clientLang === 'en' ? 'Please enter a valid WhatsApp number.' : 'Mohon masukkan nomor WhatsApp yang valid.');
         return;
       }
 

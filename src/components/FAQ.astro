@@ -67,6 +67,18 @@ const faqs = {
     {
       q: "Apakah ada garansi jika website mengalami error setelah diluncurkan?",
       a: "Ya, kami memberikan garansi bug-free penuh selama 1 bulan pertama setelah peluncuran. Jika terjadi kendala teknis atau error sistem, tim kami akan memperbaikinya segera tanpa biaya tambahan."
+    },
+    {
+      q: "Apa perbedaan antara manual testing dan automation testing di LUMOVELO?",
+      a: "Manual testing dilakukan oleh QA Engineer kami dengan mensimulasikan interaksi pengguna riil untuk menemukan bug kosmetik, kegunaan, atau logika. Sedangkan automation testing menggunakan skrip kode (seperti Playwright/Cypress) untuk menjalankan pengujian regresi berulang secara otomatis pada pipeline CI/CD, menghemat waktu rilis produk."
+    },
+    {
+      q: "Perangkat dan OS apa saja yang digunakan untuk pengujian aplikasi mobile?",
+      a: "Kami menggunakan perangkat fisik asli (real devices) Android & iOS dari berbagai merk populer (seperti Samsung, Xiaomi, Oppo, Vivo, & iPhone) dengan versi OS yang bervariasi. Hal ini memastikan aplikasi Anda kompatibel dan tidak mengalami crash saat diakses oleh pengguna dengan beragam spesifikasi HP."
+    },
+    {
+      q: "Apakah LUMOVELO juga menyediakan pengujian beban (load testing) server?",
+      a: "Ya. Di paket Elite dan Custom, kami melakukan load testing menggunakan k6 atau JMeter hingga simulasi 1.000 pengguna virtual bersamaan. Kami membantu Anda menganalisis waktu respons API, mendeteksi kebocoran memori (memory leak), dan mengoptimalkan konfigurasi server agar tahan banting terhadap lonjakan traffic mendadak."
     }
   ],
   en: [
@@ -113,6 +125,18 @@ const faqs = {
     {
       q: "Is there a warranty if the website encounters errors after launch?",
       a: "Yes, we provide a full bug-free warranty for the first 3 months post-launch. If any technical issues or system errors occur, our team will resolve them immediately at no extra charge."
+    },
+    {
+      q: "What is the difference between manual and automated testing at LUMOVELO?",
+      a: "Manual testing is performed by our QA Engineers mimicking real user interactions to catch UI/UX flaws and business logic bugs. Automated testing uses script suites (Cypress/Playwright) to run repetitive regression tests automatically in the CI/CD pipeline, reducing deployment release times."
+    },
+    {
+      q: "What devices and OS versions are used for mobile app testing?",
+      a: "We test on real physical Android & iOS devices across popular brands (Samsung, Xiaomi, Oppo, Vivo, & iPhone) on multiple OS versions. This guarantees your application remains compatible and stable without crashing across different screen sizes and device specifications."
+    },
+    {
+      q: "Does LUMOVELO provide server load testing?",
+      a: "Yes. In our Elite and Custom tiers, we conduct server load testing simulating up to 1,000 concurrent virtual users using k6 or JMeter. We help analyze API response times, detect memory leaks, and optimize your server configuration to handle sudden traffic spikes gracefully."
     }
   ]
 }[lang];
