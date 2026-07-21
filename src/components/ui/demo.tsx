@@ -143,33 +143,33 @@ export const Testimonials = ({ lang = "id" }: TestimonialsProps) => {
   const thirdColumn = testimonials.slice(6, 9);
 
   return (
-    <section className="bg-background relative !pt-2 sm:!pt-4 !pb-2 sm:!pb-4">
-      <div className="container z-10 mx-auto">
+    <section className="bg-white text-slate-900 relative py-16 sm:py-24 overflow-hidden border-t border-b border-slate-100">
+      <div className="max-w-7xl z-10 mx-auto px-6 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="flex flex-col items-center justify-center max-w-[540px] mx-auto text-center"
+          className="flex flex-col items-center justify-center max-w-[640px] mx-auto text-center"
         >
           <div className="flex justify-center">
-            <div className="border py-1 px-4 rounded-lg font-mono text-xs uppercase tracking-widest text-primary border-primary/20 bg-primary/5">
+            <div className="border py-1 px-4 rounded-full font-mono text-xs uppercase tracking-widest text-blue-600 border-blue-200 bg-blue-50">
               {t.badge}
             </div>
           </div>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mt-5">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mt-5 text-slate-900">
             {t.title}
           </h2>
-          <p className="text-center mt-5 opacity-75 max-w-lg">
+          <p className="text-center mt-4 text-xs sm:text-sm text-slate-600 max-w-lg leading-relaxed font-medium">
             {t.desc}
           </p>
         </motion.div>
 
-        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
-          <TestimonialsColumn testimonials={firstColumn} duration={15} />
-          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
-          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+        <div className="flex justify-center gap-6 mt-12 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[700px] overflow-hidden">
+          <TestimonialsColumn testimonials={firstColumn} duration={18} />
+          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={22} />
+          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={20} />
         </div>
       </div>
     </section>

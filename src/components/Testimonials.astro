@@ -3,4 +3,4 @@ const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 import { Testimonials } from './ui/demo';
 ---
 
-<Testimonials lang={lang} client:visible />
+<Testimonials lang={lang} client:load />
