@@ -469,51 +469,51 @@ import Layout from '../../layouts/Layout.astro';
     };
 
     // State Variables
-    let activeClauses = [];
+    let activeClauses: any[] = [];
 
     // DOM Elements
-    const elTitle = document.getElementById('mou-title');
-    const elNumber = document.getElementById('mou-number');
-    const elCity = document.getElementById('mou-city');
-    const elDate = document.getElementById('mou-date');
-    const elP1Name = document.getElementById('p1-name');
-    const elP1Pos = document.getElementById('p1-position');
-    const elP1Comp = document.getElementById('p1-company');
-    const elP1Addr = document.getElementById('p1-address');
-    const elP2Name = document.getElementById('p2-name');
-    const elP2Pos = document.getElementById('p2-position');
-    const elP2Comp = document.getElementById('p2-company');
-    const elP2Addr = document.getElementById('p2-address');
-    const elDuration = document.getElementById('mou-duration');
-    const elClausesContainer = document.getElementById('clauses-editor-container');
+    const elTitle = document.getElementById('mou-title') as HTMLInputElement;
+    const elNumber = document.getElementById('mou-number') as HTMLInputElement;
+    const elCity = document.getElementById('mou-city') as HTMLInputElement;
+    const elDate = document.getElementById('mou-date') as HTMLInputElement;
+    const elP1Name = document.getElementById('p1-name') as HTMLInputElement;
+    const elP1Pos = document.getElementById('p1-position') as HTMLInputElement;
+    const elP1Comp = document.getElementById('p1-company') as HTMLInputElement;
+    const elP1Addr = document.getElementById('p1-address') as HTMLInputElement;
+    const elP2Name = document.getElementById('p2-name') as HTMLInputElement;
+    const elP2Pos = document.getElementById('p2-position') as HTMLInputElement;
+    const elP2Comp = document.getElementById('p2-company') as HTMLInputElement;
+    const elP2Addr = document.getElementById('p2-address') as HTMLInputElement;
+    const elDuration = document.getElementById('mou-duration') as HTMLInputElement;
+    const elClausesContainer = document.getElementById('clauses-editor-container')!;
 
     // Preview DOM Elements
-    const pTitleMain = document.getElementById('p-title-main');
-    const pMouNumber = document.getElementById('p-mou-number');
-    const pMouDay = document.getElementById('p-mou-day');
-    const pMouDateRaw = document.getElementById('p-mou-date-raw');
-    const pMouCityRaw = document.getElementById('p-mou-city-raw');
-    const pP1Name = document.getElementById('p-p1-name');
-    const pP1Pos = document.getElementById('p-p1-position');
-    const pP1Comp = document.getElementById('p-p1-company');
-    const pP1CompRef = document.getElementById('p-p1-company-ref');
-    const pP1Addr = document.getElementById('p-p1-address');
-    const pP2Name = document.getElementById('p-p2-name');
-    const pP2Pos = document.getElementById('p-p2-position');
-    const pP2Comp = document.getElementById('p-p2-company');
-    const pP2CompRef = document.getElementById('p-p2-company-ref');
-    const pP2Addr = document.getElementById('p-p2-address');
-    const pDuration = document.getElementById('p-mou-duration');
-    const pClausesContainer = document.getElementById('preview-clauses-container');
-    const pSigCompany1 = document.getElementById('p-sig-company1');
-    const pSigName1 = document.getElementById('p-sig-name1');
-    const pSigPos1 = document.getElementById('p-sig-pos1');
-    const pSigCompany2 = document.getElementById('p-sig-company2');
-    const pSigName2 = document.getElementById('p-sig-name2');
-    const pSigPos2 = document.getElementById('p-sig-pos2');
+    const pTitleMain = document.getElementById('p-title-main')!;
+    const pMouNumber = document.getElementById('p-mou-number')!;
+    const pMouDay = document.getElementById('p-mou-day')!;
+    const pMouDateRaw = document.getElementById('p-mou-date-raw')!;
+    const pMouCityRaw = document.getElementById('p-mou-city-raw')!;
+    const pP1Name = document.getElementById('p-p1-name')!;
+    const pP1Pos = document.getElementById('p-p1-position')!;
+    const pP1Comp = document.getElementById('p-p1-company')!;
+    const pP1CompRef = document.getElementById('p-p1-company-ref')!;
+    const pP1Addr = document.getElementById('p-p1-address')!;
+    const pP2Name = document.getElementById('p-p2-name')!;
+    const pP2Pos = document.getElementById('p-p2-position')!;
+    const pP2Comp = document.getElementById('p-p2-company')!;
+    const pP2CompRef = document.getElementById('p-p2-company-ref')!;
+    const pP2Addr = document.getElementById('p-p2-address')!;
+    const pDuration = document.getElementById('p-mou-duration')!;
+    const pClausesContainer = document.getElementById('preview-clauses-container')!;
+    const pSigCompany1 = document.getElementById('p-sig-company1')!;
+    const pSigName1 = document.getElementById('p-sig-name1')!;
+    const pSigPos1 = document.getElementById('p-sig-pos1')!;
+    const pSigCompany2 = document.getElementById('p-sig-company2')!;
+    const pSigName2 = document.getElementById('p-sig-name2')!;
+    const pSigPos2 = document.getElementById('p-sig-pos2')!;
 
     // Load Preset Function
-    function loadPreset(key) {
+    function loadPreset(key: 'tech' | 'business' | 'marketing') {
       const data = PRESETS[key];
       if (!data) return;
 
@@ -538,22 +538,24 @@ import Layout from '../../layouts/Layout.astro';
       // Style Preset buttons
       ['preset-tech', 'preset-business', 'preset-marketing'].forEach(id => {
         const btn = document.getElementById(id);
-        if (id === `preset-${key}`) {
-          btn.classList.add('bg-blue-600/20', 'border-blue-500/60', 'text-white');
-          btn.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-300');
-        } else {
-          btn.classList.remove('bg-blue-600/20', 'border-blue-500/60', 'text-white');
-          btn.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-300');
+        if (btn) {
+          if (id === `preset-${key}`) {
+            btn.classList.add('bg-blue-600/20', 'border-blue-500/60', 'text-white');
+            btn.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-300');
+          } else {
+            btn.classList.remove('bg-blue-600/20', 'border-blue-500/60', 'text-white');
+            btn.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-300');
+          }
         }
       });
     }
 
     // Helper to get Indonesian day name from date string
-    function getIndonesianDay(dateStr) {
+    function getIndonesianDay(dateStr: string) {
       try {
         if (!dateStr) return 'Senin';
         // Parse simple Indonesian date e.g. "27 Juni 2026"
-        const indonesianMonths = {
+        const indonesianMonths: Record<string, number> = {
           'januari': 0, 'februari': 1, 'maret': 2, 'april': 3, 'mei': 4, 'juni': 5,
           'juli': 6, 'agustus': 7, 'september': 8, 'oktober': 9, 'november': 10, 'desember': 11
         };
@@ -630,20 +632,20 @@ import Layout from '../../layouts/Layout.astro';
     }
 
     // Update specific clause value
-    window.updateClauseField = function(idx, field, value) {
+    window.updateClauseField = function(idx: number, field: string, value: string) {
       activeClauses[idx][field] = value;
       updatePreview();
     };
 
     // Delete a clause
-    window.deleteClause = function(idx) {
+    window.deleteClause = function(idx: number) {
       activeClauses.splice(idx, 1);
       renderClausesEditor();
       updatePreview();
     };
 
     // Add a new clause
-    document.getElementById('btn-add-clause').addEventListener('click', () => {
+    document.getElementById('btn-add-clause')!.addEventListener('click', () => {
       activeClauses.push({
         title: 'Pasal Baru',
         content: 'Isi ketentuan baru silakan dirinci di sini...'
@@ -678,18 +680,18 @@ import Layout from '../../layouts/Layout.astro';
     });
 
     // Preset Buttons Click handlers
-    document.getElementById('preset-tech').addEventListener('click', () => loadPreset('tech'));
-    document.getElementById('preset-business').addEventListener('click', () => loadPreset('business'));
-    document.getElementById('preset-marketing').addEventListener('click', () => loadPreset('marketing'));
+    document.getElementById('preset-tech')!.addEventListener('click', () => loadPreset('tech'));
+    document.getElementById('preset-business')!.addEventListener('click', () => loadPreset('business'));
+    document.getElementById('preset-marketing')!.addEventListener('click', () => loadPreset('marketing'));
 
     // Print PDF Button
-    document.getElementById('btn-download-pdf').addEventListener('click', () => {
+    document.getElementById('btn-download-pdf')!.addEventListener('click', () => {
       window.print();
     });
 
     // Download Word Document Button
-    document.getElementById('btn-download-word').addEventListener('click', () => {
-      const content = document.getElementById('paper-preview').innerHTML;
+    document.getElementById('btn-download-word')!.addEventListener('click', () => {
+      const content = document.getElementById('paper-preview')!.innerHTML;
       const titleClean = (elTitle.value || 'MoU_Kerjasama').replace(/[^a-z0-9]/gi, '_').toLowerCase();
       const filename = `${titleClean}.doc`;
 
@@ -766,10 +768,10 @@ import Layout from '../../layouts/Layout.astro';
     });
 
     // Mobile View Tab Switching
-    const tabEditor = document.getElementById('tab-editor');
-    const tabPreview = document.getElementById('tab-preview');
-    const editorPanel = document.getElementById('editor-panel');
-    const previewPanel = document.getElementById('preview-panel');
+    const tabEditor = document.getElementById('tab-editor')!;
+    const tabPreview = document.getElementById('tab-preview')!;
+    const editorPanel = document.getElementById('editor-panel')!;
+    const previewPanel = document.getElementById('preview-panel')!;
 
     tabEditor.addEventListener('click', () => {
       tabEditor.classList.add('border-blue-500', 'text-white');

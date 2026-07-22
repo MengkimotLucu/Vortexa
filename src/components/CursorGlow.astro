@@ -6,8 +6,7 @@
     if (window.matchMedia('(pointer: coarse)').matches) return;
     if (window.innerWidth < 768) return;
     
-    const aura = document.getElementById('cursor-aura');
-    if (!aura) return;
+    const aura = document.getElementById('cursor-aura')!;
 
     let posX = 0, posY = 0;
     let mouseX = 0, mouseY = 0;

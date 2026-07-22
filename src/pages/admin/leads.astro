@@ -323,9 +323,9 @@ import Logo from '../../components/Logo.astro';
 
       // Check if user email is authorized admin
       const userEmail = session.user.email?.toLowerCase();
-      const allowedEmails = (import.meta.env.PUBLIC_ADMIN_EMAILS || 'admin@lumovelo.com')
+      const allowedEmails = ((import.meta.env.PUBLIC_ADMIN_EMAILS || 'admin@lumovelo.com') as string)
         .split(',')
-        .map(e => e.trim().toLowerCase());
+        .map((e: string) => e.trim().toLowerCase());
       const isAdmin = userEmail && allowedEmails.includes(userEmail);
 
       if (!isAdmin) {

@@ -755,10 +755,10 @@ import Layout from '../../layouts/Layout.astro';
     });
 
     // Mobile View Tab Switching
-    const tabEditor = document.getElementById('tab-editor');
-    const tabPreview = document.getElementById('tab-preview');
-    const editorPanel = document.getElementById('editor-panel');
-    const previewPanel = document.getElementById('preview-panel');
+    const tabEditor = document.getElementById('tab-editor')!;
+    const tabPreview = document.getElementById('tab-preview')!;
+    const editorPanel = document.getElementById('editor-panel')!;
+    const previewPanel = document.getElementById('preview-panel')!;
 
     tabEditor.addEventListener('click', () => {
       tabEditor.classList.add('border-blue-500', 'text-white');

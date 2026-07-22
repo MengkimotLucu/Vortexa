@@ -314,7 +314,7 @@ const content = {
   let isOpen = false;
   
   // Custom Toast Notification System
-  function showNotification(message, type = 'error') {
+  function showNotification(message: string, type = 'error') {
     let container = document.getElementById('ai-chat-toast-container');
     if (!container) {
       container = document.createElement('div');
@@ -384,24 +384,24 @@ const content = {
 
   let isAiEnabled = true;
   let loadedMessagesCount = 0;
-  let pollInterval = null;
+  let pollInterval: any = null;
 
-  const toggleBtn = document.getElementById('ai-chat-toggle-btn');
-  const chatWindow = document.getElementById('ai-chat-window');
-  const closeBtn = document.getElementById('ai-chat-close-btn');
-  const chatForm = document.getElementById('ai-chat-form');
-  const chatInput = document.getElementById('ai-chat-input');
-  const messagesContainer = document.getElementById('ai-chat-messages-container');
-  const chatStatus = document.getElementById('ai-chat-status');
-  const manualBadge = document.getElementById('manual-mode-badge');
-  const badge = document.getElementById('chat-badge');
+  const toggleBtn = document.getElementById('ai-chat-toggle-btn')!;
+  const chatWindow = document.getElementById('ai-chat-window')!;
+  const closeBtn = document.getElementById('ai-chat-close-btn')!;
+  const chatForm = document.getElementById('ai-chat-form') as HTMLFormElement;
+  const chatInput = document.getElementById('ai-chat-input') as HTMLInputElement;
+  const messagesContainer = document.getElementById('ai-chat-messages-container')!;
+  const chatStatus = document.getElementById('ai-chat-status')!;
+  const manualBadge = document.getElementById('manual-mode-badge')!;
+  const badge = document.getElementById('chat-badge')!;
 
   // DOM Form Lead baru
-  const leadBanner = document.getElementById('ai-chat-lead-banner');
-  const btnToggleLeadForm = document.getElementById('btn-toggle-lead-form');
-  const btnSubmitLeadForm = document.getElementById('btn-submit-lead-form');
-  const leadInputName = document.getElementById('lead-input-name');
-  const leadInputWhatsapp = document.getElementById('lead-input-whatsapp');
+  const leadBanner = document.getElementById('ai-chat-lead-banner')!;
+  const btnToggleLeadForm = document.getElementById('btn-toggle-lead-form')!;
+  const btnSubmitLeadForm = document.getElementById('btn-submit-lead-form')!;
+  const leadInputName = document.getElementById('lead-input-name') as HTMLInputElement;
+  const leadInputWhatsapp = document.getElementById('lead-input-whatsapp') as HTMLInputElement;
 
   // Client-side translations based on document language
   const clientLang = document.documentElement.lang === 'en' ? 'en' : 'id';
@@ -432,7 +432,8 @@ const content = {
   const quickChipsContainer = document.getElementById('ai-chat-quick-chips');
   if (quickChipsContainer) {
     quickChipsContainer.addEventListener('click', async (e) => {
-      const chip = e.target.closest('.quick-chip-btn');
+      const target = e.target as HTMLElement;
+      const chip = target?.closest('.quick-chip-btn');
       if (chip) {
         const prompt = chip.getAttribute('data-prompt');
         if (prompt && chatInput) {
@@ -446,7 +447,8 @@ const content = {
   // Welcome Quick Replies Click Handler
   if (messagesContainer) {
     messagesContainer.addEventListener('click', (e) => {
-      const btn = e.target.closest('.btn-quick');
+      const target = e.target as HTMLElement;
+      const btn = target?.closest('.btn-quick');
       if (btn && chatInput) {
         const val = btn.getAttribute('data-value');
         if (val) {
@@ -521,15 +523,15 @@ const content = {
   }
 
   // Draggable logic for chat widget (using GPU-accelerated translate3d and requestAnimationFrame)
-  const chatHeader = chatWindow.querySelector('.p-4.border-b');
+  const chatHeader = chatWindow.querySelector('.p-4.border-b') as HTMLElement;
   let isDragging = false;
   let startX = 0, startY = 0;
-  let rafId = null;
+  let rafId: number | null = null;
 
   if (chatHeader) {
     chatHeader.style.cursor = 'grab';
 
-    const dragStart = (e) => {
+    const dragStart = (e: any) => {
       // Don't drag if not in normal state
       if (chatWindow.getAttribute('data-size-state') !== 'normal') return;
       // Don't drag if clicking buttons
@@ -549,7 +551,7 @@ const content = {
       }
     };
 
-    const dragMove = (e) => {
+    const dragMove = (e: any) => {
       if (!isDragging) return;
 
       const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
@@ -690,7 +692,7 @@ const content = {
 
       // Render pesan
       let userMsgCount = 0;
-      data.messages.forEach(msg => {
+      data.messages.forEach((msg: any) => {
         appendMessage(msg.sender, msg.message_content);
         if (msg.sender === 'user' && !msg.message_content.startsWith('[System Info:')) {
           userMsgCount++;
@@ -721,10 +723,8 @@ const content = {
   }
 
   // 3. Update Status UI & WA Redirect
-  function handleAiLimitOrManual(isAi) {
-    const chatInput = document.getElementById('ai-chat-input');
+  function handleAiLimitOrManual(isAi: boolean) {
     const sendBtn = document.getElementById('ai-chat-send-btn');
-    if (!chatInput) return;
 
     // Mode Tester: Jangan tampilkan tombol penghalang WA
     if (checkIsTesterMode()) {
@@ -815,7 +815,7 @@ const content = {
     }
   }
 
-  function updateStatus(status, isAi) {
+  function updateStatus(status: string, isAi: boolean) {
     if (!isAi) {
       chatStatus.textContent = translations.statusManual;
       chatStatus.className = "text-[9px] font-mono text-amber-500 font-bold";
@@ -910,7 +910,7 @@ const content = {
       const isNewSession = data.sessionId && data.sessionId !== sessionId;
       if (isNewSession) {
         sessionId = data.sessionId;
-        localStorage.setItem('ai_chat_session_id', sessionId);
+        localStorage.setItem('ai_chat_session_id', sessionId!);
       }
       updateLastActive();
 
@@ -995,7 +995,7 @@ const content = {
   }
 
   // 6. UI Helpers
-  function appendMessage(sender, content) {
+  function appendMessage(sender: string, content: string) {
     const isUser = sender === 'user';
     const msgDiv = document.createElement('div');
     msgDiv.className = `flex items-start gap-2.5 ${isUser ? 'justify-end' : ''}`;
@@ -1040,7 +1040,7 @@ const content = {
     return typingId;
   }
 
-  function removeTypingIndicator(id) {
+  function removeTypingIndicator(id: string) {
     const el = document.getElementById(id);
     if (el) el.remove();
   }
@@ -1093,8 +1093,8 @@ const content = {
     const btnSubmit = formDiv.querySelector('#btn-submit-inline-lead');
     if (btnSubmit) {
       btnSubmit.addEventListener('click', async () => {
-        const nameInput = formDiv.querySelector('#inline-lead-name');
-        const waInput = formDiv.querySelector('#inline-lead-whatsapp');
+        const nameInput = formDiv.querySelector('#inline-lead-name') as HTMLInputElement;
+        const waInput = formDiv.querySelector('#inline-lead-whatsapp') as HTMLInputElement;
         const name = nameInput.value.trim();
         const whatsapp = waInput.value.trim();
 
@@ -1142,7 +1142,7 @@ const content = {
             const data = await response.json();
             if (data.sessionId && data.sessionId !== sessionId) {
               sessionId = data.sessionId;
-              localStorage.setItem('ai_chat_session_id', sessionId);
+              localStorage.setItem('ai_chat_session_id', sessionId!);
             }
             updateLastActive();
           }
@@ -1345,7 +1345,7 @@ const content = {
           const data = await response.json();
           if (data.sessionId && data.sessionId !== sessionId) {
             sessionId = data.sessionId;
-            localStorage.setItem('ai_chat_session_id', sessionId);
+            localStorage.setItem('ai_chat_session_id', sessionId!);
           }
           updateLastActive();
         }

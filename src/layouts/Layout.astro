@@ -71,6 +71,67 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.lumovelo.com').hre
 const alternates = getAlternates(Astro.url.pathname);
 const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
 const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
+
+// Dynamic JSON-LD Schema based on locale
+const dynamicSchema = currentLocale === 'id' 
+  ? {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "LUMOVELO",
+      "image": "https://www.lumovelo.com/og-image.png",
+      "@id": "https://www.lumovelo.com/#website",
+      "url": "https://www.lumovelo.com",
+      "telephone": phoneFormatted,
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Ir. H. Juanda No. 84",
+        "addressLocality": "Bandung",
+        "addressRegion": "Jawa Barat",
+        "postalCode": "40132",
+        "addressCountry": "ID"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -6.8915,
+        "longitude": 107.6106
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://github.com",
+        "https://twitter.com",
+        "https://linkedin.com",
+        "https://instagram.com"
+      ]
+    }
+  : {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LUMOVELO",
+      "image": "https://www.lumovelo.com/og-image.png",
+      "@id": "https://www.lumovelo.com/#organization",
+      "url": "https://www.lumovelo.com",
+      "telephone": phoneFormatted,
+      "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"],
+      "sameAs": [
+        "https://github.com",
+        "https://twitter.com",
+        "https://linkedin.com",
+        "https://instagram.com"
+      ]
+    };
 ---
 
 <!doctype html>
@@ -147,58 +208,17 @@ const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
     
     <!-- Ahrefs Analytics -->
     <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="F5g8iy2JtQ/sH8/GV6rxFQ" async></script>
-
-    <!-- Meta Pixel / Google Analytics placeholders -->
+    <!-- Google Analytics (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-SJ0RDN5YWJ"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXX');
+      gtag('config', 'G-SJ0RDN5YWJ');
     </script>
 
     <!-- JSON-LD Structured Data Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "LUMOVELO",
-      "image": "https://www.lumovelo.com/og-image.png",
-      "@id": "https://www.lumovelo.com/#website",
-      "url": "https://www.lumovelo.com",
-      "telephone": phoneFormatted,
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Jl. Ir. H. Juanda No. 84",
-        "addressLocality": "Bandung",
-        "addressRegion": "Jawa Barat",
-        "postalCode": "40132",
-        "addressCountry": "ID"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -6.8915,
-        "longitude": 107.6106
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      "sameAs": [
-        "https://github.com",
-        "https://twitter.com",
-        "https://linkedin.com",
-        "https://instagram.com"
-      ]
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(dynamicSchema)} />
   </head>
   <body class="bg-white text-slate-900 min-h-screen selection:bg-blue-600/20 selection:text-blue-900">
     <!-- Google Tag Manager (noscript) -->

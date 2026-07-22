@@ -361,13 +361,11 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
 
 <script>
   function initMobileMenu() {
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const closeDrawerBtn = document.getElementById('close-drawer-btn');
-    const mobileDrawer = document.getElementById('mobile-drawer');
-    const mobileDrawerPanel = document.getElementById('mobile-drawer-panel');
+    const hamburgerBtn = document.getElementById('hamburger-btn')!;
+    const closeDrawerBtn = document.getElementById('close-drawer-btn')!;
+    const mobileDrawer = document.getElementById('mobile-drawer')!;
+    const mobileDrawerPanel = document.getElementById('mobile-drawer-panel')!;
     const drawerLinks = document.querySelectorAll('.mobile-drawer-link');
-
-    if (!hamburgerBtn || !closeDrawerBtn || !mobileDrawer || !mobileDrawerPanel) return;
 
     function openMenu() {
       mobileDrawer.classList.remove('opacity-0', 'pointer-events-none');
@@ -398,9 +396,8 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
   }
 
   function initHeaderScroll() {
-    const header = document.getElementById('main-header');
-    const container = document.getElementById('header-container');
-    if (!header || !container) return;
+    const header = document.getElementById('main-header')!;
+    const container = document.getElementById('header-container')!;
 
     function checkScroll() {
       if (window.scrollY > 50) {

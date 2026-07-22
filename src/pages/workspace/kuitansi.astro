@@ -389,45 +389,45 @@ import Layout from '../../layouts/Layout.astro';
     };
 
     // State Variables
-    let activeItems = [];
+    let activeItems: any[] = [];
 
     // DOM Elements
-    const elNumber = document.getElementById('rcpt-number');
-    const elFrom = document.getElementById('rcpt-from');
-    const elFor = document.getElementById('rcpt-for');
-    const elCity = document.getElementById('rcpt-city');
-    const elDate = document.getElementById('rcpt-date');
-    const elAmount = document.getElementById('rcpt-amount');
-    const elSpelledText = document.getElementById('spelled-out-text');
-    const elBy = document.getElementById('rcpt-by');
-    const elByPos = document.getElementById('rcpt-by-pos');
-    const elDeposit = document.getElementById('rcpt-deposit');
-    const elItemsContainer = document.getElementById('items-editor-container');
+    const elNumber = document.getElementById('rcpt-number') as HTMLInputElement;
+    const elFrom = document.getElementById('rcpt-from') as HTMLInputElement;
+    const elFor = document.getElementById('rcpt-for') as HTMLInputElement;
+    const elCity = document.getElementById('rcpt-city') as HTMLInputElement;
+    const elDate = document.getElementById('rcpt-date') as HTMLInputElement;
+    const elAmount = document.getElementById('rcpt-amount') as HTMLInputElement;
+    const elSpelledText = document.getElementById('spelled-out-text')!;
+    const elBy = document.getElementById('rcpt-by') as HTMLInputElement;
+    const elByPos = document.getElementById('rcpt-by-pos') as HTMLInputElement;
+    const elDeposit = document.getElementById('rcpt-deposit') as HTMLInputElement;
+    const elItemsContainer = document.getElementById('items-editor-container')!;
 
     // Company Profile Inputs
-    const compNameInput = document.getElementById('comp-name');
-    const compServicesInput = document.getElementById('comp-services');
-    const compAddressInput = document.getElementById('comp-address');
+    const compNameInput = document.getElementById('comp-name') as HTMLInputElement;
+    const compServicesInput = document.getElementById('comp-services') as HTMLInputElement;
+    const compAddressInput = document.getElementById('comp-address') as HTMLInputElement;
 
     // Preview DOM Elements
-    const pRcptNumber = document.getElementById('p-rcpt-number');
-    const pRcptFrom = document.getElementById('p-rcpt-from');
-    const pRcptSpelled = document.getElementById('p-rcpt-spelled');
-    const pRcptFor = document.getElementById('p-rcpt-for');
-    const pAmount = document.getElementById('p-amount');
-    const pRcptCityRaw = document.getElementById('p-rcpt-city-raw');
-    const pRcptDateRaw = document.getElementById('p-rcpt-date-raw');
-    const pRcptByName = document.getElementById('p-rcpt-by-name');
-    const pRcptByPosRaw = document.getElementById('p-rcpt-by-pos-raw');
-    const pPreviewItemsBody = document.getElementById('preview-items-body');
+    const pRcptNumber = document.getElementById('p-rcpt-number')!;
+    const pRcptFrom = document.getElementById('p-rcpt-from')!;
+    const pRcptSpelled = document.getElementById('p-rcpt-spelled')!;
+    const pRcptFor = document.getElementById('p-rcpt-for')!;
+    const pAmount = document.getElementById('p-amount')!;
+    const pRcptCityRaw = document.getElementById('p-rcpt-city-raw')!;
+    const pRcptDateRaw = document.getElementById('p-rcpt-date-raw')!;
+    const pRcptByName = document.getElementById('p-rcpt-by-name')!;
+    const pRcptByPosRaw = document.getElementById('p-rcpt-by-pos-raw')!;
+    const pPreviewItemsBody = document.getElementById('preview-items-body')!;
 
     // Company Profile Preview
-    const pCompName = document.getElementById('p-comp-name');
-    const pCompServices = document.getElementById('p-comp-services');
-    const pCompAddress = document.getElementById('p-comp-address');
+    const pCompName = document.getElementById('p-comp-name')!;
+    const pCompServices = document.getElementById('p-comp-services')!;
+    const pCompAddress = document.getElementById('p-comp-address')!;
 
     // Load Preset Function
-    function loadPreset(key) {
+    function loadPreset(key: 'dp' | 'lunas' | 'maintenance') {
       const data = PRESETS[key];
       if (!data) return;
 
@@ -447,18 +447,20 @@ import Layout from '../../layouts/Layout.astro';
       // Style Preset buttons
       ['preset-dp', 'preset-lunas', 'preset-maintenance'].forEach(id => {
         const btn = document.getElementById(id);
-        if (id === `preset-${key}`) {
-          btn.classList.add('bg-blue-600/20', 'border-blue-500/60', 'text-white');
-          btn.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-300');
-        } else {
-          btn.classList.remove('bg-blue-600/20', 'border-blue-500/60', 'text-white');
-          btn.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-300');
+        if (btn) {
+          if (id === `preset-${key}`) {
+            btn.classList.add('bg-blue-600/20', 'border-blue-500/60', 'text-white');
+            btn.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-300');
+          } else {
+            btn.classList.remove('bg-blue-600/20', 'border-blue-500/60', 'text-white');
+            btn.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-300');
+          }
         }
       });
     }
 
     // Indonesian 'Terbilang' Conversion Algorithm
-    function numberToWords(nilai) {
+    function numberToWords(nilai: number): string {
       const bilangan = [
         "", "Satu", "Dua", "Tiga", "Empat", "Lima",
         "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"
@@ -499,16 +501,16 @@ import Layout from '../../layouts/Layout.astro';
       return text;
     }
 
-    function getTerbilangRupiah(num) {
-      const parsed = parseFloat(num);
+    function getTerbilangRupiah(num: number | string) {
+      const parsed = typeof num === 'number' ? num : parseFloat(num);
       if (isNaN(parsed)) return "";
       const text = numberToWords(parsed).trim();
       return text ? text + " Rupiah" : "";
     }
 
     // Format currency display (e.g. 15000000 -> 15.000.000)
-    function formatRupiah(num) {
-      const parsed = parseFloat(num);
+    function formatRupiah(num: number | string) {
+      const parsed = typeof num === 'number' ? num : parseFloat(num);
       if (isNaN(parsed)) return "0";
       return parsed.toLocaleString('id-ID');
     }
@@ -525,7 +527,7 @@ import Layout from '../../layouts/Layout.astro';
       const deposit = parseFloat(elDeposit.value) || 0;
       const netTotal = subtotal - deposit;
 
-      elAmount.value = netTotal;
+      elAmount.value = netTotal.toString();
       const terbilangText = getTerbilangRupiah(netTotal);
       elSpelledText.textContent = terbilangText;
 
@@ -583,20 +585,20 @@ import Layout from '../../layouts/Layout.astro';
     }
 
     // Update dynamic fields
-    window.updateItemField = function(idx, field, value) {
+    window.updateItemField = function(idx: number, field: string, value: string) {
       activeItems[idx][field] = value;
       calculateTotals();
     };
 
     // Delete item row
-    window.deleteItem = function(idx) {
+    window.deleteItem = function(idx: number) {
       activeItems.splice(idx, 1);
       renderItemsEditor();
       calculateTotals();
     };
 
     // Add item row
-    document.getElementById('btn-add-item').addEventListener('click', () => {
+    document.getElementById('btn-add-item')!.addEventListener('click', () => {
       activeItems.push({
         name: 'Layanan baru',
         qty: 1,
@@ -681,18 +683,18 @@ import Layout from '../../layouts/Layout.astro';
     elDeposit.addEventListener('input', calculateTotals);
 
     // Preset Buttons Click handlers
-    document.getElementById('preset-dp').addEventListener('click', () => loadPreset('dp'));
-    document.getElementById('preset-lunas').addEventListener('click', () => loadPreset('lunas'));
-    document.getElementById('preset-maintenance').addEventListener('click', () => loadPreset('maintenance'));
+    document.getElementById('preset-dp')!.addEventListener('click', () => loadPreset('dp'));
+    document.getElementById('preset-lunas')!.addEventListener('click', () => loadPreset('lunas'));
+    document.getElementById('preset-maintenance')!.addEventListener('click', () => loadPreset('maintenance'));
 
     // Print PDF Button
-    document.getElementById('btn-download-pdf').addEventListener('click', () => {
+    document.getElementById('btn-download-pdf')!.addEventListener('click', () => {
       window.print();
     });
 
     // Download Word Document Button
-    document.getElementById('btn-download-word').addEventListener('click', () => {
-      const content = document.getElementById('paper-preview').innerHTML;
+    document.getElementById('btn-download-word')!.addEventListener('click', () => {
+      const content = document.getElementById('paper-preview')!.innerHTML;
       const fromClean = (elFrom.value || 'Kuitansi').replace(/[^a-z0-9]/gi, '_').toLowerCase();
       const filename = `Kuitansi_${fromClean}.doc`;
 
@@ -785,10 +787,10 @@ import Layout from '../../layouts/Layout.astro';
     });
 
     // Mobile View Tab Switching
-    const tabEditor = document.getElementById('tab-editor');
-    const tabPreview = document.getElementById('tab-preview');
-    const editorPanel = document.getElementById('editor-panel');
-    const previewPanel = document.getElementById('preview-panel');
+    const tabEditor = document.getElementById('tab-editor')!;
+    const tabPreview = document.getElementById('tab-preview')!;
+    const editorPanel = document.getElementById('editor-panel')!;
+    const previewPanel = document.getElementById('preview-panel')!;
 
     tabEditor.addEventListener('click', () => {
       tabEditor.classList.add('border-blue-500', 'text-white');
