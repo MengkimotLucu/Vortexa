@@ -62,12 +62,12 @@ const getAlternates = (pathname: string) => {
   }
   
   return {
-    id: new URL(idRelative, 'https://lumovelo.com').href,
-    en: new URL(enRelative, 'https://lumovelo.com').href,
+    id: new URL(idRelative, 'https://www.lumovelo.com').href,
+    en: new URL(enRelative, 'https://www.lumovelo.com').href,
   };
 };
 
-const canonicalURL = new URL(Astro.url.pathname, 'https://lumovelo.com').href;
+const canonicalURL = new URL(Astro.url.pathname, 'https://www.lumovelo.com').href;
 const alternates = getAlternates(Astro.url.pathname);
 const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
 const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
@@ -137,13 +137,13 @@ const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL('/og-image.png', 'https://lumovelo.com').href} />
+    <meta property="og:image" content={new URL('/og-image.png', 'https://www.lumovelo.com').href} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL('/og-image.png', 'https://lumovelo.com').href} />
+    <meta property="twitter:image" content={new URL('/og-image.png', 'https://www.lumovelo.com').href} />
     
     <!-- Ahrefs Analytics -->
     <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="F5g8iy2JtQ/sH8/GV6rxFQ" async></script>
@@ -161,9 +161,9 @@ const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "LUMOVELO",
-      "image": "https://lumovelo.com/og-image.png",
-      "@id": "https://lumovelo.com/#website",
-      "url": "https://lumovelo.com",
+      "image": "https://www.lumovelo.com/og-image.png",
+      "@id": "https://www.lumovelo.com/#website",
+      "url": "https://www.lumovelo.com",
       "telephone": phoneFormatted,
       "priceRange": "$$",
       "address": {
