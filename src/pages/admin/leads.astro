@@ -5,10 +5,13 @@ import Logo from '../../components/Logo.astro';
 ---
 
 <Layout title="AI Leads Manager | LUMOVELO" description="Manajer prospek berbasis AI Lumovelo." noindex={true}>
-  <div id="admin-layout" class="hidden min-h-screen dashboard-root grain flex">
+  <div id="admin-layout" class="min-h-screen dashboard-root grain flex relative">
     
+    <!-- Sidebar Backdrop Overlay on Mobile -->
+    <div id="admin-sidebar-overlay" class="fixed inset-0 bg-black/70 z-[90] lg:hidden hidden opacity-0 transition-opacity duration-300"></div>
+
     <!-- Sidebar Navigation -->
-    <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[248px] -translate-x-full flex-col border-r border-[#1A1A1E] bg-[#0C0C0E] transition-transform duration-300 lg:static lg:flex lg:translate-x-0 lg:z-auto">
+    <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-[100] flex w-[248px] -translate-x-full flex-col border-r border-[#1A1A1E] bg-[#0C0C0E] transition-transform duration-300 lg:static lg:flex lg:translate-x-0 lg:z-auto">
       <!-- Logo -->
       <div class="px-5 pt-6 pb-7 flex items-center justify-between gap-2.5">
         <div class="flex items-center gap-2.5">
@@ -60,15 +63,31 @@ import Logo from '../../components/Logo.astro';
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Leads AI
         </a>
+        <a href="/admin/telemetry/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Telemetri & IP
+        </a>
         <a href="/admin/ai-settings/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           Pengaturan AI
         </a>
 
-        <div class="px-2.5 mb-1.5 mt-5 mono text-[10px] uppercase tracking-wider text-[#5C5C63]">Workspace</div>
-        <a href="/workspace/invoice/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
-          Buat Invoice
+        <div class="px-2.5 mb-1.5 mt-5 mono text-[10px] uppercase tracking-wider text-[#5C5C63]">Workspace / Dokumen</div>
+        <a href="/workspace/invoice/" class="nav-item flex items-center gap-3 px-2.5 py-1.5 rounded-md text-[12.5px] text-[#8A8A90]">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          Invoice & Kuitansi
+        </a>
+        <a href="/workspace/spk/" class="nav-item flex items-center gap-3 px-2.5 py-1.5 rounded-md text-[12.5px] text-[#8A8A90]">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          SPK & MoU Kontrak
+        </a>
+        <a href="/workspace/rab/" class="nav-item flex items-center gap-3 px-2.5 py-1.5 rounded-md text-[12.5px] text-[#8A8A90]">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+          RAB & SRS Proposal
+        </a>
+        <a href="/workspace/bast/" class="nav-item flex items-center gap-3 px-2.5 py-1.5 rounded-md text-[12.5px] text-[#8A8A90]">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          BAST Serah Terima
         </a>
       </nav>
 
@@ -103,51 +122,55 @@ import Logo from '../../components/Logo.astro';
     <!-- Main Content Area -->
     <main class="flex-1 min-w-0 flex flex-col h-screen overflow-hidden">
       <!-- Top bar -->
-      <header class="z-20 flex items-center gap-3 px-4 lg:px-8 h-16 border-b border-[#1A1A1E] backdrop-blur-md bg-[rgba(10,10,11,0.78)] shrink-0">
-        <button id="btn-open-sidebar" class="lg:hidden p-2 rounded-md hover:bg-[#16161A] text-white cursor-pointer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-        </button>
-        <div class="hidden md:flex items-center gap-2 text-[13px] text-[#8A8A90]">
-          <span>Lumovelo</span>
-          <span class="text-[#5C5C63]">/</span>
-          <span class="text-[#F4F4F2] font-medium">Leads AI</span>
+      <header class="z-20 flex flex-wrap items-center justify-between gap-3 px-4 lg:px-8 py-3.5 min-h-[64px] border-b border-[#1A1A1E] backdrop-blur-md bg-[rgba(10,10,11,0.78)] shrink-0">
+        <div class="flex items-center gap-3">
+          <button id="btn-open-sidebar" class="lg:hidden p-2 rounded-md hover:bg-[#16161A] text-white cursor-pointer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          </button>
+          <div class="hidden md:flex items-center gap-2 text-[13px] text-[#8A8A90]">
+            <span>Lumovelo</span>
+            <span class="text-[#5C5C63]">/</span>
+            <span class="text-[#F4F4F2] font-medium">Leads AI</span>
+          </div>
         </div>
 
         <!-- Search Bar and Status filter -->
-        <div class="ml-auto flex items-center gap-3">
-          <div class="flex items-center gap-2 px-3 h-9 rounded-lg border border-[#232328] bg-[#131316] w-52 sm:w-64">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#8A8A90]"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-            <input type="text" id="search-leads" placeholder="Cari nama, perusahaan..." class="bg-transparent text-[12px] flex-1 outline-none placeholder:text-[#5C5C63] text-[#F4F4F2]">
+        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+          <div class="flex items-center gap-2 px-3 h-9 rounded-lg border border-[#232328] bg-[#131316] flex-1 sm:w-52 md:w-64">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#8A8A90] shrink-0"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="text" id="search-leads" placeholder="Cari nama, perusahaan..." class="bg-transparent text-[12px] w-full outline-none placeholder:text-[#5C5C63] text-[#F4F4F2]">
           </div>
           
-          <select id="filter-status" class="bg-[#131316] border border-[#232328] text-[#8A8A90] hover:text-white rounded-lg h-9 px-3 text-[12px] font-medium focus:outline-none cursor-pointer transition">
-            <option value="all">Semua Status</option>
-            <option value="pending">Pending</option>
-            <option value="contacted">Contacted</option>
-            <option value="deal">Deal</option>
-            <option value="no_response">No Reply</option>
-          </select>
+          <div class="flex items-center gap-2 shrink-0">
+            <select id="filter-status" class="bg-[#131316] border border-[#232328] text-[#8A8A90] hover:text-white rounded-lg h-9 px-2.5 text-[11px] sm:text-[12px] font-medium focus:outline-none cursor-pointer transition">
+              <option value="all">Semua Status</option>
+              <option value="pending">Pending</option>
+              <option value="contacted">Contacted</option>
+              <option value="deal">Deal</option>
+              <option value="no_response">No Reply</option>
+            </select>
 
-          <select id="filter-temperature" class="bg-[#131316] border border-[#232328] text-[#8A8A90] hover:text-white rounded-lg h-9 px-3 text-[12px] font-medium focus:outline-none cursor-pointer transition">
-            <option value="all">Semua Suhu</option>
-            <option value="hot">🔥 Hot Leads</option>
-            <option value="warm">☀️ Warm Leads</option>
-            <option value="cold">❄️ Cold Leads</option>
-            <option value="tester">🧪 Mode Tester</option>
-          </select>
+            <select id="filter-temperature" class="bg-[#131316] border border-[#232328] text-[#8A8A90] hover:text-white rounded-lg h-9 px-2.5 text-[11px] sm:text-[12px] font-medium focus:outline-none cursor-pointer transition">
+              <option value="all">Semua Suhu</option>
+              <option value="hot">🔥 Hot Leads</option>
+              <option value="warm">☀️ Warm Leads</option>
+              <option value="cold">❄️ Cold Leads</option>
+              <option value="tester">🧪 Mode Tester</option>
+            </select>
+          </div>
         </div>
       </header>
 
       <!-- Main Layout: Master on the left, Detail on the right -->
-      <div class="flex-1 flex overflow-hidden p-6 gap-6">
+      <div class="flex-1 flex overflow-hidden p-3 sm:p-6 gap-4 sm:gap-6 relative">
         
         <!-- Left Pane: Leads List (Master) -->
-        <section class="w-full lg:w-[380px] xl:w-[420px] flex flex-col shrink-0 overflow-y-auto space-y-3 scroll-thin pr-1" id="leads-list-container">
+        <section class="w-full lg:w-[380px] xl:w-[420px] flex flex-col shrink-0 overflow-y-auto space-y-3 scroll-thin pr-1 transition-all duration-300" id="leads-list-container">
           <div class="text-center py-12 text-[#5C5C63] font-medium text-[13px]">Memuat data prospek AI...</div>
         </section>
 
         <!-- Right Pane: Detail View -->
-        <section class="hidden lg:flex flex-1 flex-col border border-[#232328] bg-[#131316] rounded-xl overflow-hidden" id="lead-detail-container">
+        <section class="hidden lg:flex flex-1 flex-col border border-[#232328] bg-[#131316] rounded-xl overflow-hidden transition-all duration-300" id="lead-detail-container">
           <!-- Empty State -->
           <div class="flex-1 flex flex-col items-center justify-center p-8 text-[#5C5C63] text-center">
             <span class="text-4xl mb-3">🤖</span>
@@ -471,8 +494,56 @@ import Logo from '../../components/Logo.astro';
           // Re-render list to update active highlight border
           renderLeadsList();
           renderLeadDetail(leadId);
+          updateMobileLeadVisibility();
         });
       });
+      
+      updateMobileLeadVisibility();
+    }
+
+    // Toggle Mobile Visibility for Leads List vs Detail
+    function updateMobileLeadVisibility() {
+      const isMobile = window.innerWidth < 1024;
+      if (isMobile) {
+        if (activeLeadId) {
+          leadsListContainer.classList.add('hidden');
+          leadsListContainer.classList.remove('w-full');
+          
+          leadDetailContainer.classList.remove('hidden');
+          leadDetailContainer.classList.add('flex', 'w-full', 'h-full');
+        } else {
+          leadsListContainer.classList.remove('hidden');
+          leadsListContainer.classList.add('w-full');
+          
+          leadDetailContainer.classList.add('hidden');
+          leadDetailContainer.classList.remove('flex', 'w-full', 'h-full');
+        }
+      } else {
+        leadsListContainer.classList.remove('hidden', 'w-full');
+        leadsListContainer.classList.add('w-full', 'lg:w-[380px]', 'xl:w-[420px]');
+        
+        leadDetailContainer.classList.remove('hidden', 'w-full', 'h-full');
+        leadDetailContainer.classList.add('flex', 'flex-1');
+      }
+    }
+
+    window.addEventListener('resize', updateMobileLeadVisibility);
+
+    // User Agent Parser Helper
+    function parseUserAgent(ua?: string) {
+      if (!ua) return 'Desktop (Browser)';
+      let device = 'Desktop';
+      if (/mobile|android|iphone|ipad|ipod/i.test(ua)) {
+        device = 'HP (Mobile)';
+      }
+      let os = 'Windows';
+      if (/windows/i.test(ua)) os = 'Windows';
+      else if (/macintosh|mac os x/i.test(ua)) os = 'Mac OS';
+      else if (/iphone|ipad|ipod/i.test(ua)) os = 'iOS';
+      else if (/android/i.test(ua)) os = 'Android';
+      else if (/linux/i.test(ua)) os = 'Linux';
+      
+      return `${device} · ${os}`;
     }
 
     // Generate WA Template Message
@@ -519,12 +590,19 @@ import Logo from '../../components/Logo.astro';
         ` : ''}
 
         <!-- Detail Header -->
-        <div class="p-5 border-b border-[#232328] bg-[#0C0C0E] flex flex-wrap items-center justify-between gap-4 shrink-0">
-          <div>
-            <h2 class="text-[16px] font-semibold text-white">${lead.client_name || 'Klien Anonim'}</h2>
-            <p class="text-[11px] text-[#8A8A90] mt-0.5">${lead.company_name || 'Perusahaan/PT tidak disebutkan'}</p>
+        <div class="p-4 sm:p-5 border-b border-[#232328] bg-[#0C0C0E] flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
+          <div class="flex items-center gap-3">
+            <!-- Back button for mobile view -->
+            <button id="btn-back-to-leads" class="lg:hidden px-2.5 py-1.5 rounded-lg border border-[#232328] bg-[#16161A] text-white hover:bg-[#232328] transition flex items-center gap-1.5 text-[12px] font-semibold">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              Kembali
+            </button>
+            <div>
+              <h2 class="text-[15px] sm:text-[16px] font-semibold text-white">${lead.client_name || 'Klien Anonim'}</h2>
+              <p class="text-[10px] sm:text-[11px] text-[#8A8A90] mt-0.5">${lead.company_name || 'Perusahaan/PT tidak disebutkan'}</p>
+            </div>
           </div>
-          <div class="flex items-center gap-2">
+          <div class="flex flex-wrap items-center gap-2">
             <!-- WA Link -->
             ${lead.whatsapp_number ? `
               <a href="https://wa.me/${lead.whatsapp_number.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(getWaMessage(lead))}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold transition text-[12px]">
@@ -558,6 +636,31 @@ import Logo from '../../components/Logo.astro';
 
         <!-- Detail Body -->
         <div class="flex-1 flex flex-col min-h-0 overflow-hidden divide-y divide-[#1A1A1E]">
+          <!-- Client Telemetry & Security Tracking Bar -->
+          <div class="p-3 px-5 bg-[#131316]/90 border-b border-[#1A1A1E] flex flex-wrap items-center justify-between gap-3 text-[11px] shrink-0">
+            <div class="flex flex-wrap items-center gap-4 text-slate-300">
+              <span class="flex items-center gap-1.5" title="Perangkat & OS Pengguna">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-400 shrink-0"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                <strong class="text-white">${parseUserAgent(session?.user_agent)}</strong>
+              </span>
+              <span class="flex items-center gap-1.5" title="Alamat IP">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-purple-400 shrink-0"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span class="mono text-slate-300">${session?.client_ip || 'IP Tersembunyi'}</span>
+              </span>
+              <span class="flex items-center gap-1.5" title="Lokasi Realtime">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400 shrink-0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>${session?.location_city ? `${session.location_city}, ${session.location_country || 'ID'}` : 'Indonesia'}</span>
+              </span>
+            </div>
+
+            ${session?.client_ip && session.client_ip !== 'unknown' ? `
+              <button id="btn-ban-ip" class="px-2.5 py-1 rounded bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 text-[10px] font-bold uppercase tracking-wider transition flex items-center gap-1 cursor-pointer" data-ip="${session.client_ip}">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                Blokir IP Ini
+              </button>
+            ` : ''}
+          </div>
+
           <!-- Summary Area -->
           <div class="p-5 bg-[#0E0E11]/30 grid grid-cols-1 md:grid-cols-4 gap-4 shrink-0">
             <div class="md:col-span-2">
@@ -736,7 +839,45 @@ import Logo from '../../components/Logo.astro';
         });
       }
 
-      // 4. Admin Manual Chat Form
+      // 4. Ban IP Button
+      const banIpBtn = document.getElementById('btn-ban-ip') as HTMLButtonElement;
+      if (banIpBtn) {
+        banIpBtn.addEventListener('click', async () => {
+          const ipToBan = banIpBtn.getAttribute('data-ip');
+          if (!ipToBan) return;
+
+          const confirmed = await (window as any).showConfirm(`Apakah Anda yakin ingin memblokir IP (${ipToBan}) dari akses AI Chatbot Lumovelo?`);
+          if (!confirmed) return;
+
+          try {
+            const { data: { session } } = await supabase.auth.getSession();
+            const token = session?.access_token;
+            if (!token) {
+              showToast('Sesi admin kedaluwarsa.', 'error');
+              return;
+            }
+
+            const res = await fetch('/api/ai-config-handler', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ token, action: 'ban_ip', ipToBan })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+              showToast(data.message || 'IP berhasil diblokir!', 'success');
+              banIpBtn.innerText = '✅ IP Terblokir';
+              banIpBtn.disabled = true;
+            } else {
+              showToast(data.error || 'Gagal memblokir IP.', 'error');
+            }
+          } catch (err: any) {
+            showToast(err.message || 'Gagal terhubung ke server.', 'error');
+          }
+        });
+      }
+
+      // 5. Admin Manual Chat Form
       const adminChatForm = document.getElementById('admin-chat-form') as HTMLFormElement;
       const adminChatInput = document.getElementById('admin-chat-input') as HTMLInputElement;
       if (adminChatForm && adminChatInput && sessionId) {
@@ -770,6 +911,16 @@ import Logo from '../../components/Logo.astro';
             console.error('Error sending admin message:', err);
             showToast('Gagal mengirim pesan admin.', 'error');
           }
+        });
+      }
+
+      // Back button on mobile
+      const btnBack = document.getElementById('btn-back-to-leads');
+      if (btnBack) {
+        btnBack.addEventListener('click', () => {
+          activeLeadId = null;
+          renderLeadsList();
+          updateMobileLeadVisibility();
         });
       }
     }
@@ -934,6 +1085,32 @@ import Logo from '../../components/Logo.astro';
         }
       }
     }, 5000);
+
+    // Mobile Sidebar Drawer Control
+    const adminSidebar = document.getElementById('admin-sidebar');
+    const btnOpenSidebar = document.getElementById('btn-open-sidebar');
+    const btnCloseSidebar = document.getElementById('btn-close-sidebar');
+    const sidebarOverlay = document.getElementById('admin-sidebar-overlay');
+
+    function openSidebar() {
+      if (adminSidebar && sidebarOverlay) {
+        adminSidebar.classList.remove('-translate-x-full');
+        sidebarOverlay.classList.remove('hidden');
+        setTimeout(() => sidebarOverlay.classList.remove('opacity-0'), 10);
+      }
+    }
+
+    function closeSidebar() {
+      if (adminSidebar && sidebarOverlay) {
+        adminSidebar.classList.add('-translate-x-full');
+        sidebarOverlay.classList.add('opacity-0');
+        setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+      }
+    }
+
+    btnOpenSidebar?.addEventListener('click', openSidebar);
+    btnCloseSidebar?.addEventListener('click', closeSidebar);
+    sidebarOverlay?.addEventListener('click', closeSidebar);
 
     btnLogout.addEventListener('click', async () => {
       await supabase.auth.signOut();

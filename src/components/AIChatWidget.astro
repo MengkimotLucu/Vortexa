@@ -61,7 +61,7 @@ const content = {
   </button>
 
   <!-- 2. Chat Window (Solid Opaque Window & Hidden by Default) -->
-  <div id="ai-chat-window" data-size-state="normal" class="fixed bottom-24 right-4 left-4 w-auto sm:right-6 sm:left-auto sm:w-[360px] md:right-auto md:left-1/2 md:-translate-x-1/2 md:w-[460px] h-[550px] md:h-[650px] bg-[#090d16] border border-slate-800 rounded-2xl shadow-2xl flex flex-col transition-all duration-300 transform scale-95 opacity-0 pointer-events-none z-50 overflow-hidden select-none font-sans">
+  <div id="ai-chat-window" data-size-state="normal" class="fixed bottom-16 right-2 left-2 sm:bottom-24 sm:right-6 sm:left-auto sm:w-[360px] md:right-auto md:left-1/2 md:-translate-x-1/2 md:w-[460px] h-[calc(100vh-100px)] max-h-[580px] sm:h-[550px] md:h-[650px] bg-[#090d16] border border-slate-800 rounded-2xl shadow-2xl flex flex-col transition-all duration-300 transform scale-95 opacity-0 pointer-events-none z-[9999] overflow-hidden select-none font-sans">
 
     <!-- Custom Reset Confirmation Modal -->
     <div id="ai-chat-reset-modal" class="absolute inset-0 bg-[#090d16]/95 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
@@ -179,6 +179,22 @@ const content = {
           <span class="text-[10px] font-mono text-amber-400 font-bold uppercase tracking-wider">{content.statusManualBadge}</span>
         </div>
 
+        <!-- Quick Action Chips (Tombol Pilihan Cepat) -->
+        <div id="ai-chat-quick-chips" class="px-3 py-2 bg-[#090d16] border-t border-slate-800/80 flex flex-wrap items-center gap-1.5 no-scrollbar">
+          <button type="button" class="quick-chip-btn flex-1 min-w-[45%] sm:flex-initial px-2.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-blue-600/20 hover:border-blue-500/50 border border-slate-700/60 text-[10.5px] font-medium text-slate-300 hover:text-blue-300 transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm" data-prompt={lang === 'en' ? 'What is the estimated cost of web development?' : 'Berapa estimasi biaya pembuatan website?'}>
+            <span>💰</span> {lang === 'en' ? 'Web Cost' : 'Estimasi Biaya Web'}
+          </button>
+          <button type="button" class="quick-chip-btn flex-1 min-w-[45%] sm:flex-initial px-2.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-blue-600/20 hover:border-blue-500/50 border border-slate-700/60 text-[10.5px] font-medium text-slate-300 hover:text-blue-300 transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm" data-prompt={lang === 'en' ? 'I want to build a custom AI Chatbot for my business' : 'Saya ingin buat AI Chatbot kustom untuk bisnis'}>
+            <span>🤖</span> {lang === 'en' ? 'AI Chatbot' : 'Jasa AI Chatbot'}
+          </button>
+          <button type="button" class="quick-chip-btn flex-1 min-w-[45%] sm:flex-initial px-2.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-blue-600/20 hover:border-blue-500/50 border border-slate-700/60 text-[10.5px] font-medium text-slate-300 hover:text-blue-300 transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm" data-prompt={lang === 'en' ? 'How to get a free 15-minute consultation?' : 'Bagaimana cara konsultasi gratis 15 menit?'}>
+            <span>⚡</span> {lang === 'en' ? 'Free Consultation' : 'Konsultasi Gratis'}
+          </button>
+          <button type="button" class="quick-chip-btn flex-1 min-w-[45%] sm:flex-initial px-2.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-blue-600/20 hover:border-blue-500/50 border border-slate-700/60 text-[10.5px] font-medium text-slate-300 hover:text-blue-300 transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm" data-prompt={lang === 'en' ? 'Show me your portfolio and recent projects' : 'Lihat portofolio dan proyek terbaru Lumovelo'}>
+            <span>📂</span> {lang === 'en' ? 'Portfolio' : 'Lihat Portofolio'}
+          </button>
+        </div>
+
         <!-- Input Form (Solid Opaque Footer) -->
         <form id="ai-chat-form" class="p-3 border-t border-slate-800 bg-[#0f172a] flex items-center gap-2">
           <input
@@ -204,6 +220,15 @@ const content = {
 </div>
 
 <style>
+  /* Hide Scrollbar Utility */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   /* Custom Elegant Scrollbar */
   .scrollbar-thin::-webkit-scrollbar {
     width: 4px;
@@ -403,18 +428,29 @@ const content = {
     }
   }[clientLang];
 
-  // Quick Replies Click Handler
-  const quickRepliesContainer = document.getElementById('ai-quick-replies');
-  if (quickRepliesContainer) {
-    quickRepliesContainer.addEventListener('click', async (e) => {
+  // Quick Action Chips Click Handler
+  const quickChipsContainer = document.getElementById('ai-chat-quick-chips');
+  if (quickChipsContainer) {
+    quickChipsContainer.addEventListener('click', async (e) => {
+      const chip = e.target.closest('.quick-chip-btn');
+      if (chip) {
+        const prompt = chip.getAttribute('data-prompt');
+        if (prompt && chatInput) {
+          chatInput.value = prompt;
+          chatForm.dispatchEvent(new Event('submit'));
+        }
+      }
+    });
+  }
+
+  // Welcome Quick Replies Click Handler
+  if (messagesContainer) {
+    messagesContainer.addEventListener('click', (e) => {
       const btn = e.target.closest('.btn-quick');
-      if (btn) {
-        const text = btn.getAttribute('data-value') || btn.textContent.trim();
-        // Sembunyikan quick replies
-        quickRepliesContainer.style.display = 'none';
-        // Kirim pesan otomatis
-        if (chatInput) {
-          chatInput.value = text;
+      if (btn && chatInput) {
+        const val = btn.getAttribute('data-value');
+        if (val) {
+          chatInput.value = val;
           chatForm.dispatchEvent(new Event('submit'));
         }
       }
@@ -689,6 +725,15 @@ const content = {
     const chatInput = document.getElementById('ai-chat-input');
     const sendBtn = document.getElementById('ai-chat-send-btn');
     if (!chatInput) return;
+
+    // Mode Tester: Jangan tampilkan tombol penghalang WA
+    if (checkIsTesterMode()) {
+      const waBtn = document.getElementById('ai-wa-redirect-btn');
+      if (waBtn) waBtn.remove();
+      chatInput.disabled = false;
+      if (sendBtn) sendBtn.style.display = 'block';
+      return;
+    }
 
     if (!isAi) {
       // Soft handover: input tetap aktif agar bisa terus chatting ke manual admin

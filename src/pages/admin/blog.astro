@@ -5,10 +5,13 @@ import Logo from '../../components/Logo.astro';
 ---
 
 <Layout title="Kelola Blog | LUMOVELO" description="Panel pusat pengelola artikel blog Lumovelo." noindex={true}>
-  <div id="admin-layout" class="hidden min-h-screen dashboard-root grain flex">
+  <div id="admin-layout" class="min-h-screen dashboard-root grain flex relative">
     
+    <!-- Sidebar Backdrop Overlay on Mobile -->
+    <div id="admin-sidebar-overlay" class="fixed inset-0 bg-black/70 z-[90] lg:hidden hidden opacity-0 transition-opacity duration-300"></div>
+
     <!-- Sidebar Navigation -->
-    <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 flex w-[248px] -translate-x-full flex-col border-r border-[#1A1A1E] bg-[#0C0C0E] transition-transform duration-300 lg:static lg:flex lg:translate-x-0 lg:z-auto">
+    <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-[100] flex w-[248px] -translate-x-full flex-col border-r border-[#1A1A1E] bg-[#0C0C0E] transition-transform duration-300 lg:static lg:flex lg:translate-x-0 lg:z-auto">
       <!-- Logo -->
       <div class="px-5 pt-6 pb-7 flex items-center justify-between gap-2.5">
         <div class="flex items-center gap-2.5">
@@ -60,15 +63,31 @@ import Logo from '../../components/Logo.astro';
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Leads AI
         </a>
+        <a href="/admin/telemetry/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Telemetri & IP
+        </a>
         <a href="/admin/ai-settings/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           Pengaturan AI
         </a>
 
-        <div class="px-2.5 mb-1.5 mt-5 mono text-[10px] uppercase tracking-wider text-[#5C5C63]">Workspace</div>
-        <a href="/workspace/invoice/" class="nav-item flex items-center gap-3 px-2.5 py-2 rounded-md text-[13px] text-[#8A8A90]">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
-          Buat Invoice
+        <div class="px-2.5 mb-1.5 mt-5 mono text-[10px] uppercase tracking-wider text-[#5C5C63]">Workspace / Dokumen</div>
+        <a href="/workspace/invoice/" class="nav-item flex items-center gap-3 px-2.5 py-1.5 rounded-md text-[12.5px] text-[#8A8A90]">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/></svg>
+          Invoice & Kuitansi
+        </a>
+        <a href="/workspace/spk/" class="nav-item flex items-center gap-3 px-2.5 py-1.5 rounded-md text-[12.5px] text-[#8A8A90]">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          SPK & MoU Kontrak
+        </a>
+        <a href="/workspace/rab/" class="nav-item flex items-center gap-3 px-2.5 py-1.5 rounded-md text-[12.5px] text-[#8A8A90]">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+          RAB & SRS Proposal
+        </a>
+        <a href="/workspace/bast/" class="nav-item flex items-center gap-3 px-2.5 py-1.5 rounded-md text-[12.5px] text-[#8A8A90]">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="shrink-0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          BAST Serah Terima
         </a>
       </nav>
 
@@ -711,6 +730,32 @@ import Logo from '../../components/Logo.astro';
     modalBtnCancel.addEventListener('click', closePostModal);
     filterCategory.addEventListener('change', applyFilters);
     searchTitle.addEventListener('input', applyFilters);
+
+    // Mobile Sidebar Drawer Control
+    const adminSidebar = document.getElementById('admin-sidebar');
+    const btnOpenSidebar = document.getElementById('btn-open-sidebar');
+    const btnCloseSidebar = document.getElementById('btn-close-sidebar');
+    const sidebarOverlay = document.getElementById('admin-sidebar-overlay');
+
+    function openSidebar() {
+      if (adminSidebar && sidebarOverlay) {
+        adminSidebar.classList.remove('-translate-x-full');
+        sidebarOverlay.classList.remove('hidden');
+        setTimeout(() => sidebarOverlay.classList.remove('opacity-0'), 10);
+      }
+    }
+
+    function closeSidebar() {
+      if (adminSidebar && sidebarOverlay) {
+        adminSidebar.classList.add('-translate-x-full');
+        sidebarOverlay.classList.add('opacity-0');
+        setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+      }
+    }
+
+    btnOpenSidebar?.addEventListener('click', openSidebar);
+    btnCloseSidebar?.addEventListener('click', closeSidebar);
+    sidebarOverlay?.addEventListener('click', closeSidebar);
 
     btnLogout.addEventListener('click', async () => {
       await supabase.auth.signOut();

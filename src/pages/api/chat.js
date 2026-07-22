@@ -77,6 +77,42 @@ function isThankYou(text) {
   return THANK_YOU_WORDS.some(word => normalized.includes(word));
 }
 
+// Helper normalisasi leetspeak (misal: 4nj1ng -> anjing)
+function normalizeLeetspeak(text) {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .replace(/4|@/g, 'a')
+    .replace(/3/g, 'e')
+    .replace(/1|!|\|/g, 'i')
+    .replace(/0/g, 'o')
+    .replace(/5|\$/g, 's')
+    .replace(/7/g, 't');
+}
+
+// Check apakah teks mengandung kata terlarang (blacklist)
+function checkBlacklist(text, blacklistArray) {
+  if (!text || !blacklistArray || blacklistArray.length === 0) return null;
+  const normalizedText = normalizeLeetspeak(text);
+  
+  for (const word of blacklistArray) {
+    const trimmedWord = word.trim().toLowerCase();
+    if (!trimmedWord) continue;
+    const normalizedWord = normalizeLeetspeak(trimmedWord);
+    
+    // Pembedaan konteks bisnis: Jika kalimat bisnis cukup panjang & relevan, jangan di-block
+    const isBusinessContext = (
+      normalizedText.length > 25 &&
+      (normalizedText.includes('web') || normalizedText.includes('aplikasi') || normalizedText.includes('layanan') || normalizedText.includes('biaya') || normalizedText.includes('harga') || normalizedText.includes('jasa') || normalizedText.includes('toko') || normalizedText.includes('sistem'))
+    );
+
+    if (normalizedText.includes(normalizedWord) && !isBusinessContext) {
+      return trimmedWord;
+    }
+  }
+  return null;
+}
+
 export async function POST({ request, clientAddress }) {
   if (!supabaseAdmin) {
     return new Response(JSON.stringify({ error: 'Koneksi database Supabase Admin tidak terkonfigurasi.' }), {
@@ -96,22 +132,148 @@ export async function POST({ request, clientAddress }) {
       });
     }
 
+    // 0. Ekstrak Telemetri & Metadata Perangkat
+    const clientIp = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for')?.split(',')[0] || clientAddress || 'unknown';
+    const userAgent = request.headers.get('user-agent') || '';
+    const locationCity = request.headers.get('x-vercel-ip-city') || '';
+    const locationCountry = request.headers.get('x-vercel-ip-country') || '';
+
+    // Ambil daftar banned_ips & blacklisted_words dari ai_config
+    const defaultBlacklist = 'jokowi, prabowo, megawati, soeharto, soekarno, trump, obama, naruto, sambo, kaesang, anjing, monyet, babi, kontol, memek, pepek, bangsat, pantek, asu, bajingan, asdfgh, qwerty, testerrr';
+    let bannedIpsArray = [];
+    let blacklistArray = defaultBlacklist.split(',').map(w => w.trim());
+
+    try {
+      const { data: configData } = await supabaseAdmin
+        .from('ai_config')
+        .select('banned_ips, blacklisted_words')
+        .eq('id', 'default')
+        .maybeSingle();
+
+      if (configData) {
+        if (configData.banned_ips) {
+          bannedIpsArray = configData.banned_ips.split(',').map(i => i.trim()).filter(Boolean);
+        }
+        if (configData.blacklisted_words) {
+          blacklistArray = configData.blacklisted_words.split(',').map(w => w.trim()).filter(Boolean);
+        }
+      }
+    } catch (cfgErr) {
+      console.warn('Could not load ai_config blacklist:', cfgErr);
+    }
+
+    // 1. Cek apakah IP pengguna terblokir (Banned IP Check)
+    if (clientIp !== 'unknown' && bannedIpsArray.includes(clientIp)) {
+      return new Response(JSON.stringify({
+        reply: isEn
+          ? "Your access has been restricted by the administrator. Please contact Lumovelo team directly via WhatsApp."
+          : "Akses Anda telah dibatasi oleh administrator. Silakan hubungi tim Lumovelo secara langsung melalui WhatsApp.",
+        sessionId: sessionId || null,
+        is_ai_enabled: false
+      }), {
+        status: 403,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // 2. Cek Tier 1 (Validasi Nama Input)
+    if (clientName) {
+      const matchedNameWord = checkBlacklist(clientName, blacklistArray);
+      if (matchedNameWord) {
+        return new Response(JSON.stringify({
+          reply: isEn
+            ? "Please use your real name so our team can greet you properly."
+            : "Mohon gunakan nama panggilan asli Anda agar tim kami dapat menyapa Anda dengan baik.",
+          sessionId: sessionId || null,
+          is_ai_enabled: true
+        }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+    }
+
+    // 3. Cek Tier 2 (Pencegatan Kata Kotor / Insult Tanpa Panggil API AI)
+    const matchedMsgWord = checkBlacklist(message, blacklistArray);
+    if (matchedMsgWord && !message.startsWith('[System Info:')) {
+      const warningReply = isEn
+        ? "Sorry, our system detected inappropriate language. Please use polite language so we can assist your digital needs."
+        : "Maaf, sistem kami mendeteksi kata-kata yang kurang sesuai. Mohon gunakan bahasa yang santun agar kami dapat membantu kebutuhan digital Anda.";
+
+      return new Response(JSON.stringify({
+        reply: warningReply,
+        sessionId: sessionId || null,
+        is_ai_enabled: true
+      }), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     let activeSessionId = sessionId;
     let isAiEnabled = true;
 
-    // 1. Jika tidak ada sessionId, buat sesi chat baru
+    // 4. Jika tidak ada sessionId, buat sesi chat baru & simpan data telemetri secara bertahap (Resilient Multi-Tier Insert)
     if (!activeSessionId) {
-      const { data: newSession, error: sessionErr } = await supabaseAdmin
+      const fullTelemetryUa = (locationCity || locationCountry)
+        ? `${userAgent || ''} [${[locationCity, locationCountry].filter(Boolean).join(', ')}]`
+        : userAgent;
+
+      // Tier 1: Coba insert lengkap dengan IP, User Agent & Lokasi
+      let { data: newSession, error: sErr } = await supabaseAdmin
         .from('ai_chat_sessions')
         .insert({
-          client_ip: clientAddress || request.headers.get('x-forwarded-for') || 'unknown',
+          client_ip: clientIp,
+          user_agent: fullTelemetryUa,
+          ...(locationCity && { location_city: locationCity }),
+          ...(locationCountry && { location_country: locationCountry }),
           status: 'active',
           is_ai_enabled: true
         })
         .select()
         .single();
 
-      if (sessionErr) throw sessionErr;
+      // Tier 2: Jika error kolom lokasi, coba tanpa lokasi
+      if (sErr) {
+        const res2 = await supabaseAdmin
+          .from('ai_chat_sessions')
+          .insert({
+            client_ip: clientIp,
+            user_agent: fullTelemetryUa,
+            status: 'active',
+            is_ai_enabled: true
+          })
+          .select()
+          .single();
+        newSession = res2.data;
+        sErr = res2.error;
+      }
+
+      // Tier 3: Jika user_agent / client_ip tidak ada di tabel, coba insert minimal (status & is_ai_enabled)
+      if (sErr) {
+        const res3 = await supabaseAdmin
+          .from('ai_chat_sessions')
+          .insert({
+            status: 'active',
+            is_ai_enabled: true
+          })
+          .select()
+          .single();
+        newSession = res3.data;
+        sErr = res3.error;
+      }
+
+      // Tier 4: Fallback absolute minimal
+      if (sErr) {
+        const res4 = await supabaseAdmin
+          .from('ai_chat_sessions')
+          .insert({})
+          .select()
+          .single();
+        newSession = res4.data;
+        sErr = res4.error;
+      }
+
+      if (sErr || !newSession) throw (sErr || new Error('Gagal membuat sesi chat di database.'));
       activeSessionId = newSession.id;
     } else {
       // Periksa apakah sesi chat ini masih mengizinkan AI membalas
@@ -125,6 +287,22 @@ export async function POST({ request, clientAddress }) {
       
       if (session) {
         isAiEnabled = session.is_ai_enabled;
+      }
+
+      // Update telemetri IP & User Agent secara aman
+      const { error: updateErr } = await supabaseAdmin
+        .from('ai_chat_sessions')
+        .update({
+          client_ip: clientIp,
+          user_agent: userAgent
+        })
+        .eq('id', activeSessionId);
+
+      if (updateErr) {
+        await supabaseAdmin
+          .from('ai_chat_sessions')
+          .update({ updated_at: new Date().toISOString() })
+          .eq('id', activeSessionId);
       }
     }
 
@@ -167,12 +345,17 @@ export async function POST({ request, clientAddress }) {
           .from('leads')
           .insert(leadData);
 
-        await sendTelegramNotification(
-          `💼 *Prospek Baru Terdeteksi (Form)*\n\n` +
-          `*Nama:* ${clientName || '-'}\n` +
-          `*WhatsApp:* ${whatsappNumber || '-'}\n\n` +
-          `Cek selengkapnya di Dashboard Admin Lumovelo!`
-        );
+        // Kirim Telegram HANYA jika memasukkan WhatsApp Valid
+        if (whatsappNumber && whatsappNumber.trim().length >= 8 && whatsappNumber !== '0800000000') {
+          const waClean = normalizeWhatsAppNumber(whatsappNumber);
+          await sendTelegramNotification(
+            `💼 *Prospek Baru Terdaftar (Form)*\n\n` +
+            `*Nama:* ${clientName || '-'}\n` +
+            `*WhatsApp:* \`${waClean}\`\n` +
+            `💬 [Chat via WA](https://wa.me/${waClean})\n\n` +
+            `Cek selengkapnya di Dashboard Admin Lumovelo!`
+          );
+        }
       }
 
       // Update session
@@ -292,8 +475,8 @@ export async function POST({ request, clientAddress }) {
     const msgIsGreeting = isGreeting(message);
     const msgIsThankYou = isThankYou(message);
 
-    // Jika pesan pertama tidak mengandung kata kunci DAN bukan sapaan DAN bukan ucapan terima kasih, arahkan ke admin manual
-    if (isFirstMessage && !msgHasKeywords && !msgIsGreeting && !msgIsThankYou) {
+    // Jika pesan pertama tidak mengandung kata kunci DAN bukan sapaan DAN bukan ucapan terima kasih (kecuali mode tester)
+    if (isFirstMessage && !msgHasKeywords && !msgIsGreeting && !msgIsThankYou && !isTester) {
       const manualReply = isEn
         ? "Your question has been forwarded to our Admin. Our admin will reply to your chat here shortly or contact you directly."
         : "Pertanyaan Anda telah diteruskan ke Admin kami. Admin akan segera membalas obrolan Anda di sini atau menghubungi kontak Anda.";
@@ -454,7 +637,7 @@ export async function POST({ request, clientAddress }) {
     }
 
     // 7. Simpan balasan AI ke database
-    const { reply, client_name, company_name, project_needs, tech_stack, whatsapp_number, lead_temperature, estimated_budget, should_route_to_admin } = groqResponse;
+    let { reply, client_name, company_name, project_needs, tech_stack, whatsapp_number, lead_temperature, estimated_budget, should_route_to_admin } = groqResponse;
 
     await supabaseAdmin
       .from('ai_chat_messages')
@@ -475,14 +658,27 @@ export async function POST({ request, clientAddress }) {
         .limit(1);
       const existingLead = existingLeads && existingLeads.length > 0 ? existingLeads[0] : null;
 
+      // Strict Lead Temperature Qualification
+      const hasValidPhone = whatsapp_number && whatsapp_number.trim().length >= 8 && whatsapp_number !== '0800000000';
+      const hasBudgetNum = /\b(\d+|\d+[\.,]\d+)\s*(jt|juta|rb|ribu|m|miliar|k)|budget|biaya|biayanya|rp\s*\d+/i.test(message + ' ' + (estimated_budget || '') + ' ' + (project_needs || ''));
+
+      let strictTemperature = 'cold';
+      if (hasValidPhone && (hasBudgetNum || (estimated_budget && estimated_budget !== '-'))) {
+        strictTemperature = 'hot';
+      } else if (hasValidPhone && (project_needs || client_name)) {
+        strictTemperature = 'warm';
+      } else {
+        strictTemperature = 'cold';
+      }
+
       const leadData = {
         session_id: activeSessionId,
         client_name: isTester ? (client_name ? `[TESTER] ${client_name}` : '[MODE TESTER]') : client_name,
-        ...(company_name && { company_name }),
+        company_name: isTester ? `[TESTER] ${company_name || '-'}` : company_name,
         project_needs: isTester ? `[MODE TESTER] ${project_needs || 'Pengujian Internal'}` : project_needs,
         ...(tech_stack && { tech_stack }),
         ...(whatsapp_number && { whatsapp_number: normalizeWhatsAppNumber(whatsapp_number) }),
-        ...(lead_temperature && { lead_temperature: isTester ? 'cold' : lead_temperature }),
+        lead_temperature: isTester ? 'cold' : strictTemperature,
         ...(estimated_budget && { estimated_budget }),
         ...(isTester && { is_tester: true })
       };
@@ -497,18 +693,21 @@ export async function POST({ request, clientAddress }) {
           .from('leads')
           .insert(leadData);
 
-        // Kirim notifikasi Telegram untuk lead baru pertama kali (kecuali mode tester)
-        if (!isTester) {
-          const tempEmoji = lead_temperature === 'hot' ? '🔥 HOT' : (lead_temperature === 'warm' ? '☀️ WARM' : '❄️ COLD');
+        // Kirim notifikasi Telegram HANYA untuk lead berkualitas (HOT atau WARM dengan No. WA Valid)
+        if (!isTester && hasValidPhone && (strictTemperature === 'hot' || strictTemperature === 'warm')) {
+          const tempEmoji = strictTemperature === 'hot' ? '🔥 HOT LEAD' : '☀️ WARM LEAD';
+          const waClean = normalizeWhatsAppNumber(whatsapp_number);
+          const waLink = `https://wa.me/${waClean}`;
+
           await sendTelegramNotification(
-            `💼 *Prospek Baru Terdeteksi!*\n\n` +
+            `💼 *${tempEmoji} TERDETEKSI!*\n\n` +
             `*Nama:* ${client_name || '-'}\n` +
             `*Perusahaan:* ${company_name || '-'}\n` +
             `*Kebutuhan:* ${project_needs || '-'}\n` +
-            `*Tech Stack:* ${tech_stack || '-'}\n` +
-            `*WhatsApp:* ${whatsapp_number || '-'}\n` +
             `*Estimasi Budget:* ${estimated_budget || '-'}\n` +
-            `*Suhu Lead:* ${tempEmoji}\n\n` +
+            `*WhatsApp:* \`${waClean}\`\n\n` +
+            `💬 [Chat Langsung di WhatsApp](${waLink})\n` +
+            `📍 *Lokasi:* ${locationCity || 'Indonesia'}, ${locationCountry || ''}\n\n` +
             `Cek selengkapnya di Dashboard Admin Lumovelo!`
           );
         }
@@ -527,8 +726,8 @@ export async function POST({ request, clientAddress }) {
       }
     }
 
-    // 9. Jika AI memutuskan obrolan harus ditangani admin
-    if (should_route_to_admin) {
+    // 9. Jika AI memutuskan obrolan harus ditangani admin (kecuali mode tester)
+    if (should_route_to_admin && !isTester) {
       await supabaseAdmin
         .from('ai_chat_sessions')
         .update({
@@ -537,15 +736,27 @@ export async function POST({ request, clientAddress }) {
         })
         .eq('id', activeSessionId);
 
-      if (!isTester) {
-        await sendTelegramNotification(
-          `🔔 *Pengalihan Chat Manual (Permintaan AI / Handover)*\n\n` +
-          `*Nama Klien:* ${client_name || 'Tidak diketahui'}\n` +
-          `*Kebutuhan:* ${project_needs || 'Tidak diketahui'}\n` +
-          `*Sesi ID:* \`${activeSessionId}\`\n\n` +
-          `Harap segera dibalas di dashboard admin!`
-        );
-      }
+      await sendTelegramNotification(
+        `🔔 *Pengalihan Chat Manual (Permintaan AI / Handover)*\n\n` +
+        `*Nama Klien:* ${client_name || 'Tidak diketahui'}\n` +
+        `*Kebutuhan:* ${project_needs || 'Tidak diketahui'}\n` +
+        `*Sesi ID:* \`${activeSessionId}\`\n\n` +
+        `Harap segera dibalas di dashboard admin!`
+      );
+    }
+
+    // Catatan Jam Operasional (08:00 - 00:00 WIB)
+    const nowWib = new Date(Date.now() + 7 * 3600 * 1000);
+    const wibHour = nowWib.getUTCHours();
+    // Jam 00:00 - 07:59 WIB adalah di luar jam operasional
+    const isAfterHours = wibHour >= 0 && wibHour < 8;
+
+    if (isAfterHours && reply && !reply.includes('jam operasional')) {
+      const bookingUrl = process.env.PUBLIC_BOOKING_URL || import.meta.env.PUBLIC_BOOKING_URL || 'https://cal.com/lumovelo/15min';
+      const afterHoursNotice = isEn
+        ? `\n\n📌 *Note: You are contacting us outside our operational hours (08:00 - 00:00 WIB / GMT+7). You can directly book a 15-minute consultation session for tomorrow morning here: [Book Consultation Page](${bookingUrl}). Our team will prioritize responding to your inquiry.*`
+        : `\n\n📌 *Catatan: Anda menghubungi di luar jam operasional (08:00 - 00:00 WIB). Kakak bisa langsung menjadwalkan sesi konsultasi gratis 15 menit melalui kalender jadwal kami di sini: [Halaman Jadwal Konsultasi](${bookingUrl}). Tim kami akan memprioritaskan konsultasi Anda.*`;
+      reply += afterHoursNotice;
     }
 
     return new Response(JSON.stringify({

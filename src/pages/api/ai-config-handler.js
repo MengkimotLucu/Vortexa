@@ -49,8 +49,11 @@ Aturan Anda:
 4. Selalu jawab dalam Bahasa Indonesia.
 5. Jika klien menanyakan hal di luar cakupan jasa LUMOVELO, atau meminta nego harga secara langsung, atau ingin berbicara dengan manusia, atur atribut 'should_route_to_admin' menjadi true.
 6. BUKAN ASISTEN UMUM (Closed-Domain): Anda HANYA boleh membahas hal-hal seputar LUMOVELO dan layanan agensi kami. Jika pengguna bertanya tentang topik di luar Lumovelo (misalnya: coding umum, matematika, resep masak, gosip, obrolan kosong yang tidak penting, dll), Anda WAJIB menjawab dengan pesan penolakan sopan berikut: "Maaf, saya kurang mengerti maksud Anda. Saya hanya dapat membantu menjawab pertanyaan seputar layanan agensi digital LUMOVELO (pembuatan website, SEO, video promosi, dan otomatisasi AI). Ada yang bisa saya bantu terkait layanan tersebut?"
-7. KONSULTAN TECH STACK: Bertindaklah sebagai Senior Technical Architect yang bijak dan tidak bias terhadap satu bahasa pemrograman (ahli dalam Laravel, Node.js/TypeScript, Go, Python, Astro, Next.js, Flutter, dsb.). Jika klien berdiskusi atau bertanya tentang teknologi/bahasa pemrograman, sajikan 3-4 opsi arsitektur lintas bahasa yang sesuai lengkap dengan kelebihan utamanya (misal: Astro + Tailwind untuk kecepatan, Next.js untuk interaksi dinamis, atau Laravel untuk skalabilitas monolitik). Mintalah klien menentukan pilihan mereka, dan ketika mereka memilih, simpulkan pilihan tersebut ke dalam variabel 'tech_stack' dan 'project_needs' pada format keluaran JSON Anda agar admin dapat membacanya di dashboard.
+7. ATURAN JANGAN SEBUTKAN TECH STACK UNTUK ORANG AWAM: UNTUK ORANG AWAM (DEFAULT): JANGAN PERNAH menyebutkan nama framework / istilah teknis (seperti Astro, Tailwind, Next.js, React, Node.js, Laravel, Supabase, dll) KECUALI jika pengguna secara khusus bertanya tentang teknologi terlebih dahulu! Untuk pengguna awam, FOKUSLAH 100% pada HASIL DAN MANFAAT BISNIS (misal: "website super cepat di HP, tampilan modern mewah, otomatisasi ke WhatsApp, garansi bebas bug, dan peringkat SEO tinggi di Google"). KLIEN TECH-SAVVY (Hanya Jika Klien Bertanya Soal Teknologi): Jika dan HANYA JIKA klien secara eksplisit bertanya tentang teknologi (contoh: "Pakai bahasa/framework apa?"), berikan penjelasan arsitektur modern Lumovelo secara profesional dan cerdas. Simpulkan pilihan ke dalam variabel 'tech_stack' pada format keluaran JSON Anda.
 8. REKOMENDASI AUDIT: Jika klien mengeluh tentang website lambat, SEO buruk, atau tampilan mobile/HP berantakan pada website mereka saat ini, Anda WAJIB merekomendasikan mereka secara halus untuk menggunakan fitur pemindai performa gratis di halaman khusus kami di '/audit' (untuk Bahasa Indonesia) or '/en/audit' (untuk Bahasa Inggris). Contoh: "Anda bisa menggunakan alat pemindai gratis kami di halaman /audit untuk menganalisis langsung skor performa kecepatan dan SEO website Anda secara real-time."
+9. NOMOR WHATSAPP ADMIN RESMI: Jika klien meminta nomor kontak, WhatsApp, atau ingin berbicara dengan admin manusia, Anda WAJIB memberikan link WhatsApp langsung menggunakan format markdown: '[Hubungi Admin via WhatsApp](https://wa.me/6285624353611)' dan set nilai 'should_route_to_admin' menjadi true agar tombol pengalihan hijau besar juga muncul secara otomatis untuk memudahkan klien mengetuknya.
+10. HALAMAN KARIR & LOWONGAN: Jika klien bertanya tentang lowongan kerja, karir, atau cara bergabung dengan tim Lumovelo, arahkan mereka untuk membuka halaman karir resmi di '/karir'.
+11. ATURAN DYNAMIC DOWNSELLING: Jika klien mengeluh tentang harga kemahalan, budget tidak cukup, atau keberatan soal biaya, Anda WAJIB menawarkan paket alternatif yang lebih terjangkau secara dinamis (downsell) untuk mempertahankan mereka. Contoh: Menawarkan paket Landing Page Starter (Rp 1.000.000) atau Company Profile Starter (Rp 1.800.000) untuk menggantikan paket Enterprise, atau menyarankan Software QA paket Basic/Pro daripada Elite, serta menjelaskan bahwa paket awal tersebut sudah sangat memadai untuk meluncurkan bisnis mereka secara profesional.
 
 Anda WAJIB memberikan respons dalam format JSON objek dengan kunci-kunci berikut:
 {
@@ -114,6 +117,9 @@ Your Rules:
 6. CLOSED-DOMAIN AGENT: You are ONLY allowed to discuss things related to LUMOVELO and our agency services. If the user asks about topics unrelated to Lumovelo (e.g., general coding, math, cooking recipes, gossip, casual chat, etc.), you MUST respond with this polite rejection message: "I'm sorry, I don't quite understand your request. I can only help answer questions regarding LUMOVELO digital agency services (website development, SEO, promo video editing, and AI automation). Is there anything I can help you with regarding these services?"
 7. TECH STACK CONSULTANT: Act as a Senior Technical Architect who is language-agnostic (expert in Laravel, Node.js, Go, Python, Astro, React, etc.). If the client asks or discusses tech stack/programming languages, present 3-4 options across different ecosystems tailored to their service (e.g., Astro + Tailwind vs Next.js + React vs Laravel for Web Dev; Python/FastAPI vs Node.js vs Go for Backend API). Describe the specific architectural benefits of each, and ask for their preference. Once selected, save it in the "tech_stack" variable in the JSON.
 8. AUDIT RECOMMENDATION: If the client complains about slow website speed, poor SEO, or broken mobile responsiveness on their current website, you MUST politely recommend them to use our free real-time performance scanner page at '/audit' (for Indonesian) or '/en/audit' (for English). Example: "You can run a free analysis of your website's performance and SEO scores in real-time on our audit page at /en/audit."
+9. OFFICIAL ADMIN WHATSAPP NUMBER: If the client asks for the admin's contact, WhatsApp, or wants to talk to a human admin, you MUST provide a direct WhatsApp link in markdown format: '[Contact Admin via WhatsApp](https://wa.me/6285624353611)' and set 'should_route_to_admin' to true so the large green WhatsApp redirect button automatically renders for them to click.
+10. CAREERS & JOBS PAGE: If the client asks about job vacancies, careers, or joining the Lumovelo team, direct them to open our official career page at '/en/careers' (or '/karir' for Indonesian).
+11. DYNAMIC DOWNSELLING RULE: If the client complains that the price is too high, their budget is insufficient, or they object to the cost, you MUST dynamically offer a more affordable alternative package (downsell) to keep them in the funnel. Example: Offer the Landing Page Starter ($70) or Company Profile Starter ($120) instead of the Enterprise package, or recommend the Basic/Pro software QA packages instead of Elite, explaining that these entry-level packages are fully capable of getting their business off the ground professionally.
 
 You MUST provide your response in a JSON object format with the following keys:
 {
@@ -140,9 +146,11 @@ export async function GET({ request }) {
     // 1. Fetch AI config
     const { data: configData, error: configError } = await supabaseAdmin
       .from('ai_config')
-      .select('system_instruction_id, system_instruction_en')
+      .select('system_instruction_id, system_instruction_en, blacklisted_words, banned_ips')
       .eq('id', 'default')
       .maybeSingle();
+
+    const defaultBlacklist = 'jokowi, prabowo, megawati, soeharto, soekarno, trump, obama, naruto, sambo, kaesang, anjing, monyet, babi, kontol, memek, pepek, bangsat, pantek, asu, bajingan, asdfgh, qwerty, testerrr';
 
     if (configError && (configError.message.includes('relation') || configError.message.includes('find the table') || configError.code === 'PGRST205')) {
       return new Response(JSON.stringify({
@@ -151,6 +159,8 @@ export async function GET({ request }) {
   id TEXT PRIMARY KEY,
   system_instruction_id TEXT,
   system_instruction_en TEXT,
+  blacklisted_words TEXT,
+  banned_ips TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
@@ -186,6 +196,8 @@ CREATE TABLE IF NOT EXISTS api_keys_monitor (
   id TEXT PRIMARY KEY,
   system_instruction_id TEXT,
   system_instruction_en TEXT,
+  blacklisted_words TEXT,
+  banned_ips TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
@@ -258,12 +270,16 @@ CREATE TABLE IF NOT EXISTS api_keys_monitor (
     const config = configData || {
       system_instruction_id: fallbackId,
       system_instruction_en: fallbackEn,
+      blacklisted_words: defaultBlacklist,
+      banned_ips: '',
       is_fallback: true
     };
 
     return new Response(JSON.stringify({
       system_instruction_id: config.system_instruction_id,
       system_instruction_en: config.system_instruction_en,
+      blacklisted_words: config.blacklisted_words || defaultBlacklist,
+      banned_ips: config.banned_ips || '',
       is_fallback: !configData,
       api_keys: apiKeys
     }), {
@@ -373,8 +389,50 @@ export async function POST({ request }) {
       });
     }
 
-    // Default: Save prompts
-    const { system_instruction_id, system_instruction_en } = body;
+    if (action === 'ban_ip') {
+      const { ipToBan } = body;
+      if (!ipToBan || ipToBan === 'unknown' || ipToBan.includes('Tersembunyi')) {
+        return new Response(JSON.stringify({ error: 'Alamat IP tidak valid untuk diblokir.' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+
+      const { data: currentConfig } = await supabaseAdmin
+        .from('ai_config')
+        .select('banned_ips')
+        .eq('id', 'default')
+        .maybeSingle();
+
+      const existingBanned = (currentConfig?.banned_ips || '')
+        .split(',')
+        .map(i => i.trim())
+        .filter(Boolean);
+
+      if (!existingBanned.includes(ipToBan)) {
+        existingBanned.push(ipToBan);
+      }
+
+      const newBannedStr = existingBanned.join(', ');
+
+      const { error: banErr } = await supabaseAdmin
+        .from('ai_config')
+        .upsert({
+          id: 'default',
+          banned_ips: newBannedStr,
+          updated_at: new Date().toISOString()
+        });
+
+      if (banErr) throw banErr;
+
+      return new Response(JSON.stringify({ success: true, message: `Alamat IP ${ipToBan} berhasil diblokir!`, banned_ips: newBannedStr }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Default: Save prompts & blacklisted_words
+    const { system_instruction_id, system_instruction_en, blacklisted_words, banned_ips } = body;
     if (!system_instruction_id || !system_instruction_en) {
       return new Response(JSON.stringify({ error: 'Instruksi prompt tidak boleh kosong!' }), {
         status: 400,
@@ -388,10 +446,37 @@ export async function POST({ request }) {
         id: 'default',
         system_instruction_id,
         system_instruction_en,
+        ...(blacklisted_words !== undefined && { blacklisted_words }),
+        ...(banned_ips !== undefined && { banned_ips }),
         updated_at: new Date().toISOString()
       });
 
     if (upsertErr) {
+      if (upsertErr.message.includes('blacklisted_words') || upsertErr.message.includes('banned_ips') || upsertErr.code === 'PGRST204') {
+        // Fallback simpan instruksi prompt saja jika kolom blacklist belum ada di Supabase
+        const { error: fallbackErr } = await supabaseAdmin
+          .from('ai_config')
+          .upsert({
+            id: 'default',
+            system_instruction_id,
+            system_instruction_en,
+            updated_at: new Date().toISOString()
+          });
+
+        if (!fallbackErr) {
+          return new Response(JSON.stringify({ 
+            success: true, 
+            warning: 'Instruksi AI berhasil disimpan! Namun kolom blacklisted_words/banned_ips belum ada di Supabase Anda.',
+            need_migration: true,
+            sql: `ALTER TABLE ai_config ADD COLUMN IF NOT EXISTS blacklisted_words TEXT;
+ALTER TABLE ai_config ADD COLUMN IF NOT EXISTS banned_ips TEXT;`
+          }), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
+          });
+        }
+      }
+
       if (upsertErr.message.includes('relation') || upsertErr.message.includes('find the table') || upsertErr.code === 'PGRST205') {
         return new Response(JSON.stringify({ 
           error: 'Tabel "ai_config" belum dibuat di database Supabase Anda.',
@@ -400,21 +485,10 @@ export async function POST({ request }) {
   id TEXT PRIMARY KEY,
   system_instruction_id TEXT,
   system_instruction_en TEXT,
+  blacklisted_words TEXT,
+  banned_ips TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS api_keys_monitor (
-  id SERIAL PRIMARY KEY,
-  key_name TEXT NOT NULL UNIQUE,
-  api_key_masked TEXT NOT NULL,
-  used_quota INTEGER DEFAULT 0,
-  max_quota INTEGER DEFAULT 1000,
-  status TEXT DEFAULT 'active',
-  last_limited_at TIMESTAMP WITH TIME ZONE,
-  reset_duration_seconds INTEGER DEFAULT 60,
-  is_selected BOOLEAN DEFAULT false,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );`
         }), {
           status: 400,
