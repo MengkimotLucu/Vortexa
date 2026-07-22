@@ -145,6 +145,9 @@ const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL('/og-image.png', 'https://lumovelo.com').href} />
     
+    <!-- Ahrefs Analytics -->
+    <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="F5g8iy2JtQ/sH8/GV6rxFQ" async></script>
+
     <!-- Meta Pixel / Google Analytics placeholders -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -286,6 +289,7 @@ const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
           toast.classList.add('translate-y-4', 'opacity-0');
           setTimeout(() => {
             toast.remove();
+          }, 300);
         }, 4000);
       };
 
