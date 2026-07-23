@@ -153,9 +153,56 @@ const homeLink = lang === "en" ? "/en/" : "/";
 const contactLink = lang === "en" ? "/en/kontak/" : "/kontak/";
 
 // Structured Schema Markup
+const faqs = {
+  id: [
+    {
+      q: "Berapa biaya pembuatan website di Lumovelo?",
+      a: "Biaya pembuatan website bervariasi bergantung pada skala dan fitur yang Anda butuhkan, mulai dari Rp 950.000 untuk landing page konversi tinggi hingga Rp 7.500.000+ untuk custom web application dengan integrasi API dinamis dan visualisasi dasbor. Kami menyajikan harga transparan satu kali bayar tanpa ada biaya langganan bulanan tersembunyi."
+    },
+    {
+      q: "Apakah saya mendapatkan akses mandiri untuk memperbarui konten website?",
+      a: "Tentu saja. Kami mengintegrasikan sistem Headless CMS (Content Management System) yang praktis dan ramah pengguna. Anda dapat mengubah teks deskripsi, memperbarui harga produk, mengunggah portofolio gambar baru, serta mempublikasikan postingan blog secara mandiri melalui HP atau laptop tanpa menyentuh kode pemrograman."
+    },
+    {
+      q: "Bagaimana performa kecepatan loading dan optimasi SEO website buatan Lumovelo?",
+      a: "Kecepatan dan SEO adalah prioritas utama kami. Kami merancang arsitektur website menggunakan teknologi serverless super cepat (SSG/SSR) yang memiliki waktu respons instan. Kami juga menerapkan On-Page SEO lengkap (meta tags, semantic headings, sitemap, robots.txt, dan schema markup data terstruktur) agar website Anda langsung disukai oleh mesin pencari Google."
+    },
+    {
+      q: "Apakah saya akan memiliki source code lengkap dan nama domain secara mandiri?",
+      a: "Ya, sepenuhnya. Setelah proyek selesai dan pelunasan diselesaikan, seluruh kepemilikan source code dan aset digital akan diserahkan langsung kepada Anda. Kami juga mendaftarkan domain (.com atau .co.id) atas nama perusahaan Anda secara resmi, sehingga Anda memegang kendali penuh di masa depan."
+    },
+    {
+      q: "Apakah website aman dari serangan hacker atau malware?",
+      a: "Sangat aman. Karena kami menggunakan teknologi static-site generation (SSG) berbasis serverless modern, website Anda tidak memiliki server database konvensional yang terekspos langsung di internet. Hal ini meminimalkan celah kerentanan keamanan siber secara signifikan, menjadikannya sangat sulit diretas dibandingkan dengan website CMS tradisional seperti WordPress."
+    }
+  ],
+  en: [
+    {
+      q: "How much does it cost to build a website at Lumovelo?",
+      a: "Website creation costs vary depending on scale and features, starting from IDR 950,000 for high-converting landing pages to IDR 7,500,000+ for custom web applications with dynamic API integrations and dashboard visualizations. We offer transparent one-time pricing with no hidden monthly fees."
+    },
+    {
+      q: "Do I get dashboard access to update my website content independently?",
+      a: "Absolutely. We integrate user-friendly Headless CMS (Content Management System) dashboards. You can easily modify descriptions, adjust product prices, upload portfolio images, and publish blog articles independently via laptop or mobile without touching any source code."
+    },
+    {
+      q: "How are the loading speed and SEO optimization of websites built by Lumovelo?",
+      a: "Speed and SEO are our top design parameters. We engineer websites using ultra-fast serverless architectures (SSG/SSR) that render pages instantly. We also integrate comprehensive On-Page SEO properties (meta tags, semantic headings, sitemaps, robots.txt, and structured data schemas) so search engines can index your site quickly."
+    },
+    {
+      q: "Will I have full ownership of the source code and domain name?",
+      a: "Yes, 100%. Upon completion and final payment, complete ownership of the codebase and all digital assets is handed over to you. We also register domain names (.com or other extensions) officially under your brand name, ensuring you maintain absolute control."
+    },
+    {
+      q: "Is the website secure against hacker attacks and malware?",
+      a: "Extremely secure. Since we build websites utilizing modern serverless static-site generation (SSG), there is no live SQL database engine exposed directly on the web. This design eliminates common web vulnerabilities (like SQL injections), making it highly secure compared to traditional CMS platforms like WordPress."
+    }
+  ]
+}[lang];
+
 const schema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "Service",
   name:
     lang === "en"
       ? "Website & Landing Page Development - LUMOVELO"
@@ -165,9 +212,10 @@ const schema = {
     lang === "en"
       ? "Premium custom corporate website creation, high-converting landing pages, and headless e-commerce stores integrated with payment gateways using fast serverless technology."
       : "Jasa pembuatan website company profile kustom, landing page konversi tinggi, dan toko online modern menggunakan teknologi headless serverless super cepat.",
-  brand: {
-    "@type": "Brand",
+  provider: {
+    "@type": "Organization",
     name: "LUMOVELO",
+    url: "https://www.lumovelo.com",
   },
   offers: {
     "@type": "AggregateOffer",
@@ -184,15 +232,22 @@ const schema = {
     })),
   },
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 
-<Layout title={content.title} description={content.desc}>
-  <!-- JSON-LD Structured Data Schema -->
-  <script
-    type="application/ld+json"
-    is:inline
-    set:html={JSON.stringify(schema)}
-  />
+<Layout title={content.title} description={content.desc} schema={[schema, faqSchema]}>
 
   <!-- Simple Subpage Header -->
   <header
@@ -626,6 +681,33 @@ const schema = {
           }
         </div>
       </div>
+
+      <!-- FAQ Accordion Section -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">/ F.A.Q.</h2>
+            <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">
+              {lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum'}
+            </h3>
+          </div>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group border border-slate-200 rounded-2xl bg-white p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow transition-shadow">
+                <summary class="flex items-center justify-between font-display font-black text-sm sm:text-base uppercase text-slate-900 tracking-tight select-none">
+                  <span>{faq.q}</span>
+                  <svg class="w-4 h-4 text-blue-600 group-open:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold pt-4 border-t border-slate-200/50 mt-4">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <!-- Lead Funnel CTA -->
       <div

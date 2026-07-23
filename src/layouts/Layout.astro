@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   lang?: string;
   noindex?: boolean;
+  schema?: Record<string, any> | Record<string, any>[];
 }
 
 const currentLocale = Astro.url.pathname.startsWith('/en/') || Astro.url.pathname === '/en' ? 'en' : 'id';
@@ -27,7 +28,8 @@ const {
   title = defaultTitles[currentLocale], 
   description = defaultDescriptions[currentLocale],
   lang = currentLocale,
-  noindex = false
+  noindex = false,
+  schema
 } = Astro.props;
 
 const isWorkspaceOrAdmin = Astro.url.pathname.includes('/admin') || Astro.url.pathname.includes('/workspace');
@@ -219,6 +221,11 @@ const dynamicSchema = currentLocale === 'id'
 
     <!-- JSON-LD Structured Data Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(dynamicSchema)} />
+    {schema && (
+      Array.isArray(schema) 
+        ? schema.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)
+        : <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
   </head>
   <body class="bg-white text-slate-900 min-h-screen selection:bg-blue-600/20 selection:text-blue-900">
     <!-- Google Tag Manager (noscript) -->

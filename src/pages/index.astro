@@ -79,11 +79,30 @@ const faqSchema = {
     }
   }))
 };
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "LUMOVELO",
+  "url": "https://www.lumovelo.com",
+  "logo": "https://www.lumovelo.com/favicon.svg",
+  "description": meta.description,
+  "sameAs": [
+    "https://github.com",
+    "https://twitter.com",
+    "https://linkedin.com",
+    "https://instagram.com"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+6285624353611",
+    "contactType": "customer service",
+    "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"],
+    "availableLanguage": ["Indonesian", "English"]
+  }
+};
 ---
 
-<Layout title={meta.title} description={meta.description}>
-  <!-- JSON-LD FAQ Schema Markup -->
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+<Layout title={meta.title} description={meta.description} schema={[organizationSchema, faqSchema]}>
 
   <!-- Main layout container for Lumovelo agency -->
   <main class="relative z-10 bg-white">

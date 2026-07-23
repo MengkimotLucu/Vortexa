@@ -127,18 +127,68 @@ const homeLink = lang === 'en' ? '/en/' : '/';
 const contactLink = lang === 'en' ? '/en/contact/' : '/kontak/';
 
 // Structured Schema Markup
-const schema = {
+const faqs = {
+  id: [
+    {
+      q: "Apa itu QA testing dan mengapa penting untuk pengembangan software?",
+      a: "Quality Assurance (QA) testing adalah proses pengujian perangkat lunak untuk memastikan bahwa aplikasi berjalan bebas dari bug, crash, dan error logika. Hal ini penting untuk menjaga retensi pelanggan, memberikan pengalaman pengguna yang mulus, dan menghindari biaya perbaikan yang mahal setelah produk dirilis ke pasar."
+    },
+    {
+      q: "Perangkat apa saja yang Anda gunakan untuk pengujian aplikasi mobile?",
+      a: "Kami melakukan pengujian pada perangkat fisik asli (real devices) Android dan iOS dengan spesifikasi dan versi sistem operasi (operating systems) yang beragam, bukan emulator. Ini memastikan aplikasi Anda kompatibel di berbagai tipe HP yang digunakan pelanggan riil Anda."
+    },
+    {
+      q: "Kapan waktu terbaik untuk memulai QA testing pada proyek pengembangan?",
+      a: "Kami menyarankan untuk melibatkan tim QA sejak awal siklus pengembangan (shift-left testing). Pengujian yang dilakukan sejak tahap desain API atau koding awal sangat membantu mendeteksi celah logika lebih dini, sehingga menghemat waktu dan biaya perbaikan secara signifikan."
+    },
+    {
+      q: "Apa perbedaan antara manual testing dan otomatisasi pengujian (QA Automation)?",
+      a: "Manual testing melibatkan pengujian fungsionalitas secara manual oleh tim tester kami untuk menilai pengalaman pengguna (user experience) secara intuitif. Sedangkan otomatisasi pengujian menggunakan skrip kode (seperti Playwright atau Cypress) untuk menjalankan pengujian regresi berulang secara cepat dan otomatis pada pipeline integrasi (CI/CD)."
+    },
+    {
+      q: "Apakah Anda juga menyediakan pengujian beban (load testing) server?",
+      a: "Ya. Kami melakukan pengujian beban server untuk mensimulasikan peak traffic (hingga ribuan virtual users secara bersamaan). Kami membantu mendeteksi kebocoran memori (memory leaks), batas maksimal beban server, serta menguji kecepatan respons API agar aplikasi Anda tetap stabil saat terjadi lonjakan traffic."
+    }
+  ],
+  en: [
+    {
+      q: "What is QA testing and why is it important for software development?",
+      a: "Quality Assurance (QA) testing is the process of testing software to ensure that the application runs free of bugs, crashes, and logic errors. It is essential for protecting customer retention, providing a seamless user experience, and avoiding expensive hotfixes after product release."
+    },
+    {
+      q: "What devices do you use for mobile application testing?",
+      a: "We perform testing on real physical Android and iOS devices with various specifications and operating system versions, not emulators. This ensures your application is compatible across the diverse range of smartphones used by your real customers."
+    },
+    {
+      q: "When is the best time to start QA testing in a development project?",
+      a: "We recommend involving the QA team early in the development lifecycle (shift-left testing). Testing conducted during early coding or API design phases helps identify logic flaws sooner, saving significant time and cost."
+    },
+    {
+      q: "What is the difference between manual testing and QA automation?",
+      a: "Manual testing involves our testers manually interacting with the app to evaluate usability, look-and-feel, and user experience. QA automation uses test scripts (such as Playwright or Cypress) to run regression testing suites quickly and automatically in CI/CD pipelines."
+    },
+    {
+      q: "Do you also offer server load testing?",
+      a: "Yes. We perform server load testing to simulate peak traffic conditions (up to thousands of concurrent virtual users). We help detect memory leaks, identify server bottlenecks, and analyze API response times to ensure your app stays stable under stress."
+    }
+  ]
+}[lang];
+
+const serviceSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "Service",
   "name": lang === 'en' ? "Software QA Testing & Mobile App Testing Services - LUMOVELO" : "Jasa QA Testing & Pengujian Aplikasi Mobile - LUMOVELO",
   "image": "https://www.lumovelo.com/og-image.png",
   "description": lang === 'en' 
     ? "Professional software quality assurance, QA automation testing (Cypress/Playwright), API load testing, and Android & iOS mobile app compatibility testing on real devices."
     : "Jasa software quality assurance profesional, QA automation (Cypress/Playwright), load testing API, serta pengujian kompatibilitas aplikasi Android & iOS pada perangkat fisik asli.",
-  "brand": {
-    "@type": "Brand",
-    "name": "LUMOVELO"
+  "provider": {
+    "@type": "Organization",
+    "name": "LUMOVELO",
+    "url": "https://www.lumovelo.com"
   },
+  "serviceType": "Software QA Testing & Mobile App Testing",
+  "areaServed": "Worldwide",
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": lang === 'en' ? "USD" : "IDR",
@@ -154,11 +204,22 @@ const schema = {
     }))
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 
-<Layout title={content.title} description={content.desc}>
-  <!-- JSON-LD Structured Data Schema -->
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+<Layout title={content.title} description={content.desc} schema={[serviceSchema, faqSchema]}>
 
   <!-- Simple Subpage Header -->
   <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
@@ -432,6 +493,33 @@ const schema = {
           </div>
         </div>
       </div>
+
+      <!-- FAQ Accordion Section -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">/ F.A.Q.</h2>
+            <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">
+              {lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum'}
+            </h3>
+          </div>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group border border-slate-200 rounded-2xl bg-white p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow transition-shadow">
+                <summary class="flex items-center justify-between font-display font-black text-sm sm:text-base uppercase text-slate-900 tracking-tight select-none">
+                  <span>{faq.q}</span>
+                  <svg class="w-4 h-4 text-blue-600 group-open:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold pt-4 border-t border-slate-200/50 mt-4">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <!-- Lead Funnel CTA -->
       <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">

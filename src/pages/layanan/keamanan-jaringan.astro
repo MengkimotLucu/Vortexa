@@ -148,18 +148,68 @@ const generalWaText = encodeURIComponent(
 const generalWaUrl = `https://api.whatsapp.com/send?phone=6285624353611&text=${generalWaText}`;
 
 // Schema Markup for SEO
-const schema = {
+const faqs = {
+  id: [
+    {
+      q: "Apa itu penetration testing dan mengapa bisnis saya membutuhkannya?",
+      a: "Penetration testing (atau pentest) adalah simulasi serangan siber terkontrol untuk menguji ketahanan sistem, aplikasi, dan jaringan Anda. Ini sangat krusial bagi bisnis B2B, FinTech, dan e-commerce guna mendeteksi celah keamanan sebelum hacker mengeksploitasinya, melindungi data sensitif pelanggan, serta mematuhi UU Pelindungan Data Pribadi (UU PDP)."
+    },
+    {
+      q: "Berapa lama waktu yang dibutuhkan untuk melakukan audit keamanan jaringan?",
+      a: "Proses penilaian awal dan pemindaian celah keamanan (vulnerability scanning) biasanya memakan waktu 3–5 hari kerja. Untuk pengujian penetrasi eksternal yang lebih mendalam serta penyusunan laporan audit kepatuhan ISO 27001 atau regulasi OJK membutuhkan waktu 2–3 minggu."
+    },
+    {
+      q: "Apakah Lumovelo menyediakan solusi firewall fisik dan virtual?",
+      a: "Ya. Kami melakukan instalasi, konfigurasi, dan optimalisasi firewall perangkat keras (seperti MikroTik, Fortinet, atau Cisco) untuk jaringan kantor fisik Anda, serta pengaturan firewall virtual berbasis cloud untuk mengamankan lalu lintas jaringan dan server database sensitif Anda."
+    },
+    {
+      q: "Apa saja yang tercakup dalam layanan EDR (Endpoint Detection and Response)?",
+      a: "Layanan EDR kami mencakup instalasi lisensi antivirus terpusat (seperti ESET atau Kaspersky Endpoint Security) pada laptop dan PC karyawan Anda, pemblokiran ransomware, malware, dan USB asing secara real-time, serta monitoring ancaman siber terpusat dari cloud."
+    },
+    {
+      q: "Bagaimana format laporan hasil audit keamanan yang diberikan?",
+      a: "Kami memberikan laporan audit formal terstruktur yang mencakup Executive Summary untuk jajaran manajemen, detail temuan celah keamanan yang diurutkan berdasarkan tingkat risiko (High, Medium, Low), petunjuk teknis langkah remediasi (remediation guide) untuk tim developer Anda, serta sertifikat hasil uji keamanan."
+    }
+  ],
+  en: [
+    {
+      q: "What is penetration testing and why does my business need it?",
+      a: "Penetration testing (pentest) is a controlled cyberattack simulation designed to evaluate the security of your network and applications. It is vital for B2B, fintech, and e-commerce companies to uncover system flaws before hackers do, protecting sensitive customer data and staying compliant with regulations."
+    },
+    {
+      q: "How long does a network security audit take?",
+      a: "Vulnerability scanning and initial network assessments usually take 3 to 5 business days. Deeper external penetration tests and drafting compliance reports (like ISO 27001 or financial regulatory audits) take between 2 to 3 weeks."
+    },
+    {
+      q: "Do you configure both physical and cloud firewalls?",
+      a: "Yes. We configure, install, and optimize physical firewall appliances (such as MikroTik, Fortinet, or Cisco) for office networks, as well as cloud-hosted firewalls to control network traffic and isolate sensitive database environments."
+    },
+    {
+      q: "What is included in the EDR (Endpoint Detection and Response) service?",
+      a: "Our EDR services cover cloud-managed centralized protection (e.g. ESET/Kaspersky Endpoint Security) on employee machines, real-time ransomware blocking, rogue USB isolation, and active threat monitoring."
+    },
+    {
+      q: "What format of security audit report do you provide?",
+      a: "We deliver a comprehensive report containing an Executive Summary for managers, a prioritized list of vulnerabilities (High, Medium, Low risk), concrete code remediation guides for your developers, and a security audit certificate."
+    }
+  ]
+}[lang];
+
+const serviceSchema = {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "Service",
   "name": lang === 'en' ? "Network & Endpoint Security Solutions - LUMOVELO" : "Jasa Keamanan Jaringan & Proteksi Endpoint - LUMOVELO",
   "image": "https://www.lumovelo.com/og-image.png",
   "description": lang === 'en'
     ? "Premium corporate cybersecurity services, endpoint protection software license integration, and hardware firewall deployment to safeguard business digital assets."
     : "Jasa keamanan siber korporat premium, integrasi lisensi antivirus endpoint cloud tersupat, dan konfigurasi hardware firewall untuk melindungi aset digital bisnis.",
-  "brand": {
-    "@type": "Brand",
-    "name": "LUMOVELO"
+  "provider": {
+    "@type": "Organization",
+    "name": "LUMOVELO",
+    "url": "https://www.lumovelo.com"
   },
+  "serviceType": "Network Security & Penetration Testing",
+  "areaServed": "Worldwide",
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "IDR",
@@ -175,11 +225,22 @@ const schema = {
     }))
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 
-<Layout title={content.title} description={content.desc}>
-  <!-- JSON-LD Structured Data Schema -->
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+<Layout title={content.title} description={content.desc} schema={[serviceSchema, faqSchema]}>
 
   <!-- Simple Subpage Header -->
   <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
@@ -470,6 +531,33 @@ const schema = {
           })}
         </div>
       </div>
+
+      <!-- FAQ Accordion Section -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">/ F.A.Q.</h2>
+            <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">
+              {lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum'}
+            </h3>
+          </div>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group border border-slate-200 rounded-2xl bg-white p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow transition-shadow">
+                <summary class="flex items-center justify-between font-display font-black text-sm sm:text-base uppercase text-slate-900 tracking-tight select-none">
+                  <span>{faq.q}</span>
+                  <svg class="w-4 h-4 text-blue-600 group-open:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold pt-4 border-t border-slate-200/50 mt-4">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <!-- Call to Action Banner -->
       <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8 mb-12">

@@ -114,9 +114,97 @@ const packages = [
 
 const homeLink = lang === 'en' ? '/en/' : '/';
 const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
+
+const faqs = {
+  id: [
+    {
+      q: "Mengapa bisnis saya membutuhkan jasa SEO bulanan?",
+      a: "Jasa SEO bulanan membantu website Anda berada di halaman 1 Google secara organik tanpa harus terus-menerus membayar iklan berbayar (seperti Google Ads). Ini mendatangkan calon pelanggan potensial yang memang sedang mencari kata kunci terkait layanan Anda secara aktif dan berkelanjutan."
+    },
+    {
+      q: "Berapa lama waktu yang dibutuhkan untuk melihat hasil optimasi SEO?",
+      a: "SEO adalah strategi jangka panjang. Biasanya, perbaikan performa teknis kecepatan website dan indeksasi Google dapat terlihat dalam 2–4 minggu. Namun, peningkatan peringkat kata kunci kompetitif dan kenaikan trafik organik secara signifikan umumnya membutuhkan waktu antara 3 hingga 6 bulan."
+    },
+    {
+      q: "Apakah Anda memberikan jaminan website saya pasti peringkat 1 di Google?",
+      a: "Sesuai dengan pedoman resmi mesin pencari Google, tidak ada agensi yang bisa menjamin peringkat 1 mutlak secara instan karena algoritma Google selalu diperbarui secara dinamis. Namun, kami menerapkan strategi SEO putih (white-hat SEO) berbasis analisis data Semrush untuk menaikkan otoritas domain dan memenangkan kompetisi kata kunci di industri Anda."
+    },
+    {
+      q: "Apa saja cakupan pekerjaan SEO bulanan di Lumovelo?",
+      a: "Pekerjaan kami mencakup audit On-Page SEO (pembenahan meta tag, heading semantik, struktur link), audit Technical SEO (optimasi kecepatan load, sitemap, skema JSON-LD), riset kata kunci kompetitif bulanan, pembuatan konten berkualitas tinggi, serta pelaporan berkala performa kata kunci dan lalu lintas trafik Anda."
+    },
+    {
+      q: "Bagaimana format laporan bulanan yang saya terima?",
+      a: "Anda akan menerima laporan performa bulanan yang interaktif dan mudah dibaca, berisi peringkat kata kunci utama, perbandingan volume trafik organik dari bulan ke bulan, analisis audit kesalahan teknis situs, serta rencana tindakan (action plan) optimasi untuk bulan berikutnya."
+    }
+  ],
+  en: [
+    {
+      q: "Why does my business need monthly SEO services?",
+      a: "Monthly SEO services help position your website on page 1 of Google organically, saving you from continuously paying for advertisements (like Google Ads). It drives high-intent prospective customers who are actively searching for terms related to your offerings."
+    },
+    {
+      q: "How long does it take to see results from SEO optimization?",
+      a: "SEO is a long-term investment. Improvements in technical loading speed and indexing on Google can often be seen in 2 to 4 weeks. However, significant ranking growth for competitive keywords and steady organic traffic increase usually take 3 to 6 months."
+    },
+    {
+      q: "Do you guarantee page 1 ranking on Google?",
+      a: "In line with Google's official search engine guidelines, no agency can guarantee absolute first page rankings because Google's algorithm updates dynamically. However, we utilize white-hat SEO strategies powered by Semrush insights to increase domain authority and secure keyword wins."
+    },
+    {
+      q: "What tasks are included in the monthly SEO service at Lumovelo?",
+      a: "Our work covers On-Page SEO audits (improving meta tags, semantic headings, internal links), Technical SEO audits (page speed optimization, sitemaps, JSON-LD structured data), monthly keyword research, content drafting, and periodic organic traffic reports."
+    },
+    {
+      q: "What format of monthly reports do I receive?",
+      a: "You will receive a clear, interactive monthly report outlining your primary keyword rankings, organic traffic volume comparison, website technical health audits, and proposed optimization actions for the next cycle."
+    }
+  ]
+}[lang];
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": content.title,
+  "description": content.desc,
+  "provider": {
+    "@type": "Organization",
+    "name": "LUMOVELO",
+    "url": "https://www.lumovelo.com"
+  },
+  "serviceType": "Search Engine Optimization (SEO)",
+  "areaServed": "Worldwide",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "IDR",
+    "lowPrice": "750000",
+    "highPrice": "4500000",
+    "offerCount": "4",
+    "offers": packages.map((pkg, idx) => ({
+      "@type": "Offer",
+      "name": pkg.name,
+      "price": pkg.price.replace(/[^0-9]/g, ""),
+      "priceCurrency": "IDR",
+      "url": lang === 'en' ? "https://www.lumovelo.com/en/layanan/seo/" : "https://www.lumovelo.com/layanan/seo/"
+    }))
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 
-<Layout title={content.title} description={content.desc}>
+<Layout title={content.title} description={content.desc} schema={[serviceSchema, faqSchema]}>
   <!-- Simple Subpage Header -->
   <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -384,6 +472,33 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
           })}
         </div>
       </div>
+
+      <!-- FAQ Accordion Section -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">/ F.A.Q.</h2>
+            <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">
+              {lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum'}
+            </h3>
+          </div>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group border border-slate-200 rounded-2xl bg-white p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow transition-shadow">
+                <summary class="flex items-center justify-between font-display font-black text-sm sm:text-base uppercase text-slate-900 tracking-tight select-none">
+                  <span>{faq.q}</span>
+                  <svg class="w-4 h-4 text-blue-600 group-open:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold pt-4 border-t border-slate-200/50 mt-4">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <!-- Lead Funnel CTA -->
       <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8 animate-glow">

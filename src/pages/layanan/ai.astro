@@ -120,9 +120,97 @@ const packages = [
 
 const homeLink = lang === 'en' ? '/en/' : '/';
 const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
+
+const faqs = {
+  id: [
+    {
+      q: "Apa keuntungan utama mengintegrasikan AI ke dalam bisnis saya?",
+      a: "Integrasi AI membantu bisnis mengotomatiskan pekerjaan administratif yang berulang, menyaring data secara instan, dan melayani pelanggan secara cerdas selama 24/7. Hal ini memangkas biaya operasional, meminimalkan human error, serta membebaskan tim Anda untuk fokus pada strategi penjualan dan ekspansi bisnis."
+    },
+    {
+      q: "Apakah data internal bisnis saya aman saat melatih model AI?",
+      a: "Ya, sepenuhnya aman. Kami merancang integrasi dengan protokol keamanan tingkat tinggi dan mematuhi regulasi perlindungan data. Data basis pengetahuan (knowledge base) internal perusahaan Anda hanya digunakan untuk melatih agen AI Anda sendiri dan tidak akan dipublikasikan atau digunakan untuk melatih model publik lainnya."
+    },
+    {
+      q: "Platform apa saja yang didukung untuk integrasi AI Chatbot?",
+      a: "Kami mendukung integrasi asisten AI ke berbagai platform komunikasi populer seperti website resmi Anda, WhatsApp Business API, Telegram, Slack, hingga sistem manajemen internal perusahaan."
+    },
+    {
+      q: "Apa perbedaan antara otomatisasi alur kerja (workflow automation) dan AI Chatbot?",
+      a: "Otomatisasi alur kerja berfokus pada sinkronisasi dan perpindahan data antar aplikasi (seperti memindahkan data form website ke Google Sheets secara otomatis). Sedangkan AI Chatbot berfokus pada pemrosesan bahasa alami (Natural Language Processing) untuk berinteraksi langsung menjawab pertanyaan pengguna secara interaktif dan cerdas."
+    },
+    {
+      q: "Apakah sistem AI yang dibangun memerlukan perawatan teknis berkala?",
+      a: "Secarainfrastruktur dasar, sistem kami berjalan di atas serverless API yang sangat stabil dan minim pemeliharaan. Namun, kami menyediakan paket dukungan pemeliharaan bulanan untuk memperbarui basis pengetahuan (knowledge base), menyempurnakan instruksi prompt, serta melatih ulang model AI agar tetap relevan dengan dinamika perkembangan bisnis Anda."
+    }
+  ],
+  en: [
+    {
+      q: "What are the main benefits of integrating AI into my business?",
+      a: "AI integration helps businesses automate repetitive admin tasks, process data instantly, and handle customer queries intelligently 24/7. This reduces operational costs, minimizes human error, and frees up your team to focus on sales strategy and scaling."
+    },
+    {
+      q: "Is my business's internal data safe when training the AI model?",
+      a: "Yes, completely safe. We design integrations using high-standard security protocols and strictly comply with data protection standards. Your company's internal knowledge base is used solely to train your custom AI agent and is never shared or used to train public models."
+    },
+    {
+      q: "Which platforms are supported for AI Chatbot integration?",
+      a: "We support integrating AI assistants across various popular communication platforms, including your official website, WhatsApp Business API, Telegram, Slack, and internal custom company dashboards."
+    },
+    {
+      q: "What is the difference between workflow automation and an AI Chatbot?",
+      a: "Workflow automation focuses on syncing and moving data between apps automatically (e.g. sending web form data directly to Google Sheets). An AI Chatbot uses Natural Language Processing (NLP) to converse directly with users, answering questions interactively and intelligently."
+    },
+    {
+      q: "Does the built AI system require periodic technical maintenance?",
+      a: "At the core infrastructure level, our serverless APIs are highly stable and require minimal maintenance. However, we provide monthly maintenance support packages to update your knowledge bases, fine-tune prompt instructions, and retrain the models to keep up with your business updates."
+    }
+  ]
+}[lang];
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": content.title,
+  "description": content.desc,
+  "provider": {
+    "@type": "Organization",
+    "name": "LUMOVELO",
+    "url": "https://www.lumovelo.com"
+  },
+  "serviceType": "AI Integration & Business Automation",
+  "areaServed": "Worldwide",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "IDR",
+    "lowPrice": "1500000",
+    "highPrice": "8500000",
+    "offerCount": "4",
+    "offers": packages.map((pkg, idx) => ({
+      "@type": "Offer",
+      "name": pkg.name,
+      "price": pkg.price.replace(/[^0-9]/g, ""),
+      "priceCurrency": "IDR",
+      "url": lang === 'en' ? "https://www.lumovelo.com/en/layanan/ai/" : "https://www.lumovelo.com/layanan/ai/"
+    }))
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 
-<Layout title={content.title} description={content.desc}>
+<Layout title={content.title} description={content.desc} schema={[serviceSchema, faqSchema]}>
   <!-- Simple Subpage Header -->
   <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -390,6 +478,33 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
           })}
         </div>
       </div>
+
+      <!-- FAQ Accordion Section -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">/ F.A.Q.</h2>
+            <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">
+              {lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum'}
+            </h3>
+          </div>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group border border-slate-200 rounded-2xl bg-white p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow transition-shadow">
+                <summary class="flex items-center justify-between font-display font-black text-sm sm:text-base uppercase text-slate-900 tracking-tight select-none">
+                  <span>{faq.q}</span>
+                  <svg class="w-4 h-4 text-blue-600 group-open:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold pt-4 border-t border-slate-200/50 mt-4">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <!-- Lead Funnel CTA -->
       <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">

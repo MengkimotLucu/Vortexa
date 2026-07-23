@@ -210,9 +210,97 @@ const graphicPackages = [
 const homeLink = lang === 'en' ? '/en/' : '/';
 const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
 const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
+
+const faqs = {
+  id: [
+    {
+      q: "Apa saja jenis video yang bisa diedit oleh Lumovelo?",
+      a: "Kami melayani berbagai kebutuhan editing video, mulai dari video promosi produk, profil perusahaan (corporate profile), konten pendek untuk TikTok/Instagram Reels/YouTube Shorts, animasi motion graphics, hingga teks kinetik untuk presentasi brand Anda."
+    },
+    {
+      q: "Berapa lama waktu pengerjaan proyek editing video?",
+      a: "Untuk video pendek berdurasi di bawah 1 menit (short-form) biasanya memakan waktu 2 hingga 3 hari kerja. Untuk video korporasi berdurasi panjang atau video dengan animasi kompleks membutuhkan waktu sekitar 5 hingga 10 hari kerja."
+    },
+    {
+      q: "Apakah Lumovelo menyediakan pengisi suara (voice over) dan lisensi musik?",
+      a: "Ya. Seluruh paket pengeditan video kami sudah termasuk lisensi musik latar bebas klaim hak cipta (royalty-free) dan pilihan voice over profesional dalam bahasa Indonesia maupun Inggris sesuai kebutuhan promosi Anda."
+    },
+    {
+      q: "Bagaimana proses pengiriman file mentah dan hasil jadinya?",
+      a: "Aset video mentah (raw footage) dan naskah dapat diunggah ke Google Drive atau Dropbox bersama yang kami siapkan. Setelah proses penyuntingan selesai, kami mengirimkan hasil akhir dalam format resolusi tinggi (Full HD 1080p hingga 4K UHD) siap pakai."
+    },
+    {
+      q: "Apakah saya bisa mengajukan revisi jika ada bagian yang kurang cocok?",
+      a: "Tentu. Setiap paket sudah dilengkapi dengan kuota revisi minor gratis untuk menyesuaikan teks subtitle, warna, atau pemotongan klip agar hasil akhirnya benar-benar sesuai dengan konsep kreatif brand Anda."
+    }
+  ],
+  en: [
+    {
+      q: "What types of videos does Lumovelo edit?",
+      a: "We edit a wide variety of videos, including product promotions, corporate profiles, short-form marketing content (TikTok, Reels, Shorts), motion graphics animations, and custom kinetic typography."
+    },
+    {
+      q: "How long does the video editing process take?",
+      a: "Short-form videos (under 60 seconds) are typically delivered within 2 to 3 business days. Complex corporate profiles or videos requiring custom graphic animations take between 5 to 10 business days."
+    },
+    {
+      q: "Do you provide background music and professional voice-overs?",
+      a: "Yes. All our video editing packages include licensing for royalty-free background music and options for professional voice-overs in both English and Indonesian to make your campaign ready to deploy."
+    },
+    {
+      q: "How do we transfer raw footage and download the final render?",
+      a: "You can upload all raw video files, guidelines, and scripts to a shared Google Drive or Dropbox folder. The final output is delivered in high-definition formats (1080p up to 4K UHD) optimized for your channels."
+    },
+    {
+      q: "Are revisions supported if changes are needed?",
+      a: "Absolutely. Every package comes with a set amount of free minor revisions for text adjustments, color grading tweaks, or audio edits, ensuring the final video aligns perfectly with your brand vision."
+    }
+  ]
+}[lang];
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": content.title,
+  "description": content.desc,
+  "provider": {
+    "@type": "Organization",
+    "name": "LUMOVELO",
+    "url": "https://www.lumovelo.com"
+  },
+  "serviceType": "Video Editing & Brand Assets Design",
+  "areaServed": "Worldwide",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": lang === 'en' ? "USD" : "IDR",
+    "lowPrice": lang === 'en' ? "49" : "450000",
+    "highPrice": lang === 'en' ? "499" : "4950000",
+    "offerCount": "4",
+    "offers": videoPackages.map((pkg, idx) => ({
+      "@type": "Offer",
+      "name": pkg.name,
+      "price": pkg.price.replace(/[^0-9]/g, ""),
+      "priceCurrency": lang === 'en' ? "USD" : "IDR",
+      "url": lang === 'en' ? "https://www.lumovelo.com/en/layanan/video/" : "https://www.lumovelo.com/layanan/video/"
+    }))
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
 ---
 
-<Layout title={content.title} description={content.desc}>
+<Layout title={content.title} description={content.desc} schema={[serviceSchema, faqSchema]}>
   <!-- Simple Subpage Header -->
   <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -558,6 +646,33 @@ const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
           </div>
         </div>
       </div>
+
+      <!-- FAQ Accordion Section -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-10">
+            <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">/ F.A.Q.</h2>
+            <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">
+              {lang === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Umum'}
+            </h3>
+          </div>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group border border-slate-200 rounded-2xl bg-white p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm hover:shadow transition-shadow">
+                <summary class="flex items-center justify-between font-display font-black text-sm sm:text-base uppercase text-slate-900 tracking-tight select-none">
+                  <span>{faq.q}</span>
+                  <svg class="w-4 h-4 text-blue-600 group-open:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </summary>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold pt-4 border-t border-slate-200/50 mt-4">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <!-- Lead Funnel CTA -->
       <div class="premium-glass p-10 bg-slate-50 border border-slate-200/60 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8">
