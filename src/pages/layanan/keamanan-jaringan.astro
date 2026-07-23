@@ -422,26 +422,212 @@ const faqSchema = {
       </div>
       <!-- Long-form Informational Section for SEO -->
       <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
-        <div class="max-w-4xl mx-auto space-y-6 text-slate-700">
+        <div class="max-w-4xl mx-auto space-y-8 text-slate-700">
           {lang === 'en' ? (
             <>
-              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Enterprise-Grade Managed Network Security Services & Penetration Testing</h2>
-              <p class="text-xs leading-relaxed font-semibold">
-                Our managed network security services & remote penetration testing programs are built to identify risks before malicious actors do. Our security experts conduct continuous monitoring of your network traffic, endpoint behaviors, and cloud systems to identify and neutralize threats in real time.
-              </p>
-              <p class="text-xs leading-relaxed font-semibold">
-                Through deep vulnerability scanning and regular penetration testing, we uncover hidden flaws in web application security and local system architectures. We combine proactive threat intelligence with industry-standard frameworks to keep your B2B organization safe from data breaches and operational downtime.
-              </p>
+              <div>
+                <h2 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight mb-4">Enterprise-Grade Managed Network Security Services & Penetration Testing</h2>
+                <p class="text-xs leading-relaxed font-semibold mb-3">
+                  Our managed network security services & remote penetration testing programs are built to identify risks before malicious actors do. Our security experts conduct continuous monitoring of your network traffic, endpoint behaviors, and cloud systems to identify and neutralize threats in real time.
+                </p>
+                <p class="text-xs leading-relaxed font-semibold mb-6">
+                  Through deep vulnerability scanning and regular penetration testing, we uncover hidden flaws in web application security and local system architectures. We combine proactive threat intelligence with industry-standard frameworks to keep your B2B organization safe from data breaches and operational downtime.
+                </p>
+              </div>
+
+              <div class="border-t border-slate-200 pt-6">
+                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Our Cyber Defense & Threat Mitigation Framework</h3>
+                <p class="text-xs leading-relaxed font-semibold mb-4">
+                  We deploy an active, multi-layered security framework designed to safeguard sensitive data, maintain high network uptime, and guarantee regulatory compliance.
+                </p>
+                
+                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">1. Continuous Vulnerability Scanning</h4>
+                <p class="text-xs leading-relaxed font-medium mb-3">
+                  Our certified threat analysts perform automated and manual audits of your digital assets. We check for outdated server packages, misconfigured ports, and missing security updates.
+                </p>
+                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
+                  <li><strong>Active Port Scanning:</strong> We map all active network connections to detect unauthorized access entry points.</li>
+                  <li><strong>Software Package Auditing:</strong> We check third-party libraries and server OS versions for known CVE vulnerabilities.</li>
+                  <li><strong>Security Rule Validation:</strong> We verify that firewall rules and access control parameters follow the principle of least privilege.</li>
+                </ul>
+
+                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">2. Remote & Local Penetration Testing</h4>
+                <p class="text-xs leading-relaxed font-medium mb-3">
+                  We simulate realistic cyberattacks on your infrastructure using advanced exploitation methods. This exposes critical flaws in logical flow parameters.
+                </p>
+                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
+                  <li><strong>Web Application Attacks:</strong> We check for SQL injection, cross-site scripting (XSS), and insecure direct object references (IDOR).</li>
+                  <li><strong>API Endpoint Security:</strong> We audit authentication tokens and rate-limiting rules to prevent data scraping.</li>
+                  <li><strong>Privilege Escalation Exploits:</strong> We evaluate if lower-level system credentials can be used to acquire root administrator access.</li>
+                </ul>
+
+                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">3. Managed Endpoint Protection & Incident Response</h4>
+                <p class="text-xs leading-relaxed font-medium mb-3">
+                  We secure local workstations and server hosts using advanced Endpoint Detection and Response (EDR) platforms. This blocks active malware infections.
+                </p>
+                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
+                  <li><strong>Ransomware Shielding:</strong> We deploy behavioral analysis engines that stop unauthorized file encryption instantly.</li>
+                  <li><strong>Centralized Dashboard Monitoring:</strong> Your IT managers receive real-time alerts if anomalies occur on any corporate machine.</li>
+                  <li><strong>Immediate Threat Triage:</strong> We isolate compromised devices from the local subnet to prevent lateral movement.</li>
+                </ul>
+              </div>
+
+              <div class="border-t border-slate-200 pt-6">
+                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Step-by-Step B2B Security Audit Roadmap</h3>
+                <p class="text-xs leading-relaxed font-semibold mb-4">
+                  We follow a strict audit methodology to deliver maximum accuracy without disrupting your daily business operations.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Phase 1: Discovery & Scoping</h5>
+                    <p class="text-[11px] leading-relaxed font-medium">
+                      We map your entire network topology, listing all web servers, IP subnets, database hosts, and external API gateways.
+                    </p>
+                  </div>
+                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Phase 2: Vulnerability Exploitation</h5>
+                    <p class="text-[11px] leading-relaxed font-medium">
+                      Our penetration testers simulate ethical hacking methods to bypass defenses and document the exact path of access.
+                    </p>
+                  </div>
+                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Phase 3: Remediation & Patching</h5>
+                    <p class="text-[11px] leading-relaxed font-medium">
+                      We provide step-by-step code fixes and firewall configuration adjustments to close all discovered vulnerabilities.
+                    </p>
+                  </div>
+                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Phase 4: Certification & Sign-Off</h5>
+                    <p class="text-[11px] leading-relaxed font-medium">
+                      We execute a follow-up scan to verify that all patches were applied correctly and issue an audit compliance report.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-t border-slate-200 pt-6">
+                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Enterprise Case Studies & Threat Analysis</h3>
+                <p class="text-xs leading-relaxed font-semibold mb-4">
+                  Explore how our managed security services prevent real-world data leaks, reputational damage, and financial penalties.
+                </p>
+                <div class="space-y-4">
+                  <div>
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 1: FinTech Payment Gateway Platform</h5>
+                    <p class="text-xs leading-relaxed font-medium mt-1">
+                      Our penetration testing team discovered a logical bug in their API payment route that allowed parameter manipulation. We helped their developers implement secure cryptographic signatures, preventing potential financial leakage and securing over 50,000 daily transaction paths.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 2: Cloud B2B SaaS Service Provider</h5>
+                    <p class="text-xs leading-relaxed font-medium mt-1">
+                      We audited their cloud infrastructure and detected database access points exposed to public routing. We configured restricted VPN tunnels, implemented multi-factor authentication (MFA) requirements, and closed potential entry routes for threat actors.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </>
           ) : (
             <>
-              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Layanan Jasa Keamanan Jaringan & Penetration Testing Profesional</h2>
-              <p class="text-xs leading-relaxed font-semibold">
-                Kami menyediakan jasa keamanan jaringan & penetration testing komprehensif untuk mendeteksi celah keamanan pada sistem Anda sebelum dimanfaatkan oleh hacker. Layanan kami dipimpin oleh penetration testers bersertifikat yang melakukan simulasi serangan nyata untuk menguji ketahanan web application security dan infrastruktur IT B2B Anda.
-              </p>
-              <p class="text-xs leading-relaxed font-semibold">
-                Dalam era digital ini, perlindungan data security dan enkripsi sensitive data pelanggan merupakan kewajiban mutlak. Kami membantu perusahaan Anda meminimalkan risiko kebocoran data dengan audit keamanan informasi terperinci, memastikan kepatuhan regulasi OJK & UU PDP secara penuh, serta merancang sistem keamanan data berlapis untuk menjaga integritas operasional bisnis Anda dalam jangka panjang.
-              </p>
+              <div>
+                <h2 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight mb-4">Layanan Jasa Keamanan Jaringan & Penetration Testing Profesional</h2>
+                <p class="text-xs leading-relaxed font-semibold mb-3">
+                  Kami menyediakan jasa keamanan jaringan & penetration testing komprehensif untuk mendeteksi celah keamanan pada sistem Anda sebelum dimanfaatkan oleh hacker. Layanan kami dipimpin oleh penetration testers bersertifikat yang melakukan simulasi serangan nyata untuk menguji ketahanan web application security dan infrastruktur IT B2B Anda.
+                </p>
+                <p class="text-xs leading-relaxed font-semibold mb-6">
+                  Dalam era digital ini, perlindungan data security dan enkripsi sensitive data pelanggan merupakan kewajiban mutlak. Kami membantu perusahaan Anda meminimalkan risiko kebocoran data dengan audit keamanan informasi terperinci, memastikan kepatuhan regulasi OJK & UU PDP secara penuh, serta merancang sistem keamanan data berlapis untuk menjaga integritas operasional bisnis Anda dalam jangka panjang.
+                </p>
+              </div>
+
+              <div class="border-t border-slate-200 pt-6">
+                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Kerangka Kerja Pertahanan Siber Lumovelo</h3>
+                <p class="text-xs leading-relaxed font-semibold mb-4">
+                  Kami menerapkan strategi pertahanan siber berlapis untuk menjaga integritas sistem, stabilitas jaringan kantor, serta kerahasiaan database perusahaan Anda.
+                </p>
+                
+                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">1. Pemindaian Celah Keamanan Berkala (Vulnerability Scanning)</h4>
+                <p class="text-xs leading-relaxed font-medium mb-3">
+                  Tim kami memetakan aset digital Anda secara berkala, memeriksa apakah terdapat port terbuka yang tidak sah, paket server yang usang, atau kesalahan konfigurasi sistem.
+                </p>
+                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
+                  <li><strong>Port & Route Scanning:</strong> Memastikan seluruh gerbang koneksi eksternal terenkripsi dan terlindungi dengan benar.</li>
+                  <li><strong>Audit Paket & Library:</strong> Memeriksa dependensi aplikasi dari celah keamanan pustaka open-source (CVE vulnerabilities).</li>
+                  <li><strong>Verifikasi Aturan Akses:</strong> Menerapkan kebijakan hak akses terbatas (least privilege) untuk mencegah akses data ilegal.</li>
+                </ul>
+
+                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">2. Pengujian Penetrasi Etis (Penetration Testing)</h4>
+                <p class="text-xs leading-relaxed font-medium mb-3">
+                  Spesialis kami mensimulasikan teknik peretasan nyata untuk menguji batas ketahanan pertahanan aplikasi web dan API Anda.
+                </p>
+                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
+                  <li><strong>Simulasi Serangan Web:</strong> Menguji kerentanan eksploitasi populer seperti SQL Injection, Cross-Site Scripting (XSS), dan bypass autentikasi.</li>
+                  <li><strong>Audit Keamanan API:</strong> Memastikan endpoint transfer data tidak dapat dieksploitasi untuk mencuri data pelanggan massal.</li>
+                  <li><strong>Eksploitasi Hak Akses:</strong> Menguji apakah user biasa dapat dimanipulasi untuk mengakses fitur admin utama.</li>
+                </ul>
+
+                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">3. Proteksi Endpoint EDR & Manajemen Insiden</h4>
+                <p class="text-xs leading-relaxed font-medium mb-3">
+                  Kami mengamankan perangkat kerja karyawan Anda (laptop/PC) dari ancaman malware dan ransomware menggunakan platform EDR terpusat.
+                </p>
+                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
+                  <li><strong>Perlindungan Ransomware Aktif:</strong> Memblokir proses enkripsi file mencurigakan secara instan.</li>
+                  <li><strong>Monitoring Dasbor Terpusat:</strong> Membantu tim IT Anda memantau status kesehatan keamanan seluruh perangkat kerja dari satu layar.</li>
+                  <li><strong>Isolasi Ancaman Cepat:</strong> Mengisolasi komputer yang terinfeksi dari jaringan kantor secara otomatis untuk menghentikan penyebaran virus.</li>
+                </ul>
+              </div>
+
+              <div class="border-t border-slate-200 pt-6">
+                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Tahapan Audit Keamanan B2B Lumovelo</h3>
+                <p class="text-xs leading-relaxed font-semibold mb-4">
+                  Proses audit kami berjalan sistematis tanpa mengganggu alur kerja operasional harian perusahaan Anda.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Fase 1: Riset & Pemetaan Topologi</h5>
+                    <p class="text-[11px] leading-relaxed font-medium">
+                      Kami mengumpulkan daftar IP, domain, host server, dan endpoint API yang masuk dalam lingkup pengujian audit keamanan.
+                    </p>
+                  </div>
+                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Fase 2: Eksploitasi & Uji Penetrasi</h5>
+                    <p class="text-[11px] leading-relaxed font-medium">
+                      Tim penetration tester mensimulasikan serangan terarah untuk menemukan jalur masuk dan kerentanan sistem Anda.
+                    </p>
+                  </div>
+                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Fase 3: Pelaporan & Rekomendasi Patch</h5>
+                    <p class="text-[11px] leading-relaxed font-medium">
+                      Kami menyerahkan laporan audit berisi temuan celah keamanan beserta panduan perbaikan kode bagi tim developer Anda.
+                    </p>
+                  </div>
+                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Fase 4: Retest & Sertifikasi</h5>
+                    <p class="text-[11px] leading-relaxed font-medium">
+                      Kami melakukan pengujian ulang untuk memastikan seluruh celah keamanan telah ditutup dengan benar, lalu menerbitkan sertifikat audit.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-t border-slate-200 pt-6">
+                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Studi Kasus Penyelamatan Aset Siber</h3>
+                <p class="text-xs leading-relaxed font-semibold mb-4">
+                  Berikut adalah contoh nyata bagaimana audit dan manajemen keamanan kami melindungi bisnis dari kerugian reputasi dan finansial.
+                </p>
+                <div class="space-y-4">
+                  <div>
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 1: Gerbang Pembayaran FinTech</h5>
+                    <p class="text-xs leading-relaxed font-medium mt-1">
+                      Tim kami menemukan celah manipulasi parameter transaksi pada API pembayaran klien. Kami membantu mengamankan alur enkripsi tanda tangan digital, melindungi lebih dari 50.000 transaksi harian dari resiko pembobolan dana.
+                    </p>
+                  </div>
+                  <div>
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 2: Platform Cloud B2B SaaS</h5>
+                    <p class="text-xs leading-relaxed font-medium mt-1">
+                      Kami mendeteksi database staging klien yang terbuka tanpa enkripsi di internet. Kami menerapkan gerbang VPN kantor terbatas, mengaktifkan fitur MFA, dan mengisolasi database sensitif dari peretasan eksternal.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </>
           )}
         </div>
