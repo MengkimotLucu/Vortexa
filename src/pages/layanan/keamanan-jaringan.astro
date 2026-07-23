@@ -421,105 +421,183 @@ const faqSchema = {
         </div>
       </div>
       <!-- Long-form Informational Section for SEO -->
-      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
-        <div class="max-w-4xl mx-auto space-y-8 text-slate-700">
+      <section class="mb-24 py-10 px-6 sm:px-12 bg-gradient-to-b from-white to-slate-50/50 border border-slate-200/60 rounded-[2.5rem] shadow-sm">
+        <div class="max-w-5xl mx-auto space-y-16 text-slate-700">
           {lang === 'en' ? (
             <>
-              <div>
-                <h2 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight mb-4">Enterprise-Grade Managed Network Security Services & Penetration Testing</h2>
-                <p class="text-xs leading-relaxed font-semibold mb-3">
-                  Our managed network security services & remote penetration testing programs are built to identify risks before malicious actors do. Our security experts conduct continuous monitoring of your network traffic, endpoint behaviors, and cloud systems to identify and neutralize threats in real time.
-                </p>
-                <p class="text-xs leading-relaxed font-semibold mb-6">
-                  Through deep vulnerability scanning and regular penetration testing, we uncover hidden flaws in web application security and local system architectures. We combine proactive threat intelligence with industry-standard frameworks to keep your B2B organization safe from data breaches and operational downtime.
-                </p>
+              {/* Header Intro - Split Layout */}
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Overview
+                  </span>
+                  <h2 class="font-display font-black text-3xl text-slate-900 uppercase tracking-tight leading-none">
+                    Enterprise-Grade Managed Network Security Services & Penetration Testing
+                  </h2>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Our managed network security services & remote penetration testing programs are built to identify risks before malicious actors do. Our security experts conduct continuous monitoring of your network traffic, endpoint behaviors, and cloud systems to identify and neutralize threats in real time.
+                  </p>
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Through deep vulnerability scanning and regular penetration testing, we uncover hidden flaws in web application security and local system architectures. We combine proactive threat intelligence with industry-standard frameworks to keep your B2B organization safe from data breaches and operational downtime.
+                  </p>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Our Cyber Defense & Threat Mitigation Framework</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  We deploy an active, multi-layered security framework designed to safeguard sensitive data, maintain high network uptime, and guarantee regulatory compliance.
-                </p>
-                
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">1. Continuous Vulnerability Scanning</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  Our certified threat analysts perform automated and manual audits of your digital assets. We check for outdated server packages, misconfigured ports, and missing security updates.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Active Port Scanning:</strong> We map all active network connections to detect unauthorized access entry points.</li>
-                  <li><strong>Software Package Auditing:</strong> We check third-party libraries and server OS versions for known CVE vulnerabilities.</li>
-                  <li><strong>Security Rule Validation:</strong> We verify that firewall rules and access control parameters follow the principle of least privilege.</li>
-                </ul>
+              {/* Core Framework */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Defense Framework
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Our Cyber Defense & Threat Mitigation Framework
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    We deploy an active, multi-layered security framework designed to safeguard sensitive data, maintain high network uptime, and guarantee regulatory compliance.
+                  </p>
+                </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">2. Remote & Local Penetration Testing</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  We simulate realistic cyberattacks on your infrastructure using advanced exploitation methods. This exposes critical flaws in logical flow parameters.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Web Application Attacks:</strong> We check for SQL injection, cross-site scripting (XSS), and insecure direct object references (IDOR).</li>
-                  <li><strong>API Endpoint Security:</strong> We audit authentication tokens and rate-limiting rules to prevent data scraping.</li>
-                  <li><strong>Privilege Escalation Exploits:</strong> We evaluate if lower-level system credentials can be used to acquire root administrator access.</li>
-                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Step 1 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">1</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Vulnerability Scanning</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Active Port Scanning:</strong> Mapping connections to detect unauthorized access points.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Package Auditing:</strong> Checking third-party libraries for known CVE vulnerabilities.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Rule Validation:</strong> Verifying firewall and privilege rules follow least privilege.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">3. Managed Endpoint Protection & Incident Response</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  We secure local workstations and server hosts using advanced Endpoint Detection and Response (EDR) platforms. This blocks active malware infections.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Ransomware Shielding:</strong> We deploy behavioral analysis engines that stop unauthorized file encryption instantly.</li>
-                  <li><strong>Centralized Dashboard Monitoring:</strong> Your IT managers receive real-time alerts if anomalies occur on any corporate machine.</li>
-                  <li><strong>Immediate Threat Triage:</strong> We isolate compromised devices from the local subnet to prevent lateral movement.</li>
-                </ul>
+                  {/* Step 2 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">2</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Penetration Testing</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Web App Attacks:</strong> Simulating SQL injections, XSS, and logical authorization bypass.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>API Endpoint Audits:</strong> Checking authentication tokens and rate-limiting params.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Privilege Escalation:</strong> Ensuring database credentials cannot get root administrator rights.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">3</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Endpoint & Incident</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Ransomware Shield:</strong> Deploying behavioral analysis engines to stop file encryption.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Dashboard Monitoring:</strong> Unified visual dashboard tracking host security states.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Threat Triage:</strong> Isolating compromised units from local subnet route instantly.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Step-by-Step B2B Security Audit Roadmap</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  We follow a strict audit methodology to deliver maximum accuracy without disrupting your daily business operations.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Phase 1: Discovery & Scoping</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+              {/* Security Audit Roadmap */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Roadmap
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Step-by-Step B2B Security Audit Roadmap
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    We follow a strict audit methodology to deliver maximum accuracy without disrupting your daily business operations.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">P1</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Discovery</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We map your entire network topology, listing all web servers, IP subnets, database hosts, and external API gateways.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Phase 2: Vulnerability Exploitation</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">P2</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Exploitation</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Our penetration testers simulate ethical hacking methods to bypass defenses and document the exact path of access.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Phase 3: Remediation & Patching</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">P3</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Remediation</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We provide step-by-step code fixes and firewall configuration adjustments to close all discovered vulnerabilities.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Phase 4: Certification & Sign-Off</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">P4</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Sign-Off</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We execute a follow-up scan to verify that all patches were applied correctly and issue an audit compliance report.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Enterprise Case Studies & Threat Analysis</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Explore how our managed security services prevent real-world data leaks, reputational damage, and financial penalties.
-                </p>
-                <div class="space-y-4">
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 1: FinTech Payment Gateway Platform</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+              {/* Case Studies */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Impact
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Enterprise Case Studies & Threat Analysis
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Explore how our managed security services prevent real-world data leaks, reputational damage, and financial penalties.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">1. FinTech Payment Gateway Platform</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Our penetration testing team discovered a logical bug in their API payment route that allowed parameter manipulation. We helped their developers implement secure cryptographic signatures, preventing potential financial leakage and securing over 50,000 daily transaction paths.
                     </p>
                   </div>
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 2: Cloud B2B SaaS Service Provider</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">2. Cloud B2B SaaS Service Provider</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We audited their cloud infrastructure and detected database access points exposed to public routing. We configured restricted VPN tunnels, implemented multi-factor authentication (MFA) requirements, and closed potential entry routes for threat actors.
                     </p>
                   </div>
@@ -528,101 +606,179 @@ const faqSchema = {
             </>
           ) : (
             <>
-              <div>
-                <h2 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight mb-4">Layanan Jasa Keamanan Jaringan & Penetration Testing Profesional</h2>
-                <p class="text-xs leading-relaxed font-semibold mb-3">
-                  Kami menyediakan jasa keamanan jaringan & penetration testing komprehensif untuk mendeteksi celah keamanan pada sistem Anda sebelum dimanfaatkan oleh hacker. Layanan kami dipimpin oleh penetration testers bersertifikat yang melakukan simulasi serangan nyata untuk menguji ketahanan web application security dan infrastruktur IT B2B Anda.
-                </p>
-                <p class="text-xs leading-relaxed font-semibold mb-6">
-                  Dalam era digital ini, perlindungan data security dan enkripsi sensitive data pelanggan merupakan kewajiban mutlak. Kami membantu perusahaan Anda meminimalkan risiko kebocoran data dengan audit keamanan informasi terperinci, memastikan kepatuhan regulasi OJK & UU PDP secara penuh, serta merancang sistem keamanan data berlapis untuk menjaga integritas operasional bisnis Anda dalam jangka panjang.
-                </p>
+              {/* Header Intro - Split Layout */}
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Ikhtisar
+                  </span>
+                  <h2 class="font-display font-black text-3xl text-slate-900 uppercase tracking-tight leading-none">
+                    Layanan Jasa Keamanan Jaringan & Penetration Testing Profesional
+                  </h2>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Kami menyediakan jasa keamanan jaringan & penetration testing komprehensif untuk mendeteksi celah keamanan pada sistem Anda sebelum dimanfaatkan oleh hacker. Layanan kami dipimpin oleh penetration testers bersertifikat yang melakukan simulasi serangan nyata untuk menguji ketahanan web application security dan infrastruktur IT B2B Anda.
+                  </p>
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Dalam era digital ini, perlindungan data security dan enkripsi sensitive data pelanggan merupakan kewajiban mutlak. Kami membantu perusahaan Anda meminimalkan risiko kebocoran data dengan audit keamanan informasi terperinci, memastikan kepatuhan regulasi OJK & UU PDP secara penuh, serta merancang sistem keamanan data berlapis untuk menjaga integritas operasional bisnis Anda dalam jangka panjang.
+                  </p>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Kerangka Kerja Pertahanan Siber Lumovelo</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Kami menerapkan strategi pertahanan siber berlapis untuk menjaga integritas sistem, stabilitas jaringan kantor, serta kerahasiaan database perusahaan Anda.
-                </p>
-                
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">1. Pemindaian Celah Keamanan Berkala (Vulnerability Scanning)</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  Tim kami memetakan aset digital Anda secara berkala, memeriksa apakah terdapat port terbuka yang tidak sah, paket server yang usang, atau kesalahan konfigurasi sistem.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Port & Route Scanning:</strong> Memastikan seluruh gerbang koneksi eksternal terenkripsi dan terlindungi dengan benar.</li>
-                  <li><strong>Audit Paket & Library:</strong> Memeriksa dependensi aplikasi dari celah keamanan pustaka open-source (CVE vulnerabilities).</li>
-                  <li><strong>Verifikasi Aturan Akses:</strong> Menerapkan kebijakan hak akses terbatas (least privilege) untuk mencegah akses data ilegal.</li>
-                </ul>
+              {/* Core Framework */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Kerangka Pertahanan
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Kerangka Kerja Pertahanan Siber Lumovelo
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Kami menerapkan strategi pertahanan siber berlapis untuk menjaga integritas sistem, stabilitas jaringan kantor, serta kerahasiaan database perusahaan Anda.
+                  </p>
+                </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">2. Pengujian Penetrasi Etis (Penetration Testing)</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  Spesialis kami mensimulasikan teknik peretasan nyata untuk menguji batas ketahanan pertahanan aplikasi web dan API Anda.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Simulasi Serangan Web:</strong> Menguji kerentanan eksploitasi populer seperti SQL Injection, Cross-Site Scripting (XSS), dan bypass autentikasi.</li>
-                  <li><strong>Audit Keamanan API:</strong> Memastikan endpoint transfer data tidak dapat dieksploitasi untuk mencuri data pelanggan massal.</li>
-                  <li><strong>Eksploitasi Hak Akses:</strong> Menguji apakah user biasa dapat dimanipulasi untuk mengakses fitur admin utama.</li>
-                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Step 1 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">1</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Vulnerability Scanning</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Port Scanning:</strong> Memastikan gerbang koneksi terenkripsi dan terlindung dari akses luar.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Audit Pustaka:</strong> Memeriksa dependensi aplikasi dari celah keamanan pustaka open-source (CVE).</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Aturan Akses:</strong> Menerapkan kebijakan hak akses terbatas (least privilege) pada database.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">3. Proteksi Endpoint EDR & Manajemen Insiden</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  Kami mengamankan perangkat kerja karyawan Anda (laptop/PC) dari ancaman malware dan ransomware menggunakan platform EDR terpusat.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Perlindungan Ransomware Aktif:</strong> Memblokir proses enkripsi file mencurigakan secara instan.</li>
-                  <li><strong>Monitoring Dasbor Terpusat:</strong> Membantu tim IT Anda memantau status kesehatan keamanan seluruh perangkat kerja dari satu layar.</li>
-                  <li><strong>Isolasi Ancaman Cepat:</strong> Mengisolasi komputer yang terinfeksi dari jaringan kantor secara otomatis untuk menghentikan penyebaran virus.</li>
-                </ul>
+                  {/* Step 2 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">2</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Penetration Testing</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Simulasi Serangan:</strong> Menguji kerentanan eksploitasi SQL Injection, XSS, dan bypass otorisasi.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Keamanan API:</strong> Memastikan endpoint transfer data terlindungi dari resiko scraping data massal.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Eksploitasi Akses:</strong> Menguji kerentanan naik tingkat otorisasi (privilege escalation).</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">3</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">EDR & Insiden Respon</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Ransomware Shield:</strong> Memblokir proses enkripsi file mencurigakan secara real-time.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Dasbor Monitoring:</strong> Membantu tim IT memantau status kesehatan seluruh endpoint.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Isolasi Ancaman:</strong> Mengisolasi host terinfeksi otomatis untuk mencegah lateral movement.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Tahapan Audit Keamanan B2B Lumovelo</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Proses audit kami berjalan sistematis tanpa mengganggu alur kerja operasional harian perusahaan Anda.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Fase 1: Riset & Pemetaan Topologi</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+              {/* Security Audit Roadmap */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Roadmap
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Tahapan Audit Keamanan B2B Lumovelo
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Proses audit kami berjalan sistematis tanpa mengganggu alur kerja operasional harian perusahaan Anda.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">F1</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Pemetaan Topologi</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami mengumpulkan daftar IP, domain, host server, dan endpoint API yang masuk dalam lingkup pengujian audit keamanan.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Fase 2: Eksploitasi & Uji Penetrasi</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">F2</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Uji Penetrasi</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Tim penetration tester mensimulasikan serangan terarah untuk menemukan jalur masuk dan kerentanan sistem Anda.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Fase 3: Pelaporan & Rekomendasi Patch</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">F3</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Rekomendasi Patch</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami menyerahkan laporan audit berisi temuan celah keamanan beserta panduan perbaikan kode bagi tim developer Anda.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Fase 4: Retest & Sertifikasi</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">F4</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Retest & Sertifikasi</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami melakukan pengujian ulang untuk memastikan seluruh celah keamanan telah ditutup dengan benar, lalu menerbitkan sertifikat audit.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Studi Kasus Penyelamatan Aset Siber</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Berikut adalah contoh nyata bagaimana audit dan manajemen keamanan kami melindungi bisnis dari kerugian reputasi dan finansial.
-                </p>
-                <div class="space-y-4">
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 1: Gerbang Pembayaran FinTech</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+              {/* Case Studies */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Studi Kasus
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Studi Kasus Penyelamatan Aset Siber
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Berikut adalah contoh nyata bagaimana audit dan manajemen keamanan kami melindungi bisnis dari kerugian reputasi dan finansial.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">1. Gerbang Pembayaran FinTech</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Tim kami menemukan celah manipulasi parameter transaksi pada API pembayaran klien. Kami membantu mengamankan alur enkripsi tanda tangan digital, melindungi lebih dari 50.000 transaksi harian dari resiko pembobolan dana.
                     </p>
                   </div>
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 2: Platform Cloud B2B SaaS</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">2. Platform Cloud B2B SaaS</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami mendeteksi database staging klien yang terbuka tanpa enkripsi di internet. Kami menerapkan gerbang VPN kantor terbatas, mengaktifkan fitur MFA, dan mengisolasi database sensitif dari peretasan eksternal.
                     </p>
                   </div>

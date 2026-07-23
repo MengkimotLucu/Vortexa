@@ -380,101 +380,185 @@ const faqSchema = {
       </div>
 
       <!-- Long-form Informational Section for SEO -->
-      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
-        <div class="max-w-4xl mx-auto space-y-8 text-slate-700">
+      <section class="mb-24 py-10 px-6 sm:px-12 bg-gradient-to-b from-white to-slate-50/50 border border-slate-200/60 rounded-[2.5rem] shadow-sm">
+        <div class="max-w-5xl mx-auto space-y-16 text-slate-700">
           {lang === 'en' ? (
             <>
-              <div>
-                <h2 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight mb-4">Professional SEO & Digital Marketing Funnel Agency</h2>
-                <p class="text-xs leading-relaxed font-semibold mb-3">
-                  To build authority and gain long-term traction, your brand needs a dedicated SEO strategy. We help you rank on the first page of Google organically, driving high-intent search traffic directly to your business. Our services focus on keyword optimization, semantic structure audits, and deep on-page optimizations.
-                </p>
-                <p class="text-xs leading-relaxed font-semibold mb-6">
-                  We combine technical search engine optimization with conversion-focused design, ensuring that the traffic you receive converts into loyal customers. Partner with our team to achieve sustainable growth and decrease your dependency on paid advertising budgets.
-                </p>
+              {/* Header Intro - Split Layout */}
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Overview
+                  </span>
+                  <h2 class="font-display font-black text-3xl text-slate-900 uppercase tracking-tight leading-none">
+                    Professional SEO & Digital Marketing Funnel Agency
+                  </h2>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    To build authority and gain long-term traction, your brand needs a dedicated SEO strategy. We help you rank on the first page of Google organically, driving high-intent search traffic directly to your business. Our services focus on keyword optimization, semantic structure audits, and deep on-page optimizations.
+                  </p>
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    We combine technical search engine optimization with conversion-focused design, ensuring that the traffic you receive converts into loyal customers. Partner with our team to achieve sustainable growth and decrease your dependency on paid advertising budgets.
+                  </p>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Lumovelo's Monthly SEO Execution Framework</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  We do not believe in superficial vanity metrics. Our monthly search engine optimization roadmap focuses on concrete technical improvements and semantic relevancy to ensure sustainable organic traffic.
-                </p>
-                
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">1. In-Depth Keyword Research & Intent Mapping</h4>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Search Intent Identification:</strong> We categorize target terms into informational, commercial, transactional, and navigational intents. This ensures your content answers exactly what the user is looking for.</li>
-                  <li><strong>Keyword Difficulty & Volume Filtering:</strong> We target high-value, high-intent keywords that present a realistic opportunity for your domain authority to rank on page 1 of Google.</li>
-                  <li><strong>Competitor Content Gap Analysis:</strong> We analyze what keywords your direct competitors are ranking for and identify high-opportunity topics where your website can outperform them.</li>
-                </ul>
+              {/* Core Framework */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Execution Framework
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Lumovelo's Monthly SEO Execution Framework
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    We do not believe in superficial vanity metrics. Our monthly search engine optimization roadmap focuses on concrete technical improvements and semantic relevancy.
+                  </p>
+                </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">2. Technical SEO & On-Page Tuning</h4>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Core Web Vitals Optimization:</strong> We audit and improve page loading speed, cumulative layout shift, and first input delay to comply with Google's page experience signals.</li>
-                  <li><strong>Semantic HTML Architecture:</strong> We format your content structure using correct heading tags (H1, H2, H3) and optimize internal linking patterns to distribute link equity efficiently.</li>
-                  <li><strong>Structured Data JSON-LD Schema:</strong> We inject custom schemas like Product, Service, FAQPage, and Organization directly into the head tag to help search engine crawlers understand your pages easily.</li>
-                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Step 1 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">1</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Keyword & Intent Mapping</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Search Intent:</strong> Categorizing target terms to match informational & commercial queries.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Volume Filter:</strong> Target high-intent keywords that match domain authority realistic parameters.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Gap Analysis:</strong> Uncovering competitors' top-ranking queries to seize market share.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">3. Strategic Off-Page Link Building</h4>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>White-Hat Outreach:</strong> We acquire safe, natural, and highly relevant contextual backlinks from reputable industry blogs, directories, and news platforms.</li>
-                  <li><strong>Brand Mentions & Digital PR:</strong> We establish authority signals by positioning your brand as a reference source within your industry niche.</li>
-                </ul>
+                  {/* Step 2 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">2</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Technical & On-Page SEO</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Core Web Vitals:</strong> Optimizing LCP, CLS, and FID speeds for premium Google rank score.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>HTML Architecture:</strong> Proper layout tagging (H1, H2, H3) and link equity distributions.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Schema Markup:</strong> Injecting valid JSON-LD schemas in the head tags dynamically.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">3</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Off-Page Authority</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>White-Hat Outreach:</strong> Acquiring safe, natural, relevant contextual backlinks.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Digital PR:</strong> Establishing brand references across authoritative niche blogs.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Monthly Deliverables Timeline & Workflows</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Our agency structure maintains complete transparency. Every month, our team coordinates with your developers to deliver measurable SEO tasks.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Week 1: Site Health & Technical Audits</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+              {/* Timeline Workflows */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Deliverables
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Monthly Deliverables Timeline & Workflows
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Our agency structure maintains complete transparency. Every month, our team coordinates with your developers to deliver measurable SEO tasks.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">W1</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Technical Audits</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We execute full site crawls using modern audit tools to locate crawl errors, broken links, missing meta descriptions, duplicate content, and layout shifts.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Week 2: Content Optimization & On-Page Tweaks</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">W2</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Content Tuning</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We draft fresh SEO optimized articles and rewrite target pages to integrate semantic keywords, optimize meta title tags, and build contextual internal links.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Week 3: Off-Page Backlink Acquisition</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">W3</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Link Outreach</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We launch outreach campaigns to secure niche-relevant external links, expanding your website's domain authority and referral network safely.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Week 4: Rank Tracking & Analytics Reporting</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">W4</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Rank Tracking</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We compile ranking charts, organic traffic growth data, and competitor comparisons using Google Analytics 4, Search Console, and Semrush dashboards.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">SEO Success Stories & Case Studies</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  We focus on driving transactional traffic that directly correlates with business sales, lead sign-ups, and customer acquisition.
-                </p>
-                <div class="space-y-4">
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 1: Custom E-Commerce Platform (Health & Wellness)</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+              {/* Case Studies */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Impact
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    SEO Success Stories & Case Studies
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    We focus on driving transactional traffic that directly correlates with business sales, lead sign-ups, and customer acquisition.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">1. Health & Wellness E-Commerce</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Our client experienced static search traffic for 6 months. We optimized their database search architecture, resolved core web vitals speed bottlenecks, and launched transactional keyword content. Within 4 months, organic transactions grew by 240% and overall keyword visibility quadrupled.
                     </p>
                   </div>
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 2: B2B SaaS Platform (HR & Payroll Solutions)</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">2. HR & Payroll SaaS Platform</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We restructured their informational blog to target middle-of-the-funnel commercial keywords. By implementing high-authority white-hat backlinks and optimizing internal link flows, organic product registration sign-ups grew by 180% in under 5 months.
                     </p>
                   </div>
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 3: Regional Professional Services Business</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">3. Regional Professional Services</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       We targeted regional search terms with commercial intent. Through clean semantic layout optimization and structured schema injection, we positioned the client on page 1 of Google for 8 key search queries, yielding a 120% growth in direct inquiries.
                     </p>
                   </div>
@@ -483,97 +567,181 @@ const faqSchema = {
             </>
           ) : (
             <>
-              <div>
-                <h2 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight mb-4">Penyedia Jasa SEO Bulanan & Optimasi SEO Google Terpercaya</h2>
-                <p class="text-xs leading-relaxed font-semibold mb-3">
-                  Sebagai penyedia jasa seo bulanan & optimasi seo google terpercaya, kami merancang strategi optimasi mesin pencari secara menyeluruh untuk memastikan bisnis Anda mendominasi hasil pencarian. Kami melakukan riset kata kunci mendalam, audit teknis on-page, dan optimalisasi konten untuk menempatkan website Anda di halaman 1 google secara konsisten.
-                </p>
-                <p class="text-xs leading-relaxed font-semibold mb-6">
-                  Mengapa memilih jasa seo bulanan? SEO bukanlah proses sekali jadi, melainkan investasi jangka panjang. Dengan terus menerapkan strategi optimasi yang relevan dan menyajikan konten berkualitas tinggi, kami membantu Anda mengalirkan trafik organik berkualitas tinggi, menjangkau calon pelanggan potensial saat mereka mencari solusi Anda, serta menekan biaya marketing ads berbayar.
-                </p>
+              {/* Header Intro - Split Layout */}
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Ikhtisar
+                  </span>
+                  <h2 class="font-display font-black text-3xl text-slate-900 uppercase tracking-tight leading-none">
+                    Penyedia Jasa SEO Bulanan & Optimasi SEO Google Terpercaya
+                  </h2>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Sebagai penyedia jasa seo bulanan & optimasi seo google terpercaya, kami merancang strategi optimasi mesin pencari secara menyeluruh untuk memastikan bisnis Anda mendominasi hasil pencarian. Kami melakukan riset kata kunci mendalam, audit teknis on-page, dan optimalisasi konten untuk menempatkan website Anda di halaman 1 google secara konsisten.
+                  </p>
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Mengapa memilih jasa seo bulanan? SEO bukanlah proses sekali jadi, melainkan investasi jangka panjang. Dengan terus menerapkan strategi optimasi yang relevan dan menyajikan konten berkualitas tinggi, kami membantu Anda mengalirkan trafik organik berkualitas tinggi, menjangkau calon pelanggan potensial saat mereka mencari solusi Anda, serta menekan biaya marketing ads berbayar.
+                  </p>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Kerangka Kerja Eksekusi SEO Bulanan Lumovelo</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Kami tidak hanya fokus pada metrik popularitas kosong. Strategi optimasi mesin pencari bulanan kami berpusat pada perbaikan teknis nyata dan relevansi konten semantik untuk mendatangkan konversi penjualan.
-                </p>
-                
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">1. Riset Kata Kunci Mendalam & Pemetaan Intent</h4>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Identifikasi Search Intent:</strong> Kami mengelompokkan kata kunci target menjadi tipe informasional, komersial, transaksional, dan navigasional. Langkah ini memastikan konten menjawab pertanyaan pengunjung secara tepat.</li>
-                  <li><strong>Penyaringan Volume & Kesulitan Kata Kunci (Keyword Difficulty):</strong> Kami membidik kata kunci dengan tingkat persaingan realistis yang mampu dimenangkan oleh tingkat otoritas domain website Anda saat ini.</li>
-                  <li><strong>Analisis Content Gap Kompetitor:</strong> Kami menganalisis kata kunci apa saja yang mengalirkan traffic ke kompetitor Anda, lalu menyusun strategi konten untuk merebut pangsa pasar tersebut.</li>
-                </ul>
+              {/* Core Framework */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Kerangka Kerja
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Kerangka Kerja Eksekusi SEO Bulanan Lumovelo
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Kami tidak hanya fokus pada metrik popularitas kosong. Strategi optimasi mesin pencari bulanan kami berpusat pada perbaikan teknis nyata dan relevansi konten semantik.
+                  </p>
+                </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">2. Audit SEO Teknis & On-Page Tuning</h4>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Optimasi Core Web Vitals:</strong> Kami mengaudit dan meningkatkan kecepatan loading halaman, performa visual, dan waktu respon interaksi agar website Anda memenuhi standar algoritma Google terbaru.</li>
-                  <li><strong>Arsitektur HTML Semantik:</strong> Kami merancang konten dengan hierarki heading tag (H1, H2, H3) yang benar, serta melakukan optimasi internal link untuk menyebarkan nilai otoritas halaman secara merata.</li>
-                  <li><strong>Penerapan Skema Data Terstruktur (JSON-LD):</strong> Kami memasang schema markup (seperti Product, Service, FAQPage, dan Organization) langsung ke dalam tag head untuk mempermudah Google memahami isi website Anda.</li>
-                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Step 1 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">1</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Riset Kata Kunci & Intent</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Search Intent:</strong> Mengelompokkan kata kunci target menjadi tipe informasional, komersial, dan transaksional.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Penyaringan Volume:</strong> Membidik kata kunci dengan tingkat persaingan realistis sesuai otoritas situs.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Analisis Gap Konten:</strong> Menemukan kata kunci milik kompetitor untuk merebut pangsa pasar mereka.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">3. Akuisisi Tautan Luar (Off-Page Link Building) yang Aman</h4>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Outreach Berbasis SEO Putih:</strong> Kami membantu mendapatkan tautan balik (backlink) alami berkualitas dari blog industri, portal berita, dan situs terkemuka yang relevan.</li>
-                  <li><strong>Brand Mentions & Digital PR:</strong> Kami memperkuat sinyal kepercayaan website Anda di mata mesin pencari dengan memposisikan brand Anda sebagai sumber rujukan tepercaya di industri Anda.</li>
-                </ul>
+                  {/* Step 2 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">2</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Teknis & On-Page SEO</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Core Web Vitals:</strong> Mengaudit kecepatan loading halaman dan visual stabilitas web secara menyeluruh.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>HTML Semantik:</strong> Merapikan struktur tag H1, H2, H3, dan optimasi sebaran internal link internal.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>JSON-LD Schema:</strong> Memasang data terstruktur (FAQPage, Organization) langsung di bagian head.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">3</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Otoritas Luar Halaman</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Outreach SEO Putih:</strong> Mendapatkan tautan balik alami terpercaya dari blog industri sejenis.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Digital PR:</strong> Memposisikan brand bisnis Anda sebagai rujukan tepercaya di industri terkait.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Linimasa Alur Kerja Bulanan Layanan SEO</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Sistem kerja agensi kami mengutamakan transparansi penuh. Setiap bulan, spesialis kami bekerja sama dengan tim developer Anda untuk menyelesaikan checklist pekerjaan berikut.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Minggu 1: Audit Kesehatan Situs & Diagnosa Teknis</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+              {/* Timeline Workflows */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Deliverables
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Linimasa Alur Kerja Bulanan Layanan SEO
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Sistem kerja agensi kami mengutamakan transparansi penuh. Setiap bulan, spesialis kami bekerja sama dengan tim developer Anda untuk menyelesaikan checklist pekerjaan berikut.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">M1</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Audit Teknis</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami memindai situs Anda untuk menemukan tautan rusak (broken link), masalah indeksasi Google, meta description yang hilang, duplikasi konten, dan hambatan kecepatan.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Minggu 2: Optimasi Konten & Penulisan Copywriting On-Page</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">M2</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Optimasi Konten</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami merancang artikel informatif baru dan merevisi teks halaman utama untuk menyisipkan kata kunci semantik pendukung, mengoptimalkan meta title, dan menata link internal.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Minggu 3: Pembangunan Tautan (Off-Page Outreach)</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">M3</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Pembangunan Link</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami melakukan kampanye outreach untuk mendapatkan backlink berkualitas tinggi dari situs eksternal yang relevan secara aman dan sesuai standar Google.
                     </p>
                   </div>
-                  <div class="p-4 border border-slate-200/60 bg-white rounded-2xl">
-                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Minggu 4: Pelacakan Peringkat & Laporan Analitik Bulanan</h5>
-                    <p class="text-[11px] leading-relaxed font-medium">
+                  <div class="p-5 border border-slate-200/60 bg-white rounded-2xl relative shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <span class="text-xs font-mono font-black text-blue-600/20 absolute top-4 right-4">M4</span>
+                    <h5 class="font-display font-black text-xs text-blue-600 uppercase mb-2">Pelacakan Rapor</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami mengompilasi grafik pergerakan kata kunci, statistik trafik organik, dan performa konversi menggunakan Google Analytics 4, Search Console, dan dasbor Semrush.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Studi Kasus Keberhasilan Kampanye SEO Lumovelo</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Fokus utama kami adalah mendatangkan trafik transaksional yang berkorelasi langsung dengan kenaikan omset, registrasi member, atau pengisian formulir prospek.
-                </p>
-                <div class="space-y-4">
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 1: Toko Online E-Commerce (Kesehatan & Kebugaran)</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+              {/* Case Studies */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Studi Kasus
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Studi Kasus Keberhasilan Kampanye SEO Lumovelo
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Fokus utama kami adalah mendatangkan trafik transaksional yang berkorelasi langsung dengan kenaikan omset, registrasi member, atau pengisian formulir prospek.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">1. E-Commerce Kesehatan</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Klien kami mengalami grafik trafik yang stagnan selama 6 bulan. Kami merestrukturisasi arsitektur kategori produk, memperbaiki kecepatan Core Web Vitals, dan mempublikasikan konten informasional. Dalam 4 bulan, transaksi organik naik sebesar 240% dan jumlah kata kunci halaman 1 naik empat kali lipat.
                     </p>
                   </div>
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 2: Platform B2B SaaS (Software HR & Penggajian)</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">2. B2B SaaS HR & Penggajian</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami mengoptimalkan blog perusahaan mereka dengan menargetkan kata kunci komersial bernilai tinggi. Dengan membangun backlink eksternal tepercaya dan menata alur internal link, registrasi akun gratis naik 180% dalam waktu kurang dari 5 bulan.
                     </p>
                   </div>
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 3: Perusahaan Jasa Profesional Lokal</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">3. Jasa Profesional Lokal</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600">
                       Kami menargetkan kata kunci pencarian lokal dengan niat transaksi tinggi. Melalui optimasi kode HTML semantik dan pemasangan skema JSON-LD terpadu, situs klien menempati halaman 1 Google untuk 8 kata kunci komersial utama, meningkatkan prospek masuk hingga 120%.
                     </p>
                   </div>

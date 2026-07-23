@@ -381,72 +381,137 @@ const faqSchema = {
         </div>
       </div>
       <!-- Long-form Informational Section for SEO -->
-      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
-        <div class="max-w-4xl mx-auto space-y-8 text-slate-700">
+      <section class="mb-24 py-10 px-6 sm:px-12 bg-gradient-to-b from-white to-slate-50/50 border border-slate-200/60 rounded-[2.5rem] shadow-sm">
+        <div class="max-w-5xl mx-auto space-y-16 text-slate-700">
           {lang === 'en' ? (
             <>
-              <div>
-                <h2 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight mb-4">Enterprise Software QA Testing Agency & Mobile App Testing Services</h2>
-                <p class="text-xs leading-relaxed font-semibold mb-3">
-                  As an experienced software qa testing agency & mobile app testing services provider, we understand the critical nature of a flawless release. Our QA engineers execute thorough manual testing and robust test automations across real devices and diverse operating systems. This ensures that every functional flow is validated, safeguarding user experience and retention rates.
-                </p>
-                <p class="text-xs leading-relaxed font-semibold mb-6">
-                  Our testing process covers functional tests, API verification, and peak load stress testing to ensure your application performs under heavy traffic. Partnering with our QA experts helps you launch confidently on the app store, knowing your systems are stable, secure, and ready for your target audience.
-                </p>
+              {/* Header Intro - Split Layout */}
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Overview
+                  </span>
+                  <h2 class="font-display font-black text-3xl text-slate-900 uppercase tracking-tight leading-none">
+                    Enterprise Software QA Testing Agency & Mobile App Testing Services
+                  </h2>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    As an experienced software qa testing agency & mobile app testing services provider, we understand the critical nature of a flawless release. Our QA engineers execute thorough manual testing and robust test automations across real devices and diverse operating systems. This ensures that every functional flow is validated, safeguarding user experience and retention rates.
+                  </p>
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Our testing process covers functional tests, API verification, and peak load stress testing to ensure your application performs under heavy traffic. Partnering with our QA experts helps you launch confidently on the app store, knowing your systems are stable, secure, and ready for your target audience.
+                  </p>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Our Core Quality Assurance Testing Methodologies</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  We deploy structured test procedures that match the pace of your agile software development sprint cycles.
-                </p>
-                
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">1. Functional & Manual Testing</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  Our QA team walks through your app layout simulating real user interactions. This identifies logical discrepancies that automation scripts might overlook.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Boundary Value Analysis:</strong> We verify form inputs against edge cases to prevent database errors.</li>
-                  <li><strong>User Experience (UX) Auditing:</strong> We evaluate button alignment, visual consistency, and navigation ease.</li>
-                  <li><strong>Exploratory Sessions:</strong> Our engineers perform unstructured tests to locate hidden edge-case bugs.</li>
-                </ul>
+              {/* Core Framework */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Methodologies
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Our Core Quality Assurance Testing Methodologies
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    We deploy structured test procedures that match the pace of your agile software development sprint cycles.
+                  </p>
+                </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">2. Automated Test Engineering</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  We write reusable and stable testing scripts to run regression cycles automatically during code integration phases.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>End-to-End Workflows:</strong> We write Cypress and Playwright scripts that test full user pathways from sign-up to checkout.</li>
-                  <li><strong>CI/CD Integration:</strong> We configure testing suites to run automatically on GitHub Actions or GitLab CI.</li>
-                  <li><strong>API Regression Suites:</strong> We verify JSON payloads, status codes, and database states on backend APIs.</li>
-                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Step 1 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">1</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Functional & Manual Testing</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Boundary Analysis:</strong> Verifying form inputs against edge cases to prevent database errors.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>UX Auditing:</strong> Evaluating button alignment, visual consistency, and navigation flow.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Exploratory Tests:</strong> Performing unstructured tests to locate hidden edge-case code bugs.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">3. Real Device Compatibility Auditing</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  We test your mobile software on physical Android and iOS units rather than virtual emulators. This ensures device compliance.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Operating System Variations:</strong> We verify layouts on multiple OS versions to avoid fragmentation issues.</li>
-                  <li><strong>Network Condition Simulation:</strong> We test app behavior on slow 3G/4G connections and offline modes.</li>
-                  <li><strong>Hardware Features Integration:</strong> We verify camera, GPS, and push notification triggers.</li>
-                </ul>
+                  {/* Step 2 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">2</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Automated Test Engineering</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>E2E Workflows:</strong> Writing Cypress & Playwright scripts that test full user transaction paths.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>CI/CD Integration:</strong> Configuring testing suites to run on GitHub Actions or GitLab CI.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>API Regression:</strong> Verifying JSON payloads, status codes, and server responses automatically.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">3</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Real Device Audits</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>OS Variations:</strong> Verifying layout behaviors on multiple OS versions to avoid fragmentation.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Network Simulation:</strong> Testing software behavior on slow 3G/4G or offline modes.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Hardware Features:</strong> Validating camera triggers, GPS locating, and push alerts.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">QA Case Studies & Bug-Hunting Success</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  See how our testing services prevent system crashes, save developer time, and secure positive review ratings on app stores.
-                </p>
-                <div class="space-y-4">
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 1: E-Commerce Mobile App Store Launch</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+              {/* Case Studies */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Impact
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    QA Case Studies & Bug-Hunting Success
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    See how our testing services prevent system crashes, save developer time, and secure positive review ratings on app stores.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">1. E-Commerce Mobile App Store Launch</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600 mt-1">
                       A lifestyle retailer encountered app crashes on popular mid-range Android devices during checkout. Our QA team simulated the flow on physical units, identified a memory leak within the image rendering library, and guided developers to resolve it prior to release. This secured a successful app store launch with zero critical bugs.
                     </p>
                   </div>
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Case Study 2: B2B SaaS Enterprise Dashboard</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">2. B2B SaaS Enterprise Dashboard</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600 mt-1">
                       A project management platform needed to deploy updates daily without breaking existing features. We wrote 120 Cypress automated E2E tests, integrating them into their Git deployment pipeline. This cut regression testing duration from 8 hours down to 15 minutes, allowing their team to release daily with confidence.
                     </p>
                   </div>
@@ -455,68 +520,133 @@ const faqSchema = {
             </>
           ) : (
             <>
-              <div>
-                <h2 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight mb-4">Layanan Jasa QA Testing & Pengujian Aplikasi Profesional</h2>
-                <p class="text-xs leading-relaxed font-semibold mb-3">
-                  Kami menawarkan jasa QA testing yang menyeluruh untuk mendeteksi bug dan menguji keandalan sistem Anda sebelum meluncur ke publik. Pengujian kami meliputi verifikasi fungsionalitas, uji beban API, dan otomatisasi pengujian untuk memastikan website maupun aplikasi mobile Anda berjalan tanpa hambatan pada berbagai jenis perangkat.
-                </p>
-                <p class="text-xs leading-relaxed font-semibold mb-6">
-                  Dengan tim ahli QA kami, proses rilis aplikasi Anda ke toko aplikasi (app store) menjadi lebih terjamin. Kami mendokumentasikan setiap temuan error secara detail dan berkolaborasi erat dengan developer Anda untuk menjaga kualitas produk digital, menghadirkan pengalaman pengguna (user experience) yang luar biasa, serta mempertahankan kepercayaan pelanggan Anda secara berkelanjutan.
-                </p>
+              {/* Header Intro - Split Layout */}
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Ikhtisar
+                  </span>
+                  <h2 class="font-display font-black text-3xl text-slate-900 uppercase tracking-tight leading-none">
+                    Layanan Jasa QA Testing & Pengujian Aplikasi Profesional
+                  </h2>
+                </div>
+                <div class="lg:col-span-7 space-y-4">
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Kami menawarkan jasa QA testing yang menyeluruh untuk mendeteksi bug dan menguji keandalan sistem Anda sebelum meluncur ke publik. Pengujian kami meliputi verifikasi fungsionalitas, uji beban API, dan otomatisasi pengujian untuk memastikan website maupun aplikasi mobile Anda berjalan tanpa hambatan pada berbagai jenis perangkat.
+                  </p>
+                  <p class="text-xs leading-relaxed font-semibold text-slate-600">
+                    Dengan tim ahli QA kami, proses rilis aplikasi Anda ke toko aplikasi (app store) menjadi lebih terjamin. Kami mendokumentasikan setiap temuan error secara detail dan berkolaborasi erat dengan developer Anda untuk menjaga kualitas produk digital, menghadirkan pengalaman pengguna (user experience) yang luar biasa, serta mempertahankan kepercayaan pelanggan Anda secara berkelanjutan.
+                  </p>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Metodologi Pengujian Quality Assurance Kami</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Kami merancang skenario pengujian terstruktur untuk memastikan setiap baris kode yang dirilis memenuhi ekspektasi pengguna bisnis Anda.
-                </p>
-                
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">1. Pengujian Fungsional & Manual</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  QA Engineer kami menguji aplikasi secara langsung untuk mengidentifikasi kesalahan visual, inkonsistensi layout, dan kelemahan logika navigasi.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Analisis Nilai Batas:</strong> Memastikan input form menolak data ilegal untuk mencegah error database.</li>
-                  <li><strong>Evaluasi Alur Pengguna (User Journey):</strong> Memastikan pengguna dapat menyelesaikan checkout tanpa hambatan navigasi.</li>
-                  <li><strong>Pengujian Eksploratif:</strong> Melakukan uji coba acak untuk mendeteksi bug langka yang tersembunyi.</li>
-                </ul>
+              {/* Core Framework */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Metodologi
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Metodologi Pengujian Quality Assurance Kami
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Kami merancang skenario pengujian terstruktur untuk memastikan setiap baris kode yang dirilis memenuhi ekspektasi pengguna bisnis Anda.
+                  </p>
+                </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">2. Rekayasa Otomatisasi Pengujian (QA Automation)</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  Kami menulis skrip otomatis menggunakan Playwright atau Cypress untuk menjalankan pengujian berulang dengan cepat pada sistem CI/CD.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Pengujian End-to-End:</strong> Mengotomatiskan pengujian alur kerja dari pendaftaran hingga transaksi pembayaran.</li>
-                  <li><strong>Integrasi CI/CD:</strong> Memastikan skrip pengujian berjalan secara otomatis sebelum kode baru digabungkan ke server produksi.</li>
-                  <li><strong>Pengujian Regresi API:</strong> Memvalidasi payload JSON dan status respons dari server database.</li>
-                </ul>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Step 1 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">1</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Pengujian Fungsional & Manual</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Nilai Batas:</strong> Memastikan input form menolak data ilegal untuk mencegah error database.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>User Journey:</strong> Menjamin kenyamanan navigasi agar user tidak kesulitan melakukan transaksi.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Uji Eksploratif:</strong> Melakukan pengujian acak tanpa skenario tertulis untuk mencari celah bug aneh.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
-                <h4 class="font-display font-black text-xs text-slate-800 uppercase tracking-tight mb-2">3. Pengujian Kompatibilitas Perangkat Fisik Asli</h4>
-                <p class="text-xs leading-relaxed font-medium mb-3">
-                  Kami tidak menggunakan emulator. Kami menguji aplikasi mobile Anda langsung pada puluhan merk HP Android & iOS asli.
-                </p>
-                <ul class="list-disc pl-5 text-xs font-semibold space-y-2 mb-4 leading-relaxed">
-                  <li><strong>Variasi Sistem Operasi:</strong> Menjamin kenyamanan akses di berbagai versi Android dan iOS.</li>
-                  <li><strong>Simulasi Kondisi Jaringan:</strong> Menguji performa aplikasi saat koneksi internet lambat atau terputus.</li>
-                  <li><strong>Integrasi Sensor & Notifikasi:</strong> Memastikan push notification, kamera, dan GPS berjalan lancar.</li>
-                </ul>
+                  {/* Step 2 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">2</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Otomatisasi Pengujian</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>End-to-End:</strong> Mengotomatiskan flow pendaftaran hingga checkout menggunakan Cypress/Playwright.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Integrasi CI/CD:</strong> Memaksa pengujian otomatis berjalan di git pipeline sebelum kode digabung.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Regresi API:</strong> Memastikan respons server dan transfer data ke database aman tanpa kebocoran.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex flex-col justify-between">
+                    <div>
+                      <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-xs mb-4">3</div>
+                      <h4 class="font-display font-black text-sm text-slate-900 uppercase tracking-tight mb-4">Pengujian Perangkat Fisik</h4>
+                      <ul class="space-y-3 text-slate-600">
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Variasi OS:</strong> Menjamin kelancaran visual di puluhan model OS Android dan iOS.</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Simulasi Jaringan:</strong> Menguji kestabilan alur transaksi pada jaringan internet lambat (3G/4G).</span>
+                        </li>
+                        <li class="flex gap-2.5 items-start text-xs font-semibold leading-relaxed">
+                          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                          <span><strong>Sensor & Notifikasi:</strong> Menjamin push notification dan pemetaan GPS berjalan tanpa lag.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div class="border-t border-slate-200 pt-6">
-                <h3 class="font-display font-black text-lg text-slate-900 uppercase tracking-tight mb-4">Studi Kasus Penyelamatan Rilis Software</h3>
-                <p class="text-xs leading-relaxed font-semibold mb-4">
-                  Bagaimana tim QA kami membantu mendeteksi bug kritis sebelum aplikasi diluncurkan ke publik.
-                </p>
-                <div class="space-y-4">
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 1: Aplikasi Toko Online E-Commerce</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+              {/* Case Studies */}
+              <div class="border-t border-slate-200/80 pt-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                  <span class="inline-block px-3 py-1 rounded-full border border-blue-600/10 bg-blue-50 text-[9px] font-mono font-black text-blue-600 uppercase tracking-widest mb-3">
+                    Studi Kasus
+                  </span>
+                  <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight">
+                    Studi Kasus Penyelamatan Rilis Software
+                  </h3>
+                  <p class="text-xs text-slate-500 font-semibold mt-2 leading-relaxed">
+                    Bagaimana tim QA kami membantu mendeteksi bug kritis sebelum aplikasi diluncurkan ke publik.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">1. Aplikasi Toko Online E-Commerce</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600 mt-1">
                       Klien kami mendapati laporan crash saat checkout pada HP Android kelas menengah. Tim QA kami menyimulasikan alur transaksi pada real devices, menemukan kebocoran memori pada pustaka pemroses gambar, dan memandu tim developer untuk memperbaikinya sebelum peluncuran resmi.
                     </p>
                   </div>
-                  <div>
-                    <h5 class="font-display font-black text-xs text-slate-900 uppercase">Studi Kasus 2: Platform Dasbor B2B SaaS</h5>
-                    <p class="text-xs leading-relaxed font-medium mt-1">
+                  <div class="p-6 bg-white border border-slate-200/80 border-l-4 border-l-blue-600 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.01)]">
+                    <h5 class="font-display font-black text-xs text-slate-900 uppercase mb-2">2. Dasbor B2B SaaS Enterprise</h5>
+                    <p class="text-[11px] leading-relaxed font-semibold text-slate-600 mt-1">
                       Perusahaan penyedia software HR membutuhkan rilis update harian tanpa merusak fitur yang sudah ada. Kami menulis 120 skrip pengujian E2E Cypress yang terintegrasi pada pipeline rilis kode mereka, memotong waktu pengujian manual dari 8 jam menjadi 15 menit saja.
                     </p>
                   </div>
