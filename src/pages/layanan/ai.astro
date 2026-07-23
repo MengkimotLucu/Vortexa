@@ -25,10 +25,10 @@ const content = {
     periodMonthly: "Investasi Bulanan"
   },
   en: {
-    title: "AI Integration & Business Automation | LUMOVELO",
+    title: "AI Integration Services & Business Automation Agency | LUMOVELO",
     header: "ARTIFICIAL INTELLIGENCE & AUTOMATION",
-    headline: "Eliminate Manual Work, Boost Business Efficiency up to 80%",
-    desc: "We deliver 24/7 automated smart assistants and workflow automations that save hundreds of operational hours for your team.",
+    headline: "AI Integration Services & Business Automation Agency",
+    desc: "As an AI integration services & business automation agency, we design generative AI models, custom chatbots, and predictive analytics tools to automate customer support, optimize your existing workflows, and streamline operations.",
     cta: "Consult Your AI Solution",
     back: "Back to Home",
     pricingHeader: "/ AI SOLUTIONS PACKAGES",
@@ -122,7 +122,7 @@ const homeLink = lang === 'en' ? '/en/' : '/';
 const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
 ---
 
-<Layout title={content.title}>
+<Layout title={content.title} description={content.desc}>
   <!-- Simple Subpage Header -->
   <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -296,6 +296,33 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
           </div>
         </div>
       </div>
+
+      <!-- Long-form Informational Section for SEO -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto space-y-6 text-slate-700">
+          {lang === 'en' ? (
+            <>
+              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Enterprise AI Integration Services & Business Automation Agency</h2>
+              <p class="text-xs leading-relaxed font-semibold">
+                As a leading AI integration services & business automation agency, we specialize in high-efficiency AI development. We build custom generative AI assistants and AI-powered smart agents designed to automate customer support, eliminate redundant administration, and optimize your existing workflows.
+              </p>
+              <p class="text-xs leading-relaxed font-semibold">
+                By integrating predictive analytics tools and intelligent text processing models into your systems, we help you streamline operations and save hundreds of operational hours. Our expert team ensures seamless API connection and model training to transform how your business operates in the modern digital age.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Layanan Jasa Integrasi AI & Otomatisasi Bisnis Modern</h2>
+              <p class="text-xs leading-relaxed font-semibold">
+                Kami adalah penyedia jasa integrasi AI dan otomatisasi bisnis yang siap membantu Anda memangkas pekerjaan operasional yang berulang. Layanan kami mencakup integrasi asisten virtual bertenaga AI (generative AI) yang dilatih khusus menggunakan basis pengetahuan internal perusahaan Anda untuk melayani pelanggan 24/7.
+              </p>
+              <p class="text-xs leading-relaxed font-semibold">
+                Dengan menghubungkan alur kerja otomatisasi sistem (workflow automation) ke sistem CRM, ERP, atau aplikasi internal, kami mempermudah pengelolaan data dan mempercepat respon operasional. Kami merancang arsitektur AI yang andal dan mudah digunakan, membantu Anda menghemat waktu dan meningkatkan efisiensi bisnis secara signifikan.
+              </p>
+            </>
+          )}
+        </div>
+      </section>
 
       <!-- Pricing Packages Section -->
       <div class="mb-20">

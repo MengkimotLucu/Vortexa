@@ -9,10 +9,10 @@ const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
 
 const content = {
   id: {
-    title: "Advanced SEO & Jasa Marketing Funnel | LUMOVELO",
+    title: "Jasa SEO Bulanan & Optimasi SEO Google | LUMOVELO",
     header: "ADVANCED SEO & MARKETING FUNNEL",
-    headline: "Bawa Bisnis Anda ke Halaman Pertama Google Secara Organik",
-    desc: "Kami mengoptimalkan arsitektur website dan menyusun strategi konten bertarget untuk mendatangkan traffic berkualitas tinggi yang siap membeli produk Anda.",
+    headline: "Jasa SEO Bulanan & Optimasi SEO Google",
+    desc: "Kami menawarkan jasa seo bulanan & optimasi seo google untuk menaikkan peringkat website Anda ke halaman 1 google. Dengan menerapkan strategi optimasi yang tepat dan membuat konten berkualitas secara konsisten, kami membantu Anda menjangkau calon pelanggan potensial dalam jangka panjang.",
     cta: "Konsultasikan Strategi SEO Anda",
     back: "Kembali ke Beranda",
     pricingHeader: "/ PAKET INVESTASI SEO",
@@ -116,7 +116,7 @@ const homeLink = lang === 'en' ? '/en/' : '/';
 const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
 ---
 
-<Layout title={content.title}>
+<Layout title={content.title} description={content.desc}>
   <!-- Simple Subpage Header -->
   <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -290,6 +290,33 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
           </div>
         </div>
       </div>
+
+      <!-- Long-form Informational Section for SEO -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto space-y-6 text-slate-700">
+          {lang === 'en' ? (
+            <>
+              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Professional SEO & Digital Marketing Funnel Agency</h2>
+              <p class="text-xs leading-relaxed font-semibold">
+                To build authority and gain long-term traction, your brand needs a dedicated SEO strategy. We help you rank on the first page of Google organically, driving high-intent search traffic directly to your business. Our services focus on keyword optimization, semantic structure audits, and deep on-page optimizations.
+              </p>
+              <p class="text-xs leading-relaxed font-semibold">
+                We combine technical search engine optimization with conversion-focused design, ensuring that the traffic you receive converts into loyal customers. Partner with our team to achieve sustainable growth and decrease your dependency on paid advertising budgets.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Penyedia Jasa SEO Bulanan & Optimasi SEO Google Terpercaya</h2>
+              <p class="text-xs leading-relaxed font-semibold">
+                Sebagai penyedia jasa seo bulanan & optimasi seo google terpercaya, kami merancang strategi optimasi mesin pencari secara menyeluruh untuk memastikan bisnis Anda mendominasi hasil pencarian. Kami melakukan riset kata kunci mendalam, audit teknis on-page, dan optimalisasi konten untuk menempatkan website Anda di halaman 1 google secara konsisten.
+              </p>
+              <p class="text-xs leading-relaxed font-semibold">
+                Mengapa memilih jasa seo bulanan? SEO bukanlah proses sekali jadi, melainkan investasi jangka panjang. Dengan terus menerapkan strategi optimasi yang relevan dan menyajikan konten berkualitas tinggi, kami membantu Anda mengalirkan trafik organik berkualitas tinggi, menjangkau calon pelanggan potensial saat mereka mencari solusi Anda, serta menekan biaya marketing ads berbayar.
+              </p>
+            </>
+          )}
+        </div>
+      </section>
 
       <!-- Pricing Packages Section -->
       <div class="mb-20">

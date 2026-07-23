@@ -3,4 +3,4 @@ Allow: /
 Disallow: /workspace/
 Disallow: /admin/
 
-Sitemap: https://lumovelo.com/sitemap-index.xml
+Sitemap: https://www.lumovelo.com/sitemap-index.xml

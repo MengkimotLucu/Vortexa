@@ -9,10 +9,10 @@ const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
 
 const content = {
   id: {
-    title: "Jasa Keamanan Jaringan & Audit Keamanan Informasi B2B | LUMOVELO",
+    title: "Jasa Keamanan Jaringan & Penetration Testing | LUMOVELO",
     header: "KEAMANAN JARINGAN & CYBERSECURITY B2B",
-    headline: "Jasa Network Security Assessment & Penetration Testing Indonesia",
-    desc: "Konsultan keamanan jaringan perusahaan bersertifikat. Menyediakan layanan audit keamanan informasi, pentest siber, kepatuhan regulasi OJK & UU PDP, serta sertifikasi ISO 27001.",
+    headline: "Jasa Keamanan Jaringan & Penetration Testing",
+    desc: "Kami menyediakan jasa keamanan jaringan & penetration testing untuk melindungi keamanan data sensitif (sensitive data) perusahaan Anda. Melalui penetration testers bersertifikat, kami menjamin keamanan data pelanggan, perlindungan data security menyeluruh, serta kepatuhan web application security regulasi OJK & UU PDP.",
     cta: "Konsultasikan Keamanan Sistem Anda",
     back: "Kembali ke Beranda",
     pricingHeader: "/ PAKET CYBER SECURITY & ENDPOINT PROTECTION",
@@ -26,10 +26,10 @@ const content = {
     annualNote: "*Tersedia penawaran tahunan dengan diskon khusus"
   },
   en: {
-    title: "Managed Network Security Services & Penetration Testing | LUMOVELO",
+    title: "Managed Network Security Services & Remote Penetration Testing | LUMOVELO",
     header: "NETWORK SECURITY SERVICES & COMPLIANCE",
-    headline: "Remote Network Vulnerability Assessment & External Penetration Testing Services",
-    desc: "Managed cloud security services & remote penetration testing services for fintech, e-commerce, and corporate IT infrastructures to ensure maximum security & compliance.",
+    headline: "Managed Network Security Services & Remote Penetration Testing",
+    desc: "We provide managed network security services & remote penetration testing. Our security experts conduct vulnerability scanning and threat intelligence checks, monitoring network traffic to ensure continuous monitoring and shield your critical IT systems from cyber threats.",
     cta: "Consult Your System Security",
     back: "Back to Home",
     pricingHeader: "/ CYBER SECURITY & ENDPOINT PROTECTION PACKAGES",
@@ -177,7 +177,7 @@ const schema = {
 };
 ---
 
-<Layout title={content.title}>
+<Layout title={content.title} description={content.desc}>
   <!-- JSON-LD Structured Data Schema -->
   <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
 
@@ -359,6 +359,32 @@ const schema = {
           </div>
         </div>
       </div>
+      <!-- Long-form Informational Section for SEO -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto space-y-6 text-slate-700">
+          {lang === 'en' ? (
+            <>
+              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Enterprise-Grade Managed Network Security Services & Penetration Testing</h2>
+              <p class="text-xs leading-relaxed font-semibold">
+                Our managed network security services & remote penetration testing programs are built to identify risks before malicious actors do. Our security experts conduct continuous monitoring of your network traffic, endpoint behaviors, and cloud systems to identify and neutralize threats in real time.
+              </p>
+              <p class="text-xs leading-relaxed font-semibold">
+                Through deep vulnerability scanning and regular penetration testing, we uncover hidden flaws in web application security and local system architectures. We combine proactive threat intelligence with industry-standard frameworks to keep your B2B organization safe from data breaches and operational downtime.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Layanan Jasa Keamanan Jaringan & Penetration Testing Profesional</h2>
+              <p class="text-xs leading-relaxed font-semibold">
+                Kami menyediakan jasa keamanan jaringan & penetration testing komprehensif untuk mendeteksi celah keamanan pada sistem Anda sebelum dimanfaatkan oleh hacker. Layanan kami dipimpin oleh penetration testers bersertifikat yang melakukan simulasi serangan nyata untuk menguji ketahanan web application security dan infrastruktur IT B2B Anda.
+              </p>
+              <p class="text-xs leading-relaxed font-semibold">
+                Dalam era digital ini, perlindungan data security dan enkripsi sensitive data pelanggan merupakan kewajiban mutlak. Kami membantu perusahaan Anda meminimalkan risiko kebocoran data dengan audit keamanan informasi terperinci, memastikan kepatuhan regulasi OJK & UU PDP secara penuh, serta merancang sistem keamanan data berlapis untuk menjaga integritas operasional bisnis Anda dalam jangka panjang.
+              </p>
+            </>
+          )}
+        </div>
+      </section>
 
       <!-- Pricing Packages Section -->
       <div class="mb-20">

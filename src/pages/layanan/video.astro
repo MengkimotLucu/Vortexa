@@ -8,35 +8,35 @@ const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 const content = {
   id: {
     title: "Jasa Edit Video & Produksi Aset Kreatif | LUMOVELO",
-    header: "VIDEO EDITING & CREATIVE ASSETS",
-    headline: "Ciptakan Konten Visual Berdampak Tinggi yang Menghasilkan Konversi",
-    desc: "Kami menyunting video promosi dan konten kreatif berkualitas tinggi yang dirancang untuk menarik perhatian pemirsa sejak 3 detik pertama di media sosial.",
+    header: "PENGEMBANGAN MEDIA VISUAL & EDITING",
+    headline: "Jasa Edit Video & Produksi Aset Kreatif",
+    desc: "Kami menyediakan jasa edit video profesional untuk konten digital Anda di industri kreatif. Melalui proses produksi terstruktur, kami menciptakan video promosi dan animasi berkualitas tinggi untuk melejitkan bisnis Anda.",
     cta: "Konsultasikan Kebutuhan Video Anda",
     back: "Kembali ke Beranda",
-    pricingHeader: "/ PAKET INVESTASI VISUAL & VIDEO",
-    pricingTitle: "Pilih Paket Produksi Visual Sesuai Kebutuhan Brand Anda",
-    workflowHeader: "/ ALUR KERJA PRODUKSI",
-    workflowTitle: "Proses Transparan dari Naskah Hingga Konten Siap Tayang",
+    pricingHeader: "/ PAKET PILIHAN EDIT VIDEO & CREATIVE",
+    pricingTitle: "Investasi Visual Kreatif Sesuai Kebutuhan Kampanye Bisnis Anda",
+    workflowHeader: "/ ALUR KERJA PENYUNTINGAN",
+    workflowTitle: "Proses Transparan dari Naskah Hingga Sentuhan Akhir",
     whyUsHeader: "/ KEUNGGULAN KAMI",
-    whyUsTitle: "Mengapa Menggunakan Jasa Produksi Visual Lumovelo?",
+    whyUsTitle: "Mengapa Memilih Jasa Edit Video Lumovelo?",
     tabVideo: "Video Editing",
     tabGraphic: "Desain Grafis",
     periodMonthly: "Investasi Bulanan",
     periodCustom: "Kerja Sama Kustom"
   },
   en: {
-    title: "Video Editing & Creative Asset Services | LUMOVELO",
-    header: "VIDEO EDITING & CREATIVE ASSETS",
-    headline: "Create High-Impact Visual Content That Drives Conversion",
-    desc: "We edit premium promotional videos and creative social content designed to capture viewer attention within the first 3 seconds.",
-    cta: "Consult Your Video Needs",
+    title: "Creative Video Editing & Brand Assets Design Agency | LUMOVELO",
+    header: "VISUAL MEDIA DEVELOPMENT & EDITING",
+    headline: "Creative Video Editing & Brand Assets Design Agency",
+    desc: "As a creative video editing & brand assets design agency, we combine modern branding design, professional logo design, and editing software to produce high-impact video and audio media.",
+    cta: "Consult Your Video Project",
     back: "Back to Home",
-    pricingHeader: "/ VIDEO & VISUAL PRODUCTION PACKAGES",
-    pricingTitle: "Choose the Perfect Visual Package for Your Brand",
-    workflowHeader: "/ OUR PRODUCTION WORKFLOW",
-    workflowTitle: "Transparent Process From Script to Ready-to-Post Content",
+    pricingHeader: "/ VIDEO EDITING & CREATIVE CHOSEN PACKAGES",
+    pricingTitle: "Invest in the Perfect Visual Assets for Your Business Campaign",
+    workflowHeader: "/ OUR EDITING WORKFLOW",
+    workflowTitle: "Transparent Process From Script to Final Render",
     whyUsHeader: "/ WHY CHOOSE US",
-    whyUsTitle: "Why Produce Visual Content With Lumovelo?",
+    whyUsTitle: "Why Build Your Visual Media With Lumovelo?",
     tabVideo: "Video Editing",
     tabGraphic: "Graphic Design",
     periodMonthly: "Monthly Investment",
@@ -212,7 +212,7 @@ const contactLink = lang === 'en' ? '/en/kontak/' : '/kontak/';
 const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
 ---
 
-<Layout title={content.title}>
+<Layout title={content.title} description={content.desc}>
   <!-- Simple Subpage Header -->
   <header class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -245,6 +245,28 @@ const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
         <p class="text-slate-500 mt-6 text-base sm:text-lg leading-relaxed font-semibold">
           {content.desc}
         </p>
+      </div>
+
+      <!-- Showreel Video Section -->
+      <div class="max-w-4xl mx-auto mb-20">
+        <div class="text-center mb-8">
+          <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">
+            {lang === 'en' ? '/ CREATIVE SHOWREEL' : '/ SHOWREEL KREATIF'}
+          </h2>
+          <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">
+            {lang === 'en' ? 'Our Creative Edits & Motion Graphics Portfolio' : 'Portfolio Suntingan Video & Animasi Kreatif Kami'}
+          </h3>
+        </div>
+        <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-900/5 bg-slate-950">
+          <iframe 
+            class="w-full h-full absolute inset-0"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="Lumovelo Creative Showreel" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
 
       <!-- Key Solutions Bento Grid -->

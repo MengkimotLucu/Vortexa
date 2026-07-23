@@ -9,6 +9,17 @@ import Footer from '../components/Footer.astro';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
+const meta = {
+  id: {
+    title: "Digital Agency Indonesia | LUMOVELO - Jasa Bikin Website, Video Kreatif & SEO Terbaik",
+    description: "Sebagai digital agency Indonesia terpercaya, kami merancang website kustom berkinerja tinggi, otomatisasi AI cerdas, dan video kreatif untuk digital marketing dan social media guna meningkatkan konversi penjualan Anda."
+  },
+  en: {
+    title: "Custom Web Design & Creative Video Agency | LUMOVELO",
+    description: "As a custom web design & creative video agency, our web designer team builds high-performance websites, corporate videos, explainer video assets, and video marketing strategies to scale your brand revenue."
+  }
+}[lang];
+
 const faqs = {
   id: [
     {
@@ -70,7 +81,7 @@ const faqSchema = {
 };
 ---
 
-<Layout>
+<Layout title={meta.title} description={meta.description}>
   <!-- JSON-LD FAQ Schema Markup -->
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
 
@@ -78,6 +89,27 @@ const faqSchema = {
   <main class="relative z-10 bg-white">
     <!-- Hero Section with Interactive Kinetic Workspace -->
     <Hero />
+
+    {lang === 'en' && (
+      <section class="py-12 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-4xl mx-auto px-6">
+          <div class="text-center mb-8">
+            <h2 class="font-mono font-bold text-[10px] tracking-widest text-blue-600 uppercase mb-2">/ BRAND ENGAGEMENT SHOWREEL</h2>
+            <h3 class="font-display font-black text-2xl text-slate-900 uppercase tracking-tight leading-snug">See How We Deliver Value</h3>
+          </div>
+          <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900">
+            <iframe 
+              class="w-full h-full absolute inset-0"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+              title="Lumovelo Explainer Video" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    )}
 
     <!-- Core services pricing dashboard with tabs -->
     <Services />

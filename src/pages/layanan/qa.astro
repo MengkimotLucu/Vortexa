@@ -24,10 +24,10 @@ const content = {
     periodMonthly: "Investasi Bulanan"
   },
   en: {
-    title: "QA Center | Software QA Testing & Mobile App Testing Agency | LUMOVELO",
+    title: "Software QA Testing Agency & Mobile App Testing Services | LUMOVELO",
     header: "SOFTWARE QUALITY ASSURANCE & TESTING",
-    headline: "Professional Software QA Testing & Mobile App Testing Services",
-    desc: "We detect defects, perform load tests, and build test automations to ensure your web and mobile applications are highly stable, fast, and secure.",
+    headline: "Software QA Testing Agency & Mobile App Testing Services",
+    desc: "As a premier software qa testing agency & mobile app testing services provider, we run rigorous test automations and manual audits to optimize your digital systems. We ensure a flawless user experience across diverse operating systems and real devices, refining your overall testing process before launch on the app store.",
     cta: "Consult Your QA Requirements",
     back: "Back to Home",
     pricingHeader: "/ SOFTWARE QA TESTING CHOSEN PACKAGES",
@@ -156,7 +156,7 @@ const schema = {
 };
 ---
 
-<Layout title={content.title}>
+<Layout title={content.title} description={content.desc}>
   <!-- JSON-LD Structured Data Schema -->
   <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
 
@@ -319,6 +319,32 @@ const schema = {
           })}
         </div>
       </div>
+      <!-- Long-form Informational Section for SEO -->
+      <section class="mb-24 py-12 px-8 bg-slate-50 border border-slate-100 rounded-3xl">
+        <div class="max-w-4xl mx-auto space-y-6 text-slate-700">
+          {lang === 'en' ? (
+            <>
+              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Enterprise Software QA Testing Agency & Mobile App Testing Services</h2>
+              <p class="text-xs leading-relaxed font-semibold">
+                As an experienced software qa testing agency & mobile app testing services provider, we understand the critical nature of a flawless release. Our QA engineers execute thorough manual testing and robust test automations across real devices and diverse operating systems. This ensures that every functional flow is validated, safeguarding user experience and retention rates.
+              </p>
+              <p class="text-xs leading-relaxed font-semibold">
+                Our testing process covers functional tests, API verification, and peak load stress testing to ensure your application performs under heavy traffic. Partnering with our QA experts helps you launch confidently on the app store, knowing your systems are stable, secure, and ready for your target audience.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 class="font-display font-black text-xl text-slate-900 uppercase tracking-tight">Layanan Jasa QA Testing & Pengujian Aplikasi Profesional</h2>
+              <p class="text-xs leading-relaxed font-semibold">
+                Kami menawarkan jasa QA testing yang menyeluruh untuk mendeteksi bug dan menguji keandalan sistem Anda sebelum meluncur ke publik. Pengujian kami meliputi verifikasi fungsionalitas, uji beban API, dan otomatisasi pengujian untuk memastikan website maupun aplikasi mobile Anda berjalan tanpa hambatan pada berbagai jenis perangkat.
+              </p>
+              <p class="text-xs leading-relaxed font-semibold">
+                Dengan tim ahli QA kami, proses rilis aplikasi Anda ke toko aplikasi (app store) menjadi lebih terjamin. Kami mendokumentasikan setiap temuan error secara detail dan berkolaborasi erat dengan developer Anda untuk menjaga kualitas produk digital, menghadirkan pengalaman pengguna (user experience) yang luar biasa, serta mempertahankan kepercayaan pelanggan Anda secara berkelanjutan.
+              </p>
+            </>
+          )}
+        </div>
+      </section>
 
       <!-- Workflow Process Section -->
       <div class="mb-20">
