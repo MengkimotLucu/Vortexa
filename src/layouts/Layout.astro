@@ -110,13 +110,7 @@ const dynamicSchema = currentLocale === 'id'
         ],
         "opens": "09:00",
         "closes": "18:00"
-      },
-      "sameAs": [
-        "https://github.com",
-        "https://twitter.com",
-        "https://linkedin.com",
-        "https://instagram.com"
-      ]
+      }
     }
   : {
       "@context": "https://schema.org",
@@ -126,14 +120,9 @@ const dynamicSchema = currentLocale === 'id'
       "@id": "https://www.lumovelo.com/#organization",
       "url": "https://www.lumovelo.com",
       "telephone": phoneFormatted,
-      "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"],
-      "sameAs": [
-        "https://github.com",
-        "https://twitter.com",
-        "https://linkedin.com",
-        "https://instagram.com"
-      ]
+      "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"]
     };
+const isBlog = Astro.url.pathname.includes('/blog');
 ---
 
 <!doctype html>
@@ -144,9 +133,13 @@ const dynamicSchema = currentLocale === 'id'
     <link class="astro-icon-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang="id" href={alternates.id} />
-    <link rel="alternate" hreflang="en" href={alternates.en} />
-    <link rel="alternate" hreflang="x-default" href={alternates.id} />
+    {!isBlog && (
+      <>
+        <link rel="alternate" hreflang="id" href={alternates.id} />
+        <link rel="alternate" hreflang="en" href={alternates.en} />
+        <link rel="alternate" hreflang="x-default" href={alternates.id} />
+      </>
+    )}
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     
     <!-- Google Tag Manager -->
