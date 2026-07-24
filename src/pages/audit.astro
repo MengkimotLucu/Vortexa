@@ -21,14 +21,14 @@ const meta = {
     errInvalid: "Format URL tidak valid. Pastikan alamat website benar.",
     vitalsTitle: "Metrik Penting (Core Web Vitals)",
     opportunitiesTitle: "Rekomendasi Perbaikan Hasil Audit",
-    ctaTitle: "Tingkatkan Kecepatan & SEO (Laporan PDF Detail)",
+    ctaTitle: "Dapatkan Panduan PDF & Sesi Konsultasi 10 Menit Gratis",
     ctaDesc:
-      "Skor merah atau kuning di atas? Tim ahli Lumovelo akan menyusun dokumen PDF panduan perbaikan baris-per-baris yang disesuaikan secara khusus untuk CMS/framework website Anda. agar kecepatan memuat bisa melompat hingga 90+ dan mendominasi Google SEO.",
-    ctaPrice: "Harga Promo: Rp 150.000",
+      "Skor merah atau kuning di atas? Tim developer expert Lumovelo akan menyusun dokumen PDF panduan perbaikan baris-per-baris yang disesuaikan secara khusus untuk CMS/framework website Anda + GRATIS Sesi Konsultasi Penjelasan via WhatsApp agar kecepatan memuat bisa melompat hingga 90+.",
+    ctaPrice: "Gratis Sesi Konsultasi (PDF Promo: Rp 150.000 -> GRATIS)",
     formName: "Nama Lengkap",
     formEmail: "Email Anda",
     formWa: "Nomor WhatsApp",
-    btnOrder: "Pesan Panduan PDF via WhatsApp",
+    btnOrder: "Dapatkan Panduan PDF & Konsultasi Gratis",
     formErr: "Mohon isi semua formulir kontak dengan benar.",
   },
   en: {
@@ -46,14 +46,14 @@ const meta = {
     errInvalid: "Invalid URL format. Please make sure the domain is correct.",
     vitalsTitle: "Core Web Vitals Metrics",
     opportunitiesTitle: "Remediation Opportunities",
-    ctaTitle: "Boost Speed & SEO (Detailed PDF Report)",
+    ctaTitle: "Get PDF Guide & Free 10-Minute Consultation",
     ctaDesc:
-      "Seeing red or orange scores above? The Lumovelo developer team will compile a line-by-line PDF remediation guide customized specifically for your CMS/framework (WordPress, Astro, Shopify, etc.) to push your loading speed to 90+ and excel in SEO.",
-    ctaPrice: "Promo Price: $10",
+      "Seeing red or orange scores above? The Lumovelo developer team will compile a line-by-line PDF remediation guide customized specifically for your CMS/framework (WordPress, Astro, Shopify, etc.) + a FREE 10-Minute Walkthrough session via WhatsApp to push your loading speed to 90+ and excel in SEO.",
+    ctaPrice: "Free Consultation (PDF Promo: $10 -> FREE)",
     formName: "Full Name",
     formEmail: "Your Email",
     formWa: "WhatsApp Number",
-    btnOrder: "Order PDF Report via WhatsApp",
+    btnOrder: "Get Free PDF & Consultation",
     formErr: "Please fill out all contact fields correctly.",
   },
 }[lang];
@@ -696,6 +696,7 @@ const meta = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
+              message: `[System Info: Audit Lead Created for ${currentAuditUrl}]`,
               clientName: name,
               whatsappNumber: wa,
               emailAddress: email,
@@ -709,8 +710,8 @@ const meta = {
 
         const msg =
           lang === "en"
-            ? `Hello Lumovelo, I'd like to order a Detailed PDF Remediation Report for my website: ${currentAuditUrl} ($10).\n\nHere are my contact details:\n- Name: ${name}\n- Email: ${email}\n- WhatsApp: ${wa}\n\n*Lighthouse Audit Scores:*\n- Speed Performance: ${finalPerfScore}/100\n- SEO Score: ${finalSeoScore}/100`
-            : `Halo Lumovelo, saya ingin memesan Dokumen PDF Panduan Perbaikan Detail untuk website saya: ${currentAuditUrl} (Rp 150.000).\n\nBerikut detail kontak saya:\n- Nama: ${name}\n- Email: ${email}\n- WhatsApp: ${wa}\n\n*Skor Audit Lighthouse:*\n- Performa Kecepatan: ${finalPerfScore}/100\n- Skor SEO: ${finalSeoScore}/100`;
+            ? `Hello Lumovelo, I'd like to claim my Free PDF Remediation Report & 10-Minute Consultation for my website: ${currentAuditUrl}.\n\nHere are my contact details:\n- Name: ${name}\n- Email: ${email}\n- WhatsApp: ${wa}\n\n*Lighthouse Audit Scores:*\n- Speed Performance: ${finalPerfScore}/100\n- SEO Score: ${finalSeoScore}/100`
+            : `Halo Lumovelo, saya ingin mengklaim Panduan PDF Perbaikan & Sesi Konsultasi 10 Menit Gratis untuk website saya: ${currentAuditUrl}.\n\nBerikut detail kontak saya:\n- Nama: ${name}\n- Email: ${email}\n- WhatsApp: ${wa}\n\n*Skor Audit Lighthouse:*\n- Performa Kecepatan: ${finalPerfScore}/100\n- Skor SEO: ${finalSeoScore}/100`;
 
         const waLink = `https://wa.me/6285624353611?text=${encodeURIComponent(msg)}`;
         window.open(waLink, "_blank");

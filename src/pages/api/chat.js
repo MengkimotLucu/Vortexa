@@ -134,7 +134,7 @@ export async function POST({ request, clientAddress }) {
 
     // 0. Ekstrak Telemetri & Metadata Perangkat
     const clientIp = request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for')?.split(',')[0] || clientAddress || 'unknown';
-    const userAgent = request.headers.get('user-agent') || '';
+    const userAgent = (request.headers.get('user-agent') || '').slice(0, 250);
     const locationCity = request.headers.get('x-vercel-ip-city') || '';
     const locationCountry = request.headers.get('x-vercel-ip-country') || '';
 
