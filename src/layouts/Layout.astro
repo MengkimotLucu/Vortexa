@@ -110,6 +110,13 @@ const dynamicSchema = currentLocale === 'id'
         ],
         "opens": "09:00",
         "closes": "18:00"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "48",
+        "bestRating": "5",
+        "worstRating": "1"
       }
     }
   : {
@@ -120,7 +127,14 @@ const dynamicSchema = currentLocale === 'id'
       "@id": "https://www.lumovelo.com/#organization",
       "url": "https://www.lumovelo.com",
       "telephone": phoneFormatted,
-      "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"]
+      "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "48",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
     };
 const isBlog = Astro.url.pathname.includes('/blog');
 ---
@@ -142,37 +156,56 @@ const isBlog = Astro.url.pathname.includes('/blog');
     )}
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     
-    <!-- Google Tag Manager -->
+    <!-- Combined Third Party Scripts (Deferred Loading) -->
     <script is:inline>
       (function() {
-        let gtmLoaded = false;
-        function loadGTM() {
-          if (gtmLoaded) return;
-          gtmLoaded = true;
+        let scriptsLoaded = false;
+        function loadThirdParty() {
+          if (scriptsLoaded) return;
+          scriptsLoaded = true;
           
-          window.removeEventListener('scroll', loadGTM);
-          window.removeEventListener('mousemove', loadGTM);
-          window.removeEventListener('touchstart', loadGTM);
-          window.removeEventListener('click', loadGTM);
+          window.removeEventListener('scroll', loadThirdParty);
+          window.removeEventListener('mousemove', loadThirdParty);
+          window.removeEventListener('touchstart', loadThirdParty);
+          window.removeEventListener('click', loadThirdParty);
           
+          // Google Tag Manager
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
           j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-TKCVBB6F');
+
+          // Ahrefs Analytics
+          var a = document.createElement('script');
+          a.async = true;
+          a.src = 'https://analytics.ahrefs.com/analytics.js';
+          a.setAttribute('data-key', 'F5g8iy2JtQ/sH8/GV6rxFQ');
+          document.head.appendChild(a);
+
+          // Google Analytics (gtag.js)
+          var ga = document.createElement('script');
+          ga.async = true;
+          ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-SJ0RDN5YWJ';
+          document.head.appendChild(ga);
+
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-SJ0RDN5YWJ');
         }
         
-        window.addEventListener('scroll', loadGTM, { passive: true });
-        window.addEventListener('mousemove', loadGTM, { passive: true });
-        window.addEventListener('touchstart', loadGTM, { passive: true });
-        window.addEventListener('click', loadGTM, { passive: true });
+        window.addEventListener('scroll', loadThirdParty, { passive: true });
+        window.addEventListener('mousemove', loadThirdParty, { passive: true });
+        window.addEventListener('touchstart', loadThirdParty, { passive: true });
+        window.addEventListener('click', loadThirdParty, { passive: true });
         
         window.addEventListener('load', () => {
-          setTimeout(loadGTM, 4000);
+          setTimeout(loadThirdParty, 4000);
         });
       })();
     </script>
-    <!-- End Google Tag Manager -->
+    <!-- End Combined Third Party Scripts -->
     
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -201,16 +234,7 @@ const isBlog = Astro.url.pathname.includes('/blog');
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL('/og-image.png', 'https://www.lumovelo.com').href} />
     
-    <!-- Ahrefs Analytics -->
-    <script is:inline src="https://analytics.ahrefs.com/analytics.js" data-key="F5g8iy2JtQ/sH8/GV6rxFQ" async></script>
-    <!-- Google Analytics (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-SJ0RDN5YWJ"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-SJ0RDN5YWJ');
-    </script>
+    <!-- Analytics scripts deferred and loaded dynamically via GTM script loader -->
 
     <!-- JSON-LD Structured Data Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(dynamicSchema)} />

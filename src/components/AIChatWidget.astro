@@ -311,7 +311,20 @@ const content = {
 </style>
 
 <script>
-  let isOpen = false;
+  const toggleBtnElement = document.getElementById('ai-chat-toggle-btn');
+  let initialized = false;
+
+  function initChatWidget(clickEvent?: Event) {
+    if (initialized) return;
+    initialized = true;
+
+    if (toggleBtnElement) {
+      toggleBtnElement.removeEventListener('mouseenter', initChatWidget);
+      toggleBtnElement.removeEventListener('focus', initChatWidget);
+      toggleBtnElement.removeEventListener('click', initChatWidget);
+    }
+
+    let isOpen = false;
   
   // Custom Toast Notification System
   function showNotification(message: string, type = 'error') {
@@ -1385,4 +1398,25 @@ const content = {
       }
     }
   }, 10000);
+
+    // Auto-open chat if initialized via direct click event (mobile/tap)
+    if (clickEvent && clickEvent.type === 'click') {
+      isOpen = true;
+      chatWindow.classList.remove('scale-95', 'opacity-0', 'pointer-events-none');
+      chatWindow.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+      badge.classList.add('hidden');
+      scrollToBottom();
+      chatInput.focus();
+      if (sessionId) {
+        loadChatHistory();
+      }
+    }
+  }
+
+  // Bind initial triggers for lazy loading the chat widget scripts
+  if (toggleBtnElement) {
+    toggleBtnElement.addEventListener('mouseenter', initChatWidget, { passive: true });
+    toggleBtnElement.addEventListener('focus', initChatWidget, { passive: true });
+    toggleBtnElement.addEventListener('click', initChatWidget);
+  }
 </script>
