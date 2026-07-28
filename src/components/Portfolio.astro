@@ -7,6 +7,7 @@ import imgRedesignWeb from '../assets/portfolio-redesign-web.webp';
 import imgXplored from '../assets/portfolio-xplored.webp';
 import imgBelanjahub from '../assets/portfolio-belanjahub.webp';
 import imgMaintenance from '../assets/portfolio-maintenance.webp';
+import imgKasirToko from '../assets/portfolio-kasir-toko.webp';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
@@ -144,30 +145,6 @@ const projects = [
     demoUrl: ''
   },
   {
-    id: 'xplored-agency',
-    category: 'company-profile',
-    categoryLabel: lang === 'en' ? 'Company Profile' : 'Company Profile',
-    filePath: '~/lumovelo/portfolio/xplored-agency.png',
-    title: 'Xplored UI Agency',
-    image: imgXplored,
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    desc: lang === 'en' 
-      ? 'A modern UI/UX design agency website mockup featuring interactive features, clean responsive layout, and beautiful bento grid sections.' 
-      : 'Website profil perusahaan agensi desain UI/UX modern dengan fitur interaktif, tata letak responsif bersih, dan bagian bento grid yang indah.',
-    metric: lang === 'en' ? 'Interactive UI' : 'UI Interaktif',
-    altText: lang === 'en' 
-      ? "Xplored UI Agency corporate website design and development"
-      : "Jasa pembuatan website company profile agensi desain UI/UX - Xplored",
-    spanClass: 'md:col-span-8',
-    heightClass: 'h-[380px]',
-    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
-      lang === 'en' 
-        ? 'Hello Lumovelo, I am interested in inquiring about the UI Agency Website (Xplored project) I saw in your portfolio.' 
-        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Website Agensi UI (proyek Xplored) yang saya lihat di portofolio.'
-    )}`,
-    demoUrl: 'https://xplored-zeta.vercel.app/'
-  },
-  {
     id: 'belanjahub-marketing',
     category: 'company-profile',
     categoryLabel: lang === 'en' ? 'Company Profile' : 'Company Profile',
@@ -190,6 +167,54 @@ const projects = [
         : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Website Pemasaran Digital (proyek BelanjaHub) yang saya lihat di portofolio.'
     )}`,
     demoUrl: 'https://belanjahub.vercel.app/'
+  },
+  {
+    id: 'xplored-agency',
+    category: 'company-profile',
+    categoryLabel: lang === 'en' ? 'Company Profile' : 'Company Profile',
+    filePath: '~/lumovelo/portfolio/xplored-agency.png',
+    title: 'Xplored UI Agency',
+    image: imgXplored,
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    desc: lang === 'en' 
+      ? 'A modern UI/UX design agency website mockup featuring interactive features, clean responsive layout, and beautiful bento grid sections.' 
+      : 'Website profil perusahaan agensi desain UI/UX modern dengan fitur interaktif, tata letak responsif bersih, dan bagian bento grid yang indah.',
+    metric: lang === 'en' ? 'Interactive UI' : 'UI Interaktif',
+    altText: lang === 'en' 
+      ? "Xplored UI Agency corporate website design and development"
+      : "Jasa pembuatan website company profile agensi desain UI/UX - Xplored",
+    spanClass: 'md:col-span-4',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the UI Agency Website (Xplored project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Website Agensi UI (proyek Xplored) yang saya lihat di portofolio.'
+    )}`,
+    demoUrl: 'https://xplored-zeta.vercel.app/'
+  },
+  {
+    id: 'kasir-toko',
+    category: 'toko-online',
+    categoryLabel: lang === 'en' ? 'POS System' : 'Toko Online',
+    filePath: '~/lumovelo/portfolio/kasir-toko.png',
+    title: lang === 'en' ? 'Smart POS & Cashier System' : 'Aplikasi Kasir & POS Toko',
+    image: imgKasirToko,
+    tech: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript'],
+    desc: lang === 'en' 
+      ? 'A fast, secure cloud POS and store cashier application designed to streamline sales transactions, inventory monitoring, and revenue reporting.' 
+      : 'Sistem POS (Point of Sale) & kasir toko berbasis cloud yang cepat dan andal, dirancang untuk menyederhanakan transaksi penjualan, monitoring stok, dan laporan omset.',
+    metric: lang === 'en' ? 'Transactions: 10K+' : 'Transaksi: 10K+',
+    altText: lang === 'en' 
+      ? "Smart POS & Cashier System application design and development"
+      : "Jasa pembuatan aplikasi kasir toko dan sistem POS modern",
+    spanClass: 'md:col-span-8',
+    heightClass: 'h-[380px]',
+    waUrl: `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(
+      lang === 'en' 
+        ? 'Hello Lumovelo, I am interested in inquiring about the Store Cashier / POS System (kasirtoko project) I saw in your portfolio.' 
+        : 'Halo Lumovelo, saya tertarik untuk berkonsultasi mengenai jasa pembuatan Aplikasi Kasir / POS Toko yang saya lihat di portofolio.'
+    )}`,
+    demoUrl: 'https://kasirtoko.infinityfreeapp.com/'
   }
 ];
 ---
