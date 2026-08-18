@@ -27,7 +27,7 @@ export async function callGroq(history, systemInstruction, options = {}) {
   ];
 
   const requestBody = {
-    model: options.model || 'llama-3.3-70b-versatile',
+    model: options.model || 'openai/gpt-oss-120b',
     messages: messages,
     response_format: { type: 'json_object' },
     max_tokens: options.max_tokens || 500,
