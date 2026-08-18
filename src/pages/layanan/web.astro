@@ -267,9 +267,10 @@ const faqSchema = {
       </a>
       <a
         href={homeLink}
-        class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors"
+        class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors select-none"
       >
-        {content.back}
+        <span class="hidden sm:inline">{content.back}</span>
+        <span class="inline sm:hidden">← {lang === 'en' ? 'Home' : 'Beranda'}</span>
       </a>
     </div>
   </header>

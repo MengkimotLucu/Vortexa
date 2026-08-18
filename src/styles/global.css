@@ -570,4 +570,35 @@ section:not([class*="pt-28"]):not([class*="pt-36"]) {
 .magnetic-hover:hover {
   transform: scale(1.02) translateY(-2px);
   box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(37, 99, 235, 0.1);
+}
+
+/* Scroll offset for sticky header navigation */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px; /* Offset equivalent to sticky header height + safety padding */
+}
+
+/* Admin Sidebar Typography Scaling (Mobile Legibility) */
+#admin-sidebar nav a.nav-item {
+  font-size: 0.875rem !important; /* 14px (text-sm) */
+}
+
+#admin-sidebar nav div.mono {
+  font-size: 0.75rem !important; /* 12px (text-xs) */
+}
+
+/* Pricing Carousel Horizontal Scroll & Mobile Touch Fix */
+.pricing-carousel {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .pricing-carousel {
+    display: grid !important;
+    overflow-x: visible !important;
+  }
 }

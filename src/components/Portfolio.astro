@@ -19,11 +19,11 @@ const content = {
     title1: "Bukti Nyata.",
     title2: "Bukan Sekadar Kata.",
     desc: "Kami tidak sekadar menulis kode. Kami menciptakan solusi digital eksklusif yang dirancang khusus untuk meningkatkan performa bisnis Anda secara masif.",
-    fAll: "[ SEMUA ]",
-    fLanding: "[ LANDING PAGE ]",
-    fProfile: "[ COMPANY PROFILE ]",
-    fEcom: "[ TOKO ONLINE ]",
-    fRedesign: "[ REDESIGN WEB ]",
+    fAll: " SEMUA ",
+    fLanding: " LANDING PAGE ",
+    fProfile: " COMPANY PROFILE ",
+    fEcom: " TOKO ONLINE ",
+    fRedesign: " REDESIGN WEB ",
     btnView: "Lihat Mockup",
     btnWa: "Konsultasi Layanan Ini",
     titleLightbox: "Detail Desain",
@@ -257,7 +257,7 @@ const projects = [
     </div>
 
     <!-- OS Window Bento Grid Layout -->
-    <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-12 gap-6 reveal-on-scroll">
+    <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-12 gap-8 reveal-on-scroll">
       {projects.map((project) => (
         <div 
           class={`portfolio-card group relative overflow-hidden rounded-2xl border-2 border-slate-900 bg-white shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-300 flex flex-col cursor-pointer ${project.spanClass} ${project.heightClass}`}
@@ -371,7 +371,7 @@ const projects = [
 </section>
 
 <!-- Fullscreen Lightbox Modal -->
-<div id="portfolio-lightbox" class="fixed inset-0 z-50 bg-slate-950/95 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+<div id="portfolio-lightbox" class="fixed inset-0 z-[9999] bg-slate-950/95 flex flex-col items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
   <!-- Close Button -->
   <button 
     type="button" 
@@ -604,6 +604,9 @@ const projects = [
 
     // 2. LIGHTBOX MODAL CONTROLS
     const lightbox = document.getElementById('portfolio-lightbox');
+    if (lightbox) {
+      document.body.appendChild(lightbox);
+    }
     const lightboxCard = document.getElementById('lightbox-card');
     const lightboxClose = document.getElementById('lightbox-close');
     const lightboxImage = document.getElementById('lightbox-image') as HTMLImageElement;
@@ -666,6 +669,7 @@ const projects = [
 
       // Disable page body scroll
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
@@ -678,6 +682,7 @@ const projects = [
 
       // Enable page body scroll
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
 
     // Attach click events on portfolio cards

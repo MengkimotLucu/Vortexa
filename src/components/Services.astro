@@ -9,7 +9,7 @@ const content = {
     desc: "Mulai dari pembuatan website sederhana hingga profesional, semua bisa kamu pilih sesuai kebutuhan dan tujuan bisnismu secara transparan.",
     whatsappBtn: "Konsultasi via WhatsApp",
     bestSeller: "Terpopuler",
-    viewAllBtn: "Lihat Semua Layanan & Paket Selengkapnya →",
+    viewAllBtn: "Lihat Semua Layanan & Paket Selengkapnya",
     viewAllSubtitle: "Termasuk Redesign Web, Optimasi SEO, Video Editing, Desain Grafis & Software QA"
   },
   en: {
@@ -19,7 +19,7 @@ const content = {
     desc: "From simple landing pages to professional corporate websites, choose the perfect package transparently based on your goals.",
     whatsappBtn: "Consult on WhatsApp",
     bestSeller: "Best Seller",
-    viewAllBtn: "Explore All Services & Full Details →",
+    viewAllBtn: "Explore All Services & Full Details",
     viewAllSubtitle: "Including Web Redesign, SEO Optimization, Video Editing, Graphic Design & Software QA"
   }
 }[lang];
@@ -482,7 +482,7 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
           class={`pricing-panel ${idx === 0 ? '' : 'hidden'}`}
         >
           <!-- Grid wrapper that morphs into a swipeable carousel on mobile -->
-          <div class="flex md:grid overflow-x-auto md:overflow-x-visible gap-[2rem] pb-6 md:pb-0 snap-x snap-mandatory scrollbar-none w-full" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+          <div class="flex md:grid overflow-x-auto md:overflow-x-visible gap-[2rem] pt-6 pb-6 md:pt-0 md:pb-0 snap-x snap-mandatory scrollbar-none w-full pricing-carousel" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
             {packages[cat.id as keyof typeof packages].map((pkg: any) => {
               const waText = encodeURIComponent(
                 `Halo Tim Lumovelo, saya tertarik untuk berkonsultasi mengenai paket "${pkg.title}" (${pkg.price}) yang tertera di website.`
@@ -491,7 +491,7 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
               
               return (
                 <div 
-                  class={`pricing-card w-[85vw] sm:w-[320px] md:w-auto shrink-0 snap-center p-6 flex flex-col justify-between min-h-[460px] transition-all duration-300 relative border ${
+                  class={`pricing-card w-[85vw] sm:w-[320px] md:w-auto shrink-0 snap-center p-6 sm:p-8 flex flex-col justify-between min-h-[460px] transition-all duration-300 relative border rounded-3xl ${
                     pkg.popular 
                       ? 'bestseller-glow shadow-lg shadow-blue-500/[0.02] border-transparent' 
                       : 'border-slate-200/80 bg-white shadow-sm hover:border-slate-300 hover:shadow-md'
@@ -567,6 +567,13 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
               );
             })}
           </div>
+
+          <!-- Mobile Scroll Indicator Dots -->
+          <div class="flex md:hidden justify-center gap-2 mt-4 pricing-dots">
+            {packages[cat.id as keyof typeof packages].map((_, dotIdx) => (
+              <span class={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${dotIdx === 0 ? 'bg-blue-600 w-3' : 'bg-slate-350'}`}></span>
+            ))}
+          </div>
         </div>
       ))}
     </div>
@@ -617,6 +624,32 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
           }
         });
       });
+    });
+
+    // Scroll listener for mobile carousel indicators
+    const carousels = document.querySelectorAll('.pricing-carousel');
+    carousels.forEach(carousel => {
+      carousel.addEventListener('scroll', () => {
+        const scrollLeft = carousel.scrollLeft;
+        const width = carousel.clientWidth;
+        const card = carousel.querySelector('.pricing-card');
+        const cardWidth = card ? card.clientWidth + 32 : width; // card width + gap (2rem = 32px)
+        const activeIndex = Math.round(scrollLeft / cardWidth);
+        
+        const panel = carousel.closest('.pricing-panel');
+        const dots = panel?.querySelectorAll('.pricing-dots span');
+        if (dots) {
+          dots.forEach((dot, idx) => {
+            if (idx === activeIndex) {
+              dot.classList.remove('bg-slate-355', 'bg-slate-350');
+              dot.classList.add('bg-blue-600', 'w-3');
+            } else {
+              dot.classList.remove('bg-blue-600', 'w-3');
+              dot.classList.add('bg-slate-350');
+            }
+          });
+        }
+      }, { passive: true });
     });
   }
 

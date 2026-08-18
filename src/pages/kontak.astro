@@ -30,8 +30,9 @@ const meta = {
         <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
       </a>
 
-      <a href={lang === 'en' ? '/en/' : '/'} class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all select-none">
-        {meta.backBtn}
+      <a href={lang === 'en' ? '/en/' : '/'} class="inline-flex items-center justify-center px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all select-none">
+        <span class="hidden sm:inline">{meta.backBtn}</span>
+        <span class="inline sm:hidden">← {lang === 'en' ? 'Home' : 'Beranda'}</span>
       </a>
     </div>
   </header>

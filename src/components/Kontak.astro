@@ -78,10 +78,6 @@ const servicesList = lang === 'en' ? [
   <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
-    <!-- Section Header Breadcrumb -->
-    <div class="mb-6">
-      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
-    </div>
 
     <!-- Huge Header Title (Infini style) -->
     <div class="mb-12">
@@ -164,7 +160,7 @@ const servicesList = lang === 'en' ? [
               />
               <label 
                 for="client-name" 
-                class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+                class="peer-focus:font-medium absolute text-sm text-slate-400 duration-300 transform -translate-y-6 scale-[0.85] top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.85] peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
               >
                 {content.fieldName}
               </label>
@@ -182,7 +178,7 @@ const servicesList = lang === 'en' ? [
               />
               <label 
                 for="client-email" 
-                class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+                class="peer-focus:font-medium absolute text-sm text-slate-400 duration-300 transform -translate-y-6 scale-[0.85] top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.85] peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
               >
                 {content.fieldEmail}
               </label>
@@ -202,7 +198,7 @@ const servicesList = lang === 'en' ? [
               />
               <label 
                 for="client-company" 
-                class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+                class="peer-focus:font-medium absolute text-sm text-slate-400 duration-300 transform -translate-y-6 scale-[0.85] top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.85] peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
               >
                 {content.fieldCompany}
               </label>
@@ -219,7 +215,7 @@ const servicesList = lang === 'en' ? [
               />
               <label 
                 for="client-website" 
-                class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+                class="peer-focus:font-medium absolute text-sm text-slate-400 duration-300 transform -translate-y-6 scale-[0.85] top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.85] peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
               >
                 {content.fieldWebsite}
               </label>
@@ -241,7 +237,7 @@ const servicesList = lang === 'en' ? [
             </select>
             <label 
               for="client-service" 
-              class="absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+              class="absolute text-sm text-slate-400 duration-300 transform -translate-y-6 scale-[0.85] top-3 -z-10 origin-[0] peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
             >
               {content.fieldService}
             </label>
@@ -258,7 +254,7 @@ const servicesList = lang === 'en' ? [
             ></textarea>
             <label 
               for="client-notes" 
-              class="peer-focus:font-medium absolute text-xs text-slate-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
+              class="peer-focus:font-medium absolute text-sm text-slate-400 duration-300 transform -translate-y-6 scale-[0.85] top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-[0.85] peer-focus:-translate-y-6 peer-focus:text-blue-600 font-bold uppercase tracking-wider font-mono"
             >
               {content.fieldProject}
             </label>
@@ -270,9 +266,9 @@ const servicesList = lang === 'en' ? [
               type="checkbox" 
               id="privacy-check" 
               required
-              class="w-4 h-4 text-blue-600 border-2 border-slate-300 rounded focus:ring-blue-500 cursor-pointer mt-0.5"
+              class="w-5 h-5 text-blue-600 border-2 border-slate-300 rounded focus:ring-blue-500 cursor-pointer mt-0.5"
             />
-            <label for="privacy-check" class="text-[11px] text-slate-400 font-semibold leading-relaxed select-none cursor-pointer">
+            <label for="privacy-check" class="text-sm text-slate-500 font-semibold leading-relaxed select-none cursor-pointer">
               {content.privacyText}
             </label>
           </div>
@@ -338,17 +334,17 @@ const servicesList = lang === 'en' ? [
 
 <style>
   /* Ensure clean floating labels behavior on focus and select values */
-  input:focus ~ label,
-  input:not(:placeholder-shown) ~ label,
+  input:not([type="checkbox"]):focus ~ label,
+  input:not([type="checkbox"]):not(:placeholder-shown) ~ label,
   textarea:focus ~ label,
   textarea:not(:placeholder-shown) ~ label {
-    transform: translateY(-1.5rem) scale(0.75);
+    transform: translateY(-1.5rem) scale(0.85);
     color: #2563eb;
   }
   
   select:focus ~ label,
   select:valid ~ label {
-    transform: translateY(-1.5rem) scale(0.75);
+    transform: translateY(-1.5rem) scale(0.85);
     color: #2563eb;
   }
 </style>

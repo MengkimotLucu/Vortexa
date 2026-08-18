@@ -141,7 +141,13 @@ const faqs = {
   ]
 }[lang];
 
-const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
+const waText = encodeURIComponent(
+  lang === 'en'
+    ? 'Hello Lumovelo Team, I would like to have a free consultation about my project.'
+    : 'Halo Tim Lumovelo, saya tertarik untuk melakukan konsultasi gratis mengenai proyek saya.'
+);
+const contactLink = `https://api.whatsapp.com/send?phone=${waNumber}&text=${waText}`;
 ---
 
 <section id="faq" class="py-12 lg:py-16 bg-white relative overflow-hidden !pt-12 sm:!pt-14">
@@ -174,6 +180,8 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
           </p>
           <a 
             href={contactLink} 
+            target="_blank"
+            rel="noopener noreferrer"
             class="inline-flex w-full items-center justify-center px-6 py-3.5 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#0f172a] active:translate-y-0.5 active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
           >
             {content.ctaBtn}
@@ -189,9 +197,9 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
               <span>{item.q}</span>
               <svg class="faq-chevron w-4 h-4 text-blue-600 transform transition-transform duration-300 shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div class="faq-answer grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 overflow-hidden">
+            <div class="faq-answer overflow-hidden">
               <div class="min-h-0">
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold pt-4 border-t border-slate-200/50 mt-4">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-semibold pt-4 border-t border-slate-200/50 mt-4 pb-2">
                   {item.a}
                 </p>
               </div>
@@ -206,6 +214,17 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
 </section>
 
 
+<style>
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .faq-answer.is-open {
+    grid-template-rows: 1fr;
+  }
+</style>
+
 <script>
   function initFaq() {
     const faqItems = document.querySelectorAll('.faq-item');
@@ -217,15 +236,14 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
       
       if (toggle && answer && chevron) {
         toggle.addEventListener('click', () => {
-          const isOpen = answer.classList.contains('grid-rows-[1fr]');
+          const isOpen = answer.classList.contains('is-open');
           
           // Close all other FAQs for clean single-accordion look
           faqItems.forEach(otherItem => {
             const otherAnswer = otherItem.querySelector('.faq-answer');
             const otherChevron = otherItem.querySelector('.faq-chevron');
             if (otherAnswer && otherChevron && otherAnswer !== answer) {
-              otherAnswer.classList.remove('grid-rows-[1fr]');
-              otherAnswer.classList.add('grid-rows-[0fr]');
+              otherAnswer.classList.remove('is-open');
               otherChevron.classList.remove('rotate-180');
               otherItem.classList.remove('bg-white');
               otherItem.classList.add('bg-slate-50');
@@ -234,14 +252,12 @@ const contactLink = lang === 'en' ? '/en/#konsultasi' : '#konsultasi';
 
           // Toggle current
           if (isOpen) {
-            answer.classList.remove('grid-rows-[1fr]');
-            answer.classList.add('grid-rows-[0fr]');
+            answer.classList.remove('is-open');
             chevron.classList.remove('rotate-180');
             item.classList.remove('bg-white');
             item.classList.add('bg-slate-50');
           } else {
-            answer.classList.remove('grid-rows-[0fr]');
-            answer.classList.add('grid-rows-[1fr]');
+            answer.classList.add('is-open');
             chevron.classList.add('rotate-180');
             item.classList.remove('bg-slate-50');
             item.classList.add('bg-white');

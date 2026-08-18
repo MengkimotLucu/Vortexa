@@ -90,6 +90,48 @@ const staticPosts = [
         Elemen video yang ditempatkan secara strategis di sebelah tombol panggilan (Call to Action / CTA) dapat menaikkan minat beli secara emosional. Ini membantu mempercepat pengambilan keputusan calon pembeli untuk mengklik tombol WhatsApp dan melakukan pemesanan langsung ke bisnis Anda.
       </p>
     `
+  },
+  {
+    slug: 'analisis-performa-web-lighthouse',
+    title: 'Cara Mengukur dan Meningkatkan Skor Google Lighthouse Website Anda Hingga 100',
+    date: '20 JUNI 2026',
+    category: 'IT & WEB DEVELOP',
+    bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
+    description: 'Panduan mendalam mengoptimasi kecepatan muat, struktur gambar Next-Gen, dan menghilangkan render-blocking resources untuk performa sempurna.',
+    content: `
+      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+        Skor Google Lighthouse yang tinggi bukan sekadar angka kebanggaan, melainkan penentu utama kenyamanan pengunjung dan performa SEO Anda. Website dengan skor 100 akan lebih disukai oleh algoritma Google.
+      </p>
+      
+      <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Langkah Utama Optimasi Kecepatan</h3>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Untuk mencapai performa optimal, Anda harus melakukan kompresi gambar ke format Next-Gen seperti WebP atau AVIF, menunda pemuatan script non-kritikal (lazy loading), serta meminimalkan file CSS dan JS.
+      </p>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Menggunakan arsitektur Astro secara bawaan memotong pengiriman JavaScript ke browser (Zero JS by default), sehingga memudahkan Anda meraih nilai Lighthouse sempurna tanpa usaha berlebih.
+      </p>
+    `
+  },
+  {
+    slug: 'tren-desain-web-minimalis',
+    title: 'Tren Desain Website Minimalis Modern yang Meningkatkan Kepercayaan Brand Anda',
+    date: '15 JUNI 2026',
+    category: 'VIDEO & CREATIVE',
+    bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
+    description: 'Bagaimana perpaduan tipografi berani, ruang putih yang luas, dan mikro animasi dapat membuat website perusahaan Anda terlihat premium.',
+    content: `
+      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+        Desain website minimalis modern bukan berarti kosong, melainkan menaruh elemen secara presisi untuk mengarahkan pandangan pengunjung langsung pada solusi bisnis Anda secara elegan.
+      </p>
+      
+      <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Estetika Premium Tanpa Beban</h3>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Gunakan kontras warna yang terkurasi, tipografi yang tegas, serta ruang kosong (white space) yang seimbang. Ini memberikan kesan visual yang lega, bersih, dan profesional.
+      </p>
+      <p class="mb-6 text-slate-600 leading-relaxed">
+        Tambahkan pula mikro animasi halus pada tombol atau perpindahan halaman untuk menghidupkan interaksi, membuat website Anda terasa dinamis dan sangat premium bagi calon pelanggan.
+      </p>
+    `
   }
 ];
 
@@ -193,7 +235,7 @@ const localizedContent = content
       <div class="h-0.5 w-full bg-slate-100 mb-10"></div>
 
       <!-- Body Content -->
-      <div class="prose prose-slate max-w-none text-slate-650" set:html={localizedContent}></div>
+      <div class="prose prose-slate max-w-none text-slate-650 text-justify" set:html={localizedContent}></div>
 
       <!-- Author Box -->
       <div class="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center sm:items-start gap-5">

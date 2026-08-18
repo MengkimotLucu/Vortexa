@@ -251,8 +251,9 @@ const faqSchema = {
         </div>
         <span class="font-display font-black text-lg tracking-widest text-slate-900">LUMOVELO</span>
       </a>
-      <a href={homeLink} class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors">
-        {content.back}
+      <a href={homeLink} class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors select-none">
+        <span class="hidden sm:inline">{content.back}</span>
+        <span class="inline sm:hidden">← {lang === 'en' ? 'Home' : 'Beranda'}</span>
       </a>
     </div>
   </header>

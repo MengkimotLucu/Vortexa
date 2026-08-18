@@ -42,6 +42,22 @@ const content = {
         category: 'VIDEO & CREATIVE',
         bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
         description: 'Mengapa menyertakan konten video pendek berkualitas sangat berdampak pada penurunan bounce rate website produk dan meyakinkan calon pelanggan.'
+      },
+      {
+        slug: 'analisis-performa-web-lighthouse',
+        title: 'Cara Mengukur dan Meningkatkan Skor Google Lighthouse Website Anda Hingga 100',
+        date: '20 JUNI 2026',
+        category: 'IT & WEB DEVELOP',
+        bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
+        description: 'Panduan mendalam mengoptimasi kecepatan muat, struktur gambar Next-Gen, dan menghilangkan render-blocking resources untuk performa sempurna.'
+      },
+      {
+        slug: 'tren-desain-web-minimalis',
+        title: 'Tren Desain Website Minimalis Modern yang Meningkatkan Kepercayaan Brand Anda',
+        date: '15 JUNI 2026',
+        category: 'VIDEO & CREATIVE',
+        bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
+        description: 'Bagaimana perpaduan tipografi berani, ruang putih yang luas, dan mikro animasi dapat membuat website perusahaan Anda terlihat premium.'
       }
     ]
   },
@@ -83,6 +99,22 @@ const content = {
         category: 'VIDEO & CREATIVE',
         bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
         description: 'Why high-quality short video assets dramatically decrease bounce rates and convince potential customers on your landing page.'
+      },
+      {
+        slug: 'analisis-performa-web-lighthouse',
+        title: 'How to Measure and Improve Your Google Lighthouse Web Score to 100',
+        date: '20 JUNE 2026',
+        category: 'IT & WEB DEV',
+        bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
+        description: 'In-depth guide to optimizing loading speed, Next-Gen image formats, and eliminating render-blocking resources for flawless performance.'
+      },
+      {
+        slug: 'tren-desain-web-minimalis',
+        title: 'Modern Minimalist Web Design Trends that Boost Your Brand Authority',
+        date: '15 JUNE 2026',
+        category: 'VIDEO & CREATIVE',
+        bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
+        description: 'How a mix of bold typography, generous white space, and micro-interactions can make your corporate website look extremely premium.'
       }
     ]
   }
@@ -136,19 +168,19 @@ const posts = rawPosts.map(p => ({
       <button data-filter="ALL" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-slate-950 text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-[3px_3px_0px_#2563eb]">
         SEMUA
       </button>
-      <button data-filter="AI & OTOMATISASI" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+      <button data-filter="AI & OTOMATISASI" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
         AI & Otomatisasi
       </button>
-      <button data-filter="IT & WEB DEVELOP" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+      <button data-filter="IT & WEB DEVELOP" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
         IT & Web Develop
       </button>
-      <button data-filter="SEO & MARKETING" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+      <button data-filter="SEO & MARKETING" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
         SEO & Marketing
       </button>
-      <button data-filter="VIDEO & CREATIVE" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+      <button data-filter="VIDEO & CREATIVE" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
         Video & Creative
       </button>
-      <button data-filter="KEAMANAN JARINGAN" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-955 bg-white text-slate-950 hover:bg-slate-955 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+      <button data-filter="KEAMANAN JARINGAN" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
         Keamanan Jaringan
       </button>
     </div>
@@ -168,7 +200,7 @@ const posts = rawPosts.map(p => ({
             <h4 class="font-display font-black text-xl text-slate-900 uppercase hover:text-blue-600 transition-colors leading-tight">
               <a href={`/blog/${post.slug}/`}>{post.title}</a>
             </h4>
-            <p class="text-xs text-slate-500 font-semibold leading-relaxed">
+            <p class="text-xs text-slate-500 font-semibold leading-relaxed text-justify">
               {post.description}
             </p>
           </div>
@@ -181,40 +213,147 @@ const posts = rawPosts.map(p => ({
         </article>
       ))}
     </div>
+
+    <!-- Pagination Container -->
+    <div id="blog-pagination" class="flex items-center justify-center gap-2.5 mt-14 reveal-on-scroll">
+      <!-- Will be populated dynamically by JavaScript -->
+    </div>
   </div>
 </section>
 
 <script>
   const filterTabs = document.querySelectorAll('.btn-filter-tab');
-  const postCards = document.querySelectorAll('.blog-post-card');
+  const postCards = Array.from(document.querySelectorAll('.blog-post-card')) as HTMLElement[];
+  const paginationContainer = document.getElementById('blog-pagination') as HTMLDivElement;
 
+  const postsPerPage = 4;
+  let currentPage = 1;
+  let currentFilter = 'ALL';
+
+  function updatePagination() {
+    // 1. Filter the post cards based on the selected category
+    const filteredCards = postCards.filter(card => {
+      const cardCat = card.getAttribute('data-category');
+      return currentFilter === 'ALL' || cardCat === currentFilter;
+    });
+
+    const totalPages = Math.ceil(filteredCards.length / postsPerPage);
+
+    // 2. Adjust current page if out of bounds
+    if (currentPage > totalPages) {
+      currentPage = Math.max(1, totalPages);
+    }
+
+    // 3. Hide all cards, then show only the cards for the current page
+    postCards.forEach(card => {
+      card.style.display = 'none';
+    });
+
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    const cardsToDisplay = filteredCards.slice(startIndex, endIndex);
+
+    cardsToDisplay.forEach(card => {
+      card.style.display = 'flex';
+    });
+
+    // 4. Render pagination controls
+    renderPaginationControls(totalPages);
+  }
+
+  function renderPaginationControls(totalPages: number) {
+    if (!paginationContainer) return;
+    paginationContainer.innerHTML = '';
+
+    // If there is only 1 page or no pages, hide pagination controls
+    if (totalPages <= 1) {
+      return;
+    }
+
+    // Previous Button
+    const prevBtn = document.createElement('button');
+    prevBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    `;
+    prevBtn.className = currentPage === 1
+      ? 'w-10 h-10 flex items-center justify-center rounded-xl border border-slate-100 text-slate-300 cursor-not-allowed opacity-50'
+      : 'w-10 h-10 flex items-center justify-center rounded-xl border-2 border-slate-900 bg-white text-slate-800 hover:bg-slate-50 transition-all cursor-pointer shadow-[2px_2px_0px_#0f172a] active:translate-y-0.5 active:shadow-[0px_0px_0px_#0f172a]';
+    
+    if (currentPage > 1) {
+      prevBtn.addEventListener('click', () => {
+        currentPage--;
+        updatePagination();
+        scrollToBlogTop();
+      });
+    }
+    paginationContainer.appendChild(prevBtn);
+
+    // Page Buttons
+    for (let i = 1; i <= totalPages; i++) {
+      const pageBtn = document.createElement('button');
+      pageBtn.innerText = i.toString();
+      pageBtn.className = i === currentPage
+        ? 'w-10 h-10 flex items-center justify-center rounded-xl border-2 border-slate-900 bg-blue-650 text-white font-mono font-bold text-xs tracking-wider transition-all cursor-pointer shadow-[3px_3px_0px_#0f172a]'
+        : 'w-10 h-10 flex items-center justify-center rounded-xl border-2 border-slate-200 bg-white text-slate-700 hover:border-slate-400 font-mono font-bold text-xs tracking-wider transition-all cursor-pointer';
+      
+      pageBtn.addEventListener('click', () => {
+        currentPage = i;
+        updatePagination();
+        scrollToBlogTop();
+      });
+      paginationContainer.appendChild(pageBtn);
+    }
+
+    // Next Button
+    const nextBtn = document.createElement('button');
+    nextBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    `;
+    nextBtn.className = currentPage === totalPages
+      ? 'w-10 h-10 flex items-center justify-center rounded-xl border border-slate-100 text-slate-300 cursor-not-allowed opacity-50'
+      : 'w-10 h-10 flex items-center justify-center rounded-xl border-2 border-slate-900 bg-white text-slate-800 hover:bg-slate-50 transition-all cursor-pointer shadow-[2px_2px_0px_#0f172a] active:translate-y-0.5 active:shadow-[0px_0px_0px_#0f172a]';
+
+    if (currentPage < totalPages) {
+      nextBtn.addEventListener('click', () => {
+        currentPage++;
+        updatePagination();
+        scrollToBlogTop();
+      });
+    }
+    paginationContainer.appendChild(nextBtn);
+  }
+
+  function scrollToBlogTop() {
+    const blogSection = document.getElementById('blog');
+    if (blogSection) {
+      blogSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Set up filter click events
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const filterValue = tab.getAttribute('data-filter')!;
 
-      // Update active button styling
+      // Update active tab styling
       filterTabs.forEach(t => {
-        t.classList.remove('bg-slate-950', 'text-white', 'shadow-[3px_3px_0px_#2563eb]');
-        t.classList.add('bg-white', 'text-slate-950');
+        t.classList.remove('bg-slate-955', 'bg-slate-955', 'bg-slate-950', 'text-white', 'shadow-[3px_3px_0px_#2563eb]');
+        t.classList.add('bg-white', 'text-slate-955', 'text-slate-950');
       });
-      tab.classList.remove('bg-white', 'text-slate-950');
+      tab.classList.remove('bg-white', 'text-slate-955', 'text-slate-950');
       tab.classList.add('bg-slate-950', 'text-white', 'shadow-[3px_3px_0px_#2563eb]');
 
-      // Filter cards
-      if (filterValue === 'ALL') {
-        postCards.forEach(card => {
-          (card as HTMLElement).style.display = 'flex';
-        });
-      } else {
-        postCards.forEach(card => {
-          const cardCat = card.getAttribute('data-category');
-          if (cardCat === filterValue) {
-            (card as HTMLElement).style.display = 'flex';
-          } else {
-            (card as HTMLElement).style.display = 'none';
-          }
-        });
-      }
+      // Reset to page 1 and apply new filter
+      currentFilter = filterValue;
+      currentPage = 1;
+      updatePagination();
     });
   });
+
+  // Run on initial load
+  updatePagination();
 </script>
