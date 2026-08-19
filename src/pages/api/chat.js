@@ -752,7 +752,7 @@ export async function POST({ request, clientAddress }) {
     const isAfterHours = wibHour >= 0 && wibHour < 8;
 
     if (isAfterHours && reply && !reply.includes('jam operasional')) {
-      const bookingUrl = process.env.PUBLIC_BOOKING_URL || import.meta.env.PUBLIC_BOOKING_URL || 'https://cal.com/lumovelo/15min';
+      const bookingUrl = process.env.PUBLIC_BOOKING_URL || import.meta.env.PUBLIC_BOOKING_URL || 'https://cal.com/satria-rko5g1/lumovelo';
       const afterHoursNotice = isEn
         ? `\n\n📌 *Note: You are contacting us outside our operational hours (08:00 - 00:00 WIB / GMT+7). You can directly book a 15-minute consultation session for tomorrow morning here: [Book Consultation Page](${bookingUrl}). Our team will prioritize responding to your inquiry.*`
         : `\n\n📌 *Catatan: Anda menghubungi di luar jam operasional (08:00 - 00:00 WIB). Kakak bisa langsung menjadwalkan sesi konsultasi gratis 15 menit melalui kalender jadwal kami di sini: [Halaman Jadwal Konsultasi](${bookingUrl}). Tim kami akan memprioritaskan konsultasi Anda.*`;
