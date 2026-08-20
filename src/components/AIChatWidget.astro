@@ -1013,10 +1013,17 @@ const content = {
     const msgDiv = document.createElement('div');
     msgDiv.className = `flex items-start gap-2.5 ${isUser ? 'justify-end' : ''}`;
 
-    // Format bold markdown sederhana
+    // Format bold, italic, dan link markdown sederhana menjadi link/tombol HTML
     const formattedContent = content
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/\[(.*?)\]\((.*?)\)/g, (match, text, url) => {
+        const isWa = url.includes('wa.me');
+        const btnClass = isWa 
+          ? 'inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all my-1.5 shadow-md hover:shadow-lg select-none'
+          : 'inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-[10px] uppercase tracking-wider transition-all my-1.5 shadow-md hover:shadow-lg select-none';
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="${btnClass}">${text}</a>`;
+      })
       .replace(/\n/g, '<br/>');
 
     msgDiv.innerHTML = isUser
