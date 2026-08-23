@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import AudienceFit from '../components/AudienceFit.astro';
 import Services from '../components/Services.astro';
 import WhyChooseUs from '../components/WhyChooseUs.astro';
 import Testimonials from '../components/Testimonials.astro';
@@ -12,7 +13,7 @@ const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 const meta = {
   id: {
     title: "LUMOVELO | Jasa Pembuatan Website & Digital Agency Indonesia",
-    description: "Sebagai digital agency jakarta dan digital marketing agency jakarta terpercaya, kami merancang website kustom berkinerja tinggi, otomatisasi AI cerdas, dan video kreatif guna meningkatkan konversi penjualan bisnis Anda."
+       description: "LUMOVELO membantu bisnis di Bandung, Jakarta, dan seluruh Indonesia membangun website cepat, SEO yang terarah, serta otomatisasi AI untuk menghasilkan lebih banyak pelanggan."
   },
   en: {
     title: "LUMOVELO | Custom Web Development Agency & UI UX Studio",
@@ -93,13 +94,6 @@ const organizationSchema = {
     "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"],
     "availableLanguage": ["Indonesian", "English"]
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "48",
-    "bestRating": "5",
-    "worstRating": "1"
-  }
 };
 ---
 
@@ -109,6 +103,8 @@ const organizationSchema = {
   <main class="relative z-10 bg-white">
     <!-- Hero Section with Interactive Kinetic Workspace -->
     <Hero />
+
+    <AudienceFit />
 
     <!-- Core services pricing dashboard with tabs -->
     <Services />

@@ -12,7 +12,21 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/admin') && !page.includes('/workspace')
+      filter: (page) => !page.includes('/admin') && !page.includes('/workspace'),
+      customPages: [
+        'https://www.lumovelo.com/blog/otomatisasi-leads-ai-whatsapp/',
+        'https://www.lumovelo.com/blog/keunggulan-website-headless-modern/',
+        'https://www.lumovelo.com/blog/strategi-technical-seo-lokal/',
+        'https://www.lumovelo.com/blog/peran-video-creative-landing-page/',
+        'https://www.lumovelo.com/blog/analisis-performa-web-lighthouse/',
+        'https://www.lumovelo.com/blog/tren-desain-web-minimalis/',
+        'https://www.lumovelo.com/en/blog/otomatisasi-leads-ai-whatsapp/',
+        'https://www.lumovelo.com/en/blog/keunggulan-website-headless-modern/',
+        'https://www.lumovelo.com/en/blog/strategi-technical-seo-lokal/',
+        'https://www.lumovelo.com/en/blog/peran-video-creative-landing-page/',
+        'https://www.lumovelo.com/en/blog/analisis-performa-web-lighthouse/',
+        'https://www.lumovelo.com/en/blog/tren-desain-web-minimalis/'
+      ]
     }),
     react()
   ],

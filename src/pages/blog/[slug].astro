@@ -12,10 +12,10 @@ const staticPosts = [
     title: 'Cara Praktis Menggunakan AI Chatbot untuk Menjawab Pelanggan WhatsApp 24/7',
     date: '05 JULI 2026',
     category: 'AI & OTOMATISASI',
-    bgCategory: 'bg-indigo-100 text-indigo-750 border-indigo-200',
+    bgCategory: 'bg-indigo-100 text-indigo-700 border-indigo-200',
     description: 'Menghemat waktu operasional customer service dengan integrasi agen AI pintar pada chat WhatsApp bisnis Anda secara otonom.',
     content: `
-      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+      <p class="mb-6 text-slate-600 leading-relaxed font-medium">
         Menghadapi ratusan pesan dari pelanggan setiap hari di WhatsApp sering kali membuat tim customer service (CS) kewalahan. Jika respons yang diberikan lambat, pelanggan berpotensi beralih ke kompetitor. Di sinilah peran penting <a href="/layanan/ai/" class="text-blue-600 hover:underline font-extrabold">otomatisasi AI Chatbot WhatsApp</a>.
       </p>
       
@@ -36,7 +36,7 @@ const staticPosts = [
     bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
     description: 'Mengenal arsitektur website modern tanpa database tradisional untuk kecepatan loading maksimal di bawah 1 detik dan bebas retasan.',
     content: `
-      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+      <p class="mb-6 text-slate-600 leading-relaxed font-medium">
         Banyak website bisnis tradisional masih menggunakan arsitektur monolitik seperti WordPress yang bergantung pada server database aktif. Struktur ini rentan terhadap kelemahan keamanan (hacker) dan lambat saat diakses dengan koneksi mobile.
       </p>
       
@@ -54,10 +54,10 @@ const staticPosts = [
     title: 'Panduan Memulai Technical SEO untuk Meningkatkan Peringkat Bisnis Anda di Google Search',
     date: '28 JUNI 2026',
     category: 'SEO & MARKETING',
-    bgCategory: 'bg-blue-100 text-blue-650 border-blue-200',
+    bgCategory: 'bg-blue-100 text-blue-700 border-blue-200',
     description: 'Langkah-langkah praktis mengoptimasi struktur website, sitemap, dan meta tag agar bisnis Anda mudah ditemukan pelanggan di Google.',
     content: `
-      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+      <p class="mb-6 text-slate-600 leading-relaxed font-medium">
         Banyak pemilik bisnis memfokuskan upaya SEO hanya pada penulisan kata kunci (keywords). Padahal, fondasi utama agar website Anda dapat diindeks dengan baik oleh Google adalah <a href="/layanan/seo/" class="text-blue-600 hover:underline font-extrabold">Technical SEO</a>.
       </p>
       
@@ -78,7 +78,7 @@ const staticPosts = [
     bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
     description: 'Mengapa menyertakan konten video pendek berkualitas sangat berdampak pada penurunan bounce rate website produk dan meyakinkan calon pelanggan.',
     content: `
-      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+      <p class="mb-6 text-slate-600 leading-relaxed font-medium">
         Pengunjung internet rata-rata hanya memiliki waktu fokus 5 hingga 8 detik ketika pertama kali membuka sebuah landing page. Jika halaman Anda hanya berisi barisan paragraf teks panjang yang membosankan, mereka akan segera menutup halaman Anda (bounce).
       </p>
       
@@ -99,7 +99,7 @@ const staticPosts = [
     bgCategory: 'bg-teal-100 text-teal-700 border-teal-200',
     description: 'Panduan mendalam mengoptimasi kecepatan muat, struktur gambar Next-Gen, dan menghilangkan render-blocking resources untuk performa sempurna.',
     content: `
-      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+      <p class="mb-6 text-slate-600 leading-relaxed font-medium">
         Skor Google Lighthouse yang tinggi bukan sekadar angka kebanggaan, melainkan penentu utama kenyamanan pengunjung dan performa SEO Anda. Website dengan skor 100 akan lebih disukai oleh algoritma Google.
       </p>
       
@@ -120,7 +120,7 @@ const staticPosts = [
     bgCategory: 'bg-purple-100 text-purple-700 border-purple-200',
     description: 'Bagaimana perpaduan tipografi berani, ruang putih yang luas, dan mikro animasi dapat membuat website perusahaan Anda terlihat premium.',
     content: `
-      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+      <p class="mb-6 text-slate-600 leading-relaxed font-medium">
         Desain website minimalis modern bukan berarti kosong, melainkan menaruh elemen secara presisi untuk mengarahkan pandangan pengunjung langsung pada solusi bisnis Anda secara elegan.
       </p>
       
@@ -153,7 +153,7 @@ if (!post) {
         title: data.title,
         date: data.date,
         category: data.category,
-        bgCategory: data.bg_category || 'bg-blue-100 text-blue-650 border-blue-200',
+        bgCategory: data.bg_category || 'bg-blue-100 text-blue-700 border-blue-200',
         description: data.description,
         content: data.content
       };
@@ -174,7 +174,7 @@ if (!post) {
     bgCategory: 'bg-rose-100 text-rose-700 border-rose-200',
     description: 'Artikel yang Anda cari tidak dapat ditemukan.',
     content: `
-      <p class="mb-6 text-slate-650 leading-relaxed font-medium">
+      <p class="mb-6 text-slate-600 leading-relaxed font-medium">
         Maaf, artikel yang Anda cari tidak ditemukan. Halaman ini mungkin telah dipindahkan atau dihapus.
       </p>
       <p class="mb-6 text-slate-600 leading-relaxed">
@@ -184,17 +184,101 @@ if (!post) {
   };
 }
 
-const { title, date, category, bgCategory, content, description } = post;
-
 const isEn = Astro.currentLocale === 'en';
-const localizedContent = content
+const englishMeta = {
+  'otomatisasi-leads-ai-whatsapp': {
+    title: 'How to Use AI Chatbots to Answer WhatsApp Customers 24/7',
+    description: 'Learn how AI chatbot automation can help business teams respond to WhatsApp enquiries faster and reduce repetitive support work.'
+  },
+  'keunggulan-website-headless-modern': {
+    title: 'Why Headless Serverless Websites Load Faster and Improve Security',
+    description: 'Understand how modern headless and serverless architecture can improve website speed, reliability, and security.'
+  },
+  'strategi-technical-seo-lokal': {
+    title: 'A Practical Guide to Technical SEO for Local Businesses',
+    description: 'Practical technical SEO steps for improving crawlability, sitemap quality, metadata, and local search visibility.'
+  },
+  'peran-video-creative-landing-page': {
+    title: 'How Creative Video Can Improve Landing Page Conversions',
+    description: 'See how short product videos can communicate value faster and support stronger landing page conversions.'
+  },
+  'analisis-performa-web-lighthouse': {
+    title: 'How to Measure and Improve Your Google Lighthouse Score',
+    description: 'A practical guide to image optimization, render-blocking resources, and other website performance improvements.'
+  },
+  'tren-desain-web-minimalis': {
+    title: 'Modern Minimalist Web Design Trends for More Brand Trust',
+    description: 'Explore how typography, whitespace, contrast, and subtle interaction design can make a business website feel more credible.'
+  }
+};
+const englishArticleContent = {
+  'otomatisasi-leads-ai-whatsapp': `
+    <p class="mb-6 text-slate-600 leading-relaxed font-medium">Handling hundreds of customer messages every day on WhatsApp can quickly overwhelm a support team. When replies are slow, potential customers may move to a competitor. This is where <a href="/en/layanan/ai/" class="text-blue-600 hover:underline font-extrabold">WhatsApp AI chatbot automation</a> can help.</p>
+    <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Fast, Consistent Responses</h3>
+    <p class="mb-6 text-slate-600 leading-relaxed">By connecting a custom AI agent to the WhatsApp Business API, a system can answer common questions about pricing, product availability, locations, and ordering instructions at any time.</p>
+    <p class="mb-6 text-slate-600 leading-relaxed">The agent can use your business documents as a knowledge base, while clearly handing complex conversations to your human team. This reduces repetitive support work without removing the human experience from important sales conversations.</p>
+  `,
+  'keunggulan-website-headless-modern': `
+    <p class="mb-6 text-slate-600 leading-relaxed font-medium">Many business websites still rely on monolithic architectures that depend heavily on a live database. These systems can become slower to maintain and more exposed to common security issues as plugins, integrations, and traffic grow.</p>
+    <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">The Value of Headless Serverless Architecture</h3>
+    <p class="mb-6 text-slate-600 leading-relaxed">With a modern <a href="/en/layanan/web/" class="text-blue-600 hover:underline font-extrabold">headless web architecture</a>, content and presentation are separated. Pages can be generated as optimized HTML and distributed through a global content delivery network.</p>
+    <p class="mb-6 text-slate-600 leading-relaxed">The result is a faster experience on mobile devices, a simpler deployment model, and a smaller attack surface. Security still requires responsible configuration and monitoring, but the architecture avoids many unnecessary server-side dependencies.</p>
+  `,
+  'strategi-technical-seo-lokal': `
+    <p class="mb-6 text-slate-600 leading-relaxed font-medium">Many business owners focus on keywords before fixing the technical foundation of their website. A crawlable, fast, and well-structured site gives search engines a clearer understanding of the pages that matter.</p>
+    <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Build a Clear Technical Foundation</h3>
+    <p class="mb-6 text-slate-600 leading-relaxed">Technical SEO includes a clean XML sitemap, useful robots.txt rules, semantic headings, strong Core Web Vitals, mobile usability, and consistent canonical URLs.</p>
+    <p class="mb-6 text-slate-600 leading-relaxed">Once the foundation is reliable, create useful local content that answers real customer questions. Combine service pages, location relevance, internal links, and a complete Google Business Profile to improve local search visibility.</p>
+  `,
+  'peran-video-creative-landing-page': `
+    <p class="mb-6 text-slate-600 leading-relaxed font-medium">Visitors decide very quickly whether a landing page feels relevant. A clear visual explanation can communicate the value of a product or service faster than a long block of text.</p>
+    <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Visuals That Support Conversion</h3>
+    <p class="mb-6 text-slate-600 leading-relaxed">A short product or service video can demonstrate the offer, answer an early objection, and give visitors more confidence before they contact your team.</p>
+    <p class="mb-6 text-slate-600 leading-relaxed">Place video close to a clear call to action, keep the first few seconds focused, and provide captions. Measure whether it improves qualified enquiries instead of optimizing for views alone.</p>
+  `,
+  'analisis-performa-web-lighthouse': `
+    <p class="mb-6 text-slate-600 leading-relaxed font-medium">A strong Lighthouse score is useful when it reflects a genuinely comfortable user experience. It should support business outcomes, not become a vanity metric.</p>
+    <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Practical Performance Improvements</h3>
+    <p class="mb-6 text-slate-600 leading-relaxed">Start with appropriately sized images in modern formats such as WebP or AVIF. Then reduce render-blocking resources, defer non-critical scripts, and reserve space for media to prevent layout shifts.</p>
+    <p class="mb-6 text-slate-600 leading-relaxed">A lightweight architecture can reduce the JavaScript sent to the browser, but real-world testing on mobile devices is still essential. Monitor LCP, INP, and CLS after every major release.</p>
+  `,
+  'tren-desain-web-minimalis': `
+    <p class="mb-6 text-slate-600 leading-relaxed font-medium">Modern minimalist design is not about removing useful information. It is about arranging content precisely so visitors can understand the offer and take the next step without friction.</p>
+    <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Premium Clarity Without Distraction</h3>
+    <p class="mb-6 text-slate-600 leading-relaxed">Use strong contrast, readable typography, and balanced whitespace to establish hierarchy. Each section should answer a specific customer question or support a specific action.</p>
+    <p class="mb-6 text-slate-600 leading-relaxed">Subtle interaction can make a page feel responsive, but animation should remain purposeful, accessible, and lightweight. Trust comes from clarity, consistency, and evidence, not decoration alone.</p>
+  `
+};
+const localizedTitle = isEn ? englishMeta[post.slug]?.title || post.title : post.title;
+const localizedDescription = isEn ? englishMeta[post.slug]?.description || post.description : post.description;
+const { date, category, bgCategory, content } = post;
+const publishedDate = date.includes('JULI') ? `2026-${String(['JUNI', 'JULI'].indexOf(date.split(' ')[1]) + 6).padStart(2, '0')}-${date.split(' ')[0]}` : date;
+const localizedContent = (isEn ? englishArticleContent[post.slug] || content : content)
   .replaceAll('href="/layanan/ai/"', `href="${isEn ? '/en/layanan/ai/' : '/layanan/ai/'}"`)
   .replaceAll('href="/layanan/seo/"', `href="${isEn ? '/en/layanan/seo/' : '/layanan/seo/'}"`)
   .replaceAll('href="/layanan/video/"', `href="${isEn ? '/en/layanan/video/' : '/layanan/video/'}"`)
   .replaceAll('href="/#layanan"', `href="${isEn ? '/en/#services' : '/#layanan'}"`);
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": isEn ? "Home" : "Beranda", "item": `https://www.lumovelo.com${isEn ? '/en/' : '/'}` },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": `https://www.lumovelo.com${isEn ? '/en/blog/' : '/blog/'}` },
+    { "@type": "ListItem", "position": 3, "name": localizedTitle, "item": `https://www.lumovelo.com${Astro.url.pathname}` }
+  ]
+};
 ---
 
-<Layout title={`${title} | LUMOVELO Wawasan`} description={description}>
+<Layout title={`${localizedTitle} | LUMOVELO Insights`} description={localizedDescription} schema={[{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": localizedTitle,
+  "description": localizedDescription,
+  "datePublished": publishedDate,
+  "author": { "@type": "Organization", "name": "LUMOVELO" },
+  "publisher": { "@type": "Organization", "name": "LUMOVELO", "logo": { "@type": "ImageObject", "url": "https://www.lumovelo.com/favicon.svg" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.lumovelo.com${Astro.url.pathname}` }
+}, breadcrumbSchema]}>
   <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <a href={isEn ? '/en/' : '/'} class="flex items-center gap-3 group">
@@ -227,7 +311,7 @@ const localizedContent = content
         </div>
         
         <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-slate-900 uppercase tracking-tight leading-[1.1] mb-6">
-          {title}
+           {localizedTitle}
         </h1>
       </div>
 
@@ -235,7 +319,7 @@ const localizedContent = content
       <div class="h-0.5 w-full bg-slate-100 mb-10"></div>
 
       <!-- Body Content -->
-      <div class="prose prose-slate max-w-none text-slate-650 text-justify" set:html={localizedContent}></div>
+      <div class="prose prose-slate max-w-none text-slate-600 text-justify" set:html={localizedContent}></div>
 
       <!-- Author Box -->
       <div class="mt-16 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center sm:items-start gap-5">

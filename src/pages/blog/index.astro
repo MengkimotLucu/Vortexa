@@ -4,9 +4,15 @@ export const prerender = false;
 import Layout from '../../layouts/Layout.astro';
 import Blog from '../../components/Blog.astro';
 import Footer from '../../components/Footer.astro';
+
+const isEn = Astro.currentLocale === 'en';
+const pageTitle = isEn ? 'Technology, SEO & AI Insights | LUMOVELO' : 'Wawasan, Edukasi & Artikel Teknologi | LUMOVELO';
+const pageDescription = isEn
+  ? 'Practical articles about technical SEO, high-performance websites, AI automation, and conversion-focused digital growth.'
+  : 'Baca artikel praktis tentang technical SEO, website berkinerja tinggi, otomatisasi AI, dan strategi pertumbuhan digital.';
 ---
 
-<Layout title="Wawasan, Edukasi & Artikel Teknologi | LUMOVELO" description="Baca artikel teknologi, panduan technical SEO, optimasi performa web headless, dan pemanfaatan otomatisasi AI otonom dari LUMOVELO.">
+<Layout title={pageTitle} description={pageDescription}>
   <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2 group">

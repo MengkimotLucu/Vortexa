@@ -107,5 +107,13 @@ export const onRequest = defineMiddleware(async (context, next) => {
     }
   }
 
-  return next();
+  const response = await next();
+
+  // Defense in depth: prevent admin and workspace responses from being indexed
+  // even if a page is rendered without its HTML meta tag.
+  if (pathname.startsWith('/admin') || pathname.startsWith('/workspace')) {
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+  }
+
+  return response;
 });

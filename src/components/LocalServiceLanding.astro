@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  city: 'Bandung' | 'Jakarta';
+  title: string;
+  description: string;
+  intro: string;
+  localAngle: string;
+}
+
+const { city, title, description, intro, localAngle } = Astro.props;
+const serviceUrl = city === 'Bandung' ? '/jasa-pembuatan-website-bandung/' : '/jasa-pembuatan-website-jakarta/';
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Jasa Pembuatan Website ${city}`,
+  provider: { '@type': 'ProfessionalService', name: 'LUMOVELO', url: 'https://www.lumovelo.com' },
+  areaServed: { '@type': 'City', name: city },
+  serviceType: 'Website Development',
+  url: `https://www.lumovelo.com${serviceUrl}`
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Beranda', item: 'https://www.lumovelo.com/' },
+    { '@type': 'ListItem', position: 2, name: `Jasa Website ${city}`, item: `https://www.lumovelo.com${serviceUrl}` }
+  ]
+};
+---
+
+<Layout title={title} description={description} noAlternates={true} schema={[schema, breadcrumbSchema]}>
+  <main class="bg-white text-slate-900">
+    <section class="bg-slate-950 text-white pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1.15fr_.85fr] gap-12 items-end">
+        <div>
+          <p class="text-blue-400 text-xs font-mono font-bold tracking-[.22em] uppercase mb-5">LUMOVELO / {city}</p>
+          <h1 class="text-4xl sm:text-6xl font-display font-black tracking-tight leading-[1.05]">{title.replace(' | LUMOVELO', '')}</h1>
+          <p class="mt-7 text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">{intro}</p>
+          <div class="flex flex-wrap gap-3 mt-9">
+            <a href="/kontak/" class="inline-flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-400 px-6 py-3 text-sm font-bold text-white transition-colors">Konsultasi Gratis</a>
+            <a href="/portofolio/" class="inline-flex items-center justify-center rounded-full border border-slate-700 hover:border-slate-400 px-6 py-3 text-sm font-bold text-slate-200 transition-colors">Lihat Portofolio</a>
+          </div>
+        </div>
+        <div class="border-l border-blue-500/40 pl-6 lg:mb-2">
+          <p class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-3">Pendekatan lokal</p>
+          <p class="text-xl font-bold leading-snug">{localAngle}</p>
+          <p class="text-sm text-slate-400 leading-relaxed mt-4">Bekerja langsung dengan solopreneur LUMOVELO melalui brief, milestone, dan revisi yang disepakati sejak awal.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 lg:py-28">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="max-w-2xl mb-14">
+          <p class="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase mb-3">Yang Anda dapatkan</p>
+          <h2 class="text-3xl sm:text-5xl font-display font-black tracking-tight">Website yang siap dipakai untuk tumbuh.</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 border-t border-slate-200 pt-8">
+          <article><p class="text-blue-600 font-mono text-sm font-bold">01</p><h3 class="text-xl font-bold mt-4">Struktur jelas</h3><p class="text-slate-600 leading-relaxed mt-3">Halaman, CTA, dan navigasi disusun berdasarkan kebutuhan calon pelanggan Anda.</p></article>
+          <article><p class="text-blue-600 font-mono text-sm font-bold">02</p><h3 class="text-xl font-bold mt-4">Performa siap SEO</h3><p class="text-slate-600 leading-relaxed mt-3">Fondasi metadata, heading, sitemap, mobile layout, dan kecepatan disiapkan sejak awal.</p></article>
+          <article><p class="text-blue-600 font-mono text-sm font-bold">03</p><h3 class="text-xl font-bold mt-4">Komunikasi langsung</h3><p class="text-slate-600 leading-relaxed mt-3">Tidak ada handoff berlapis. Brief dan keputusan proyek dibahas langsung dengan pengembang.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-slate-50 py-20">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-3xl font-display font-black tracking-tight">Cocok untuk siapa?</h2>
+        <p class="text-slate-600 leading-relaxed mt-5">Halaman ini ditujukan untuk pemilik UMKM, jasa profesional, startup kecil, dan bisnis lokal di {city} yang membutuhkan website kredibel tanpa proses agensi yang rumit.</p>
+        <div class="mt-8 flex flex-wrap gap-3 text-sm font-semibold text-slate-700">
+          <span class="px-4 py-2 bg-white border border-slate-200 rounded-full">Company profile</span>
+          <span class="px-4 py-2 bg-white border border-slate-200 rounded-full">Landing page</span>
+          <span class="px-4 py-2 bg-white border border-slate-200 rounded-full">Website UMKM</span>
+          <span class="px-4 py-2 bg-white border border-slate-200 rounded-full">Redesign website</span>
+        </div>
+        <a href="/kontak/" class="inline-flex mt-10 text-blue-600 font-bold hover:text-blue-800">Diskusikan kebutuhan website Anda →</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

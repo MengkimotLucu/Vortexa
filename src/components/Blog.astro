@@ -16,7 +16,7 @@ const content = {
         title: 'Cara Praktis Menggunakan AI Chatbot untuk Menjawab Pelanggan WhatsApp 24/7',
         date: '05 JULI 2026',
         category: 'AI & OTOMATISASI',
-        bgCategory: 'bg-indigo-105 text-indigo-700 border-indigo-200',
+        bgCategory: 'bg-indigo-100 text-indigo-700 border-indigo-200',
         description: 'Menghemat waktu operasional customer service dengan integrasi agen AI pintar pada chat WhatsApp bisnis Anda secara otonom.'
       },
       {
@@ -32,7 +32,7 @@ const content = {
         title: 'Panduan Memulai Technical SEO untuk Meningkatkan Peringkat Bisnis Anda di Google Search',
         date: '28 JUNI 2026',
         category: 'SEO & MARKETING',
-        bgCategory: 'bg-blue-100 text-blue-650 border-blue-200',
+        bgCategory: 'bg-blue-100 text-blue-700 border-blue-200',
         description: 'Langkah-langkah praktis mengoptimasi struktur website, sitemap, dan meta tag agar bisnis Anda mudah ditemukan pelanggan di Google.'
       },
       {
@@ -73,7 +73,7 @@ const content = {
         title: 'How to Use AI Chatbots to Automatically Answer WhatsApp Customers 24/7',
         date: '05 JULY 2026',
         category: 'AI & AUTOMATION',
-        bgCategory: 'bg-indigo-100 text-indigo-750 border-indigo-200',
+        bgCategory: 'bg-indigo-100 text-indigo-700 border-indigo-200',
         description: 'Save customer service operational time with smart autonomous AI agent integration on your business WhatsApp chat.'
       },
       {
@@ -89,7 +89,7 @@ const content = {
         title: 'Beginner\'s Guide to Technical SEO: Boosting Your Business Ranking on Google Search',
         date: '28 JUNE 2026',
         category: 'SEO & MARKETING',
-        bgCategory: 'bg-blue-100 text-blue-650 border-blue-200',
+        bgCategory: 'bg-blue-100 text-blue-700 border-blue-200',
         description: 'Practical steps to optimize website structure, sitemap, and meta tags so your business is easily discovered by customers on Google.'
       },
       {
@@ -142,7 +142,7 @@ const posts = rawPosts.map(p => ({
   title: p.title,
   date: p.date,
   category: p.category,
-  bgCategory: p.bg_category || p.bgCategory || 'bg-blue-100 text-blue-650 border-blue-200',
+  bgCategory: p.bg_category || p.bgCategory || 'bg-blue-100 text-blue-700 border-blue-200',
   description: p.description
 }));
 ---
@@ -154,10 +154,10 @@ const posts = rawPosts.map(p => ({
     <!-- Left-aligned Section Header -->
     <div class="mb-12 text-left reveal-on-scroll">
       <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
-      <h1 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
+      <h2 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
         {content.title1}<br/>
         <span class="text-stroke-neon">{content.title2}</span>
-      </h1>
+      </h2>
       <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl">
         {content.desc}
       </p>
@@ -166,22 +166,22 @@ const posts = rawPosts.map(p => ({
     <!-- Category Filter Tabs -->
     <div class="flex flex-wrap gap-2.5 mb-14 border-b border-slate-100 pb-8 reveal-on-scroll">
       <button data-filter="ALL" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-slate-950 text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-[3px_3px_0px_#2563eb]">
-        SEMUA
+         {lang === 'en' ? 'ALL' : 'SEMUA'}
       </button>
-      <button data-filter="AI & OTOMATISASI" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
-        AI & Otomatisasi
+       <button data-filter={lang === 'en' ? 'AI & AUTOMATION' : 'AI & OTOMATISASI'} class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+         {lang === 'en' ? 'AI & Automation' : 'AI & Otomatisasi'}
       </button>
-      <button data-filter="IT & WEB DEVELOP" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
-        IT & Web Develop
+       <button data-filter={lang === 'en' ? 'IT & WEB DEV' : 'IT & WEB DEVELOP'} class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+         {lang === 'en' ? 'IT & Web Dev' : 'IT & Web Develop'}
       </button>
       <button data-filter="SEO & MARKETING" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
         SEO & Marketing
       </button>
-      <button data-filter="VIDEO & CREATIVE" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
-        Video & Creative
+       <button data-filter="VIDEO & CREATIVE" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+         {lang === 'en' ? 'Video & Creative' : 'Video & Creative'}
       </button>
-      <button data-filter="KEAMANAN JARINGAN" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
-        Keamanan Jaringan
+       <button data-filter="KEAMANAN JARINGAN" class="btn-filter-tab px-5 py-2.5 rounded-full border-2 border-slate-950 bg-white text-slate-950 hover:bg-slate-950 hover:text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
+         {lang === 'en' ? 'Network Security' : 'Keamanan Jaringan'}
       </button>
     </div>
 
@@ -198,14 +198,14 @@ const posts = rawPosts.map(p => ({
               <span class={`px-2.5 py-0.5 rounded-full border text-[9px] uppercase tracking-wider ${post.bgCategory}`}>{post.category}</span>
             </div>
             <h4 class="font-display font-black text-xl text-slate-900 uppercase hover:text-blue-600 transition-colors leading-tight">
-              <a href={`/blog/${post.slug}/`}>{post.title}</a>
+              <a href={`${lang === 'en' ? '/en' : ''}/blog/${post.slug}/`}>{post.title}</a>
             </h4>
             <p class="text-xs text-slate-500 font-semibold leading-relaxed text-justify">
               {post.description}
             </p>
           </div>
           <div class="border-t border-slate-100 pt-5 mt-6">
-            <a href={`/blog/${post.slug}/`} class="text-[10px] font-mono font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1.5 uppercase tracking-wider">
+            <a href={`${lang === 'en' ? '/en' : ''}/blog/${post.slug}/`} class="text-[10px] font-mono font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1.5 uppercase tracking-wider">
               {content.readMore} 
               <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>

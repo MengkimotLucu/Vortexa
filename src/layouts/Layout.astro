@@ -9,6 +9,7 @@ interface Props {
   description?: string;
   lang?: string;
   noindex?: boolean;
+  noAlternates?: boolean;
   schema?: Record<string, any> | Record<string, any>[];
 }
 
@@ -29,6 +30,7 @@ const {
   description = defaultDescriptions[currentLocale],
   lang = currentLocale,
   noindex = false,
+  noAlternates = false,
   schema
 } = Astro.props;
 
@@ -111,13 +113,6 @@ const dynamicSchema = currentLocale === 'id'
         "opens": "09:00",
         "closes": "18:00"
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "48",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
     }
   : {
       "@context": "https://schema.org",
@@ -128,13 +123,6 @@ const dynamicSchema = currentLocale === 'id'
       "url": "https://www.lumovelo.com",
       "telephone": phoneFormatted,
       "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "48",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
     };
 const isBlog = Astro.url.pathname.includes('/blog');
 ---
@@ -147,7 +135,7 @@ const isBlog = Astro.url.pathname.includes('/blog');
     <link class="astro-icon-favicon" rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
-    {!isBlog && (
+    {!isWorkspaceOrAdmin && !noAlternates && (
       <>
         <link rel="alternate" hreflang="id" href={alternates.id} />
         <link rel="alternate" hreflang="en" href={alternates.en} />
@@ -284,6 +272,29 @@ const isBlog = Astro.url.pathname.includes('/blog');
           observer.observe(el);
         });
       });
+    </script>
+
+    <!-- Conversion tracking without sending form contents or personal data -->
+    <script is:inline>
+      document.addEventListener('click', (event) => {
+        const link = event.target.closest('a');
+        if (!link) return;
+        const href = link.getAttribute('href') || '';
+        if (!href.includes('wa.me') && !href.includes('api.whatsapp.com')) return;
+        const payload = { event: 'whatsapp_click', page_path: window.location.pathname };
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
+        if (typeof window.gtag === 'function') window.gtag('event', 'whatsapp_click', { page_path: window.location.pathname });
+      }, { passive: true });
+
+      document.addEventListener('submit', (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement)) return;
+        const payload = { event: 'lead_form_submit', form_id: form.id || 'unknown', page_path: window.location.pathname };
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
+        if (typeof window.gtag === 'function') window.gtag('event', 'lead_form_submit', { form_id: form.id || 'unknown', page_path: window.location.pathname });
+      }, { passive: true });
     </script>
 
     <!-- Custom Toast Notification System -->
