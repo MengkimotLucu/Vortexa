@@ -17,15 +17,21 @@ const content = {
       discussion: "Mulai Diskusi",
       consultation: "Mulai Konsultasi"
     },
-    tag: "REKAYASA DIGITAL PERTUMBUHAN BISNIS • PREMIUM & TRANSPARAN",
+    tag: "LUMOVELO • DIGITAL PARTNER INDONESIA",
+    tagline: "Website • SEO • AI Automation",
     headline: {
-      part1: "Jasa Pembuatan Website",
-      part2: "Profesional untuk Bisnis & UMKM"
+      part1: "JASA PEMBUATAN WEBSITE",
+      rotator: [
+        "UNTUK BISNIS & UMKM",
+        "UNTUK PERUSAHAAN & BRAND",
+        "UNTUK BISNIS DIGITAL",
+        "UNTUK KEBUTUHAN KUSTOM"
+      ]
     },
-     desc: "Website cepat, profesional, SEO-friendly, dan dirancang untuk menghasilkan leads. Mulai Rp1 jutaan, termasuk domain, hosting, dan integrasi WhatsApp.",
-     cta: "Lihat Paket Website",
+    desc: "Website modern yang cepat, responsif, dan SEO-friendly untuk membangun kehadiran digital bisnis Anda.",
+    cta: "Lihat Paket Website",
     promo: "🔥 Promo Peluncuran: Diskon 20% untuk 5 Klien Pertama Bulan Ini!",
-    trust: "✓ Konsultasi Gratis • Tanpa Kontrak Awal • Sisa 2 Slot Proyek Bulan Ini"
+    trust: "✓ Konsultasi Gratis • ✓ Mulai Rp1 Jutaan • ✓ Support Pasca-Rilis"
   },
   en: {
     nav: {
@@ -37,15 +43,21 @@ const content = {
       discussion: "Start Discussion",
       consultation: "Start Consultation"
     },
-    tag: "ENGINEERING DIGITAL BUSINESS GROWTH • PREMIUM & TRANSPARENT",
+    tag: "LUMOVELO • DIGITAL PARTNER INDONESIA",
+    tagline: "Website • SEO • AI Automation",
     headline: {
-      part1: "Professional Website",
-      part2: "Development for Growing Businesses"
+      part1: "PROFESSIONAL WEBSITE DEVELOPMENT",
+      rotator: [
+        "FOR BUSINESSES & STARTUPS",
+        "FOR CORPORATES & BRANDS",
+        "FOR DIGITAL BUSINESSES",
+        "FOR CUSTOM REQUIREMENTS"
+      ]
     },
-    desc: "As a custom web development agency and premium ui ux design studio, we build high-performance websites, automated AI workflows, and creative marketing videos to scale your brand revenue globally.",
+    desc: "Fast, responsive, and SEO-friendly modern websites to build and scale your digital presence.",
     cta: "View Pricing Packages",
     promo: "🔥 Launch Promo: Get 20% Off for the First 5 Clients This Month!",
-    trust: "✓ Free Consultation • No Initial Contract • Only 2 Project Slots Left This Month"
+    trust: "✓ Free Consultation • ✓ Custom Packages • ✓ Post-Release Support"
   }
 }[lang];
 
@@ -277,15 +289,31 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
       <!-- Headline with dynamic vertical text rotator -->
       <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.25] text-white tracking-tight font-sans uppercase">
          {content.headline.part1}<br>
-         <span class="text-blue-400 font-black">{content.headline.part2}</span>
+         <span class="text-blue-400 text-rotate-container font-black">
+           <span class="text-rotate-list">
+             {content.headline.rotator.map((item) => (
+               <span class="h-[1.25em] flex items-center justify-center text-blue-400 font-black">{item}</span>
+             ))}
+           </span>
+         </span>
       </h1>
+      
+      <!-- Tagline -->
+      <p class="text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.15em] text-blue-300">
+        {content.tagline}
+      </p>
       
       <!-- Description -->
          <p class="text-white/90 font-medium text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-sans mx-auto">
            {content.desc}
          </p>
          <div class="flex flex-wrap justify-center gap-2 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-blue-100">
-           {[lang === 'en' ? 'Landing Pages' : 'Landing Page', lang === 'en' ? 'Company Profiles' : 'Company Profile', lang === 'en' ? 'Online Stores' : 'Toko Online', lang === 'en' ? 'Custom Websites' : 'Custom Website'].map((item) => (
+           {[
+             lang === 'en' ? 'LANDING PAGE' : 'LANDING PAGE',
+             lang === 'en' ? 'COMPANY PROFILE' : 'COMPANY PROFILE',
+             lang === 'en' ? 'ONLINE STORE' : 'TOKO ONLINE',
+             lang === 'en' ? 'CUSTOM WEBSITE' : 'CUSTOM WEBSITE'
+           ].map((item) => (
              <span class="rounded-full border border-blue-300/30 bg-blue-400/10 px-3 py-1.5 backdrop-blur-sm">{item}</span>
            ))}
          </div>
@@ -434,3 +462,41 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
     initAll();
   }
 </script>
+
+<style>
+  .text-rotate-list {
+    animation: text-slide-up-4 14s cubic-bezier(0.76, 0, 0.24, 1) infinite !important;
+  }
+
+  @keyframes text-slide-up-4 {
+    0%, 21.4% { transform: translateY(0); }
+    25%, 46.4% { transform: translateY(-25%); }
+    50%, 71.4% { transform: translateY(-50%); }
+    75%, 96.4% { transform: translateY(-75%); }
+    100% { transform: translateY(0); }
+  }
+
+  .text-rotate-container {
+    height: 1.25em !important;
+    display: inline-flex !important;
+    vertical-align: bottom !important;
+  }
+
+  .text-rotate-container span {
+    font-size: 0.92em !important;
+    letter-spacing: -0.02em !important;
+    white-space: nowrap !important;
+  }
+  
+  @media (max-width: 768px) {
+    .text-rotate-container span {
+      font-size: 0.82em !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-rotate-container span {
+      font-size: 0.7em !important;
+    }
+  }
+</style>
