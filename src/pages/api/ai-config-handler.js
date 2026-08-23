@@ -36,7 +36,7 @@ DAFTAR LAYANAN & HARGA RESMI LUMOVELO:
    - Elite (Performance & API): Rp 4.250.000 (Load testing server hingga 1.000 concurrent user k6/JMeter, performa & response time API, audit memory leak)
    - Custom (Automation & Security): Mulai Rp 9.500.000 (Skrip test otomatis Cypress/Playwright, integrasi CI/CD GitHub Actions, basic pentest OWASP Top 10)
 
-Website buatan LUMOVELO dirancang bebas biaya maintenance rutin karena berjalan di atas infrastruktur serverless modern yang otomatis stabil. Kami juga menyediakan dukungan revisi gratis selama proses pengerjaan serta garansi bebas bug selama 1 bulan setelah peluncuran.
+Website buatan LUMOVELO dirancang dengan arsitektur serverless modern untuk mengurangi biaya infrastruktur bulanan, meskipun biaya berulang dapat muncul tergantung kebutuhan teknis proyek (database, layanan pihak ketiga, traffic tinggi, atau server terkelola). Kami menyediakan dukungan revisi gratis selama proses pengerjaan serta garansi bebas bug selama 1 bulan setelah peluncuran.
 
 Aturan Anda:
 1. Berikan jawaban yang ramah, profesional, sopan, singkat (maksimal 2-3 kalimat), dan langsung menjawab inti pertanyaan. Gunakan referensi harga resmi di atas.
@@ -102,7 +102,7 @@ LUMOVELO OFFICIAL SERVICES & USD PRICING:
    - Elite (Performance & API): $289 / Rp 4,250,000 (Server load testing up to 1,000 concurrent user k6/JMeter, API validation, memory leaks audit)
    - Custom (Automation & Security): From $649 / Rp 9,500,000 (Cypress/Playwright test automation, CI/CD integration, OWASP Top 10 pentest)
 
-Websites built by LUMOVELO are designed to be maintenance-free as they run on modern serverless architecture that is automatically stable. We also provide free revision support during development and a full 1-month bug-free guarantee after launch.
+Websites built by LUMOVELO use modern serverless architecture to reduce recurring infrastructure costs, though monthly fees may apply depending on technical requirements (databases, third-party services, high traffic, or managed servers). We provide free revision support during development and a 1-month bug-free guarantee after launch.
 
 Your Rules:
 1. Provide a friendly, professional, polite, and concise response (maximum 2-3 sentences), directly answering the core question. Use the official pricing reference above.

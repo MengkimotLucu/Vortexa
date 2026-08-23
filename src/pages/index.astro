@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import AudienceFit from '../components/AudienceFit.astro';
 import Services from '../components/Services.astro';
 import WhyChooseUs from '../components/WhyChooseUs.astro';
-import Portfolio from '../components/Portfolio.astro';
+import Testimonials from '../components/Testimonials.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 
@@ -25,7 +25,7 @@ const faqs = {
   id: [
     {
       q: "Apakah LUMOVELO menerapkan biaya langganan bulanan?",
-      a: "Tidak. Kami hanya mengenakan biaya satu kali untuk jasa desain, koding, dan integrasi awal. Untuk penyimpanan file (hosting), kami merancang arsitektur serverless sehingga Anda bisa memanfaatkan kuota gratis serverless dari penyedia global seperti Vercel or Netlify secara permanen untuk trafik normal bisnis Anda."
+       a: "Tergantung kebutuhan teknis proyek. Biaya pembuatan website mengikuti paket dan scope yang dipilih. Website statis/serverless dapat memiliki biaya operasional rendah, sedangkan website dengan database, layanan pihak ketiga, email, traffic tinggi, atau server terkelola dapat membutuhkan biaya bulanan atau tahunan. Semua biaya berulang dijelaskan sejak awal."
     },
     {
       q: "Berapa lama estimasi waktu pembuatan website?",
@@ -33,11 +33,11 @@ const faqs = {
     },
     {
       q: "Bagaimana cara saya memperbarui konten website di kemudian hari?",
-      a: "Kami mengintegrasikan dasbor manajemen konten (headless CMS) yang sangat praktis dan intuitif. Anda dapat mengganti teks, memperbarui harga produk, mengunggah foto, dan mempublikasikan tulisan blog baru secara mandiri melalui HP atau laptop tanpa harus menyentuh kode pemrograman."
+      a: "Tergantung paket yang dipilih. Jika paket Anda sudah mencakup CMS atau update konten, fitur dan jumlah pembaruannya mengikuti detail paket tersebut. Jika belum termasuk, pembaruan dapat dikerjakan sebagai layanan tambahan dengan biaya sesuai scope. Saya akan menjelaskan opsi pengelolaan konten sebelum proyek dimulai."
     },
     {
       q: "Apakah website buatan LUMOVELO aman dari serangan hacker?",
-       a: "Arsitektur website statis/serverless dapat mengurangi attack surface karena tidak bergantung pada database dan panel admin yang selalu aktif. Kami juga menerapkan HTTPS, dependency management, security headers, dan konfigurasi deployment sesuai kebutuhan proyek."
+       a: "Keamanan mengikuti arsitektur proyek. Website statis/serverless dapat mengurangi attack surface, sedangkan website dengan database tetap dapat diamankan melalui HTTPS, kontrol akses, validasi input, dependency management, security headers, backup, dan konfigurasi deployment yang sesuai."
     },
     {
       q: "Apakah website yang didesain sudah SEO-friendly?",
@@ -47,7 +47,7 @@ const faqs = {
   en: [
     {
       q: "Does LUMOVELO charge a monthly subscription fee?",
-      a: "No. We only charge a one-time fee for design, development, and initial integration. For hosting, we design a serverless architecture so you can leverage free tier quotas from global providers like Vercel or Netlify permanently for normal traffic."
+      a: "It depends on the project's technical requirements. Website development is charged according to the selected package and scope. Static/serverless websites can have low operating costs, while websites with databases, third-party services, email, high traffic, or managed servers may require monthly or annual infrastructure fees. Any recurring cost is explained before work begins."
     },
     {
       q: "What is the estimated time to build a website?",
@@ -55,11 +55,11 @@ const faqs = {
     },
     {
       q: "How can I update my website content in the future?",
-      a: "We integrate a highly practical and intuitive headless CMS. You can modify text, update prices, upload photos, and publish new blog posts independently from your mobile phone or laptop without writing code."
+      a: "It depends on the selected package. If your package includes a CMS or content updates, the available features and update limits follow the package details. If not included, content changes can be handled as an optional service priced according to the agreed scope."
     },
     {
       q: "Is a website built by LUMOVELO secure from hackers?",
-      a: "Yes. Since we use a headless serverless static architecture, your website does not have an active SQL database server vulnerable to breaches, significantly minimizing security flaws compared to traditional CMS platforms."
+      a: "Security follows the project's architecture and requirements. Static/serverless architecture can reduce the attack surface by avoiding an always-on database and admin panel. Database-backed websites can still be secured with HTTPS, access controls, input validation, dependency management, security headers, backups, and appropriate deployment configuration."
     },
     {
       q: "Is the designed website SEO-friendly?",
@@ -112,8 +112,8 @@ const organizationSchema = {
     <!-- Why Choose Us Bento Section -->
     <WhyChooseUs />
 
-    <!-- Selected work is used instead of unverifiable testimonials -->
-    <Portfolio />
+    <!-- Client stories remain on the homepage; full work archive stays separate -->
+    <Testimonials />
 
     <!-- FAQ Section -->
     <FAQ />

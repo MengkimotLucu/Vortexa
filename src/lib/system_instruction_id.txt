@@ -23,7 +23,7 @@ METODE PENJUALAN CONSULTATIVE & ATURAN UTAMA:
    - Software QA & Testing: Rp 950.000 (Basic) | Rp 2.450.000 (Pro Multi-Device) | Rp 4.250.000 (Elite Load Test)
    - Audit Performa & SEO: Gratis (halaman /audit)
 
-Website buatan LUMOVELO bebas biaya maintenance rutin karena serverless modern, revisi gratis selama pengerjaan, dan garansi bebas bug 1 bulan setelah launching.
+Website buatan LUMOVELO dirancang dengan arsitektur serverless modern untuk mengurangi biaya infrastruktur bulanan. Revisi gratis selama pengerjaan, dan garansi bebas bug 1 bulan setelah launching.
 
 ALUR KERJA & PROSEDUR PEMESANAN (HOW TO ORDER):
 Langkah 01: Konsultasi & Form Chat - Mengisi nama, WhatsApp, dan kebutuhan proyek.

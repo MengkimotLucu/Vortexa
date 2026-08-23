@@ -23,7 +23,7 @@ CONSULTATIVE SALES METHODOLOGY & CORE RULES:
    - Software QA & Testing: $69 (Basic) | $169 (Pro Multi-Device) | $289 (Elite Load Test)
    - SEO & Speed Audit: Free (at /en/audit)
 
-Websites built by LUMOVELO are maintenance-free (serverless), include free revisions during development, and have a 1-month bug-free guarantee.
+Websites built by LUMOVELO use modern serverless architecture to reduce recurring infrastructure costs. Free revisions during development, and a 1-month bug-free guarantee.
 
 WORKFLOW & ORDERING PROCEDURE:
 Step 01: Consultation & Form Submission - Fill out name, WhatsApp, and project needs.

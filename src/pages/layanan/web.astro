@@ -173,7 +173,7 @@ const faqs = {
     },
     {
       q: "Apakah website aman dari serangan hacker atau malware?",
-      a: "Sangat aman. Karena kami menggunakan teknologi static-site generation (SSG) berbasis serverless modern, website Anda tidak memiliki server database konvensional yang terekspos langsung di internet. Hal ini meminimalkan celah kerentanan keamanan siber secara signifikan, menjadikannya sangat sulit diretas dibandingkan dengan website CMS tradisional seperti WordPress."
+      a: "Keamanan mengikuti arsitektur proyek. Website statis/serverless dapat mengurangi attack surface karena tidak bergantung pada database dan panel admin yang selalu aktif. Website dengan database tetap dapat diamankan melalui HTTPS, kontrol akses, validasi input, dependency management, security headers, backup, dan konfigurasi deployment yang sesuai."
     }
   ],
   en: [
@@ -195,7 +195,7 @@ const faqs = {
     },
     {
       q: "Is the website secure against hacker attacks and malware?",
-      a: "Extremely secure. Since we build websites utilizing modern serverless static-site generation (SSG), there is no live SQL database engine exposed directly on the web. This design eliminates common web vulnerabilities (like SQL injections), making it highly secure compared to traditional CMS platforms like WordPress."
+      a: "Security follows the project's architecture and requirements. Static/serverless architecture can reduce the attack surface by avoiding an always-on database and admin panel. Database-backed websites can still be secured with HTTPS, access controls, input validation, dependency management, security headers, backups, and appropriate deployment configuration."
     }
   ]
 }[lang];
