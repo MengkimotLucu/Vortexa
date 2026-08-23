@@ -28,9 +28,7 @@ const content = {
 const categories = [
   { id: 'landing-page', label: lang === 'en' ? 'Landing Page' : 'Landing Page' },
   { id: 'company-profile', label: lang === 'en' ? 'Company Profile' : 'Company Profile' },
-  { id: 'toko-online', label: lang === 'en' ? 'E-Commerce' : 'Toko Online' },
-  { id: 'ai-automation', label: lang === 'en' ? 'AI Automation' : 'Otomatisasi AI' },
-  { id: 'keamanan-jaringan', label: lang === 'en' ? 'Network Security' : 'Keamanan Jaringan' }
+  { id: 'toko-online', label: lang === 'en' ? 'E-Commerce' : 'Toko Online' }
 ];
 
 const packages = {
@@ -222,7 +220,7 @@ const packages = {
         'Payment gateway + e-wallet lengkap terverifikasi',
         'Sistem kupon, diskon, & sistem afiliasi',
         'Integrasi logistik multi-kurir otomatis',
-        'Keamanan database SSL premium',
+        'SSL/HTTPS & konfigurasi keamanan website',
         'Dukungan Revisi Selama Proses Pembuatan'
       ]
     }
@@ -581,7 +579,7 @@ const portfolioLink = lang === 'en' ? '/en/portfolio/' : '/portofolio/';
     <!-- CTA to Full Services Page -->
     <div class="mt-12 text-center reveal-on-scroll">
       <a 
-        href={lang === 'en' ? '/en/layanan/' : '/layanan/'}
+        href={lang === 'en' ? '/en/layanan/website/' : '/layanan/website/'}
         class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-slate-900 hover:bg-blue-600 text-white font-black text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-lg shadow-slate-900/10 hover:shadow-blue-600/25 hover:-translate-y-0.5 group cursor-pointer"
       >
         <span>{content.viewAllBtn}</span>

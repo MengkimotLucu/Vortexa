@@ -19,11 +19,11 @@ const content = {
     },
     tag: "REKAYASA DIGITAL PERTUMBUHAN BISNIS • PREMIUM & TRANSPARAN",
     headline: {
-      part1: "Digital Agency Indonesia",
-      part2: "We Engineer Digital Growth"
+      part1: "Jasa Pembuatan Website",
+      part2: "Profesional untuk Bisnis & UMKM"
     },
-       desc: "LUMOVELO membantu bisnis di Bandung, Jakarta, dan seluruh Indonesia membangun website cepat, SEO yang terarah, serta otomatisasi AI untuk menghasilkan lebih banyak pelanggan.",
-    cta: "Lihat Paket Harga",
+     desc: "Website cepat, profesional, SEO-friendly, dan dirancang untuk menghasilkan leads. Mulai Rp1 jutaan, termasuk domain, hosting, dan integrasi WhatsApp.",
+     cta: "Lihat Paket Website",
     promo: "🔥 Promo Peluncuran: Diskon 20% untuk 5 Klien Pertama Bulan Ini!",
     trust: "✓ Konsultasi Gratis • Tanpa Kontrak Awal • Sisa 2 Slot Proyek Bulan Ini"
   },
@@ -39,8 +39,8 @@ const content = {
     },
     tag: "ENGINEERING DIGITAL BUSINESS GROWTH • PREMIUM & TRANSPARENT",
     headline: {
-      part1: "Custom Web Development Agency",
-      part2: "& UI UX Design Studio"
+      part1: "Professional Website",
+      part2: "Development for Growing Businesses"
     },
     desc: "As a custom web development agency and premium ui ux design studio, we build high-performance websites, automated AI workflows, and creative marketing videos to scale your brand revenue globally.",
     cta: "View Pricing Packages",
@@ -276,23 +276,19 @@ const blogLink = lang === 'en' ? '/en/blog/' : '/blog/';
       
       <!-- Headline with dynamic vertical text rotator -->
       <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.25] text-white tracking-tight font-sans uppercase">
-        {content.headline.part1}<br>
-        {content.headline.part2}<br>
-        <span class="text-blue-400 text-rotate-container font-black">
-          <span class="text-rotate-list">
-            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'Custom Websites' : 'Website Custom'}</span>
-            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'AI Automations' : 'Otomatisasi AI'}</span>
-            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'SEO Strategies' : 'Strategi SEO'}</span>
-            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'Network Security' : 'Keamanan Jaringan'}</span>
-            <span class="h-[1.25em] flex items-center justify-center">{lang === 'en' ? 'Creative Assets' : 'Aset Kreatif'}</span>
-          </span>
-        </span>
+         {content.headline.part1}<br>
+         <span class="text-blue-400 font-black">{content.headline.part2}</span>
       </h1>
       
       <!-- Description -->
-      <p class="text-white/90 font-medium text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-sans mx-auto">
-        {content.desc}
-      </p>
+         <p class="text-white/90 font-medium text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl font-sans mx-auto">
+           {content.desc}
+         </p>
+         <div class="flex flex-wrap justify-center gap-2 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-blue-100">
+           {[lang === 'en' ? 'Landing Pages' : 'Landing Page', lang === 'en' ? 'Company Profiles' : 'Company Profile', lang === 'en' ? 'Online Stores' : 'Toko Online', lang === 'en' ? 'Custom Websites' : 'Custom Website'].map((item) => (
+             <span class="rounded-full border border-blue-300/30 bg-blue-400/10 px-3 py-1.5 backdrop-blur-sm">{item}</span>
+           ))}
+         </div>
       
       <!-- CTA buttons & Trust indicators -->
       <div class="flex flex-col items-center gap-4 pt-4">

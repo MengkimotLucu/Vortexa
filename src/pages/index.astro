@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import AudienceFit from '../components/AudienceFit.astro';
 import Services from '../components/Services.astro';
 import WhyChooseUs from '../components/WhyChooseUs.astro';
-import Testimonials from '../components/Testimonials.astro';
+import Portfolio from '../components/Portfolio.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 
@@ -12,12 +12,12 @@ const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const meta = {
   id: {
-    title: "LUMOVELO | Jasa Pembuatan Website & Digital Agency Indonesia",
+     title: "Jasa Pembuatan Website Profesional Mulai Rp1 Juta | LUMOVELO",
        description: "LUMOVELO membantu bisnis di Bandung, Jakarta, dan seluruh Indonesia membangun website cepat, SEO yang terarah, serta otomatisasi AI untuk menghasilkan lebih banyak pelanggan."
   },
   en: {
-    title: "LUMOVELO | Custom Web Development Agency & UI UX Studio",
-    description: "As a custom web development agency and premium ui ux design studio, we build high-performance websites, automated AI workflows, and creative marketing videos to scale your brand revenue globally."
+     title: "Professional Website Development from $70 | LUMOVELO",
+     description: "Fast, professional, SEO-ready websites for businesses and startups. Get a conversion-focused website with clear pricing and direct collaboration."
   }
 }[lang];
 
@@ -37,7 +37,7 @@ const faqs = {
     },
     {
       q: "Apakah website buatan LUMOVELO aman dari serangan hacker?",
-      a: "Ya. Karena kami menggunakan struktur arsitektur statis serverless, website Anda tidak memiliki server database SQL yang rentan dibobol. Ini meminimalisir celah keamanan secara signifikan, menjadikannya sangat aman dan hampir tidak mungkin diretas dibanding website CMS konvensional."
+       a: "Arsitektur website statis/serverless dapat mengurangi attack surface karena tidak bergantung pada database dan panel admin yang selalu aktif. Kami juga menerapkan HTTPS, dependency management, security headers, dan konfigurasi deployment sesuai kebutuhan proyek."
     },
     {
       q: "Apakah website yang didesain sudah SEO-friendly?",
@@ -112,8 +112,8 @@ const organizationSchema = {
     <!-- Why Choose Us Bento Section -->
     <WhyChooseUs />
 
-    <!-- Testimonials Section -->
-    <Testimonials />
+    <!-- Selected work is used instead of unverifiable testimonials -->
+    <Portfolio />
 
     <!-- FAQ Section -->
     <FAQ />
