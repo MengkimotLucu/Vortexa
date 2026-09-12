@@ -1,0 +1,161 @@
+---
+import { Image } from "astro:assets";
+import Footer from "./Footer.astro";
+import aboutHero from "../assets/about-hero-studio.png";
+import strategyRoom from "../assets/about-strategy-room.png";
+import aboutCta from "../assets/about-cta-studio.png";
+
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
+const isEn = Astro.currentLocale === "en";
+const route = (path: string) => isEn ? `/en${path}` : path;
+const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(isEn ? "Hello Lumovelo, I would like to discuss my business digital needs." : "Halo Lumovelo, saya ingin mendiskusikan kebutuhan digital bisnis saya.")}`;
+
+const approach = isEn ? [
+  ["Custom", "Solutions are shaped around your business goals and identity."],
+  ["Direct Collaboration", "You communicate directly with the people building your project."],
+  ["Flexible", "We support businesses in Indonesia and international clients remotely."],
+] : [
+  ["Custom", "Solusi disusun berdasarkan tujuan dan karakter bisnis Anda."],
+  ["Kolaborasi Langsung", "Anda berkomunikasi langsung dengan pihak yang mengerjakan project."],
+  ["Fleksibel", "Melayani kebutuhan bisnis dari Bandung, Jakarta, dan seluruh Indonesia."],
+];
+
+const principles = isEn ? [
+  ["Solution Focus", "We solve relevant business problems instead of simply completing a list of tasks."],
+  ["Open Communication", "Scope, progress, revisions, and important decisions are discussed clearly throughout the project."],
+  ["Quality Without Compromise", "Design, code, performance, and user experience are treated as one connected system."],
+  ["Ongoing Support", "Post-launch assistance is available based on your needs and agreed service package."],
+] : [
+  ["Fokus pada Solusi", "Kami mencari solusi yang relevan dengan masalah bisnis, bukan sekadar menyelesaikan daftar tugas."],
+  ["Komunikasi Terbuka", "Scope, progres, revisi, dan keputusan penting dibahas dengan jelas selama project."],
+  ["Kualitas Tanpa Kompromi", "Desain, kode, performa, dan pengalaman pengguna diperhatikan sebagai satu kesatuan."],
+  ["Dukungan Berkelanjutan", "Pendampingan setelah launch tersedia sesuai kebutuhan dan paket yang disepakati."],
+];
+
+const copy = isEn ? {
+  homeAria: "Lumovelo homepage", navAria: "Main navigation", services: "Services", portfolio: "Portfolio", information: "Information",
+  start: "Start a Discussion", shortStart: "Discuss", eyebrow: "About Us", title: "Digital Collaboration.", titleAccent: "Growing With You.",
+  introOne: "Lumovelo is an Indonesian digital studio focused on websites, web applications, SEO, and practical AI solutions that help businesses build a stronger, sustainable online presence.",
+  introTwo: "Every project combines direct communication, a clear process, and technical decisions aligned with your business goals.",
+  viewPortfolio: "View Portfolio", based: "Based in Indonesia", remote: "Working remotely worldwide", heroAlt: "Lumovelo studio team designing a business website",
+  who: "Who We Are", whoTitle: "A Strategic Partner for Digital Transformation.",
+  whoOne: "Lumovelo was built on the belief that technology should make business simpler. Every solution is designed to be fast, functional, manageable, and ready to grow with your needs.",
+  whoTwo: "Our work goes beyond visual polish. We structure information, user journeys, performance, and SEO foundations so your website can contribute to real business growth.",
+  learn: "Explore Lumovelo services", strategyAlt: "Lumovelo strategy and project planning workspace", values: "Our Values", valuesTitle: "Principles That Guide Our Work.",
+  valuesDesc: "These values guide every decision, from how we communicate to how we protect quality and build long-term client relationships.",
+  ctaTitle: "Let Us Build Something Meaningful.", ctaDesc: "Tell us about your business goals and digital needs. We will help map the right solution, features, and practical delivery steps.",
+  ctaAlt: "Lumovelo workspace developing digital solutions", chat: "Chat on WhatsApp",
+} : {
+  homeAria: "Lumovelo - Beranda", navAria: "Navigasi utama", services: "Layanan", portfolio: "Portofolio", information: "Informasi",
+  start: "Mulai Diskusi", shortStart: "Diskusi", eyebrow: "Tentang Kami", title: "Kolaborasi Digital.", titleAccent: "Tumbuh Bersama Anda.",
+  introOne: "Lumovelo adalah studio digital yang berfokus pada pembuatan website, web application, SEO, dan solusi AI untuk membantu bisnis membangun kehadiran online yang lebih kuat dan berkelanjutan.",
+  introTwo: "Setiap project dikerjakan melalui komunikasi langsung, proses yang jelas, dan keputusan teknis yang disesuaikan dengan tujuan bisnis Anda.",
+  viewPortfolio: "Lihat Portofolio", based: "Berbasis di Indonesia", remote: "Melayani secara remote", heroAlt: "Studio kerja Lumovelo saat merancang website bisnis",
+  who: "Siapa Kami", whoTitle: "Mitra Strategis untuk Transformasi Digital.",
+  whoOne: "Lumovelo dibangun dengan keyakinan bahwa teknologi seharusnya mempermudah bisnis. Karena itu, setiap solusi dirancang agar cepat, fungsional, mudah dikelola, dan siap berkembang ketika kebutuhan Anda berubah.",
+  whoTwo: "Fokus kami bukan sekadar menyerahkan tampilan yang menarik. Kami membantu menyusun struktur informasi, alur pengguna, performa, dan fondasi SEO agar website memiliki peran nyata dalam pertumbuhan bisnis.",
+  learn: "Pelajari layanan Lumovelo", strategyAlt: "Ruang strategi dan perencanaan project Lumovelo", values: "Nilai Kami", valuesTitle: "Prinsip yang Kami Pegang.",
+  valuesDesc: "Nilai ini menjadi dasar dalam setiap keputusan, mulai dari cara kami berkomunikasi sampai bagaimana kami menjaga kualitas hasil dan hubungan jangka panjang.",
+  ctaTitle: "Mari Bangun Sesuatu yang Bermakna.", ctaDesc: "Ceritakan tujuan bisnis dan kebutuhan digital Anda. Kami akan membantu memetakan solusi, fitur, dan langkah pengerjaan yang masuk akal.",
+  ctaAlt: "Workspace malam Lumovelo untuk mengembangkan solusi digital", chat: "Chat via WhatsApp",
+};
+---
+
+<main class="about-page min-h-screen bg-[#f7f4ef] text-[#101820]">
+  <section class="border-b border-[#101820]/10">
+    <div class="mx-auto grid max-w-7xl lg:grid-cols-2">
+      <div class="flex flex-col justify-center px-5 py-16 sm:px-8 lg:min-h-[570px] lg:py-20">
+        <p class="text-[11px] font-black uppercase tracking-[0.24em] text-blue-600">{copy.eyebrow}</p>
+        <h1 class="mt-5 max-w-xl text-[2.7rem] font-black leading-[0.98] sm:text-6xl lg:text-[3.55rem]">{copy.title}<br /><span class="text-blue-600">{copy.titleAccent}</span></h1>
+        <p class="mt-7 max-w-xl text-base font-medium leading-7 text-[#536173]">{copy.introOne}</p>
+        <p class="mt-4 max-w-xl text-base font-medium leading-7 text-[#536173]">{copy.introTwo}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={waUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center gap-3 rounded-full bg-blue-600 px-6 text-sm font-black text-white transition-colors hover:bg-blue-700">{copy.start} <span aria-hidden="true">-></span></a>
+          <a href={isEn ? "/en/portfolio/" : "/portofolio/"} class="inline-flex min-h-12 items-center rounded-full border border-[#101820]/25 px-6 text-sm font-black transition-colors hover:border-blue-600 hover:text-blue-600">{copy.viewPortfolio}</a>
+        </div>
+        <div class="mt-9 flex flex-wrap gap-x-8 gap-y-3 text-[11px] font-bold text-[#667384]">
+          <span class="flex items-center gap-3"><i class="h-px w-4 bg-[#667384]" aria-hidden="true"></i>{copy.based}</span>
+          <span class="flex items-center gap-3"><i class="h-4 w-px bg-[#667384]/50" aria-hidden="true"></i>{copy.remote}</span>
+        </div>
+      </div>
+      <div class="relative min-h-[420px] overflow-hidden bg-[#dedbd5] lg:min-h-[570px]">
+        <Image src={aboutHero} alt={copy.heroAlt} class="absolute inset-0 h-full w-full object-cover object-center" />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-24">
+    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div class="relative min-h-[360px] overflow-hidden rounded-[8px] bg-[#dedbd5] sm:min-h-[470px]">
+        <Image src={strategyRoom} alt={copy.strategyAlt} class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
+      </div>
+      <div>
+        <p class="text-[11px] font-black uppercase tracking-[0.24em] text-blue-600">{copy.who}</p>
+        <h2 class="mt-4 max-w-xl text-4xl font-black leading-[1.02] sm:text-5xl">{copy.whoTitle}</h2>
+        <p class="mt-6 max-w-xl text-base font-medium leading-7 text-[#536173]">{copy.whoOne}</p>
+        <p class="mt-4 max-w-xl text-base font-medium leading-7 text-[#536173]">{copy.whoTwo}</p>
+        <a href={route("/layanan/")} class="mt-7 inline-flex min-h-11 items-center gap-3 text-sm font-black text-blue-600">{copy.learn} <span aria-hidden="true">-></span></a>
+      </div>
+    </div>
+
+    <div class="mt-16 grid border-y border-[#101820]/10 py-10 md:grid-cols-3">
+      {approach.map(([title, desc], index) => (
+        <article class:list={["py-6 md:px-10", index > 0 && "border-t border-[#101820]/10 md:border-l md:border-t-0"]}>
+          <h3 class="text-2xl font-black">{title}</h3>
+          <p class="mt-3 max-w-sm text-sm font-medium leading-6 text-[#5c6878]">{desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-20 sm:px-8 lg:pb-24">
+    <div class="grid gap-8 lg:grid-cols-2 lg:items-end">
+      <div>
+        <p class="text-[11px] font-black uppercase tracking-[0.24em] text-blue-600">{copy.values}</p>
+        <h2 class="mt-4 max-w-md text-4xl font-black leading-[1.02] sm:text-5xl">{copy.valuesTitle}</h2>
+      </div>
+      <p class="max-w-xl text-base font-medium leading-7 text-[#536173]">{copy.valuesDesc}</p>
+    </div>
+
+    <div class="mt-12 grid gap-y-8 md:grid-cols-2 lg:grid-cols-4">
+      {principles.map(([title, desc], index) => (
+        <article class:list={["py-2 lg:px-7", index > 0 && "lg:border-l lg:border-[#101820]/10", index % 2 === 1 && "md:border-l md:border-[#101820]/10 md:pl-7"]}>
+          <p class="text-sm font-bold text-[#758292]">{String(index + 1).padStart(2, "0")}</p>
+          <h3 class="mt-5 text-xl font-black">{title}</h3>
+          <p class="mt-3 text-sm font-medium leading-6 text-[#5c6878]">{desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-5 pb-16 sm:px-8">
+    <div class="relative min-h-[330px] overflow-hidden rounded-[8px] bg-[#081421] text-white md:min-h-[300px]">
+      <Image src={aboutCta} alt={copy.ctaAlt} class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#081421] via-[#081421]/92 to-transparent"></div>
+      <div class="relative z-10 flex min-h-[330px] max-w-xl flex-col justify-center px-7 py-12 md:min-h-[300px] md:px-12">
+        <h2 class="text-4xl font-black leading-[1.02]">{copy.ctaTitle}</h2>
+        <p class="mt-5 text-sm font-medium leading-6 text-white/75">{copy.ctaDesc}</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href={waUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center gap-3 rounded-full bg-blue-600 px-6 text-sm font-black text-white hover:bg-blue-500">{copy.start} <span aria-hidden="true">-></span></a>
+          <a href={waUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center gap-3 rounded-full border border-white/35 px-6 text-sm font-black text-white hover:border-white">{copy.chat}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</main>
+
+<style>
+  .about-page :global(.max-w-7xl),
+  .about-page :global(.max-w-6xl) {
+    max-width: 1180px !important;
+  }
+
+  .about-page h1,
+  .about-page h2,
+  .about-page h3,
+  .about-page p {
+    letter-spacing: 0 !important;
+  }
+</style>

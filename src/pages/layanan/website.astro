@@ -1,4 +1,4 @@
 ---
-import Page from '../index.astro';
+const destination = Astro.currentLocale === 'en' ? '/en/layanan/web/' : '/layanan/web/';
+return Astro.redirect(destination, 301);
 ---
-<Page />

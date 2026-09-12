@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
-import Logo from "../../components/Logo.astro";
 
 const lang = Astro.currentLocale === "en" ? "en" : "id";
 const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
@@ -11,7 +10,7 @@ const content = {
     title: "Jasa Pembuatan Landing Page & Website Premium | LUMOVELO",
     header: "WEBSITE DEVELOPMENT & LANDING PAGE",
     headline: "Jasa Pembuatan Landing Page & Website Kustom Premium",
-    desc: "Jasa pembuatan landing page & website profesional Lumovelo. Dapatkan jasa landing page premium dengan harga landing page murah, performa load speed di bawah 1 detik, layout kustom, serta pengerjaan cepat untuk meningkatkan omset bisnis Anda.",
+    desc: "Jasa pembuatan landing page dan website profesional yang cepat, SEO-ready, custom, dan dirancang untuk meningkatkan konversi bisnis Anda.",
     cta: "Konsultasikan Proyek Website Anda",
     back: "Kembali ke Beranda",
     pricingHeader: "/ PAKET PILIHAN WEB DEVELOPMENT",
@@ -248,32 +247,6 @@ const faqSchema = {
 ---
 
 <Layout title={content.title} description={content.desc} schema={[schema, faqSchema]}>
-
-  <!-- Simple Subpage Header -->
-  <header
-    class="py-6 border-b border-slate-100 bg-white/80 backdrop-blur sticky top-0 z-50"
-  >
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
-      <a href={homeLink} class="flex items-center gap-3 group">
-        <div
-          class="w-9 h-9 rounded-xl border border-blue-100 bg-white flex items-center justify-center shadow-sm"
-        >
-          <Logo class="w-4.5 h-4.5 text-blue-600" />
-        </div>
-        <span
-          class="font-display font-black text-lg tracking-widest text-slate-900"
-          >LUMOVELO</span
-        >
-      </a>
-      <a
-        href={homeLink}
-        class="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-blue-600 transition-colors select-none"
-      >
-        <span class="hidden sm:inline">{content.back}</span>
-        <span class="inline sm:hidden">← {lang === 'en' ? 'Home' : 'Beranda'}</span>
-      </a>
-    </div>
-  </header>
 
   <main class="bg-white min-h-screen relative overflow-hidden font-sans">
     <!-- Background Glimmer -->

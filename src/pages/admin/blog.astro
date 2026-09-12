@@ -249,6 +249,37 @@ import Logo from '../../components/Logo.astro';
           <textarea id="modal-post-content" required rows="8" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none font-mono" placeholder="&lt;p class='mb-6'&gt;Teks artikel...&lt;/p&gt;"></textarea>
         </div>
 
+        <div class="pt-4 border-t border-[#232328] space-y-3.5">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <h4 class="text-white font-semibold text-[13px]">Versi Bahasa Inggris</h4>
+              <p class="text-[#8A8A90] text-[10px]">Dipakai otomatis untuk halaman /en/blog.</p>
+            </div>
+            <span class="px-2 py-1 rounded-md bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 text-[9px] mono uppercase">EN</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label for="modal-post-title-en" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">English Title</label>
+              <input type="text" id="modal-post-title-en" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none" placeholder="English SEO title..." />
+            </div>
+            <div class="space-y-1">
+              <label for="modal-post-slug-en" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">English Slug</label>
+              <input type="text" id="modal-post-slug-en" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none font-mono" placeholder="english-seo-slug" />
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label for="modal-post-desc-en" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">English Description</label>
+            <textarea id="modal-post-desc-en" rows="2" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none resize-none" placeholder="Short English meta description..."></textarea>
+          </div>
+
+          <div class="space-y-1">
+            <label for="modal-post-content-en" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">English Content (HTML)</label>
+            <textarea id="modal-post-content-en" rows="6" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none font-mono" placeholder="&lt;p class='mb-6'&gt;English article...&lt;/p&gt;"></textarea>
+          </div>
+        </div>
+
         <div class="pt-4 flex justify-end gap-3 text-xs">
           <button type="button" id="modal-btn-cancel" class="px-4 py-2 bg-[#232328] hover:bg-[#2e2e34] text-white rounded-xl font-semibold transition-colors cursor-pointer">
             Batal
@@ -263,14 +294,22 @@ import Logo from '../../components/Logo.astro';
 
   <!-- AI Blog Post Generator Modal -->
   <div id="ai-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
-    <div class="bg-[#131316] border border-[#232328] rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl">
+    <div class="bg-[#131316] border border-[#232328] rounded-2xl w-full max-w-lg p-6 space-y-4 shadow-2xl">
       <div class="flex items-center gap-2 mb-1">
         <span class="live-dot w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping"></span>
         <h3 class="serif text-xl text-white">Buat Artikel AI (Groq)</h3>
       </div>
-      <p class="text-[11px] text-[#8A8A90] -mt-2 leading-relaxed">Pilih kategori dan tentukan topik spesifik. AI akan secara otomatis menghasilkan artikel SEO bahasa Indonesia yang lengkap dengan internal linking.</p>
+      <p class="text-[11px] text-[#8A8A90] -mt-2 leading-relaxed">Pilih tipe artikel, kategori, dan topik. AI akan membuat versi Indonesia dan English sekaligus; mode berita wajib memakai link referensi.</p>
       
       <form id="ai-form" class="space-y-4 text-xs text-slate-300">
+        <div class="space-y-1">
+          <label for="ai-article-type" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Tipe Artikel *</label>
+          <select id="ai-article-type" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none">
+            <option value="evergreen">Evergreen SEO / Edukasi</option>
+            <option value="news">Berita Terkini / Analisis News</option>
+          </select>
+        </div>
+
         <div class="space-y-1">
           <label for="ai-post-category" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Kategori Artikel *</label>
           <select id="ai-post-category" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none">
@@ -286,6 +325,12 @@ import Logo from '../../components/Logo.astro';
         <div class="space-y-1">
           <label for="ai-post-keyword" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Topik Spesifik / Kata Kunci (Opsional)</label>
           <input type="text" id="ai-post-keyword" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none" placeholder="Contoh: Pentingnya firewall FortiGate di kantor, dsb." />
+        </div>
+
+        <div id="ai-source-wrap" class="space-y-1 hidden">
+          <label for="ai-source-urls" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Link Referensi Berita *</label>
+          <textarea id="ai-source-urls" rows="4" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none resize-none font-mono" placeholder="https://sumber-berita.com/artikel-1&#10;https://sumber-resmi.com/update-2"></textarea>
+          <p class="text-[10px] text-[#5C5C63] leading-relaxed">Satu URL per baris. Untuk news, artikel dibuat berdasarkan sumber ini agar tidak mengarang fakta terbaru.</p>
         </div>
 
         <div class="pt-4 flex justify-end gap-3 text-xs">
@@ -429,8 +474,11 @@ import Logo from '../../components/Logo.astro';
     const btnGenerateAi = document.getElementById('btn-generate-ai')!;
     const aiModal = document.getElementById('ai-modal')!;
     const aiForm = document.getElementById('ai-form') as HTMLFormElement;
+    const aiArticleType = document.getElementById('ai-article-type') as HTMLSelectElement;
     const aiPostCategory = document.getElementById('ai-post-category') as HTMLSelectElement;
     const aiPostKeyword = document.getElementById('ai-post-keyword') as HTMLInputElement;
+    const aiSourceWrap = document.getElementById('ai-source-wrap')!;
+    const aiSourceUrls = document.getElementById('ai-source-urls') as HTMLTextAreaElement;
     const aiBtnCancel = document.getElementById('ai-btn-cancel')!;
     const aiBtnSubmit = document.getElementById('ai-btn-submit') as HTMLButtonElement;
     const aiBtnText = document.getElementById('ai-btn-text')!;
@@ -448,6 +496,10 @@ import Logo from '../../components/Logo.astro';
     const modalPostBg = document.getElementById('modal-post-bg') as HTMLInputElement;
     const modalPostDesc = document.getElementById('modal-post-desc') as HTMLTextAreaElement;
     const modalPostContent = document.getElementById('modal-post-content') as HTMLTextAreaElement;
+    const modalPostTitleEn = document.getElementById('modal-post-title-en') as HTMLInputElement;
+    const modalPostSlugEn = document.getElementById('modal-post-slug-en') as HTMLInputElement;
+    const modalPostDescEn = document.getElementById('modal-post-desc-en') as HTMLTextAreaElement;
+    const modalPostContentEn = document.getElementById('modal-post-content-en') as HTMLTextAreaElement;
     const modalBtnCancel = document.getElementById('modal-btn-cancel')!;
 
     let allPosts: any[] = [];
@@ -566,6 +618,10 @@ import Logo from '../../components/Logo.astro';
       modalPostSlug.value = '';
       modalPostDesc.value = '';
       modalPostContent.value = '';
+      modalPostTitleEn.value = '';
+      modalPostSlugEn.value = '';
+      modalPostDescEn.value = '';
+      modalPostContentEn.value = '';
       modalPostCategory.value = 'AI & OTOMATISASI';
       
       const monthNamesID = ["JANUARI", "FEBRUARI", "MARET", "APRIL", "MEI", "JUNI", "JULI", "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"];
@@ -593,6 +649,10 @@ import Logo from '../../components/Logo.astro';
       modalPostBg.value = post.bg_category || post.bgCategory || 'bg-blue-100 text-blue-650 border-blue-200';
       modalPostDesc.value = post.description;
       modalPostContent.value = post.content;
+      modalPostTitleEn.value = post.title_en || '';
+      modalPostSlugEn.value = post.slug_en || '';
+      modalPostDescEn.value = post.description_en || '';
+      modalPostContentEn.value = post.content_en || '';
 
       postModal.classList.remove('hidden');
     }
@@ -612,11 +672,29 @@ import Logo from '../../components/Logo.astro';
       }
     });
 
+    modalPostTitleEn.addEventListener('input', () => {
+      if (!modalPostId.value) {
+        modalPostSlugEn.value = modalPostTitleEn.value
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+    });
+
     // Form Submit (Save / Update)
     modalForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const id = modalPostId.value;
+      const englishCategoryMap: Record<string, string> = {
+        'AI & OTOMATISASI': 'AI & AUTOMATION',
+        'IT & WEB DEVELOP': 'IT & WEB DEV',
+        'SEO & MARKETING': 'SEO & MARKETING',
+        'VIDEO & CREATIVE': 'VIDEO & CREATIVE',
+        'KEAMANAN JARINGAN': 'NETWORK SECURITY',
+        'SOFTWARE QA & TESTING': 'SOFTWARE QA & TESTING'
+      };
       const payload = {
         title: modalPostTitle.value.trim(),
         slug: modalPostSlug.value.trim().toLowerCase(),
@@ -624,7 +702,12 @@ import Logo from '../../components/Logo.astro';
         category: modalPostCategory.value,
         bg_category: modalPostBg.value.trim(),
         description: modalPostDesc.value.trim(),
-        content: modalPostContent.value.trim()
+        content: modalPostContent.value.trim(),
+        title_en: modalPostTitleEn.value.trim() || null,
+        slug_en: modalPostSlugEn.value.trim().toLowerCase() || null,
+        category_en: englishCategoryMap[modalPostCategory.value] || modalPostCategory.value,
+        description_en: modalPostDescEn.value.trim() || null,
+        content_en: modalPostContentEn.value.trim() || null
       };
 
       try {
@@ -670,8 +753,17 @@ import Logo from '../../components/Logo.astro';
     // Event Listeners for AI Modal
     btnGenerateAi.addEventListener('click', () => {
       aiPostKeyword.value = '';
+      aiSourceUrls.value = '';
+      aiArticleType.value = 'evergreen';
       aiPostCategory.value = 'AI & OTOMATISASI';
+      aiSourceWrap.classList.add('hidden');
       aiModal.classList.remove('hidden');
+    });
+
+    aiArticleType.addEventListener('change', () => {
+      const isNews = aiArticleType.value === 'news';
+      aiSourceWrap.classList.toggle('hidden', !isNews);
+      aiSourceUrls.required = isNews;
     });
 
     aiBtnCancel.addEventListener('click', () => {
@@ -683,6 +775,13 @@ import Logo from '../../components/Logo.astro';
       
       const category = aiPostCategory.value;
       const keyword = aiPostKeyword.value.trim();
+      const articleType = aiArticleType.value;
+      const sourceUrls = aiSourceUrls.value.trim();
+
+      if (articleType === 'news' && !sourceUrls) {
+        await (window as any).showAlert('Mode berita terkini membutuhkan minimal 1 link referensi.');
+        return;
+      }
       
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
@@ -703,6 +802,8 @@ import Logo from '../../components/Logo.astro';
           body: JSON.stringify({
             category,
             keyword,
+            articleType,
+            sourceUrls,
             token: session.access_token
           })
         });
@@ -712,7 +813,7 @@ import Logo from '../../components/Logo.astro';
           throw new Error(resData.error || 'Terjadi kesalahan saat generate artikel.');
         }
 
-        await (window as any).showAlert('Sukses! Artikel AI berhasil digenerate dan dipublikasikan.');
+        await (window as any).showAlert('Sukses! Artikel AI bilingual berhasil digenerate dan dipublikasikan.');
         aiModal.classList.add('hidden');
         loadBlogPosts(); // Reload posts table
       } catch (err: any) {

@@ -1,0 +1,393 @@
+---
+import Logo from "./Logo.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+const lang = Astro.currentLocale === "en" ? "en" : "id";
+const isEn = lang === "en";
+const route = (path: string) => isEn ? `/en${path}` : path;
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
+const waMessage = isEn
+  ? "Hello Lumovelo, I would like to discuss a website project."
+  : "Halo Lumovelo, saya ingin konsultasi pembuatan website.";
+const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
+
+const copy = isEn
+  ? { services: "Services", information: "Information", consultation: "Start Discussion", menu: "Menu", close: "Close menu", navAria: "Primary navigation" }
+  : { services: "Layanan", information: "Informasi", consultation: "Mulai Diskusi", menu: "Menu", close: "Tutup menu", navAria: "Navigasi utama" };
+
+const serviceNav = isEn ? [
+  ["Website & Web Apps", "Conversion-focused landing pages and company websites.", route("/layanan/web/")],
+  ["AI Integration", "Workflow automation and custom AI assistants.", route("/layanan/ai/")],
+  ["Advanced SEO", "Organic traffic and search conversion optimization.", route("/layanan/seo/")],
+  ["Video & Creative Assets", "Creative video editing and visual media production.", route("/layanan/video/")],
+  ["Network Security", "System, endpoint, and professional firewall protection.", route("/layanan/keamanan-jaringan/")],
+  ["Software QA & Testing", "Functional, load, and automated application testing.", route("/layanan/qa/")],
+] : [
+  ["Website & Web Apps", "Landing page & profile penunjang konversi.", route("/layanan/web/")],
+  ["AI Integration", "Otomatisasi alur kerja dan agen chatbot.", route("/layanan/ai/")],
+  ["Advanced SEO", "Optimasi traffic dan funnel pemasaran digital.", route("/layanan/seo/")],
+  ["Video & Creative Assets", "Penyuntingan video kreatif & media visual.", route("/layanan/video/")],
+  ["Keamanan Jaringan", "Proteksi sistem, endpoint & setup firewall profesional.", route("/layanan/keamanan-jaringan/")],
+  ["Software QA & Testing", "Uji fungsional, performa beban, & otomatisasi aplikasi.", route("/layanan/qa/")],
+];
+
+const infoNav = isEn ? [
+  ["About Us", "Learn how Lumovelo collaborates directly with clients.", route("/about-us/")],
+  ["Careers", "Explore career and collaboration opportunities.", route("/careers/")],
+  ["Contact Us", "Talk to us about a free initial consultation.", route("/contact/")],
+  ["Blog", "Read practical insights on technology, SEO, and AI.", route("/blog/")],
+] : [
+  ["Tentang Kami", "Pelajari cara Lumovelo bekerja langsung dengan klien.", "/tentang/"],
+  ["Karir", "Temukan peluang kerja & kolaborasi.", "/karir/"],
+  ["Hubungi Kami", "Hubungi kami untuk konsultasi gratis.", "/kontak/"],
+  ["Blog", "Baca wawasan teknologi, SEO & AI.", "/blog/"],
+];
+---
+
+<header id="public-navbar" class="fixed inset-x-0 top-0 z-[80] bg-[#f7f4ef]/95 backdrop-blur-md">
+  <div class="nav-shell mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
+    <a href={isEn ? "/en/" : "/"} class="nav-logo flex min-h-11 items-center gap-2 font-black tracking-tight" aria-label="Lumovelo">
+      <span class="nav-mark inline-flex h-8 w-8 items-center justify-center rounded-full">
+        <Logo class="h-5 w-5 text-[#211f1c]" />
+      </span>
+      <span>LUMOVELO</span>
+    </a>
+
+    <nav class="hidden items-center gap-7 text-xs font-bold uppercase text-[#211f1c]/70 lg:flex" aria-label={copy.navAria}>
+      <a href={isEn ? "/en/" : "/"} class="nav-link transition-colors hover:text-[#141414]">Home</a>
+      <div class="nav-menu group relative py-5">
+        <button class="nav-link flex items-center gap-1 font-bold uppercase transition-colors hover:text-[#141414]" type="button" aria-haspopup="true">
+          {copy.services}
+          <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7" /></svg>
+        </button>
+        <div class="pointer-events-none absolute left-0 top-full w-64 origin-top-left rounded-[8px] border border-[#211f1c]/10 bg-[#fbfaf7] p-2 text-left opacity-0 shadow-[0_20px_60px_rgba(33,31,28,0.14)] transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+          {serviceNav.map(([title, desc, href]) => (
+            <a href={href} class="flex min-h-14 flex-col justify-center rounded-[6px] px-3 py-2.5 transition-colors hover:bg-[#eee9e1] focus:bg-[#eee9e1]">
+              <span class="text-xs font-black normal-case text-[#211f1c]">{title}</span>
+              <span class="mt-1 text-[10px] font-semibold normal-case leading-4 text-[#6b655d]">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+      <a href={isEn ? "/en/portfolio/" : "/portofolio/"} class="nav-link transition-colors hover:text-[#141414]">Portfolio</a>
+      <div class="nav-menu group relative py-5">
+        <button class="nav-link flex items-center gap-1 font-bold uppercase transition-colors hover:text-[#141414]" type="button" aria-haspopup="true">
+          {copy.information}
+          <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19 9-7 7-7-7" /></svg>
+        </button>
+        <div class="pointer-events-none absolute right-0 top-full w-64 origin-top-right rounded-[8px] border border-[#211f1c]/10 bg-[#fbfaf7] p-2 text-left opacity-0 shadow-[0_20px_60px_rgba(33,31,28,0.14)] transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+          {infoNav.map(([title, desc, href]) => (
+            <a href={href} class="flex min-h-14 flex-col justify-center rounded-[6px] px-3 py-2.5 transition-colors hover:bg-[#eee9e1] focus:bg-[#eee9e1]">
+              <span class="text-xs font-black normal-case text-[#211f1c]">{title}</span>
+              <span class="mt-1 text-[10px] font-semibold normal-case leading-4 text-[#6b655d]">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-actions flex items-center gap-2.5 sm:gap-3">
+      <div class="nav-lang hidden xs:block sm:block">
+        <LanguageSwitcher />
+      </div>
+      <a href={waUrl} target="_blank" rel="noopener noreferrer" class="nav-cta rounded-full bg-blue-600 px-4 py-2 text-xs font-black uppercase text-white transition-colors">
+        {copy.consultation}
+      </a>
+      <button
+        type="button"
+        id="mobile-menu-button"
+        class="nav-toggle inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#211f1c]/12 bg-[#211f1c] text-[#f7f4ef] transition-colors lg:hidden"
+        aria-label={copy.menu}
+        aria-controls="mobile-menu-panel"
+        aria-expanded="false"
+      >
+        <svg class="menu-icon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <path d="M5 7h14" />
+          <path d="M5 12h14" />
+          <path d="M5 17h14" />
+        </svg>
+        <svg class="close-icon hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12" />
+          <path d="M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu-panel" class="mobile-panel pointer-events-none absolute inset-x-3 top-[72px] origin-top scale-[0.98] rounded-[22px] border border-[#211f1c]/10 bg-[#fbfaf7] p-4 opacity-0 shadow-[0_24px_70px_rgba(33,31,28,0.18)] transition-all duration-200 lg:hidden" aria-hidden="true">
+    <div class="mb-4 flex items-center justify-between border-b border-[#211f1c]/10 pb-3">
+      <span class="text-[10px] font-black uppercase tracking-[0.24em] text-[#8a8176]">Lumovelo</span>
+      <LanguageSwitcher />
+    </div>
+
+    <nav class="grid gap-4" aria-label={copy.navAria}>
+      <a href={isEn ? "/en/" : "/"} class="mobile-link flex min-h-11 items-center justify-between rounded-[12px] px-3 text-sm font-black text-[#211f1c] transition-colors hover:bg-[#eee9e1]">
+        Home
+        <span class="text-[#8a8176]">/</span>
+      </a>
+
+      <div class="grid gap-2">
+        <span class="px-3 text-[10px] font-black uppercase tracking-[0.18em] text-[#8a8176]">{copy.services}</span>
+        <div class="grid gap-1">
+          {serviceNav.map(([title, desc, href]) => (
+            <a href={href} class="mobile-link rounded-[12px] px-3 py-2.5 transition-colors hover:bg-[#eee9e1]">
+              <span class="block text-sm font-black text-[#211f1c]">{title}</span>
+              <span class="mt-1 block text-[11px] font-semibold leading-4 text-[#6b655d]">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a href={isEn ? "/en/portfolio/" : "/portofolio/"} class="mobile-link flex min-h-11 items-center justify-between rounded-[12px] px-3 text-sm font-black text-[#211f1c] transition-colors hover:bg-[#eee9e1]">
+        Portfolio
+        <span class="text-[#8a8176]">/</span>
+      </a>
+
+      <div class="grid gap-2">
+        <span class="px-3 text-[10px] font-black uppercase tracking-[0.18em] text-[#8a8176]">{copy.information}</span>
+        <div class="grid gap-1">
+          {infoNav.map(([title, desc, href]) => (
+            <a href={href} class="mobile-link rounded-[12px] px-3 py-2.5 transition-colors hover:bg-[#eee9e1]">
+              <span class="block text-sm font-black text-[#211f1c]">{title}</span>
+              <span class="mt-1 block text-[11px] font-semibold leading-4 text-[#6b655d]">{desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a href={waUrl} target="_blank" rel="noopener noreferrer" class="mobile-link mt-1 inline-flex min-h-12 items-center justify-center rounded-full bg-[#211f1c] px-4 text-xs font-black uppercase text-[#f7f4ef] transition-colors hover:bg-[#39352f]">
+        {copy.consultation}
+      </a>
+    </nav>
+  </div>
+</header>
+<div class="h-16" aria-hidden="true"></div>
+
+<script>
+  const navbar = document.getElementById("public-navbar");
+  const menuButton = document.getElementById("mobile-menu-button");
+  const menuPanel = document.getElementById("mobile-menu-panel");
+  let scrolled = false;
+  let ticking = false;
+  let menuOpen = false;
+
+  function updateNavbar() {
+    if (!navbar) return;
+    const next = scrolled ? window.scrollY > 8 : window.scrollY > 32;
+    if (next !== scrolled) {
+      scrolled = next;
+      navbar.classList.toggle("is-scrolled", scrolled);
+    }
+  }
+
+  function requestUpdate() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      updateNavbar();
+      ticking = false;
+    });
+  }
+
+  updateNavbar();
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+
+  function setMenuOpen(next: boolean) {
+    if (!navbar || !menuButton || !menuPanel) return;
+    menuOpen = next;
+    navbar.classList.toggle("menu-open", menuOpen);
+    menuButton.setAttribute("aria-expanded", String(menuOpen));
+    menuPanel.setAttribute("aria-hidden", String(!menuOpen));
+    document.body.classList.toggle("overflow-hidden", menuOpen);
+  }
+
+  menuButton?.addEventListener("click", () => setMenuOpen(!menuOpen));
+
+  menuPanel?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenuOpen(false);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) setMenuOpen(false);
+  });
+</script>
+
+<style>
+  #public-navbar {
+    transition: background-color 180ms ease, backdrop-filter 180ms ease;
+  }
+
+  #public-navbar .nav-shell {
+    border: 1px solid transparent;
+    border-radius: 0;
+    will-change: background-color, border-color, border-radius, box-shadow, transform;
+    transition: background-color 220ms ease, border-color 220ms ease, border-radius 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+
+  #public-navbar .nav-mark {
+    background: #e8e2d9;
+  }
+
+  #public-navbar .nav-logo {
+    color: #211f1c;
+  }
+
+  #public-navbar .nav-cta {
+    background: #211f1c;
+    color: #f7f4ef;
+  }
+
+  #public-navbar .nav-cta:hover,
+  #public-navbar .nav-toggle:hover {
+    background: #39352f;
+  }
+
+  #public-navbar :global(a[aria-label^="Switch"]) {
+    border-color: #cec7bd !important;
+    background: transparent !important;
+    color: #655f57 !important;
+    box-shadow: none !important;
+  }
+
+  #public-navbar :global(a[aria-label^="Switch"].bg-blue-600) {
+    border-color: #211f1c !important;
+    background: #211f1c !important;
+    color: #f7f4ef !important;
+  }
+
+  #public-navbar :global(a[aria-label^="Switch"]:hover) {
+    border-color: #211f1c !important;
+    color: #211f1c !important;
+  }
+
+  #public-navbar.is-scrolled {
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  #public-navbar.is-scrolled .nav-shell {
+    width: calc(100% - 24px);
+    max-width: 940px !important;
+    height: 54px;
+    padding-inline: 18px;
+    border-color: rgba(20, 20, 20, 0.13);
+    border-radius: 999px;
+    background: #f7f4ef;
+    box-shadow: 0 14px 30px rgba(45, 40, 34, 0.13);
+    transform: translateY(6px);
+  }
+
+  #public-navbar.is-scrolled .nav-logo,
+  #public-navbar.is-scrolled .nav-link {
+    color: #211f1c !important;
+  }
+
+  #public-navbar.is-scrolled .nav-mark {
+    background: #e8e2d9;
+  }
+
+  #public-navbar.is-scrolled .nav-mark :global(svg) {
+    color: #211f1c !important;
+  }
+
+  #public-navbar.is-scrolled .nav-cta {
+    background: #211f1c;
+    color: #f7f4ef;
+  }
+
+  #public-navbar.is-scrolled .nav-cta:hover {
+    background: #39352f;
+  }
+
+  #public-navbar.is-scrolled .nav-menu {
+    padding-block: 15px;
+  }
+
+  #public-navbar.is-scrolled :global(a[aria-label^="Switch"]) {
+    border-color: #cec7bd !important;
+    background: transparent !important;
+    color: #655f57 !important;
+    box-shadow: none !important;
+  }
+
+  #public-navbar.is-scrolled :global(a[aria-label^="Switch"].bg-blue-600) {
+    border-color: #211f1c !important;
+    background: #211f1c !important;
+    color: #f7f4ef !important;
+  }
+
+  #public-navbar.menu-open .mobile-panel {
+    pointer-events: auto;
+    scale: 1;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #public-navbar.menu-open .menu-icon {
+    display: none;
+  }
+
+  #public-navbar.menu-open .close-icon {
+    display: block;
+  }
+
+  #public-navbar.is-scrolled .mobile-panel {
+    top: 68px;
+  }
+
+  @media (max-width: 1023px) {
+    #public-navbar.is-scrolled .nav-shell {
+      width: calc(100% - 20px);
+      max-width: 720px !important;
+      padding-inline: 14px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    #public-navbar .nav-shell {
+      padding-inline: 12px;
+    }
+
+    #public-navbar .nav-actions {
+      gap: 7px;
+    }
+
+    #public-navbar .nav-cta {
+      padding-inline: 11px;
+      font-size: 0.63rem;
+    }
+
+    #public-navbar .nav-toggle {
+      height: 38px;
+      width: 38px;
+    }
+
+    #public-navbar.is-scrolled .nav-shell {
+      width: calc(100% - 16px);
+      padding-inline: 10px;
+    }
+
+    #public-navbar.is-scrolled .nav-actions {
+      gap: 6px;
+    }
+
+    #public-navbar.is-scrolled .nav-logo {
+      gap: 5px;
+      font-size: 0.75rem;
+    }
+
+    #public-navbar.is-scrolled .nav-mark {
+      width: 28px;
+      height: 28px;
+    }
+
+    #public-navbar.is-scrolled .nav-cta {
+      padding-inline: 10px;
+      font-size: 0.625rem;
+    }
+  }
+</style>

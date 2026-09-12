@@ -3,6 +3,7 @@ import '../styles/global.css';
 import CursorGlow from '../components/CursorGlow.astro';
 import FABStack from '../components/FABStack.astro';
 import AIChatWidget from '../components/AIChatWidget.astro';
+import PublicNavbar from '../components/PublicNavbar.astro';
 
 interface Props {
   title?: string;
@@ -73,6 +74,8 @@ const getAlternates = (pathname: string) => {
 
 const canonicalURL = new URL(Astro.url.pathname, 'https://www.lumovelo.com').href;
 const alternates = getAlternates(Astro.url.pathname);
+const ogLocale = currentLocale === 'en' ? 'en_US' : 'id_ID';
+const alternateOgLocale = currentLocale === 'en' ? 'id_ID' : 'en_US';
 const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
 const phoneFormatted = waNumber.startsWith('+') ? waNumber : '+' + waNumber;
 
@@ -142,7 +145,7 @@ const isBlog = Astro.url.pathname.includes('/blog');
         <link rel="alternate" hreflang="x-default" href={alternates.id} />
       </>
     )}
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
     
     <!-- Combined Third Party Scripts (Deferred Loading) -->
     <script is:inline>
@@ -211,6 +214,9 @@ const isBlog = Astro.url.pathname.includes('/blog');
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="LUMOVELO" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={alternateOgLocale} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -218,6 +224,7 @@ const isBlog = Astro.url.pathname.includes('/blog');
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL('/og-image.png', 'https://www.lumovelo.com').href} />
@@ -237,6 +244,7 @@ const isBlog = Astro.url.pathname.includes('/blog');
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKCVBB6F"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    {!isWorkspaceOrAdmin && <PublicNavbar />}
     <!-- Sidebar backdrop for admin pages -->
     {isWorkspaceOrAdmin && (
       <div id="sidebar-backdrop" class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm hidden lg:hidden"></div>

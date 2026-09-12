@@ -1,4 +1,32 @@
 ---
-import Page from '../terms-of-service.astro';
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+
+const sections = [
+  ["1. Scope of Services", "Lumovelo provides website development, search engine optimization, UI/UX design, software quality assurance, creative media, and AI integration services for business needs."],
+  ["2. Project Enquiries and Agreements", "Initial consultations submitted through our website are free. Project scope, deliverables, fees, payment schedule, and estimated completion dates will be documented and agreed by both parties before paid work begins."],
+  ["3. Intellectual Property", "Unless agreed otherwise in writing, final approved deliverables and applicable source files are transferred to the client after all related payment obligations have been completed. Third-party software and licensed assets remain subject to their respective licenses."],
+  ["4. Limitation of Liability", "Lumovelo takes reasonable care to deliver reliable, secure digital solutions. We are not responsible for losses caused by third-party service interruptions, external platform policy changes, or infrastructure outside our direct control."],
+  ["5. Governing Law", "These terms are governed by the laws of the Republic of Indonesia. The parties will first seek to resolve disputes through good-faith discussion before pursuing formal legal remedies."],
+];
 ---
-<Page />
+
+<Layout title="Terms of Service | LUMOVELO" description="Review Lumovelo's terms for digital projects, including service scope, project agreements, intellectual property, liability, and governing law.">
+  <main class="min-h-screen bg-slate-50 py-16 md:py-24">
+    <article class="mx-auto max-w-3xl px-6">
+      <p class="text-xs font-bold uppercase text-slate-500">Last updated: June 18, 2026</p>
+      <h1 class="mt-4 text-3xl font-black uppercase leading-tight text-slate-900 sm:text-4xl md:text-5xl">Terms of Service</h1>
+      <div class="mt-6 h-1 w-full rounded-full bg-blue-600/30"></div>
+      <div class="mt-8 space-y-6 text-sm font-semibold leading-relaxed text-slate-700 sm:text-base">
+        <p>By accessing the Lumovelo website or engaging our services, you acknowledge and agree to the following terms.</p>
+        {sections.map(([heading, body]) => (
+          <section>
+            <h2 class="mt-8 text-xl font-bold uppercase text-slate-900">{heading}</h2>
+            <p class="mt-4">{body}</p>
+          </section>
+        ))}
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>

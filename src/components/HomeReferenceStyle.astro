@@ -1,0 +1,529 @@
+---
+import { Image } from "astro:assets";
+import Footer from "./Footer.astro";
+import heroImage from "../assets/lumovelo-home-hero.png";
+import imgFasteat from "../assets/portfolio-fasteat-mockup.webp";
+import imgApex from "../assets/portfolio-company-profile.webp";
+import imgFruit from "../assets/portfolio-buah-mockup.webp";
+import imgMaintenance from "../assets/portfolio-maintenance.webp";
+import imgKasirToko from "../assets/portfolio-kasir-toko.webp";
+
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
+const lang = Astro.currentLocale === "en" ? "en" : "id";
+const isEn = lang === "en";
+const route = (path: string) => isEn ? `/en${path}` : path;
+const waMessage = isEn
+  ? "Hello Lumovelo, I would like to discuss a website project."
+  : "Halo Lumovelo, saya ingin konsultasi pembuatan website.";
+const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
+
+const projects = [
+  {
+    title: "FastEat Cafe & Restaurant",
+    type: isEn ? "F&B Landing Page" : "Landing Page F&B",
+    desc: isEn ? "A restaurant landing page with visual menus, reservation calls to action, and concise information architecture." : "Landing page restoran dengan visual menu, CTA reservasi, dan struktur informasi yang ringkas.",
+    image: imgFasteat,
+    href: "https://fasteat-theta.vercel.app/",
+  },
+  {
+    title: isEn ? "Retail POS & Cashier App" : "Aplikasi Kasir & POS Toko",
+    type: isEn ? "Business System" : "Sistem Bisnis",
+    desc: isEn ? "A cloud-based retail POS for transactions, inventory monitoring, and daily revenue reporting." : "Aplikasi kasir toko berbasis cloud untuk transaksi, monitoring stok, dan laporan omset harian.",
+    image: imgKasirToko,
+    href: "https://kasirtoko.infinityfreeapp.com/",
+  },
+  {
+    title: "FruitFresh Organic Store",
+    type: isEn ? "Online Store" : "Toko Online",
+    desc: isEn ? "An organic produce storefront with a clean catalog and a straightforward purchase journey." : "Tampilan e-commerce produk buah organik dengan katalog bersih dan alur pembelian jelas.",
+    image: imgFruit,
+    href: "https://ecommercebuah.vercel.app/",
+  },
+];
+
+const benefits = isEn ? [
+  { title: "Custom Design", desc: "Every website reflects your business identity instead of relying on a generic template that looks like every competitor.", proof: "Brand-fit layout", accent: "bg-blue-600 text-white", href: route("/layanan/web/") },
+  { title: "SEO-Ready", desc: "Page structure, headings, metadata, and internal links are prepared so search engines can understand your website clearly.", proof: "Technical SEO", accent: "bg-[#101820] text-white", href: route("/layanan/seo/") },
+  { title: "Conversion Focus", desc: "Each section helps visitors understand your offer, trust your business, and take the next meaningful action.", proof: "CTA strategy", accent: "bg-[#d9d2c6] text-[#101820]", href: route("/layanan/web/") },
+  { title: "Fast & Responsive", desc: "Your website stays comfortable to use across desktop, tablet, and mobile, with careful attention to loading performance.", proof: "Mobile-first build", accent: "bg-[#eee8dc] text-[#101820]", href: route("/layanan/web/") },
+  { title: "Transparent Pricing", desc: "Scope, features, timelines, and costs are explained upfront so project decisions remain clear.", proof: "Clear scope", accent: "bg-[#171512] text-white", href: route("/contact/") },
+  { title: "Post-Launch Support", desc: "After launch, you continue to receive support for revisions, updates, and technical needs based on your package.", proof: "Post-launch care", accent: "bg-blue-100 text-blue-700", href: route("/contact/") },
+] : [
+  {
+    title: "Desain Custom",
+    desc: "Website dirancang sesuai karakter bisnis Anda, bukan sekadar template generik yang terlihat sama seperti kompetitor.",
+    proof: "Brand-fit layout",
+    accent: "bg-blue-600 text-white",
+    href: "/layanan/web/",
+  },
+  {
+    title: "SEO Friendly",
+    desc: "Struktur halaman, heading, metadata, dan internal link disiapkan agar website lebih mudah dipahami mesin pencari.",
+    proof: "Technical SEO",
+    accent: "bg-[#101820] text-white",
+    href: "/layanan/seo/",
+  },
+  {
+    title: "Fokus Konversi",
+    desc: "Setiap section diarahkan untuk membantu pengunjung memahami layanan, percaya pada bisnis Anda, lalu mengambil tindakan.",
+    proof: "CTA strategy",
+    accent: "bg-[#d9d2c6] text-[#101820]",
+    href: "/layanan/web/",
+  },
+  {
+    title: "Responsif & Cepat",
+    desc: "Tampilan website dibuat nyaman di desktop, tablet, dan mobile dengan perhatian pada performa loading.",
+    proof: "Mobile-first build",
+    accent: "bg-[#eee8dc] text-[#101820]",
+    href: "/layanan/web/",
+  },
+  {
+    title: "Harga Transparan",
+    desc: "Scope, fitur, estimasi waktu, dan biaya dijelaskan sejak awal agar keputusan proyek lebih jelas.",
+    proof: "Clear scope",
+    accent: "bg-[#171512] text-white",
+    href: "/kontak/",
+  },
+  {
+    title: "Support Setelah Launch",
+    desc: "Setelah website online, Anda tetap mendapat pendampingan sesuai paket untuk revisi, update, dan kebutuhan teknis.",
+    proof: "Post-launch care",
+    accent: "bg-blue-100 text-blue-700",
+    href: "/kontak/",
+  },
+];
+
+const faqs = isEn ? [
+  {
+    q: "How long does a website project usually take?",
+    a: "A focused landing page usually takes 5-7 business days. A company website, online store, or custom web app can take 2-4 weeks depending on the number of pages, integrations, and content readiness.",
+  },
+  {
+    q: "Is the website already prepared for SEO?",
+    a: "Yes. The structure includes semantic headings, clean metadata, responsive layout, sitemap support, canonical URLs, and page performance considerations so search engines can understand the site clearly.",
+  },
+  {
+    q: "Can Lumovelo help if I do not have website content yet?",
+    a: "Yes. We can help organize the page structure, write clearer website copy, and turn your business notes into sections that are easier for visitors to understand.",
+  },
+  {
+    q: "Will I own the website files after the project?",
+    a: "Yes. After the project is completed and payment is settled, the agreed website source code and digital assets are handed over based on the project scope.",
+  },
+  {
+    q: "Are there mandatory monthly maintenance fees?",
+    a: "No mandatory maintenance is forced. Static or serverless websites can have low operating costs, while projects with databases, paid tools, email, or managed infrastructure may have recurring costs that are explained upfront.",
+  },
+  {
+    q: "Can we start with a small website and improve it later?",
+    a: "Yes. Many projects start with a focused landing page or company profile, then grow into SEO content, online store features, dashboards, or AI automation when the business needs it.",
+  },
+] : [
+  {
+    q: "Berapa lama proses pembuatan website?",
+    a: "Landing page sederhana biasanya 5-7 hari kerja. Website company profile, toko online, atau web app custom bisa 2-4 minggu tergantung jumlah halaman, integrasi, dan kesiapan konten.",
+  },
+  {
+    q: "Apakah website sudah disiapkan untuk SEO?",
+    a: "Ya. Struktur halaman, heading, metadata, responsive layout, sitemap, canonical URL, dan performa halaman disiapkan agar website lebih mudah dipahami mesin pencari.",
+  },
+  {
+    q: "Kalau saya belum punya materi konten, apakah bisa dibantu?",
+    a: "Bisa. Lumovelo dapat membantu menyusun struktur halaman, merapikan copywriting, dan mengubah catatan bisnis Anda menjadi konten website yang lebih jelas untuk calon pelanggan.",
+  },
+  {
+    q: "Apakah source code website menjadi milik saya?",
+    a: "Ya. Setelah proyek selesai dan pembayaran dilunasi, source code dan aset digital yang disepakati akan diserahkan sesuai scope proyek.",
+  },
+  {
+    q: "Apakah ada biaya maintenance bulanan wajib?",
+    a: "Tidak ada maintenance wajib yang dipaksakan. Website statis atau serverless bisa memiliki biaya operasional rendah, sedangkan website dengan database, email, tools berbayar, atau server terkelola akan dijelaskan biayanya sejak awal.",
+  },
+  {
+    q: "Bisa mulai dari website kecil lalu dikembangkan nanti?",
+    a: "Bisa. Banyak project dimulai dari landing page atau company profile, lalu dikembangkan menjadi konten SEO, toko online, dashboard, atau otomasi AI ketika bisnis sudah membutuhkan.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a,
+    },
+  })),
+};
+
+const copy = isEn ? {
+  services: "Services", information: "Information", consultation: "Start Discussion",
+  eyebrow: "Website Development / SEO / AI Automation",
+  heroTitle: "Digital Solutions for Growing Businesses.",
+  heroDesc: "Lumovelo builds fast, responsive, SEO-ready websites for businesses and startups, designed to turn visitors into qualified enquiries.",
+  startConsultation: "Start Consultation", viewProjects: "View Projects",
+  customDesign: "Custom Design", seoReady: "SEO Ready", fastLaunch: "Fast Launch",
+  heroAlt: "Laptop displaying a Lumovelo business website in a bright workspace",
+  servicesEyebrow: "Core Services", servicesTitle: "Digital Solutions for Every ", servicesAccent: "Stage of Growth.",
+  servicesDesc: "From focused landing pages to custom business systems, Lumovelo helps you choose the right solution for your goals and growth stage.",
+  discussNeeds: "Discuss Your Needs", viewDetails: "View details",
+  webDesc: "Fast, responsive, SEO-ready websites for businesses, companies, and growing brands.",
+  webAlt: "Company website development example by Lumovelo",
+  ecommerceDesc: "Modern online stores with product catalogs, secure checkout, WhatsApp integration, and a clear ordering flow.",
+  ecommerceAlt: "Online store and digital product catalog example",
+  posTitle: "Retail POS & Store App", posDesc: "POS transactions, inventory monitoring, and sales reports for efficient retail operations.",
+  posAlt: "Retail cashier application and POS system for business operations",
+  seoDesc: "Website structure, content, and technical performance optimization to improve visibility on Google.",
+  seoAlt: "SEO and business website performance optimization",
+  aiDesc: "Chatbots, lead automation, workflow integrations, and practical AI solutions for more efficient operations.",
+  aiAlt: "AI automation and business chatbot solutions", aiPrompt: "How can I help you?",
+  specificSolution: "Need a more specific solution?", directDiscussion: "Discuss your requirements directly with our team.", startDiscussion: "Start a Discussion",
+  projectsEyebrow: "Selected Work", projectsTitle: "Projects We Have Designed.", allProjects: "View all projects",
+  projectAltPrefix: "Project", projectAltSuffix: "by Lumovelo",
+  whyEyebrow: "Why Lumovelo", whyTitle: "Focused on Results, Not Just a ", whyAccent: "Website.",
+  whyDesc: "A strong website is not only about appearance. It should create measurable value for your business through clear goals, sound strategy, and appropriate technology.",
+  discussProject: "Discuss Your Project", location: "Based in Indonesia", reach: "Serving clients worldwide",
+  workspaceAlt: "Lumovelo workspace for planning business website strategy", detailSr: "View details for",
+  faqEyebrow: "FAQ", faqTitle: "Questions Before We Start.", faqDesc: "Short answers for the things most business owners want to know before starting a website project.",
+  ready: "Ready to Grow?", ctaTitle: "Let Us Build Your Idea Together.",
+  ctaDesc: "Tell us what your business needs. We will help define the right website type, features, and a practical delivery plan.",
+  viewPortfolio: "View Portfolio", ctaAlt: "Preview of the FastEat cafe and restaurant project",
+} : {
+  services: "Layanan", information: "Informasi", consultation: "Mulai Diskusi",
+  eyebrow: "Website Development / SEO / AI Automation",
+  heroTitle: "Solusi Digital untuk Bisnis yang Bertumbuh.",
+  heroDesc: "Lumovelo membantu bisnis, UMKM, startup, dan perusahaan membangun website profesional yang cepat, responsif, SEO-friendly, dan dirancang untuk menghasilkan pelanggan.",
+  startConsultation: "Mulai Konsultasi", viewProjects: "Lihat Project",
+  customDesign: "Custom Design", seoReady: "SEO Ready", fastLaunch: "Fast Launch",
+  heroAlt: "Laptop dengan tampilan website Lumovelo di meja kerja yang hangat",
+  servicesEyebrow: "Layanan Utama", servicesTitle: "Solusi Digital untuk Setiap ", servicesAccent: "Tahap Bisnis Anda.",
+  servicesDesc: "Dari website sederhana sampai sistem digital yang lebih custom, Lumovelo membantu memilih solusi yang benar-benar relevan dengan tujuan dan tahap bisnis Anda.",
+  discussNeeds: "Konsultasi Kebutuhan Anda", viewDetails: "Lihat detail",
+  webDesc: "Website profesional yang cepat, responsif, dan SEO-friendly untuk bisnis, perusahaan, maupun UMKM.",
+  webAlt: "Contoh website development untuk company profile bisnis",
+  ecommerceDesc: "Toko online modern dengan katalog produk, checkout aman, integrasi WhatsApp, dan alur pesanan yang mudah.",
+  ecommerceAlt: "Contoh toko online dan katalog produk digital",
+  posTitle: "Aplikasi Kasir & Toko", posDesc: "Sistem POS, pencatatan transaksi, monitoring stok, dan laporan penjualan untuk operasional toko.",
+  posAlt: "Aplikasi kasir toko dan sistem POS untuk kebutuhan bisnis",
+  seoDesc: "Optimasi struktur website, konten, dan performa teknis agar lebih mudah ditemukan di Google.", seoAlt: "Optimasi SEO dan performa website bisnis",
+  aiDesc: "Chatbot, otomasi leads, integrasi workflow, dan solusi AI lainnya untuk meningkatkan efisiensi operasional bisnis.",
+  aiAlt: "AI automation dan chatbot untuk bisnis", aiPrompt: "Bagaimana saya bisa membantu?",
+  specificSolution: "Butuh solusi yang lebih spesifik?", directDiscussion: "Diskusikan kebutuhan Anda langsung dengan tim kami.", startDiscussion: "Mulai Diskusi",
+  projectsEyebrow: "Project Pilihan", projectsTitle: "Project yang Kami Rancang.", allProjects: "Lihat semua project",
+  projectAltPrefix: "Project", projectAltSuffix: "oleh Lumovelo",
+  whyEyebrow: "Kenapa Lumovelo", whyTitle: "Fokus pada Hasil, Bukan Sekadar ", whyAccent: "Website.",
+  whyDesc: "Kami percaya website yang baik bukan hanya tentang tampilan, tetapi tentang dampak nyata untuk bisnis Anda. Setiap solusi dirancang dengan tujuan, strategi, dan teknologi yang tepat.",
+  discussProject: "Diskusikan Project Anda", location: "Berbasis di Indonesia", reach: "Melayani klien di seluruh dunia",
+  workspaceAlt: "Workspace Lumovelo untuk strategi website bisnis", detailSr: "Lihat detail",
+  faqEyebrow: "FAQ", faqTitle: "Sebelum Mulai Project.", faqDesc: "Jawaban ringkas untuk hal yang biasanya ingin diketahui pemilik bisnis sebelum membuat website.",
+  ready: "Siap Bertumbuh?", ctaTitle: "Mari Wujudkan Ide Anda Bersama.",
+  ctaDesc: "Ceritakan kebutuhan website Anda. Saya bantu petakan jenis website, estimasi fitur, dan langkah pengerjaan yang masuk akal.",
+  viewPortfolio: "Lihat Portfolio", ctaAlt: "Preview project FastEat Cafe & Restaurant",
+};
+---
+
+<main class="lv-home bg-[#f7f4ef] text-[#141414] min-h-screen">
+  <section class="relative mx-auto grid max-w-7xl gap-10 overflow-hidden px-5 pb-14 pt-10 sm:pt-14 lg:min-h-[650px] lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12 lg:px-8 lg:pb-20 lg:pt-20">
+    <div class="relative z-10 flex flex-col justify-center">
+      <p class="text-[11px] font-black uppercase tracking-[0.18em] text-black/50">{copy.eyebrow}</p>
+      <h1 class="mt-5 max-w-2xl text-[2.75rem] font-black leading-[0.94] sm:text-6xl lg:text-7xl">
+        {copy.heroTitle}
+      </h1>
+      <p class="mt-6 max-w-xl text-sm font-semibold leading-7 text-black/60">
+        {copy.heroDesc}
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href={waUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-blue-600 px-5 py-3 text-xs font-black uppercase tracking-wide text-white shadow-sm">
+          {copy.startConsultation}
+        </a>
+        <a href="#project" class="rounded-full border border-black/15 px-5 py-3 text-xs font-black uppercase tracking-wide text-black">
+          {copy.viewProjects}
+        </a>
+      </div>
+      <div class="mt-10 grid max-w-lg grid-cols-3 gap-3 border-t border-black/10 pt-6 sm:mt-12 sm:gap-6">
+        <div>
+          <p class="text-sm font-black sm:text-base">01</p>
+          <p class="mt-2 text-[10px] font-bold uppercase leading-4 text-black/50 sm:text-[11px]">{copy.customDesign}</p>
+        </div>
+        <div>
+          <p class="text-sm font-black sm:text-base">02</p>
+          <p class="mt-2 text-[10px] font-bold uppercase leading-4 text-black/50 sm:text-[11px]">{copy.seoReady}</p>
+        </div>
+        <div>
+          <p class="text-sm font-black sm:text-base">03</p>
+          <p class="mt-2 text-[10px] font-bold uppercase leading-4 text-black/50 sm:text-[11px]">{copy.fastLaunch}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative aspect-[4/3] min-w-0 overflow-hidden rounded-[8px] bg-[#e7e0d6] sm:aspect-[16/10] lg:aspect-[4/3]">
+      <Image src={heroImage} alt={copy.heroAlt} class="absolute inset-0 h-full w-full object-cover object-[47%_center]" loading="eager" />
+    </div>
+  </section>
+
+  <section id="layanan" class="bg-[#f7f4ef] py-[72px] md:py-20">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[0.95fr_1fr] lg:items-end">
+        <div>
+          <p class="text-[11px] font-black uppercase tracking-[0.24em] text-blue-600">{copy.servicesEyebrow}</p>
+          <h2 class="mt-4 max-w-2xl text-[2.7rem] font-black leading-[0.98] text-[#101820] sm:text-6xl">
+            {copy.servicesTitle}<span class="text-blue-600">{copy.servicesAccent}</span>
+          </h2>
+        </div>
+        <div class="max-w-xl lg:pb-4">
+          <p class="text-base font-semibold leading-8 text-[#526071]">
+            {copy.servicesDesc}
+          </p>
+          <a href={waUrl} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex min-h-11 items-center gap-3 text-sm font-black text-blue-600">
+            {copy.discussNeeds}
+            <span aria-hidden="true" class="text-2xl leading-none">-></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-12 grid gap-3 lg:grid-cols-12">
+        <a href={route("/layanan/web/")} class="group relative min-h-[330px] overflow-hidden rounded-[8px] bg-[#e7e1d7] p-7 text-[#101820] lg:col-span-6">
+          <Image src={imgApex} alt={copy.webAlt} class="absolute inset-y-0 right-0 h-full w-[68%] object-cover object-left opacity-75 transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#e7e1d7] via-[#e7e1d7]/92 to-[#e7e1d7]/10"></div>
+          <div class="relative z-10 flex h-full max-w-xs flex-col">
+            <div class="mb-5 flex items-center gap-4">
+              <span class="text-sm font-black">01</span>
+              <span class="h-px w-9 bg-[#101820]/35"></span>
+            </div>
+            <h3 class="text-3xl font-black leading-tight">Website Development</h3>
+            <p class="mt-4 text-sm font-semibold leading-7 text-[#526071]">
+              {copy.webDesc}
+            </p>
+            <span class="mt-auto inline-flex items-center gap-3 pt-8 text-sm font-black">{copy.viewDetails} <span class="text-2xl">-></span></span>
+          </div>
+        </a>
+
+        <a href={route("/layanan/web/")} class="group relative min-h-[330px] overflow-hidden rounded-[8px] bg-[#171512] p-7 text-white lg:col-span-6">
+          <Image src={imgFruit} alt={copy.ecommerceAlt} class="absolute inset-y-0 right-0 h-full w-[62%] object-cover object-left opacity-65 transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#171512] via-[#171512]/86 to-[#171512]/25"></div>
+          <div class="relative z-10 flex h-full max-w-xs flex-col">
+            <div class="mb-5 flex items-center gap-4">
+              <span class="text-sm font-black">02</span>
+              <span class="h-px w-9 bg-white/35"></span>
+            </div>
+            <h3 class="text-3xl font-black leading-tight">E-Commerce</h3>
+            <p class="mt-4 text-sm font-semibold leading-7 text-white/72">
+              {copy.ecommerceDesc}
+            </p>
+            <span class="mt-auto inline-flex items-center gap-3 pt-8 text-sm font-black">{copy.viewDetails} <span class="text-2xl">-></span></span>
+          </div>
+        </a>
+
+        <a href={route("/layanan/web/")} class="group relative min-h-[270px] overflow-hidden rounded-[8px] bg-[#f0ece4] p-7 text-[#101820] lg:col-span-4">
+          <Image src={imgKasirToko} alt={copy.posAlt} class="absolute bottom-0 right-0 h-[92%] w-[60%] object-cover object-left opacity-70 transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#f0ece4] via-[#f0ece4]/92 to-[#f0ece4]/20"></div>
+          <div class="relative z-10 flex h-full max-w-[230px] flex-col">
+            <div class="mb-4 flex items-center gap-4">
+              <span class="text-sm font-black">03</span>
+              <span class="h-px w-8 bg-[#101820]/35"></span>
+            </div>
+            <h3 class="text-2xl font-black leading-tight">{copy.posTitle}</h3>
+            <p class="mt-4 text-sm font-semibold leading-7 text-[#526071]">
+              {copy.posDesc}
+            </p>
+            <span class="mt-auto inline-flex items-center gap-3 pt-6 text-sm font-black">{copy.viewDetails} <span class="text-2xl">-></span></span>
+          </div>
+        </a>
+
+        <a href={route("/layanan/seo/")} class="group relative min-h-[270px] overflow-hidden rounded-[8px] bg-[#d9d2c6] p-7 text-[#101820] lg:col-span-4">
+          <Image src={imgMaintenance} alt={copy.seoAlt} class="absolute inset-y-0 right-0 h-full w-[56%] object-cover object-left opacity-[0.42] transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#d9d2c6] via-[#d9d2c6]/90 to-[#d9d2c6]/35"></div>
+          <div class="relative z-10 flex h-full max-w-[230px] flex-col">
+            <div class="mb-4 flex items-center gap-4">
+              <span class="text-sm font-black">04</span>
+              <span class="h-px w-8 bg-[#101820]/35"></span>
+            </div>
+            <h3 class="text-2xl font-black leading-tight">SEO</h3>
+            <p class="mt-4 text-sm font-semibold leading-7 text-[#526071]">
+              {copy.seoDesc}
+            </p>
+            <span class="mt-auto inline-flex items-center gap-3 pt-6 text-sm font-black">{copy.viewDetails} <span class="text-2xl">-></span></span>
+          </div>
+        </a>
+
+        <a href={route("/layanan/ai/")} class="group relative min-h-[270px] overflow-hidden rounded-[8px] bg-[#eee8dc] p-7 text-[#101820] lg:col-span-4">
+          <Image src={heroImage} alt={copy.aiAlt} class="absolute inset-y-0 right-[-18%] h-full w-[78%] object-cover object-center opacity-55 transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-r from-[#eee8dc] via-[#eee8dc]/88 to-[#eee8dc]/35"></div>
+          <div class="absolute bottom-7 right-6 hidden rounded-2xl bg-[#171512] p-4 text-white shadow-xl sm:block">
+            <p class="text-[10px] font-black uppercase text-white/60">AI Assistant</p>
+            <p class="mt-2 max-w-[150px] text-xs font-semibold leading-5 text-white/80">{copy.aiPrompt}</p>
+          </div>
+          <div class="relative z-10 flex h-full max-w-[230px] flex-col">
+            <div class="mb-4 flex items-center gap-4">
+              <span class="text-sm font-black">05</span>
+              <span class="h-px w-8 bg-[#101820]/35"></span>
+            </div>
+            <h3 class="text-2xl font-black leading-tight">AI Automation</h3>
+            <p class="mt-4 text-sm font-semibold leading-7 text-[#526071]">
+              {copy.aiDesc}
+            </p>
+            <span class="mt-auto inline-flex items-center gap-3 pt-6 text-sm font-black">{copy.viewDetails} <span class="text-2xl">-></span></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="mt-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <p class="text-[11px] font-black uppercase tracking-[0.24em] text-[#526071]">{copy.specificSolution}</p>
+        <p class="text-sm font-semibold text-[#526071]">{copy.directDiscussion}</p>
+        <a href={waUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#101820] px-7 text-sm font-black text-white transition-transform duration-200 hover:-translate-y-0.5">
+          {copy.startDiscussion} <span class="text-xl">-></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="project" class="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+    <div class="flex flex-col justify-between gap-5 pb-7 md:flex-row md:items-end">
+      <div>
+        <p class="text-[11px] font-black uppercase tracking-[0.18em] text-black/45">{copy.projectsEyebrow}</p>
+        <h2 class="mt-3 text-4xl font-black leading-none">{copy.projectsTitle}</h2>
+      </div>
+      <a href={isEn ? "/en/portfolio/" : "/portofolio/"} class="text-xs font-black uppercase tracking-wide text-blue-600">{copy.allProjects} -></a>
+    </div>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {projects.slice(0, 3).map((project) => (
+        <a href={project.href} target={project.href.startsWith("http") ? "_blank" : undefined} rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined} class="group block">
+          <div class="aspect-[1.2/1] overflow-hidden bg-black">
+            <Image src={project.image} alt={`${copy.projectAltPrefix} ${project.title} ${copy.projectAltSuffix}`} class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          </div>
+          <p class="mt-5 text-[11px] font-black uppercase tracking-wide text-blue-600">{project.type}</p>
+          <h3 class="mt-2 text-xl font-black">{project.title}</h3>
+          <p class="mt-2 text-xs font-semibold leading-6 text-black/55">{project.desc}</p>
+        </a>
+      ))}
+    </div>
+
+  </section>
+
+  <section class="bg-[#f7f4ef] py-20 md:py-28">
+    <div class="mx-auto grid max-w-7xl items-stretch gap-10 px-5 lg:grid-cols-12 lg:gap-8 lg:px-8">
+      <div class="lg:col-span-4 lg:h-full">
+        <div class="lg:flex lg:h-full lg:flex-col">
+          <p class="text-[11px] font-black uppercase tracking-[0.24em] text-blue-600">{copy.whyEyebrow}</p>
+          <h2 class="mt-5 max-w-md text-[2.8rem] font-black leading-[0.98] text-[#101820] sm:text-6xl lg:text-[3.25rem]">
+            {copy.whyTitle}<span class="text-blue-600">{copy.whyAccent}</span>
+          </h2>
+          <div class="mt-8 h-px w-10 bg-[#101820]"></div>
+          <p class="mt-7 max-w-sm text-base font-medium leading-7 text-[#526071]">
+            {copy.whyDesc}
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-5">
+            <a href={waUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#101820] px-6 text-sm font-black text-white transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600">
+              {copy.discussProject} <span aria-hidden="true" class="text-xl">-></span>
+            </a>
+            <p class="max-w-[150px] text-[10px] font-black uppercase leading-4 text-[#6b7684]">{copy.location}<br />{copy.reach}</p>
+          </div>
+          <div class="relative mt-9 min-h-[290px] overflow-hidden rounded-[8px] bg-[#171512] sm:min-h-[350px] lg:min-h-[410px] lg:flex-1">
+            <Image src={heroImage} alt={copy.workspaceAlt} class="absolute inset-0 h-full w-full object-cover object-center opacity-80" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#101820]/85 via-transparent to-transparent"></div>
+            <p class="absolute bottom-7 left-7 text-[11px] font-black uppercase leading-5 tracking-[0.16em] text-white">Digital solutions<br />for a brighter tomorrow</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid content-start gap-3 sm:grid-cols-2 lg:col-span-8">
+        {benefits.map((item, index) => (
+          <article class="group h-full rounded-[8px] border border-[#101820]/10 bg-[#fbfaf7] transition-colors duration-300 hover:border-blue-600/35 hover:bg-white">
+            <a href={item.href} class="flex h-full min-h-[238px] flex-col p-6 sm:p-7">
+              <div class="flex items-start justify-between gap-5">
+                <div class={`inline-flex min-h-10 items-center rounded-full px-4 text-[10px] font-black uppercase tracking-[0.16em] ${item.accent}`}>
+                  {item.proof}
+                </div>
+                <span class="text-sm font-black text-[#101820]/35">{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <div class="mt-9">
+                <h3 class="text-[1.55rem] font-black leading-[1.05] text-[#101820]">{item.title}</h3>
+                <p class="mt-4 text-sm font-medium leading-6 text-[#526071]">{item.desc}</p>
+              </div>
+              <span class="mt-auto inline-flex min-h-11 items-end gap-3 pt-7 text-sm font-black text-[#101820] transition-colors group-hover:text-blue-600">
+                <span class="sr-only">{copy.detailSr} {item.title}</span>
+                <span aria-hidden="true" class="text-2xl font-medium">-></span>
+              </span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="bg-[#f7f4ef] px-5 py-16 text-[#101820] md:py-20 lg:px-8">
+    <div class="mx-auto grid max-w-7xl gap-9 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div class="lg:sticky lg:top-24">
+        <p class="text-[11px] font-black uppercase tracking-[0.24em] text-blue-600">{copy.faqEyebrow}</p>
+        <h2 class="mt-4 max-w-md text-[2.7rem] font-black leading-[0.96] sm:text-6xl lg:text-[3.4rem]">
+          {copy.faqTitle}
+        </h2>
+        <p class="mt-6 max-w-sm text-sm font-semibold leading-7 text-[#526071]">
+          {copy.faqDesc}
+        </p>
+        <div class="mt-8 hidden h-px w-32 bg-[#101820]/18 lg:block"></div>
+      </div>
+
+      <div class="divide-y divide-[#101820]/12 border-y border-[#101820]/12">
+        {faqs.map((item, index) => (
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-start gap-4 text-left marker:hidden">
+              <span class="mt-1 min-w-8 text-xs font-black text-blue-600">{String(index + 1).padStart(2, "0")}</span>
+              <span class="flex-1 text-base font-black leading-snug text-[#101820] sm:text-lg">{item.q}</span>
+              <span class="relative mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#101820]/18 text-[#101820]/55 transition-colors group-open:border-blue-600 group-open:text-blue-600">
+                <span class="absolute h-px w-2.5 bg-current"></span>
+                <span class="absolute h-2.5 w-px bg-current transition-transform duration-200 group-open:rotate-90"></span>
+              </span>
+            </summary>
+            <p class="ml-12 mt-4 max-w-2xl text-sm font-medium leading-7 text-[#526071]">
+              {item.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <section class="mx-auto max-w-7xl px-5 pb-10 lg:px-8">
+    <div class="relative min-h-[170px] overflow-hidden bg-[#111] text-white">
+      <Image src={imgFasteat} alt={copy.ctaAlt} class="absolute inset-y-0 right-0 h-full w-full object-cover object-top opacity-25 md:w-[58%] md:opacity-35" loading="lazy" />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#111] via-[#111]/95 to-[#111]/45"></div>
+      <div class="relative z-10 grid min-h-[170px] gap-5 px-7 py-7 md:grid-cols-[0.9fr_1.1fr] md:items-center md:px-10">
+        <div>
+          <p class="text-[10px] font-black uppercase tracking-[0.18em] text-white/45">{copy.ready}</p>
+          <h2 class="mt-3 max-w-md text-3xl font-black leading-none md:text-4xl">{copy.ctaTitle}</h2>
+        </div>
+        <div class="flex flex-col gap-5 md:flex-row md:items-center md:justify-end">
+          <p class="max-w-sm text-xs font-semibold leading-6 text-white/65">
+            {copy.ctaDesc}
+          </p>
+          <div class="flex shrink-0 flex-wrap gap-3">
+            <a href={waUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-blue-600 px-5 py-3 text-[11px] font-black uppercase tracking-wide text-white">{copy.startDiscussion}</a>
+            <a href={isEn ? "/en/portfolio/" : "/portofolio/"} class="rounded-full border border-white/25 px-5 py-3 text-[11px] font-black uppercase tracking-wide text-white">{copy.viewPortfolio}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</main>
+
+<style>
+  .lv-home :global(.max-w-7xl),
+  .lv-home :global(.max-w-6xl) {
+    max-width: 1180px !important;
+  }
+
+  .lv-home h1,
+  .lv-home h2,
+  .lv-home h3,
+  .lv-home p {
+    letter-spacing: 0 !important;
+  }
+</style>

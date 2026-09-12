@@ -136,26 +136,37 @@ const staticPosts = [
 ];
 
 const { slug } = Astro.params;
+const isEn = Astro.currentLocale === 'en';
 
-let post = staticPosts.find(p => p.slug === slug);
+let post: any = staticPosts.find(p => p.slug === slug);
 
 if (!post) {
   try {
-    const { data, error } = await supabase
+    const query = supabase
       .from('posts')
-      .select('*')
-      .eq('slug', slug)
-      .maybeSingle();
+      .select('*');
+
+    const { data } = isEn
+      ? await query.or(`slug.eq.${slug},slug_en.eq.${slug}`).maybeSingle()
+      : await query.eq('slug', slug).maybeSingle();
 
     if (data) {
       post = {
         slug: data.slug,
         title: data.title,
+        titleEn: data.title_en,
+        slugEn: data.slug_en,
         date: data.date,
         category: data.category,
+        categoryEn: data.category_en,
         bgCategory: data.bg_category || 'bg-blue-100 text-blue-700 border-blue-200',
         description: data.description,
-        content: data.content
+        descriptionEn: data.description_en,
+        content: data.content,
+        contentEn: data.content_en,
+        articleType: data.article_type,
+        sourceUrls: data.source_urls,
+        sourceSummary: data.source_summary
       };
     }
   } catch (e) {
@@ -184,8 +195,7 @@ if (!post) {
   };
 }
 
-const isEn = Astro.currentLocale === 'en';
-const englishMeta = {
+const englishMeta: Record<string, { title: string; description: string }> = {
   'otomatisasi-leads-ai-whatsapp': {
     title: 'How to Use AI Chatbots to Answer WhatsApp Customers 24/7',
     description: 'Learn how AI chatbot automation can help business teams respond to WhatsApp enquiries faster and reduce repetitive support work.'
@@ -211,7 +221,7 @@ const englishMeta = {
     description: 'Explore how typography, whitespace, contrast, and subtle interaction design can make a business website feel more credible.'
   }
 };
-const englishArticleContent = {
+const englishArticleContent: Record<string, string> = {
   'otomatisasi-leads-ai-whatsapp': `
     <p class="mb-6 text-slate-600 leading-relaxed font-medium">Handling hundreds of customer messages every day on WhatsApp can quickly overwhelm a support team. When replies are slow, potential customers may move to a competitor. This is where <a href="/en/layanan/ai/" class="text-blue-600 hover:underline font-extrabold">WhatsApp AI chatbot automation</a> can help.</p>
     <h3 class="text-xl font-display font-black text-slate-900 mt-8 mb-4 uppercase tracking-tight">Fast, Consistent Responses</h3>
@@ -249,11 +259,12 @@ const englishArticleContent = {
     <p class="mb-6 text-slate-600 leading-relaxed">Subtle interaction can make a page feel responsive, but animation should remain purposeful, accessible, and lightweight. Trust comes from clarity, consistency, and evidence, not decoration alone.</p>
   `
 };
-const localizedTitle = isEn ? englishMeta[post.slug]?.title || post.title : post.title;
-const localizedDescription = isEn ? englishMeta[post.slug]?.description || post.description : post.description;
-const { date, category, bgCategory, content } = post;
+const localizedTitle = isEn ? post.titleEn || englishMeta[post.slug]?.title || post.title : post.title;
+const localizedDescription = isEn ? post.descriptionEn || englishMeta[post.slug]?.description || post.description : post.description;
+const { date, bgCategory, content } = post;
+const category = isEn ? post.categoryEn || post.category : post.category;
 const publishedDate = date.includes('JULI') ? `2026-${String(['JUNI', 'JULI'].indexOf(date.split(' ')[1]) + 6).padStart(2, '0')}-${date.split(' ')[0]}` : date;
-const localizedContent = (isEn ? englishArticleContent[post.slug] || content : content)
+const localizedContent = (isEn ? post.contentEn || englishArticleContent[post.slug] || content : content)
   .replaceAll('href="/layanan/ai/"', `href="${isEn ? '/en/layanan/ai/' : '/layanan/ai/'}"`)
   .replaceAll('href="/layanan/seo/"', `href="${isEn ? '/en/layanan/seo/' : '/layanan/seo/'}"`)
   .replaceAll('href="/layanan/video/"', `href="${isEn ? '/en/layanan/video/' : '/layanan/video/'}"`)
@@ -279,21 +290,6 @@ const breadcrumbSchema = {
   "publisher": { "@type": "Organization", "name": "LUMOVELO", "logo": { "@type": "ImageObject", "url": "https://www.lumovelo.com/favicon.svg" } },
   "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.lumovelo.com${Astro.url.pathname}` }
 }, breadcrumbSchema]}>
-  <header class="w-full z-50 border-b border-slate-200 bg-white/70 backdrop-blur-md sticky top-0">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href={isEn ? '/en/' : '/'} class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl border-2 border-slate-900 bg-blue-600 flex items-center justify-center font-display font-black text-white text-xl tracking-wider shadow-lg shadow-blue-600/10 group-hover:rotate-6 transition-transform">
-          L
-        </div>
-        <span class="font-display font-black text-xl tracking-widest text-slate-900 group-hover:text-blue-600 transition-colors">LUMOVELO</span>
-      </a>
-
-      <a href={isEn ? '/en/blog/' : '/blog/'} class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border-2 border-slate-200 hover:border-slate-400 bg-white text-slate-700 hover:text-slate-900 text-xs font-black uppercase tracking-wider transition-all">
-        ➔ {isEn ? 'Back To Blog' : 'Kembali Ke Blog'}
-      </a>
-    </div>
-  </header>
-
   <main class="py-16 md:py-24 bg-white min-h-screen">
     <article class="max-w-3xl mx-auto px-6">
       

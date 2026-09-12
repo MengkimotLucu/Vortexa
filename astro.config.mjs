@@ -12,8 +12,13 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/admin') && !page.includes('/workspace'),
+      filter: (page) =>
+        !page.includes('/admin') &&
+        !page.includes('/workspace') &&
+        !page.endsWith('/layanan/website/'),
       customPages: [
+        'https://www.lumovelo.com/blog/',
+        'https://www.lumovelo.com/en/blog/',
         'https://www.lumovelo.com/blog/otomatisasi-leads-ai-whatsapp/',
         'https://www.lumovelo.com/blog/keunggulan-website-headless-modern/',
         'https://www.lumovelo.com/blog/strategi-technical-seo-lokal/',

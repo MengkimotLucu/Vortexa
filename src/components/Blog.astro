@@ -123,7 +123,7 @@ const content = {
 // Fetch dynamic posts from database
 let dbPosts = [];
 try {
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from('posts')
     .select('*')
     .order('created_at', { ascending: false });
@@ -138,12 +138,12 @@ try {
 const rawPosts = dbPosts.length > 0 ? dbPosts : content.posts;
 
 const posts = rawPosts.map(p => ({
-  slug: p.slug,
-  title: p.title,
+  slug: lang === 'en' ? p.slug_en || p.slug : p.slug,
+  title: lang === 'en' ? p.title_en || p.title : p.title,
   date: p.date,
-  category: p.category,
+  category: lang === 'en' ? p.category_en || p.category : p.category,
   bgCategory: p.bg_category || p.bgCategory || 'bg-blue-100 text-blue-700 border-blue-200',
-  description: p.description
+  description: lang === 'en' ? p.description_en || p.description : p.description
 }));
 ---
 <section id="blog" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-100">

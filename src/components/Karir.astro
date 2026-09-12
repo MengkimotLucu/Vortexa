@@ -1,666 +1,602 @@
 ---
 import { Image } from 'astro:assets';
+import {
+  ArrowDown,
+  ArrowRight,
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Check,
+  Clock3,
+  MapPin,
+  MessageCircle,
+  Sparkles,
+} from 'lucide-react';
 import careerHeroImg from '../assets/career-hero.webp';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || '6285624353611';
 
-const content = {
+const sharedVacancies = [
+  {
+    id: 'ai-specialist',
+    division: 'AI & Automation',
+    title: 'AI & Automation Specialist',
+    accent: '#d6f36b',
+    requirements: {
+      id: [
+        'Memahami LLM, OpenAI API, LangChain/Flowise, atau n8n.',
+        'Pernah membangun chatbot dan integrasi WhatsApp Business API.',
+        'Mandiri, eksploratif, dan cepat beradaptasi dengan teknologi AI baru.',
+      ],
+      en: [
+        'Understand LLMs, OpenAI API, LangChain/Flowise, or n8n.',
+        'Experience building chatbots and WhatsApp Business API integrations.',
+        'Independent, exploratory, and quick to adapt to emerging AI technology.',
+      ],
+    },
+    noteLabel: { id: 'Tools AI & otomasi yang dikuasai', en: 'AI and automation tools you use' },
+    notePlaceholder: { id: 'Contoh: n8n, OpenAI API, Flowise; pernah membuat chatbot customer service...', en: 'Example: n8n, OpenAI API, Flowise; built a customer service chatbot...' },
+  },
+  {
+    id: 'web-developer',
+    division: 'Web Engineering',
+    title: 'High-Performance Web Developer',
+    accent: '#a9ccff',
+    requirements: {
+      id: [
+        'Menguasai Astro, Next.js, React, Tailwind CSS, dan TypeScript.',
+        'Memahami headless CMS serta deployment Vercel atau Netlify.',
+        'Peduli pada Core Web Vitals, aksesibilitas, dan kebersihan kode.',
+      ],
+      en: [
+        'Proficient in Astro, Next.js, React, Tailwind CSS, and TypeScript.',
+        'Understand headless CMS and deployment on Vercel or Netlify.',
+        'Care about Core Web Vitals, accessibility, and clean code.',
+      ],
+    },
+    noteLabel: { id: 'Stack utama & proyek web terbaik', en: 'Primary stack and best web project' },
+    notePlaceholder: { id: 'Contoh: Astro + TypeScript; membangun website e-commerce dengan skor Lighthouse 95...', en: 'Example: Astro + TypeScript; built an e-commerce site with a 95 Lighthouse score...' },
+  },
+  {
+    id: 'seo-architect',
+    division: 'Growth & SEO',
+    title: 'Technical SEO & Funnel Architect',
+    accent: '#ffca85',
+    requirements: {
+      id: [
+        'Berpengalaman dalam technical SEO audit, schema, dan optimasi kecepatan.',
+        'Mampu merancang funnel yang meningkatkan konversi landing page.',
+        'Menguasai GA4, Search Console, Ahrefs, dan riset kata kunci.',
+      ],
+      en: [
+        'Experienced in technical SEO audits, schema, and speed optimization.',
+        'Able to design funnels that improve landing-page conversion.',
+        'Proficient in GA4, Search Console, Ahrefs, and keyword research.',
+      ],
+    },
+    noteLabel: { id: 'Hasil SEO atau funnel terbaik', en: 'Best SEO or funnel result' },
+    notePlaceholder: { id: 'Contoh: menaikkan traffic organik 120% dalam 6 bulan untuk bisnis lokal...', en: 'Example: increased organic traffic by 120% in 6 months for a local business...' },
+  },
+  {
+    id: 'uiux-designer',
+    division: 'Product Design',
+    title: 'UI/UX Designer',
+    accent: '#f2b9df',
+    requirements: {
+      id: [
+        'Mahir menggunakan Figma, prototyping, dan design system.',
+        'Memiliki portofolio website, dashboard, atau produk digital.',
+        'Memahami dasar HTML/CSS untuk kolaborasi dengan developer.',
+      ],
+      en: [
+        'Proficient in Figma, prototyping, and design systems.',
+        'Have a portfolio of websites, dashboards, or digital products.',
+        'Understand basic HTML/CSS for smoother developer collaboration.',
+      ],
+    },
+    noteLabel: { id: 'Spesialisasi desain & studi kasus terbaik', en: 'Design specialty and best case study' },
+    notePlaceholder: { id: 'Contoh: product design dan dashboard; merancang ulang onboarding SaaS...', en: 'Example: product design and dashboards; redesigned a SaaS onboarding flow...' },
+  },
+  {
+    id: 'fullstack-developer',
+    division: 'Software Engineering',
+    title: 'Full-Stack Developer',
+    accent: '#b5e5ce',
+    requirements: {
+      id: [
+        'Menguasai API pihak ketiga dan database PostgreSQL atau MongoDB.',
+        'Berpengalaman dengan Node.js, Go, atau Python serta Docker.',
+        'Cepat memahami dokumentasi dan mengimplementasikan integrasi.',
+      ],
+      en: [
+        'Proficient in third-party APIs and PostgreSQL or MongoDB.',
+        'Experienced with Node.js, Go, or Python and Docker.',
+        'Quick to understand documentation and implement integrations.',
+      ],
+    },
+    noteLabel: { id: 'Stack backend & integrasi terbaik', en: 'Backend stack and best integration' },
+    notePlaceholder: { id: 'Contoh: Node.js + PostgreSQL; integrasi payment gateway dan CRM...', en: 'Example: Node.js + PostgreSQL; payment gateway and CRM integration...' },
+  },
+  {
+    id: 'video-editor',
+    division: 'Motion & Video',
+    title: 'Video Editor & Motion Designer',
+    accent: '#ffaaa1',
+    requirements: {
+      id: [
+        'Mahir menggunakan Premiere Pro, After Effects, DaVinci, atau CapCut Pro.',
+        'Berpengalaman membuat video pendek dengan ritme dan sound design kuat.',
+        'Mampu menjaga konsistensi visual untuk kebutuhan brand.',
+      ],
+      en: [
+        'Proficient in Premiere Pro, After Effects, DaVinci, or CapCut Pro.',
+        'Experienced in short-form video with strong pacing and sound design.',
+        'Able to maintain visual consistency across brand content.',
+      ],
+    },
+    noteLabel: { id: 'Software & gaya editing utama', en: 'Primary software and editing style' },
+    notePlaceholder: { id: 'Contoh: After Effects; motion graphic dan video pendek bergaya cinematic...', en: 'Example: After Effects; motion graphics and cinematic short-form video...' },
+  },
+  {
+    id: 'graphic-designer',
+    division: 'Visual Creative',
+    title: 'Creative Graphic Designer',
+    accent: '#cfbaff',
+    requirements: {
+      id: [
+        'Menguasai Photoshop, Illustrator, Figma, atau Canva Pro.',
+        'Berpengalaman membuat konten sosial, carousel, dan aset iklan.',
+        'Memahami komposisi, tipografi, warna, dan identitas brand.',
+      ],
+      en: [
+        'Proficient in Photoshop, Illustrator, Figma, or Canva Pro.',
+        'Experienced in social content, carousels, and advertising assets.',
+        'Understand composition, typography, color, and brand identity.',
+      ],
+    },
+    noteLabel: { id: 'Tools & gaya visual utama', en: 'Primary tools and visual style' },
+    notePlaceholder: { id: 'Contoh: Illustrator + Figma; brand identity dan campaign sosial...', en: 'Example: Illustrator + Figma; brand identity and social campaigns...' },
+  },
+  {
+    id: 'qa-engineer',
+    division: 'Quality Engineering',
+    title: 'QA & Test Automation Engineer',
+    accent: '#9de1dc',
+    requirements: {
+      id: [
+        'Menguasai Cypress, Playwright, atau Appium.',
+        'Memahami integrasi testing dalam pipeline CI/CD.',
+        'Mampu menyusun test case dan melakukan load testing.',
+      ],
+      en: [
+        'Proficient in Cypress, Playwright, or Appium.',
+        'Understand testing integration within CI/CD pipelines.',
+        'Able to write test cases and perform load testing.',
+      ],
+    },
+    noteLabel: { id: 'Tools testing & pengalaman utama', en: 'Testing tools and primary experience' },
+    notePlaceholder: { id: 'Contoh: Playwright + GitHub Actions; membuat regression suite untuk SaaS...', en: 'Example: Playwright + GitHub Actions; built a regression suite for a SaaS...' },
+  },
+];
+
+const copy = {
   id: {
-    sectionHeader: "Karir & Kolaborasi",
-    title1: "Gabung Bersama LUMOVELO.",
-    title2: "Bekerja dari Mana Saja.",
-    desc: "Kami membuka kesempatan kolaborasi bagi para profesional berbakat untuk bergabung dalam proyek-proyek teknologi tinggi. Pilih posisi yang sesuai dengan keahlian Anda di bawah ini.",
-    subTitle: "Posisi yang Sedang Dibuka",
-    typeLabel: "TIPE",
-    invLabel: "INVESTASI",
-    qualLabel: "Kualifikasi Utama:",
-    formTitle: "Kirim Lamaran",
-    formDesc: "Isi formulir lamaran cepat di bawah untuk langsung terhubung dengan HR LUMOVELO.",
-    fieldName: "Nama Lengkap",
-    phName: "Ketik nama lengkap Anda...",
-    fieldPosition: "Posisi yang Dilamar",
-    phPosition: "Pilih salah satu posisi...",
-    fieldCvLinkedin: "Link CV & LinkedIn",
-    phCvLinkedin: "https://linkedin.com/in/username dan link CV Anda...",
-    fieldPortfolio: "Link Portofolio",
-    phPortfolio: "https://behance.net/username atau GitHub link...",
-    btnSubmit: "Kirim Lamaran via WhatsApp",
-    vacancies: [
-      {
-        id: 'ai-specialist',
-        title: 'AI & Automation Specialist',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Kompetitif (Per Proyek)',
-        requirements: [
-          'Memiliki pemahaman mendalam tentang LLM, OpenAI API, LangChain/Flowise, atau n8n.',
-          'Pengalaman membangun chatbot otonom dan integrasi WhatsApp Business API.',
-          'Mampu bekerja secara mandiri dan cepat beradaptasi dengan teknologi AI baru.'
-        ],
-        tag: 'SYS_AETHER',
-        bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
-      },
-      {
-        id: 'web-developer',
-        title: 'High-Performance Web Developer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Kompetitif (Per Proyek)',
-        requirements: [
-          'Menguasai Astro Framework, Next.js, React, Tailwind CSS, dan TypeScript.',
-          'Paham arsitektur headless CMS (Sanity, Strapi, dll.) dan deployment serverless (Vercel, Netlify).',
-          'Fokus tinggi pada performa loading, optimasi Core Web Vitals, dan kebersihan kode.'
-        ],
-        tag: 'SYS_VELOCE',
-        bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
-      },
-      {
-        id: 'seo-architect',
-        title: 'Technical SEO & Funnel Architect',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Kompetitif (Per Proyek)',
-        requirements: [
-          'Berpengalaman tinggi dalam technical SEO audit, optimasi kecepatan, dan struktur data schema.',
-          'Mampu merancang sales funnel terarah yang memaksimalkan konversi landing page.',
-          'Menguasai Google Analytics 4, Search Console, Ahrefs, dan riset kata kunci lokal/nasional.'
-        ],
-        tag: 'SYS_APEX',
-        bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
-      },
-      {
-        id: 'uiux-designer',
-        title: 'Futuristic UI/UX Designer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Kompetitif (Per Proyek)',
-        requirements: [
-          'Mahir dalam Figma, prototyping interaktif, dan sistem desain yang modern.',
-          'Memiliki portofolio desain bertema brutalist modern, neo-brutalist, atau futuristik dashboard.',
-          'Memahami dasar-dasar HTML/CSS untuk mempermudah kolaborasi dengan tim developer.'
-        ],
-        tag: 'SYS_LUMINA',
-        bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
-      },
-      {
-        id: 'fullstack-developer',
-        title: 'Full-Stack Developer (Custom Systems)',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Kompetitif (Per Proyek)',
-        requirements: [
-          'Menguasai integrasi API pihak ketiga (payment gateway, CRM, Webhooks) dan database PostgreSQL/MongoDB.',
-          'Berpengalaman dengan backend framework Node.js/Go/Python dan deployment serverless/VPS Docker.',
-          'Mampu membaca dokumentasi API eksternal dengan cepat dan mengimplementasikannya secara efisien.'
-        ],
-        tag: 'SYS_NEXUS',
-        bgTag: 'bg-emerald-100 text-emerald-700 border-emerald-200'
-      },
-      {
-        id: 'video-editor',
-        title: 'Video Editor & Motion Designer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Kompetitif (Per Proyek)',
-        requirements: [
-          'Mahir menggunakan Adobe Premiere Pro, After Effects, DaVinci Resolve, atau CapCut Pro.',
-          'Pengalaman memproduksi konten video pendek (Reels, TikTok) cinematic dengan transisi dinamis & sound FX.',
-          'Mampu mendesain aset grafis media sosial (Figma/Photoshop) dengan visual premium.'
-        ],
-        tag: 'SYS_CHROMA',
-        bgTag: 'bg-pink-100 text-pink-700 border-pink-200'
-      },
-      {
-        id: 'graphic-designer',
-        title: 'Creative Graphic Designer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Kompetitif (Per Proyek)',
-        requirements: [
-          'Menguasai Adobe Photoshop, Illustrator, Figma, atau Canva Pro.',
-          'Pengalaman merancang visual feed media sosial, carousel interaktif, spanduk digital, dan aset kreatif iklan (Meta/TikTok Ads).',
-          'Memiliki pemahaman yang baik tentang psikologi warna, komposisi layout, dan brand identity design.'
-        ],
-        tag: 'SYS_GRAPHIC',
-        bgTag: 'bg-rose-100 text-rose-700 border-rose-200'
-      },
-      {
-        id: 'qa-engineer',
-        title: 'QA & Testing Automation Engineer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Kompetitif (Per Proyek)',
-        requirements: [
-          'Menguasai pembuatan skrip testing otomatis menggunakan Cypress, Playwright, atau Appium.',
-          'Paham integrasi pengujian ke dalam pipeline CI/CD (GitHub Actions / GitLab CI) untuk regression test.',
-          'Mampu menyusun skenario tes (test case) terstruktur serta menganalisis beban server (load testing) dengan k6/JMeter.'
-        ],
-        tag: 'SYS_TEST',
-        bgTag: 'bg-indigo-100 text-indigo-700 border-indigo-200'
-      }
-    ]
+    eyebrow: 'Karier di LUMOVELO',
+    title: 'Kerja hebat lahir dari kolaborasi yang sehat.',
+    intro: 'Kami mempertemukan talenta yang tajam, rasa ingin tahu yang besar, dan proyek digital yang benar-benar perlu diselesaikan.',
+    heroCta: 'Lihat posisi terbuka',
+    remote: 'Remote dari Indonesia',
+    model: 'Freelance & kontrak proyek',
+    response: 'Seleksi langsung oleh tim',
+    imageCaption: 'Bangun karya yang bisa dibanggakan, dari mana saja.',
+    jobsKicker: 'Posisi terbuka',
+    jobsTitle: 'Temukan ruang terbaik untuk keahlianmu.',
+    jobsDesc: 'Pilih posisi, baca kualifikasinya, lalu kirim profil melalui WhatsApp dengan format yang sudah kami siapkan untuk tiap divisi.',
+    type: 'Freelance / Kontrak',
+    location: 'Remote',
+    detail: 'Lihat kualifikasi',
+    qualification: 'Yang kami cari',
+    apply: 'Lamar posisi ini',
+    processKicker: 'Cara bergabung',
+    processTitle: 'Singkat, jelas, dan langsung dengan tim.',
+    process: [
+      ['01', 'Pilih divisi', 'Buka posisi yang paling dekat dengan pengalaman dan minatmu.'],
+      ['02', 'Kirim profil', 'Lengkapi form singkat. Pesan WhatsApp akan diformat otomatis.'],
+      ['03', 'Mulai percakapan', 'Tim meninjau profil dan menghubungi kandidat yang paling sesuai.'],
+    ],
+    formKicker: 'Lamaran cepat',
+    formTitle: 'Mulai lewat WhatsApp.',
+    formDesc: 'Tidak perlu akun atau surat pengantar panjang. Berikan konteks terbaikmu, lalu lanjutkan percakapan langsung dengan tim kami.',
+    formBenefit: ['Format pesan menyesuaikan divisi', 'Data tetap berada di perangkatmu', 'Langsung terhubung ke WhatsApp HR'],
+    name: 'Nama lengkap',
+    namePh: 'Nama kamu',
+    position: 'Posisi yang dilamar',
+    positionPh: 'Pilih posisi',
+    cv: 'Link CV atau LinkedIn',
+    cvPh: 'https://linkedin.com/in/...',
+    portfolio: 'Link portofolio',
+    portfolioPh: 'Behance, GitHub, Drive, atau website pribadi',
+    portfolioOptional: 'opsional',
+    initialNote: 'Keahlian atau pengalaman paling relevan',
+    initialNotePh: 'Ceritakan singkat hal yang paling relevan dengan posisi pilihanmu...',
+    submit: 'Kirim melalui WhatsApp',
+    privacy: 'Dengan menekan tombol ini, WhatsApp akan terbuka dengan pesan yang sudah terisi. Kamu tetap bisa mengeditnya sebelum dikirim.',
+    messageIntro: 'Halo Tim Rekrutmen Lumovelo, saya tertarik untuk berkolaborasi.',
+    thankYou: 'Terima kasih, saya siap berdiskusi lebih lanjut.',
+    labels: { name: 'Nama', position: 'Posisi', division: 'Divisi', cv: 'CV / LinkedIn', portfolio: 'Portofolio', note: 'Pengalaman relevan' },
   },
   en: {
-    sectionHeader: "Careers & Collaboration",
-    title1: "Join LUMOVELO.",
-    title2: "Work from Anywhere.",
-    desc: "We open collaboration opportunities for talented professionals to join high-tech projects. Select the position that matches your expertise below.",
-    subTitle: "Open Positions",
-    typeLabel: "TYPE",
-    invLabel: "INVESTMENT",
-    qualLabel: "Key Qualifications:",
-    formTitle: "Submit Application",
-    formDesc: "Fill out the quick application form below to connect directly with LUMOVELO HR.",
-    fieldName: "Full Name",
-    phName: "Type your full name...",
-    fieldPosition: "Position Applied For",
-    phPosition: "Select a position...",
-    fieldCvLinkedin: "CV & LinkedIn Link",
-    phCvLinkedin: "https://linkedin.com/in/username and your CV link...",
-    fieldPortfolio: "Portfolio Link",
-    phPortfolio: "https://behance.net/username or GitHub link...",
-    btnSubmit: "Submit Application via WhatsApp",
-    vacancies: [
-      {
-        id: 'ai-specialist',
-        title: 'AI & Automation Specialist',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Competitive (Per Project)',
-        requirements: [
-          'Deep understanding of LLMs, OpenAI API, LangChain/Flowise, or n8n.',
-          'Experience building autonomous chatbots and WhatsApp Business API integration.',
-          'Ability to work independently and adapt quickly to new AI technologies.'
-        ],
-        tag: 'SYS_AETHER',
-        bgTag: 'bg-blue-100 text-blue-700 border-blue-200'
-      },
-      {
-        id: 'web-developer',
-        title: 'High-Performance Web Developer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Competitive (Per Project)',
-        requirements: [
-          'Proficient in Astro Framework, Next.js, React, Tailwind CSS, and TypeScript.',
-          'Understand headless CMS architecture (Sanity, Strapi, etc.) and serverless deployment (Vercel, Netlify).',
-          'High focus on loading performance, Core Web Vitals optimization, and clean code.'
-        ],
-        tag: 'SYS_VELOCE',
-        bgTag: 'bg-purple-100 text-purple-700 border-purple-200'
-      },
-      {
-        id: 'seo-architect',
-        title: 'Technical SEO & Funnel Architect',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Competitive (Per Project)',
-        requirements: [
-          'Highly experienced in technical SEO audit, speed optimization, and schema markup structural data.',
-          'Ability to design goal-oriented sales funnels that maximize landing page conversions.',
-          'Proficient in Google Analytics 4, Search Console, Ahrefs, and local/national keyword research.'
-        ],
-        tag: 'SYS_APEX',
-        bgTag: 'bg-teal-100 text-teal-700 border-teal-200'
-      },
-      {
-        id: 'uiux-designer',
-        title: 'Futuristic UI/UX Designer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Competitive (Per Project)',
-        requirements: [
-          'Proficient in Figma, interactive prototyping, and modern design systems.',
-          'Portfolio featuring modern brutalist, neo-brutalist, or futuristic dashboard design themes.',
-          'Understanding basic HTML/CSS concepts to facilitate collaboration with developer teams.'
-        ],
-        tag: 'SYS_LUMINA',
-        bgTag: 'bg-amber-100 text-amber-700 border-amber-200'
-      },
-      {
-        id: 'fullstack-developer',
-        title: 'Full-Stack Developer (Custom Systems)',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Competitive (Per Project)',
-        requirements: [
-          'Proficient in third-party API integrations (payment gateways, CRMs, Webhooks) and PostgreSQL/MongoDB databases.',
-          'Experienced with backend frameworks (Node.js/Go/Python) and serverless/VPS Docker deployments.',
-          'Ability to quickly read external API documentation and implement it efficiently.'
-        ],
-        tag: 'SYS_NEXUS',
-        bgTag: 'bg-emerald-100 text-emerald-700 border-emerald-200'
-      },
-      {
-        id: 'video-editor',
-        title: 'Video Editor & Motion Designer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Competitive (Per Project)',
-        requirements: [
-          'Proficient in Adobe Premiere Pro, After Effects, DaVinci Resolve, or CapCut Pro.',
-          'Experience producing cinematic short-form video content (Reels, TikTok) with dynamic transitions & sound FX.',
-          'Ability to design premium visual social media assets using Figma/Photoshop.'
-        ],
-        tag: 'SYS_CHROMA',
-        bgTag: 'bg-pink-100 text-pink-700 border-pink-200'
-      },
-      {
-        id: 'graphic-designer',
-        title: 'Creative Graphic Designer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Competitive (Per Project)',
-        requirements: [
-          'Proficient in Adobe Photoshop, Illustrator, Figma, or Canva Pro.',
-          'Experience designing social media feeds, interactive carousels, digital banners, and creative ad assets (Meta/TikTok Ads).',
-          'Good understanding of color theory, layout composition, and brand identity design.'
-        ],
-        tag: 'SYS_GRAPHIC',
-        bgTag: 'bg-rose-100 text-rose-700 border-rose-200'
-      },
-      {
-        id: 'qa-engineer',
-        title: 'QA & Testing Automation Engineer',
-        type: 'FREELANCE / CONTRACT',
-        salary: 'Competitive (Per Project)',
-        requirements: [
-          'Proficient in creating automated test scripts using Cypress, Playwright, or Appium.',
-          'Understand test integration into CI/CD pipelines (GitHub Actions / GitLab CI) for regression testing.',
-          'Ability to write structured test cases and conduct server load/performance testing with k6/JMeter.'
-        ],
-        tag: 'SYS_TEST',
-        bgTag: 'bg-indigo-100 text-indigo-700 border-indigo-200'
-      }
-    ]
-  }
+    eyebrow: 'Careers at LUMOVELO',
+    title: 'Great work begins with healthy collaboration.',
+    intro: 'We bring sharp talent, genuine curiosity, and meaningful digital projects together.',
+    heroCta: 'Explore open roles',
+    remote: 'Remote from Indonesia',
+    model: 'Freelance & project contract',
+    response: 'Reviewed directly by the team',
+    imageCaption: 'Build work you are proud of, from anywhere.',
+    jobsKicker: 'Open roles',
+    jobsTitle: 'Find the right space for your expertise.',
+    jobsDesc: 'Choose a role, review the qualifications, and send your profile through WhatsApp using a format tailored to each division.',
+    type: 'Freelance / Contract',
+    location: 'Remote',
+    detail: 'View qualifications',
+    qualification: 'What we are looking for',
+    apply: 'Apply for this role',
+    processKicker: 'How to join',
+    processTitle: 'Short, clear, and directly with the team.',
+    process: [
+      ['01', 'Choose a division', 'Open the role that best matches your experience and interests.'],
+      ['02', 'Send your profile', 'Complete a short form. Your WhatsApp message is formatted automatically.'],
+      ['03', 'Start a conversation', 'Our team reviews profiles and contacts the strongest matches.'],
+    ],
+    formKicker: 'Quick application',
+    formTitle: 'Start on WhatsApp.',
+    formDesc: 'No account or lengthy cover letter needed. Share your strongest context and continue the conversation directly with our team.',
+    formBenefit: ['Division-specific message format', 'Your data stays on your device', 'Connect directly with HR on WhatsApp'],
+    name: 'Full name',
+    namePh: 'Your name',
+    position: 'Role you are applying for',
+    positionPh: 'Choose a role',
+    cv: 'CV or LinkedIn link',
+    cvPh: 'https://linkedin.com/in/...',
+    portfolio: 'Portfolio link',
+    portfolioPh: 'Behance, GitHub, Drive, or personal website',
+    portfolioOptional: 'optional',
+    initialNote: 'Most relevant skill or experience',
+    initialNotePh: 'Briefly share what is most relevant to your selected role...',
+    submit: 'Send via WhatsApp',
+    privacy: 'WhatsApp will open with a prepared message. You can still edit it before sending.',
+    messageIntro: 'Hello Lumovelo Recruitment Team, I am interested in collaborating.',
+    thankYou: 'Thank you, I am ready to discuss further.',
+    labels: { name: 'Name', position: 'Role', division: 'Division', cv: 'CV / LinkedIn', portfolio: 'Portfolio', note: 'Relevant experience' },
+  },
 }[lang];
 
-const vacancies = content.vacancies;
+const vacancies = sharedVacancies.map((job) => ({
+  ...job,
+  requirements: job.requirements[lang],
+  noteLabel: job.noteLabel[lang],
+  notePlaceholder: job.notePlaceholder[lang],
+}));
 ---
-<section id="karir" class="py-12 lg:py-16 bg-white relative overflow-hidden font-sans">
-  <!-- Soft background graphics -->
-  <div class="absolute inset-0 bg-[radial-gradient(rgba(37,99,235,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] pointer-events-none"></div>
 
-  <div class="max-w-7xl mx-auto px-6 relative z-10 reveal-on-scroll">
-    
-    <!-- Section Header Breadcrumb -->
-    <div class="mb-6">
-      <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
+<section id="karir" class="career-page bg-[#f7f4ef] text-[#211f1c]">
+  <div class="hero-band relative overflow-hidden border-b border-[#211f1c]/12">
+    <div class="mx-auto grid min-h-[calc(100svh-4rem)] max-w-[1440px] lg:grid-cols-[1.02fr_0.98fr]">
+      <div class="flex flex-col justify-between px-5 py-12 sm:px-8 sm:py-16 lg:px-14 lg:py-20 xl:px-20">
+        <div class="hero-copy max-w-3xl">
+          <div class="mb-10 flex items-center gap-3 text-[11px] font-extrabold uppercase text-blue-700">
+            <span class="h-px w-10 bg-blue-700"></span>
+            {copy.eyebrow}
+          </div>
+          <h1 class="max-w-[820px] text-[clamp(2.75rem,6.4vw,6.7rem)] font-extrabold leading-[0.94]">
+            {copy.title}
+          </h1>
+          <div class="mt-9 grid max-w-2xl gap-7 border-t border-[#211f1c]/16 pt-7 sm:grid-cols-[1fr_auto] sm:items-end">
+            <p class="max-w-xl text-sm font-semibold leading-7 text-[#625c54] sm:text-base">{copy.intro}</p>
+            <a href="#posisi" class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#211f1c] px-5 text-xs font-extrabold uppercase text-[#f7f4ef] transition-colors hover:bg-blue-700">
+              {copy.heroCta}
+              <ArrowDown size={16} strokeWidth={2.4} className="transition-transform group-hover:translate-y-0.5" />
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-16 grid gap-4 border-t border-[#211f1c]/12 pt-5 text-xs font-bold sm:grid-cols-3 lg:mt-20">
+          <span class="flex items-center gap-2"><MapPin size={16} strokeWidth={2} className="text-blue-700" />{copy.remote}</span>
+          <span class="flex items-center gap-2"><BriefcaseBusiness size={16} strokeWidth={2} className="text-blue-700" />{copy.model}</span>
+          <span class="flex items-center gap-2"><Clock3 size={16} strokeWidth={2} className="text-blue-700" />{copy.response}</span>
+        </div>
+      </div>
+
+      <figure class="hero-image relative min-h-[520px] overflow-hidden bg-[#d7d4cc] lg:min-h-full">
+        <Image
+          src={careerHeroImg}
+          alt={lang === 'en' ? 'Remote digital professional collaborating with Lumovelo' : 'Profesional digital berkolaborasi secara remote bersama Lumovelo'}
+          class="absolute inset-0 h-full w-full object-cover object-center"
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          loading="eager"
+        />
+        <div class="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 bg-[#255bd6] px-5 py-5 text-[#f7f4ef] sm:px-8">
+          <figcaption class="max-w-sm text-sm font-extrabold leading-5">{copy.imageCaption}</figcaption>
+          <Sparkles size={24} strokeWidth={1.8} className="shrink-0 text-[#d6f36b]" />
+        </div>
+      </figure>
     </div>
+  </div>
 
-    <!-- Hero Section -->
-    <div class="relative w-full rounded-[2rem] bg-slate-50 border-2 border-slate-200/80 overflow-hidden px-6 py-12 md:py-20 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-12 mb-16 shadow-[4px_4px_0px_rgba(37,99,235,0.05)]">
-      
-      <!-- Content / Info Left Side -->
-      <div class="w-full lg:w-1/2 space-y-6 z-10 relative">
-        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-200 bg-blue-50 text-blue-700 text-xs font-mono font-bold uppercase tracking-wider">
-          We are hiring!
-        </span>
-        <h1 class="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-[1.0] uppercase tracking-tight">
-          {content.title1}<br/>
-          <span class="text-stroke-neon">{content.title2}</span>
-        </h1>
-        <p class="text-slate-500 text-sm sm:text-base leading-relaxed font-semibold max-w-lg">
-          {content.desc}
-        </p>
-        
-        <!-- Hero interactive elements: popular tags -->
-        <div class="pt-4 space-y-4">
-          <div class="flex flex-wrap gap-2 items-center">
-            <span class="text-xs font-mono font-bold text-slate-450 uppercase">Popular Roles:</span>
-            {vacancies.slice(0, 3).map((job) => (
-              <button 
-                type="button" 
-                class="px-3 py-1.5 bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-lg text-xs font-semibold text-slate-600 hover:text-blue-700 transition-colors cursor-pointer"
-                data-scroll-to={job.id}
-              >
-                {job.title.split(' (')[0].replace(' & Automation', '').replace('-Performance ', '')}
-              </button>
-            ))}
-          </div>
-          
-          <!-- Team bubble badges -->
-          <div class="inline-flex items-center gap-4 bg-white p-3 border border-slate-200 rounded-2xl shadow-sm">
-            <div class="flex -space-x-2.5">
-              <div class="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-[10px] font-bold text-blue-700">AI</div>
-              <div class="w-8 h-8 rounded-full border-2 border-white bg-purple-100 flex items-center justify-center text-[10px] font-bold text-purple-700">WD</div>
-              <div class="w-8 h-8 rounded-full border-2 border-white bg-teal-100 flex items-center justify-center text-[10px] font-bold text-teal-700">SEO</div>
-              <div class="w-8 h-8 rounded-full border-2 border-white bg-amber-100 flex items-center justify-center text-[10px] font-bold text-amber-700">UI</div>
-            </div>
-            <div class="text-[11px] leading-tight font-semibold text-slate-600">
-              <div class="text-slate-900 font-bold">Gabung 15+ Kreator</div>
-              Kolaborasi Proyek Global & Remote
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Visual Right Side (3D cutout, huge text, floating badges, rotating badge) -->
-      <div class="w-full lg:w-1/2 flex items-center justify-center relative min-h-[380px] lg:min-h-[450px]">
-        
-        <!-- Huge background text "CAREERS LUMOVELO" -->
-        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0">
-          <span class="font-display font-black text-[12vw] lg:text-[7vw] uppercase leading-none tracking-tighter text-slate-200/50">CAREERS</span>
-          <span class="font-display font-black text-[10vw] lg:text-[6vw] uppercase leading-none tracking-tighter text-stroke-cyan opacity-25">LUMOVELO</span>
-        </div>
-        
-        <!-- Rotating SVG Circular badge -->
-        <div class="absolute top-4 left-4 z-20">
-          <div class="w-24 h-24 animate-[spin_20s_linear_infinite] hover:animate-[spin_6s_linear_infinite] transition-all duration-300">
-            <svg viewBox="0 0 100 100" class="w-full h-full text-slate-400 fill-current">
-              <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
-              <text class="text-[7.5px] font-mono font-bold tracking-widest uppercase">
-                <textPath href="#circlePath" startOffset="0%">
-                  • join the team • lumovelo agency • collaborate • 
-                </textPath>
-              </text>
-            </svg>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-7 h-7 rounded-full bg-slate-900 flex items-center justify-center text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M12 5v14M5 12h14"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Main Cutout Image (AI Generated PNG) -->
-        <div class="relative z-10 w-[280px] h-[340px] md:w-[320px] md:h-[400px] select-none pointer-events-none transition-transform duration-300 hover:scale-[1.02]">
-          <Image 
-            src={careerHeroImg} 
-            alt="Lumovelo Career Team" 
-            class="w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(37,99,235,0.08)]"
-            loading="lazy"
-          />
-        </div>
-
-        <!-- Floating Badge 1: @lumovelo Profile card -->
-        <div class="absolute bottom-4 right-0 md:right-4 z-20 floating-sticker bg-white p-3 border border-slate-200 rounded-2xl shadow-lg max-w-[170px] pointer-events-auto">
-          <div class="flex items-center gap-2">
-            <div class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-[9px] flex items-center justify-center">L</div>
-            <div class="leading-none">
-              <div class="text-[10px] font-bold text-slate-800">@lumovelo</div>
-              <span class="text-[8px] text-slate-400 font-semibold font-mono">HR Specialist</span>
-            </div>
-          </div>
-          <div class="mt-2 pt-2 border-t border-slate-100 flex flex-col gap-1 text-[8px] font-mono font-bold text-slate-500">
-            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Fast Response</span>
-            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> 100% Remote</span>
+  <section id="posisi" class="scroll-mt-24 border-b border-[#211f1c]/12 px-5 py-20 sm:px-8 lg:py-28">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <p class="text-[11px] font-extrabold uppercase text-blue-700">{copy.jobsKicker}</p>
+          <h2 class="mt-4 max-w-md text-[clamp(2rem,4vw,4rem)] font-extrabold leading-[1.02]">{copy.jobsTitle}</h2>
+          <p class="mt-6 max-w-md text-sm font-semibold leading-7 text-[#6b655d]">{copy.jobsDesc}</p>
+          <div class="mt-9 inline-flex items-center gap-3 border-b border-[#211f1c] pb-2 text-xs font-extrabold uppercase">
+            <span class="text-blue-700">{String(vacancies.length).padStart(2, '0')}</span>
+            {lang === 'en' ? 'roles available' : 'posisi tersedia'}
           </div>
         </div>
 
-        <!-- Floating Badge 2: Investment label -->
-        <div class="absolute top-12 right-0 md:right-8 z-20 floating-sticker-delayed bg-white p-3 border border-slate-200 rounded-2xl shadow-lg pointer-events-auto flex items-center gap-2.5">
-          <div class="w-6 h-6 rounded-lg bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
-            </svg>
-          </div>
-          <div class="leading-tight">
-            <div class="text-[9px] font-mono font-bold text-slate-400">INVESTMENT</div>
-            <div class="text-[10px] font-bold text-slate-900">Per-Project Basis</div>
-          </div>
-        </div>
-        
-        <!-- Floating Badge 3: Flexibility label -->
-        <div class="absolute bottom-16 left-0 md:left-6 z-20 floating-sticker-fast bg-white p-3 border border-slate-200 rounded-2xl shadow-lg pointer-events-auto flex items-center gap-2.5">
-          <div class="w-6 h-6 rounded-lg bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-            </svg>
-          </div>
-          <div class="leading-tight">
-            <div class="text-[9px] font-mono font-bold text-slate-400">GROWTH</div>
-            <div class="text-[10px] font-bold text-slate-900">Flexible Hours</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Vacancies Section (Clean 3-column / 2-column Grid) -->
-    <div class="space-y-6">
-      <div class="border-b border-slate-200 pb-4">
-        <h4 class="font-display font-black text-xl text-slate-900 uppercase tracking-wide">{content.subTitle}</h4>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {vacancies.map((job) => (
-          <div id={job.id} class="p-6 bg-slate-50 border-2 border-slate-200 hover:border-blue-600 rounded-3xl transition-all duration-300 flex flex-col justify-between group hover:shadow-[4px_4px_0px_#000] hover:-translate-y-1">
-            <div class="space-y-4">
-              <div class="flex items-start justify-between gap-2">
-                <h5 class="font-display font-black text-lg text-slate-900 uppercase group-hover:text-blue-600 transition-colors leading-tight">{job.title}</h5>
-                <span class={`px-2 py-0.5 rounded border text-[8px] font-mono font-bold tracking-wider uppercase shrink-0 ${job.bgTag}`}>
-                  {job.tag}
+        <div class="border-t border-[#211f1c]">
+          {vacancies.map((job, index) => (
+            <details id={job.id} class="job-row group scroll-mt-24 border-b border-[#211f1c]/18" data-job-id={job.id}>
+              <summary class="grid cursor-pointer list-none grid-cols-[2.2rem_1fr_auto] items-center gap-3 py-6 sm:grid-cols-[3rem_1fr_auto] sm:gap-5 sm:py-8">
+                <span class="text-xs font-extrabold text-blue-700">{String(index + 1).padStart(2, '0')}</span>
+                <span>
+                  <span class="block text-[10px] font-extrabold uppercase text-[#7a736a]">{job.division}</span>
+                  <span class="mt-1.5 block text-lg font-extrabold leading-tight sm:text-2xl">{job.title}</span>
                 </span>
-              </div>
-              
-              <div class="flex flex-wrap gap-x-4 gap-y-1 text-[9px] font-mono font-bold text-slate-400">
-                <span>{content.typeLabel}: {job.type}</span>
-                <span>{content.invLabel}: {job.salary}</span>
-              </div>
+                <span class="job-toggle relative flex h-9 w-9 items-center justify-center rounded-full border border-[#211f1c]/30 transition-colors group-open:bg-[#211f1c] group-open:text-[#f7f4ef] sm:h-11 sm:w-11" aria-hidden="true">
+                  <span class="absolute h-px w-4 bg-current"></span>
+                  <span class="absolute h-4 w-px bg-current transition-transform group-open:rotate-90 group-open:opacity-0"></span>
+                </span>
+              </summary>
 
-              <div class="space-y-2 pt-2 border-t border-slate-200/60">
-                <span class="text-[9px] font-mono font-bold text-slate-500 uppercase">{content.qualLabel}</span>
-                <ul class="list-disc list-inside text-xs text-slate-600 space-y-1 font-medium pl-1 leading-relaxed">
-                  {job.requirements.map((req) => (
-                    <li>{req}</li>
-                  ))}
-                </ul>
+              <div class="job-content grid overflow-hidden pb-8 pl-[3.1rem] sm:pl-[4.25rem]">
+                <div class="grid gap-7 bg-[#eeebe4] p-5 sm:p-7 lg:grid-cols-[1fr_auto] lg:items-end">
+                  <div>
+                    <div class="mb-6 flex flex-wrap gap-2">
+                      <span class="inline-flex items-center gap-1.5 rounded-full border border-[#211f1c]/15 bg-[#f7f4ef] px-3 py-1.5 text-[10px] font-extrabold uppercase"><MapPin size={13} /> {copy.location}</span>
+                      <span class="inline-flex items-center gap-1.5 rounded-full border border-[#211f1c]/15 bg-[#f7f4ef] px-3 py-1.5 text-[10px] font-extrabold uppercase"><Clock3 size={13} /> {copy.type}</span>
+                    </div>
+                    <p class="mb-3 text-[10px] font-extrabold uppercase text-[#746d64]">{copy.qualification}</p>
+                    <ul class="grid gap-3">
+                      {job.requirements.map((requirement) => (
+                        <li class="flex gap-3 text-sm font-semibold leading-6 text-[#514c45]">
+                          <span class="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={`background:${job.accent}`}><Check size={11} strokeWidth={3} /></span>
+                          {requirement}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <button type="button" class="apply-btn group/btn inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-blue-700 px-5 text-xs font-extrabold uppercase text-white transition-colors hover:bg-[#211f1c]" data-job-id={job.id}>
+                    {copy.apply}
+                    <ArrowUpRight size={16} strokeWidth={2.4} className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                  </button>
+                </div>
               </div>
-            </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <div class="pt-6">
-              <button 
-                type="button" 
-                class="apply-btn w-full py-3 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 cursor-pointer text-center"
-                data-position-title={job.title}
-              >
-                Lamar Sekarang
-              </button>
-            </div>
-          </div>
+  <section class="border-b border-[#211f1c]/12 bg-[#d6f36b] px-5 py-20 sm:px-8 lg:py-24">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-[11px] font-extrabold uppercase text-[#3c4b15]">{copy.processKicker}</p>
+      <h2 class="mt-4 max-w-3xl text-[clamp(2rem,4.5vw,4.5rem)] font-extrabold leading-[1.02]">{copy.processTitle}</h2>
+      <div class="mt-14 grid border-t border-[#211f1c]/35 md:grid-cols-3">
+        {copy.process.map(([number, title, description], index) => (
+          <article class:list={["py-7 md:py-9", index > 0 && "border-t border-[#211f1c]/35 md:border-l md:border-t-0 md:pl-8", index < 2 && "md:pr-8"]}>
+            <span class="text-xs font-extrabold">{number}</span>
+            <h3 class="mt-10 text-xl font-extrabold">{title}</h3>
+            <p class="mt-3 max-w-sm text-sm font-semibold leading-6 text-[#3e431f]">{description}</p>
+          </article>
         ))}
       </div>
     </div>
+  </section>
 
-  </div>
+  <section id="lamar" class="scroll-mt-20 bg-[#211f1c] px-5 py-20 text-[#f7f4ef] sm:px-8 lg:py-28">
+    <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
+      <div>
+        <p class="text-[11px] font-extrabold uppercase text-[#a9ccff]">{copy.formKicker}</p>
+        <h2 class="mt-4 max-w-lg text-[clamp(2.5rem,5vw,5.2rem)] font-extrabold leading-[0.98]">{copy.formTitle}</h2>
+        <p class="mt-7 max-w-md text-sm font-semibold leading-7 text-[#c6c0b7]">{copy.formDesc}</p>
+        <ul class="mt-10 grid gap-4 border-t border-[#f7f4ef]/15 pt-6">
+          {copy.formBenefit.map((benefit) => (
+            <li class="flex items-center gap-3 text-xs font-bold text-[#ddd7ce]"><Check size={16} className="text-[#d6f36b]" />{benefit}</li>
+          ))}
+        </ul>
+      </div>
+
+      <form id="career-application-form" class="grid gap-5 border-t border-[#f7f4ef]/25 pt-7" data-lang={lang} data-wa-number={waNumber}>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="grid gap-2 text-[10px] font-extrabold uppercase" for="applicant-name">
+            {copy.name}
+            <input id="applicant-name" name="name" type="text" required placeholder={copy.namePh} class="career-input" />
+          </label>
+          <label class="grid gap-2 text-[10px] font-extrabold uppercase" for="applicant-position">
+            {copy.position}
+            <span class="relative">
+              <select id="applicant-position" name="position" required class="career-input appearance-none pr-12">
+                <option value="" disabled selected>{copy.positionPh}</option>
+                {vacancies.map((job) => <option value={job.id}>{job.title}</option>)}
+              </select>
+              <ArrowDown size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#8d867d]" />
+            </span>
+          </label>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="grid gap-2 text-[10px] font-extrabold uppercase" for="applicant-cv">
+            {copy.cv}
+            <input id="applicant-cv" name="cv" type="url" required placeholder={copy.cvPh} class="career-input" />
+          </label>
+          <label class="grid gap-2 text-[10px] font-extrabold uppercase" for="applicant-portfolio">
+            <span>{copy.portfolio} <span class="text-[#8d867d]">({copy.portfolioOptional})</span></span>
+            <input id="applicant-portfolio" name="portfolio" type="url" placeholder={copy.portfolioPh} class="career-input" />
+          </label>
+        </div>
+
+        <label class="grid gap-2 text-[10px] font-extrabold uppercase" for="applicant-note">
+          <span id="career-note-label">{copy.initialNote}</span>
+          <textarea id="applicant-note" name="note" required rows="4" placeholder={copy.initialNotePh} class="career-input resize-y"></textarea>
+        </label>
+
+        <div class="mt-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p class="max-w-md text-[10px] font-semibold leading-5 text-[#9d968d]">{copy.privacy}</p>
+          <button type="submit" class="group inline-flex min-h-13 shrink-0 items-center justify-center gap-2 rounded-full bg-[#25d366] px-6 text-xs font-extrabold uppercase text-[#102d1a] transition-colors hover:bg-[#d6f36b]">
+            <MessageCircle size={18} strokeWidth={2.4} />
+            {copy.submit}
+            <ArrowRight size={16} strokeWidth={2.4} className="transition-transform group-hover:translate-x-0.5" />
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
 </section>
 
-<!-- Dynamic Glassmorphic Application Form Modal -->
-<div id="career-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden" role="dialog" aria-modal="true">
-  <!-- Backdrop Blur overlay -->
-  <div id="career-modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-md opacity-0 transition-opacity duration-300"></div>
-  
-  <!-- Modal Card Content -->
-  <div id="career-modal-content" class="relative z-10 w-full max-w-lg mx-4 bg-white/95 border-2 border-blue-600 rounded-[2rem] p-6 sm:p-8 shadow-[4px_4px_0px_#000] transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto">
-    
-    <!-- Close Modal Button -->
-    <button 
-      type="button" 
-      id="close-modal-btn" 
-      class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 transition-colors p-1.5 rounded-xl hover:bg-slate-100 cursor-pointer"
-      aria-label="Tutup lamaran"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
-    
-    <!-- Header -->
-    <div class="mb-6 border-b border-slate-100 pb-4 pr-8">
-      <h4 class="font-display font-black text-2xl text-slate-900 uppercase">{content.formTitle}</h4>
-      <p class="text-xs text-slate-400 font-semibold mt-1">
-        {content.formDesc}
-      </p>
-    </div>
-
-    <!-- Application Form -->
-    <form id="career-application-form" class="space-y-5" onsubmit="return false;" data-lang={lang}>
-      <!-- Name -->
-      <div class="space-y-1.5">
-        <label for="applicant-name" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldName}</label>
-        <input 
-          type="text" 
-          id="applicant-name" 
-          name="name" 
-          placeholder={content.phName} 
-          required
-          class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
-        />
-      </div>
-
-      <!-- Position Dropdown -->
-      <div class="space-y-1.5">
-        <label for="applicant-position" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPosition}</label>
-        <div class="relative">
-          <select 
-            id="applicant-position" 
-            name="position" 
-            required
-            class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none appearance-none cursor-pointer"
-          >
-            <option value="" disabled selected class="text-slate-400">{content.phPosition}</option>
-            {vacancies.map((job) => (
-              <option value={job.title} class="text-slate-900">{job.title}</option>
-            ))}
-          </select>
-          <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- CV & LinkedIn Link -->
-      <div class="space-y-1.5">
-        <label for="applicant-cv-linkedin" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldCvLinkedin}</label>
-        <input 
-          type="url" 
-          id="applicant-cv-linkedin" 
-          name="cv_linkedin" 
-          placeholder={content.phCvLinkedin} 
-          required
-          class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
-        />
-      </div>
-
-      <!-- Portfolio Link -->
-      <div class="space-y-1.5">
-        <label for="applicant-portfolio" class="block text-[10px] font-mono font-bold text-slate-700 uppercase">{content.fieldPortfolio}</label>
-        <input 
-          type="url" 
-          id="applicant-portfolio" 
-          name="portfolio" 
-          placeholder={content.phPortfolio} 
-          required
-          class="w-full bg-slate-50 border-2 border-slate-200 focus:border-blue-600 focus:bg-white text-xs px-4 py-3.5 rounded-xl font-semibold outline-none transition-all placeholder:text-slate-400"
-        />
-      </div>
-
-      <!-- Submit Button -->
-      <button 
-        type="submit" 
-        class="w-full py-4 rounded-xl border-2 border-blue-600 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs uppercase tracking-widest transition-all duration-200 shadow-[3px_3px_0px_#000] active:translate-y-0.5 active:shadow-[1px_1px_0px_#000] cursor-pointer text-center"
-      >
-        {content.btnSubmit}
-      </button>
-    </form>
-  </div>
-</div>
-
-<script>
+<script is:inline define:vars={{ vacancies, copy }}>
   function initCareerPage() {
-    // 1. WhatsApp form submit handler
-    const form = document.getElementById('career-application-form') as HTMLFormElement;
-    if (form) {
-      form.onsubmit = (e) => {
-        e.preventDefault();
-        
-        const nameVal = (document.getElementById('applicant-name') as HTMLInputElement).value;
-        const positionVal = (document.getElementById('applicant-position') as HTMLSelectElement).value;
-        const cvLinkedinVal = (document.getElementById('applicant-cv-linkedin') as HTMLInputElement).value;
-        const portfolioVal = (document.getElementById('applicant-portfolio') as HTMLInputElement).value;
-        const formLang = form.getAttribute('data-lang') || 'id';
+    const form = document.getElementById('career-application-form');
+    if (!(form instanceof HTMLFormElement) || form.dataset.initialized === 'true') return;
+    form.dataset.initialized = 'true';
 
-        const targetPhone = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
-        
-        const messageText = formLang === 'en'
-          ? `Hello Lumovelo HR Team, I would like to submit a job application. Here are my details:\n\n- Name: ${nameVal}\n- Position: ${positionVal}\n- CV & LinkedIn: ${cvLinkedinVal}\n- Portfolio: ${portfolioVal}\n\nThank you.`
-          : `Halo Tim HR Lumovelo, saya ingin melamar pekerjaan. Berikut adalah detail lamaran saya:\n\n- Nama: ${nameVal}\n- Posisi: ${positionVal}\n- CV & LinkedIn: ${cvLinkedinVal}\n- Portofolio: ${portfolioVal}\n\nTerima kasih.`;
+    const positionSelect = document.getElementById('applicant-position');
+    const noteInput = document.getElementById('applicant-note');
+    const noteLabel = document.getElementById('career-note-label');
 
-        const encodedMessage = encodeURIComponent(messageText);
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodedMessage}`;
+    const selectedJob = () => vacancies.find((job) => job.id === positionSelect?.value);
 
-        window.open(whatsappUrl, '_blank');
-      };
+    function updateDivisionFormat() {
+      const job = selectedJob();
+      if (!job || !(noteInput instanceof HTMLTextAreaElement)) return;
+      if (noteLabel) noteLabel.textContent = job.noteLabel;
+      noteInput.placeholder = job.notePlaceholder;
     }
 
-    // 2. Modal interactions
-    const modal = document.getElementById('career-modal');
-    const backdrop = document.getElementById('career-modal-backdrop');
-    const modalContent = document.getElementById('career-modal-content');
-    const closeBtn = document.getElementById('close-modal-btn');
-    const positionSelect = document.getElementById('applicant-position') as HTMLSelectElement;
-    const applyButtons = document.querySelectorAll('.apply-btn');
+    positionSelect?.addEventListener('change', updateDivisionFormat);
 
-    function openModal(positionTitle: string) {
-      if (modal && backdrop && modalContent && positionSelect) {
-        positionSelect.value = positionTitle;
-        modal.classList.remove('hidden');
-        
-        // Force Reflow
-        modal.offsetHeight;
-
-        backdrop.classList.remove('opacity-0');
-        backdrop.classList.add('opacity-100');
-        modalContent.classList.remove('scale-95', 'opacity-0');
-        modalContent.classList.add('scale-100', 'opacity-100');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeModal() {
-      if (modal && backdrop && modalContent) {
-        backdrop.classList.remove('opacity-100');
-        backdrop.classList.add('opacity-0');
-        modalContent.classList.remove('scale-100', 'opacity-100');
-        modalContent.classList.add('scale-95', 'opacity-0');
-
-        setTimeout(() => {
-          modal.classList.add('hidden');
-          document.body.style.overflow = '';
-        }, 300);
-      }
-    }
-
-    applyButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const title = btn.getAttribute('data-position-title') || '';
-        openModal(title);
+    document.querySelectorAll('.apply-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        const jobId = button.getAttribute('data-job-id');
+        if (jobId && positionSelect instanceof HTMLSelectElement) {
+          positionSelect.value = jobId;
+          updateDivisionFormat();
+        }
+        document.getElementById('lamar')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.setTimeout(() => document.getElementById('applicant-name')?.focus({ preventScroll: true }), 650);
       });
     });
 
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (backdrop) backdrop.addEventListener('click', closeModal);
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
 
-    // 3. Popular roles auto-scroll & highlight
-    const filterButtons = document.querySelectorAll('[data-scroll-to]');
-    filterButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-scroll-to');
-        if (targetId) {
-          const targetEl = document.getElementById(targetId);
-          if (targetEl) {
-            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Highlight glow transition
-            targetEl.classList.remove('border-slate-200');
-            targetEl.classList.add('border-blue-600', 'shadow-[0_0_20px_rgba(37,99,235,0.25)]');
-            setTimeout(() => {
-              targetEl.classList.remove('shadow-[0_0_20px_rgba(37,99,235,0.25)]');
-              if (!targetEl.matches(':hover')) {
-                targetEl.classList.remove('border-blue-600');
-                targetEl.classList.add('border-slate-200');
-              }
-            }, 1800);
-          }
-        }
-      });
+      const job = selectedJob();
+      if (!job) return;
+
+      const formData = new FormData(form);
+      const name = String(formData.get('name') || '').trim();
+      const cv = String(formData.get('cv') || '').trim();
+      const portfolio = String(formData.get('portfolio') || '').trim();
+      const note = String(formData.get('note') || '').trim();
+      const portfolioLine = portfolio || '-';
+
+      const message = `${copy.messageIntro}\n\n${copy.labels.name}: ${name}\n${copy.labels.position}: ${job.title}\n${copy.labels.division}: ${job.division}\n${copy.labels.cv}: ${cv}\n${copy.labels.portfolio}: ${portfolioLine}\n${job.noteLabel}: ${note}\n\n${copy.thankYou}`;
+      const phone = form.dataset.waNumber || '6285624353611';
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
     });
   }
 
-  // Handle page load & Astro client transition page loads
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCareerPage);
+    document.addEventListener('DOMContentLoaded', initCareerPage, { once: true });
   } else {
     initCareerPage();
   }
   document.addEventListener('astro:after-swap', initCareerPage);
 </script>
+
+<style>
+  .career-page h1,
+  .career-page h2,
+  .career-page h3,
+  .career-page p {
+    letter-spacing: 0;
+  }
+
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 1px 0 rgba(33, 31, 28, 0.12);
+  }
+
+  .job-row summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .job-row > summary:hover .job-toggle {
+    background: #211f1c;
+    color: #f7f4ef;
+  }
+
+  .career-input {
+    width: 100%;
+    min-height: 3.25rem;
+    border: 1px solid rgba(247, 244, 239, 0.22);
+    border-radius: 4px;
+    background: #302d29;
+    padding: 0.9rem 1rem;
+    color: #f7f4ef;
+    font-size: 0.8rem;
+    font-weight: 650;
+    line-height: 1.5;
+    outline: none;
+    transition: border-color 160ms ease, background-color 160ms ease;
+  }
+
+  .career-input::placeholder {
+    color: #8d867d;
+  }
+
+  .career-input:focus {
+    border-color: #a9ccff;
+    background: #393530;
+  }
+
+  select.career-input option {
+    background: #302d29;
+    color: #f7f4ef;
+  }
+
+  @media (max-width: 1023px) {
+    .hero-band .hero-copy {
+      padding-top: 0.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-copy > * {
+      animation: career-reveal 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-copy > *:nth-child(2) { animation-delay: 90ms; }
+    .hero-copy > *:nth-child(3) { animation-delay: 180ms; }
+    .hero-image img { animation: career-image 900ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+  }
+
+  @keyframes career-reveal {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes career-image {
+    from { opacity: 0; transform: scale(1.035); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>

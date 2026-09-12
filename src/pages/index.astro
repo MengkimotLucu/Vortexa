@@ -1,19 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import AudienceFit from '../components/AudienceFit.astro';
-import Services from '../components/Services.astro';
-import WhyChooseUs from '../components/WhyChooseUs.astro';
-import Testimonials from '../components/Testimonials.astro';
-import FAQ from '../components/FAQ.astro';
-import Footer from '../components/Footer.astro';
+import HomeReferenceStyle from '../components/HomeReferenceStyle.astro';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
 
 const meta = {
   id: {
-     title: "Jasa Pembuatan Website Profesional Mulai Rp1 Juta | Lumovelo",
-     description: "Jasa pembuatan website profesional untuk UMKM dan bisnis. Landing page, company profile, toko online & website custom mulai Rp1 juta. Konsultasi gratis."
+     title: "Solusi Digital untuk Bisnis yang Bertumbuh | Lumovelo",
+     description: "Lumovelo membantu bisnis, UMKM, startup, dan perusahaan membangun website profesional yang cepat, responsif, SEO-friendly, dan siap menghasilkan pelanggan."
   },
   en: {
      title: "Professional Website Development from $70 | Lumovelo",
@@ -21,104 +15,31 @@ const meta = {
   }
 }[lang];
 
-const faqs = {
-  id: [
-    {
-      q: "Apakah LUMOVELO menerapkan biaya langganan bulanan?",
-       a: "Tergantung kebutuhan teknis proyek. Biaya pembuatan website mengikuti paket dan scope yang dipilih. Website statis/serverless dapat memiliki biaya operasional rendah, sedangkan website dengan database, layanan pihak ketiga, email, traffic tinggi, atau server terkelola dapat membutuhkan biaya bulanan atau tahunan. Semua biaya berulang dijelaskan sejak awal."
-    },
-    {
-      q: "Berapa lama estimasi waktu pembuatan website?",
-      a: "Untuk pengerjaan landing page konversi tinggi siap pakai biasanya memakan waktu antara 5 hingga 7 hari kerja. Sedangkan untuk aplikasi web kustom yang memerlukan visualisasi dasbor kompleks atau integrasi sistem otomatisasi AI membutuhkan waktu berkisar antara 2 hingga 4 minggu."
-    },
-    {
-      q: "Bagaimana cara saya memperbarui konten website di kemudian hari?",
-      a: "Tergantung paket yang dipilih. Jika paket Anda sudah mencakup CMS atau update konten, fitur dan jumlah pembaruannya mengikuti detail paket tersebut. Jika belum termasuk, pembaruan dapat dikerjakan sebagai layanan tambahan dengan biaya sesuai scope. Saya akan menjelaskan opsi pengelolaan konten sebelum proyek dimulai."
-    },
-    {
-      q: "Apakah website buatan LUMOVELO aman dari serangan hacker?",
-       a: "Keamanan mengikuti arsitektur proyek. Website statis/serverless dapat mengurangi attack surface, sedangkan website dengan database tetap dapat diamankan melalui HTTPS, kontrol akses, validasi input, dependency management, security headers, backup, dan konfigurasi deployment yang sesuai."
-    },
-    {
-      q: "Apakah website yang didesain sudah SEO-friendly?",
-      a: "Tentu saja. Kami mengimplementasikan praktik terbaik SEO teknis (technical SEO), mulai dari tag heading semantik, optimasi metadata, kecepatan loading maksimal, hingga struktur sitemap dan robots.txt yang ramah mesin pencari Google."
-    }
-  ],
-  en: [
-    {
-      q: "Does LUMOVELO charge a monthly subscription fee?",
-      a: "It depends on the project's technical requirements. Website development is charged according to the selected package and scope. Static/serverless websites can have low operating costs, while websites with databases, third-party services, email, high traffic, or managed servers may require monthly or annual infrastructure fees. Any recurring cost is explained before work begins."
-    },
-    {
-      q: "What is the estimated time to build a website?",
-      a: "Developing a ready-to-use high-converting landing page usually takes 5 to 7 business days. Custom web applications requiring complex dashboard visualization or AI automation workflows take around 2 to 4 weeks."
-    },
-    {
-      q: "How can I update my website content in the future?",
-      a: "It depends on the selected package. If your package includes a CMS or content updates, the available features and update limits follow the package details. If not included, content changes can be handled as an optional service priced according to the agreed scope."
-    },
-    {
-      q: "Is a website built by LUMOVELO secure from hackers?",
-      a: "Security follows the project's architecture and requirements. Static/serverless architecture can reduce the attack surface by avoiding an always-on database and admin panel. Database-backed websites can still be secured with HTTPS, access controls, input validation, dependency management, security headers, backups, and appropriate deployment configuration."
-    },
-    {
-      q: "Is the designed website SEO-friendly?",
-      a: "Absolutely. We implement technical SEO best practices, including semantic heading tags, metadata optimization, maximized load speed, and search-engine-friendly sitemap/robots.txt structures."
-    }
-  ]
-}[lang];
+const pageUrl = lang === 'en' ? 'https://www.lumovelo.com/en/' : 'https://www.lumovelo.com/';
 
-const faqSchema = {
+const websiteSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.a
-    }
-  }))
-};
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "WebSite",
+  "@id": "https://www.lumovelo.com/#website",
   "name": "LUMOVELO",
   "url": "https://www.lumovelo.com",
-  "logo": "https://www.lumovelo.com/favicon.svg",
+  "inLanguage": ["id-ID", "en-US"],
+};
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${pageUrl}#webpage`,
+  "url": pageUrl,
+  "name": meta.title,
   "description": meta.description,
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+6285624353611",
-    "contactType": "customer service",
-    "areaServed": ["ID", "SG", "US", "AU", "MY", "GB"],
-    "availableLanguage": ["Indonesian", "English"]
-  },
+  "inLanguage": lang === 'en' ? "en-US" : "id-ID",
+  "isPartOf": { "@id": "https://www.lumovelo.com/#website" },
+  "about": { "@id": "https://www.lumovelo.com/#organization" },
 };
 ---
 
-<Layout title={meta.title} description={meta.description} schema={[organizationSchema, faqSchema]}>
+<Layout title={meta.title} description={meta.description} schema={[websiteSchema, webPageSchema]}>
 
-  <!-- Main layout container for Lumovelo agency -->
-  <main class="relative z-10 bg-white">
-    <!-- Hero Section with Interactive Kinetic Workspace -->
-    <Hero />
-
-    <AudienceFit />
-
-    <!-- Core services pricing dashboard with tabs -->
-    <Services />
-
-    <!-- Why Choose Us Bento Section -->
-    <WhyChooseUs />
-
-    <!-- Client stories remain on the homepage; full work archive stays separate -->
-    <Testimonials />
-
-    <!-- FAQ Section -->
-    <FAQ />
-
-    <!-- Brand footer -->
-    <Footer />
-  </main>
+  <HomeReferenceStyle />
 </Layout>
