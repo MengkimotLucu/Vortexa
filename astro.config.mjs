@@ -15,7 +15,8 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/admin') &&
         !page.includes('/workspace') &&
-        !page.endsWith('/layanan/website/'),
+        !page.endsWith('/layanan/website/') &&
+        !page.includes('/en/layanan/'),
       customPages: [
         'https://www.lumovelo.com/blog/',
         'https://www.lumovelo.com/en/blog/',
@@ -25,12 +26,12 @@ export default defineConfig({
         'https://www.lumovelo.com/blog/peran-video-creative-landing-page/',
         'https://www.lumovelo.com/blog/analisis-performa-web-lighthouse/',
         'https://www.lumovelo.com/blog/tren-desain-web-minimalis/',
-        'https://www.lumovelo.com/en/blog/otomatisasi-leads-ai-whatsapp/',
-        'https://www.lumovelo.com/en/blog/keunggulan-website-headless-modern/',
-        'https://www.lumovelo.com/en/blog/strategi-technical-seo-lokal/',
-        'https://www.lumovelo.com/en/blog/peran-video-creative-landing-page/',
-        'https://www.lumovelo.com/en/blog/analisis-performa-web-lighthouse/',
-        'https://www.lumovelo.com/en/blog/tren-desain-web-minimalis/'
+        'https://www.lumovelo.com/en/blog/how-to-use-ai-chatbots-for-whatsapp-customer-support/',
+        'https://www.lumovelo.com/en/blog/headless-serverless-website-benefits/',
+        'https://www.lumovelo.com/en/blog/technical-seo-guide-for-local-businesses/',
+        'https://www.lumovelo.com/en/blog/creative-video-for-landing-page-conversions/',
+        'https://www.lumovelo.com/en/blog/improve-google-lighthouse-performance/',
+        'https://www.lumovelo.com/en/blog/minimalist-web-design-trends/'
       ]
     }),
     react()

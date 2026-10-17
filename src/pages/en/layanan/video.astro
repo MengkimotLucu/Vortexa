@@ -1,4 +1,4 @@
 ---
-import Page from '../../layanan/video.astro';
+export const prerender = false;
 ---
-<Page />
+{Astro.redirect('/en/services/video-production/', 301)}

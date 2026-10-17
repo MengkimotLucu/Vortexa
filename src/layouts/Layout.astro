@@ -43,11 +43,31 @@ const getAlternates = (pathname: string) => {
   // Explicit mapping pairs
   const pairs = [
     ['/', '/en/'],
+    ['/layanan/', '/en/services/'],
+    ['/layanan/web/', '/en/services/web-development/'],
+    ['/layanan/ai/', '/en/services/ai-automation/'],
+    ['/layanan/seo/', '/en/services/seo/'],
+    ['/layanan/video/', '/en/services/video-production/'],
+    ['/layanan/qa/', '/en/services/software-testing/'],
+    ['/layanan/keamanan-jaringan/', '/en/services/network-security/'],
     ['/tentang/', '/en/about-us/'],
     ['/karir/', '/en/careers/'],
     ['/kontak/', '/en/contact/'],
-    ['/portofolio/', '/en/portfolio/']
+    ['/portofolio/', '/en/portfolio/'],
+    ['/audit/', '/en/audit/'],
+    ['/blog/', '/en/blog/'],
+    ['/privacy-policy/', '/en/privacy-policy/'],
+    ['/terms-of-service/', '/en/terms-of-service/']
   ];
+
+  const englishBlogSlugs: Record<string, string> = {
+    'otomatisasi-leads-ai-whatsapp': 'how-to-use-ai-chatbots-for-whatsapp-customer-support',
+    'keunggulan-website-headless-modern': 'headless-serverless-website-benefits',
+    'strategi-technical-seo-lokal': 'technical-seo-guide-for-local-businesses',
+    'peran-video-creative-landing-page': 'creative-video-for-landing-page-conversions',
+    'analisis-performa-web-lighthouse': 'improve-google-lighthouse-performance',
+    'tren-desain-web-minimalis': 'minimalist-web-design-trends'
+  };
   
   let idRelative = '';
   let enRelative = '';
@@ -60,9 +80,22 @@ const getAlternates = (pathname: string) => {
     if (cleanPath.startsWith('/en/')) {
       enRelative = cleanPath;
       idRelative = cleanPath.replace(/^\/en/, '');
+
+      const oldBlogSlug = cleanPath.match(/^\/en\/blog\/([^/]+)\/$/)?.[1];
+      const idBlogSlug = Object.entries(englishBlogSlugs).find(([, enSlug]) => enSlug === oldBlogSlug)?.[0];
+      if (idBlogSlug) idRelative = `/blog/${idBlogSlug}/`;
+
+      const servicePair = pairs.find(([idPath]) => idPath.startsWith('/layanan/') && idPath !== '/layanan/' && `/en${idPath}` === cleanPath);
+      if (servicePair) idRelative = servicePair[0];
     } else {
       idRelative = cleanPath;
       enRelative = `/en${cleanPath}`;
+
+      const idBlogSlug = cleanPath.match(/^\/blog\/([^/]+)\/$/)?.[1];
+      if (idBlogSlug && englishBlogSlugs[idBlogSlug]) enRelative = `/en/blog/${englishBlogSlugs[idBlogSlug]}/`;
+
+      const servicePair = pairs.find(([idPath]) => idPath === cleanPath);
+      if (servicePair) enRelative = servicePair[1];
     }
   }
   
@@ -223,11 +256,11 @@ const isBlog = Astro.url.pathname.includes('/blog');
     <meta property="og:image" content={new URL('/og-image.png', 'https://www.lumovelo.com').href} />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL('/og-image.png', 'https://www.lumovelo.com').href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/og-image.png', 'https://www.lumovelo.com').href} />
     
     <!-- Analytics scripts deferred and loaded dynamically via GTM script loader -->
 

@@ -125,7 +125,12 @@ export async function callGroq(history, systemInstruction, options = {}) {
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Groq API Error (${response.status}): ${errorText}`);
+        const isInvalidKey = response.status === 401 || /invalid_api_key|expired_api_key/i.test(errorText);
+        const error = new Error(isInvalidKey
+          ? 'Kunci Groq tidak valid atau kedaluwarsa. Perbarui GROQ_API_KEY di environment lokal dan Vercel, lalu deploy ulang.'
+          : `Groq API Error (${response.status}): ${errorText}`);
+        error.retryableKeyError = isInvalidKey;
+        throw error;
       }
 
       const data = await response.json();
@@ -147,6 +152,7 @@ export async function callGroq(history, systemInstruction, options = {}) {
     } catch (err) {
       lastError = err;
       console.error(`[Groq Error] Gagal memanggil Groq dengan key ${apiKey.substring(0, 10)}...:`, err.message);
+      if (err.retryableKeyError) continue;
     }
   }
 

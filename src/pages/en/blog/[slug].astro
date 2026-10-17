@@ -2,5 +2,18 @@
 export const prerender = false;
 
 import Page from '../../blog/[slug].astro';
+
+const redirects: Record<string, string> = {
+  'otomatisasi-leads-ai-whatsapp': 'how-to-use-ai-chatbots-for-whatsapp-customer-support',
+  'keunggulan-website-headless-modern': 'headless-serverless-website-benefits',
+  'strategi-technical-seo-lokal': 'technical-seo-guide-for-local-businesses',
+  'peran-video-creative-landing-page': 'creative-video-for-landing-page-conversions',
+  'analisis-performa-web-lighthouse': 'improve-google-lighthouse-performance',
+  'tren-desain-web-minimalis': 'minimalist-web-design-trends'
+};
+
+if (Astro.params.slug && redirects[Astro.params.slug]) {
+  return Astro.redirect(`/en/blog/${redirects[Astro.params.slug]}/`, 301);
+}
 ---
 <Page />

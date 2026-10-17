@@ -2,6 +2,14 @@
 import { supabase } from '../lib/supabase';
 
 const lang = Astro.currentLocale === 'en' ? 'en' : 'id';
+const enSlugs: Record<string, string> = {
+  'otomatisasi-leads-ai-whatsapp': 'how-to-use-ai-chatbots-for-whatsapp-customer-support',
+  'keunggulan-website-headless-modern': 'headless-serverless-website-benefits',
+  'strategi-technical-seo-lokal': 'technical-seo-guide-for-local-businesses',
+  'peran-video-creative-landing-page': 'creative-video-for-landing-page-conversions',
+  'analisis-performa-web-lighthouse': 'improve-google-lighthouse-performance',
+  'tren-desain-web-minimalis': 'minimalist-web-design-trends'
+};
 
 const content = {
   id: {
@@ -137,13 +145,22 @@ try {
 // Fallback to static posts if database is empty
 const rawPosts = dbPosts.length > 0 ? dbPosts : content.posts;
 
+const enStaticOverrides: Record<string, { slug: string; title: string; description: string }> = {
+  'otomatisasi-leads-ai-whatsapp': { slug: enSlugs['otomatisasi-leads-ai-whatsapp'], title: 'How to Use AI Chatbots for WhatsApp Customer Support', description: 'Learn how AI chatbot automation can help teams respond to WhatsApp enquiries faster and reduce repetitive support work.' },
+  'keunggulan-website-headless-modern': { slug: enSlugs['keunggulan-website-headless-modern'], title: 'Benefits of Headless and Serverless Websites', description: 'Understand how modern website architecture can improve speed, reliability, and security.' },
+  'strategi-technical-seo-lokal': { slug: enSlugs['strategi-technical-seo-lokal'], title: 'A Technical SEO Guide for Local Businesses', description: 'Practical steps to improve crawlability, sitemap quality, metadata, and local search visibility.' },
+  'peran-video-creative-landing-page': { slug: enSlugs['peran-video-creative-landing-page'], title: 'Using Creative Video to Improve Landing Page Conversions', description: 'See how short videos can communicate value and support more effective landing pages.' },
+  'analisis-performa-web-lighthouse': { slug: enSlugs['analisis-performa-web-lighthouse'], title: 'How to Improve Google Lighthouse Performance', description: 'A practical guide to image optimization, render-blocking resources, and Core Web Vitals.' },
+  'tren-desain-web-minimalis': { slug: enSlugs['tren-desain-web-minimalis'], title: 'Minimalist Web Design Trends for Business Websites', description: 'Explore how typography, whitespace, contrast, and useful interactions build trust.' }
+};
+
 const posts = rawPosts.map(p => ({
-  slug: lang === 'en' ? p.slug_en || p.slug : p.slug,
-  title: lang === 'en' ? p.title_en || p.title : p.title,
+  slug: lang === 'en' ? p.slug_en || enStaticOverrides[p.slug]?.slug || p.slug : p.slug,
+  title: lang === 'en' ? p.title_en || enStaticOverrides[p.slug]?.title || p.title : p.title,
   date: p.date,
   category: lang === 'en' ? p.category_en || p.category : p.category,
   bgCategory: p.bg_category || p.bgCategory || 'bg-blue-100 text-blue-700 border-blue-200',
-  description: lang === 'en' ? p.description_en || p.description : p.description
+  description: lang === 'en' ? p.description_en || enStaticOverrides[p.slug]?.description || p.description : p.description
 }));
 ---
 <section id="blog" class="py-24 bg-white relative overflow-hidden border-t-2 border-slate-100">
@@ -154,10 +171,10 @@ const posts = rawPosts.map(p => ({
     <!-- Left-aligned Section Header -->
     <div class="mb-12 text-left reveal-on-scroll">
       <h2 class="font-mono font-bold text-xs tracking-widest text-blue-600 uppercase">{content.sectionHeader}</h2>
-      <h2 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
+      <h1 class="font-display font-black text-4xl sm:text-5xl text-slate-900 uppercase tracking-tight leading-[1.0] mt-3">
         {content.title1}<br/>
         <span class="text-stroke-neon">{content.title2}</span>
-      </h2>
+      </h1>
       <p class="text-slate-500 mt-6 text-sm sm:text-base leading-relaxed font-semibold max-w-2xl">
         {content.desc}
       </p>

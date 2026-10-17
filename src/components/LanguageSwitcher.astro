@@ -8,11 +8,29 @@ const cleanPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
 // Explicit mapping pairs
 const pairs = [
   ['/', '/en/'],
+  ['/layanan/', '/en/services/'],
+  ['/layanan/web/', '/en/services/web-development/'],
+  ['/layanan/ai/', '/en/services/ai-automation/'],
+  ['/layanan/seo/', '/en/services/seo/'],
+  ['/layanan/video/', '/en/services/video-production/'],
+  ['/layanan/qa/', '/en/services/software-testing/'],
+  ['/layanan/keamanan-jaringan/', '/en/services/network-security/'],
   ['/tentang/', '/en/about-us/'],
   ['/karir/', '/en/careers/'],
   ['/kontak/', '/en/contact/'],
-  ['/portofolio/', '/en/portfolio/']
+  ['/portofolio/', '/en/portfolio/'],
+  ['/audit/', '/en/audit/'],
+  ['/blog/', '/en/blog/']
 ];
+
+const englishBlogSlugs: Record<string, string> = {
+  'otomatisasi-leads-ai-whatsapp': 'how-to-use-ai-chatbots-for-whatsapp-customer-support',
+  'keunggulan-website-headless-modern': 'headless-serverless-website-benefits',
+  'strategi-technical-seo-lokal': 'technical-seo-guide-for-local-businesses',
+  'peran-video-creative-landing-page': 'creative-video-for-landing-page-conversions',
+  'analisis-performa-web-lighthouse': 'improve-google-lighthouse-performance',
+  'tren-desain-web-minimalis': 'minimalist-web-design-trends'
+};
 
 let idLink = '';
 let enLink = '';
@@ -26,9 +44,16 @@ if (matchedPair) {
   if (cleanPath.startsWith('/en/')) {
     enLink = cleanPath;
     idLink = cleanPath.replace(/^\/en/, '');
+    const enSlug = cleanPath.match(/^\/en\/blog\/([^/]+)\/$/)?.[1];
+    const idSlug = Object.entries(englishBlogSlugs).find(([, slug]) => slug === enSlug)?.[0];
+    if (idSlug) idLink = `/blog/${idSlug}/`;
   } else {
     idLink = cleanPath;
     enLink = `/en${cleanPath}`;
+    const idSlug = cleanPath.match(/^\/blog\/([^/]+)\/$/)?.[1];
+    if (idSlug && englishBlogSlugs[idSlug]) enLink = `/en/blog/${englishBlogSlugs[idSlug]}/`;
+    const servicePair = pairs.find(([idPath]) => idPath === cleanPath && idPath.startsWith('/layanan/'));
+    if (servicePair) enLink = servicePair[1];
   }
 }
 ---

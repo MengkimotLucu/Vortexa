@@ -106,6 +106,50 @@ function compactText(value, maxLength = 4500) {
     .slice(0, maxLength);
 }
 
+function escapeQuery(value) {
+  return encodeURIComponent(String(value || '').trim());
+}
+
+function decodeXml(value) {
+  return String(value || '')
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+}
+
+async function fetchCurrentNews(category, keyword) {
+  const topic = keyword || category;
+  const feedUrl = `https://news.google.com/rss/search?q=${escapeQuery(`${topic} technology`)}&hl=en-US&gl=US&ceid=US:en`;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12000);
+
+  try {
+    const response = await fetch(feedUrl, {
+      headers: { 'User-Agent': 'LumoveloNewsResearchBot/1.0 (+https://www.lumovelo.com)' },
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const xml = await response.text();
+    const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gi)].slice(0, 5);
+    const references = items.map((match) => {
+      const item = match[1];
+      const read = (tag) => decodeXml(item.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`, 'i'))?.[1]);
+      return {
+        url: read('link'),
+        title: compactText(read('title'), 220),
+        description: compactText(read('description'), 500),
+        excerpt: compactText(read('description'), 1800),
+        published_at: read('pubDate')
+      };
+    }).filter((item) => item.url && item.title);
+
+    if (!references.length) throw new Error('Tidak ada berita terbaru yang ditemukan untuk topik tersebut.');
+    return { feedUrl, references };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function fetchReference(url, index) {
   let parsed;
   try {
@@ -185,7 +229,7 @@ export async function POST({ request }) {
   }
 
   try {
-    const { category, keyword, token, articleType = 'evergreen', sourceUrls = '' } = await request.json();
+    const { category, keyword, token, articleType = 'evergreen' } = await request.json();
 
     if (!category) {
       return jsonResponse({ error: 'Kategori wajib disertakan.' }, 400);
@@ -197,17 +241,8 @@ export async function POST({ request }) {
     }
 
     const normalizedType = articleType === 'news' ? 'news' : 'evergreen';
-    const urls = normalizeUrls(sourceUrls);
-
-    if (normalizedType === 'news' && urls.length === 0) {
-      return jsonResponse({
-        error: 'Mode berita terkini membutuhkan minimal 1 link referensi agar AI tidak menebak fakta terbaru.'
-      }, 400);
-    }
-
-    const references = normalizedType === 'news'
-      ? await Promise.all(urls.slice(0, 5).map(fetchReference))
-      : [];
+    const research = normalizedType === 'news' ? await fetchCurrentNews(category, keyword) : null;
+    const references = research?.references || [];
 
     const categoryMeta = CATEGORY_META[category] || CATEGORY_META['SEO & MARKETING'];
     const d = new Date();
@@ -242,7 +277,7 @@ export async function POST({ request }) {
       5. Internal links must be natural and relevant:
          - ${categoryMeta.links.join('\n         - ')}
       6. The English version must be localized and natural, not a literal word-for-word translation.
-      7. For news articles, use ONLY the supplied reference excerpts for current facts. Do not invent dates, names, stats, product releases, quotes, or claims.
+      7. For news articles, use ONLY the supplied current-news excerpts for current facts. Do not invent dates, names, stats, product releases, quotes, or claims.
       8. For news articles, include a short "Sumber Referensi" section in Indonesian and "Reference Sources" section in English at the end, with links to supplied source URLs.
     `;
 
@@ -263,7 +298,8 @@ export async function POST({ request }) {
       Topic / keyword: ${keyword || 'Choose the strongest relevant topic for this category'}
       Publication date label: ${formattedDate}
 
-      References:
+      Research timestamp (UTC): ${new Date().toISOString()}
+      References discovered automatically:
       ${referenceBlock}
     `;
 
@@ -295,8 +331,11 @@ export async function POST({ request }) {
       content_en: responseJson.en.content.trim(),
       article_type: normalizedType,
       source_urls: references.map((ref) => ref.url),
-      source_summary: responseJson.source_summary ? String(responseJson.source_summary).trim() : ''
+      source_summary: responseJson.source_summary ? String(responseJson.source_summary).trim() : (research ? `Automatic Google News RSS research at ${new Date().toISOString()}.` : '')
     };
+
+    let resultPost = null;
+    let warningMsg = null;
 
     const { data, error: dbErr } = await supabaseAdmin
       .from('posts')
@@ -308,7 +347,7 @@ export async function POST({ request }) {
       if (dbErr.code === '23505') {
         const suffix = Math.floor(Date.now() / 1000).toString().slice(-4);
         payload.slug = `${payload.slug}-${suffix}`;
-        payload.slug_en = `${payload.slug_en}-${suffix}`;
+        if (payload.slug_en) payload.slug_en = `${payload.slug_en}-${suffix}`;
 
         const { data: retryData, error: retryErr } = await supabaseAdmin
           .from('posts')
@@ -317,17 +356,57 @@ export async function POST({ request }) {
           .single();
 
         if (retryErr) throw retryErr;
-        return jsonResponse({ success: true, post: retryData });
-      }
+        resultPost = retryData;
+      } else {
+        const isColumnErr = dbErr.code === 'PGRST204' ||
+          (dbErr.message && (
+            (dbErr.message.includes('column') && dbErr.message.includes('does not exist')) ||
+            (dbErr.message.includes('Could not find') && dbErr.message.includes('column')) ||
+            dbErr.message.includes('schema cache')
+          ));
 
-      if (dbErr.message?.includes('column') && dbErr.message?.includes('does not exist')) {
-        throw new Error('Kolom bilingual blog belum ada di Supabase. Jalankan file supabase_blog_bilingual_migration.sql terlebih dahulu.');
-      }
+        if (isColumnErr) {
+          console.warn('[generate-blog] Kolom bilingual belum ada di database posts. Fallback menyimpan skema dasar (ID only)...');
+          const fallbackPayload = {
+            title: payload.title,
+            slug: payload.slug,
+            date: payload.date,
+            category: payload.category,
+            bg_category: payload.bg_category,
+            description: payload.description,
+            content: payload.content
+          };
 
-      throw dbErr;
+          let { data: fbData, error: fbErr } = await supabaseAdmin
+            .from('posts')
+            .insert([fallbackPayload])
+            .select()
+            .single();
+
+          if (fbErr && fbErr.code === '23505') {
+            const suffix = Math.floor(Date.now() / 1000).toString().slice(-4);
+            fallbackPayload.slug = `${fallbackPayload.slug}-${suffix}`;
+            const retryFb = await supabaseAdmin
+              .from('posts')
+              .insert([fallbackPayload])
+              .select()
+              .single();
+            fbData = retryFb.data;
+            fbErr = retryFb.error;
+          }
+
+          if (fbErr) throw fbErr;
+          resultPost = fbData;
+          warningMsg = 'Artikel berhasil diposting dalam versi Indonesia. Catatan: Kolom bilingual belum aktif di database Supabase. Jalankan file supabase_blog_bilingual_migration.sql di Supabase SQL Editor jika ingin mengaktifkan versi bahasa Inggris (EN).';
+        } else {
+          throw dbErr;
+        }
+      }
+    } else {
+      resultPost = data;
     }
 
-    return jsonResponse({ success: true, post: data });
+    return jsonResponse({ success: true, post: resultPost, warning: warningMsg });
   } catch (err) {
     console.error('Error generating AI blog post:', err);
     return jsonResponse({ error: err.message || 'Gagal membuat artikel blog otomatis.' }, 500);

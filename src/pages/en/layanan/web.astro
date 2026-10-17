@@ -1,4 +1,4 @@
 ---
-import Page from '../../layanan/web.astro';
+export const prerender = false;
 ---
-<Page />
+{Astro.redirect('/en/services/web-development/', 301)}

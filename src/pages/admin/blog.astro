@@ -299,7 +299,7 @@ import Logo from '../../components/Logo.astro';
         <span class="live-dot w-1.5 h-1.5 rounded-full bg-indigo-500 animate-ping"></span>
         <h3 class="serif text-xl text-white">Buat Artikel AI (Groq)</h3>
       </div>
-      <p class="text-[11px] text-[#8A8A90] -mt-2 leading-relaxed">Pilih tipe artikel, kategori, dan topik. AI akan membuat versi Indonesia dan English sekaligus; mode berita wajib memakai link referensi.</p>
+      <p class="text-[11px] text-[#8A8A90] -mt-2 leading-relaxed">Pilih tipe artikel, kategori, dan topik. AI akan membuat versi Indonesia dan English sekaligus. Mode berita akan mengambil sumber terbaru secara otomatis.</p>
       
       <form id="ai-form" class="space-y-4 text-xs text-slate-300">
         <div class="space-y-1">
@@ -327,10 +327,8 @@ import Logo from '../../components/Logo.astro';
           <input type="text" id="ai-post-keyword" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none" placeholder="Contoh: Pentingnya firewall FortiGate di kantor, dsb." />
         </div>
 
-        <div id="ai-source-wrap" class="space-y-1 hidden">
-          <label for="ai-source-urls" class="text-[#8A8A90] font-bold uppercase tracking-wider text-[9px] mono">Link Referensi Berita *</label>
-          <textarea id="ai-source-urls" rows="4" class="w-full bg-[#0A0A0B] border border-[#232328] focus:border-[#C5F82A] rounded-lg p-2.5 text-white outline-none resize-none font-mono" placeholder="https://sumber-berita.com/artikel-1&#10;https://sumber-resmi.com/update-2"></textarea>
-          <p class="text-[10px] text-[#5C5C63] leading-relaxed">Satu URL per baris. Untuk news, artikel dibuat berdasarkan sumber ini agar tidak mengarang fakta terbaru.</p>
+        <div id="ai-source-wrap" class="hidden rounded-lg border border-indigo-500/20 bg-indigo-500/5 p-3 text-[10px] text-indigo-200 leading-relaxed">
+          <strong>Riset berita otomatis aktif.</strong> Sistem akan mengambil headline dan ringkasan terbaru dari feed berita berdasarkan kategori/topik. Periksa hasil sebelum dipublikasikan karena AI tidak menggantikan verifikasi editorial.
         </div>
 
         <div class="pt-4 flex justify-end gap-3 text-xs">
@@ -478,7 +476,6 @@ import Logo from '../../components/Logo.astro';
     const aiPostCategory = document.getElementById('ai-post-category') as HTMLSelectElement;
     const aiPostKeyword = document.getElementById('ai-post-keyword') as HTMLInputElement;
     const aiSourceWrap = document.getElementById('ai-source-wrap')!;
-    const aiSourceUrls = document.getElementById('ai-source-urls') as HTMLTextAreaElement;
     const aiBtnCancel = document.getElementById('ai-btn-cancel')!;
     const aiBtnSubmit = document.getElementById('ai-btn-submit') as HTMLButtonElement;
     const aiBtnText = document.getElementById('ai-btn-text')!;
@@ -717,13 +714,66 @@ import Logo from '../../components/Logo.astro';
             .from('posts')
             .update(payload)
             .eq('id', id);
-          if (error) throw error;
+
+          if (error) {
+            const isColumnErr = error.code === 'PGRST204' ||
+              (error.message && (error.message.includes('column') || error.message.includes('schema cache')));
+
+            if (isColumnErr) {
+              const basePayload = {
+                title: payload.title,
+                slug: payload.slug,
+                date: payload.date,
+                category: payload.category,
+                bg_category: payload.bg_category,
+                description: payload.description,
+                content: payload.content
+              };
+              const { error: retryError } = await supabase
+                .from('posts')
+                .update(basePayload)
+                .eq('id', id);
+              if (retryError) throw retryError;
+
+              await (window as any).showAlert('Postingan berhasil diperbarui!\n\nCatatan: Kolom bilingual belum aktif di Supabase. Jalankan query di supabase_blog_bilingual_migration.sql untuk mengaktifkan versi Inggris.');
+              closePostModal();
+              loadBlogPosts();
+              return;
+            }
+            throw error;
+          }
         } else {
           // Create
           const { error } = await supabase
             .from('posts')
             .insert([payload]);
-          if (error) throw error;
+
+          if (error) {
+            const isColumnErr = error.code === 'PGRST204' ||
+              (error.message && (error.message.includes('column') || error.message.includes('schema cache')));
+
+            if (isColumnErr) {
+              const basePayload = {
+                title: payload.title,
+                slug: payload.slug,
+                date: payload.date,
+                category: payload.category,
+                bg_category: payload.bg_category,
+                description: payload.description,
+                content: payload.content
+              };
+              const { error: retryError } = await supabase
+                .from('posts')
+                .insert([basePayload]);
+              if (retryError) throw retryError;
+
+              await (window as any).showAlert('Postingan berhasil disimpan!\n\nCatatan: Kolom bilingual belum aktif di database Supabase. Jalankan query di supabase_blog_bilingual_migration.sql untuk mengaktifkan versi Inggris.');
+              closePostModal();
+              loadBlogPosts();
+              return;
+            }
+            throw error;
+          }
         }
 
         closePostModal();
@@ -753,7 +803,6 @@ import Logo from '../../components/Logo.astro';
     // Event Listeners for AI Modal
     btnGenerateAi.addEventListener('click', () => {
       aiPostKeyword.value = '';
-      aiSourceUrls.value = '';
       aiArticleType.value = 'evergreen';
       aiPostCategory.value = 'AI & OTOMATISASI';
       aiSourceWrap.classList.add('hidden');
@@ -763,7 +812,6 @@ import Logo from '../../components/Logo.astro';
     aiArticleType.addEventListener('change', () => {
       const isNews = aiArticleType.value === 'news';
       aiSourceWrap.classList.toggle('hidden', !isNews);
-      aiSourceUrls.required = isNews;
     });
 
     aiBtnCancel.addEventListener('click', () => {
@@ -776,12 +824,7 @@ import Logo from '../../components/Logo.astro';
       const category = aiPostCategory.value;
       const keyword = aiPostKeyword.value.trim();
       const articleType = aiArticleType.value;
-      const sourceUrls = aiSourceUrls.value.trim();
-
-      if (articleType === 'news' && !sourceUrls) {
-        await (window as any).showAlert('Mode berita terkini membutuhkan minimal 1 link referensi.');
-        return;
-      }
+      const sourceUrls = '';
       
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
@@ -813,7 +856,11 @@ import Logo from '../../components/Logo.astro';
           throw new Error(resData.error || 'Terjadi kesalahan saat generate artikel.');
         }
 
-        await (window as any).showAlert('Sukses! Artikel AI bilingual berhasil digenerate dan dipublikasikan.');
+        if (resData.warning) {
+          await (window as any).showAlert('Sukses! ' + resData.warning);
+        } else {
+          await (window as any).showAlert('Sukses! Artikel AI bilingual berhasil digenerate dan dipublikasikan.');
+        }
         aiModal.classList.add('hidden');
         loadBlogPosts(); // Reload posts table
       } catch (err: any) {

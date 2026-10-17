@@ -138,7 +138,17 @@ const staticPosts = [
 const { slug } = Astro.params;
 const isEn = Astro.currentLocale === 'en';
 
-let post: any = staticPosts.find(p => p.slug === slug);
+const englishSlugMap: Record<string, string> = {
+  'how-to-use-ai-chatbots-for-whatsapp-customer-support': 'otomatisasi-leads-ai-whatsapp',
+  'headless-serverless-website-benefits': 'keunggulan-website-headless-modern',
+  'technical-seo-guide-for-local-businesses': 'strategi-technical-seo-lokal',
+  'creative-video-for-landing-page-conversions': 'peran-video-creative-landing-page',
+  'improve-google-lighthouse-performance': 'analisis-performa-web-lighthouse',
+  'minimalist-web-design-trends': 'tren-desain-web-minimalis'
+};
+const contentSlug = isEn && slug ? englishSlugMap[slug] || slug : slug;
+
+let post: any = staticPosts.find(p => p.slug === contentSlug);
 
 if (!post) {
   try {

@@ -4,7 +4,19 @@ import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 const lang = Astro.currentLocale === "en" ? "en" : "id";
 const isEn = lang === "en";
-const route = (path: string) => isEn ? `/en${path}` : path;
+const route = (path: string) => {
+  if (!isEn) return path;
+  const englishRoutes: Record<string, string> = {
+    '/layanan/': '/services/',
+    '/layanan/web/': '/services/web-development/',
+    '/layanan/ai/': '/services/ai-automation/',
+    '/layanan/seo/': '/services/seo/',
+    '/layanan/video/': '/services/video-production/',
+    '/layanan/keamanan-jaringan/': '/services/network-security/',
+    '/layanan/qa/': '/services/software-testing/'
+  };
+  return `/en${englishRoutes[path] || path}`;
+};
 const waNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || "6285624353611";
 const waMessage = isEn
   ? "Hello Lumovelo, I would like to discuss a website project."

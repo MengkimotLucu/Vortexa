@@ -1,4 +1,4 @@
 ---
-import Page from '../../layanan/qa.astro';
+export const prerender = false;
 ---
-<Page />
+{Astro.redirect('/en/services/software-testing/', 301)}

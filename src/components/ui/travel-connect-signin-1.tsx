@@ -251,11 +251,31 @@ const SignInCard = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Check if session already exists
+    // Check if session already exists and validate admin
     const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        window.location.href = '/admin/dashboard/';
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user?.email) {
+          const userEmail = session.user.email.toLowerCase();
+          const allowedEmails = ((import.meta.env.PUBLIC_ADMIN_EMAILS || 'admin@lumovelo.com') as string)
+            .split(',')
+            .map((e: string) => e.trim().toLowerCase());
+
+          if (allowedEmails.includes(userEmail)) {
+            // Sinkronkan cookie sesi sebelum redirect
+            document.cookie = `sb-access-token=${session.access_token}; path=/; max-age=${session.expires_in}; SameSite=Lax; Secure`;
+            document.cookie = `sb-refresh-token=${session.refresh_token}; path=/; max-age=604800; SameSite=Lax; Secure`;
+            window.location.href = '/admin/dashboard/';
+            return;
+          } else {
+            // Sesi bukan admin resmi, bersihkan untuk mencegah infinite redirect loop
+            await supabase.auth.signOut();
+            document.cookie = 'sb-access-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; Secure';
+            document.cookie = 'sb-refresh-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; Secure';
+          }
+        }
+      } catch (err) {
+        console.warn('Session check warning:', err);
       }
     };
     checkSession();
@@ -276,9 +296,20 @@ const SignInCard = () => {
         throw error;
       }
 
-      if (data.session) {
+      if (data?.session) {
+        const userEmail = data.user?.email?.toLowerCase();
+        const allowedEmails = ((import.meta.env.PUBLIC_ADMIN_EMAILS || 'admin@lumovelo.com') as string)
+          .split(',')
+          .map((e: string) => e.trim().toLowerCase());
+
+        if (!userEmail || !allowedEmails.includes(userEmail)) {
+          await supabase.auth.signOut();
+          document.cookie = 'sb-access-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; Secure';
+          document.cookie = 'sb-refresh-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; Secure';
+          throw new Error('Akses Ditolak: Email akun ini bukan administrator resmi Lumovelo.');
+        }
+
         const { access_token, refresh_token, expires_in } = data.session;
-        // Simpan token ke cookie agar terbaca oleh middleware di sisi server
         document.cookie = `sb-access-token=${access_token}; path=/; max-age=${expires_in}; SameSite=Lax; Secure`;
         document.cookie = `sb-refresh-token=${refresh_token}; path=/; max-age=604800; SameSite=Lax; Secure`;
         window.location.href = '/admin/dashboard/';
@@ -292,9 +323,9 @@ const SignInCard = () => {
   return (
     <div className="flex w-full h-full items-center justify-center">
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={false}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
         className="w-full max-w-4xl overflow-hidden rounded-2xl flex bg-white shadow-xl"
       >
         {/* Left side - Map */}

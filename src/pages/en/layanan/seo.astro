@@ -1,4 +1,4 @@
 ---
-import Page from '../../layanan/seo.astro';
+export const prerender = false;
 ---
-<Page />
+{Astro.redirect('/en/services/seo/', 301)}
